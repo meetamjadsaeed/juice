@@ -1,0 +1,35 @@
+{
+    "name": "Rucksack",
+    "description": "A frontend framework",
+    "version": "1.0.0-beta",
+    "license": "MIT",
+    "author": {
+        "name": "Joe Mottershaw",
+        "url": "https://github.com/joemottershaw"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cloudeight/rucksack.git"
+    },
+    "bugs": "https://github.com/cloudeight/rucksack/issues",
+    "contributors": "https://github.com/cloudeight/rucksack/graphs/contributors",
+    "keywords": [
+        "rucksack",
+        "frontend",
+        "framework"
+    ],
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.7.0",
+        "browser-sync": "^2.24.4",
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-babel": "^7.0.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-connect-php7": "^1.0.1",
+        "gulp-sass": "^4.0.1",
+        "gulp-strip-comments": "^2.5.2",
+        "gulp-uglify": "^3.0.0"
+    }
+}

@@ -1,0 +1,1 @@
+"use strict";document.documentElement.className.replace("no-js","js");

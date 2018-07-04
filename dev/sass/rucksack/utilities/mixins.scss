@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   UTILITIES -> MIXINS
+   ============================================================================================= */
+
+// Breakpoints
+@mixin breakpoint($breakpoint) {
+    // Check if the breakpoint key exists in the breakpoints array
+    @if map-has-key($breakpoints, $breakpoint) {
+        // Create the media query
+        @media #{map-get($breakpoints, $breakpoint)} {
+            // Apply the content
+            @content;
+        }
+    } @else {
+        // Show warning message
+        @warn 'No value could be retrieved from `#{$breakpoint}`. ';
+    }
+}
+
+// Clearfix
+@mixin clearfix() {
+    clear: both;
+    content: '';
+    display: block;
+}
+
+// Truncate text
+@mixin truncate-text() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Reserve bold space
+@mixin reserve-bold-space() {
+    color: transparent;
+    content: attr(data-reserve-text);
+    display: block;
+    font-weight: bold;
+    height: 1px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+// Zero positioning
+@mixin zero-positioning() {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   FRAMEWORK -> HELPERS
+   ============================================================================================= */
+
+// Display
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.is-visible {
+    visibility: visible;
+}
+
+.is-hidden {
+    visibility: hidden;
+}
+
+// Content spacing
+.content-spacing {
+    padding: $content-spacing;
+}
+
+.content-spacing--small {
+    padding: $content-spacing--small;
+}
+
+.content-spacing--large {
+    padding: $content-spacing--large;
+}
+
+.content-spacing--huge {
+    padding: $content-spacing--huge;
+}
+
+// Element spacing
+.element-spacing {
+    margin-bottom: $element-spacing;
+}
+
+.element-spacing--small {
+    margin-bottom: $element-spacing--small;
+}
+
+.element-spacing--large {
+    margin-bottom: $element-spacing--large;
+}
+
+.element-spacing--huge {
+    margin-bottom: $element-spacing--huge;
+}
+
+// Typography
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+// Floats
+.float-left  {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
