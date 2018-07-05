@@ -26,6 +26,11 @@ $grid-gutter: $element-spacing / 2;
     position: relative;
     width: 100%;
 
+    // Pseudo elements
+    &::after {
+        @include clearfix();
+    }
+
     // Modifiers
     &.container--no-gutter {
         padding: 0;
@@ -48,12 +53,17 @@ $grid-gutter: $element-spacing / 2;
     flex: 0 1 auto;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 0 -$grid-gutter;
+    margin: 0 (-$grid-gutter);
     position: relative;
 
     // Pseudo classes
     &:focus {
         outline: none;
+    }
+
+    // Pseudo elements
+    &::after {
+        @include clearfix();
     }
 
     // Modifiers
