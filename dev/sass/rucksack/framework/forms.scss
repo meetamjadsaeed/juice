@@ -177,6 +177,10 @@ $button-border-width--right: $input-border-width--right;
 $button-border-width--bottom: $input-border-width--bottom;
 $button-border-width--left: $input-border-width--left;
 $button-border-width--separator: $input-border-width--separator;
+$button-content-spacing: $content-spacing;
+$button-content-spacing--small: $content-spacing--small;
+$button-content-spacing--large: $content-spacing--large;
+$button-content-spacing--huge: $content-spacing--huge;
 $button-element-spacing: $element-spacing;
 $button-element-spacing--small: $element-spacing--small;
 $button-element-spacing--large: $element-spacing--large;
@@ -272,6 +276,32 @@ $button-text-transform: uppercase;
     box-shadow: inset 0 2px 7px 0px rgba(0, 0, 0, 0.1);
 }
 
+// Small buttons
+@mixin button-size--small() {
+    font-size: $button-font-size--small;
+    height: $button-height--small;
+    line-height: $button-height--small - ($button-border-width--top + $button-border-width--bottom);
+    margin-bottom: $button-element-spacing--small;
+    padding: 0 $button-content-spacing--small;
+}
+
+// Large buttons
+@mixin button-size--large() {
+    font-size: $button-font-size--large;
+    height: $button-height--large;
+    line-height: $button-height--large - ($button-border-width--top + $button-border-width--bottom);
+    margin-bottom: $button-element-spacing--large;
+    padding: 0 $button-content-spacing--large;
+}
+
+// Huge buttons
+@mixin button-size--huge() {
+    font-size: $button-font-size--huge;
+    height: $button-height--huge;
+    line-height: $button-height--huge - ($button-border-width--top + $button-border-width--bottom);
+    margin-bottom: $button-element-spacing--huge;
+    padding: 0 $button-content-spacing--huge;
+}
 
 /* =============================================================================================
    FOUNDATION -> FORMS -> RESET
@@ -1014,8 +1044,7 @@ textarea {
     margin: 0;
     margin-bottom: $button-element-spacing;
     max-width: 100%;
-    min-width: 100px;
-    padding: 0 14px;
+    padding: 0 $button-content-spacing;
     text-align: center;
     text-transform: $button-text-transform;
     user-select: none;
@@ -1130,27 +1159,15 @@ textarea {
 
     // Modifiers: Size
     &.is-small {
-        font-size: $button-font-size--small;
-        height: $button-height--small;
-        line-height: $button-height--small - ($button-border-width--top + $button-border-width--bottom);
-        margin-bottom: $button-element-spacing--small;
-        padding: 0 12px;
+        @include button-size--small();
     }
 
     &.is-large {
-        font-size: $button-font-size--large;
-        height: $button-height--large;
-        line-height: $button-height--large - ($button-border-width--top + $button-border-width--bottom);
-        margin-bottom: $button-element-spacing--large;
-        padding: 0 16px;
+        @include button-size--large();
     }
 
     &.is-huge {
-        font-size: $button-font-size--huge;
-        height: $button-height--huge;
-        line-height: $button-height--huge - ($button-border-width--top + $button-border-width--bottom);
-        margin-bottom: $button-element-spacing--huge;
-        padding: 0 18px;
+        @include button-size--huge();
     }
 
     // Modifiers: Feedback
