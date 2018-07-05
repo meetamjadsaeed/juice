@@ -38,6 +38,10 @@
     padding: $content-spacing--huge;
 }
 
+.content-spacing--none {
+    padding: 0;
+}
+
 // Element spacing
 .element-spacing {
     margin-bottom: $element-spacing;
@@ -53,6 +57,10 @@
 
 .element-spacing--huge {
     margin-bottom: $element-spacing--huge;
+}
+
+.element-spacing--none {
+    margin-bottom: 0;
 }
 
 // Typography
