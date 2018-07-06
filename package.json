@@ -1,7 +1,7 @@
 {
     "name": "Rucksack",
-    "description": "A frontend framework",
-    "version": "1.0.0-beta.4",
+    "description": "A responsive frontend framework",
+    "version": "1.0.0-beta.5",
     "license": "MIT",
     "author": {
         "name": "Joe Mottershaw",
@@ -15,8 +15,12 @@
     "contributors": "https://github.com/cloudeight/rucksack/graphs/contributors",
     "keywords": [
         "rucksack",
+        "responsive",
         "frontend",
-        "framework"
+        "framework",
+        "css",
+        "sass",
+        "javascript"
     ],
     "devDependencies": {
         "babel-core": "^6.26.3",
