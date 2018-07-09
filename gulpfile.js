@@ -33,11 +33,8 @@ const port = 3000;
  */
 const resources = {
     html: '**/*.html',
-    sass: 'dev/sass/app.scss',
-    js: [
-        'dev/js/rucksack/**/*.js',
-        'dev/js/app.js'
-    ]
+    sass: 'dev/sass/rucksack.scss',
+    js: 'dev/js/**/*.js'
 };
 
 
@@ -46,8 +43,8 @@ const resources = {
  * @const {array}
  */
 const build = {
-    css: 'dist/css/',
-    js: 'dist/js/'
+    css: 'dist/',
+    js: 'dist/'
 };
 
 
@@ -86,7 +83,7 @@ gulp.task('sass', () => {
  */
 gulp.task('scripts', () => {
     gulp.src(resources.js)
-		.pipe(concat('app.js'))
+		.pipe(concat('rucksack.js'))
         .pipe(strip())
         .pipe(babel({
             presets: ['env']
