@@ -33,7 +33,6 @@ const port = 3000;
  */
 const resources = {
     html: '**/*.html',
-    php: '**/*.php',
     sass: 'dev/sass/app.scss',
     js: [
         'dev/js/rucksack/**/*.js',
