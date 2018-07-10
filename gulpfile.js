@@ -53,7 +53,7 @@ const build = {
    ============================================================================================= */
 
 /**
- * Compile SASS to CSS, autoprefix and minimize
+ * Compile SASS to CSS, autoprefix, minimize and reload browserSync
  * @module gulp-sass
  * @module gulp-autoprefixer
  * @module browser-sync
@@ -74,7 +74,7 @@ gulp.task('build-css', () => {
 
 
 /**
- * Concat all JavaScript files, strip comments, compile ES6 to ES5 and minimize
+ * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
  * @module gulp-concat
  * @module gulp-strip-comments
  * @module gulp-babel
@@ -97,8 +97,8 @@ gulp.task('build-scripts', () => {
 
 
 /**
- * Compile SASS to CSS, autoprefix and minimize
- * Concat all JavaScript files, strip comments, compile ES6 to ES5 and minimize
+ * Compile SASS to CSS, autoprefix, minimize and reload browserSync
+ * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
  */
 gulp.task('build', () => {
     // Start the gulp sass and scripts tasks
@@ -109,14 +109,14 @@ gulp.task('build', () => {
 
 /**
  * Start a development server
- * Compile SASS to CSS, autoprefix and minimize
- * Concat all JavaScript files, strip comments, compile ES6 to ES5 and minimize
- * Watch for file changes and reload the browser
+ * Compile SASS to CSS, autoprefix, minimize and reload browserSync
+ * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
+ * Watch for declared file changes and reload browserSync
  * @module gulp-connect-php7
  * @module browser-sync
  */
 gulp.task('dev', () => {
-    // Start a new server with browser syncing
+    // Start a new server with browserSync
     connect.server({}, () => {
         // Start the browser and proxy the localhost hostname
         browserSync({
@@ -125,13 +125,13 @@ gulp.task('dev', () => {
         });
     });
 
-    // Watch for file changes and call the sass/scripts gulp tasks
+    // Watch for file changes and call the build css/scripts gulp tasks
     gulp.watch(resources.sass, ['build-css']);
     gulp.watch(resources.scripts, ['build-scripts']);
 
-    // Watch for file changes and reload the browser
+    // Watch for declared file changes and reload browserSync
     gulp.watch([resources.html]).on('change', () => {
-        // Reload the browser
+        // Reload browserSync
         browserSync.reload();
     });
 });
