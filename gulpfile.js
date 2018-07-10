@@ -101,7 +101,7 @@ gulp.task('build-scripts', () => {
  * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
  */
 gulp.task('build', () => {
-    // Start the gulp sass and scripts tasks
+    // Start the gulp css and scripts tasks
     gulp.start('build-css');
     gulp.start('build-scripts');
 });
@@ -118,14 +118,14 @@ gulp.task('build', () => {
 gulp.task('dev', () => {
     // Start a new server with browserSync
     connect.server({}, () => {
-        // Start the browser and proxy the localhost hostname
+        // Proxy the localhost hostname
         browserSync({
             proxy: hostname,
             port: port
         });
     });
 
-    // Watch for file changes and call the build css/scripts gulp tasks
+    // Watch for file changes and call the build css and scripts gulp tasks
     gulp.watch(resources.sass, ['build-css']);
     gulp.watch(resources.scripts, ['build-scripts']);
 
