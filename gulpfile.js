@@ -126,7 +126,7 @@ gulp.task('dev', () => {
     });
 
     // Watch for file changes and call the sass/scripts gulp tasks
-    gulp.watch(resources.sass, ['build-sass']);
+    gulp.watch(resources.sass, ['build-css']);
     gulp.watch(resources.scripts, ['build-scripts']);
 
     // Watch for file changes and reload the browser
