@@ -10,12 +10,12 @@ $focus-outline-style: dotted;
 $focus-outline-width: 1px;
 
 // Background
-$background-color: color('background');
+$background-color: base-color('background');
 
 // Selection
-$selection-background-color: color('brand');
-$selection-font-color: color('white');
-$selection-text-shadow: color('black');
+$selection-background-color: base-color('brand');
+$selection-font-color: base-color('white');
+$selection-text-shadow: base-color('black');
 
 
 /* =============================================================================================

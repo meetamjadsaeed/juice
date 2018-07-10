@@ -36,10 +36,10 @@
  *  @return mixed           The color value, null otherwise
  *  @example
     .selector {
-        property: color('red', 'darken-1');
+        property: base-color('red', 'darken-1');
     }
  */
-@function color($color, $type: 'base') {
+@function base-color($color, $type: 'base') {
     // Return the color value
     @return get-color($base-color-palette, $color, $type);
 }

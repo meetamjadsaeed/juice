@@ -40,9 +40,9 @@ $inputs: "
     input[type=week],
     input[type=time]
 ";
-$input-background-color: color('white');
-$input-border-color: color('white', 'darken-3');
-$input-border-color--hover: color('white', 'darken-5');
+$input-background-color: base-color('white');
+$input-border-color: base-color('white', 'darken-3');
+$input-border-color--hover: base-color('white', 'darken-5');
 $input-border-color--focus: feedback-color('info');
 $input-border-width--separator: $border-width--separator;
 $input-border-width--top: $border-width--top;
@@ -60,7 +60,7 @@ $input-element-spacing--small: $element-spacing--small;
 $input-element-spacing--large: $element-spacing--large;
 $input-element-spacing--huge: $element-spacing--huge;
 $input-font-color: font-color();
-$input-font-color--placeholder: color('white', 'darken-5');
+$input-font-color--placeholder: base-color('white', 'darken-5');
 $input-font-family: $primary-typeface;
 $input-font-size: $font-size;
 $input-font-size--small: $font-size--small;
@@ -74,7 +74,7 @@ $input-padding: 0 10px;
 $input-range-thumb-background-color: $input-background-color;
 $input-range-thumb-width: 20px;
 $input-range-track-color: $input-border-color;
-$input-range-track-color--filled: color('blue');
+$input-range-track-color--filled: base-color('blue');
 
 // Selects
 $select-background-color: $input-background-color;
@@ -143,30 +143,30 @@ $buttons: "
     input[type=reset],
     input[type=button]
 ";
-$button-background-color: color('white');
-$button-background-color--hover: color('white', 'lighten-1');
-$button-background-color--focus: color('white', 'lighten-1');
-$button-background-color--active: color('white');
-$button-background-color-primary: color('brand');
-$button-background-color-primary--hover: color('brand', 'lighten-1');
-$button-background-color-primary--focus: color('brand', 'lighten-1');
-$button-background-color-primary--active: color('brand');
-$button-background-color-secondary: color('charcoal');
-$button-background-color-secondary--hover: color('charcoal', 'lighten-1');
-$button-background-color-secondary--focus: color('charcoal', 'lighten-1');
-$button-background-color-secondary--active: color('charcoal');
-$button-border-color: color('white', 'darken-3');
-$button-border-color--hover: color('white', 'darken-5');
-$button-border-color--focus: color('white', 'darken-6');
-$button-border-color--active: color('white', 'darken-6');
-$button-border-color-primary: color('brand', 'darken-3');
-$button-border-color-primary--hover: color('brand', 'darken-5');
-$button-border-color-primary--focus: color('brand', 'darken-6');
-$button-border-color-primary--active: color('brand', 'darken-6');
-$button-border-color-secondary: color('charcoal', 'darken-3');
-$button-border-color-secondary--hover: color('charcoal', 'darken-5');
-$button-border-color-secondary--focus: color('charcoal', 'darken-6');
-$button-border-color-secondary--active: color('charcoal', 'darken-6');
+$button-background-color: base-color('white');
+$button-background-color--hover: base-color('white', 'lighten-1');
+$button-background-color--focus: base-color('white', 'lighten-1');
+$button-background-color--active: base-color('white');
+$button-background-color-primary: base-color('brand');
+$button-background-color-primary--hover: base-color('brand', 'lighten-1');
+$button-background-color-primary--focus: base-color('brand', 'lighten-1');
+$button-background-color-primary--active: base-color('brand');
+$button-background-color-secondary: base-color('charcoal');
+$button-background-color-secondary--hover: base-color('charcoal', 'lighten-1');
+$button-background-color-secondary--focus: base-color('charcoal', 'lighten-1');
+$button-background-color-secondary--active: base-color('charcoal');
+$button-border-color: base-color('white', 'darken-3');
+$button-border-color--hover: base-color('white', 'darken-5');
+$button-border-color--focus: base-color('white', 'darken-6');
+$button-border-color--active: base-color('white', 'darken-6');
+$button-border-color-primary: base-color('brand', 'darken-3');
+$button-border-color-primary--hover: base-color('brand', 'darken-5');
+$button-border-color-primary--focus: base-color('brand', 'darken-6');
+$button-border-color-primary--active: base-color('brand', 'darken-6');
+$button-border-color-secondary: base-color('charcoal', 'darken-3');
+$button-border-color-secondary--hover: base-color('charcoal', 'darken-5');
+$button-border-color-secondary--focus: base-color('charcoal', 'darken-6');
+$button-border-color-secondary--active: base-color('charcoal', 'darken-6');
 $button-border-radius--top-left: $border-radius--top-left;
 $button-border-radius--top-right: $border-radius--top-right;
 $button-border-radius--bottom-right: $border-radius--bottom-right;
@@ -189,14 +189,14 @@ $button-font-color: font-color();
 $button-font-color--hover: font-color();
 $button-font-color--focus: font-color();
 $button-font-color--active: font-color();
-$button-font-color-primary: color('white');
-$button-font-color-primary--hover: color('white');
-$button-font-color-primary--focus: color('white');
-$button-font-color-primary--active: color('white');
-$button-font-color-secondary: color('white');
-$button-font-color-secondary--hover: color('white');
-$button-font-color-secondary--focus: color('white');
-$button-font-color-secondary--active: color('white');
+$button-font-color-primary: base-color('white');
+$button-font-color-primary--hover: base-color('white');
+$button-font-color-primary--focus: base-color('white');
+$button-font-color-primary--active: base-color('white');
+$button-font-color-secondary: base-color('white');
+$button-font-color-secondary--hover: base-color('white');
+$button-font-color-secondary--focus: base-color('white');
+$button-font-color-secondary--active: base-color('white');
 $button-font-family: $secondary-typeface;
 $button-font-size: $font-size;
 $button-font-size--small: $font-size--small;
@@ -1175,7 +1175,7 @@ textarea {
         &.with-#{$name} {
             background-color: feedback-color($name);
             border-color: feedback-color($name, 'darken-3');
-            color: color('white');
+            color: base-color('white');
 
             // Pseudo classes
             &:hover {

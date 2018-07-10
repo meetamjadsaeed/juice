@@ -5,13 +5,13 @@
    ============================================================================================= */
 
 // Variables
-$table-body-border-color: color('white', 'darken-2');
+$table-body-border-color: base-color('white', 'darken-2');
 $table-body-font-color: font-color();
 $table-body-font-color--striped: font-color();
 $table-body-font-color--hover: font-color();
-$table-body-row-background-color: color('white');
-$table-body-row-background-color--striped: color('white', 'darken-1');
-$table-body-row-background-color--hover: color('green', 'lighten-2');
+$table-body-row-background-color: base-color('white');
+$table-body-row-background-color--striped: base-color('white', 'darken-1');
+$table-body-row-background-color--hover: base-color('green', 'lighten-2');
 $table-border-style: $border-style;
 $table-border-width--top: $border-width--top;
 $table-border-width--right: $border-width--right;
@@ -30,11 +30,11 @@ $table-font-size: $font-size;
 $table-font-size--small: $font-size--small;
 $table-font-size--large: $font-size--large;
 $table-font-size--huge: $font-size--huge;
-$table-foot-background-color: color('white');
-$table-foot-border-color: color('white', 'darken-2');
+$table-foot-background-color: base-color('white');
+$table-foot-border-color: base-color('white', 'darken-2');
 $table-foot-font-color: font-color();
-$table-head-background-color: color('charcoal');
-$table-head-border-color: color('charcoal', 'darken-2');
+$table-head-background-color: base-color('charcoal');
+$table-head-border-color: base-color('charcoal', 'darken-2');
 $table-head-font-color: font-color('light');
 
 

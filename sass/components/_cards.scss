@@ -4,7 +4,7 @@
    RUCKSACK -> COMPONENTS -> CARDS -> VARIABLES
    ============================================================================================= */
 
-$card-background-color: color('white');
+$card-background-color: base-color('white');
 $card-content-spacing: $content-spacing;
 $card-content-spacing--small: $content-spacing--small;
 $card-content-spacing--large: $content-spacing--large;
@@ -17,7 +17,7 @@ $card-font-size--huge: $font-size--huge;
 $card-link-color: $link-color;
 $card-link-color--hover: $link-color--hover;
 $card-border-style: $border-style;
-$card-border-color: color('white', 'darken-3');
+$card-border-color: base-color('white', 'darken-3');
 $card-border-width--top: $border-width--top;
 $card-border-width--right: $border-width--right;
 $card-border-width--bottom: $border-width--bottom;
@@ -31,10 +31,10 @@ $card-element-spacing: $element-spacing;
 $card-element-spacing--small: $element-spacing--small;
 $card-element-spacing--large: $element-spacing--large;
 $card-element-spacing--huge: $element-spacing--huge;
-$card-icon-background-color: color('white');
-$card-icon-background-color--hover: color('white', 'darken-2');
-$card-icon-background-color--focus: color('white', 'darken-2');
-$card-icon-background-color--active: color('white', 'darken-3');
+$card-icon-background-color: base-color('white');
+$card-icon-background-color--hover: base-color('white', 'darken-2');
+$card-icon-background-color--focus: base-color('white', 'darken-2');
+$card-icon-background-color--active: base-color('white', 'darken-3');
 $card-icon-border-color: transparent;
 $card-icon-border-color--hover:  transparent;
 $card-icon-border-color--focus:  transparent;

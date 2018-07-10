@@ -23,7 +23,7 @@ $p-font-size--large: $font-size--large;
 $p-font-size--huge: $font-size--huge;
 
 // Horizontal rule
-$hr-border-color: color('background', 'darken-2');
+$hr-border-color: base-color('background', 'darken-2');
 $hr-border-style: $border-style;
 $hr-border-width: 1px;
 $hr-element-spacing: $element-spacing;
@@ -32,8 +32,8 @@ $hr-element-spacing--large: $element-spacing--large;
 $hr-element-spacing--huge: $element-spacing--huge;
 
 // Links
-$link-color: color('brand');
-$link-color--hover: color('brand', 'lighten-2');
+$link-color: base-color('brand');
+$link-color--hover: base-color('brand', 'lighten-2');
 
 // Headings
 $heading-element-spacing: $element-spacing;
@@ -117,7 +117,7 @@ $h6-text-transform: none;
 $abbr-border-color: feedback-color('info');
 
 // Mark
-$mark-background-color: color('yellow', 'lighten-1');
+$mark-background-color: base-color('yellow', 'lighten-1');
 $mark-border-radius--top-left: 0;
 $mark-border-radius--top-right: 0;
 $mark-border-radius--bottom-right: 0;
@@ -130,19 +130,19 @@ $mark-font-size--huge: $font-size--huge;
 $mark-padding: 4px;
 
 // Code
-$code-font-color: color('red');
+$code-font-color: base-color('red');
 $code-font-size: $font-size;
 $code-font-size--small: $font-size--small;
 $code-font-size--large: $font-size--large;
 $code-font-size--huge: $font-size--huge;
 
 // Keyboard
-$kbd-background-color: color('charcoal');
+$kbd-background-color: base-color('charcoal');
 $kbd-border-radius--top-left: 0;
 $kbd-border-radius--top-right: 0;
 $kbd-border-radius--bottom-right: 0;
 $kbd-border-radius--bottom-left: 0;
-$kbd-font-color: color('white');
+$kbd-font-color: base-color('white');
 $kbd-font-size: $font-size;
 $kbd-font-size--small: $font-size--small;
 $kbd-font-size--large: $font-size--large;
@@ -150,8 +150,8 @@ $kbd-font-size--huge: $font-size--huge;
 $kbd-padding: 4px;
 
 // Preformatted
-$pre-background-color: color('white');
-$pre-border-color: color('white', 'darken-3');
+$pre-background-color: base-color('white');
+$pre-border-color: base-color('white', 'darken-3');
 $pre-border-radius--top-left: $border-radius--top-left;
 $pre-border-radius--top-right: $border-radius--top-right;
 $pre-border-radius--bottom-right: $border-radius--bottom-right;
@@ -169,7 +169,7 @@ $pre-element-spacing: $element-spacing;
 $pre-element-spacing--small: $element-spacing--small;
 $pre-element-spacing--large: $element-spacing--large;
 $pre-element-spacing--huge: $element-spacing--huge;
-$pre-font-color: color('silver', 'darken-5');
+$pre-font-color: base-color('silver', 'darken-5');
 $pre-font-size: $font-size;
 $pre-font-size--small: $font-size--small;
 $pre-font-size--large: $font-size--large;
@@ -188,9 +188,9 @@ $var-font-size--large: $font-size--large;
 $var-font-size--huge: $font-size--huge;
 
 // Blockquote
-$blockquote-background-color: color('white');
-$blockquote-border-color: color('white', 'darken-3');
-$blockquote-border-color--hover: color('brand');
+$blockquote-background-color: base-color('white');
+$blockquote-border-color: base-color('white', 'darken-3');
+$blockquote-border-color--hover: base-color('brand');
 $blockquote-border-radius--top-left: 0;
 $blockquote-border-radius--top-right: $border-radius--top-right;
 $blockquote-border-radius--bottom-right: $border-radius--bottom-right;
@@ -209,7 +209,7 @@ $blockquote-element-spacing: $element-spacing;
 $blockquote-element-spacing--small: $element-spacing--small;
 $blockquote-element-spacing--large: $element-spacing--large;
 $blockquote-element-spacing--huge: $element-spacing--huge;
-$blockquote-font-color: color('silver', 'darken-5');
+$blockquote-font-color: base-color('silver', 'darken-5');
 $blockquote-font-size: $font-size;
 $blockquote-font-size--small: $font-size--small;
 $blockquote-font-size--large: $font-size--large;
