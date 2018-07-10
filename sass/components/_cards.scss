@@ -1,0 +1,379 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> CARDS -> VARIABLES
+   ============================================================================================= */
+
+$card-background-color: color('white');
+$card-content-spacing: $content-spacing;
+$card-content-spacing--small: $content-spacing--small;
+$card-content-spacing--large: $content-spacing--large;
+$card-content-spacing--huge: $content-spacing--huge;
+$card-font-color: font-color('default');
+$card-font-size: $font-size;
+$card-font-size--small: $font-size--small;
+$card-font-size--large: $font-size--large;
+$card-font-size--huge: $font-size--huge;
+$card-link-color: $link-color;
+$card-link-color--hover: $link-color--hover;
+$card-border-style: $border-style;
+$card-border-color: color('white', 'darken-3');
+$card-border-width--top: $border-width--top;
+$card-border-width--right: $border-width--right;
+$card-border-width--bottom: $border-width--bottom;
+$card-border-width--left: $border-width--left;
+$card-border-radius--top-left: $border-radius--top-left;
+$card-border-radius--top-right: $border-radius--top-right;
+$card-border-radius--bottom-right: $border-radius--bottom-right;
+$card-border-radius--bottom-left: $border-radius--bottom-left;
+$card-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05);
+$card-element-spacing: $element-spacing;
+$card-element-spacing--small: $element-spacing--small;
+$card-element-spacing--large: $element-spacing--large;
+$card-element-spacing--huge: $element-spacing--huge;
+$card-icon-background-color: color('white');
+$card-icon-background-color--hover: color('white', 'darken-2');
+$card-icon-background-color--focus: color('white', 'darken-2');
+$card-icon-background-color--active: color('white', 'darken-3');
+$card-icon-border-color: transparent;
+$card-icon-border-color--hover:  transparent;
+$card-icon-border-color--focus:  transparent;
+$card-icon-border-color--active: transparent;
+$card-icon-border-radius--top-left: 100%;
+$card-icon-border-radius--top-right: 100%;
+$card-icon-border-radius--bottom-right: 100%;
+$card-icon-border-radius--bottom-left: 100%;
+$card-icon-border-style: $border-style;
+$card-icon-border-width--top: $border-width--top;
+$card-icon-border-width--right: $border-width--right;
+$card-icon-border-width--bottom: $border-width--bottom;
+$card-icon-border-width--left: $border-width--left;
+$card-icon-font-size: 1.1em;
+$card-icon-font-size--small: 1em;
+$card-icon-font-size--large: 1.2em;
+$card-icon-font-size--huge: 1.3em;
+$card-icon-height: $element-height;
+$card-icon-height--small: $element-height--small;
+$card-icon-height--large: $element-height--large;
+$card-icon-height--huge: $element-height--huge;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> CARDS -> MIXINS
+   ============================================================================================= */
+
+// Default icon size
+@mixin card-icon-size() {
+    font-size: $card-icon-font-size;
+    height: $card-icon-height;
+    max-height: $card-icon-height;
+    max-width: $card-icon-height;
+    width: $card-icon-height;
+}
+
+// Small icon size
+@mixin card-icon-size--small() {
+    font-size: $card-icon-font-size--small;
+    height: $card-icon-height--small;
+    max-height: $card-icon-height--small;
+    max-width: $card-icon-height--small;
+    width: $card-icon-height--small;
+}
+
+// Large icon size
+@mixin card-icon-size--large() {
+    font-size: $card-icon-font-size--large;
+    height: $card-icon-height--large;
+    max-height: $card-icon-height--large;
+    max-width: $card-icon-height--large;
+    width: $card-icon-height--large;
+}
+
+// Huge icon size
+@mixin card-icon-size--huge() {
+    font-size: $card-icon-font-size--huge;
+    height: $card-icon-height--huge;
+    max-height: $card-icon-height--huge;
+    max-width: $card-icon-height--huge;
+    width: $card-icon-height--huge;
+}
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> CARDS
+   ============================================================================================= */
+
+.card {
+    border: 0 $card-border-style $card-border-color;
+    border-width: $card-border-width--top
+                  $card-border-width--right
+                  $card-border-width--bottom
+                  $card-border-width--left;
+    border-radius: $card-border-radius--top-left
+                   $card-border-radius--top-right
+                   $card-border-radius--bottom-right
+                   $card-border-radius--bottom-left;
+    background-color: $card-background-color;
+    box-shadow: $card-box-shadow;
+    color: $card-font-color;
+    display: flex;
+    flex-direction: column;
+    font-size: $card-font-size;
+    margin: 0;
+    margin-bottom: $card-element-spacing;
+    overflow: hidden;
+    padding: 0;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $card-font-size--small;
+        margin-bottom: $card-element-spacing--small;
+
+        // Nested selectors
+        .card__content {
+            // Nested selectors
+            .card__head,
+            .card__actions {
+                // Nested selectors
+                .card__icons {
+                    // Nested selectors
+                    .card__icon {
+                        @include card-icon-size--small();
+                    }
+                }
+            }
+
+            .card__buttons {
+                // Nested selectors
+                #{$buttons} {
+                    @include button-size--small();
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $card-font-size--large;
+        margin-bottom: $card-element-spacing--large;
+
+        // Nested selectors
+        .card__content {
+            // Nested selectors
+            .card__head,
+            .card__actions {
+                // Nested selectors
+                .card__icons {
+                    // Nested selectors
+                    .card__icon {
+                        @include card-icon-size--large();
+                    }
+                }
+            }
+
+            .card__buttons {
+                // Nested selectors
+                #{$buttons} {
+                    @include button-size--large();
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $card-font-size--huge;
+        margin-bottom: $card-element-spacing--huge;
+
+        // Nested selectors
+        .card__content {
+            // Nested selectors
+            .card__head,
+            .card__actions {
+                // Nested selectors
+                .card__icons {
+                    // Nested selectors
+                    .card__icon {
+                        @include card-icon-size--huge();
+                    }
+                }
+            }
+
+            .card__buttons {
+                // Nested selectors
+                #{$buttons} {
+                    @include button-size--huge();
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    a {
+        color: $card-link-color;
+
+        // Pseudo classes
+        &:hover {
+            color: $card-link-color--hover;
+        }
+    }
+
+    .card__media {
+        border-radius: $card-border-radius--top-left
+                       $card-border-radius--top-right
+                       0
+                       0;
+        overflow: hidden;
+        padding: 0;
+
+        // Nested selectors
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .card__content {
+        padding: $card-content-spacing;
+
+        // Nested Selectors
+        .card__head,
+        .card__body {
+            padding-top: $card-content-spacing;
+
+            // Pseudo classes
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+
+        .card__head {
+            display: flex;
+
+            // Nested selectors
+            .card__headings {
+                flex-grow: 1;
+
+                // Nested selectors
+                h1, h2, h3, h4, h5, h6 {
+                    margin-bottom: 0;
+                    opacity: 0.5;
+
+                    // Pseudo classes
+                    &:first-child {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .card__body {
+            // Modifiers: State Hooks
+            &.is-collapsed {
+                display: none;
+            }
+
+            &.is-expanded {
+                display: block;
+            }
+        }
+
+        .card__head,
+        .card__actions {
+            // Nested selectors
+            .card__icons {
+                display: flex;
+
+                // Nested selectors
+                .card__icon {
+                    @include card-icon-size();
+                    align-items: center;
+                    background-color: $card-icon-background-color;
+                    border: 0
+                            $card-icon-border-style
+                            $card-icon-border-color;
+                    border-width: $card-icon-border-width--top
+                                  $card-icon-border-width--right
+                                  $card-icon-border-width--bottom
+                                  $card-icon-border-width--left;
+                    border-radius: $card-icon-border-radius--top-left
+                                   $card-icon-border-radius--top-right
+                                   $card-icon-border-radius--bottom-right
+                                   $card-icon-border-radius--bottom-left;
+                    box-shadow: none;
+                    cursor: pointer;
+                    display: flex;
+                    font-size: $card-icon-font-size;
+                    justify-content: center;
+                    margin: 0;
+                    min-width: auto;
+                    opacity: 0.25;
+                    padding: 0;
+                    user-select: none;
+
+                    // Pseudo classes
+                    &:focus,
+                    &:hover {
+                        opacity: 0.5;
+                    }
+
+                    &:hover {
+                        background-color: $card-icon-background-color--hover;
+                        border-color: $card-icon-border-color--hover;
+                    }
+
+                    &:focus {
+                        background-color: $card-icon-background-color--focus;
+                        border-color: $card-icon-border-color--focus;
+                    }
+
+                    &:active {
+                        background-color: $card-icon-background-color--active;
+                        border-color: $card-icon-border-color--active;
+                        opacity: 0.75;
+                    }
+
+                    // Modifiers: Size
+                    &.is-small {
+                        @include card-icon-size--small();
+                    }
+
+                    &.is-large {
+                        @include card-icon-size--large();
+                    }
+
+                    &.is-huge {
+                        @include card-icon-size--huge();
+                    }
+                }
+            }
+        }
+
+        .card__actions {
+            display: flex;
+
+            // Nested selectors
+            .card__buttons {
+                flex-grow: 1;
+                font-size: $body-font-size;
+
+                // Pseudo classes
+                &:last-child {
+                    text-align: right;
+                }
+
+                // Nested selectors
+                #{$buttons} {
+                    margin: 0 ($card-content-spacing / 4);
+
+                    // Pseudo classes
+                    &:first-child {
+                        margin-left: 0;
+                    }
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

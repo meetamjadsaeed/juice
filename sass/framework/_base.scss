@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> BASE -> VARIABLES
+   ============================================================================================= */
+
+// Focus
+$focus-outline-color: feedback-color('info');
+$focus-outline-style: dotted;
+$focus-outline-width: 1px;
+
+// Background
+$background-color: color('background');
+
+// Selection
+$selection-background-color: color('brand');
+$selection-font-color: color('white');
+$selection-text-shadow: color('black');
+
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> BASE
+   ============================================================================================= */
+
+// Box model fix
+html {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+
+    // Pseudo elements
+    &::before,
+    &::after {
+        box-sizing: inherit;
+    }
+}
+
+// Accessibility
+*:focus {
+    outline: $focus-outline-width $focus-outline-style $focus-outline-color;
+}
+
+// Body
+body {
+    -webkit-tap-highlight-color: transparent;
+    background-color: $background-color;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+    width: 100%;
+
+    // Pseudo elements
+    &::after {
+        @include clearfix();
+    }
+
+    ::-moz-selection {
+        background-color: $selection-background-color;
+        color: $selection-font-color;
+        text-shadow: 1px 1px $selection-text-shadow;
+    }
+
+    ::selection {
+        background-color: $selection-background-color;
+        color: $selection-font-color;
+        text-shadow: 1px 1px $selection-text-shadow;
+    }
+}

@@ -1,17 +1,10 @@
 @charset "utf-8";
 
 /* ================================================================================================
-   RUCKSACK -> IMPORT
+   RUCKSACK -> UTILITIES
    ============================================================================================= */
 
-// Initialize
-@import 'initialize/all';
-
-// Utilities
-@import 'utilities/all';
-
-// Framework
-@import 'framework/all';
-
-// Components
-@import 'components/all';
+// Import
+@import 'color-palettes';
+@import 'mixins';
+@import 'functions';

@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> INITIALIZE -> VARIABLES
+   ============================================================================================= */
+
+// Typeface
+$monoface-typeface: 'Courier New', Courier, monospace;
+$primary-typeface: 'Montserrat', Tahoma, sans-serif;
+$secondary-typeface: 'Oswald', Verdana, sans-serif;
+
+// Root font
+$root-font-size: 1.3rem;
+$root-font-size--small: 1.2rem;
+$root-font-size--large: 1.4rem;
+$root-font-size--huge: 1.5rem;
+
+// Font size
+$font-size: 1em;
+$font-size--small: $font-size - 0.1em;
+$font-size--large: $font-size + 0.2em;
+$font-size--huge: $font-size + 0.3em;
+
+// Content spacing
+$content-spacing: 20px;
+$content-spacing--small: 10px;
+$content-spacing--large: 30px;
+$content-spacing--huge: 40px;
+
+// Element spacing
+$element-spacing: 20px;
+$element-spacing--small: 10px;
+$element-spacing--large: 30px;
+$element-spacing--huge: 40px;
+
+// Element height
+$element-height: 40px;
+$element-height--small: 30px;
+$element-height--large: 50px;
+$element-height--huge: 60px;
+
+// Global borders
+$border-radius--top-left: 5px;
+$border-radius--top-right: 5px;
+$border-radius--bottom-right: 5px;
+$border-radius--bottom-left: 5px;
+$border-style: solid;
+$border-width--top: 1px;
+$border-width--right: 1px;
+$border-width--bottom: 1px;
+$border-width--left: 1px;
+$border-width--separator: 1px;

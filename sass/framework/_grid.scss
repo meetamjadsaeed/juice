@@ -1,0 +1,295 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> GRID -> VARIABLES
+   ============================================================================================= */
+
+// Container
+$container-gutter: $element-spacing;
+$container-max-width: 1200px;
+
+// Grid
+$grid-gutter: $element-spacing / 2;
+
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> GRID -> CONTAINER
+   ============================================================================================= */
+
+// Container
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: $container-max-width;
+    min-height: 1px;
+    padding: 0 $container-gutter;
+    position: relative;
+    width: 100%;
+
+    // Pseudo elements
+    &::after {
+        @include clearfix();
+    }
+
+    // Modifiers
+    &.container--no-gutter {
+        padding: 0;
+    }
+
+    // Breakpoints
+    @each $name, $breakpoint in $breakpoints {
+        @include breakpoint($name) {
+            // Modifiers
+            &.container--no-gutter-#{$name} {
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> GRID
+   ============================================================================================= */
+
+// Grid
+.grid {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 (-$grid-gutter);
+    position: relative;
+
+    // Pseudo classes
+    &:focus {
+        outline: none;
+    }
+
+    // Pseudo elements
+    &::after {
+        @include clearfix();
+    }
+
+    // Modifiers
+    &.grid--no-gutter {
+        margin: 0;
+
+        // Nested selectors
+        .grid__item {
+            padding: 0;
+        }
+    }
+
+    &.grid--nowrap {
+        flex-wrap: nowrap;
+    }
+
+    &.grid--start {
+        justify-content: flex-start;
+    }
+
+    &.grid--center {
+        justify-content: center;
+    }
+
+    &.grid--end {
+        justify-content: flex-end;
+    }
+
+    &.grid--around {
+        justify-content: space-around;
+    }
+
+    &.grid--between {
+        justify-content: space-between;
+    }
+
+    &.grid--top {
+        align-items: flex-start;
+    }
+
+    &.grid--middle {
+        align-items: center;
+    }
+
+    &.grid--bottom {
+        align-items: flex-end;
+    }
+
+    &.grid--reverse {
+        flex-direction: row-reverse;
+    }
+
+    &.grid--columns {
+        flex-direction: column;
+
+        // Modifiers
+        &.grid--reverse {
+            flex-direction: column-reverse;
+        }
+
+        // Nested selectors
+        .grid__item {
+            flex-basis: auto;
+        }
+    }
+
+    // Nested selectors
+    .grid__item {
+        flex: 0 0 auto;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        padding: 0 $grid-gutter;
+
+        // Pseudo classes
+        &:focus {
+            outline: none;
+        }
+
+        // Modifiers
+        @for $i from 1 through 12 {
+            // Variables
+            $width: (100% / 12) * $i;
+
+            // Modifiers
+            &.grid__item--span-#{$i} {
+                flex-basis: $width;
+                max-width: $width;
+            }
+
+            &.grid__item--offset-#{$i} {
+                margin-left: $width;
+            }
+        }
+
+        &.grid__item--first {
+            order: -1;
+        }
+
+        &.grid__item--last {
+            order: 1;
+        }
+
+        &.grid__item--top {
+            align-self: flex-start;
+        }
+
+        &.grid__item--middle {
+            align-self: center;
+        }
+
+        &.grid__item--bottom {
+            align-self: flex-end;
+        }
+    }
+
+    // Breakpoints
+    @each $name, $breakpoint in $breakpoints {
+        @include breakpoint($name) {
+          // Modifiers
+          &.grid--no-gutter-#{$name} {
+              margin: 0;
+
+              // Nested selectors
+              .grid__item {
+                  padding: 0;
+              }
+          }
+
+          &.grid--nowrap-#{$name} {
+              flex-wrap: nowrap;
+          }
+
+          &.grid--start-#{$name} {
+              justify-content: flex-start;
+          }
+
+          &.grid--center-#{$name} {
+              justify-content: center;
+          }
+
+          &.grid--end-#{$name} {
+              justify-content: flex-end;
+          }
+
+          &.grid--around-#{$name} {
+              justify-content: space-around;
+          }
+
+          &.grid--between-#{$name} {
+              justify-content: space-between;
+          }
+
+          &.grid--top-#{$name} {
+              align-items: flex-start;
+          }
+
+          &.grid--middle-#{$name} {
+              align-items: center;
+          }
+
+          &.grid--bottom-#{$name} {
+              align-items: flex-end;
+          }
+
+          &.grid--reverse-#{$name} {
+              flex-direction: row-reverse;
+          }
+
+          &.grid--columns-#{$name} {
+              flex-direction: column;
+
+              // Modifiers
+              &.grid--reverse {
+                  flex-direction: column-reverse;
+              }
+
+              // Nested selectors
+              .grid__item {
+                  flex-basis: auto;
+              }
+          }
+
+          // Nested selectors
+          .grid__item {
+              // Modifiers
+              @for $i from 1 through 12 {
+                  // Variables
+                  $width: (100% / 12) * $i;
+
+                  // Modifiers
+                  &.grid__item--span-#{$i}-#{$name} {
+                      flex-basis: $width;
+                      max-width: $width;
+                  }
+
+                  &.grid__item--offset-#{$i}-#{$name} {
+                      margin-left: $width;
+                  }
+              }
+
+              &.grid__item--first-#{$name} {
+                  order: -1;
+              }
+
+              &.grid__item--last-#{$name} {
+                  order: 1;
+              }
+
+              &.grid__item--top-#{$name} {
+                  align-self: flex-start;
+              }
+
+              &.grid__item--middle-#{$name} {
+                  align-self: center;
+              }
+
+              &.grid__item--bottom-#{$name} {
+                  align-self: flex-end;
+              }
+          }
+        }
+    }
+}

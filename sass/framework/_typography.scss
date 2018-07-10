@@ -1,0 +1,743 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> TYPOGRAPHY -> VARIABLES
+   ============================================================================================= */
+
+// Body
+$body-font-color: font-color();
+$body-font-family: $primary-typeface;
+$body-font-size: $root-font-size;
+$body-font-weight: 400;
+$body-letter-spacing: 0;
+$body-line-height: 1.8;
+
+// Paragraph
+$p-element-spacing: $element-spacing;
+$p-element-spacing--small: $element-spacing--small;
+$p-element-spacing--large: $element-spacing--large;
+$p-element-spacing--huge: $element-spacing--huge;
+$p-font-size: $font-size;
+$p-font-size--small: $font-size--small;
+$p-font-size--large: $font-size--large;
+$p-font-size--huge: $font-size--huge;
+
+// Horizontal rule
+$hr-border-color: color('background', 'darken-2');
+$hr-border-style: $border-style;
+$hr-border-width: 1px;
+$hr-element-spacing: $element-spacing;
+$hr-element-spacing--small: $element-spacing--small;
+$hr-element-spacing--large: $element-spacing--large;
+$hr-element-spacing--huge: $element-spacing--huge;
+
+// Links
+$link-color: color('brand');
+$link-color--hover: color('brand', 'lighten-2');
+
+// Headings
+$heading-element-spacing: $element-spacing;
+$heading-element-spacing--small: $element-spacing--small;
+$heading-element-spacing--large: $element-spacing--large;
+$heading-element-spacing--huge: $element-spacing--huge;
+
+// Heading 1
+$h1-font-color: inherit;
+$h1-font-family: $secondary-typeface;
+$h1-font-size: 3.0em;
+$h1-font-size--small: 2.9em;
+$h1-font-size--large: 3.1em;
+$h1-font-size--huge: 3.2em;
+$h1-font-variant: normal;
+$h1-font-weight: 400;
+$h1-letter-spacing: 0;
+$h1-text-transform: none;
+
+// Heading 2
+$h2-font-color: inherit;
+$h2-font-family: $secondary-typeface;
+$h2-font-size: 2.6em;
+$h2-font-size--small: 2.5em;
+$h2-font-size--large: 2.7em;
+$h2-font-size--huge: 2.8em;
+$h2-font-variant: normal;
+$h2-font-weight: 400;
+$h2-letter-spacing: 0;
+$h2-text-transform: none;
+
+// Heading 3
+$h3-font-color: inherit;
+$h3-font-family: $secondary-typeface;
+$h3-font-size: 2.2em;
+$h3-font-size--small: 2.1em;
+$h3-font-size--large: 2.3em;
+$h3-font-size--huge: 2.4em;
+$h3-font-variant: normal;
+$h3-font-weight: 400;
+$h3-letter-spacing: 0;
+$h3-text-transform: none;
+
+// Heading 4
+$h4-font-color: inherit;
+$h4-font-family: $secondary-typeface;
+$h4-font-size: 1.8em;
+$h4-font-size--small: 1.7em;
+$h4-font-size--large: 1.9em;
+$h4-font-size--huge: 2.0em;
+$h4-font-variant: normal;
+$h4-font-weight: 400;
+$h4-letter-spacing: 0;
+$h4-text-transform: none;
+
+// Heading 5
+$h5-font-color: inherit;
+$h5-font-family: $secondary-typeface;
+$h5-font-size: 1.6em;
+$h5-font-size--small: 1.5em;
+$h5-font-size--large: 1.7em;
+$h5-font-size--huge: 1.8em;
+$h5-font-variant: normal;
+$h5-font-weight: 400;
+$h5-letter-spacing: 0;
+$h5-text-transform: none;
+
+// Heading 6
+$h6-font-color: inherit;
+$h6-font-family: $secondary-typeface;
+$h6-font-size: 1.4em;
+$h6-font-size--small: 1.3em;
+$h6-font-size--large: 1.5em;
+$h6-font-size--huge: 1.6em;
+$h6-font-variant: normal;
+$h6-font-weight: 400;
+$h6-letter-spacing: 0;
+$h6-text-transform: none;
+
+// Abbreviation
+$abbr-border-color: feedback-color('info');
+
+// Mark
+$mark-background-color: color('yellow', 'lighten-1');
+$mark-border-radius--top-left: 0;
+$mark-border-radius--top-right: 0;
+$mark-border-radius--bottom-right: 0;
+$mark-border-radius--bottom-left: 0;
+$mark-font-color: font-color();
+$mark-font-size: $font-size;
+$mark-font-size--small: $font-size--small;
+$mark-font-size--large: $font-size--large;
+$mark-font-size--huge: $font-size--huge;
+$mark-padding: 4px;
+
+// Code
+$code-font-color: color('red');
+$code-font-size: $font-size;
+$code-font-size--small: $font-size--small;
+$code-font-size--large: $font-size--large;
+$code-font-size--huge: $font-size--huge;
+
+// Keyboard
+$kbd-background-color: color('charcoal');
+$kbd-border-radius--top-left: 0;
+$kbd-border-radius--top-right: 0;
+$kbd-border-radius--bottom-right: 0;
+$kbd-border-radius--bottom-left: 0;
+$kbd-font-color: color('white');
+$kbd-font-size: $font-size;
+$kbd-font-size--small: $font-size--small;
+$kbd-font-size--large: $font-size--large;
+$kbd-font-size--huge: $font-size--huge;
+$kbd-padding: 4px;
+
+// Preformatted
+$pre-background-color: color('white');
+$pre-border-color: color('white', 'darken-3');
+$pre-border-radius--top-left: $border-radius--top-left;
+$pre-border-radius--top-right: $border-radius--top-right;
+$pre-border-radius--bottom-right: $border-radius--bottom-right;
+$pre-border-radius--bottom-left: $border-radius--bottom-left;
+$pre-border-style: $border-style;
+$pre-border-width--top: $border-width--top;
+$pre-border-width--right: $border-width--right;
+$pre-border-width--bottom: $border-width--bottom;
+$pre-border-width--left: $border-width--left;
+$pre-content-spacing: $content-spacing;
+$pre-content-spacing--small: $content-spacing--small;
+$pre-content-spacing--large: $content-spacing--large;
+$pre-content-spacing--huge: $content-spacing--huge;
+$pre-element-spacing: $element-spacing;
+$pre-element-spacing--small: $element-spacing--small;
+$pre-element-spacing--large: $element-spacing--large;
+$pre-element-spacing--huge: $element-spacing--huge;
+$pre-font-color: color('silver', 'darken-5');
+$pre-font-size: $font-size;
+$pre-font-size--small: $font-size--small;
+$pre-font-size--large: $font-size--large;
+$pre-font-size--huge: $font-size--huge;
+
+// Sample
+$samp-font-size: $font-size;
+$samp-font-size--small: $font-size--small;
+$samp-font-size--large: $font-size--large;
+$samp-font-size--huge: $font-size--huge;
+
+// Variable
+$var-font-size: $font-size;
+$var-font-size--small: $font-size--small;
+$var-font-size--large: $font-size--large;
+$var-font-size--huge: $font-size--huge;
+
+// Blockquote
+$blockquote-background-color: color('white');
+$blockquote-border-color: color('white', 'darken-3');
+$blockquote-border-color--hover: color('brand');
+$blockquote-border-radius--top-left: 0;
+$blockquote-border-radius--top-right: $border-radius--top-right;
+$blockquote-border-radius--bottom-right: $border-radius--bottom-right;
+$blockquote-border-radius--bottom-left: 0;
+$blockquote-border-style: $border-style;
+$blockquote-border-width: 5px;
+$blockquote-cite-font-size: $font-size - 0.2em;
+$blockquote-cite-font-size--small: $font-size--small - 0.2em;
+$blockquote-cite-font-size--large: $font-size--large - 0.2em;
+$blockquote-cite-font-size--huge: $font-size--huge - 0.2em;
+$blockquote-content-spacing: $content-spacing;
+$blockquote-content-spacing--small: $content-spacing--small;
+$blockquote-content-spacing--large: $content-spacing--large;
+$blockquote-content-spacing--huge: $content-spacing--huge;
+$blockquote-element-spacing: $element-spacing;
+$blockquote-element-spacing--small: $element-spacing--small;
+$blockquote-element-spacing--large: $element-spacing--large;
+$blockquote-element-spacing--huge: $element-spacing--huge;
+$blockquote-font-color: color('silver', 'darken-5');
+$blockquote-font-size: $font-size;
+$blockquote-font-size--small: $font-size--small;
+$blockquote-font-size--large: $font-size--large;
+$blockquote-font-size--huge: $font-size--huge;
+
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> TYPOGRAPHY
+   ============================================================================================= */
+
+// Body
+html {
+    font-size: 62.5%;
+}
+
+body {
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+    font-weight: $body-font-weight;
+    letter-spacing: $body-letter-spacing;
+    line-height: $body-line-height;
+}
+
+
+// Paragraph
+p {
+    font-size: $p-font-size;
+    margin: 0;
+    margin-bottom: $p-element-spacing;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $p-font-size--small;
+        margin-bottom: $p-element-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $p-font-size--large;
+        margin-bottom: $p-element-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $p-font-size--huge;
+        margin-bottom: $p-element-spacing--huge;
+    }
+}
+
+// Horizontal rule
+hr {
+    clear: both;
+    border: none;
+    border-bottom: $hr-border-width $hr-border-style $hr-border-color;
+    margin: 0;
+    margin-bottom: $hr-element-spacing;
+
+    // Modifiers: Size
+    &.is-small {
+        margin-bottom: $hr-element-spacing--small;
+    }
+
+    &.is-large {
+        margin-bottom: $hr-element-spacing--large;
+    }
+
+    &.is-huge {
+        margin-bottom: $hr-element-spacing--huge;
+    }
+}
+
+
+// Links
+a {
+    color: $link-color;
+    font-weight: inherit;
+    text-decoration: none;
+
+    // Pseudo classes
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        outline: none;
+    }
+
+    &:hover {
+        color: $link-color--hover;
+    }
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: normal;
+    margin: 0;
+    margin-bottom: $heading-element-spacing;
+    padding: 0;
+    position: relative;
+
+    // Modifiers: Size
+    &.is-small {
+        margin-bottom: $heading-element-spacing--small;
+    }
+
+    &.is-large {
+        margin-bottom: $heading-element-spacing--large;
+    }
+
+    &.is-huge {
+        margin-bottom: $heading-element-spacing--huge;
+    }
+}
+
+// Heading 1
+h1 {
+    color: $h1-font-color;
+    font-family: $h1-font-family;
+    font-size: $h1-font-size;
+    font-variant: $h1-font-variant;
+    font-weight: $h1-font-weight;
+    letter-spacing: $h1-letter-spacing;
+    text-transform: $h1-text-transform;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $h1-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $h1-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $h1-font-size--huge;
+    }
+}
+
+// Heading 2
+h2 {
+    color: $h2-font-color;
+    font-family: $h2-font-family;
+    font-size: $h2-font-size;
+    font-variant: $h2-font-variant;
+    font-weight: $h2-font-weight;
+    letter-spacing: $h2-letter-spacing;
+    text-transform: $h2-text-transform;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $h2-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $h2-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $h2-font-size--huge;
+    }
+}
+
+// Heading 3
+h3 {
+    color: $h3-font-color;
+    font-family: $h3-font-family;
+    font-size: $h3-font-size;
+    font-variant: $h3-font-variant;
+    font-weight: $h3-font-weight;
+    letter-spacing: $h3-letter-spacing;
+    text-transform: $h3-text-transform;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $h3-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $h3-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $h3-font-size--huge;
+    }
+}
+
+// Heading 4
+h4 {
+    color: $h4-font-color;
+    font-family: $h4-font-family;
+    font-size: $h4-font-size;
+    font-variant: $h4-font-variant;
+    font-weight: $h4-font-weight;
+    letter-spacing: $h4-letter-spacing;
+    text-transform: $h4-text-transform;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $h4-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $h4-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $h4-font-size--huge;
+    }
+}
+
+// Heading 5
+h5 {
+    color: $h5-font-color;
+    font-family: $h5-font-family;
+    font-size: $h5-font-size;
+    font-variant: $h5-font-variant;
+    font-weight: $h5-font-weight;
+    letter-spacing: $h5-letter-spacing;
+    text-transform: $h5-text-transform;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $h5-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $h5-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $h5-font-size--huge;
+    }
+}
+
+// Heading 6
+h6 {
+    color: $h6-font-color;
+    font-family: $h6-font-family;
+    font-size: $h6-font-size;
+    font-variant: $h6-font-variant;
+    font-weight: $h6-font-weight;
+    letter-spacing: $h6-letter-spacing;
+    text-transform: $h6-text-transform;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $h6-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $h6-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $h6-font-size--huge;
+    }
+}
+
+// Strong
+b,
+strong {
+    font-weight: 700;
+}
+
+// Abbreviation
+abbr {
+    text-decoration: none !important;
+
+    // Modifiers
+    &[title] {
+        border-bottom: 1px dotted $abbr-border-color;
+        cursor: help;
+    }
+}
+
+// Mark
+mark {
+    background-color: $mark-background-color;
+    border-radius: $mark-border-radius--top-left
+                   $mark-border-radius--top-right
+                   $mark-border-radius--bottom-right
+                   $mark-border-radius--bottom-left;
+    color: $mark-font-color;
+    font-size: $mark-font-size;
+    padding: $mark-padding;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $mark-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $mark-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $mark-font-size--huge;
+    }
+}
+
+// Monospace
+code,
+kbd,
+pre,
+samp,
+var {
+    font-family: $monoface-typeface;
+}
+
+// Code
+code {
+    color: $code-font-color;
+    font-size: $code-font-size;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $code-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $code-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $code-font-size--huge;
+    }
+}
+
+// Keyboard
+kbd {
+    background-color: $kbd-background-color;
+    border: none;
+    border-radius: $kbd-border-radius--top-left
+                   $kbd-border-radius--top-right
+                   $kbd-border-radius--bottom-right
+                   $kbd-border-radius--bottom-left;
+    color: $kbd-font-color;
+    font-size: $kbd-font-size;
+    padding: $kbd-padding;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $kbd-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $kbd-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $kbd-font-size--huge;
+    }
+}
+
+// Preformatted
+pre {
+    display: block;
+    background-color: $pre-background-color;
+    border: 0 $pre-border-style $pre-border-color;
+    border-radius: $pre-border-radius--top-left
+                   $pre-border-radius--top-right
+                   $pre-border-radius--bottom-right
+                   $pre-border-radius--bottom-left;
+    border-width: $pre-border-width--top
+                  $pre-border-width--bottom
+                  $pre-border-width--right
+                  $pre-border-width--left;
+    color: $pre-font-color;
+    font-size: $pre-font-size;
+    margin: 0;
+    margin-bottom: $pre-element-spacing;
+    padding: $pre-content-spacing;
+    overflow-x: auto;
+    white-space: pre-wrap;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $pre-font-size--small;
+        margin-bottom: $pre-element-spacing--small;
+        padding: $pre-content-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $pre-font-size--large;
+        margin-bottom: $pre-element-spacing--large;
+        padding: $pre-content-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $pre-font-size--huge;
+        margin-bottom: $pre-element-spacing--huge;
+        padding: $pre-content-spacing--huge;
+    }
+
+    // Nested selectors
+    code {
+        background-color: transparent;
+        color: inherit;
+        font-size: inherit;
+        white-space: nowrap;
+    }
+}
+
+// Sample
+samp {
+    font-size: $samp-font-size;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $samp-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $samp-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $samp-font-size--huge;
+    }
+}
+
+// Variable
+var {
+    font-size: $var-font-size;
+    font-style: italic;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $var-font-size--small;
+    }
+
+    &.is-large {
+        font-size: $var-font-size--large;
+    }
+
+    &.is-huge {
+        font-size: $var-font-size--huge;
+    }
+}
+
+// Blockquote
+blockquote {
+    display: block;
+    background-color: $blockquote-background-color;
+    border: none;
+    border-left: $blockquote-border-width $blockquote-border-style $blockquote-border-color;
+    border-radius: $blockquote-border-radius--top-left
+                   $blockquote-border-radius--top-right
+                   $blockquote-border-radius--bottom-right
+                   $blockquote-border-radius--bottom-left;
+    color: $blockquote-font-color;
+    font-size: $blockquote-font-size;
+    margin: 0;
+    margin-bottom: $blockquote-element-spacing;
+    padding: $blockquote-content-spacing;
+    transition: border 0.15s ease-in-out;
+
+    // Pseudo classes
+    &:hover {
+        border-color: $blockquote-border-color--hover;
+    }
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $blockquote-font-size--small;
+        margin-bottom: $blockquote-element-spacing--small;
+        padding: $blockquote-content-spacing--small;
+
+        // Nested selectors
+        cite {
+            font-size: $blockquote-cite-font-size--small;
+            margin-top: ($blockquote-content-spacing--small / 2);
+        }
+    }
+
+    &.is-large {
+        font-size: $blockquote-font-size--large;
+        margin-bottom: $blockquote-element-spacing--large;
+        padding: $blockquote-content-spacing--large;
+
+        // Nested selectors
+        cite {
+            font-size: $blockquote-cite-font-size--large;
+            margin-top: ($blockquote-content-spacing--large / 2);
+        }
+    }
+
+    &.is-huge {
+        font-size: $blockquote-font-size--huge;
+        margin-bottom: $blockquote-element-spacing--huge;
+        padding: $blockquote-content-spacing--huge;
+
+        // Nested selectors
+        cite {
+            font-size: $blockquote-cite-font-size--huge;
+            margin-top: ($blockquote-content-spacing--huge / 2);
+        }
+    }
+
+    // Modifiers
+    &.blockquote--reverse {
+        border-left: 0;
+        border-radius: $blockquote-border-radius--top-right
+                       $blockquote-border-radius--top-left
+                       $blockquote-border-radius--bottom-left
+                       $blockquote-border-radius--bottom-right;
+        border-right: $blockquote-border-width $blockquote-border-style $blockquote-border-color;
+        text-align: right;
+
+        // Nested selectors
+        cite {
+            text-align: right;
+        }
+    }
+
+    // Nested selectors
+    cite {
+        display: block;
+        color: inherit;
+        font-size: $blockquote-cite-font-size;
+        margin: 0;
+        margin-top: ($blockquote-content-spacing / 2);
+
+        // Pseudo elements
+        &::before {
+            content: '\2014\00a0\00a0';
+        }
+    }
+}
