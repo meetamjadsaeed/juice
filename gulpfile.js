@@ -58,7 +58,7 @@ const build = {
  * @module gulp-autoprefixer
  * @module browser-sync
  */
-gulp.task('sass', () => {
+gulp.task('build-css', () => {
     gulp.src(resources.sass)
         .pipe(sass({
             outputStyle: 'compressed'
@@ -81,7 +81,7 @@ gulp.task('sass', () => {
  * @module gulp-uglify
  * @module browser-sync
  */
-gulp.task('scripts', () => {
+gulp.task('build-scripts', () => {
     gulp.src(resources.js)
 		.pipe(concat('rucksack.js'))
         .pipe(strip())
@@ -102,8 +102,8 @@ gulp.task('scripts', () => {
  */
 gulp.task('build', () => {
     // Start the gulp sass and scripts tasks
-    gulp.start('sass');
-    gulp.start('scripts');
+    gulp.start('build-css');
+    gulp.start('build-scripts');
 });
 
 
@@ -126,8 +126,8 @@ gulp.task('dev', () => {
     });
 
     // Watch for file changes and call the sass/scripts gulp tasks
-    gulp.watch(resources.sass, ['sass']);
-    gulp.watch(resources.js, ['scripts']);
+    gulp.watch(resources.sass, ['build-sass']);
+    gulp.watch(resources.js, ['build-scripts']);
 
     // Watch for file changes and reload the browser
     gulp.watch([resources.html, resources.sass]).on('change', () => {
