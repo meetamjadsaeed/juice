@@ -34,7 +34,7 @@ const port = 3000;
 const resources = {
     html: '**/*.html',
     sass: 'sass/rucksack.scss',
-    js: 'js/**/*.js'
+    scripts: 'scripts/**/*.js'
 };
 
 
@@ -44,7 +44,7 @@ const resources = {
  */
 const build = {
     css: 'dist/',
-    js: 'dist/'
+    scripts: 'dist/'
 };
 
 
@@ -82,14 +82,14 @@ gulp.task('build-css', () => {
  * @module browser-sync
  */
 gulp.task('build-scripts', () => {
-    gulp.src(resources.js)
+    gulp.src(resources.scripts)
 		.pipe(concat('rucksack.js'))
         .pipe(strip())
         .pipe(babel({
             presets: ['env']
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(build.js))
+        .pipe(gulp.dest(build.scripts))
         .pipe(browserSync.reload({
             stream: true
         }));
@@ -127,10 +127,10 @@ gulp.task('dev', () => {
 
     // Watch for file changes and call the sass/scripts gulp tasks
     gulp.watch(resources.sass, ['build-sass']);
-    gulp.watch(resources.js, ['build-scripts']);
+    gulp.watch(resources.scripts, ['build-scripts']);
 
     // Watch for file changes and reload the browser
-    gulp.watch([resources.html, resources.sass]).on('change', () => {
+    gulp.watch([resources.html]).on('change', () => {
         // Reload the browser
         browserSync.reload();
     });

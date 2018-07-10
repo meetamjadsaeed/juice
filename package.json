@@ -1,7 +1,7 @@
 {
     "name": "rucksack",
     "description": "A responsive frontend framework",
-    "version": "1.0.0-beta.15",
+    "version": "1.0.0-beta.16",
     "license": "MIT",
     "author": {
         "name": "Joe Mottershaw",
@@ -37,9 +37,9 @@
         "gulp-uglify": "^3.0.0"
     },
     "files": [
-        "js",
-        "sass",
         "dist",
+        "sass",
+        "scripts",
         "LICENSE",
         "README.md"
     ]
