@@ -24,7 +24,7 @@ const uglify = require('gulp-uglify');
  * @const {string}
  */
 const hostname = 'localhost/your-project-directory';
-const port = 3000;
+const port = 3001;
 
 
 /**
