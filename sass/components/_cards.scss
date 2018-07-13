@@ -124,6 +124,27 @@ $card-icon-height--huge: $element-height--huge !default;
     overflow: hidden;
     padding: 0;
 
+    // Modifiers: State Hooks
+    &.is-collapsed {
+        // Nested selectors
+        .card__content {
+            // Nested selectors
+            .card__body {
+                display: none;
+            }
+        }
+    }
+
+    &.is-expanded {
+        // Nested selectors
+        .card__content {
+            // Nested selectors
+            .card__body {
+                display: block;
+            }
+        }
+    }
+
     // Modifiers: Size
     &.is-small {
         font-size: $card-font-size--small;
@@ -262,17 +283,6 @@ $card-icon-height--huge: $element-height--huge !default;
                         opacity: 1;
                     }
                 }
-            }
-        }
-
-        .card__body {
-            // Modifiers: State Hooks
-            &.is-collapsed {
-                display: none;
-            }
-
-            &.is-expanded {
-                display: block;
             }
         }
 
