@@ -5,28 +5,28 @@
    ============================================================================================= */
 
 // Image
-$media-image-element-spacing: $element-spacing;
-$media-image-element-spacing--small: $element-spacing--small;
-$media-image-element-spacing--large: $element-spacing--large;
-$media-image-element-spacing--huge: $element-spacing--huge;
+$media-image-element-spacing: $element-spacing !default;
+$media-image-element-spacing--small: $element-spacing--small !default;
+$media-image-element-spacing--large: $element-spacing--large !default;
+$media-image-element-spacing--huge: $element-spacing--huge !default;
 
 // Media object
-$media-object-badge-width: 75px;
-$media-object-badge-width--small: 50px;
-$media-object-badge-width--large: 100px;
-$media-object-badge-width--huge: 125px;
-$media-object-content-spacing: $content-spacing;
-$media-object-content-spacing--small: $content-spacing--small;
-$media-object-content-spacing--large: $content-spacing--large;
-$media-object-content-spacing--huge: $content-spacing--huge;
-$media-object-element-spacing: $element-spacing;
-$media-object-element-spacing--small: $element-spacing;
-$media-object-element-spacing--large: $element-spacing;
-$media-object-element-spacing--huge: $element-spacing;
-$media-object-font-size: $font-size;
-$media-object-font-size--small: $font-size--small;
-$media-object-font-size--large: $font-size--large;
-$media-object-font-size--huge: $font-size--huge;
+$media-object-badge-width: 75px !default;
+$media-object-badge-width--small: 50px !default;
+$media-object-badge-width--large: 100px !default;
+$media-object-badge-width--huge: 125px !default;
+$media-object-content-spacing: $content-spacing !default;
+$media-object-content-spacing--small: $content-spacing--small !default;
+$media-object-content-spacing--large: $content-spacing--large !default;
+$media-object-content-spacing--huge: $content-spacing--huge !default;
+$media-object-element-spacing: $element-spacing !default;
+$media-object-element-spacing--small: $element-spacing !default;
+$media-object-element-spacing--large: $element-spacing !default;
+$media-object-element-spacing--huge: $element-spacing !default;
+$media-object-font-size: $font-size !default;
+$media-object-font-size--small: $font-size--small !default;
+$media-object-font-size--large: $font-size--large !default;
+$media-object-font-size--huge: $font-size--huge !default;
 
 
 /* =============================================================================================

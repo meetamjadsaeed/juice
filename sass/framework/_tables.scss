@@ -5,37 +5,37 @@
    ============================================================================================= */
 
 // Variables
-$table-body-border-color: base-color('white', 'darken-2');
-$table-body-font-color: font-color();
-$table-body-font-color--striped: font-color();
-$table-body-font-color--hover: font-color();
-$table-body-row-background-color: base-color('white');
-$table-body-row-background-color--striped: base-color('white', 'darken-1');
-$table-body-row-background-color--hover: base-color('green', 'lighten-2');
-$table-border-style: $border-style;
-$table-border-width--top: $border-width--top;
-$table-border-width--right: $border-width--right;
-$table-border-width--bottom: $border-width--bottom;
-$table-border-width--left: $border-width--left;
-$table-border-width--separator: $border-width--separator;
-$table-content-spacing: $content-spacing;
-$table-content-spacing--small: $content-spacing--small;
-$table-content-spacing--large: $content-spacing--large;
-$table-content-spacing--huge: $content-spacing--huge;
-$table-element-spacing: $element-spacing;
-$table-element-spacing--small: $element-spacing--small;
-$table-element-spacing--large: $element-spacing--large;
-$table-element-spacing--huge: $element-spacing--huge;
-$table-font-size: $font-size;
-$table-font-size--small: $font-size--small;
-$table-font-size--large: $font-size--large;
-$table-font-size--huge: $font-size--huge;
-$table-foot-background-color: base-color('white');
-$table-foot-border-color: base-color('white', 'darken-2');
-$table-foot-font-color: font-color();
-$table-head-background-color: base-color('charcoal');
-$table-head-border-color: base-color('charcoal', 'darken-2');
-$table-head-font-color: font-color('light');
+$table-body-border-color: base-color('white', 'darken-2') !default;
+$table-body-font-color: font-color() !default;
+$table-body-font-color--striped: font-color() !default;
+$table-body-font-color--hover: font-color() !default;
+$table-body-row-background-color: base-color('white') !default;
+$table-body-row-background-color--striped: base-color('white', 'darken-1') !default;
+$table-body-row-background-color--hover: base-color('green', 'lighten-2') !default;
+$table-border-style: $border-style !default;
+$table-border-width--top: $border-width--top !default;
+$table-border-width--right: $border-width--right !default;
+$table-border-width--bottom: $border-width--bottom !default;
+$table-border-width--left: $border-width--left !default;
+$table-border-width--separator: $border-width--separator !default;
+$table-content-spacing: $content-spacing !default;
+$table-content-spacing--small: $content-spacing--small !default;
+$table-content-spacing--large: $content-spacing--large !default;
+$table-content-spacing--huge: $content-spacing--huge !default;
+$table-element-spacing: $element-spacing !default;
+$table-element-spacing--small: $element-spacing--small !default;
+$table-element-spacing--large: $element-spacing--large !default;
+$table-element-spacing--huge: $element-spacing--huge !default;
+$table-font-size: $font-size !default;
+$table-font-size--small: $font-size--small !default;
+$table-font-size--large: $font-size--large !default;
+$table-font-size--huge: $font-size--huge !default;
+$table-foot-background-color: base-color('white') !default;
+$table-foot-border-color: base-color('white', 'darken-2') !default;
+$table-foot-font-color: font-color() !default;
+$table-head-background-color: base-color('charcoal') !default;
+$table-head-border-color: base-color('charcoal', 'darken-2') !default;
+$table-head-font-color: font-color('light') !default;
 
 
 /* =============================================================================================

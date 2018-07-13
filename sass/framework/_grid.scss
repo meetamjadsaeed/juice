@@ -5,11 +5,11 @@
    ============================================================================================= */
 
 // Container
-$container-gutter: $element-spacing;
-$container-max-width: 1200px;
+$container-gutter: $element-spacing !default;
+$container-max-width: 1200px !default;
 
 // Grid
-$grid-gutter: $element-spacing / 2;
+$grid-gutter: $element-spacing / 2 !default;
 
 
 /* =============================================================================================

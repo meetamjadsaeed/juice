@@ -5,215 +5,215 @@
    ============================================================================================= */
 
 // Body
-$body-font-color: font-color();
-$body-font-family: $primary-typeface;
-$body-font-size: $root-font-size;
-$body-font-weight: 400;
-$body-letter-spacing: 0;
-$body-line-height: 1.8;
+$body-font-color: font-color() !default;
+$body-font-family: $primary-typeface !default;
+$body-font-size: $root-font-size !default;
+$body-font-weight: 400 !default;
+$body-letter-spacing: 0 !default;
+$body-line-height: 1.8 !default;
 
 // Paragraph
-$p-element-spacing: $element-spacing;
-$p-element-spacing--small: $element-spacing--small;
-$p-element-spacing--large: $element-spacing--large;
-$p-element-spacing--huge: $element-spacing--huge;
-$p-font-size: $font-size;
-$p-font-size--small: $font-size--small;
-$p-font-size--large: $font-size--large;
-$p-font-size--huge: $font-size--huge;
+$p-element-spacing: $element-spacing !default;
+$p-element-spacing--small: $element-spacing--small !default;
+$p-element-spacing--large: $element-spacing--large !default;
+$p-element-spacing--huge: $element-spacing--huge !default;
+$p-font-size: $font-size !default;
+$p-font-size--small: $font-size--small !default;
+$p-font-size--large: $font-size--large !default;
+$p-font-size--huge: $font-size--huge !default;
 
 // Horizontal rule
-$hr-border-color: base-color('background', 'darken-2');
-$hr-border-style: $border-style;
-$hr-border-width: 1px;
-$hr-element-spacing: $element-spacing;
-$hr-element-spacing--small: $element-spacing--small;
-$hr-element-spacing--large: $element-spacing--large;
-$hr-element-spacing--huge: $element-spacing--huge;
+$hr-border-color: base-color('background', 'darken-2') !default;
+$hr-border-style: $border-style !default;
+$hr-border-width: 1px !default;
+$hr-element-spacing: $element-spacing !default;
+$hr-element-spacing--small: $element-spacing--small !default;
+$hr-element-spacing--large: $element-spacing--large !default;
+$hr-element-spacing--huge: $element-spacing--huge !default;
 
 // Links
-$link-color: base-color('brand');
-$link-color--hover: base-color('brand', 'lighten-2');
+$link-color: base-color('brand') !default;
+$link-color--hover: base-color('brand', 'lighten-2') !default;
 
 // Headings
-$heading-element-spacing: $element-spacing;
-$heading-element-spacing--small: $element-spacing--small;
-$heading-element-spacing--large: $element-spacing--large;
-$heading-element-spacing--huge: $element-spacing--huge;
+$heading-element-spacing: $element-spacing !default;
+$heading-element-spacing--small: $element-spacing--small !default;
+$heading-element-spacing--large: $element-spacing--large !default;
+$heading-element-spacing--huge: $element-spacing--huge !default;
 
 // Heading 1
-$h1-font-color: inherit;
-$h1-font-family: $secondary-typeface;
-$h1-font-size: 3.0em;
-$h1-font-size--small: 2.9em;
-$h1-font-size--large: 3.1em;
-$h1-font-size--huge: 3.2em;
-$h1-font-variant: normal;
-$h1-font-weight: 400;
-$h1-letter-spacing: 0;
-$h1-text-transform: none;
+$h1-font-color: inherit !default;
+$h1-font-family: $secondary-typeface !default;
+$h1-font-size: 3.0em !default;
+$h1-font-size--small: 2.9em !default;
+$h1-font-size--large: 3.1em !default;
+$h1-font-size--huge: 3.2em !default;
+$h1-font-variant: normal !default;
+$h1-font-weight: 400 !default;
+$h1-letter-spacing: 0 !default;
+$h1-text-transform: none !default;
 
 // Heading 2
-$h2-font-color: inherit;
-$h2-font-family: $secondary-typeface;
-$h2-font-size: 2.6em;
-$h2-font-size--small: 2.5em;
-$h2-font-size--large: 2.7em;
-$h2-font-size--huge: 2.8em;
-$h2-font-variant: normal;
-$h2-font-weight: 400;
-$h2-letter-spacing: 0;
-$h2-text-transform: none;
+$h2-font-color: inherit !default;
+$h2-font-family: $secondary-typeface !default;
+$h2-font-size: 2.6em !default;
+$h2-font-size--small: 2.5em !default;
+$h2-font-size--large: 2.7em !default;
+$h2-font-size--huge: 2.8em !default;
+$h2-font-variant: normal !default;
+$h2-font-weight: 400 !default;
+$h2-letter-spacing: 0 !default;
+$h2-text-transform: none !default;
 
 // Heading 3
-$h3-font-color: inherit;
-$h3-font-family: $secondary-typeface;
-$h3-font-size: 2.2em;
-$h3-font-size--small: 2.1em;
-$h3-font-size--large: 2.3em;
-$h3-font-size--huge: 2.4em;
-$h3-font-variant: normal;
-$h3-font-weight: 400;
-$h3-letter-spacing: 0;
-$h3-text-transform: none;
+$h3-font-color: inherit !default;
+$h3-font-family: $secondary-typeface !default;
+$h3-font-size: 2.2em !default;
+$h3-font-size--small: 2.1em !default;
+$h3-font-size--large: 2.3em !default;
+$h3-font-size--huge: 2.4em !default;
+$h3-font-variant: normal !default;
+$h3-font-weight: 400 !default;
+$h3-letter-spacing: 0 !default;
+$h3-text-transform: none !default;
 
 // Heading 4
-$h4-font-color: inherit;
-$h4-font-family: $secondary-typeface;
-$h4-font-size: 1.8em;
-$h4-font-size--small: 1.7em;
-$h4-font-size--large: 1.9em;
-$h4-font-size--huge: 2.0em;
-$h4-font-variant: normal;
-$h4-font-weight: 400;
-$h4-letter-spacing: 0;
-$h4-text-transform: none;
+$h4-font-color: inherit !default;
+$h4-font-family: $secondary-typeface !default;
+$h4-font-size: 1.8em !default;
+$h4-font-size--small: 1.7em !default;
+$h4-font-size--large: 1.9em !default;
+$h4-font-size--huge: 2.0em !default;
+$h4-font-variant: normal !default;
+$h4-font-weight: 400 !default;
+$h4-letter-spacing: 0 !default;
+$h4-text-transform: none !default;
 
 // Heading 5
-$h5-font-color: inherit;
-$h5-font-family: $secondary-typeface;
-$h5-font-size: 1.6em;
-$h5-font-size--small: 1.5em;
-$h5-font-size--large: 1.7em;
-$h5-font-size--huge: 1.8em;
-$h5-font-variant: normal;
-$h5-font-weight: 400;
-$h5-letter-spacing: 0;
-$h5-text-transform: none;
+$h5-font-color: inherit !default;
+$h5-font-family: $secondary-typeface !default;
+$h5-font-size: 1.6em !default;
+$h5-font-size--small: 1.5em !default;
+$h5-font-size--large: 1.7em !default;
+$h5-font-size--huge: 1.8em !default;
+$h5-font-variant: normal !default;
+$h5-font-weight: 400 !default;
+$h5-letter-spacing: 0 !default;
+$h5-text-transform: none !default;
 
 // Heading 6
-$h6-font-color: inherit;
-$h6-font-family: $secondary-typeface;
-$h6-font-size: 1.4em;
-$h6-font-size--small: 1.3em;
-$h6-font-size--large: 1.5em;
-$h6-font-size--huge: 1.6em;
-$h6-font-variant: normal;
-$h6-font-weight: 400;
-$h6-letter-spacing: 0;
-$h6-text-transform: none;
+$h6-font-color: inherit !default;
+$h6-font-family: $secondary-typeface !default;
+$h6-font-size: 1.4em !default;
+$h6-font-size--small: 1.3em !default;
+$h6-font-size--large: 1.5em !default;
+$h6-font-size--huge: 1.6em !default;
+$h6-font-variant: normal !default;
+$h6-font-weight: 400 !default;
+$h6-letter-spacing: 0 !default;
+$h6-text-transform: none !default;
 
 // Abbreviation
-$abbr-border-color: feedback-color('info');
+$abbr-border-color: feedback-color('info') !default;
 
 // Mark
-$mark-background-color: base-color('yellow', 'lighten-1');
-$mark-border-radius--top-left: 0;
-$mark-border-radius--top-right: 0;
-$mark-border-radius--bottom-right: 0;
-$mark-border-radius--bottom-left: 0;
-$mark-font-color: font-color();
-$mark-font-size: $font-size;
-$mark-font-size--small: $font-size--small;
-$mark-font-size--large: $font-size--large;
-$mark-font-size--huge: $font-size--huge;
-$mark-padding: 4px;
+$mark-background-color: base-color('yellow', 'lighten-1') !default;
+$mark-border-radius--top-left: 0 !default;
+$mark-border-radius--top-right: 0 !default;
+$mark-border-radius--bottom-right: 0 !default;
+$mark-border-radius--bottom-left: 0 !default;
+$mark-font-color: font-color() !default;
+$mark-font-size: $font-size !default;
+$mark-font-size--small: $font-size--small !default;
+$mark-font-size--large: $font-size--large !default;
+$mark-font-size--huge: $font-size--huge !default;
+$mark-padding: 4px !default;
 
 // Code
-$code-font-color: base-color('red');
-$code-font-size: $font-size;
-$code-font-size--small: $font-size--small;
-$code-font-size--large: $font-size--large;
-$code-font-size--huge: $font-size--huge;
+$code-font-color: base-color('red') !default;
+$code-font-size: $font-size !default;
+$code-font-size--small: $font-size--small !default;
+$code-font-size--large: $font-size--large !default;
+$code-font-size--huge: $font-size--huge !default;
 
 // Keyboard
-$kbd-background-color: base-color('charcoal');
-$kbd-border-radius--top-left: 0;
-$kbd-border-radius--top-right: 0;
-$kbd-border-radius--bottom-right: 0;
-$kbd-border-radius--bottom-left: 0;
-$kbd-font-color: base-color('white');
-$kbd-font-size: $font-size;
-$kbd-font-size--small: $font-size--small;
-$kbd-font-size--large: $font-size--large;
-$kbd-font-size--huge: $font-size--huge;
-$kbd-padding: 4px;
+$kbd-background-color: base-color('charcoal') !default;
+$kbd-border-radius--top-left: 0 !default;
+$kbd-border-radius--top-right: 0 !default;
+$kbd-border-radius--bottom-right: 0 !default;
+$kbd-border-radius--bottom-left: 0 !default;
+$kbd-font-color: base-color('white') !default;
+$kbd-font-size: $font-size !default;
+$kbd-font-size--small: $font-size--small !default;
+$kbd-font-size--large: $font-size--large !default;
+$kbd-font-size--huge: $font-size--huge !default;
+$kbd-padding: 4px !default;
 
 // Preformatted
-$pre-background-color: base-color('white');
-$pre-border-color: base-color('white', 'darken-3');
-$pre-border-radius--top-left: $border-radius--top-left;
-$pre-border-radius--top-right: $border-radius--top-right;
-$pre-border-radius--bottom-right: $border-radius--bottom-right;
-$pre-border-radius--bottom-left: $border-radius--bottom-left;
-$pre-border-style: $border-style;
-$pre-border-width--top: $border-width--top;
-$pre-border-width--right: $border-width--right;
-$pre-border-width--bottom: $border-width--bottom;
-$pre-border-width--left: $border-width--left;
-$pre-content-spacing: $content-spacing;
-$pre-content-spacing--small: $content-spacing--small;
-$pre-content-spacing--large: $content-spacing--large;
-$pre-content-spacing--huge: $content-spacing--huge;
-$pre-element-spacing: $element-spacing;
-$pre-element-spacing--small: $element-spacing--small;
-$pre-element-spacing--large: $element-spacing--large;
-$pre-element-spacing--huge: $element-spacing--huge;
-$pre-font-color: base-color('silver', 'darken-5');
-$pre-font-size: $font-size;
-$pre-font-size--small: $font-size--small;
-$pre-font-size--large: $font-size--large;
-$pre-font-size--huge: $font-size--huge;
+$pre-background-color: base-color('white') !default;
+$pre-border-color: base-color('white', 'darken-3') !default;
+$pre-border-radius--top-left: $border-radius--top-left !default;
+$pre-border-radius--top-right: $border-radius--top-right !default;
+$pre-border-radius--bottom-right: $border-radius--bottom-right !default;
+$pre-border-radius--bottom-left: $border-radius--bottom-left !default;
+$pre-border-style: $border-style !default;
+$pre-border-width--top: $border-width--top !default;
+$pre-border-width--right: $border-width--right !default;
+$pre-border-width--bottom: $border-width--bottom !default;
+$pre-border-width--left: $border-width--left !default;
+$pre-content-spacing: $content-spacing !default;
+$pre-content-spacing--small: $content-spacing--small !default;
+$pre-content-spacing--large: $content-spacing--large !default;
+$pre-content-spacing--huge: $content-spacing--huge !default;
+$pre-element-spacing: $element-spacing !default;
+$pre-element-spacing--small: $element-spacing--small !default;
+$pre-element-spacing--large: $element-spacing--large !default;
+$pre-element-spacing--huge: $element-spacing--huge !default;
+$pre-font-color: base-color('silver', 'darken-5') !default;
+$pre-font-size: $font-size !default;
+$pre-font-size--small: $font-size--small !default;
+$pre-font-size--large: $font-size--large !default;
+$pre-font-size--huge: $font-size--huge !default;
 
 // Sample
-$samp-font-size: $font-size;
-$samp-font-size--small: $font-size--small;
-$samp-font-size--large: $font-size--large;
-$samp-font-size--huge: $font-size--huge;
+$samp-font-size: $font-size !default;
+$samp-font-size--small: $font-size--small !default;
+$samp-font-size--large: $font-size--large !default;
+$samp-font-size--huge: $font-size--huge !default;
 
 // Variable
-$var-font-size: $font-size;
-$var-font-size--small: $font-size--small;
-$var-font-size--large: $font-size--large;
-$var-font-size--huge: $font-size--huge;
+$var-font-size: $font-size !default;
+$var-font-size--small: $font-size--small !default;
+$var-font-size--large: $font-size--large !default;
+$var-font-size--huge: $font-size--huge !default;
 
 // Blockquote
-$blockquote-background-color: base-color('white');
-$blockquote-border-color: base-color('white', 'darken-3');
-$blockquote-border-color--hover: base-color('brand');
-$blockquote-border-radius--top-left: 0;
-$blockquote-border-radius--top-right: $border-radius--top-right;
-$blockquote-border-radius--bottom-right: $border-radius--bottom-right;
-$blockquote-border-radius--bottom-left: 0;
-$blockquote-border-style: $border-style;
-$blockquote-border-width: 5px;
-$blockquote-cite-font-size: $font-size - 0.2em;
-$blockquote-cite-font-size--small: $font-size--small - 0.2em;
-$blockquote-cite-font-size--large: $font-size--large - 0.2em;
-$blockquote-cite-font-size--huge: $font-size--huge - 0.2em;
-$blockquote-content-spacing: $content-spacing;
-$blockquote-content-spacing--small: $content-spacing--small;
-$blockquote-content-spacing--large: $content-spacing--large;
-$blockquote-content-spacing--huge: $content-spacing--huge;
-$blockquote-element-spacing: $element-spacing;
-$blockquote-element-spacing--small: $element-spacing--small;
-$blockquote-element-spacing--large: $element-spacing--large;
-$blockquote-element-spacing--huge: $element-spacing--huge;
-$blockquote-font-color: base-color('silver', 'darken-5');
-$blockquote-font-size: $font-size;
-$blockquote-font-size--small: $font-size--small;
-$blockquote-font-size--large: $font-size--large;
-$blockquote-font-size--huge: $font-size--huge;
+$blockquote-background-color: base-color('white') !default;
+$blockquote-border-color: base-color('white', 'darken-3') !default;
+$blockquote-border-color--hover: base-color('brand') !default;
+$blockquote-border-radius--top-left: 0 !default;
+$blockquote-border-radius--top-right: $border-radius--top-right !default;
+$blockquote-border-radius--bottom-right: $border-radius--bottom-right !default;
+$blockquote-border-radius--bottom-left: 0 !default;
+$blockquote-border-style: $border-style !default;
+$blockquote-border-width: 5px !default;
+$blockquote-cite-font-size: $font-size - 0.2em !default;
+$blockquote-cite-font-size--small: $font-size--small - 0.2em !default;
+$blockquote-cite-font-size--large: $font-size--large - 0.2em !default;
+$blockquote-cite-font-size--huge: $font-size--huge - 0.2em !default;
+$blockquote-content-spacing: $content-spacing !default;
+$blockquote-content-spacing--small: $content-spacing--small !default;
+$blockquote-content-spacing--large: $content-spacing--large !default;
+$blockquote-content-spacing--huge: $content-spacing--huge !default;
+$blockquote-element-spacing: $element-spacing !default;
+$blockquote-element-spacing--small: $element-spacing--small !default;
+$blockquote-element-spacing--large: $element-spacing--large !default;
+$blockquote-element-spacing--huge: $element-spacing--huge !default;
+$blockquote-font-color: base-color('silver', 'darken-5') !default;
+$blockquote-font-size: $font-size !default;
+$blockquote-font-size--small: $font-size--small !default;
+$blockquote-font-size--large: $font-size--large !default;
+$blockquote-font-size--huge: $font-size--huge !default;
 
 
 /* =============================================================================================

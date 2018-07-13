@@ -5,18 +5,18 @@
    ============================================================================================= */
 
 // Lists
-$list-content-spacing: $content-spacing;
-$list-content-spacing--small: $content-spacing--small;
-$list-content-spacing--large: $content-spacing--large;
-$list-content-spacing--huge: $content-spacing--huge;
-$list-element-spacing: $element-spacing;
-$list-element-spacing--small: $element-spacing--small;
-$list-element-spacing--large: $element-spacing--large;
-$list-element-spacing--huge: $element-spacing--huge;
-$list-font-size: $font-size;
-$list-font-size--small: $font-size--small;
-$list-font-size--large: $font-size--large;
-$list-font-size--huge: $font-size--huge;
+$list-content-spacing: $content-spacing !default;
+$list-content-spacing--small: $content-spacing--small !default;
+$list-content-spacing--large: $content-spacing--large !default;
+$list-content-spacing--huge: $content-spacing--huge !default;
+$list-element-spacing: $element-spacing !default;
+$list-element-spacing--small: $element-spacing--small !default;
+$list-element-spacing--large: $element-spacing--large !default;
+$list-element-spacing--huge: $element-spacing--huge !default;
+$list-font-size: $font-size !default;
+$list-font-size--small: $font-size--small !default;
+$list-font-size--large: $font-size--large !default;
+$list-font-size--huge: $font-size--huge !default;
 
 
 /* =============================================================================================

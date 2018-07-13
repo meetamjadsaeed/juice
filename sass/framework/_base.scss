@@ -5,17 +5,17 @@
    ============================================================================================= */
 
 // Focus
-$focus-outline-color: feedback-color('info');
-$focus-outline-style: dotted;
-$focus-outline-width: 1px;
+$focus-outline-color: feedback-color('info') !default;
+$focus-outline-style: dotted !default;
+$focus-outline-width: 1px !default;
 
 // Background
-$background-color: base-color('background');
+$background-color: base-color('background') !default;
 
 // Selection
-$selection-background-color: base-color('brand');
-$selection-font-color: base-color('white');
-$selection-text-shadow: base-color('black');
+$selection-background-color: base-color('brand') !default;
+$selection-font-color: base-color('white') !default;
+$selection-text-shadow: base-color('black') !default;
 
 
 /* =============================================================================================
