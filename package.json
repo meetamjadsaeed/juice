@@ -1,7 +1,7 @@
 {
     "name": "rucksack",
     "description": "A responsive frontend framework",
-    "version": "1.0.0-beta.25",
+    "version": "1.0.0-beta.26",
     "license": "MIT",
     "author": {
         "name": "Joe Mottershaw",
@@ -20,6 +20,7 @@
         "framework",
         "css",
         "sass",
+        "scss",
         "javascript"
     ],
     "devDependencies": {
