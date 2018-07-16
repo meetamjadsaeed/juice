@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> LABELS -> VARIABLES
+   ============================================================================================= */
+
+// Labels
+$label-element-spacing: $element-spacing !default;
+$label-element-spacing--small: $element-spacing--small !default;
+$label-element-spacing--large: $element-spacing--large !default;
+$label-element-spacing--huge: $element-spacing--huge !default;
+$label-font-color: font-color() !default;
+$label-font-family: $primary-typeface !default;
+$label-font-size: $font-size !default;
+$label-font-size--small: $font-size--small !default;
+$label-font-size--large: $font-size--large !default;
+$label-font-size--huge: $font-size--huge !default;
+$label-height: $element-height !default;
+$label-height--small: $element-height--small !default;
+$label-height--large: $element-height--large !default;
+$label-height--huge: $element-height--huge !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> LABELS
+   ============================================================================================= */
+
+// Labels
+label {
+    color: $label-font-color;
+    cursor: pointer;
+    display: block;
+    font-family: $label-font-family;
+    font-size: $label-font-size;
+    height: $label-height;
+    line-height: $label-height;
+    margin: 0;
+    margin-bottom: $label-element-spacing;
+    padding: 0;
+    user-select: none;
+
+    // Modifiers
+    &.label--inline {
+        display: inline-block;
+    }
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $label-font-size--small;
+        height: $label-height--small;
+        line-height: $label-height--small;
+        margin-bottom: $label-element-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $label-font-size--large;
+        height: $label-height--large;
+        line-height: $label-height--large;
+        margin-bottom: $label-element-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $label-font-size--huge;
+        height: $label-height--huge;
+        line-height: $label-height--huge;
+        margin-bottom: $label-element-spacing--huge;
+    }
+
+    // Modifiers: Feedback
+    @each $name, $color in $feedback-colors {
+        &.with-#{$name} {
+            color: feedback-color($name);
+        }
+    }
+}

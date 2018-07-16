@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> MEDIA -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> VARIABLES
    ============================================================================================= */
 
 // Image
@@ -10,7 +10,7 @@ $media-image-element-spacing--small: $element-spacing--small !default;
 $media-image-element-spacing--large: $element-spacing--large !default;
 $media-image-element-spacing--huge: $element-spacing--huge !default;
 
-// Media object
+// Objects
 $media-object-badge-width: 75px !default;
 $media-object-badge-width--small: 50px !default;
 $media-object-badge-width--large: 100px !default;
@@ -30,7 +30,7 @@ $media-object-font-size--huge: $font-size--huge !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> MEDIA -> IMAGES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> IMAGES
    ============================================================================================= */
 
 // Images
@@ -101,10 +101,10 @@ img {
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> MEDIA -> OBJECTS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> OBJECTS
    ============================================================================================= */
 
-// Media objects
+// Objects
 .media-object {
     display: flex;
     flex: 0 1 auto;

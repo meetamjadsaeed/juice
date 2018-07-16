@@ -1,55 +1,14 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> GRID -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> LAYOUT -> GRID -> VARIABLES
    ============================================================================================= */
 
-// Container
-$container-gutter: $element-spacing !default;
-$container-max-width: 1200px !default;
-
-// Grid
 $grid-gutter: $element-spacing / 2 !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> GRID -> CONTAINER
-   ============================================================================================= */
-
-// Container
-.container {
-    display: block;
-    margin: 0 auto;
-    max-width: $container-max-width;
-    min-height: 1px;
-    padding: 0 $container-gutter;
-    position: relative;
-    width: 100%;
-
-    // Pseudo elements
-    &::after {
-        @include clearfix();
-    }
-
-    // Modifiers
-    &.container--no-gutter {
-        padding: 0;
-    }
-
-    // Breakpoints
-    @each $name, $breakpoint in $breakpoints {
-        @include breakpoint($name) {
-            // Modifiers
-            &.container--no-gutter-#{$name} {
-                padding: 0;
-            }
-        }
-    }
-}
-
-
-/* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> GRID
+   RUCKSACK -> FRAMEWORK -> LAYOUT -> GRID
    ============================================================================================= */
 
 // Grid

@@ -1,9 +1,10 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> BUTTONS -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> BUTTONS -> VARIABLES
    ============================================================================================= */
 
+// Buttons
 $buttons: "
     button,
     .button,
@@ -70,7 +71,7 @@ $button-text-transform: uppercase !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> BUTTONS -> MIXINS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> BUTTONS -> MIXINS
    ============================================================================================= */
 
 // Small button size
@@ -134,7 +135,7 @@ $button-text-transform: uppercase !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> BUTTONS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> BUTTONS
    ============================================================================================= */
 
 // Buttons

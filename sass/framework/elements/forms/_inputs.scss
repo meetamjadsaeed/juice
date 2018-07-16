@@ -1,24 +1,8 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUTS -> VARIABLES
    ============================================================================================= */
-
-// Labels
-$label-element-spacing: $element-spacing !default;
-$label-element-spacing--small: $element-spacing--small !default;
-$label-element-spacing--large: $element-spacing--large !default;
-$label-element-spacing--huge: $element-spacing--huge !default;
-$label-font-color: font-color() !default;
-$label-font-family: $primary-typeface !default;
-$label-font-size: $font-size !default;
-$label-font-size--small: $font-size--small !default;
-$label-font-size--large: $font-size--large !default;
-$label-font-size--huge: $font-size--huge !default;
-$label-height: $element-height !default;
-$label-height--small: $element-height--small !default;
-$label-height--large: $element-height--large !default;
-$label-height--huge: $element-height--huge !default;
 
 // Inputs
 $inputs: "
@@ -76,67 +60,9 @@ $input-range-thumb-width: 20px !default;
 $input-range-track-color: $input-border-color !default;
 $input-range-track-color--filled: base-color('blue') !default;
 
-// Selects
-$select-background-color: $input-background-color !default;
-$select-border-color: $input-border-color !default;
-$select-border-color--hover: $input-border-color--hover !default;
-$select-border-color--focus: $input-border-color--focus !default;
-$select-border-width--top: $input-border-width--top !default;
-$select-border-width--right: $input-border-width--right !default;
-$select-border-width--bottom: $input-border-width--bottom !default;
-$select-border-width--left: $input-border-width--left !default;
-$select-border-radius--top-left: $input-border-radius--top-left !default;
-$select-border-radius--top-right: $input-border-radius--top-right !default;
-$select-border-radius--bottom-right: $input-border-radius--bottom-right !default;
-$select-border-radius--bottom-left: $input-border-radius--bottom-left !default;
-$select-border-style: $input-border-style !default;
-$select-box-shadow-color--focus: $input-box-shadow-color--focus !default;
-$select-element-spacing: $input-element-spacing !default;
-$select-element-spacing--small: $input-element-spacing--small !default;
-$select-element-spacing--large: $input-element-spacing--large !default;
-$select-element-spacing--huge: $input-element-spacing--huge !default;
-$select-font-color: $input-font-color !default;
-$select-font-color--placeholder: $input-font-color--placeholder !default;
-$select-font-family: $input-font-family !default;
-$select-font-size: $input-font-size !default;
-$select-font-size--small: $input-font-size--small !default;
-$select-font-size--large: $input-font-size--large !default;
-$select-font-size--huge: $input-font-size--huge !default;
-$select-height: $input-height !default;
-$select-height--small: $input-height--small !default;
-$select-height--large: $input-height--large !default;
-$select-height--huge: $input-height--huge !default;
-
-// Textareas
-$textarea-background-color: $input-background-color !default;
-$textarea-border-color: $input-border-color !default;
-$textarea-border-color--hover: $input-border-color--hover !default;
-$textarea-border-color--focus: $input-border-color--focus !default;
-$textarea-border-width--top: $input-border-width--top !default;
-$textarea-border-width--right: $input-border-width--right !default;
-$textarea-border-width--bottom: $input-border-width--bottom !default;
-$textarea-border-width--left: $input-border-width--left !default;
-$textarea-border-radius--top-left: $input-border-radius--top-left !default;
-$textarea-border-radius--top-right: $input-border-radius--top-right !default;
-$textarea-border-radius--bottom-right: $input-border-radius--bottom-right !default;
-$textarea-border-radius--bottom-left: $input-border-radius--bottom-left !default;
-$textarea-border-style: $input-border-style !default;
-$textarea-box-shadow-color--focus: $input-box-shadow-color--focus !default;
-$textarea-element-spacing: $input-element-spacing !default;
-$textarea-element-spacing--small: $input-element-spacing--small !default;
-$textarea-element-spacing--large: $input-element-spacing--large !default;
-$textarea-element-spacing--huge: $input-element-spacing--huge !default;
-$textarea-font-color: $input-font-color !default;
-$textarea-font-color--placeholder: $input-font-color--placeholder !default;
-$textarea-font-family: $input-font-family !default;
-$textarea-font-size: $input-font-size !default;
-$textarea-font-size--small: $input-font-size--small !default;
-$textarea-font-size--large: $input-font-size--large !default;
-$textarea-font-size--huge: $input-font-size--huge !default;
-
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> MIXINS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUTS -> MIXINS
    ============================================================================================= */
 
 // Input
@@ -194,82 +120,9 @@ $textarea-font-size--huge: $input-font-size--huge !default;
     box-shadow: 0 0 20px -2px $color;
 }
 
-/* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> RESET
-   ============================================================================================= */
-
-// Forms
-form {
-    border: none;
-    margin: 0;
-    padding: 0;
-}
-
-// Fieldsets
-fieldset {
-    border: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> LABELS
-   ============================================================================================= */
-
-// Labels
-label {
-    color: $label-font-color;
-    cursor: pointer;
-    display: block;
-    font-family: $label-font-family;
-    font-size: $label-font-size;
-    height: $label-height;
-    line-height: $label-height;
-    margin: 0;
-    margin-bottom: $label-element-spacing;
-    padding: 0;
-    user-select: none;
-
-    // Modifiers
-    &.label--inline {
-        display: inline-block;
-    }
-
-    // Modifiers: Size
-    &.is-small {
-        font-size: $label-font-size--small;
-        height: $label-height--small;
-        line-height: $label-height--small;
-        margin-bottom: $label-element-spacing--small;
-    }
-
-    &.is-large {
-        font-size: $label-font-size--large;
-        height: $label-height--large;
-        line-height: $label-height--large;
-        margin-bottom: $label-element-spacing--large;
-    }
-
-    &.is-huge {
-        font-size: $label-font-size--huge;
-        height: $label-height--huge;
-        line-height: $label-height--huge;
-        margin-bottom: $label-element-spacing--huge;
-    }
-
-    // Modifiers: Feedback
-    @each $name, $color in $feedback-colors {
-        &.with-#{$name} {
-            color: feedback-color($name);
-        }
-    }
-}
-
-
-/* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> INPUTS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUTS
    ============================================================================================= */
 
 // Inputs
@@ -637,7 +490,6 @@ input[type=range] {
     }
 }
 
-
 // Search inputs
 input[type=search] {
     // Pseudo elements
@@ -701,206 +553,5 @@ input[type=time] {
 
     &.is-huge {
         line-height: $input-height--huge;
-    }
-}
-
-
-/* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> SELECTS
-   ============================================================================================= */
-
-// Selects
-select {
-    -webkit-appearance: none;
-    background-color: $select-background-color;
-    border: 0 $select-border-style $select-border-color;
-    border-radius: $select-border-radius--top-left
-                   $select-border-radius--top-right
-                   $select-border-radius--bottom-right
-                   $select-border-radius--bottom-left;
-    border-width: $select-border-width--top
-                  $select-border-width--right
-                  $select-border-width--bottom
-                  $select-border-width--left;
-    color: $select-font-color;
-    cursor: pointer;
-    display: block;
-    font-family: $select-font-family;
-    font-size: $select-font-size;
-    height: $select-height;
-    margin: 0;
-    margin-bottom: $select-element-spacing;
-    padding: 0 10px;
-    transition: border 0.15s linear,
-                box-shadow 0.15s linear;
-    width: 100%;
-
-    // Pseudo classes
-    &:hover {
-        border-color: $select-border-color--hover;
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-    &:focus,
-    &:active {
-        @include input-focus-box-shadow($select-box-shadow-color--focus);
-        background-color: $select-background-color;
-        border-color: $select-border-color--focus;
-    }
-
-    // Modifiers
-    &[multiple] {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-        height: initial;
-        padding: 10px;
-    }
-
-    // Modifiers: Size
-    &.is-small {
-        font-size: $select-font-size--small;
-        height: $select-height--small;
-        margin-bottom: $select-element-spacing--small;
-
-        // Modifiers
-        &[multiple] {
-            height: initial;
-        }
-    }
-
-    &.is-large {
-        font-size: $select-font-size--large;
-        height: $select-height--large;
-        margin-bottom: $select-element-spacing--large;
-
-        // Modifiers
-        &[multiple] {
-            height: initial;
-        }
-    }
-
-    &.is-huge {
-        font-size: $select-font-size--huge;
-        height: $select-height--huge;
-        margin-bottom: $select-element-spacing--huge;
-
-        // Modifiers
-        &[multiple] {
-            height: initial;
-        }
-    }
-
-    // Modifiers: Feedback
-    @each $name, $color in $feedback-colors {
-        &.with-#{$name} {
-            border-color: feedback-color($name);
-
-            // Pseudo classes
-            &:hover {
-                border-color: feedback-color($name, 'darken-1');
-            }
-
-            &:focus {
-                @include input-focus-box-shadow(feedback-color($name, 'lighten-5'));
-                border-color: feedback-color($name, 'darken-2');
-            }
-        }
-    }
-}
-
-
-/* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> FORMS -> TEXTAREAS
-   ============================================================================================= */
-
-// Textareas
-textarea {
-    -webkit-appearance: none;
-    background-color: $textarea-background-color;
-    border: 0 $textarea-border-style $textarea-border-color;
-    border-radius: $textarea-border-radius--top-left
-                   $textarea-border-radius--top-right
-                   $textarea-border-radius--bottom-right
-                   $textarea-border-radius--bottom-left;
-    border-width: $textarea-border-width--top
-                  $textarea-border-width--right
-                  $textarea-border-width--bottom
-                  $textarea-border-width--left;
-    color: $textarea-font-color;
-    display: block;
-    font-family: $textarea-font-family;
-    font-size: $textarea-font-size;
-    line-height: 1.5;
-    margin: 0;
-    margin-bottom: $textarea-element-spacing;
-    min-width: 100%;
-    padding: 10px;
-    resize: none;
-    transition: border-color 0.15s linear,
-                box-shadow 0.15s linear;
-    width: 100%;
-
-    // Pseudo classes
-    &:hover {
-        border-color: $textarea-border-color--hover;
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-    &:focus,
-    &:active {
-        @include input-focus-box-shadow($textarea-box-shadow-color--focus);
-        border-color: $textarea-border-color--focus;
-    }
-
-    // Psuedo elements
-    &::placeholder {
-        color: $textarea-font-color--placeholder;
-    }
-
-    // Modifiers
-    &.textarea--resize {
-        resize: vertical;
-    }
-
-    // Modifiers: Size
-    &.is-small {
-        font-size: $textarea-font-size--small;
-        line-height: 1.4;
-        margin-bottom: $textarea-element-spacing--small;
-    }
-
-    &.is-large {
-        font-size: $textarea-font-size--large;
-        line-height: 1.6;
-        margin-bottom: $textarea-element-spacing--large;
-    }
-
-    &.is-huge {
-        font-size: $textarea-font-size--huge;
-        line-height: 1.7;
-        margin-bottom: $textarea-element-spacing--huge;
-    }
-
-    // Modifiers: Feedback
-    @each $name, $color in $feedback-colors {
-        &.with-#{$name} {
-            border-color: feedback-color($name);
-
-            // Pseudo classes
-            &:hover {
-                border-color: feedback-color($name, 'darken-1');
-            }
-
-            &:focus {
-                @include input-focus-box-shadow(feedback-color($name, 'lighten-5'));
-                border-color: feedback-color($name, 'darken-2');
-            }
-        }
     }
 }

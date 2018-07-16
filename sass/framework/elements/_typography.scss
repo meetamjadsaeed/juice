@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> TYPOGRAPHY -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> TYPOGRAPHY -> VARIABLES
    ============================================================================================= */
 
 // Body
@@ -217,14 +217,15 @@ $blockquote-font-size--huge: $font-size--huge !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> TYPOGRAPHY
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> TYPOGRAPHY
    ============================================================================================= */
 
-// Body
+// Html
 html {
     font-size: 62.5%;
 }
 
+// Body
 body {
     color: $body-font-color;
     font-family: $body-font-family;
@@ -233,7 +234,6 @@ body {
     letter-spacing: $body-letter-spacing;
     line-height: $body-line-height;
 }
-
 
 // Paragraph
 p {
@@ -279,7 +279,6 @@ hr {
         margin-bottom: $hr-element-spacing--huge;
     }
 }
-
 
 // Links
 a {
