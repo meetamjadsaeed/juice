@@ -38,7 +38,11 @@ $font-color-palette: ();
         'darken-7': darken($color, ($color-palette-difference * 7)),
         'darken-8': darken($color, ($color-palette-difference * 8)),
         'darken-9': darken($color, ($color-palette-difference * 9)),
-        'darken-10': darken($color, ($color-palette-difference * 10))
+        'darken-10': darken($color, ($color-palette-difference * 10)),
+
+        'complement': complement($color),
+        'grayscale': grayscale($color),
+        'invert': set-invert-font-color($color)
     );
 
     // Merge the generated color palette map with the base color palette map
@@ -74,7 +78,11 @@ $font-color-palette: ();
         'darken-7': darken($color, ($color-palette-difference * 7)),
         'darken-8': darken($color, ($color-palette-difference * 8)),
         'darken-9': darken($color, ($color-palette-difference * 9)),
-        'darken-10': darken($color, ($color-palette-difference * 10))
+        'darken-10': darken($color, ($color-palette-difference * 10)),
+
+        'complement': complement($color),
+        'grayscale': grayscale($color),
+        'invert': set-invert-font-color($color)
     );
 
     // Merge the generated color palette map with the font color palette map
@@ -110,7 +118,11 @@ $font-color-palette: ();
         'darken-7': darken($color, ($color-palette-difference * 7)),
         'darken-8': darken($color, ($color-palette-difference * 8)),
         'darken-9': darken($color, ($color-palette-difference * 9)),
-        'darken-10': darken($color, ($color-palette-difference * 10))
+        'darken-10': darken($color, ($color-palette-difference * 10)),
+
+        'complement': complement($color),
+        'grayscale': grayscale($color),
+        'invert': set-invert-font-color($color)
     );
 
     // Merge the generated color palette map with the feedback color palette map

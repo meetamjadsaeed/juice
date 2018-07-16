@@ -73,3 +73,21 @@
     // Return the color value
     @return get-color($feedback-color-palette, $color, $type);
 }
+
+/**
+ * Set the invert color for fonts depending on the background color
+ * @param  string  $background-color  The background color
+ * @param  string  $font-dark         The dark font color to return
+ * @param  string  $font-light        The light font color to return
+ * @return string                     The font color
+ */
+@function set-invert-font-color($background-color, $font-color-dark: hsla(0, 0, 0, 0.65), $font-color-light: hsla(0, 100%, 100%, 1)) {
+    // Check if the background colors lightness is more than 65
+    @if (lightness($background-color) > 65) {
+        // Return the dark font color
+        @return $font-color-dark;
+    } @else {
+        // Return the light font color
+        @return $font-color-light;
+    }
+}
