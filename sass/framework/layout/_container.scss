@@ -37,7 +37,7 @@ $container-max-width: 1200px !default;
     @each $name, $breakpoint in $breakpoints {
         @include breakpoint($name) {
             // Modifiers
-            &.container--no-gutter-#{$name} {
+            &.container--no-gutter\@#{$name} {
                 padding: 0;
             }
         }
