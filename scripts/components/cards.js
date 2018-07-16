@@ -38,18 +38,6 @@
             // Set the card element
             const $card = $(this.element);
 
-            // Check if the card doesn't have either the expanded or collapsed state hooks
-            if (!$card.is('.is-expanded, .is-collapsed')) {
-                // Add the expanded state hook class to the card
-                $card.addClass('is-expanded');
-            }
-
-            // Add a click event handler to toggle the cards body
-            $('.js-card-toggle', this.element).on('click', () => {
-                // Toggle the expanded and collapsed state hook classes on the card
-                $card.toggleClass('is-expanded is-collapsed');
-            });
-
             // Add a click event handler to remove a card
             $('.js-card-remove', this.element).on('click', () => {
                 // Check if the card remove animation data attribute exists and set the remove animation

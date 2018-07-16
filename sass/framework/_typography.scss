@@ -32,8 +32,8 @@ $hr-element-spacing--large: $element-spacing--large !default;
 $hr-element-spacing--huge: $element-spacing--huge !default;
 
 // Links
-$link-color: base-color('brand') !default;
-$link-color--hover: base-color('brand', 'lighten-2') !default;
+$link-color: base-color('primary') !default;
+$link-color--hover: base-color('primary', 'lighten-2') !default;
 
 // Headings
 $heading-element-spacing: $element-spacing !default;
@@ -190,7 +190,7 @@ $var-font-size--huge: $font-size--huge !default;
 // Blockquote
 $blockquote-background-color: base-color('white') !default;
 $blockquote-border-color: base-color('white', 'darken-3') !default;
-$blockquote-border-color--hover: base-color('brand') !default;
+$blockquote-border-color--hover: base-color('primary') !default;
 $blockquote-border-radius--top-left: 0 !default;
 $blockquote-border-radius--top-right: $border-radius--top-right !default;
 $blockquote-border-radius--bottom-right: $border-radius--bottom-right !default;

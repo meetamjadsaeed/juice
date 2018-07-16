@@ -6,8 +6,9 @@
 
 // Base colors
 $base-colors: (
-    // Brand
-    'brand': #2d98da,
+    // Brands
+    'primary': hsla(203, 70%, 52%, 1),
+    'secondary': hsla(23, 70%, 52%, 1),
 
     // Backgrounds
     'background': hsla(0, 0%, 99%, 1),

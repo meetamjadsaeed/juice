@@ -134,86 +134,9 @@ $textarea-font-size--small: $input-font-size--small !default;
 $textarea-font-size--large: $input-font-size--large !default;
 $textarea-font-size--huge: $input-font-size--huge !default;
 
-// Buttons
-$buttons: "
-    button,
-    .button,
-    a.button,
-    input[type=submit],
-    input[type=reset],
-    input[type=button]
-" !default;
-$button-background-color: base-color('white') !default;
-$button-background-color--hover: base-color('white', 'lighten-1') !default;
-$button-background-color--focus: base-color('white', 'lighten-1') !default;
-$button-background-color--active: base-color('white') !default;
-$button-background-color-primary: base-color('brand') !default;
-$button-background-color-primary--hover: base-color('brand', 'lighten-1') !default;
-$button-background-color-primary--focus: base-color('brand', 'lighten-1') !default;
-$button-background-color-primary--active: base-color('brand') !default;
-$button-background-color-secondary: base-color('charcoal') !default;
-$button-background-color-secondary--hover: base-color('charcoal', 'lighten-1') !default;
-$button-background-color-secondary--focus: base-color('charcoal', 'lighten-1') !default;
-$button-background-color-secondary--active: base-color('charcoal') !default;
-$button-border-color: base-color('white', 'darken-3') !default;
-$button-border-color--hover: base-color('white', 'darken-5') !default;
-$button-border-color--focus: base-color('white', 'darken-6') !default;
-$button-border-color--active: base-color('white', 'darken-6') !default;
-$button-border-color-primary: base-color('brand', 'darken-3') !default;
-$button-border-color-primary--hover: base-color('brand', 'darken-5') !default;
-$button-border-color-primary--focus: base-color('brand', 'darken-6') !default;
-$button-border-color-primary--active: base-color('brand', 'darken-6') !default;
-$button-border-color-secondary: base-color('charcoal', 'darken-3') !default;
-$button-border-color-secondary--hover: base-color('charcoal', 'darken-5') !default;
-$button-border-color-secondary--focus: base-color('charcoal', 'darken-6') !default;
-$button-border-color-secondary--active: base-color('charcoal', 'darken-6') !default;
-$button-border-radius--top-left: $border-radius--top-left !default;
-$button-border-radius--top-right: $border-radius--top-right !default;
-$button-border-radius--bottom-right: $border-radius--bottom-right !default;
-$button-border-radius--bottom-left: $border-radius--bottom-left !default;
-$button-border-style: $border-style !default;
-$button-border-width--top: $input-border-width--top !default;
-$button-border-width--right: $input-border-width--right !default;
-$button-border-width--bottom: $input-border-width--bottom !default;
-$button-border-width--left: $input-border-width--left !default;
-$button-border-width--separator: $input-border-width--separator !default;
-$button-content-spacing: $content-spacing !default;
-$button-content-spacing--small: $content-spacing--small !default;
-$button-content-spacing--large: $content-spacing--large !default;
-$button-content-spacing--huge: $content-spacing--huge !default;
-$button-element-spacing: $element-spacing !default;
-$button-element-spacing--small: $element-spacing--small !default;
-$button-element-spacing--large: $element-spacing--large !default;
-$button-element-spacing--huge: $element-spacing--huge !default;
-$button-font-color: font-color() !default;
-$button-font-color--hover: font-color() !default;
-$button-font-color--focus: font-color() !default;
-$button-font-color--active: font-color() !default;
-$button-font-color-primary: base-color('white') !default;
-$button-font-color-primary--hover: base-color('white') !default;
-$button-font-color-primary--focus: base-color('white') !default;
-$button-font-color-primary--active: base-color('white') !default;
-$button-font-color-secondary: base-color('white') !default;
-$button-font-color-secondary--hover: base-color('white') !default;
-$button-font-color-secondary--focus: base-color('white') !default;
-$button-font-color-secondary--active: base-color('white') !default;
-$button-font-family: $secondary-typeface !default;
-$button-font-size: $font-size !default;
-$button-font-size--small: $font-size--small !default;
-$button-font-size--large: $font-size--large !default;
-$button-font-size--huge: $font-size--huge !default;
-$button-font-variant: normal !default;
-$button-font-weight: 300 !default;
-$button-height: $input-height !default;
-$button-height--small: $input-height--small !default;
-$button-height--large: $input-height--large !default;
-$button-height--huge: $input-height--huge !default;
-$button-letter-spacing: 0 !default;
-$button-text-transform: uppercase !default;
-
 
 /* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> MIXINS
+   RUCKSACK -> FRAMEWORK -> FORMS -> MIXINS
    ============================================================================================= */
 
 // Input
@@ -271,40 +194,8 @@ $button-text-transform: uppercase !default;
     box-shadow: 0 0 20px -2px $color;
 }
 
-// Button click inset shadow
-@mixin button-click-inset-shadow() {
-    box-shadow: inset 0 2px 7px 0px rgba(0, 0, 0, 0.1);
-}
-
-// Small buttons
-@mixin button-size--small() {
-    font-size: $button-font-size--small;
-    height: $button-height--small;
-    line-height: $button-height--small - ($button-border-width--top + $button-border-width--bottom);
-    margin-bottom: $button-element-spacing--small;
-    padding: 0 $button-content-spacing--small;
-}
-
-// Large buttons
-@mixin button-size--large() {
-    font-size: $button-font-size--large;
-    height: $button-height--large;
-    line-height: $button-height--large - ($button-border-width--top + $button-border-width--bottom);
-    margin-bottom: $button-element-spacing--large;
-    padding: 0 $button-content-spacing--large;
-}
-
-// Huge buttons
-@mixin button-size--huge() {
-    font-size: $button-font-size--huge;
-    height: $button-height--huge;
-    line-height: $button-height--huge - ($button-border-width--top + $button-border-width--bottom);
-    margin-bottom: $button-element-spacing--huge;
-    padding: 0 $button-content-spacing--huge;
-}
-
 /* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> RESET
+   RUCKSACK -> FRAMEWORK -> FORMS -> RESET
    ============================================================================================= */
 
 // Forms
@@ -324,7 +215,7 @@ fieldset {
 
 
 /* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> LABELS
+   RUCKSACK -> FRAMEWORK -> FORMS -> LABELS
    ============================================================================================= */
 
 // Labels
@@ -378,7 +269,7 @@ label {
 
 
 /* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> INPUTS
+   RUCKSACK -> FRAMEWORK -> FORMS -> INPUTS
    ============================================================================================= */
 
 // Inputs
@@ -815,7 +706,7 @@ input[type=time] {
 
 
 /* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> SELECTS
+   RUCKSACK -> FRAMEWORK -> FORMS -> SELECTS
    ============================================================================================= */
 
 // Selects
@@ -922,7 +813,7 @@ select {
 
 
 /* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> TEXTAREAS
+   RUCKSACK -> FRAMEWORK -> FORMS -> TEXTAREAS
    ============================================================================================= */
 
 // Textareas
@@ -1012,190 +903,4 @@ textarea {
             }
         }
     }
-}
-
-
-/* =============================================================================================
-   RUCKSACK -> FOUNDATION -> FORMS -> BUTTONS
-   ============================================================================================= */
-
-// Buttons
-#{$buttons} {
-    background-color: $button-background-color;
-    border: 0 $button-border-style $button-border-color;
-    border-width: $button-border-width--top
-                  $button-border-width--right
-                  $button-border-width--bottom
-                  $button-border-width--left;
-    border-radius: $button-border-radius--top-left
-                   $button-border-radius--top-right
-                   $button-border-radius--bottom-right
-                   $button-border-radius--bottom-left;
-    color: $button-font-color;
-    cursor: pointer;
-    display: inline-block;
-    font-family: $button-font-family;
-    font-size: $button-font-size;
-    font-variant: $button-font-variant;
-    font-weight: $button-font-weight;
-    height: $button-height;
-    letter-spacing: $button-letter-spacing;
-    line-height: $button-height - ($button-border-width--top + $button-border-width--bottom);
-    margin: 0;
-    margin-bottom: $button-element-spacing;
-    max-width: 100%;
-    padding: 0 $button-content-spacing;
-    text-align: center;
-    text-transform: $button-text-transform;
-    user-select: none;
-
-    // Psuedo classes
-    &:hover {
-        background-color: $button-background-color--hover;
-        border-color: $button-border-color--hover;
-        color: $button-font-color--hover;
-    }
-
-    &:focus {
-        background-color: $button-background-color--focus;
-        border-color: $button-border-color--focus;
-        color: $button-font-color--focus;
-        outline: none;
-    }
-
-    &:active {
-        @include button-click-inset-shadow();
-        background-color: $button-background-color--active;
-        border-color: $button-border-color--active;
-        color: $button-font-color--active;
-    }
-
-    // Modifiers
-    &.button--block {
-        display: block;
-        width: 100%;
-    }
-
-    &.button--primary {
-        background-color: $button-background-color-primary;
-        border-color: $button-border-color-primary;
-        color: $button-font-color-primary;
-
-        // Psuedo classes
-        &:hover {
-            background-color: $button-background-color-primary--hover;
-            border-color: $button-border-color-primary--hover;
-            color: $button-font-color-primary--hover;
-        }
-
-        &:focus {
-            background-color: $button-background-color-primary--focus;
-            border-color: $button-border-color-primary--focus;
-            color: $button-font-color-primary--focus;
-        }
-
-        &:active {
-            background-color: $button-background-color-primary--active;
-            border-color: $button-border-color-primary--active;
-            color: $button-font-color-primary--active;
-        }
-    }
-
-    &.button--secondary {
-        background-color: $button-background-color-secondary;
-        border-color: $button-border-color-secondary;
-        color: $button-font-color-secondary;
-
-        // Psuedo classes
-        &:hover {
-            background-color: $button-background-color-secondary--hover;
-            border-color: $button-border-color-secondary--hover;
-            color: $button-font-color-secondary--hover;
-        }
-
-        &:focus {
-            background-color: $button-background-color-secondary--focus;
-            border-color: $button-border-color-secondary--focus;
-            color: $button-font-color-secondary--focus;
-        }
-
-        &:active {
-            background-color: $button-background-color-secondary--active;
-            border-color: $button-border-color-secondary--active;
-            color: $button-font-color-secondary--active;
-        }
-    }
-
-    &.button--link,
-    &.button--text {
-        background-color: transparent;
-        border-color: transparent;
-        color: inherit;
-
-        // Pseudo classes
-        &:hover,
-        &:focus {
-            background-color: hsla(0, 0%, 0%, 0.04);
-        }
-
-        &:active {
-            box-shadow: none;
-        }
-    }
-
-    &.button--link {
-        color: $link-color;
-
-        // Pseudo classes
-        &:hover,
-        &:focus {
-            background-color: hsla(0, 0%, 0%, 0.04);
-        }
-
-        &:hover {
-            color: $link-color--hover;
-        }
-    }
-
-    // Modifiers: Size
-    &.is-small {
-        @include button-size--small();
-    }
-
-    &.is-large {
-        @include button-size--large();
-    }
-
-    &.is-huge {
-        @include button-size--huge();
-    }
-
-    // Modifiers: Feedback
-    @each $name, $color in $feedback-colors {
-        &.with-#{$name} {
-            background-color: feedback-color($name);
-            border-color: feedback-color($name, 'darken-3');
-            color: base-color('white');
-
-            // Pseudo classes
-            &:hover {
-                background-color: feedback-color($name, 'lighten-1');
-                border-color: feedback-color($name, 'darken-5');
-            }
-
-            &:focus {
-                background-color: feedback-color($name, 'lighten-1');
-                border-color: feedback-color($name, 'darken-5');
-            }
-
-            &:active {
-                background-color: feedback-color($name);
-                border-color: feedback-color($name, 'darken-3');
-            }
-        }
-    }
-}
-
-a.button {
-    text-decoration: none;
 }

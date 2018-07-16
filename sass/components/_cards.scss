@@ -124,27 +124,6 @@ $card-icon-height--huge: $element-height--huge !default;
     overflow: hidden;
     padding: 0;
 
-    // Modifiers: State Hooks
-    &.is-collapsed {
-        // Nested selectors
-        .card__content {
-            // Nested selectors
-            .card__body {
-                display: none;
-            }
-        }
-    }
-
-    &.is-expanded {
-        // Nested selectors
-        .card__content {
-            // Nested selectors
-            .card__body {
-                display: block;
-            }
-        }
-    }
-
     // Modifiers: Size
     &.is-small {
         font-size: $card-font-size--small;
@@ -152,22 +131,65 @@ $card-icon-height--huge: $element-height--huge !default;
 
         // Nested selectors
         .card__content {
+            padding: $card-content-spacing--small;
+
             // Nested selectors
             .card__head,
-            .card__actions {
+            .card__body,
+            .card__foot {
+                padding-bottom: $card-content-spacing--small;
+
+                // Pseudo classes
+                &:last-child {
+                    padding-bottom: 0;
+                }
+
+                // Nested selectors
+                #{$buttons} {
+                    @include button-size--small();
+                }
+            }
+
+            .card__head,
+            .card__foot {
                 // Nested selectors
                 .card__icons {
+                    // Pseudo classes
+                    &:first-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-right: $card-content-spacing--small / 4;
+                        }
+                    }
+
+                    &:last-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-left: $card-content-spacing--small / 4;
+                        }
+                    }
+
                     // Nested selectors
-                    .card__icon {
-                        @include card-icon-size--small();
+                    #{$buttons} {
+                        @include icon-button-size--small();
                     }
                 }
             }
 
-            .card__buttons {
+            .card__foot {
                 // Nested selectors
-                #{$buttons} {
-                    @include button-size--small();
+                .card__buttons {
+                    &:last-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-left: $card-content-spacing--small / 2;
+                        }
+                    }
+
+                    // Nested selectors
+                    #{$buttons} {
+                        margin-right: $card-content-spacing--small / 2;
+                    }
                 }
             }
         }
@@ -179,22 +201,65 @@ $card-icon-height--huge: $element-height--huge !default;
 
         // Nested selectors
         .card__content {
+            padding: $card-content-spacing--large;
+
             // Nested selectors
             .card__head,
-            .card__actions {
+            .card__body,
+            .card__foot {
+                padding-bottom: $card-content-spacing--large;
+
+                // Pseudo classes
+                &:last-child {
+                    padding-bottom: 0;
+                }
+
+                // Nested selectors
+                #{$buttons} {
+                    @include button-size--large();
+                }
+            }
+
+            .card__head,
+            .card__foot {
                 // Nested selectors
                 .card__icons {
+                    // Pseudo classes
+                    &:first-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-right: $card-content-spacing--large / 4;
+                        }
+                    }
+
+                    &:last-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-left: $card-content-spacing--large / 4;
+                        }
+                    }
+
                     // Nested selectors
-                    .card__icon {
-                        @include card-icon-size--large();
+                    #{$buttons} {
+                        @include icon-button-size--large();
                     }
                 }
             }
 
-            .card__buttons {
+            .card__foot {
                 // Nested selectors
-                #{$buttons} {
-                    @include button-size--large();
+                .card__buttons {
+                    &:last-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-left: $card-content-spacing--large / 2;
+                        }
+                    }
+
+                    // Nested selectors
+                    #{$buttons} {
+                        margin-right: $card-content-spacing--large / 2;
+                    }
                 }
             }
         }
@@ -206,22 +271,65 @@ $card-icon-height--huge: $element-height--huge !default;
 
         // Nested selectors
         .card__content {
+            padding: $card-content-spacing--huge;
+
             // Nested selectors
             .card__head,
-            .card__actions {
+            .card__body,
+            .card__foot {
+                padding-bottom: $card-content-spacing--huge;
+
+                // Pseudo classes
+                &:last-child {
+                    padding-bottom: 0;
+                }
+
+                // Nested selectors
+                #{$buttons} {
+                    @include button-size--huge();
+                }
+            }
+
+            .card__head,
+            .card__foot {
                 // Nested selectors
                 .card__icons {
+                    // Pseudo classes
+                    &:first-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-right: $card-content-spacing--huge / 4;
+                        }
+                    }
+
+                    &:last-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-left: $card-content-spacing--huge / 4;
+                        }
+                    }
+
                     // Nested selectors
-                    .card__icon {
-                        @include card-icon-size--huge();
+                    #{$buttons} {
+                        @include icon-button-size--huge();
                     }
                 }
             }
 
-            .card__buttons {
+            .card__foot {
                 // Nested selectors
-                #{$buttons} {
-                    @include button-size--huge();
+                .card__buttons {
+                    &:last-child {
+                        // Nested selectors
+                        #{$buttons} {
+                            margin-left: $card-content-spacing--huge / 2;
+                        }
+                    }
+
+                    // Nested selectors
+                    #{$buttons} {
+                        margin-right: $card-content-spacing--huge / 2;
+                    }
                 }
             }
         }
@@ -255,26 +363,74 @@ $card-icon-height--huge: $element-height--huge !default;
     .card__content {
         padding: $card-content-spacing;
 
-        // Nested Selectors
+        // Nested selectors
         .card__head,
-        .card__body {
-            padding-top: $card-content-spacing;
+        .card__body,
+        .card__foot {
+            padding-bottom: $card-content-spacing;
 
             // Pseudo classes
-            &:first-child {
-                padding-top: 0;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+
+        .card__head,
+        .card__foot {
+            display: flex;
+
+            // Nested selectors
+            .card__icons {
+                display: flex;
+
+                // Pseudo classes
+                &:first-child {
+                    // Nested selectors
+                    #{$buttons} {
+                        margin-right: $card-content-spacing / 4;
+                    }
+                }
+
+                &:last-child {
+                    // Nested selectors
+                    #{$buttons} {
+                        margin-left: $card-content-spacing / 4;
+                    }
+                }
+
+                // Nested selectors
+                #{$buttons} {
+                    color: inherit;
+                    margin-bottom: 0;
+                    opacity: 0.25;
+
+                    // Pseudo classes
+                    &:focus,
+                    &:hover {
+                        opacity: 0.5;
+                    }
+
+                    &:active {
+                        opacity: 0.75;
+                    }
+                }
             }
         }
 
         .card__head {
-            display: flex;
-
+            align-items: center;
+            
             // Nested selectors
             .card__headings {
                 flex-grow: 1;
 
                 // Nested selectors
-                h1, h2, h3, h4, h5, h6 {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
                     margin-bottom: 0;
                     opacity: 0.5;
 
@@ -286,102 +442,28 @@ $card-icon-height--huge: $element-height--huge !default;
             }
         }
 
-        .card__head,
-        .card__actions {
-            // Nested selectors
-            .card__icons {
-                display: flex;
-
-                // Nested selectors
-                .card__icon {
-                    @include card-icon-size();
-                    align-items: center;
-                    background-color: $card-icon-background-color;
-                    border: 0
-                            $card-icon-border-style
-                            $card-icon-border-color;
-                    border-width: $card-icon-border-width--top
-                                  $card-icon-border-width--right
-                                  $card-icon-border-width--bottom
-                                  $card-icon-border-width--left;
-                    border-radius: $card-icon-border-radius--top-left
-                                   $card-icon-border-radius--top-right
-                                   $card-icon-border-radius--bottom-right
-                                   $card-icon-border-radius--bottom-left;
-                    box-shadow: none;
-                    cursor: pointer;
-                    display: flex;
-                    font-size: $card-icon-font-size;
-                    justify-content: center;
-                    margin: 0;
-                    min-width: auto;
-                    opacity: 0.25;
-                    padding: 0;
-                    user-select: none;
-
-                    // Pseudo classes
-                    &:focus,
-                    &:hover {
-                        opacity: 0.5;
-                    }
-
-                    &:hover {
-                        background-color: $card-icon-background-color--hover;
-                        border-color: $card-icon-border-color--hover;
-                    }
-
-                    &:focus {
-                        background-color: $card-icon-background-color--focus;
-                        border-color: $card-icon-border-color--focus;
-                    }
-
-                    &:active {
-                        background-color: $card-icon-background-color--active;
-                        border-color: $card-icon-border-color--active;
-                        opacity: 0.75;
-                    }
-
-                    // Modifiers: Size
-                    &.is-small {
-                        @include card-icon-size--small();
-                    }
-
-                    &.is-large {
-                        @include card-icon-size--large();
-                    }
-
-                    &.is-huge {
-                        @include card-icon-size--huge();
-                    }
-                }
-            }
-        }
-
-        .card__actions {
-            display: flex;
-
+        .card__foot {
             // Nested selectors
             .card__buttons {
+                display: flex;
                 flex-grow: 1;
                 font-size: $body-font-size;
+                justify-content: flex-start;
 
-                // Pseudo classes
                 &:last-child {
-                    text-align: right;
+                    justify-content: flex-end;
+
+                    // Nested selectors
+                    #{$buttons} {
+                        margin-left: $card-content-spacing / 2;
+                        margin-right: 0;
+                    }
                 }
 
                 // Nested selectors
                 #{$buttons} {
-                    margin: 0 ($card-content-spacing / 4);
-
-                    // Pseudo classes
-                    &:first-child {
-                        margin-left: 0;
-                    }
-
-                    &:last-child {
-                        margin-right: 0;
-                    }
+                    margin-bottom: 0;
+                    margin-right: $card-content-spacing / 2;
                 }
             }
         }
