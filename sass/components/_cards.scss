@@ -31,72 +31,6 @@ $card-element-spacing: $element-spacing !default;
 $card-element-spacing--small: $element-spacing--small !default;
 $card-element-spacing--large: $element-spacing--large !default;
 $card-element-spacing--huge: $element-spacing--huge !default;
-$card-icon-background-color: base-color('white') !default;
-$card-icon-background-color--hover: base-color('white', 'darken-2') !default;
-$card-icon-background-color--focus: base-color('white', 'darken-2') !default;
-$card-icon-background-color--active: base-color('white', 'darken-3') !default;
-$card-icon-border-color: transparent !default;
-$card-icon-border-color--hover:  transparent !default;
-$card-icon-border-color--focus:  transparent !default;
-$card-icon-border-color--active: transparent !default;
-$card-icon-border-radius--top-left: 100% !default;
-$card-icon-border-radius--top-right: 100% !default;
-$card-icon-border-radius--bottom-right: 100% !default;
-$card-icon-border-radius--bottom-left: 100% !default;
-$card-icon-border-style: $border-style !default;
-$card-icon-border-width--top: $border-width--top !default;
-$card-icon-border-width--right: $border-width--right !default;
-$card-icon-border-width--bottom: $border-width--bottom !default;
-$card-icon-border-width--left: $border-width--left !default;
-$card-icon-font-size: 1.1em !default;
-$card-icon-font-size--small: 1em !default;
-$card-icon-font-size--large: 1.2em !default;
-$card-icon-font-size--huge: 1.3em !default;
-$card-icon-height: $element-height !default;
-$card-icon-height--small: $element-height--small !default;
-$card-icon-height--large: $element-height--large !default;
-$card-icon-height--huge: $element-height--huge !default;
-
-
-/* =============================================================================================
-   RUCKSACK -> COMPONENTS -> CARDS -> MIXINS
-   ============================================================================================= */
-
-// Default icon size
-@mixin card-icon-size() {
-    font-size: $card-icon-font-size;
-    height: $card-icon-height;
-    max-height: $card-icon-height;
-    max-width: $card-icon-height;
-    width: $card-icon-height;
-}
-
-// Small icon size
-@mixin card-icon-size--small() {
-    font-size: $card-icon-font-size--small;
-    height: $card-icon-height--small;
-    max-height: $card-icon-height--small;
-    max-width: $card-icon-height--small;
-    width: $card-icon-height--small;
-}
-
-// Large icon size
-@mixin card-icon-size--large() {
-    font-size: $card-icon-font-size--large;
-    height: $card-icon-height--large;
-    max-height: $card-icon-height--large;
-    max-width: $card-icon-height--large;
-    width: $card-icon-height--large;
-}
-
-// Huge icon size
-@mixin card-icon-size--huge() {
-    font-size: $card-icon-font-size--huge;
-    height: $card-icon-height--huge;
-    max-height: $card-icon-height--huge;
-    max-width: $card-icon-height--huge;
-    width: $card-icon-height--huge;
-}
 
 
 /* =============================================================================================
@@ -419,7 +353,7 @@ $card-icon-height--huge: $element-height--huge !default;
 
         .card__head {
             align-items: center;
-            
+
             // Nested selectors
             .card__headings {
                 flex-grow: 1;
