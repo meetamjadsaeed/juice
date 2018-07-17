@@ -1,0 +1,345 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> PANEL -> VARIABLES
+   ============================================================================================= */
+
+$panel-body-background-color: base-color('white') !default;
+$panel-body-border-color: base-color('white', 'darken-3') !default;
+$panel-body-border-width--top: 0 !default;
+$panel-body-border-width--right: $border-width--right !default;
+$panel-body-border-width--bottom: $border-width--bottom !default;
+$panel-body-border-width--left: $border-width--left !default;
+$panel-body-font-color: font-color('default') !default;
+$panel-body-link-color: $link-color !default;
+$panel-body-link-color--hover: $link-color--hover !default;
+
+$panel-border-style: $border-style !default;
+$panel-border-radius--top-left: $border-radius--top-left !default;
+$panel-border-radius--top-right: $border-radius--top-right !default;
+$panel-border-radius--bottom-right: $border-radius--bottom-right !default;
+$panel-border-radius--bottom-left: $border-radius--bottom-left !default;
+$panel-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$panel-content-spacing: $content-spacing !default;
+$panel-content-spacing--small: $content-spacing--small !default;
+$panel-content-spacing--large: $content-spacing--large !default;
+$panel-content-spacing--huge: $content-spacing--huge !default;
+$panel-element-spacing: $element-spacing !default;
+$panel-element-spacing--small: $element-spacing--small !default;
+$panel-element-spacing--large: $element-spacing--large !default;
+$panel-element-spacing--huge: $element-spacing--huge !default;
+$panel-font-size: $font-size !default;
+$panel-font-size--small: $font-size--small !default;
+$panel-font-size--large: $font-size--large !default;
+$panel-font-size--huge: $font-size--huge !default;
+
+$panel-head-background-color: base-color('white') !default;
+$panel-head-border-color: base-color('white', 'darken-3') !default;
+$panel-head-border-width--top: $border-width--top !default;
+$panel-head-border-width--right: $border-width--right !default;
+$panel-head-border-width--bottom: $border-width--bottom !default;
+$panel-head-border-width--left: $border-width--left !default;
+$panel-head-font-color: font-color('default') !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> PANEL
+   ============================================================================================= */
+
+.panel {
+    border: 0 $panel-border-style transparent;
+    border-radius: $panel-border-radius--top-left
+                   $panel-border-radius--top-right
+                   $panel-border-radius--bottom-right
+                   $panel-border-radius--bottom-left;
+    box-shadow: $panel-box-shadow;
+    display: flex;
+    flex-direction: column;
+    font-size: $panel-font-size;
+    margin: 0;
+    margin-bottom: $panel-element-spacing;
+    overflow: hidden;
+    padding: 0;
+
+    // Modifiers
+    &.is-expanded {
+        // Nested selectors
+        .panel__head {
+            // Nested selectors
+            .panel__icons {
+                // Nested selectors
+                .panel__icon--collapsed {
+                    display: none;
+                }
+
+                .panel__icon--expanded {
+                    display: inline-flex;
+                }
+            }
+        }
+
+        .panel__body {
+            display: block;
+        }
+    }
+
+    &.is-collapsed {
+        // Nested selectors
+        .panel__head {
+            border-bottom-left-radius: $panel-border-radius--bottom-left;
+            border-bottom-right-radius: $panel-border-radius--bottom-right;
+
+            // Nested selectors
+            .panel__icons {
+                // Nested selectors
+                .panel__icon--collapsed {
+                    display: inline-flex;
+                }
+
+                .panel__icon--expanded {
+                    display: none;
+                }
+            }
+        }
+
+        .panel__body {
+            display: none;
+        }
+    }
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $panel-font-size--small;
+        margin-bottom: $panel-element-spacing--small;
+
+        // Nested selectors
+        .panel__head,
+        .panel__body {
+            padding: $panel-content-spacing--small;
+        }
+
+        .panel__head {
+            .panel__icons {
+                // Pseudo classes
+                &:first-child {
+                    // Nested selectors
+                    #{$button} {
+                        margin-right: $panel-content-spacing--small / 4;
+                    }
+                }
+
+                &:last-child {
+                    // Nested selectors
+                    #{$button} {
+                        margin-left: $panel-content-spacing--small / 4;
+                    }
+                }
+
+                // Nested selectors
+                #{$button} {
+                    @include button-size--small();
+                    @include icon-button-size--small();
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $panel-font-size--large;
+        margin-bottom: $panel-element-spacing--large;
+
+        // Nested selectors
+        .panel__head,
+        .panel__body {
+            padding: $panel-content-spacing--large;
+        }
+
+        .panel__head {
+            .panel__icons {
+                // Pseudo classes
+                &:first-child {
+                    // Nested selectors
+                    #{$button} {
+                        margin-right: $panel-content-spacing--large / 4;
+                    }
+                }
+
+                &:last-child {
+                    // Nested selectors
+                    #{$button} {
+                        margin-left: $panel-content-spacing--large / 4;
+                    }
+                }
+
+                // Nested selectors
+                #{$button} {
+                    @include button-size--large();
+                    @include icon-button-size--large();
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $panel-font-size--huge;
+        margin-bottom: $panel-element-spacing--huge;
+
+        // Nested selectors
+        .panel__head,
+        .panel__body {
+            padding: $panel-content-spacing--huge;
+        }
+
+        .panel__head {
+            .panel__icons {
+                // Pseudo classes
+                &:first-child {
+                    // Nested selectors
+                    #{$button} {
+                        margin-right: $panel-content-spacing--huge / 4;
+                    }
+                }
+
+                &:last-child {
+                    // Nested selectors
+                    #{$button} {
+                        margin-left: $panel-content-spacing--huge / 4;
+                    }
+                }
+
+                // Nested selectors
+                #{$button} {
+                    @include button-size--huge();
+                    @include icon-button-size--huge();
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    // Modifiers: Colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+            // Nested selectors
+            .panel__head {
+                background-color: base-color($name);
+                border-color: base-color($name, 'darken-3');
+                color: base-color($name, 'invert');
+            }
+        }
+    }
+
+    // Modifiers: Feedback
+    @each $name, $color in $feedback-colors {
+        &.with-#{$name} {
+            // Nested selectors
+            .panel__head {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, 'darken-3');
+                color: feedback-color($name, 'invert');
+            }
+        }
+    }
+
+    // Nested selectors
+    .panel__head,
+    .panel__body {
+        border: 0 $panel-border-style transparent;
+        padding: $panel-content-spacing;
+    }
+
+    .panel__head {
+        align-items: center;
+        background-color: $panel-head-background-color;
+        border-bottom-width: $panel-head-border-width--bottom;
+        border-color: $panel-head-border-color;
+        border-left-width: $panel-head-border-width--left;
+        border-right-width: $panel-head-border-width--right;
+        border-top-left-radius: $panel-border-radius--top-left;
+        border-top-right-radius: $panel-border-radius--top-right;
+        border-top-width: $panel-head-border-width--top;
+        color: $panel-head-font-color;
+        display: flex;
+
+        // Nested selectors
+        .panel__headings {
+            flex-grow: 1;
+
+            // Nested selectors
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-bottom: 0;
+                opacity: 0.5;
+
+                // Pseudo classes
+                &:first-child {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .panel__icons {
+            display: flex;
+
+            // Pseudo classes
+            &:first-child {
+                // Nested selectors
+                #{$button} {
+                    margin-right: $panel-content-spacing / 4;
+                }
+            }
+
+            &:last-child {
+                // Nested selectors
+                #{$button} {
+                    margin-left: $panel-content-spacing / 4;
+                }
+            }
+
+            // Nested selectors
+            #{$button} {
+                color: inherit;
+                margin-bottom: 0;
+                opacity: 0.25;
+
+                // Pseudo classes
+                &:focus,
+                &:hover {
+                    opacity: 0.5;
+                }
+
+                &:active {
+                    opacity: 0.75;
+                }
+            }
+        }
+    }
+
+    .panel__body {
+        background-color: $panel-body-background-color;
+        border-bottom-left-radius: $panel-border-radius--bottom-left;
+        border-bottom-right-radius: $panel-border-radius--bottom-right;
+        border-bottom-width: $panel-body-border-width--bottom;
+        border-color: $panel-body-border-color;
+        border-left-width: $panel-body-border-width--left;
+        border-right-width: $panel-body-border-width--right;
+        border-top-width: $panel-body-border-width--top;
+        color: $panel-body-font-color;
+
+        // Nested selectors
+        a {
+            color: $panel-body-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $panel-body-link-color--hover;
+            }
+        }
+    }
+}

@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> BOX -> VARIABLES
+   ============================================================================================= */
+
+$box-background-color: base-color('white') !default;
+$box-content-spacing: $content-spacing !default;
+$box-content-spacing--small: $content-spacing--small !default;
+$box-content-spacing--large: $content-spacing--large !default;
+$box-content-spacing--huge: $content-spacing--huge !default;
+$box-font-color: font-color('default') !default;
+$box-font-size: $font-size !default;
+$box-font-size--small: $font-size--small !default;
+$box-font-size--large: $font-size--large !default;
+$box-font-size--huge: $font-size--huge !default;
+$box-link-color: $link-color !default;
+$box-link-color--hover: $link-color--hover !default;
+$box-border-style: $border-style !default;
+$box-border-color: base-color('white', 'darken-3') !default;
+$box-border-width--top: $border-width--top !default;
+$box-border-width--right: $border-width--right !default;
+$box-border-width--bottom: $border-width--bottom !default;
+$box-border-width--left: $border-width--left !default;
+$box-border-radius--top-left: $border-radius--top-left !default;
+$box-border-radius--top-right: $border-radius--top-right !default;
+$box-border-radius--bottom-right: $border-radius--bottom-right !default;
+$box-border-radius--bottom-left: $border-radius--bottom-left !default;
+$box-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$box-element-spacing: $element-spacing !default;
+$box-element-spacing--small: $element-spacing--small !default;
+$box-element-spacing--large: $element-spacing--large !default;
+$box-element-spacing--huge: $element-spacing--huge !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> BOX
+   ============================================================================================= */
+
+.box {
+    border: 0 $box-border-style $box-border-color;
+    border-width: $box-border-width--top
+                  $box-border-width--right
+                  $box-border-width--bottom
+                  $box-border-width--left;
+    border-radius: $box-border-radius--top-left
+                   $box-border-radius--top-right
+                   $box-border-radius--bottom-right
+                   $box-border-radius--bottom-left;
+    background-color: $box-background-color;
+    box-shadow: $box-box-shadow;
+    color: $box-font-color;
+    display: flex;
+    flex-direction: column;
+    font-size: $box-font-size;
+    margin: 0;
+    margin-bottom: $box-element-spacing;
+    overflow: hidden;
+    padding: $box-content-spacing;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $box-font-size--small;
+        margin-bottom: $box-element-spacing--small;
+        padding: $box-content-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $box-font-size--large;
+        margin-bottom: $box-element-spacing--large;
+        padding: $box-content-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $box-font-size--huge;
+        margin-bottom: $box-element-spacing--huge;
+        padding: $box-content-spacing--huge;
+    }
+
+    // Nested selectors
+    a {
+        color: $box-link-color;
+
+        // Pseudo classes
+        &:hover {
+            color: $box-link-color--hover;
+        }
+    }
+}
