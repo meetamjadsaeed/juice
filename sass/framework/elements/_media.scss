@@ -120,7 +120,8 @@ img {
 
         // Nested selectors
         .media-object__badge {
-            margin: 0 0 0 $media-object-content-spacing;
+            margin: 0;
+            margin-left: $media-object-content-spacing
         }
     }
 
@@ -133,13 +134,15 @@ img {
         &.media-object--reverse {
             // Nested selectors
             .media-object__badge {
-                margin: 0 0 0 $media-object-content-spacing--small;
+                margin: 0;
+                margin-left: $media-object-content-spacing--small;
             }
         }
 
         // Nested selectors
         .media-object__badge {
-            margin: 0 $media-object-content-spacing--small 0 0;
+            margin: 0;
+            margin-right: $media-object-content-spacing--small;
 
             // Nested selectors
             img {
@@ -156,13 +159,15 @@ img {
         &.media-object--reverse {
             // Nested selectors
             .media-object__badge {
-                margin: 0 0 0 $media-object-content-spacing--large;
+                margin: 0;
+                margin-left: $media-object-content-spacing--large;
             }
         }
 
         // Nested selectors
         .media-object__badge {
-            margin: 0 $media-object-content-spacing--large 0 0;
+            margin: 0;
+            margin-right: $media-object-content-spacing--large;
 
             // Nested selectors
             img {
@@ -179,24 +184,28 @@ img {
         &.media-object--reverse {
             // Nested selectors
             .media-object__badge {
-                margin: 0 0 0 $media-object-content-spacing--huge;
+                margin: 0;
+                margin-left: $media-object-content-spacing--huge;
             }
         }
 
         // Nested selectors
         .media-object__badge {
-            margin: 0 $media-object-content-spacing--huge 0 0;
+            margin: 0;
+            margin-right: $media-object-content-spacing--huge;
 
             // Nested selectors
             img {
                 width: $media-object-badge-width--huge;
             }
         }
+        }
     }
 
     // Nested selectors
     .media-object__badge {
-        margin: 0 $media-object-content-spacing 0 0;
+        margin: 0;
+        margin-right: $media-object-content-spacing;
 
         // Nested selectors
         img {
