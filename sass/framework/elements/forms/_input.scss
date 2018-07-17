@@ -1,11 +1,11 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUTS -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUT -> VARIABLES
    ============================================================================================= */
 
-// Inputs
-$inputs: "
+// Input
+$input: "
     input[type=checkbox],
     input[type=radio],
     input[type=color],
@@ -62,7 +62,7 @@ $input-range-track-color--filled: base-color('blue') !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUTS -> MIXINS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUT -> MIXINS
    ============================================================================================= */
 
 // Input
@@ -122,11 +122,11 @@ $input-range-track-color--filled: base-color('blue') !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUTS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUT
    ============================================================================================= */
 
-// Inputs
-#{$inputs} {
+// Input
+#{$input} {
     @include input();
 
     // Pseudo classes
@@ -231,7 +231,7 @@ $input-range-track-color--filled: base-color('blue') !default;
     }
 }
 
-// Checkbox and radio inputs
+// Checkbox and radio
 input[type=checkbox],
 input[type=radio] {
     cursor: pointer;
@@ -261,7 +261,7 @@ input[type=radio] {
     border-radius: 100%;
 }
 
-// Color inputs
+// Color
 input[type=color] {
     cursor: pointer;
     display: inline-block;
@@ -288,7 +288,7 @@ input[type=color] {
     }
 }
 
-// File inputs
+// File
 input[type=file] {
     cursor: pointer;
     display: block;
@@ -434,7 +434,7 @@ input[type=file] {
     }
 }
 
-// Number inputs
+// Number
 input[type=number] {
     -moz-appearance: textfield;
 
@@ -444,7 +444,7 @@ input[type=number] {
     }
 }
 
-// Range inputs
+// Range
 input[type=range] {
     border-radius: 0;
     cursor: pointer;
@@ -490,7 +490,7 @@ input[type=range] {
     }
 }
 
-// Search inputs
+// Search
 input[type=search] {
     // Pseudo elements
     &::-webkit-search-cancel-button {
@@ -502,7 +502,7 @@ input[type=search] {
     }
 }
 
-// Date and time inputs
+// Date and time
 input[type=date],
 input[type=datetime-local],
 input[type=month],

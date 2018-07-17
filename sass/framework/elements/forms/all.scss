@@ -4,14 +4,14 @@
    RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS
    ============================================================================================= */
 
-// Forms
+// Form
 form {
     border: none;
     margin: 0;
     padding: 0;
 }
 
-// Fieldsets
+// Fieldset
 fieldset {
     border: none;
     margin: 0;
@@ -20,7 +20,7 @@ fieldset {
 }
 
 // Import
-@import 'labels';
-@import 'inputs';
-@import 'selects';
-@import 'textareas';
+@import 'label';
+@import 'input';
+@import 'select';
+@import 'textarea';

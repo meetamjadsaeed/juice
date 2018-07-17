@@ -1,10 +1,10 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> LABELS -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> LABEL -> VARIABLES
    ============================================================================================= */
 
-// Labels
+// Label
 $label-element-spacing: $element-spacing !default;
 $label-element-spacing--small: $element-spacing--small !default;
 $label-element-spacing--large: $element-spacing--large !default;
@@ -22,10 +22,10 @@ $label-height--huge: $element-height--huge !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> LABELS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> LABEL
    ============================================================================================= */
 
-// Labels
+// Label
 label {
     color: $label-font-color;
     cursor: pointer;

@@ -1,10 +1,10 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> TABLES -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> TABLE -> VARIABLES
    ============================================================================================= */
 
-// Tables
+// Table
 $table-body-border-color: base-color('white', 'darken-2') !default;
 $table-body-font-color: font-color() !default;
 $table-body-font-color--striped: font-color() !default;
@@ -39,10 +39,10 @@ $table-head-font-color: font-color('light') !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> TABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> TABLE
    ============================================================================================= */
 
-// Tables
+// Table
 table {
     border-collapse: collapse;
     font-size: $table-font-size;

@@ -1,10 +1,10 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> SELECTS -> VARIABLES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> SELECT -> VARIABLES
    ============================================================================================= */
 
-// Selects
+// Select
 $select-background-color: $input-background-color !default;
 $select-border-color: $input-border-color !default;
 $select-border-color--hover: $input-border-color--hover !default;
@@ -37,10 +37,10 @@ $select-height--huge: $input-height--huge !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> SELECTS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> SELECT
    ============================================================================================= */
 
-// Selects
+// Select
 select {
     -webkit-appearance: none;
     background-color: $select-background-color;

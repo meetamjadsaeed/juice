@@ -31,7 +31,7 @@ $hr-element-spacing--small: $element-spacing--small !default;
 $hr-element-spacing--large: $element-spacing--large !default;
 $hr-element-spacing--huge: $element-spacing--huge !default;
 
-// Links
+// Link
 $link-color: base-color('primary') !default;
 $link-color--hover: base-color('primary', 'lighten-2') !default;
 
@@ -280,7 +280,7 @@ hr {
     }
 }
 
-// Links
+// Link
 a {
     color: $link-color;
     font-weight: inherit;

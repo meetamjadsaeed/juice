@@ -10,7 +10,7 @@ $media-image-element-spacing--small: $element-spacing--small !default;
 $media-image-element-spacing--large: $element-spacing--large !default;
 $media-image-element-spacing--huge: $element-spacing--huge !default;
 
-// Objects
+// Object
 $media-object-badge-width: 75px !default;
 $media-object-badge-width--small: 50px !default;
 $media-object-badge-width--large: 100px !default;
@@ -30,10 +30,10 @@ $media-object-font-size--huge: $font-size--huge !default;
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> IMAGES
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> IMAGE
    ============================================================================================= */
 
-// Images
+// Image
 img {
     max-width: 100%;
 
@@ -101,10 +101,10 @@ img {
 
 
 /* =============================================================================================
-   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> OBJECTS
+   RUCKSACK -> FRAMEWORK -> ELEMENTS -> MEDIA -> OBJECT
    ============================================================================================= */
 
-// Objects
+// Object
 .media-object {
     display: flex;
     flex: 0 1 auto;
