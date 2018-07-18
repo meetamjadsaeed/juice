@@ -1,0 +1,213 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> NOTICE -> VARIABLES
+   ============================================================================================= */
+
+$notice-body-background-color: base-color('white') !default;
+$notice-body-border-color: base-color('white', 'darken-3') !default;
+$notice-body-border-width--top: $border-width--top !default;
+$notice-body-border-width--right: $border-width--right !default;
+$notice-body-border-width--bottom: $border-width--bottom !default;
+$notice-body-border-width--left: 0 !default;
+$notice-body-font-color: font-color('default') !default;
+$notice-body-link-color: $link-color !default;
+$notice-body-link-color--hover: $link-color--hover !default;
+$notice-border-style: $border-style !default;
+$notice-border-radius--top-left: $border-radius--top-left !default;
+$notice-border-radius--top-right: $border-radius--top-right !default;
+$notice-border-radius--bottom-right: $border-radius--bottom-right !default;
+$notice-border-radius--bottom-left: $border-radius--bottom-left !default;
+$notice-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$notice-content-spacing: $content-spacing !default;
+$notice-content-spacing--small: $content-spacing--small !default;
+$notice-content-spacing--large: $content-spacing--large !default;
+$notice-content-spacing--huge: $content-spacing--huge !default;
+$notice-element-spacing: $element-spacing !default;
+$notice-element-spacing--small: $element-spacing--small !default;
+$notice-element-spacing--large: $element-spacing--large !default;
+$notice-element-spacing--huge: $element-spacing--huge !default;
+$notice-feedback-background-color: feedback-color('info') !default;
+$notice-feedback-border-style: $border-style !default;
+$notice-feedback-border-color: feedback-color('info', 'darken-3') !default;
+$notice-feedback-border-width--top: $border-width--top !default;
+$notice-feedback-border-width--right: $border-width--right !default;
+$notice-feedback-border-width--bottom: $border-width--bottom !default;
+$notice-feedback-border-width--left: $border-width--left !default;
+$notice-feedback-font-color: feedback-color('info', 'invert') !default;
+$notice-font-size: $font-size !default;
+$notice-font-size--small: $font-size--small !default;
+$notice-font-size--large: $font-size--large !default;
+$notice-font-size--huge: $font-size--huge !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> NOTICE
+   ============================================================================================= */
+
+.notice {
+    border-radius: $notice-border-radius--top-left
+                   $notice-border-radius--top-right
+                   $notice-border-radius--bottom-right
+                   $notice-border-radius--bottom-left;
+    box-shadow: $notice-box-shadow;
+    display: flex;
+    font-size: $notice-font-size;
+    margin: 0;
+    margin-bottom: $notice-element-spacing;
+    overflow: hidden;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $notice-font-size--small;
+
+        // Nested selectors
+        .notice__body {
+            padding: $notice-content-spacing--small;
+
+            // Nested selectors
+            .notice__icons {
+                padding-left: $notice-content-spacing--small;
+
+                // Nested selectors
+                #{$button} {
+                    @include button-size--small();
+                    @include icon-button-size--small();
+                    margin-bottom: $notice-content-spacing--small / 4;
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $notice-font-size--large;
+
+        // Nested selectors
+        .notice__body {
+            padding: $notice-content-spacing--large;
+
+            // Neseted selectors
+            .notice__icons {
+                padding-left: $notice-content-spacing--large;
+
+                // Nested selectors
+                #{$button} {
+                    @include button-size--large();
+                    @include icon-button-size--large();
+                    margin-bottom: $notice-content-spacing--large / 4;
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $notice-font-size--huge;
+
+        // Nested selectors
+        .notice__body {
+            padding: $notice-content-spacing--huge;
+
+            // Neseted selectors
+            .notice__icons {
+                padding-left: $notice-content-spacing--huge;
+
+                // Nested selectors
+                #{$button} {
+                    @include button-size--huge();
+                    @include icon-button-size--huge();
+                    margin-bottom: $notice-content-spacing--huge / 4;
+                }
+            }
+        }
+    }
+
+    // Modifiers: Feedback
+    @each $name, $color in $feedback-colors {
+        &.with-#{$name} {
+            // Nested selectors
+            .notice__feedback {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, 'darken-3');
+                color: feedback-color($name, 'invert');
+            }
+        }
+    }
+
+    .notice__feedback {
+        align-items: center;
+        background-color: $notice-feedback-background-color;
+        border: 0 $notice-border-style $notice-feedback-border-color;
+        border-bottom-left-radius: $notice-border-radius--bottom-left;
+        border-bottom-width: $notice-feedback-border-width--bottom;
+        border-left-width: $notice-feedback-border-width--left;
+        border-right-width: $notice-feedback-border-width--right;
+        border-top-left-radius: $notice-border-radius--top-left;
+        border-top-width: $notice-feedback-border-width--top;
+        color: $notice-feedback-font-color;
+        display: flex;
+        flex: 0 0 auto;
+        font-size: 2em;
+        justify-content: center;
+        width: 50px;
+    }
+
+    .notice__body {
+        align-items: center;
+        background-color: $notice-body-background-color;
+        border: 0 $notice-border-style $notice-body-border-color;
+        border-bottom-right-radius: $notice-border-radius--bottom-right;
+        border-bottom-width: $notice-body-border-width--bottom;
+        border-left-width: $notice-body-border-width--left;
+        border-right-width: $notice-body-border-width--right;
+        border-top-right-radius: $notice-border-radius--top-right;
+        border-top-width: $notice-body-border-width--top;
+        color: $notice-body-font-color;
+        display: flex;
+        flex-grow: 1;
+        padding: $notice-content-spacing;
+
+        // Nested selectors
+        .notice__message {
+            flex-grow: 1;
+
+            // Nested selectors
+            a {
+                color: $notice-body-link-color;
+
+                // Pseudo classes
+                &:hover {
+                    color: $notice-body-link-color--hover;
+                }
+            }
+        }
+
+        .notice__icons {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: $notice-content-spacing;
+
+            // Nested selectors
+            #{$button} {
+                color: inherit;
+                margin-bottom: $notice-content-spacing / 4;
+                opacity: 0.25;
+
+                // Pseudo classes
+                &:focus,
+                &:hover {
+                    opacity: 0.5;
+                }
+
+                &:active {
+                    opacity: 0.75;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
