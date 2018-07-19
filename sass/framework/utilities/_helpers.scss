@@ -6,81 +6,199 @@
 
 // Display
 .show {
-    display: block;
+    display: block !important;
+}
+
+.show-inline {
+    display: inline-block !important;
+}
+
+.show-flex {
+    display: flex !important;
+}
+
+.show-inline-flex {
+    display: inline-flex !important;
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
+// Visibility
 .is-visible {
-    visibility: visible;
+    visibility: visible !important;
 }
 
 .is-hidden {
-    visibility: hidden;
+    visibility: hidden !important;
 }
 
 // Content spacing
-.content-spacing {
-    padding: $content-spacing;
+.has-content-spacing {
+    padding: $content-spacing !important;
 }
 
-.content-spacing--small {
-    padding: $content-spacing--small;
+.has-small-content-spacing {
+    padding: $content-spacing--small !important;
 }
 
-.content-spacing--large {
-    padding: $content-spacing--large;
+.has-large-content-spacing {
+    padding: $content-spacing--large !important;
 }
 
-.content-spacing--huge {
-    padding: $content-spacing--huge;
+.has-huge-content-spacing {
+    padding: $content-spacing--huge !important;
 }
 
-.content-spacing--none {
-    padding: 0;
+.has-no-content-spacing {
+    padding: 0 !important;
 }
 
 // Element spacing
-.element-spacing {
-    margin-bottom: $element-spacing;
+.has-element-spacing {
+    margin-bottom: $element-spacing !important;
 }
 
-.element-spacing--small {
-    margin-bottom: $element-spacing--small;
+.has-small-element-spacing {
+    margin-bottom: $element-spacing--small !important;
 }
 
-.element-spacing--large {
-    margin-bottom: $element-spacing--large;
+.has-large-element-spacing {
+    margin-bottom: $element-spacing--large !important;
 }
 
-.element-spacing--huge {
-    margin-bottom: $element-spacing--huge;
+.has-huge-element-spacing {
+    margin-bottom: $element-spacing--huge !important;
 }
 
-.element-spacing--none {
-    margin-bottom: 0;
+.has-no-element-spacing {
+    margin-bottom: 0 !important;
 }
 
 // Typography
-.text-left {
-    text-align: left;
+.is-left-aligned {
+    text-align: left !important;
 }
 
-.text-center {
-    text-align: center;
+.is-center-aligned {
+    text-align: center !important;
 }
 
-.text-right {
-    text-align: right;
+.is-right-aligned {
+    text-align: right !important;
 }
 
 // Floats
-.float-left  {
-    float: left;
+.is-pulled-left  {
+    float: left !important;
 }
 
-.float-right {
-    float: right;
+.is-pulled-right {
+    float: right !important;
+}
+
+// Breakpoints
+@each $name, $breakpoint in $breakpoints {
+    @include breakpoint($name) {
+        // Display
+        .show\@#{$name} {
+            display: block !important;
+        }
+
+        .show-inline\@#{$name} {
+            display: inline-block !important;
+        }
+
+        .show-flex\@#{$name} {
+            display: flex !important;
+        }
+
+        .show-inline-flex\@#{$name} {
+            display: inline-flex !important;
+        }
+
+        .hide\@#{$name} {
+            display: none !important;
+        }
+
+        // Visibility
+        .is-visible\@#{$name} {
+            visibility: visible !important;
+        }
+
+        .is-hidden\@#{$name} {
+            visibility: hidden !important;
+        }
+
+        // Content spacing
+        .has-content-spacing\@#{$name} {
+            padding: $content-spacing !important;
+        }
+
+        .has-small-content-spacing\@#{$name} {
+            padding: $content-spacing--small !important;
+        }
+
+        .has-large-content-spacing\@#{$name} {
+            padding: $content-spacing--large !important;
+        }
+
+        .has-huge-content-spacing\@#{$name} {
+            padding: $content-spacing--huge !important;
+        }
+
+        .has-no-content-spacing\@#{$name} {
+            padding: 0 !important;
+        }
+
+        // Element spacing
+        .has-element-spacing\@#{$name} {
+            margin-bottom: $element-spacing !important;
+        }
+
+        .has-small-element-spacing\@#{$name} {
+            margin-bottom: $element-spacing--small !important;
+        }
+
+        .has-large-element-spacing\@#{$name} {
+            margin-bottom: $element-spacing--large !important;
+        }
+
+        .has-huge-element-spacing\@#{$name} {
+            margin-bottom: $element-spacing--huge !important;
+        }
+
+        .has-no-element-spacing\@#{$name} {
+            margin-bottom: 0 !important;
+        }
+
+        // Typography
+        .is-left-aligned\@#{$name} {
+            text-align: left !important;
+        }
+
+        .is-center-aligned\@#{$name} {
+            text-align: center !important;
+        }
+
+        .is-right-aligned\@#{$name} {
+            text-align: right !important;
+        }
+
+        // Floats
+        .is-pulled-left\@#{$name}  {
+            float: left !important;
+        }
+
+        .is-pulled-right\@#{$name} {
+            float: right !important;
+        }
+
+
+        // Modifiers
+        .show\@#{$name} {
+            display: block !important;
+        }
+    }
 }
