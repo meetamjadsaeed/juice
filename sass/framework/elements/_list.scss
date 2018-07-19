@@ -53,10 +53,10 @@ ol {
         padding: 0;
     }
 
-    &.list--horizontal,
-    &.list--inline-horizontal,
-    &.list--vertical,
-    &.list--inline-vertical {
+    &.list--block,
+    &.list--inline-block,
+    &.list--stack,
+    &.list--inline-stack {
         display: flex;
         list-style: none;
         padding: 0;
@@ -70,13 +70,13 @@ ol {
         }
     }
 
-    &.list--inline-horizontal,
-    &.list--inline-vertical {
+    &.list--inline-block,
+    &.list--inline-stack {
         display: inline-flex;
     }
 
-    &.list--vertical,
-    &.list--inline-vertical {
+    &.list--stack,
+    &.list--inline-stack {
         flex-flow: column;
     }
 
@@ -86,10 +86,10 @@ ol {
         margin-bottom: $list-element-spacing--small;
 
         // Modifiers
-        &.list--horizontal,
-        &.list--inline-horizontal,
-        &.list--vertical,
-        &.list--inline-vertical {
+        &.list--block,
+        &.list--inline-block,
+        &.list--stack,
+        &.list--inline-stack {
             // Nested selectors
             li {
                 padding: $list-content-spacing--small;
@@ -102,10 +102,10 @@ ol {
         margin-bottom: $list-element-spacing--large;
 
         // Modifiers
-        &.list--horizontal,
-        &.list--inline-horizontal,
-        &.list--vertical,
-        &.list--inline-vertical {
+        &.list--block,
+        &.list--inline-block,
+        &.list--stack,
+        &.list--inline-stack {
             // Nested selectors
             li {
                 padding: $list-content-spacing--large;
@@ -118,10 +118,10 @@ ol {
         margin-bottom: $list-element-spacing--huge;
 
         // Modifiers
-        &.list--horizontal,
-        &.list--inline-horizontal,
-        &.list--vertical,
-        &.list--inline-vertical {
+        &.list--block,
+        &.list--inline-block,
+        &.list--stack,
+        &.list--inline-stack {
             // Nested selectors
             li {
                 padding: $list-content-spacing--huge;
