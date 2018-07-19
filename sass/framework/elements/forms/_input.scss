@@ -4,7 +4,7 @@
    RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> INPUT -> VARIABLES
    ============================================================================================= */
 
-// Input
+// Input shorthand types
 $input: "
     input[type=checkbox],
     input[type=radio],
@@ -24,6 +24,8 @@ $input: "
     input[type=week],
     input[type=time]
 " !default;
+
+// Input
 $input-background-color: base-color('white') !default;
 $input-border-color: base-color('white', 'darken-3') !default;
 $input-border-color--hover: base-color('white', 'darken-5') !default;
@@ -92,6 +94,21 @@ $input-range-track-color--filled: base-color('blue') !default;
     transition: border 0.15s linear,
                 box-shadow 0.15s linear;
     width: 100%;
+
+    // Pseudo classes
+    &:hover {
+        border-color: $input-border-color--hover;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus,
+    &:active {
+        @include input-focus-box-shadow($input-box-shadow-color--focus);
+        border-color: $input-border-color--focus;
+    }
 }
 
 // Input range track
@@ -128,21 +145,6 @@ $input-range-track-color--filled: base-color('blue') !default;
 // Input
 #{$input} {
     @include input();
-
-    // Pseudo classes
-    &:hover {
-        border-color: $input-border-color--hover;
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-    &:focus,
-    &:active {
-        @include input-focus-box-shadow($input-box-shadow-color--focus);
-        border-color: $input-border-color--focus;
-    }
 
     // Psuedo elements
     &::placeholder {
@@ -220,10 +222,11 @@ $input-range-track-color--filled: base-color('blue') !default;
 
             // Pseudo classes
             &:hover {
-                border-color: feedback-color($name, 'darken-1');
+                border-color: feedback-color($name, 'darken-2');
             }
 
-            &:focus {
+            &:focus,
+            &:active {
                 @include input-focus-box-shadow(feedback-color($name, 'lighten-5'));
                 border-color: feedback-color($name, 'darken-2');
             }
@@ -246,7 +249,8 @@ input[type=radio] {
     width: auto;
 
     // Pseudo classes
-    &:focus {
+    &:focus,
+    &:active {
         outline: 1px $input-border-style $input-border-color--focus;
         outline-offset: 3px;
     }
@@ -307,7 +311,8 @@ input[type=file] {
         }
     }
 
-    &:focus {
+    &:focus,
+    &:active {
         // Pseudo elements
         &::-webkit-file-upload-button {
             border-color: $input-border-color--focus;
@@ -403,15 +408,16 @@ input[type=file] {
             &:hover {
                 // Pseudo elements
                 &::-webkit-file-upload-button {
-                    border-color: feedback-color($name, 'darken-1');
+                    border-color: feedback-color($name, 'darken-2');
                 }
 
                 &::-ms-browse {
-                    border-color: feedback-color($name, 'darken-1');
+                    border-color: feedback-color($name, 'darken-2');
                 }
             }
 
-            &:focus {
+            &:focus,
+            &:active {
                 // Pseudo elements
                 &::-webkit-file-upload-button {
                     border-color: feedback-color($name, 'darken-2');

@@ -4,7 +4,7 @@
    RUCKSACK -> FRAMEWORK -> ELEMENTS -> FORMS -> BUTTON -> VARIABLES
    ============================================================================================= */
 
-// Button
+// Button shorthand types
 $button: "
     button,
     .button,
@@ -13,6 +13,8 @@ $button: "
     input[type=reset],
     input[type=button]
 " !default;
+
+// Button
 $button-background-color: base-color('white') !default;
 $button-background-color--hover: base-color('white', 'lighten-1') !default;
 $button-background-color--focus: base-color('white', 'lighten-1') !default;
@@ -21,18 +23,10 @@ $button-background-alt-color: transparent !default;
 $button-background-alt-color--hover: hsla(0, 0%, 0%, 0.03) !default;
 $button-background-alt-color--focus: hsla(0, 0%, 0%, 0.03) !default;
 $button-background-alt-color--active: hsla(0, 0%, 0%, 0.06) !default;
-$button-background-variant: 'base' !default;
-$button-background-variant--hover: 'lighten-1' !default;
-$button-background-variant--focus: 'lighten-1' !default;
-$button-background-variant--active: 'darken-1' !default;
 $button-border-color: base-color('white', 'darken-3') !default;
 $button-border-color--hover: base-color('white', 'darken-5') !default;
 $button-border-color--focus: base-color('white', 'darken-5') !default;
 $button-border-color--active: base-color('white', 'darken-6') !default;
-$button-border-variant: 'darken-3' !default;
-$button-border-variant--hover: 'darken-5' !default;
-$button-border-variant--focus: 'darken-5' !default;
-$button-border-variant--active: 'darken-6' !default;
 $button-border-radius--top-left: $border-radius--top-left !default;
 $button-border-radius--top-right: $border-radius--top-right !default;
 $button-border-radius--bottom-right: $border-radius--bottom-right !default;
@@ -265,24 +259,24 @@ $button-text-transform: uppercase !default;
     // Modifiers: Colors
     @each $name, $color in $base-colors {
         &.is-#{$name} {
-            background-color: base-color($name, $button-background-variant);
-            border-color: base-color($name, $button-border-variant);
+            background-color: base-color($name);
+            border-color: base-color($name, 'darken-3');
             color: base-color($name, 'invert');
 
             // Pseudo classes
             &:hover {
-                background-color: base-color($name, $button-background-variant--hover);
-                border-color: base-color($name, $button-border-variant--hover);
+                background-color: base-color($name, 'lighten-1');
+                border-color: base-color($name, 'darken-5');
             }
 
             &:focus {
-                background-color: base-color($name, $button-background-variant--focus);
-                border-color: base-color($name, $button-border-variant--focus);
+                background-color: base-color($name, 'lighten-1');
+                border-color: base-color($name, 'darken-5');
             }
 
             &:active {
-                background-color: base-color($name, $button-background-variant--active);
-                border-color: base-color($name, $button-border-variant--active);
+                background-color: base-color($name, 'darken-1');
+                border-color: base-color($name, 'darken-6');
             }
 
             // Modifiers
@@ -300,18 +294,18 @@ $button-text-transform: uppercase !default;
                 }
 
                 &:hover {
-                    background-color: base-color($name, $button-background-variant--hover);
-                    border-color: base-color($name, $button-border-variant--hover);
+                    background-color: base-color($name, 'lighten-1');
+                    border-color: base-color($name, 'darken-5');
                 }
 
                 &:focus {
-                    background-color: base-color($name, $button-background-variant--focus);
-                    border-color: base-color($name, $button-border-variant--focus);
+                    background-color: base-color($name, 'lighten-1');
+                    border-color: base-color($name, 'darken-5');
                 }
 
                 &:active {
-                    background-color: base-color($name, $button-background-variant--active);
-                    border-color: base-color($name, $button-border-variant--active);
+                    background-color: base-color($name, 'darken-1');
+                    border-color: base-color($name, 'darken-6');
                 }
             }
 
@@ -344,24 +338,24 @@ $button-text-transform: uppercase !default;
     // Modifiers: Feedback
     @each $name, $color in $feedback-colors {
         &.with-#{$name} {
-            background-color: feedback-color($name, $button-background-variant);
-            border-color: feedback-color($name, $button-border-variant);
+            background-color: feedback-color($name);
+            border-color: feedback-color($name);
             color: feedback-color($name, 'invert');
 
             // Pseudo classes
             &:hover {
-                background-color: feedback-color($name, $button-background-variant--hover);
-                border-color: feedback-color($name, $button-border-variant--hover);
+                background-color: feedback-color($name, 'lighten-1');
+                border-color: feedback-color($name, 'darken-5');
             }
 
             &:focus {
-                background-color: feedback-color($name, $button-background-variant--focus);
-                border-color: feedback-color($name, $button-border-variant--focus);
+                background-color: feedback-color($name, 'lighten-1');
+                border-color: feedback-color($name, 'darken-5');
             }
 
             &:active {
-                background-color: feedback-color($name, $button-background-variant--active);
-                border-color: feedback-color($name, $button-border-variant--active);
+                background-color: feedback-color($name, 'darken-1');
+                border-color: feedback-color($name, 'darken-6');
             }
 
             // Modifiers
@@ -379,18 +373,18 @@ $button-text-transform: uppercase !default;
                 }
 
                 &:hover {
-                    background-color: feedback-color($name, $button-background-variant--hover);
-                    border-color: feedback-color($name, $button-border-variant--hover);
+                    background-color: feedback-color($name, 'lighten-1');
+                    border-color: feedback-color($name, 'darken-5');
                 }
 
                 &:focus {
-                    background-color: feedback-color($name, $button-background-variant--focus);
-                    border-color: feedback-color($name, $button-border-variant--focus);
+                    background-color: feedback-color($name, 'lighten-1');
+                    border-color: feedback-color($name, 'darken-5');
                 }
 
                 &:active {
-                    background-color: feedback-color($name, $button-background-variant--active);
-                    border-color: feedback-color($name, $button-border-variant--active);
+                    background-color: feedback-color($name, 'darken-1');
+                    border-color: feedback-color($name, 'darken-6');
                 }
             }
 
@@ -571,22 +565,25 @@ $button-text-transform: uppercase !default;
                     color: base-color($name);
 
                     // Pseudo classes
-                    &:hover {
-                        background-color: base-color($name, $button-background-variant--hover);
-                        border-color: base-color($name, $button-border-variant--hover);
+                    &:hover,
+                    &:focus,
+                    &:active {
                         color: base-color($name, 'invert');
+                    }
+
+                    &:hover {
+                        background-color: base-color($name, 'lighten-1');
+                        border-color: base-color($name, 'darken-5');
                     }
 
                     &:focus {
-                        background-color: base-color($name, $button-background-variant--focus);
-                        border-color: base-color($name, $button-border-variant--focus);
-                        color: base-color($name, 'invert');
+                        background-color: base-color($name, 'lighten-1');
+                        border-color: base-color($name, 'darken-5');
                     }
 
                     &:active {
-                        background-color: base-color($name, $button-background-variant--active);
-                        border-color: base-color($name, $button-border-variant--active);
-                        color: base-color($name, 'invert');
+                        background-color: base-color($name, 'darken-1');
+                        border-color: base-color($name, 'darken-6');
                     }
                 }
             }
@@ -620,24 +617,24 @@ $button-text-transform: uppercase !default;
 
             // Nested selectors
             #{$button} {
-                background-color: base-color($name, $button-background-variant);
-                border-color: base-color($name, $button-border-variant);
+                background-color: base-color($name);
+                border-color: base-color($name);
                 color: base-color($name, 'invert');
 
                 // Pseudo classes
                 &:hover {
-                    background-color: base-color($name, $button-background-variant--hover);
-                    border-color: base-color($name, $button-border-variant--hover);
+                    background-color: base-color($name, 'lighten-1');
+                    border-color: base-color($name, 'darken-5');
                 }
 
                 &:focus {
-                    background-color: base-color($name, $button-background-variant--focus);
-                    border-color: base-color($name, $button-border-variant--focus);
+                    background-color: base-color($name, 'lighten-1');
+                    border-color: base-color($name, 'darken-5');
                 }
 
                 &:active {
-                    background-color: base-color($name, $button-background-variant--active);
-                    border-color: base-color($name, $button-border-variant--active);
+                    background-color: base-color($name, 'darken-1');
+                    border-color: base-color($name, 'darken-6');
                 }
             }
         }
@@ -656,22 +653,25 @@ $button-text-transform: uppercase !default;
                     color: feedback-color($name);
 
                     // Pseudo classes
-                    &:hover {
-                        background-color: feedback-color($name, $button-background-variant--hover);
-                        border-color: feedback-color($name, $button-border-variant--hover);
+                    &:hover,
+                    &:focus,
+                    &:active {
                         color: feedback-color($name, 'invert');
+                    }
+                    
+                    &:hover {
+                        background-color: feedback-color($name, 'lighten-1');
+                        border-color: feedback-color($name, 'darken-5');
                     }
 
                     &:focus {
-                        background-color: feedback-color($name, $button-background-variant--focus);
-                        border-color: feedback-color($name, $button-border-variant--focus);
-                        color: feedback-color($name, 'invert');
+                        background-color: feedback-color($name, 'lighten-1');
+                        border-color: feedback-color($name, 'darken-5');
                     }
 
                     &:active {
-                        background-color: feedback-color($name, $button-background-variant--active);
-                        border-color: feedback-color($name, $button-border-variant--active);
-                        color: feedback-color($name, 'invert');
+                        background-color: feedback-color($name, 'darken-1');
+                        border-color: feedback-color($name, 'darken-6');
                     }
                 }
             }
@@ -705,24 +705,24 @@ $button-text-transform: uppercase !default;
 
             // Nested selectors
             #{$button} {
-                background-color: feedback-color($name, $button-background-variant);
-                border-color: feedback-color($name, $button-border-variant);
+                background-color: feedback-color($name);
+                border-color: feedback-color($name);
                 color: feedback-color($name, 'invert');
 
                 // Pseudo classes
                 &:hover {
-                    background-color: feedback-color($name, $button-background-variant--hover);
-                    border-color: feedback-color($name, $button-border-variant--hover);
+                    background-color: feedback-color($name, 'lighten-1');
+                    border-color: feedback-color($name, 'darken-5');
                 }
 
                 &:focus {
-                    background-color: feedback-color($name, $button-background-variant--focus);
-                    border-color: feedback-color($name, $button-border-variant--focus);
+                    background-color: feedback-color($name, 'lighten-1');
+                    border-color: feedback-color($name, 'darken-5');
                 }
 
                 &:active {
-                    background-color: feedback-color($name, $button-background-variant--active);
-                    border-color: feedback-color($name, $button-border-variant--active);
+                    background-color: feedback-color($name, 'darken-1');
+                    border-color: feedback-color($name, 'darken-6');
                 }
             }
         }

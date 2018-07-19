@@ -5,7 +5,7 @@
    ============================================================================================= */
 
 // Table
-$table-body-border-color: base-color('white', 'darken-2') !default;
+$table-body-border-color: base-color('white', 'darken-3') !default;
 $table-body-font-color: font-color() !default;
 $table-body-font-color--striped: font-color() !default;
 $table-body-font-color--hover: font-color() !default;
@@ -31,10 +31,10 @@ $table-font-size--small: $font-size--small !default;
 $table-font-size--large: $font-size--large !default;
 $table-font-size--huge: $font-size--huge !default;
 $table-foot-background-color: base-color('white') !default;
-$table-foot-border-color: base-color('white', 'darken-2') !default;
+$table-foot-border-color: base-color('white', 'darken-3') !default;
 $table-foot-font-color: font-color() !default;
 $table-head-background-color: base-color('charcoal') !default;
-$table-head-border-color: base-color('charcoal', 'darken-2') !default;
+$table-head-border-color: base-color('charcoal', 'darken-3') !default;
 $table-head-font-color: font-color('light') !default;
 
 

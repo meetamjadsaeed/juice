@@ -114,10 +114,11 @@ textarea {
 
             // Pseudo classes
             &:hover {
-                border-color: feedback-color($name, 'darken-1');
+                border-color: feedback-color($name, 'darken-2');
             }
 
-            &:focus {
+            &:focus,
+            &:active {
                 @include input-focus-box-shadow(feedback-color($name, 'lighten-5'));
                 border-color: feedback-color($name, 'darken-2');
             }
