@@ -40,18 +40,23 @@ img {
     // Modifiers
     &.image--left {
         float: left;
-        margin: 0 $media-image-element-spacing $media-image-element-spacing 0;
+        margin: 0 0;
+        margin-bottom: $media-image-element-spacing;
+        margin-right: $media-image-element-spacing;
     }
 
     &.image--center {
         display: block;
         float: none;
         margin: 0 auto;
+        margin-bottom: $media-image-element-spacing;
     }
 
     &.image--right {
         float: right;
-        margin: 0 0 $media-image-element-spacing $media-image-element-spacing;
+        margin: 0;
+        margin-bottom: $media-image-element-spacing;
+        margin-left: $media-image-element-spacing;
     }
 
     &.image--block {
@@ -68,33 +73,50 @@ img {
     &.is-small {
         // Modifiers
         &.image--left {
-            margin: 0 $media-image-element-spacing--small $media-image-element-spacing--small 0;
+            margin-bottom: $media-image-element-spacing--small;
+            margin-right: $media-image-element-spacing--small;
+        }
+
+        &.image--center {
+            margin-bottom: $media-image-element-spacing--small;
         }
 
         &.image--right {
-            margin: 0 0 $media-image-element-spacing--small $media-image-element-spacing--small;
+            margin-bottom: $media-image-element-spacing--small;
+            margin-left: $media-image-element-spacing--small;
         }
     }
 
     &.is-large {
         // Modifiers
         &.image--left {
-            margin: 0 $media-image-element-spacing--large $media-image-element-spacing--large 0;
+            margin-bottom: $media-image-element-spacing--large;
+            margin-right: $media-image-element-spacing--large;
+        }
+
+        &.image--center {
+            margin-bottom: $media-image-element-spacing--large;
         }
 
         &.image--right {
-            margin: 0 0 $media-image-element-spacing--large $media-image-element-spacing--large;
+            margin-bottom: $media-image-element-spacing--large;
+            margin-left: $media-image-element-spacing--large;
         }
     }
 
     &.is-huge {
-        // Modifiers
         &.image--left {
-            margin: 0 $media-image-element-spacing--huge $media-image-element-spacing--huge 0;
+            margin-bottom: $media-image-element-spacing--huge;
+            margin-right: $media-image-element-spacing--huge;
+        }
+
+        &.image--center {
+            margin-bottom: $media-image-element-spacing--huge;
         }
 
         &.image--right {
-            margin: 0 0 $media-image-element-spacing--huge $media-image-element-spacing--huge;
+            margin-bottom: $media-image-element-spacing--huge;
+            margin-left: $media-image-element-spacing--huge;
         }
     }
 }
@@ -111,7 +133,8 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     font-size: $media-object-font-size;
-    margin: 0 0 $media-object-element-spacing;
+    margin: 0;
+    margin-bottom: $media-object-element-spacing;
     position: relative;
 
     // Modifiers
@@ -128,7 +151,7 @@ img {
     // Modifiers: Size
     &.is-small {
         font-size: $media-object-font-size--small;
-        margin: 0 0 $media-object-element-spacing--small;
+        margin-bottom: $media-object-element-spacing--small;
 
         // Modifiers
         &.media-object--reverse {
@@ -153,7 +176,7 @@ img {
 
     &.is-large {
         font-size: $media-object-font-size--large;
-        margin: 0 0 $media-object-element-spacing--large;
+        margin-bottom: $media-object-element-spacing--large;
 
         // Modifiers
         &.media-object--reverse {
@@ -178,7 +201,7 @@ img {
 
     &.is-huge {
         font-size: $media-object-font-size--huge;
-        margin: 0 0 $media-object-element-spacing--huge;
+        margin-bottom: $media-object-element-spacing--huge;
 
         // Modifiers
         &.media-object--reverse {
