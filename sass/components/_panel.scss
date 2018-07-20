@@ -13,11 +13,11 @@ $panel-body-border-width--left: $border-width--left !default;
 $panel-body-font-color: font-color('default') !default;
 $panel-body-link-color: $link-color !default;
 $panel-body-link-color--hover: $link-color--hover !default;
-$panel-border-style: $border-style !default;
 $panel-border-radius--top-left: $border-radius--top-left !default;
 $panel-border-radius--top-right: $border-radius--top-right !default;
 $panel-border-radius--bottom-right: $border-radius--bottom-right !default;
 $panel-border-radius--bottom-left: $border-radius--bottom-left !default;
+$panel-border-style: $border-style !default;
 $panel-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
 $panel-content-spacing: $content-spacing !default;
 $panel-content-spacing--small: $content-spacing--small !default;
@@ -46,10 +46,10 @@ $panel-head-font-color: font-color('default') !default;
 
 .panel {
     border: 0 $panel-border-style transparent;
-    border-radius: $panel-border-radius--top-left
-                   $panel-border-radius--top-right
-                   $panel-border-radius--bottom-right
-                   $panel-border-radius--bottom-left;
+    border-bottom-left-radius: $panel-border-radius--bottom-left;
+    border-bottom-right-radius: $panel-border-radius--bottom-right;
+    border-top-left-radius: $panel-border-radius--top-left;
+    border-top-right-radius: $panel-border-radius--top-right;
     box-shadow: $panel-box-shadow;
     display: flex;
     flex-direction: column;

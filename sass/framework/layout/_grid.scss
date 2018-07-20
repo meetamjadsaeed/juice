@@ -14,8 +14,6 @@ $grid-gutter: $element-spacing / 2 !default;
 // Grid
 .grid {
     display: flex;
-    flex: 0 1 auto;
-    flex-direction: row;
     flex-wrap: wrap;
     margin: 0 (-$grid-gutter);
     position: relative;
@@ -80,7 +78,7 @@ $grid-gutter: $element-spacing / 2 !default;
         flex-direction: row-reverse;
     }
 
-    &.grid--columns {
+    &.grid--column {
         flex-direction: column;
 
         // Modifiers
@@ -96,9 +94,7 @@ $grid-gutter: $element-spacing / 2 !default;
 
     // Nested selectors
     .grid__item {
-        flex: 0 0 auto;
-        flex-basis: 0;
-        flex-grow: 1;
+        flex: 1 0 0;
         max-width: 100%;
         padding: 0 $grid-gutter;
 
@@ -197,7 +193,7 @@ $grid-gutter: $element-spacing / 2 !default;
               flex-direction: row-reverse;
           }
 
-          &.grid--columns\@#{$name} {
+          &.grid--column\@#{$name} {
               flex-direction: column;
 
               // Modifiers

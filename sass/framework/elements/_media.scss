@@ -40,7 +40,7 @@ img {
     // Modifiers
     &.image--left {
         float: left;
-        margin: 0 0;
+        margin: 0;
         margin-bottom: $media-image-element-spacing;
         margin-right: $media-image-element-spacing;
     }
@@ -129,9 +129,6 @@ img {
 // Object
 .media-object {
     display: flex;
-    flex: 0 1 auto;
-    flex-direction: row;
-    flex-wrap: wrap;
     font-size: $media-object-font-size;
     margin: 0;
     margin-bottom: $media-object-element-spacing;
@@ -144,7 +141,7 @@ img {
         // Nested selectors
         .media-object__badge {
             margin: 0;
-            margin-left: $media-object-content-spacing
+            margin-left: $media-object-content-spacing;
         }
     }
 
@@ -164,11 +161,13 @@ img {
 
         // Nested selectors
         .media-object__badge {
-            margin: 0;
             margin-right: $media-object-content-spacing--small;
+            flex-basis: $media-object-badge-width--small;
 
             // Nested selectors
             img {
+                max-width: $media-object-badge-width--small;
+                min-width: $media-object-badge-width--small;
                 width: $media-object-badge-width--small;
             }
         }
@@ -189,11 +188,13 @@ img {
 
         // Nested selectors
         .media-object__badge {
-            margin: 0;
             margin-right: $media-object-content-spacing--large;
+            flex-basis: $media-object-badge-width--large;
 
             // Nested selectors
             img {
+                max-width: $media-object-badge-width--large;
+                min-width: $media-object-badge-width--large;
                 width: $media-object-badge-width--large;
             }
         }
@@ -214,11 +215,13 @@ img {
 
         // Nested selectors
         .media-object__badge {
-            margin: 0;
             margin-right: $media-object-content-spacing--huge;
+            flex-basis: $media-object-badge-width--huge;
 
             // Nested selectors
             img {
+                max-width: $media-object-badge-width--huge;
+                min-width: $media-object-badge-width--huge;
                 width: $media-object-badge-width--huge;
             }
         }
@@ -228,15 +231,18 @@ img {
     .media-object__badge {
         margin: 0;
         margin-right: $media-object-content-spacing;
+        flex-basis: $media-object-badge-width;
 
         // Nested selectors
         img {
             display: block;
+            max-width: $media-object-badge-width;
+            min-width: $media-object-badge-width;
             width: $media-object-badge-width;
         }
     }
 
     .media-object__content {
-        flex: 1;
+        flex-grow: 1;
     }
 }

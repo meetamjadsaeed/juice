@@ -45,14 +45,14 @@ select {
     -webkit-appearance: none;
     background-color: $select-background-color;
     border: 0 $select-border-style $select-border-color;
-    border-radius: $select-border-radius--top-left
-                   $select-border-radius--top-right
-                   $select-border-radius--bottom-right
-                   $select-border-radius--bottom-left;
-    border-width: $select-border-width--top
-                  $select-border-width--right
-                  $select-border-width--bottom
-                  $select-border-width--left;
+    border-bottom-left-radius: $select-border-radius--bottom-left;
+    border-bottom-right-radius: $select-border-radius--bottom-right;
+    border-top-left-radius: $select-border-radius--top-left;
+    border-top-right-radius: $select-border-radius--top-right;
+    border-bottom-width: $select-border-width--bottom;
+    border-left-width: $select-border-width--left;
+    border-right-width: $select-border-width--right;
+    border-top-width: $select-border-width--top;
     color: $select-font-color;
     cursor: pointer;
     display: block;

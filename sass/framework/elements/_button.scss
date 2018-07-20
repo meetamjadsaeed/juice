@@ -137,14 +137,14 @@ $button-text-transform: uppercase !default;
     align-items: center;
     background-color: $button-background-color;
     border: 0 $button-border-style $button-border-color;
-    border-radius: $button-border-radius--top-left
-                   $button-border-radius--top-right
-                   $button-border-radius--bottom-right
-                   $button-border-radius--bottom-left;
-    border-width: $button-border-width--top
-                  $button-border-width--right
-                  $button-border-width--bottom
-                  $button-border-width--left;
+    border-bottom-left-radius: $button-border-radius--bottom-left;
+    border-bottom-right-radius: $button-border-radius--bottom-right;
+    border-top-left-radius: $button-border-radius--top-left;
+    border-top-right-radius: $button-border-radius--top-right;
+    border-bottom-width: $button-border-width--bottom;
+    border-left-width: $button-border-width--left;
+    border-right-width: $button-border-width--right;
+    border-top-width: $button-border-width--top;
     color: $button-font-color;
     cursor: pointer;
     display: inline-flex;
@@ -658,7 +658,7 @@ $button-text-transform: uppercase !default;
                     &:active {
                         color: feedback-color($name, 'invert');
                     }
-                    
+
                     &:hover {
                         background-color: feedback-color($name, 'lighten-1');
                         border-color: feedback-color($name, 'darken-5');

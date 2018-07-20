@@ -12,7 +12,7 @@ $monoface-typeface: 'Courier New', Courier, monospace !default;
 $primary-typeface: 'Montserrat', Tahoma, sans-serif !default;
 $secondary-typeface: 'Oswald', Verdana, sans-serif !default;
 
-// Root font
+// Root font size
 $root-font-size: 1.3rem !default;
 $root-font-size--small: 1.2rem !default;
 $root-font-size--large: 1.4rem !default;
@@ -36,7 +36,7 @@ $element-spacing--small: 10px !default;
 $element-spacing--large: 30px !default;
 $element-spacing--huge: 40px !default;
 
-// Element height
+// Element height (form inputs, selects and buttons)
 $element-height: 40px !default;
 $element-height--small: 30px !default;
 $element-height--large: 50px !default;

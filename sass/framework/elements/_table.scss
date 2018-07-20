@@ -81,9 +81,8 @@ table {
         tbody {
             // Nested selectors
             tr {
-                border-bottom: $table-border-width--separator
-                               $table-border-style
-                               $table-body-border-color;
+                border: 0 $table-border-style $table-body-border-color;
+                border-bottom-width: $table-border-width--separator;
             }
         }
     }
@@ -204,7 +203,7 @@ table {
     thead {
         background-color: $table-head-background-color;
         border: 0 $table-border-style $table-head-border-color;
-        border-bottom-width: $table-border-width--top;
+        border-bottom-width: $table-border-width--separator;
         color: $table-head-font-color;
     }
 

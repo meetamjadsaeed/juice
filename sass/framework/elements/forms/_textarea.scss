@@ -9,15 +9,15 @@ $textarea-background-color: $input-background-color !default;
 $textarea-border-color: $input-border-color !default;
 $textarea-border-color--hover: $input-border-color--hover !default;
 $textarea-border-color--focus: $input-border-color--focus !default;
-$textarea-border-width--top: $input-border-width--top !default;
-$textarea-border-width--right: $input-border-width--right !default;
-$textarea-border-width--bottom: $input-border-width--bottom !default;
-$textarea-border-width--left: $input-border-width--left !default;
 $textarea-border-radius--top-left: $input-border-radius--top-left !default;
 $textarea-border-radius--top-right: $input-border-radius--top-right !default;
 $textarea-border-radius--bottom-right: $input-border-radius--bottom-right !default;
 $textarea-border-radius--bottom-left: $input-border-radius--bottom-left !default;
 $textarea-border-style: $input-border-style !default;
+$textarea-border-width--top: $input-border-width--top !default;
+$textarea-border-width--right: $input-border-width--right !default;
+$textarea-border-width--bottom: $input-border-width--bottom !default;
+$textarea-border-width--left: $input-border-width--left !default;
 $textarea-box-shadow-color--focus: $input-box-shadow-color--focus !default;
 $textarea-element-spacing: $input-element-spacing !default;
 $textarea-element-spacing--small: $input-element-spacing--small !default;
@@ -41,14 +41,14 @@ textarea {
     -webkit-appearance: none;
     background-color: $textarea-background-color;
     border: 0 $textarea-border-style $textarea-border-color;
-    border-radius: $textarea-border-radius--top-left
-                   $textarea-border-radius--top-right
-                   $textarea-border-radius--bottom-right
-                   $textarea-border-radius--bottom-left;
-    border-width: $textarea-border-width--top
-                  $textarea-border-width--right
-                  $textarea-border-width--bottom
-                  $textarea-border-width--left;
+    border-bottom-left-radius: $textarea-border-radius--bottom-left;
+    border-bottom-right-radius: $textarea-border-radius--bottom-right;
+    border-top-left-radius: $textarea-border-radius--top-left;
+    border-top-right-radius: $textarea-border-radius--top-right;
+    border-bottom-width: $textarea-border-width--bottom;
+    border-left-width: $textarea-border-width--left;
+    border-right-width: $textarea-border-width--right;
+    border-top-width: $textarea-border-width--top;
     color: $textarea-font-color;
     display: block;
     font-family: $textarea-font-family;

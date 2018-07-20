@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> NAVIGATION -> VARIABLES
+   ============================================================================================= */
+
+$navigation-background-color: base-color('white') !default;
+$navigation-content-spacing: $content-spacing !default;
+$navigation-content-spacing--small: $content-spacing--small !default;
+$navigation-content-spacing--large: $content-spacing--large !default;
+$navigation-content-spacing--huge: $content-spacing--huge !default;
+$navigation-font-color: font-color('default') !default;
+$navigation-font-size: $font-size !default;
+$navigation-font-size--small: $font-size--small !default;
+$navigation-font-size--large: $font-size--large !default;
+$navigation-font-size--huge: $font-size--huge !default;
+$navigation-link-color: $link-color !default;
+$navigation-link-color--hover: $link-color--hover !default;
+$navigation-border-style: $border-style !default;
+$navigation-border-color: base-color('white', 'darken-3') !default;
+$navigation-border-width--top: $border-width--top !default;
+$navigation-border-width--right: $border-width--right !default;
+$navigation-border-width--bottom: $border-width--bottom !default;
+$navigation-border-width--left: $border-width--left !default;
+$navigation-border-radius--top-left: $border-radius--top-left !default;
+$navigation-border-radius--top-right: $border-radius--top-right !default;
+$navigation-border-radius--bottom-right: $border-radius--bottom-right !default;
+$navigation-border-radius--bottom-left: $border-radius--bottom-left !default;
+$navigation-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$navigation-element-spacing: $element-spacing !default;
+$navigation-element-spacing--small: $element-spacing--small !default;
+$navigation-element-spacing--large: $element-spacing--large !default;
+$navigation-element-spacing--huge: $element-spacing--huge !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> BOX
+   ============================================================================================= */
+
+.navigation {
+    border: 0 $navigation-border-style $navigation-border-color;
+    border-width: $navigation-border-width--top
+                  $navigation-border-width--right
+                  $navigation-border-width--bottom
+                  $navigation-border-width--left;
+    border-radius: $navigation-border-radius--top-left
+                   $navigation-border-radius--top-right
+                   $navigation-border-radius--bottom-right
+                   $navigation-border-radius--bottom-left;
+    background-color: $navigation-background-color;
+    box-shadow: $navigation-box-shadow;
+    color: $navigation-font-color;
+    display: flex;
+    flex-direction: column;
+    font-size: $navigation-font-size;
+    margin: 0;
+    margin-bottom: $navigation-element-spacing;
+    overflow: hidden;
+    padding: $navigation-content-spacing;
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $navigation-font-size--small;
+        margin-bottom: $navigation-element-spacing--small;
+        padding: $navigation-content-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $navigation-font-size--large;
+        margin-bottom: $navigation-element-spacing--large;
+        padding: $navigation-content-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $navigation-font-size--huge;
+        margin-bottom: $navigation-element-spacing--huge;
+        padding: $navigation-content-spacing--huge;
+    }
+
+    // Nested selectors
+    a {
+        color: $navigation-link-color;
+
+        // Pseudo classes
+        &:hover {
+            color: $navigation-link-color--hover;
+        }
+    }
+}

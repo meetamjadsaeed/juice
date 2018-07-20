@@ -30,16 +30,16 @@ $input-background-color: base-color('white') !default;
 $input-border-color: base-color('white', 'darken-3') !default;
 $input-border-color--hover: base-color('white', 'darken-5') !default;
 $input-border-color--focus: feedback-color('info') !default;
-$input-border-width--separator: $border-width--separator !default;
-$input-border-width--top: $border-width--top !default;
-$input-border-width--right: $border-width--right !default;
-$input-border-width--bottom: $border-width--bottom !default;
-$input-border-width--left: $border-width--left !default;
 $input-border-radius--top-left: $border-radius--top-left !default;
 $input-border-radius--top-right: $border-radius--top-right !default;
 $input-border-radius--bottom-right: $border-radius--bottom-right !default;
 $input-border-radius--bottom-left: $border-radius--bottom-left !default;
 $input-border-style: $border-style !default;
+$input-border-width--top: $border-width--top !default;
+$input-border-width--right: $border-width--right !default;
+$input-border-width--bottom: $border-width--bottom !default;
+$input-border-width--left: $border-width--left !default;
+$input-border-width--separator: $border-width--separator !default;
 $input-box-shadow-color--focus: feedback-color('info', 'lighten-5') !default;
 $input-element-spacing: $element-spacing !default;
 $input-element-spacing--small: $element-spacing--small !default;
@@ -72,14 +72,14 @@ $input-range-track-color--filled: base-color('blue') !default;
     -webkit-appearance: none;
     background-color: $input-background-color;
     border: 0 $input-border-style $input-border-color;
-    border-radius: $input-border-radius--top-left
-                   $input-border-radius--top-right
-                   $input-border-radius--bottom-right
-                   $input-border-radius--bottom-left;
-    border-width: $input-border-width--top
-                  $input-border-width--right
-                  $input-border-width--bottom
-                  $input-border-width--left;
+    border-bottom-left-radius: $input-border-radius--bottom-left;
+    border-bottom-right-radius: $input-border-radius--bottom-right;
+    border-bottom-width: $input-border-width--bottom;
+    border-left-width: $input-border-width--left;
+    border-top-left-radius: $input-border-radius--top-left;
+    border-top-right-radius: $input-border-radius--top-right;
+    border-top-width: $input-border-width--top;
+    border-right-width: $input-border-width--right;
     color: $input-font-color;
     display: block;
     font-family: $input-font-family;
@@ -241,8 +241,8 @@ input[type=radio] {
     display: inline-block;
     height: auto;
     margin-left: 10px;
-    margin-top: 0;
     margin-right: 10px;
+    margin-top: 0;
     padding: 10px;
     position: relative;
     top: 2px;
@@ -276,19 +276,19 @@ input[type=color] {
     // Pseudo elements
     &::-webkit-color-swatch-wrapper {
         background-color: $input-background-color;
-        border-radius: $input-border-radius--top-left
-                       $input-border-radius--top-right
-                       $input-border-radius--bottom-right
-                       $input-border-radius--bottom-left;
+        border-bottom-left-radius: $input-border-radius--bottom-left;
+        border-bottom-right-radius: $input-border-radius--bottom-right;
+        border-top-left-radius: $input-border-radius--top-left;
+        border-top-right-radius: $input-border-radius--top-right;
         padding: 0;
     }
 
     &::-webkit-color-swatch {
         border: none;
-        border-radius: $input-border-radius--top-left
-                       $input-border-radius--top-right
-                       $input-border-radius--bottom-right
-                       $input-border-radius--bottom-left;
+        border-bottom-left-radius: $input-border-radius--bottom-left;
+        border-bottom-right-radius: $input-border-radius--bottom-right;
+        border-top-left-radius: $input-border-radius--top-left;
+        border-top-right-radius: $input-border-radius--top-right;
     }
 }
 

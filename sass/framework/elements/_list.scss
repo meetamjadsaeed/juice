@@ -63,9 +63,7 @@ ol {
 
         // Nested selectors
         li {
-            flex: 0 0 auto;
-            flex-basis: 0;
-            flex-grow: 1;
+            flex: 1 0 0;
             padding: $list-content-spacing;
         }
     }
