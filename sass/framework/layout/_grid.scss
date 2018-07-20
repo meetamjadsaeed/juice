@@ -23,11 +23,6 @@ $grid-gutter: $element-spacing / 2 !default;
         outline: none;
     }
 
-    // Pseudo elements
-    &::after {
-        @include clearfix();
-    }
-
     // Modifiers
     &.grid--no-gutter {
         margin: 0;

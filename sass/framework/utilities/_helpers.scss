@@ -4,6 +4,11 @@
    RUCKSACK -> FRAMEWORK -> UTILITIES -> HELPERS
    ============================================================================================= */
 
+// Clearfix
+.clearfix {
+    @include clearfix();
+}
+
 // Display
 .show {
     display: block !important;

@@ -30,11 +30,6 @@ ol {
     margin: 0;
     margin-bottom: $list-element-spacing;
 
-    // Pseudo elements
-    &::after {
-        @include clearfix();
-    }
-
     // Modifiers
     &.list--circle {
         list-style: circle outside;

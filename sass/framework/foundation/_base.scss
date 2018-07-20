@@ -52,10 +52,6 @@ body {
     width: 100%;
 
     // Pseudo elements
-    &::after {
-        @include clearfix();
-    }
-
     ::-moz-selection {
         background-color: $selection-background-color;
         color: $selection-font-color;

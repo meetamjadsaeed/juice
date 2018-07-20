@@ -23,11 +23,6 @@ $container-max-width: 1200px !default;
     position: relative;
     width: 100%;
 
-    // Pseudo elements
-    &::after {
-        @include clearfix();
-    }
-
     // Modifiers
     &.container--no-gutter {
         padding: 0;
