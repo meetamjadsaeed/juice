@@ -111,6 +111,54 @@ $input-range-track-color--filled: base-color('blue') !default;
     }
 }
 
+// Small input size
+@mixin input-size--small() {
+    font-size: $input-font-size--small;
+    height: $input-height--small;
+    margin-bottom: $input-element-spacing--small;
+
+    // Pseudo elements
+    &::-ms-clear {
+        width: $input-height--small / 2;
+    }
+
+    &::-ms-reveal {
+        width: $input-height--small / 2;
+    }
+}
+
+// Large input size
+@mixin input-size--large() {
+    font-size: $input-font-size--large;
+    height: $input-height--large;
+    margin-bottom: $input-element-spacing--large;
+
+    // Pseudo elements
+    &::-ms-clear {
+        width: $input-height--large / 2;
+    }
+
+    &::-ms-reveal {
+        width: $input-height--large / 2;
+    }
+}
+
+// Huge input size
+@mixin input-size--huge() {
+    font-size: $input-font-size--huge;
+    height: $input-height--huge;
+    margin-bottom: $input-element-spacing--huge;
+
+    // Pseudo elements
+    &::-ms-clear {
+        width: $input-height--huge / 2;
+    }
+
+    &::-ms-reveal {
+        width: $input-height--huge / 2;
+    }
+}
+
 // Input range track
 @mixin input-range-track() {
     height: 100%;
@@ -171,48 +219,15 @@ $input-range-track-color--filled: base-color('blue') !default;
 
     // Modifiers: Size
     &.is-small {
-        font-size: $input-font-size--small;
-        height: $input-height--small;
-        margin-bottom: $input-element-spacing--small;
-
-        // Pseudo elements
-        &::-ms-clear {
-            width: $input-height--small / 2;
-        }
-
-        &::-ms-reveal {
-            width: $input-height--small / 2;
-        }
+        @include input-size--small();
     }
 
     &.is-large {
-        font-size: $input-font-size--large;
-        height: $input-height--large;
-        margin-bottom: $input-element-spacing--large;
-
-        // Pseudo elements
-        &::-ms-clear {
-            width: $input-height--large / 2;
-        }
-
-        &::-ms-reveal {
-            width: $input-height--large / 2;
-        }
+        @include input-size--large();
     }
 
     &.is-huge {
-        font-size: $input-font-size--huge;
-        height: $input-height--huge;
-        margin-bottom: $input-element-spacing--huge;
-
-        // Pseudo elements
-        &::-ms-clear {
-            width: $input-height--huge / 2;
-        }
-
-        &::-ms-reveal {
-            width: $input-height--huge / 2;
-        }
+        @include input-size--huge();
     }
 
     // Modifiers: Feedback

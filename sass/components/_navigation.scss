@@ -1,0 +1,335 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> NAVIGATION -> VARIABLES
+   ============================================================================================= */
+
+$navigation-content-spacing: $content-spacing !default;
+$navigation-content-spacing--small: $content-spacing--small !default;
+$navigation-content-spacing--large: $content-spacing--large !default;
+$navigation-content-spacing--huge: $content-spacing--huge !default;
+$navigation-font-color: font-color('default') !default;
+$navigation-font-size: $font-size !default;
+$navigation-font-size--small: $font-size--small !default;
+$navigation-font-size--large: $font-size--large !default;
+$navigation-font-size--huge: $font-size--huge !default;
+$navigation-link-color: $link-color !default;
+$navigation-link-color--hover: $link-color--hover !default;
+$navigation-element-spacing: $element-spacing !default;
+$navigation-element-spacing--small: $element-spacing--small !default;
+$navigation-element-spacing--large: $element-spacing--large !default;
+$navigation-element-spacing--huge: $element-spacing--huge !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> BOX
+   ============================================================================================= */
+
+.navigation {
+    align-items: center;
+    color: $navigation-font-color;
+    display: flex;
+    font-size: $navigation-font-size;
+    padding: $navigation-content-spacing;
+    margin: 0;
+    margin-bottom: $navigation-element-spacing;
+
+    // Modifiers
+    &.is-small {
+        font-size: $navigation-font-size--small;
+        padding: $navigation-content-spacing--small;
+
+        // Nested selectors
+        .navigation__logo,
+        .navigation__links,
+        .navigation__search {
+            padding: 0 ($navigation-content-spacing--small / 2);
+
+            // Pseudo classes
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+        .navigation__links {
+            // Nested selectors
+            ul,
+            ol {
+                // Nested selectors
+                li {
+                    // Nested selectors
+                    a {
+                        padding: $navigation-content-spacing--small;
+                    }
+                }
+            }
+
+            #{$button} {
+                @include button-size--small();
+                @include icon-button-size--small();
+            }
+        }
+
+        .navigation__search {
+            // Nested selectors
+            #{$input} {
+                @include input-size--small();
+                margin-bottom: 0;
+            }
+        }
+
+        // Breakpoints
+        @include breakpoint('mobile') {
+            // Nested selectors
+            .navigation__logo,
+            .navigation__links,
+            .navigation__search {
+                padding-bottom: $navigation-content-spacing--small;
+
+                // Nested selectors
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $navigation-font-size--large;
+        padding: $navigation-content-spacing--large;
+
+        // Nested selectors
+        .navigation__logo,
+        .navigation__links,
+        .navigation__search {
+            padding: 0 ($navigation-content-spacing--large / 2);
+
+            // Pseudo classes
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+        .navigation__links {
+            // Nested selectors
+            ul,
+            ol {
+                // Nested selectors
+                li {
+                    // Nested selectors
+                    a {
+                        padding: $navigation-content-spacing--large;
+                    }
+                }
+            }
+
+            #{$button} {
+                @include button-size--large();
+                @include icon-button-size--large();
+            }
+        }
+
+        .navigation__search {
+            // Nested selectors
+            #{$input} {
+                @include input-size--large();
+                margin-bottom: 0;
+            }
+        }
+
+        // Breakpoints
+        @include breakpoint('mobile') {
+            // Nested selectors
+            .navigation__logo,
+            .navigation__links,
+            .navigation__search {
+                padding-bottom: $navigation-content-spacing--huge;
+
+                // Nested selectors
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $navigation-font-size--huge;
+        padding: $navigation-content-spacing--huge;
+
+        // Nested selectors
+        .navigation__logo,
+        .navigation__links,
+        .navigation__search {
+            padding: 0 ($navigation-content-spacing--huge / 2);
+
+            // Pseudo classes
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+        .navigation__links {
+            // Nested selectors
+            ul,
+            ol {
+                // Nested selectors
+                li {
+                    // Nested selectors
+                    a {
+                        padding: $navigation-content-spacing--huge;
+                    }
+                }
+            }
+
+            #{$button} {
+                @include button-size--huge();
+                @include icon-button-size--huge();
+            }
+        }
+
+        .navigation__search {
+            // Nested selectors
+            #{$input} {
+                @include input-size--huge();
+                margin-bottom: 0;
+            }
+        }
+
+        // Breakpoints
+        @include breakpoint('mobile') {
+            // Nested selectors
+            .navigation__logo,
+            .navigation__links,
+            .navigation__search {
+                padding-bottom: $navigation-content-spacing--huge;
+
+                // Nested selectors
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    a {
+        color: $navigation-link-color;
+
+        // Pseudo classes
+        &:hover {
+            color: $navigation-link-color--hover;
+        }
+    }
+
+    .navigation__logo,
+    .navigation__links,
+    .navigation__search {
+        padding: 0 ($navigation-content-spacing / 2);
+
+        // Pseudo classes
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    .navigation__logo {
+        flex-grow: 1;
+    }
+
+    .navigation__links {
+        // Nested selectors
+        ul,
+        ol,
+        .navigation__bars {
+            display: none;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            // Nested selectors
+            li {
+                flex: 1 0 auto;
+
+                // Nested selectors
+                a {
+                    display: inline-flex;
+                    padding: $navigation-content-spacing;
+                }
+            }
+        }
+
+        .navigation__bars {
+            // Nested selectors
+            #{$button} {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .navigation__search {
+        // Nested selectors
+        #{$input} {
+            margin-bottom: 0;
+        }
+    }
+
+    // Breakpoints
+    @include breakpoint('mobile') {
+        flex-flow: column;
+
+        // Nested selectors
+        .navigation__logo,
+        .navigation__links,
+        .navigation__search {
+            padding: 0;
+            padding-bottom: $navigation-content-spacing;
+
+            // Nested selectors
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    @include breakpoint('touch') {
+        // Nested selectors
+        .navigation__links {
+            // Nested selectors
+            .navigation__bars {
+                display: block;
+            }
+        }
+    }
+
+    @include breakpoint('desktop') {
+        // Nested selectors
+        .navigation__links {
+            // Nested selectors
+            ul,
+            ol {
+                display: flex;
+            }
+        }
+    }
+}
