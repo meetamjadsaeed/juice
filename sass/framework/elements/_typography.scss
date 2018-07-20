@@ -117,11 +117,17 @@ $h6-text-transform: none !default;
 $abbr-border-color: feedback-color('info') !default;
 
 // Mark
-$mark-background-color: base-color('yellow', 'lighten-1') !default;
+$mark-background-color: base-color('yellow', 'lighten-4') !default;
+$mark-border-color: transparent !default;
 $mark-border-radius--top-left: 0 !default;
 $mark-border-radius--top-right: 0 !default;
 $mark-border-radius--bottom-right: 0 !default;
 $mark-border-radius--bottom-left: 0 !default;
+$mark-border-style: $border-style;
+$mark-border-width--top: 0 !default;
+$mark-border-width--right: 0 !default;
+$mark-border-width--bottom: 0 !default;
+$mark-border-width--left: 0 !default;
 $mark-font-color: font-color() !default;
 $mark-font-size: $font-size !default;
 $mark-font-size--small: $font-size--small !default;
@@ -130,18 +136,36 @@ $mark-font-size--huge: $font-size--huge !default;
 $mark-padding: 4px !default;
 
 // Code
+$code-background-color: base-color('white') !default;
+$code-border-color: base-color('white', 'darken-3') !default;
+$code-border-radius--top-left: $border-radius--top-left !default;
+$code-border-radius--top-right: $border-radius--top-right !default;
+$code-border-radius--bottom-right: $border-radius--bottom-right !default;
+$code-border-radius--bottom-left: $border-radius--bottom-left !default;
+$code-border-style: $border-style;
+$code-border-width--top: $border-width--top !default;
+$code-border-width--right: $border-width--right !default;
+$code-border-width--bottom: $border-width--bottom !default;
+$code-border-width--left: $border-width--left !default;
 $code-font-color: base-color('red') !default;
 $code-font-size: $font-size !default;
 $code-font-size--small: $font-size--small !default;
 $code-font-size--large: $font-size--large !default;
 $code-font-size--huge: $font-size--huge !default;
+$code-padding: 4px !default;
 
 // Keyboard
 $kbd-background-color: base-color('charcoal') !default;
-$kbd-border-radius--top-left: 0 !default;
-$kbd-border-radius--top-right: 0 !default;
-$kbd-border-radius--bottom-right: 0 !default;
-$kbd-border-radius--bottom-left: 0 !default;
+$kbd-border-color: base-color('charcoal', 'darken-3') !default;
+$kbd-border-radius--top-left: $border-radius--top-left !default;
+$kbd-border-radius--top-right: $border-radius--top-right !default;
+$kbd-border-radius--bottom-right: $border-radius--bottom-right !default;
+$kbd-border-radius--bottom-left: $border-radius--bottom-left !default;
+$kbd-border-style: $border-style;
+$kbd-border-width--top: $border-width--top !default;
+$kbd-border-width--right: $border-width--right !default;
+$kbd-border-width--bottom: $border-width--bottom !default;
+$kbd-border-width--left: $border-width--left !default;
 $kbd-font-color: base-color('white') !default;
 $kbd-font-size: $font-size !default;
 $kbd-font-size--small: $font-size--small !default;
@@ -150,8 +174,8 @@ $kbd-font-size--huge: $font-size--huge !default;
 $kbd-padding: 4px !default;
 
 // Preformatted
-$pre-background-color: base-color('white') !default;
-$pre-border-color: base-color('white', 'darken-3') !default;
+$pre-background-color: base-color('charcoal') !default;
+$pre-border-color: base-color('charcoal', 'darken-3') !default;
 $pre-border-radius--top-left: $border-radius--top-left !default;
 $pre-border-radius--top-right: $border-radius--top-right !default;
 $pre-border-radius--bottom-right: $border-radius--bottom-right !default;
@@ -161,6 +185,7 @@ $pre-border-width--top: $border-width--top !default;
 $pre-border-width--right: $border-width--right !default;
 $pre-border-width--bottom: $border-width--bottom !default;
 $pre-border-width--left: $border-width--left !default;
+$pre-box-shadow: none;
 $pre-content-spacing: $content-spacing !default;
 $pre-content-spacing--small: $content-spacing--small !default;
 $pre-content-spacing--large: $content-spacing--large !default;
@@ -169,27 +194,53 @@ $pre-element-spacing: $element-spacing !default;
 $pre-element-spacing--small: $element-spacing--small !default;
 $pre-element-spacing--large: $element-spacing--large !default;
 $pre-element-spacing--huge: $element-spacing--huge !default;
-$pre-font-color: base-color('silver', 'darken-5') !default;
+$pre-font-color: base-color('white') !default;
 $pre-font-size: $font-size !default;
 $pre-font-size--small: $font-size--small !default;
 $pre-font-size--large: $font-size--large !default;
 $pre-font-size--huge: $font-size--huge !default;
 
 // Sample
+$samp-background-color: transparent !default;
+$samp-border-color: transparent !default;
+$samp-border-radius--top-left: 0 !default;
+$samp-border-radius--top-right: 0 !default;
+$samp-border-radius--bottom-right: 0 !default;
+$samp-border-radius--bottom-left: 0 !default;
+$samp-border-style: $border-style;
+$samp-border-width--top: 0 !default;
+$samp-border-width--right: 0 !default;
+$samp-border-width--bottom: 0 !default;
+$samp-border-width--left: 0 !default;
+$samp-font-color: inherit !default;
 $samp-font-size: $font-size !default;
 $samp-font-size--small: $font-size--small !default;
 $samp-font-size--large: $font-size--large !default;
 $samp-font-size--huge: $font-size--huge !default;
+$samp-padding: 0 !default;
 
 // Variable
+$var-background-color: transparent !default;
+$var-border-color: transparent !default;
+$var-border-radius--top-left: 0 !default;
+$var-border-radius--top-right: 0 !default;
+$var-border-radius--bottom-right: 0 !default;
+$var-border-radius--bottom-left: 0 !default;
+$var-border-style: $border-style;
+$var-border-width--top: 0 !default;
+$var-border-width--right: 0 !default;
+$var-border-width--bottom: 0 !default;
+$var-border-width--left: 0 !default;
+$var-font-color: inherit !default;
 $var-font-size: $font-size !default;
 $var-font-size--small: $font-size--small !default;
 $var-font-size--large: $font-size--large !default;
 $var-font-size--huge: $font-size--huge !default;
+$var-padding: 0 !default;
 
 // Blockquote
-$blockquote-background-color: base-color('white') !default;
-$blockquote-border-color: base-color('white', 'darken-3') !default;
+$blockquote-background-color: hsla(0, 0%, 0%, 0.03) !default;
+$blockquote-border-color: hsla(0, 0%, 0%, 0.06) !default;
 $blockquote-border-color--hover: base-color('primary') !default;
 $blockquote-border-radius--top-left: 0 !default;
 $blockquote-border-radius--top-right: $border-radius--top-right !default;
@@ -200,10 +251,6 @@ $blockquote-border-width--top: 0 !default;
 $blockquote-border-width--right: 0 !default;
 $blockquote-border-width--bottom: 0 !default;
 $blockquote-border-width--left: 5px !default;
-$blockquote-cite-font-size: $font-size - 0.2em !default;
-$blockquote-cite-font-size--small: $font-size--small - 0.2em !default;
-$blockquote-cite-font-size--large: $font-size--large - 0.2em !default;
-$blockquote-cite-font-size--huge: $font-size--huge - 0.2em !default;
 $blockquote-content-spacing: $content-spacing !default;
 $blockquote-content-spacing--small: $content-spacing--small !default;
 $blockquote-content-spacing--large: $content-spacing--large !default;
@@ -212,11 +259,11 @@ $blockquote-element-spacing: $element-spacing !default;
 $blockquote-element-spacing--small: $element-spacing--small !default;
 $blockquote-element-spacing--large: $element-spacing--large !default;
 $blockquote-element-spacing--huge: $element-spacing--huge !default;
-$blockquote-font-color: base-color('silver', 'darken-5') !default;
-$blockquote-font-size: $font-size !default;
-$blockquote-font-size--small: $font-size--small !default;
-$blockquote-font-size--large: $font-size--large !default;
-$blockquote-font-size--huge: $font-size--huge !default;
+$blockquote-font-color: font-color() !default;
+$blockquote-font-size: $font-size + 0.4em !default;
+$blockquote-font-size--small: $font-size--small + 0.4em !default;
+$blockquote-font-size--large: $font-size--large + 0.4em !default;
+$blockquote-font-size--huge: $font-size--huge + 0.4em !default;
 
 
 /* =============================================================================================
@@ -492,11 +539,15 @@ abbr {
 // Mark
 mark {
     background-color: $mark-background-color;
-    border: none;
+    border: 0 $mark-border-style $mark-border-color;
     border-bottom-left-radius: $mark-border-radius--bottom-left;
     border-bottom-right-radius: $mark-border-radius--bottom-right;
+    border-bottom-width: $mark-border-width--bottom;
+    border-left-width: $mark-border-width--left;
+    border-right-width: $mark-border-width--right;
     border-top-left-radius: $mark-border-radius--top-left;
     border-top-right-radius: $mark-border-radius--top-right;
+    border-top-width: $mark-border-width--top;
     color: $mark-font-color;
     font-size: $mark-font-size;
     padding: $mark-padding;
@@ -526,8 +577,19 @@ var {
 
 // Code
 code {
+    background-color: $code-background-color;
+    border: 0 $code-border-style $code-border-color;
+    border-bottom-left-radius: $code-border-radius--bottom-left;
+    border-bottom-right-radius: $code-border-radius--bottom-right;
+    border-bottom-width: $code-border-width--bottom;
+    border-left-width: $code-border-width--left;
+    border-right-width: $code-border-width--right;
+    border-top-left-radius: $code-border-radius--top-left;
+    border-top-right-radius: $code-border-radius--top-right;
+    border-top-width: $code-border-width--top;
     color: $code-font-color;
     font-size: $code-font-size;
+    padding: $code-padding;
 
     // Modifiers: Size
     &.is-small {
@@ -546,11 +608,15 @@ code {
 // Keyboard
 kbd {
     background-color: $kbd-background-color;
-    border: none;
+    border: 0 $kbd-border-style $kbd-border-color;
     border-bottom-left-radius: $kbd-border-radius--bottom-left;
     border-bottom-right-radius: $kbd-border-radius--bottom-right;
+    border-bottom-width: $kbd-border-width--bottom;
+    border-left-width: $kbd-border-width--left;
+    border-right-width: $kbd-border-width--right;
     border-top-left-radius: $kbd-border-radius--top-left;
     border-top-right-radius: $kbd-border-radius--top-right;
+    border-top-width: $kbd-border-width--top;
     color: $kbd-font-color;
     font-size: $kbd-font-size;
     padding: $kbd-padding;
@@ -582,13 +648,28 @@ pre {
     border-top-right-radius: $pre-border-radius--top-right;
     border-top-width: $pre-border-width--top;
     border-right-width: $pre-border-width--right;
+    box-shadow: none;
     color: $pre-font-color;
     font-size: $pre-font-size;
     margin: 0;
     margin-bottom: $pre-element-spacing;
     padding: $pre-content-spacing;
+    position: relative;
     overflow-x: auto;
     white-space: pre-wrap;
+
+    // Pseudo elements
+    &::after {
+        display: block;
+        content: attr(data-language);
+        font-family: $primary-typeface;
+        font-size: 75%;
+        padding: 5px 10px;
+        position: absolute;
+        right: 0;
+        text-transform: uppercase;
+        top: 0;
+    }
 
     // Modifiers: Size
     &.is-small {
@@ -620,7 +701,19 @@ pre {
 
 // Sample
 samp {
+    background-color: $samp-background-color;
+    border: 0 $samp-border-style $samp-border-color;
+    border-bottom-left-radius: $samp-border-radius--bottom-left;
+    border-bottom-right-radius: $samp-border-radius--bottom-right;
+    border-bottom-width: $samp-border-width--bottom;
+    border-left-width: $samp-border-width--left;
+    border-right-width: $samp-border-width--right;
+    border-top-left-radius: $samp-border-radius--top-left;
+    border-top-right-radius: $samp-border-radius--top-right;
+    border-top-width: $samp-border-width--top;
+    color: $samp-font-color;
     font-size: $samp-font-size;
+    padding: $samp-padding;
 
     // Modifiers: Size
     &.is-small {
@@ -638,8 +731,20 @@ samp {
 
 // Variable
 var {
+    background-color: $var-background-color;
+    border: 0 $var-border-style $var-border-color;
+    border-bottom-left-radius: $var-border-radius--bottom-left;
+    border-bottom-right-radius: $var-border-radius--bottom-right;
+    border-bottom-width: $var-border-width--bottom;
+    border-left-width: $var-border-width--left;
+    border-right-width: $var-border-width--right;
+    border-top-left-radius: $var-border-radius--top-left;
+    border-top-right-radius: $var-border-radius--top-right;
+    border-top-width: $var-border-width--top;
+    color: $var-font-color;
     font-size: $var-font-size;
     font-style: italic;
+    padding: $var-padding;
 
     // Modifiers: Size
     &.is-small {
@@ -672,7 +777,8 @@ blockquote {
     font-size: $blockquote-font-size;
     margin: 0;
     margin-bottom: $blockquote-element-spacing;
-    padding: $blockquote-content-spacing;
+    padding: $blockquote-content-spacing * 2;
+    position: relative;
     transition: border 0.15s ease-in-out;
 
     // Pseudo classes
@@ -684,46 +790,29 @@ blockquote {
     &.is-small {
         font-size: $blockquote-font-size--small;
         margin-bottom: $blockquote-element-spacing--small;
-        padding: $blockquote-content-spacing--small;
-
-        // Nested selectors
-        cite {
-            font-size: $blockquote-cite-font-size--small;
-            margin-top: ($blockquote-content-spacing--small / 2);
-        }
+        padding: $blockquote-content-spacing--small * 2;
     }
 
     &.is-large {
         font-size: $blockquote-font-size--large;
         margin-bottom: $blockquote-element-spacing--large;
-        padding: $blockquote-content-spacing--large;
-
-        // Nested selectors
-        cite {
-            font-size: $blockquote-cite-font-size--large;
-            margin-top: ($blockquote-content-spacing--large / 2);
-        }
+        padding: $blockquote-content-spacing--large * 2;
     }
 
     &.is-huge {
         font-size: $blockquote-font-size--huge;
         margin-bottom: $blockquote-element-spacing--huge;
-        padding: $blockquote-content-spacing--huge;
-
-        // Nested selectors
-        cite {
-            font-size: $blockquote-cite-font-size--huge;
-            margin-top: ($blockquote-content-spacing--huge / 2);
-        }
+        padding: $blockquote-content-spacing--huge * 2;
     }
 
     // Nested selectors
     cite {
         color: inherit;
         display: block;
-        font-size: $blockquote-cite-font-size;
+        font-size: 75%;
         margin: 0;
-        margin-top: ($blockquote-content-spacing / 2);
+        margin-left: $blockquote-content-spacing;
+        margin-top: $blockquote-content-spacing / 2;
 
         // Pseudo elements
         &::before {
