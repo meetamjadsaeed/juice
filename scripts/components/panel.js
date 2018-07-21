@@ -17,7 +17,7 @@
      * Constructor
      * @param  {element}  element  The target element
      * @param  {array}    options  The plugin options
-     * @return void
+     * @return {void}
      */
     function Plugin(element, options) {
         // Store the plugin defaults, element and settings
@@ -34,7 +34,7 @@
     $.extend(Plugin.prototype, {
         /**
          * Initialize the plugin
-         * @return void
+         * @return {void}
          */
         initialize() {
             // Set the panel elements

@@ -1,0 +1,248 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> TOOLTIP -> VARIABLES
+   ============================================================================================= */
+
+$tooltip-arrow-size: 6px;
+$tooltip-background-color: base-color('charcoal');
+$tooltip-border-radius--top-left: $border-radius--top-left;
+$tooltip-border-radius--top-right: $border-radius--top-right;
+$tooltip-border-radius--bottom-right: $border-radius--bottom-right;
+$tooltip-border-radius--bottom-left: $border-radius--bottom-left;
+$tooltip-font-color: base-color('white');
+$tooltip-font-family: 'Trebuchet', sans-serif;
+$tooltip-font-size: $font-size - 0.2em;
+$tooltip-font-size--small: $font-size--small - 0.2em;
+$tooltip-font-size--large: $font-size--large - 0.2em;
+$tooltip-font-size--huge: $font-size--huge - 0.2em;
+$tooltip-offset: 2px;
+$tooltip-opacity: 0.9;
+$tooltip-padding: 6px 10px;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> TOOLTIP
+   ============================================================================================= */
+
+.tooltip {
+    animation-duration: 300ms;
+	left: 0;
+	margin: 0;
+	margin-top: -($tooltip-arrow-size + $tooltip-offset);
+	position: absolute;
+	top: 0;
+	z-index: 1;
+
+	// Pseudo elements
+	&::before {
+        border-bottom: 0;
+		border-left: $tooltip-arrow-size solid transparent;
+		border-right: $tooltip-arrow-size solid transparent;
+		border-top: $tooltip-arrow-size solid $tooltip-background-color;
+		content: '';
+		display: block;
+		height: 0;
+		left: 50%;
+		margin-left: -$tooltip-arrow-size;
+		margin-top: 0;
+		opacity: $tooltip-opacity;
+		position: absolute;
+		top: 100%;
+		width: 0;
+	}
+
+	// Modifiers
+	&.tooltip--right {
+		margin: 0;
+		margin-left: $tooltip-arrow-size;
+
+		// Pseudo elements
+		&::before {
+            border-bottom: $tooltip-arrow-size solid transparent;
+            border-left: 0;
+            border-right: $tooltip-arrow-size solid $tooltip-background-color;
+            border-top: $tooltip-arrow-size solid transparent;
+			left: 0;
+			margin-left: -$tooltip-arrow-size;
+			margin-top: -$tooltip-arrow-size;
+			top: 50%;
+		}
+	}
+
+	&.tooltip--left {
+		margin: 0;
+		margin-left: -$tooltip-arrow-size;
+
+		// Pseudo elements
+		&::before {
+            border-bottom: $tooltip-arrow-size solid transparent;
+            border-left: $tooltip-arrow-size solid $tooltip-background-color;
+            border-right: 0;
+            border-top: $tooltip-arrow-size solid transparent;
+			left: 100%;
+			margin-left: 0;
+			margin-top: -$tooltip-arrow-size;
+			top: 50%;
+		}
+	}
+
+	&.tooltip--bottom {
+		margin: 0;
+		margin-top: $tooltip-arrow-size;
+
+		// Pseudo elements
+		&::before {
+            border-bottom: $tooltip-arrow-size solid $tooltip-background-color;
+            border-left: $tooltip-arrow-size solid transparent;
+            border-right: $tooltip-arrow-size solid transparent;
+            border-top: 0;
+			left: 50%;
+			margin-left: -$tooltip-arrow-size;
+			margin-top: -$tooltip-arrow-size;
+			top: 0;
+		}
+	}
+
+    // Modifiers: Size
+    &.is-small {
+        // Nested selectors
+        .tooltip__content {
+            font-size: $tooltip-font-size--small;
+        }
+    }
+
+    &.is-large {
+        // Nested selectors
+        .tooltip__content {
+            font-size: $tooltip-font-size--large;
+        }
+    }
+
+    &.is-huge {
+        // Nested selectors
+        .tooltip__content {
+            font-size: $tooltip-font-size--huge;
+        }
+    }
+
+    // Nested selectors
+	.tooltip__content {
+        background-color: $tooltip-background-color;
+		border: 0;
+        border-bottom-left-radius: $tooltip-border-radius--bottom-left;
+        border-bottom-right-radius: $tooltip-border-radius--bottom-right;
+        border-top-left-radius: $tooltip-border-radius--top-left;
+        border-top-right-radius: $tooltip-border-radius--top-right;
+		color: $tooltip-font-color;
+		display: inline-block;
+		font-family: $tooltip-font-family;
+		font-size: $tooltip-font-size;
+        line-height: 1.6;
+		max-width: 300px;
+		opacity: $tooltip-opacity;
+		padding: $tooltip-padding;
+		text-align: center;
+	}
+
+    // Modifiers: Colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+        	// Pseudo elements
+        	&::before {
+                border-color: transparent;
+        		border-top-color: base-color($name);
+        	}
+
+        	// Modifiers
+        	&.tooltip--right,
+            &.tooltip--bottom,
+            &.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+                    border-color: transparent;
+                }
+            }
+
+        	&.tooltip--right {
+        		// Pseudo elements
+        		&::before {
+            		border-right-color: base-color($name);
+        		}
+        	}
+
+        	&.tooltip--bottom {
+        		// Pseudo elements
+        		&::before {
+            		border-bottom-color: base-color($name);
+        		}
+        	}
+
+        	&.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+            		border-left-color: base-color($name);
+        		}
+        	}
+
+            // Nested selectors
+        	.tooltip__content {
+        		background-color: base-color($name);
+        		color: base-color($name, 'invert');
+        	}
+        }
+    }
+
+    // Modifiers: Feedback
+    @each $name, $color in $feedback-colors {
+        &.with-#{$name} {
+        	// Pseudo elements
+        	&::before {
+                border-color: transparent;
+        		border-top-color: feedback-color($name);
+        	}
+
+        	// Modifiers
+        	&.tooltip--right,
+            &.tooltip--bottom,
+            &.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+                    border-color: transparent;
+                }
+            }
+
+        	&.tooltip--right {
+        		// Pseudo elements
+        		&::before {
+            		border-right-color: feedback-color($name);
+        		}
+        	}
+
+        	&.tooltip--bottom {
+        		// Pseudo elements
+        		&::before {
+            		border-bottom-color: feedback-color($name);
+        		}
+        	}
+
+        	&.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+            		border-left-color: feedback-color($name);
+        		}
+        	}
+
+            // Nested selectors
+        	.tooltip__content {
+        		background-color: feedback-color($name);
+        		color: feedback-color($name, 'invert');
+        	}
+        }
+    }
+
+    // Breakpoint
+    @include breakpoint('touch') {
+        display: none;
+    }
+}
