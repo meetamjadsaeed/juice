@@ -5,8 +5,10 @@
    ============================================================================================= */
 
 ;((($, window, document, undefined) => {
-    // Set the plugin defaults
+    // Set the plugin name
     const pluginName = 'card';
+
+    // Set the plugin defaults
     const defaults = {
         removeAnimation: 'fadeOut'
     };
@@ -38,27 +40,45 @@
             // Set the card element
             const $card = $(this.element);
 
+            // Set the card settings
+            this.setCardSettings($card);
+
             // Add a click event handler to remove a card
             $('.js-card-remove', this.element).on('click', () => {
-                // Check if the card remove animation data attribute exists and set the remove animation
-                this.settings.removeAnimation = ($card.data('card-remove-animation')
-                    ? $card.data('card-remove-animation')
-                    : this.settings.removeAnimation
-                );
+                // Remove the card
+                this.removeCard($card);
+            });
+        },
 
-                // Check if the remove animation is not set to none
-                if (this.settings.removeAnimation != 'none') {
-                    // Add the remove animation class to the card and check when the animation has ended
-                    $card.addClass(`animated ${this.settings.removeAnimation}`).one('animationend', () => {
-                        // Remove the card
-                        $card.remove();
-                    });
-                } else {
+        /**
+         * Set the card settings from the plugin default settings or the card element data attribute overrides
+         * @param  {element}  $card  The card element
+         * @return {void}
+         */
+        setCardSettings($card) {
+            // Check if the card remove animation data attribute exists and set the remove animation
+            this.settings.removeAnimation =
+                $card.data('card-remove-animation') || this.settings.removeAnimation;
+        },
+
+        /**
+         * Remove a card
+         * @param  {element}  $card  The card element
+         * @return {void}
+         */
+        removeCard($card) {
+            // Check if the remove animation is not set to none
+            if (this.settings.removeAnimation != 'none') {
+                // Add the remove animation class to the card and check when the animation has ended
+                $card.addClass(`animated ${this.settings.removeAnimation}`).one('animationend', () => {
                     // Remove the card
                     $card.remove();
-                }
-            });
-        }
+                });
+            } else {
+                // Remove the card
+                $card.remove();
+            }
+        },
     });
 
     /**

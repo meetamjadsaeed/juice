@@ -88,7 +88,7 @@
         },
 
         /**
-         * Set the tooltip settings from the plugin default plugin settings or the target element data attribute overrides
+         * Set the tooltip settings from the plugin default settings or the target element data attribute overrides
          * @param  {element}  $element  The target element
          * @return {void}
          */
@@ -222,7 +222,7 @@
         },
 
         /**
-         * Remove the tooltip
+         * Remove all the tooltips
          * @return {void}
          */
         removeTooltips() {

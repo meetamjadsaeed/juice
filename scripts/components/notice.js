@@ -5,8 +5,10 @@
    ============================================================================================= */
 
 ;((($, window, document, undefined) => {
-    // Set the plugin defaults
+    // Set the plugin name
     const pluginName = 'notice';
+
+    // Set the plugin defaults
     const defaults = {
         removeAnimation: 'fadeOut'
     };
@@ -35,30 +37,48 @@
          * @return {void}
          */
         initialize() {
-            // Set the notice elements
+            // Set the notice element
             const $notice = $(this.element);
 
-            // Check if the notice remove animation data attribute exists and set the remove animation
-            this.settings.removeAnimation = ($notice.data('notice-remove-animation')
-                ? $notice.data('notice-remove-animation')
-                : this.settings.removeAnimation
-            );
+            // Set the notice settings
+            this.setNoticeSettings($notice);
 
             // Add a click event handler to remove a notice
             $('.js-notice-remove', this.element).on('click', () => {
-                // Check if the remove animation is not set to none
-                if (this.settings.removeAnimation != 'none') {
-                    // Add the remove animation class to the notice and check when the animation has ended
-                    $notice.addClass(`animated ${this.settings.removeAnimation}`).one('animationend', () => {
-                        // Remove the notice
-                        $notice.remove();
-                    });
-                } else {
+                // Remove the notice
+                this.removeNotice($notice);
+            });
+        },
+
+        /**
+         * Set the notice settings from the plugin default settings or the notice element data attribute overrides
+         * @param  {element}  $notice  The notice element
+         * @return {void}
+         */
+        setNoticeSettings($notice) {
+            // Check if the notice remove animation data attribute exists and set the remove animation
+            this.settings.removeAnimation =
+                $notice.data('notice-remove-animation') || this.settings.removeAnimation;
+        },
+
+        /**
+         * Remove a notice
+         * @param  {element}  $notice  The notice element
+         * @return {void}
+         */
+        removeNotice($notice) {
+            // Check if the remove animation is not set to none
+            if (this.settings.removeAnimation != 'none') {
+                // Add the remove animation class to the notice and check when the animation has ended
+                $notice.addClass(`animated ${this.settings.removeAnimation}`).one('animationend', () => {
                     // Remove the notice
                     $notice.remove();
-                }
-            });
-        }
+                });
+            } else {
+                // Remove the notice
+                $notice.remove();
+            }
+        },
     });
 
     /**
