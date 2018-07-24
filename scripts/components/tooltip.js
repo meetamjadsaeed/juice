@@ -43,7 +43,7 @@
          * @return {void}
          */
         initialize() {
-            // Set the element
+            // Set the target element
             const $element = $(this.element);
 
             // Add a mouseenter, mouseleave and click handler to show and hide the tooltip
