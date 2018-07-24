@@ -1,0 +1,146 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> DROPDOWN -> VARIABLES
+   ============================================================================================= */
+
+$dropdown-background-color: base-color('white') !default;
+$dropdown-border-color: base-color('white', 'darken-3') !default;
+$dropdown-border-radius--top-left: $border-radius--top-left !default;
+$dropdown-border-radius--top-right: $border-radius--top-right !default;
+$dropdown-border-radius--bottom-right: $border-radius--bottom-right !default;
+$dropdown-border-radius--bottom-left: $border-radius--bottom-left !default;
+$dropdown-border-style: $border-style !default;
+$dropdown-border-width--top: $border-width--top !default;
+$dropdown-border-width--right: $border-width--right !default;
+$dropdown-border-width--bottom: $border-width--bottom !default;
+$dropdown-border-width--left: $border-width--left !default;
+$dropdown-border-width--separator: $border-width--separator !default;
+$dropdown-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$dropdown-content-spacing: $content-spacing !default;
+$dropdown-content-spacing--small: $content-spacing--small !default;
+$dropdown-content-spacing--large: $content-spacing--large !default;
+$dropdown-content-spacing--huge: $content-spacing--huge !default;
+$dropdown-font-color: font-color('default') !default;
+$dropdown-font-size: $font-size !default;
+$dropdown-font-size--small: $font-size--small !default;
+$dropdown-font-size--large: $font-size--large !default;
+$dropdown-font-size--huge: $font-size--huge !default;
+$dropdown-link-color: $link-color !default;
+$dropdown-link-color--hover: $link-color--hover !default;
+$dropdown-min-width: 200px !default;
+$dropdown-min-width--small: 200px !default;
+$dropdown-min-width--large: 300px !default;
+$dropdown-min-width--huge: 400px !default;
+$dropdown-offset: 5px !default;
+
+
+/* =============================================================================================
+   RUCKSACK -> COMPONENTS -> DROPDOWN
+   ============================================================================================= */
+
+.has-dropdown {
+    display: inline-flex;
+    position: relative;
+
+    // Nested selectors
+    .dropdown {
+        animation-duration: 300ms;
+        background-color: $dropdown-background-color;
+        border: 0 $dropdown-border-style $dropdown-border-color;
+        border-bottom-left-radius: $dropdown-border-radius--bottom-left;
+        border-bottom-right-radius: $dropdown-border-radius--bottom-right;
+        border-bottom-width: $dropdown-border-width--bottom;
+        border-left-width: $dropdown-border-width--left;
+        border-top-left-radius: $dropdown-border-radius--top-left;
+        border-top-right-radius: $dropdown-border-radius--top-right;
+        border-top-width: $dropdown-border-width--top;
+        border-right-width: $dropdown-border-width--right;
+        box-shadow: $dropdown-box-shadow;
+        color: $dropdown-font-color;
+        display: none;
+        font-size: $dropdown-font-size;
+        left: 0;
+        margin: 0;
+        margin-top: $dropdown-offset;
+        min-width: $dropdown-min-width;
+        position: absolute;
+        text-align: left;
+        top: 100%;
+
+        // Modifiers: State hooks
+        &.is-active {
+            display: block;
+        }
+
+        // Modifiers: Size
+        &.is-small {
+            font-size: $dropdown-font-size--small;
+            min-width: $dropdown-min-width--small;
+
+            // Nested selectors
+            .dropdown__item {
+                padding: ($dropdown-content-spacing--small / 2) $dropdown-content-spacing--small;
+            }
+        }
+
+        &.is-large {
+            font-size: $dropdown-font-size--large;
+            min-width: $dropdown-min-width--large;
+
+            // Nested selectors
+            .dropdown__item {
+                padding: ($dropdown-content-spacing--large / 2) $dropdown-content-spacing--large;
+            }
+        }
+
+        &.is-huge {
+            font-size: $dropdown-font-size--huge;
+            min-width: $dropdown-min-width--huge;
+
+            // Nested selectors
+            .dropdown__item {
+                padding: ($dropdown-content-spacing--huge / 2) $dropdown-content-spacing--huge;
+            }
+        }
+
+        // Modifiers
+        &.dropdown--above {
+            bottom: 100%;
+            top: auto;
+        }
+
+        &.dropdown--center {
+            left: 50%;
+            right: auto;
+        }
+
+        &.dropdown--right {
+            left: auto;
+            right: 0;
+        }
+
+        // Nested selectors
+        a {
+            // Modifiers
+            &.dropdown__item {
+                display: block;
+
+                // Pseudo classes
+                &:hover {
+                    background-color: base-color('white', 'darken-1');
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .dropdown__item {
+            padding: ($dropdown-content-spacing / 2) $dropdown-content-spacing;
+        }
+
+        .dropdown__divider {
+            border: 0 $dropdown-border-style $dropdown-border-color;
+            border-bottom-width: $dropdown-border-width--separator;
+        }
+    }
+}
