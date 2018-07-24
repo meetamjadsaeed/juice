@@ -10,9 +10,10 @@
 
     // Set the plugin defaults
     const defaults = {
-        animationIn: 'fadeIn',
-        animationOut: 'fadeOut',
+        animationIn: 'zoomIn',
+        animationOut: 'zoomOut',
         color: null,
+        duration: 2000,
         feedback: null,
         position: 'top',
         size: null,
@@ -21,7 +22,7 @@
     /**
      * Constructor
      * @param  {element}  element  The target element
-     * @param  {array}    options  The plugin options
+     * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
@@ -31,7 +32,7 @@
         this.element = element;
         this.settings = $.extend({}, defaults, options);
 
-        // Call the initialize function
+        // Initialize the plugin
         this.initialize();
     }
 
@@ -45,77 +46,46 @@
             // Set the element
             const $element = $(this.element);
 
-            // Set the tooltip settings
-            this.setTooltipSettings($element);
-
-            // Add a mouseenter, focus, mouseleave and blur handler to show and hide the tooltip
-            $element.on('mouseenter focus', (event) => {
+            // Add a mouseenter, mouseleave and click handler to show and hide the tooltip
+            $element.on('mouseenter', (event) => {
                 // Stop propagation
                 event.stopPropagation();
 
                 // Build the tooltip
-                const $tooltip = this.buildTooltip($element);
+                const $tooltip = this.build($element);
 
-                // Set the animation out class to the tooltip
-                $tooltip.data({
-                    'animation-out': this.settings.animationOut
+                // Append the tooltip to the body
+                $('body').append($tooltip);
+
+                // Position the position
+                this.position($element, $tooltip);
+
+                // Store the tooltip to the target element
+                $element.data({
+                    'tooltip-element': $tooltip
                 });
 
-                // Add the animation in class to the tooltip and check when the animation has ended
-                $tooltip.addClass(this.settings.animationIn).one('animationend', () => {
-                    // Remove the animation in class
-                    $tooltip.removeClass(this.settings.animationIn);
-                });
-            }).on('mouseleave blur', (event) => {
-                // Stop propagation
-                event.stopPropagation();
+                // Show the tooltip
+                this.show($tooltip);
 
-                // Remove all the tooltips
-                this.removeTooltips();
-            });
-
-            // Add a click handler to remove all the tooltips
-            $('body').off().on('click', (event) => {
+                // Check if the tooltip has a display duration
+                if ($tooltip.data('duration') > 0) {
+                    // Start a timer
+                    setTimeout(() => {
+                        // Remove the tooltip
+                        this.remove($tooltip);
+                    }, $tooltip.data('duration'));
+                }
+            }).on('mouseleave click', (event) => {
                 // Stop propagation
                 event.stopPropagation();
 
                 // Set the tooltip
-                const $tooltip = $('.tooltip');
+                const $tooltip = $element.data('tooltip-element');
 
-                // Remove all the tooltips
-                this.removeTooltips();
+                // Remove the tooltip
+                this.remove($tooltip);
             });
-        },
-
-        /**
-         * Set the tooltip settings from the plugin default settings or the target element data attribute overrides
-         * @param  {element}  $element  The target element
-         * @return {void}
-         */
-        setTooltipSettings($element) {
-            // Check if the tooltip animation in data attribute exists and set the tooltip animation in
-            this.settings.animationIn =
-                $element.data('tooltip-animation-in') || this.settings.animationIn;
-
-            // Check if the tooltip animation out data attribute exists and set the tooltip animation out
-            this.settings.animationOut =
-                $element.data('tooltip-animation-out') || this.settings.animationOut;
-
-            // Check if the tooltip color data attribute exists and set the tooltip color
-            this.settings.color =
-                $element.data('tooltip-color') || this.settings.color;
-
-            // Check if the tooltip feedback data attribute exists and set the tooltip feedback
-            this.settings.feedback =
-                $element.data('tooltip-feedback') || this.settings.feedback;
-
-            // Check if the tooltip position data attribute exists and set the tooltip position
-            this.settings.position =
-                $element.data('tooltip-position') || this.settings.position;
-
-            // Check if the tooltip size data attribute exists and set the tooltip size
-            this.settings.size =
-                $element.data('tooltip-size') || this.settings.size;
         },
 
         /**
@@ -123,7 +93,7 @@
          * @param  {element}  $element  The target element
          * @return {element}            The tooltip element
          */
-        buildTooltip($element) {
+        build($element) {
             // Set the tooltip elements
             const $tooltip = $('<div>', { 'class': 'tooltip' });
             const $tooltipContent = $('<div>', { 'class': 'tooltip__content' });
@@ -135,29 +105,40 @@
                 )
             );
 
-            // Check if a tooltip size value exists
-            if (this.settings.size) {
-                // Set the tooltip size
-                $tooltip.addClass(`is-${this.settings.size}`);
+            // Store the settings to the tooltip data
+            $tooltip.data({
+                'animation-in': $element.data('tooltip-animation-in') || this.settings.animationIn,
+                'animation-out': $element.data('tooltip-animation-out') || this.settings.animationOut,
+                'color': $element.data('tooltip-color') || this.settings.color,
+                'duration': $element.data('tooltip-duration') || this.settings.duration,
+                'feedback': $element.data('tooltip-feedback') || this.settings.feedback,
+                'position': $element.data('tooltip-position') || this.settings.position,
+                'size': $element.data('tooltip-size') || this.settings.size,
+            });
+
+            // Check if a color value exists
+            if ($tooltip.data('color')) {
+                // Add the color class modifier to the tooltip
+                $tooltip.addClass(`is-${$tooltip.data('color')}`);
             }
 
-            // Check if a tooltip color value exists
-            if (this.settings.color) {
-                // Set the tooltip color
-                $tooltip.addClass(`is-${this.settings.color}`);
+            // Check if a feedback value exists
+            if ($tooltip.data('feedback')) {
+                // Add the feedback class modifier to the tooltip
+                $tooltip.addClass(`with-${$tooltip.data('feedback')}`);
             }
 
-            // Check if a tooltip feedback value exists
-            if (this.settings.feedback) {
-                // Set the tooltip feedback
-                $tooltip.addClass(`with-${this.settings.feedback}`);
+            // Check if a position value exists
+            if ($tooltip.data('position')) {
+                // Add the position class modifier to the tooltip
+                $tooltip.addClass(`tooltip--${$tooltip.data('position')}`);
             }
 
-            // Append the tooltip to the body
-            $('body').append($tooltip);
-
-            // Set the tooltip position
-            this.setTooltipPosition($element, $tooltip);
+            // Check if a size value exists
+            if ($tooltip.data('size')) {
+                // Add the size class modifier to the tooltip
+                $tooltip.addClass(`is-${$tooltip.data('size')}`);
+            }
 
             // Return the tooltip
             return $tooltip;
@@ -169,7 +150,7 @@
          * @param  {element}  $tooltip  The tooltip element
          * @return {void}
          */
-        setTooltipPosition($element, $tooltip) {
+        position($element, $tooltip) {
             // Set the element properties
             const elementX = $element.offset().left;
             const elementY = $element.offset().top;
@@ -184,7 +165,7 @@
             let tooltipX, tooltipY;
 
             // Start a switch statement for the tooltip position
-            switch (this.settings.position) {
+            switch ($tooltip.data('position')) {
                 // Top (default)
                 default:
                     // Set the tooltip x and y positions
@@ -214,39 +195,44 @@
                 break;
             }
 
-            // Add the tooltip position modifier class and set the inline top and left positions
-            $tooltip.addClass(`tooltip--${this.settings.position}`).css({
+            // Set the inline top and left positions
+            $tooltip.css({
                 'top': Math.round(tooltipY),
                 'left': Math.round(tooltipX),
             });
         },
 
         /**
-         * Remove all the tooltips
+         * Show a tooltip
+         * @param  {element}  $tooltip  The tooltip element
          * @return {void}
          */
-        removeTooltips() {
-            // Cycle through the tooltips
-            $('.tooltip').each(function() {
-                // Set the tooltip
-                const $tooltip = $(this);
+        show($tooltip) {
+            // Add the animation in class to the tooltip and check when the animation has ended
+            $tooltip.addClass($tooltip.data('animation-in')).one('animationend', () => {
+                // Remove the animation in class
+                $tooltip.removeClass($tooltip.data('animation-in'));
+            });
+        },
 
-                // Add the animation out class to the tooltip and check when the animation has ended
-                $tooltip.addClass($tooltip.data('animation-out')).one('animationend', () => {
-                    // Remove the animation out class
-                    $tooltip.removeClass($tooltip.data('animation-out'));
-
-                    // Remove the tooltip
-                    $tooltip.remove();
-                });
+        /**
+         * Remove a tooltip
+         * @param  {element}  $tooltip  The tooltip element
+         * @return {void}
+         */
+        remove($tooltip) {
+            // Add the animation out class to the tooltip and check when the animation has ended
+            $tooltip.addClass($tooltip.data('animation-out')).one('animationend', () => {
+                // Remove the tooltip
+                $tooltip.remove();
             });
         },
     });
 
     /**
      * Plugin wrapper around the constructor to prevent against multiple instantiations
-     * @param  {array}   options  The plugin options
-     * @return {element}          The target element
+     * @param  {object}   options  The plugin options
+     * @return {element}           The target element
      */
     $.fn[pluginName] = function(options) {
         // Return each element

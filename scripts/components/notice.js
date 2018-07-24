@@ -16,7 +16,7 @@
     /**
      * Constructor
      * @param  {element}  element  The target element
-     * @param  {array}    options  The plugin options
+     * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
@@ -26,7 +26,7 @@
         this.element = element;
         this.settings = $.extend({}, defaults, options);
 
-        // Call the initialize function
+        // Initialize the plugin
         this.initialize();
     }
 
@@ -40,37 +40,29 @@
             // Set the notice element
             const $notice = $(this.element);
 
-            // Set the notice settings
-            this.setNoticeSettings($notice);
-
             // Add a click event handler to remove a notice
             $('.js-notice-remove', this.element).on('click', () => {
+                // Set the remove settings
+                const settings = {
+                    'animation': $notice.data('notice-remove-animation') || this.settings.removeAnimation
+                };
+
                 // Remove the notice
-                this.removeNotice($notice);
+                this.remove($notice, settings);
             });
         },
 
         /**
-         * Set the notice settings from the plugin default settings or the notice element data attribute overrides
-         * @param  {element}  $notice  The notice element
-         * @return {void}
-         */
-        setNoticeSettings($notice) {
-            // Check if the notice remove animation data attribute exists and set the remove animation
-            this.settings.removeAnimation =
-                $notice.data('notice-remove-animation') || this.settings.removeAnimation;
-        },
-
-        /**
          * Remove a notice
-         * @param  {element}  $notice  The notice element
+         * @param  {element}  $notice   The notice element
+         * @param  {object}   settings  The plugin/user settings
          * @return {void}
          */
-        removeNotice($notice) {
-            // Check if the remove animation is not set to none
-            if (this.settings.removeAnimation != 'none') {
-                // Add the remove animation class to the notice and check when the animation has ended
-                $notice.addClass(`animated ${this.settings.removeAnimation}`).one('animationend', () => {
+        remove($notice, settings) {
+            // Check if the animation is not set to none
+            if (settings.animation != 'none') {
+                // Add the animation classe to the notice and check when the animation has ended
+                $notice.addClass(`animated ${settings.animation}`).one('animationend', () => {
                     // Remove the notice
                     $notice.remove();
                 });
@@ -83,8 +75,8 @@
 
     /**
      * Plugin wrapper around the constructor to prevent against multiple instantiations
-     * @param  {array}   options  The plugin options
-     * @return {element}          The target element
+     * @param  {object}   options  The plugin options
+     * @return {element}           The target element
      */
     $.fn[pluginName] = function(options) {
         // Return each element

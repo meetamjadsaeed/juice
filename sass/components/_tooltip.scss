@@ -10,6 +10,7 @@ $tooltip-border-radius--top-left: $border-radius--top-left;
 $tooltip-border-radius--top-right: $border-radius--top-right;
 $tooltip-border-radius--bottom-right: $border-radius--bottom-right;
 $tooltip-border-radius--bottom-left: $border-radius--bottom-left;
+$tooltip-duration: 300ms;
 $tooltip-font-color: base-color('white');
 $tooltip-font-family: 'Trebuchet', sans-serif;
 $tooltip-font-size: $font-size - 0.2em;
@@ -26,7 +27,7 @@ $tooltip-padding: 6px 10px;
    ============================================================================================= */
 
 .tooltip {
-    animation-duration: 300ms;
+    animation-duration: $tooltip-duration;
 	left: 0;
 	margin: 0;
 	margin-top: -($tooltip-arrow-size + $tooltip-offset);
@@ -55,7 +56,7 @@ $tooltip-padding: 6px 10px;
 	// Modifiers
 	&.tooltip--right {
 		margin: 0;
-		margin-left: $tooltip-arrow-size;
+		margin-left: $tooltip-arrow-size + $tooltip-offset;
 
 		// Pseudo elements
 		&::before {
@@ -72,7 +73,7 @@ $tooltip-padding: 6px 10px;
 
 	&.tooltip--left {
 		margin: 0;
-		margin-left: -$tooltip-arrow-size;
+		margin-left: -($tooltip-arrow-size + $tooltip-offset);
 
 		// Pseudo elements
 		&::before {
@@ -89,7 +90,7 @@ $tooltip-padding: 6px 10px;
 
 	&.tooltip--bottom {
 		margin: 0;
-		margin-top: $tooltip-arrow-size;
+		margin-top: $tooltip-arrow-size + $tooltip-offset;
 
 		// Pseudo elements
 		&::before {

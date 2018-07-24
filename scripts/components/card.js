@@ -16,7 +16,7 @@
     /**
      * Constructor
      * @param  {element}  element  The target element
-     * @param  {array}    options  The plugin options
+     * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
@@ -26,7 +26,7 @@
         this.element = element;
         this.settings = $.extend({}, defaults, options);
 
-        // Call the initialize function
+        // Initialize the plugin
         this.initialize();
     }
 
@@ -40,37 +40,29 @@
             // Set the card element
             const $card = $(this.element);
 
-            // Set the card settings
-            this.setCardSettings($card);
-
             // Add a click event handler to remove a card
             $('.js-card-remove', this.element).on('click', () => {
+                // Set the remove settings
+                const settings = {
+                    'animation': $card.data('card-remove-animation') || this.settings.removeAnimation
+                };
+
                 // Remove the card
-                this.removeCard($card);
+                this.remove($card, settings);
             });
         },
 
         /**
-         * Set the card settings from the plugin default settings or the card element data attribute overrides
-         * @param  {element}  $card  The card element
-         * @return {void}
-         */
-        setCardSettings($card) {
-            // Check if the card remove animation data attribute exists and set the remove animation
-            this.settings.removeAnimation =
-                $card.data('card-remove-animation') || this.settings.removeAnimation;
-        },
-
-        /**
          * Remove a card
-         * @param  {element}  $card  The card element
+         * @param  {element}  $card     The card element
+         * @param  {object}   settings  The plugin/user settings
          * @return {void}
          */
-        removeCard($card) {
-            // Check if the remove animation is not set to none
-            if (this.settings.removeAnimation != 'none') {
-                // Add the remove animation class to the card and check when the animation has ended
-                $card.addClass(`animated ${this.settings.removeAnimation}`).one('animationend', () => {
+        remove($card, settings) {
+            // Check if the animation is not set to none
+            if (settings.animation != 'none') {
+                // Add the animation classe to the card and check when the animation has ended
+                $card.addClass(`animated ${settings.animation}`).one('animationend', () => {
                     // Remove the card
                     $card.remove();
                 });
@@ -83,8 +75,8 @@
 
     /**
      * Plugin wrapper around the constructor to prevent against multiple instantiations
-     * @param  {array}   options  The plugin options
-     * @return {element}          The target element
+     * @param  {object}   options  The plugin options
+     * @return {element}           The target element
      */
     $.fn[pluginName] = function(options) {
         // Return each element
