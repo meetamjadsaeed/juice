@@ -34,25 +34,16 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     margin: 0;
     margin-bottom: $navigation-element-spacing;
 
-    // Modifiers
+    // Modifiers: Size
     &.is-small {
         font-size: $navigation-font-size--small;
         padding: $navigation-content-spacing--small;
+        margin-bottom: $navigation-element-spacing--small;
 
-        // Nested selectors
         .navigation__logo,
         .navigation__links,
         .navigation__search {
             padding: 0 ($navigation-content-spacing--small / 2);
-
-            // Pseudo classes
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &:last-child {
-                padding-right: 0;
-            }
         }
 
         .navigation__links {
@@ -67,19 +58,6 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                     }
                 }
             }
-
-            #{$button} {
-                @include button-size--small();
-                @include icon-button-size--small();
-            }
-        }
-
-        .navigation__search {
-            // Nested selectors
-            #{$input} {
-                @include input-size--small();
-                margin-bottom: 0;
-            }
         }
 
         // Breakpoints
@@ -88,12 +66,8 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
             .navigation__logo,
             .navigation__links,
             .navigation__search {
+                padding: 0;
                 padding-bottom: $navigation-content-spacing--small;
-
-                // Nested selectors
-                &:last-child {
-                    padding-bottom: 0;
-                }
             }
         }
     }
@@ -101,21 +75,12 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     &.is-large {
         font-size: $navigation-font-size--large;
         padding: $navigation-content-spacing--large;
+        margin-bottom: $navigation-element-spacing--large;
 
-        // Nested selectors
         .navigation__logo,
         .navigation__links,
         .navigation__search {
             padding: 0 ($navigation-content-spacing--large / 2);
-
-            // Pseudo classes
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &:last-child {
-                padding-right: 0;
-            }
         }
 
         .navigation__links {
@@ -130,19 +95,6 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                     }
                 }
             }
-
-            #{$button} {
-                @include button-size--large();
-                @include icon-button-size--large();
-            }
-        }
-
-        .navigation__search {
-            // Nested selectors
-            #{$input} {
-                @include input-size--large();
-                margin-bottom: 0;
-            }
         }
 
         // Breakpoints
@@ -151,12 +103,8 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
             .navigation__logo,
             .navigation__links,
             .navigation__search {
-                padding-bottom: $navigation-content-spacing--huge;
-
-                // Nested selectors
-                &:last-child {
-                    padding-bottom: 0;
-                }
+                padding: 0;
+                padding-bottom: $navigation-content-spacing--large;
             }
         }
     }
@@ -164,21 +112,12 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     &.is-huge {
         font-size: $navigation-font-size--huge;
         padding: $navigation-content-spacing--huge;
+        margin-bottom: $navigation-element-spacing--huge;
 
-        // Nested selectors
         .navigation__logo,
         .navigation__links,
         .navigation__search {
             padding: 0 ($navigation-content-spacing--huge / 2);
-
-            // Pseudo classes
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &:last-child {
-                padding-right: 0;
-            }
         }
 
         .navigation__links {
@@ -193,19 +132,6 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                     }
                 }
             }
-
-            #{$button} {
-                @include button-size--huge();
-                @include icon-button-size--huge();
-            }
-        }
-
-        .navigation__search {
-            // Nested selectors
-            #{$input} {
-                @include input-size--huge();
-                margin-bottom: 0;
-            }
         }
 
         // Breakpoints
@@ -214,12 +140,8 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
             .navigation__logo,
             .navigation__links,
             .navigation__search {
+                padding: 0;
                 padding-bottom: $navigation-content-spacing--huge;
-
-                // Nested selectors
-                &:last-child {
-                    padding-bottom: 0;
-                }
             }
         }
     }
@@ -251,6 +173,12 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
 
     .navigation__logo {
         flex-grow: 1;
+
+        // Nested selectors
+        a {
+            align-items: center;
+            display: flex;
+        }
     }
 
     .navigation__links {
@@ -322,7 +250,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
         }
     }
 
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop-up') {
         // Nested selectors
         .navigation__links {
             // Nested selectors
