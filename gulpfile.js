@@ -95,8 +95,8 @@ gulp.task('build:scripts', () => {
  */
 gulp.task('build', () => {
     // Start the gulp css and scripts tasks
-    gulp.start('build-css');
-    gulp.start('build-scripts');
+    gulp.start('build:css');
+    gulp.start('build:scripts');
 });
 
 /**
