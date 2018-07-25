@@ -28,8 +28,7 @@ const port = 3001;
  * All file type resource paths
  * @const {array}
  */
-const resources = {
-    html: '**/*.html',
+const resource = {
     sass: 'sass/rucksack.scss',
     scripts: 'scripts/**/*.js'
 };
@@ -41,6 +40,18 @@ const resources = {
 const build = {
     css: 'dist/',
     scripts: 'dist/'
+};
+
+/**
+ * Watch for file changes
+ * @const {array}
+ */
+const watch = {
+    html: '**/*.html',
+    twig: '**/*.twig',
+    php: '**/*.php',
+    sass: '**/*.scss',
+    scripts: '**/*.js'
 };
 
 
@@ -55,7 +66,7 @@ const build = {
  * @module browser-sync
  */
 gulp.task('build:css', () => {
-    gulp.src(resources.sass)
+    gulp.src(resource.sass)
         .pipe(sass({
             outputStyle: 'compressed'
         }))
@@ -77,7 +88,7 @@ gulp.task('build:css', () => {
  * @module browser-sync
  */
 gulp.task('build:scripts', () => {
-    gulp.src(resources.scripts)
+    gulp.src(resource.scripts)
 		.pipe(concat('rucksack.js'))
         .pipe(babel({
             presets: ['env']
@@ -118,11 +129,11 @@ gulp.task('dev', () => {
     });
 
     // Watch for file changes and call the build css and scripts gulp tasks
-    gulp.watch(resources.sass, ['build:css']);
-    gulp.watch(resources.scripts, ['build:scripts']);
+    gulp.watch(watch.sass, ['build:css']);
+    gulp.watch(watch.scripts, ['build:scripts']);
 
     // Watch for declared file changes and reload browserSync
-    gulp.watch([resources.html]).on('change', () => {
+    gulp.watch([watch.html, watch.twig, watch.php]).on('change', () => {
         // Reload browserSync
         browserSync.reload();
     });
