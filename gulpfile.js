@@ -44,6 +44,15 @@ const build = {
 };
 
 /**
+ * Output file names
+ * @const {array}
+ */
+const filename = {
+    css: 'app.css',
+    scripts: 'app.js'
+};
+
+/**
  * Watch these file types for changes
  * @const {array}
  */
@@ -74,7 +83,7 @@ gulp.task('build:css', () => {
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
-        .pipe(rename('rucksack.css'))
+        .pipe(rename(filename.css))
         .pipe(gulp.dest(build.css))
         .pipe(browserSync.reload({
             stream: true
@@ -90,7 +99,7 @@ gulp.task('build:css', () => {
  */
 gulp.task('build:scripts', () => {
     gulp.src(resource.scripts)
-		.pipe(concat('rucksack.js'))
+		.pipe(concat(filename.scripts))
         .pipe(babel({
             presets: ['env']
         }))
