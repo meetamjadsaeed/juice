@@ -118,8 +118,8 @@ gulp.task('dev', () => {
     });
 
     // Watch for file changes and call the build css and scripts gulp tasks
-    gulp.watch(resources.sass, ['build-css']);
-    gulp.watch(resources.scripts, ['build-scripts']);
+    gulp.watch(resources.sass, ['build:css']);
+    gulp.watch(resources.scripts, ['build:scripts']);
 
     // Watch for declared file changes and reload browserSync
     gulp.watch([resources.html]).on('change', () => {
