@@ -17,14 +17,12 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 
-
 /**
  * Localhost proxy server and port for php connect
  * @const {string}
  */
 const hostname = 'localhost/your-project-directory';
 const port = 3001;
-
 
 /**
  * All file type resource paths
@@ -35,7 +33,6 @@ const resources = {
     sass: 'sass/rucksack.scss',
     scripts: 'scripts/**/*.js'
 };
-
 
 /**
  * Output build directories
@@ -71,7 +68,6 @@ gulp.task('build:css', () => {
         }));
 });
 
-
 /**
  * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
  * @module gulp-concat
@@ -93,7 +89,6 @@ gulp.task('build:scripts', () => {
         }));
 });
 
-
 /**
  * Compile SASS to CSS, autoprefix, minimize and reload browserSync
  * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
@@ -103,7 +98,6 @@ gulp.task('build', () => {
     gulp.start('build-css');
     gulp.start('build-scripts');
 });
-
 
 /**
  * Start a development server
