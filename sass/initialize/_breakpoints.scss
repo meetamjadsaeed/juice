@@ -6,22 +6,23 @@
 
 // Breakpoints
 $breakpoints: (
-    // ...up
+    // ...only
     'mobile': '(max-width: 599px)',
-    'tablet': '(min-width: 600px)',
-    'laptop': '(min-width: 900px)',
-    'desktop': '(min-width: 1100px)',
-    'widescreen': '(min-width: 1400px)',
+    'touch': '(max-width: 899px)',
+    'tablet': '(min-width: 600px) and (max-width: 899px)',
+    'laptop': '(min-width: 900px) and (max-width: 1099px)',
+    'desktop': '(min-width: 1100px) and (max-width: 1399px)',
+    'widescreen': '(min-width: 1400px) and (max-width: 1799px)',
     'ultrawide': '(min-width: 1800px)',
 
-    // ...only
-    'tablet-only': '(min-width: 600px) and (max-width: 899px)',
-    'laptop-only': '(min-width: 900px) and (max-width: 1099px)',
-    'desktop-only': '(min-width: 1100px) and (max-width: 1399px)',
-    'widescreen-only': '(min-width: 1400px) and (max-width: 1799px)',
+    // ...up
+    'tablet-up': '(min-width: 600px)',
+    'laptop-up': '(min-width: 900px)',
+    'desktop-up': '(min-width: 1100px)',
+    'widescreen-up': '(min-width: 1400px)',
 
     // ...until
-    'touch': '(max-width: 1099px)',
+    'until-desktop': '(max-width: 1099px)',
     'until-widescreen': '(max-width: 1399px)',
     'until-ultrawide': '(max-width: 1799px)',
 );
