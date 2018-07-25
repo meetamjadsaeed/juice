@@ -14,6 +14,7 @@ const browserSync = require('browser-sync');
 const concat = require('gulp-concat');
 const connect = require('gulp-connect-php7');
 const gulp = require('gulp');
+const rename = require("gulp-rename");
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 
@@ -25,7 +26,7 @@ const hostname = 'localhost/your-project-directory';
 const port = 3001;
 
 /**
- * All file type resource paths
+ * Development file resources
  * @const {array}
  */
 const resource = {
@@ -43,7 +44,7 @@ const build = {
 };
 
 /**
- * Watch for file changes
+ * Watch these file types for changes
  * @const {array}
  */
 const watch = {
@@ -73,6 +74,7 @@ gulp.task('build:css', () => {
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
+        .pipe(rename('rucksack.css'))
         .pipe(gulp.dest(build.css))
         .pipe(browserSync.reload({
             stream: true
@@ -82,7 +84,6 @@ gulp.task('build:css', () => {
 /**
  * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
  * @module gulp-concat
- * @module gulp-strip-comments
  * @module gulp-babel
  * @module gulp-uglify
  * @module browser-sync
