@@ -57,7 +57,7 @@ const build = {
  * @module gulp-autoprefixer
  * @module browser-sync
  */
-gulp.task('build-css', () => {
+gulp.task('build:css', () => {
     gulp.src(resources.sass)
         .pipe(sass({
             outputStyle: 'compressed'
@@ -80,7 +80,7 @@ gulp.task('build-css', () => {
  * @module gulp-uglify
  * @module browser-sync
  */
-gulp.task('build-scripts', () => {
+gulp.task('build:scripts', () => {
     gulp.src(resources.scripts)
 		.pipe(concat('rucksack.js'))
         .pipe(babel({

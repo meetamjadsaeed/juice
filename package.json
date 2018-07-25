@@ -1,7 +1,7 @@
 {
     "name": "@cloudeight/rucksack",
     "description": "A responsive frontend framework",
-    "version": "1.0.0-beta.57",
+    "version": "1.0.0-beta.58",
     "license": "MIT",
     "author": {
         "name": "Joe Mottershaw",
@@ -23,7 +23,7 @@
         "scss",
         "javascript"
     ],
-    "dependencies": {
+    "devDependencies": {
         "babel-core": "^6.26.3",
         "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.7.0",

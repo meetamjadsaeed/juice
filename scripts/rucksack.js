@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /* =============================================================================================
    RUCKSACK -> FEATURE DETECTION
@@ -13,7 +13,7 @@ document.documentElement.className.replace('no-js', 'js');
    ============================================================================================= */
 
 // Prevent default
-document.querySelector(".prevent-default").addEventListener('click', (event) => {
+document.querySelector('.prevent-default').addEventListener('click', (event) => {
     event.preventDefault();
 });
 
