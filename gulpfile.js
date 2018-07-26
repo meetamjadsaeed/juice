@@ -10,7 +10,7 @@
  */
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
-const browserSync = require('browser-sync');
+const browsersync = require('browser-sync');
 const concat = require('gulp-concat');
 const connect = require('gulp-connect-php7');
 const gulp = require('gulp');
@@ -26,12 +26,21 @@ const hostname = 'localhost/your-project-directory';
 const port = 3001;
 
 /**
- * Development file resources
+ * Resource development files
  * @const {array}
  */
 const resource = {
     sass: 'sass/rucksack.scss',
     scripts: 'scripts/**/*.js'
+};
+
+/**
+ * Output file names
+ * @const {array}
+ */
+const filename = {
+    css: 'rucksack.min.css',
+    scripts: 'rucksack.min.js'
 };
 
 /**
@@ -44,24 +53,13 @@ const build = {
 };
 
 /**
- * Output file names
- * @const {array}
- */
-const filename = {
-    css: 'app.css',
-    scripts: 'app.js'
-};
-
-/**
  * Watch these file types for changes
  * @const {array}
  */
 const watch = {
     html: '**/*.html',
     twig: '**/*.twig',
-    php: '**/*.php',
-    sass: '**/*.scss',
-    scripts: '**/*.js'
+    php: '**/*.php'
 };
 
 
@@ -70,7 +68,7 @@ const watch = {
    ============================================================================================= */
 
 /**
- * Compile SASS to CSS, autoprefix, minimize and reload browserSync
+ * Compile SASS to CSS, autoprefix, minimize, rename and reload browsersync
  * @module gulp-sass
  * @module gulp-autoprefixer
  * @module browser-sync
@@ -85,13 +83,13 @@ gulp.task('build:css', () => {
         }))
         .pipe(rename(filename.css))
         .pipe(gulp.dest(build.css))
-        .pipe(browserSync.reload({
+        .pipe(browsersync.reload({
             stream: true
         }));
 });
 
 /**
- * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
+ * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browsersync
  * @module gulp-concat
  * @module gulp-babel
  * @module gulp-uglify
@@ -105,14 +103,13 @@ gulp.task('build:scripts', () => {
         }))
         .pipe(uglify())
         .pipe(gulp.dest(build.scripts))
-        .pipe(browserSync.reload({
+        .pipe(browsersync.reload({
             stream: true
         }));
 });
 
 /**
- * Compile SASS to CSS, autoprefix, minimize and reload browserSync
- * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
+ * Run all individual build tasks
  */
 gulp.task('build', () => {
     // Start the gulp css and scripts tasks
@@ -121,30 +118,29 @@ gulp.task('build', () => {
 });
 
 /**
- * Start a development server
- * Compile SASS to CSS, autoprefix, minimize and reload browserSync
- * Concat all JavaScript files, strip comments, compile ES6 to ES5, minimize and reload browserSync
- * Watch for declared file changes and reload browserSync
+ * Start a development server, watch for file changes, run specific tasks and reload browsersync
  * @module gulp-connect-php7
  * @module browser-sync
  */
 gulp.task('dev', () => {
-    // Start a new server with browserSync
+    // Start a new server with browsersync
     connect.server({}, () => {
         // Proxy the localhost hostname
-        browserSync({
+        browsersync({
             proxy: hostname,
             port: port
         });
     });
 
-    // Watch for file changes and call the build css and scripts gulp tasks
-    gulp.watch(watch.sass, ['build:css']);
-    gulp.watch(watch.scripts, ['build:scripts']);
+    // Watch for resource development file changes and call the respecitve build task
+    gulp.watch(resource.sass, ['build:css']);
+    gulp.watch(resource.scripts, ['build:scripts']);
 
-    // Watch for declared file changes and reload browserSync
+    // Watch for declared file changes and reload browsersync
     gulp.watch([watch.html, watch.twig, watch.php]).on('change', () => {
-        // Reload browserSync
-        browserSync.reload();
+        // Reload browsersync
+        browsersync.reload({
+            stream: true
+        });
     });
 });
