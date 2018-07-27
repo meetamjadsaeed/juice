@@ -41,8 +41,7 @@
         "dist",
         "sass",
         "scripts",
-        "CODE_OF_CONDUCT.md",
-        "CONTRIBUTING.md",
+        ".github/",
         "LICENSE",
         "README.md"
     ]
