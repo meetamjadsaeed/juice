@@ -12,7 +12,7 @@ Documentation for the stable release is currently being written.
 |:-------------------------------------------------------------------------------------------------------------:|
 | [Joe Mottershaw](https://github.com/joemottershaw)                                                            |
 
-Along with the help from these [fine people](https://github.com/cloudeight/template/graphs/contributors)!
+Along with the help from these [fine people](https://github.com/cloudeight/rucksack/graphs/contributors)!
 
 ## Contributing
 
