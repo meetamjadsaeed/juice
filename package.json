@@ -41,7 +41,6 @@
         "dist",
         "sass",
         "scripts",
-        ".github/",
         "LICENSE",
         "README.md"
     ]
