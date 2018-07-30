@@ -1,7 +1,7 @@
 'use strict';
 
 /* =============================================================================================
-   RUCKSACK -> FEATURE DETECTION
+   JUICE -> FEATURE DETECTION
    ============================================================================================= */
 
 // Javascript
@@ -9,7 +9,7 @@ document.documentElement.className.replace('no-js', 'js');
 
 
 /* =============================================================================================
-   RUCKSACK -> CLICK EVENT HELPER HANDLERS
+   JUICE -> CLICK EVENT HELPER HANDLERS
    ============================================================================================= */
 
 // Set prevent defeaul, immediate propagation and stop immediate propagation elements

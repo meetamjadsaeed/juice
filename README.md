@@ -1,4 +1,4 @@
-# Rucksack
+# Juice
 
 > *A responsive frontend framework...*
 
@@ -12,7 +12,7 @@ Documentation for the stable release is currently being written.
 |:-------------------------------------------------------------------------------------------------------------:|
 | [Joe Mottershaw](https://github.com/joemottershaw)                                                            |
 
-Along with the help from these [fine people](https://github.com/cloudeight/rucksack/graphs/contributors)!
+Along with the help from these [fine people](https://github.com/justaddjuice/juice/graphs/contributors)!
 
 ## Contributing
 

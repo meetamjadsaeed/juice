@@ -30,7 +30,7 @@ const port = 3001;
  * @const {array}
  */
 const resource = {
-    sass: 'sass/rucksack.scss',
+    sass: 'sass/juice.scss',
     scripts: 'scripts/**/*.js'
 };
 
@@ -39,8 +39,8 @@ const resource = {
  * @const {array}
  */
 const filename = {
-    css: 'rucksack.min.css',
-    scripts: 'rucksack.min.js'
+    css: 'juice.min.css',
+    scripts: 'juice.min.js'
 };
 
 /**
