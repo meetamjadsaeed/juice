@@ -1,6 +1,6 @@
 {
     "name": "just-add-juice",
-    "description": "A responsive frontend framework with modular components. Take what you need, leave what you don't. Just remember, when you start your next project... just add Juice!",
+    "description": "A responsive frontend framework with modular components.",
     "version": "0.1.0-beta",
     "license": "MIT",
     "author": {
