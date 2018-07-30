@@ -1,5 +1,9 @@
 ![Juice](./screenshot.png)
 
+<p align="center">Take what you need, leave what you don't.<br />Just remember, when you start your next project... just add Juice!</p>
+
+<br />
+
 ## Documentation
 
 Documentation for the stable release is currently being written.
