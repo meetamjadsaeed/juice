@@ -1,6 +1,6 @@
 # Juice
 
-> *A responsive frontend framework...*
+> *A responsive frontend framework with modular components. Take what you need, leave what you don't. Just remember, when you start your next project... just add Juice!*
 
 ## Documentation
 
