@@ -19,10 +19,13 @@
         "responsive",
         "frontend",
         "framework",
+        "modular",
+        "components",
         "css",
         "sass",
         "scss",
-        "javascript"
+        "javascript",
+        "just-add-juice"
     ],
     "devDependencies": {
         "babel-core": "^6.26.3",
