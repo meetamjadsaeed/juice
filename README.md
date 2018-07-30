@@ -1,4 +1,4 @@
-![Rucksack](./screenshot.png)
+![Juice](./screenshot.png)
 
 ## Documentation
 
