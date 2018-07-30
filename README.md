@@ -1,6 +1,4 @@
-# Juice
-
-> *<p>A responsive frontend framework with modular components.</p><p>Take what you need, leave what you don't.</p>Just remember, when you start your next project... **just add Juice!***
+![Rucksack](./screenshot.png)
 
 ## Documentation
 
