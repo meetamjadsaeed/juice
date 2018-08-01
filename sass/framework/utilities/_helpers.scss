@@ -6,7 +6,10 @@
 
 // Clearfix
 .clearfix {
-    @include clearfix();
+    // Pseudo elements
+    &::after {
+        @include clearfix();
+    }
 }
 
 // Display
