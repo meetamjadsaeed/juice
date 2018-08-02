@@ -48,9 +48,6 @@
 
             // Add a mouseenter, mouseleave and click handler to show and hide the tooltip
             $element.on('mouseenter', (event) => {
-                // Stop propagation
-                event.stopPropagation();
-
                 // Build the tooltip
                 const $tooltip = this.build($element);
 
@@ -77,9 +74,6 @@
                     }, $tooltip.data('duration'));
                 }
             }).on('mouseleave click', (event) => {
-                // Stop propagation
-                event.stopPropagation();
-
                 // Set the tooltip
                 const $tooltip = $element.data('tooltip-element');
 

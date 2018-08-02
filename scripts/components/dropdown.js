@@ -61,9 +61,6 @@
 
             // Add a click and blur handler to show and hide the dropdown
             $('.has-dropdown').off().on('click', '.js-dropdown-trigger', (event) => {
-                // Stop propagation
-                event.stopPropagation();
-
                 // Set the dropdown element
                 const $dropdown = $(event.currentTarget).next('.dropdown');
 
@@ -76,9 +73,6 @@
                     this.show($dropdown);
                 }
             }).on('blur', '.js-dropdown-trigger', (event) => {
-                // Stop propagation
-                event.stopPropagation();
-
                 // Set the dropdown element
                 const $dropdown = $(event.currentTarget).next('.dropdown');
 

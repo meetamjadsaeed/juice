@@ -55,7 +55,6 @@ $notice-font-size--huge: $font-size--huge !default;
     font-size: $notice-font-size;
     margin: 0;
     margin-bottom: $notice-element-spacing;
-    overflow: hidden;
 
     // Modifiers: Size
     &.is-small {
