@@ -1,14 +1,14 @@
 # v0.1.1-beta
 
-## New
+### New
 - Add juice component instantiation to demo pages
 
-## Updated
+### Updated
 - Update gulpfile.js browsersync hostname
 - Update index.html
     - Remove redundant testing code
 
-## Bug Fixes
+### Bug Fixes
 - Fix overflow hidden bug
     - Remove overflow css property from box, card, notice and panel components
 - Fix clearfix helper class
