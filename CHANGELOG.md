@@ -1,3 +1,21 @@
+# v0.2.0-beta
+
+### Updated
+- Update dropdown component
+    - Fix and add dropdown element z-index hierarchy
+
+- Update navigation component
+    - Update flex wrap to wrap flex items
+    - Update navigation__search and navigation__links breakpoints display values
+    - Update navigation search
+        - Add flex order to push navigation__search flex item to the end on touch breakpoint
+        - Remove display none in mobile
+    - Update navigation demo
+        - Add navigation__link class to top tier links
+    - Remove flex flow column from mobile breakpoint
+    - Fix nested navigation links styling
+        - Add navigation__link classes to all a tags
+
 # v0.1.1-beta
 
 ### New
