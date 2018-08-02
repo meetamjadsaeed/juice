@@ -67,6 +67,7 @@ $dropdown-offset: 5px !default;
         position: absolute;
         text-align: left;
         top: 100%;
+        z-index: 1;
 
         // Modifiers: State hooks
         &.is-active {

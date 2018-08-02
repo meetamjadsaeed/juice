@@ -29,6 +29,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     align-items: center;
     color: $navigation-font-color;
     display: flex;
+    flex-wrap: wrap;
     font-size: $navigation-font-size;
     padding: $navigation-content-spacing;
     margin: 0;
@@ -53,7 +54,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 // Nested selectors
                 li {
                     // Nested selectors
-                    a {
+                    a.navigation__link {
                         padding: $navigation-content-spacing--small;
                     }
                 }
@@ -61,13 +62,11 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
         }
 
         // Breakpoints
-        @include breakpoint('mobile') {
+        @include breakpoint('touch') {
             // Nested selectors
-            .navigation__logo,
-            .navigation__links,
             .navigation__search {
                 padding: 0;
-                padding-bottom: $navigation-content-spacing--small;
+                padding-top: $navigation-content-spacing--small;
             }
         }
     }
@@ -90,7 +89,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 // Nested selectors
                 li {
                     // Nested selectors
-                    a {
+                    a.navigation__link {
                         padding: $navigation-content-spacing--large;
                     }
                 }
@@ -98,13 +97,11 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
         }
 
         // Breakpoints
-        @include breakpoint('mobile') {
+        @include breakpoint('touch') {
             // Nested selectors
-            .navigation__logo,
-            .navigation__links,
             .navigation__search {
                 padding: 0;
-                padding-bottom: $navigation-content-spacing--large;
+                padding-top: $navigation-content-spacing--large;
             }
         }
     }
@@ -127,7 +124,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 // Nested selectors
                 li {
                     // Nested selectors
-                    a {
+                    a.navigation__link {
                         padding: $navigation-content-spacing--huge;
                     }
                 }
@@ -135,19 +132,17 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
         }
 
         // Breakpoints
-        @include breakpoint('mobile') {
+        @include breakpoint('touch') {
             // Nested selectors
-            .navigation__logo,
-            .navigation__links,
             .navigation__search {
                 padding: 0;
-                padding-bottom: $navigation-content-spacing--huge;
+                padding-top: $navigation-content-spacing--huge;
             }
         }
     }
 
     // Nested selectors
-    a {
+    a.navigation__link {
         color: $navigation-link-color;
 
         // Pseudo classes
@@ -172,10 +167,11 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     }
 
     .navigation__logo {
+        flex-basis: 25%;
         flex-grow: 1;
 
         // Nested selectors
-        a {
+        a.navigation__link {
             align-items: center;
             display: flex;
         }
@@ -184,13 +180,8 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     .navigation__links {
         // Nested selectors
         ul,
-        ol,
-        .navigation__bars {
-            display: none;
-        }
-
-        ul,
         ol {
+            display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -200,7 +191,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 flex: 1 0 auto;
 
                 // Nested selectors
-                a {
+                a.navigation__link {
                     display: inline-flex;
                     padding: $navigation-content-spacing;
                 }
@@ -208,6 +199,8 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
         }
 
         .navigation__bars {
+            display: none;
+
             // Nested selectors
             #{$button} {
                 margin-bottom: 0;
@@ -223,40 +216,27 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     }
 
     // Breakpoints
-    @include breakpoint('mobile') {
-        flex-flow: column;
-
-        // Nested selectors
-        .navigation__logo,
-        .navigation__links,
-        .navigation__search {
-            padding: 0;
-            padding-bottom: $navigation-content-spacing;
-
-            // Nested selectors
-            &:last-child {
-                padding-bottom: 0;
-            }
-        }
-    }
-
     @include breakpoint('touch') {
         // Nested selectors
-        .navigation__links {
-            // Nested selectors
-            .navigation__bars {
-                display: block;
-            }
+        .navigation__search {
+            flex-basis: 100%;
+            padding: 0;
+            padding-top: $navigation-content-spacing;
+            order: 1;
         }
     }
 
-    @include breakpoint('laptop-up') {
+    @include breakpoint('until-desktop') {
         // Nested selectors
         .navigation__links {
             // Nested selectors
             ul,
             ol {
-                display: flex;
+                display: none;
+            }
+
+            .navigation__bars {
+                display: block;
             }
         }
     }
