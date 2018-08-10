@@ -119,7 +119,7 @@
             // Check if a feedback value exists
             if ($tooltip.data('feedback')) {
                 // Add the feedback class modifier to the tooltip
-                $tooltip.addClass(`with-${$tooltip.data('feedback')}`);
+                $tooltip.addClass(`has-${$tooltip.data('feedback')}`);
             }
 
             // Check if a position value exists

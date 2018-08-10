@@ -4,8 +4,8 @@
    JUICE -> COMPONENTS -> CARD -> VARIABLES
    ============================================================================================= */
 
-$card-background-color: base-color('white') !default;
-$card-border-color: base-color('white', 'darken-3') !default;
+$card-background-color: base-color('white', $pseudo-background-color-type) !default;
+$card-border-color: base-color('white', $pseudo-border-color-type) !default;
 $card-border-radius--top-left: $border-radius--top-left !default;
 $card-border-radius--top-right: $border-radius--top-right !default;
 $card-border-radius--bottom-right: $border-radius--bottom-right !default;
@@ -15,7 +15,7 @@ $card-border-width--top: $border-width--top !default;
 $card-border-width--right: $border-width--right !default;
 $card-border-width--bottom: $border-width--bottom !default;
 $card-border-width--left: $border-width--left !default;
-$card-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$card-box-shadow: $box-shadow !default;
 $card-content-spacing: $content-spacing !default;
 $card-content-spacing--small: $content-spacing--small !default;
 $card-content-spacing--large: $content-spacing--large !default;
@@ -24,13 +24,11 @@ $card-element-spacing: $element-spacing !default;
 $card-element-spacing--small: $element-spacing--small !default;
 $card-element-spacing--large: $element-spacing--large !default;
 $card-element-spacing--huge: $element-spacing--huge !default;
-$card-font-color: font-color('default') !default;
+$card-font-color: base-color('white', 'invert') !default;
 $card-font-size: $font-size !default;
 $card-font-size--small: $font-size--small !default;
 $card-font-size--large: $font-size--large !default;
 $card-font-size--huge: $font-size--huge !default;
-$card-link-color: $link-color !default;
-$card-link-color--hover: $link-color--hover !default;
 
 
 /* =============================================================================================
@@ -57,7 +55,7 @@ $card-link-color--hover: $link-color--hover !default;
     margin-bottom: $card-element-spacing;
     padding: 0;
 
-    // Modifiers: Size
+    // Modifiers: Sizes
     &.is-small {
         font-size: $card-font-size--small;
         margin-bottom: $card-element-spacing--small;
@@ -71,47 +69,12 @@ $card-link-color--hover: $link-color--hover !default;
             .card__body,
             .card__foot {
                 padding-bottom: $card-content-spacing--small;
-
-                // Pseudo classes
-                &:last-child {
-                    padding-bottom: 0;
-                }
-
-                // Nested selectors
-                #{$button} {
-                    @include button-size--small();
-                }
-            }
-
-            .card__head,
-            .card__foot {
-                // Nested selectors
-                .card__icons {
-                    // Pseudo classes
-                    &:first-child {
-                        // Nested selectors
-                        #{$button} {
-                            margin-right: $card-content-spacing--small / 4;
-                        }
-                    }
-
-                    &:last-child {
-                        // Nested selectors
-                        #{$button} {
-                            margin-left: $card-content-spacing--small / 4;
-                        }
-                    }
-
-                    // Nested selectors
-                    #{$button} {
-                        @include icon-button-size--small();
-                    }
-                }
             }
 
             .card__foot {
                 // Nested selectors
                 .card__buttons {
+                    // Pseudo classes
                     &:last-child {
                         // Nested selectors
                         #{$button} {
@@ -122,6 +85,11 @@ $card-link-color--hover: $link-color--hover !default;
                     // Nested selectors
                     #{$button} {
                         margin-right: $card-content-spacing--small / 2;
+
+                        // Pseudo classes
+                        &:only-child {
+                            margin: 0;
+                        }
                     }
                 }
             }
@@ -141,47 +109,12 @@ $card-link-color--hover: $link-color--hover !default;
             .card__body,
             .card__foot {
                 padding-bottom: $card-content-spacing--large;
-
-                // Pseudo classes
-                &:last-child {
-                    padding-bottom: 0;
-                }
-
-                // Nested selectors
-                #{$button} {
-                    @include button-size--large();
-                }
-            }
-
-            .card__head,
-            .card__foot {
-                // Nested selectors
-                .card__icons {
-                    // Pseudo classes
-                    &:first-child {
-                        // Nested selectors
-                        #{$button} {
-                            margin-right: $card-content-spacing--large / 4;
-                        }
-                    }
-
-                    &:last-child {
-                        // Nested selectors
-                        #{$button} {
-                            margin-left: $card-content-spacing--large / 4;
-                        }
-                    }
-
-                    // Nested selectors
-                    #{$button} {
-                        @include icon-button-size--large();
-                    }
-                }
             }
 
             .card__foot {
                 // Nested selectors
                 .card__buttons {
+                    // Pseudo classes
                     &:last-child {
                         // Nested selectors
                         #{$button} {
@@ -192,6 +125,11 @@ $card-link-color--hover: $link-color--hover !default;
                     // Nested selectors
                     #{$button} {
                         margin-right: $card-content-spacing--large / 2;
+
+                        // Pseudo classes
+                        &:only-child {
+                            margin: 0;
+                        }
                     }
                 }
             }
@@ -211,47 +149,12 @@ $card-link-color--hover: $link-color--hover !default;
             .card__body,
             .card__foot {
                 padding-bottom: $card-content-spacing--huge;
-
-                // Pseudo classes
-                &:last-child {
-                    padding-bottom: 0;
-                }
-
-                // Nested selectors
-                #{$button} {
-                    @include button-size--huge();
-                }
-            }
-
-            .card__head,
-            .card__foot {
-                // Nested selectors
-                .card__icons {
-                    // Pseudo classes
-                    &:first-child {
-                        // Nested selectors
-                        #{$button} {
-                            margin-right: $card-content-spacing--huge / 4;
-                        }
-                    }
-
-                    &:last-child {
-                        // Nested selectors
-                        #{$button} {
-                            margin-left: $card-content-spacing--huge / 4;
-                        }
-                    }
-
-                    // Nested selectors
-                    #{$button} {
-                        @include icon-button-size--huge();
-                    }
-                }
             }
 
             .card__foot {
                 // Nested selectors
                 .card__buttons {
+                    // Pseudo classes
                     &:last-child {
                         // Nested selectors
                         #{$button} {
@@ -262,6 +165,11 @@ $card-link-color--hover: $link-color--hover !default;
                     // Nested selectors
                     #{$button} {
                         margin-right: $card-content-spacing--huge / 2;
+
+                        // Pseudo classes
+                        &:only-child {
+                            margin: 0;
+                        }
                     }
                 }
             }
@@ -269,15 +177,6 @@ $card-link-color--hover: $link-color--hover !default;
     }
 
     // Nested selectors
-    a {
-        color: $card-link-color;
-
-        // Pseudo classes
-        &:hover {
-            color: $card-link-color--hover;
-        }
-    }
-
     .card__media {
         border-top-left-radius: $input-border-radius--top-left;
         border-top-right-radius: $input-border-radius--top-right;
@@ -314,21 +213,6 @@ $card-link-color--hover: $link-color--hover !default;
             .card__icons {
                 display: flex;
 
-                // Pseudo classes
-                &:first-child {
-                    // Nested selectors
-                    #{$button} {
-                        margin-right: $card-content-spacing / 4;
-                    }
-                }
-
-                &:last-child {
-                    // Nested selectors
-                    #{$button} {
-                        margin-left: $card-content-spacing / 4;
-                    }
-                }
-
                 // Nested selectors
                 #{$button} {
                     color: inherit;
@@ -336,8 +220,8 @@ $card-link-color--hover: $link-color--hover !default;
                     opacity: 0.25;
 
                     // Pseudo classes
-                    &:focus,
-                    &:hover {
+                    &:hover,
+                    &:focus {
                         opacity: 0.5;
                     }
 
@@ -381,6 +265,7 @@ $card-link-color--hover: $link-color--hover !default;
                 font-size: $body-font-size;
                 justify-content: flex-start;
 
+                // Pseudo classes
                 &:last-child {
                     justify-content: flex-end;
 
@@ -395,6 +280,11 @@ $card-link-color--hover: $link-color--hover !default;
                 #{$button} {
                     margin-bottom: 0;
                     margin-right: $card-content-spacing / 2;
+
+                    // Pseudo classes
+                    &:only-child {
+                        margin: 0;
+                    }
                 }
             }
         }

@@ -4,21 +4,20 @@
    JUICE -> COMPONENTS -> NOTICE -> VARIABLES
    ============================================================================================= */
 
-$notice-body-background-color: base-color('white') !default;
-$notice-body-border-color: base-color('white', 'darken-3') !default;
+$notice-animation-duration: 300ms !default;
+$notice-body-background-color: base-color('white', $pseudo-background-color-type) !default;
+$notice-body-border-color: base-color('white', $pseudo-border-color-type) !default;
 $notice-body-border-width--top: $border-width--top !default;
 $notice-body-border-width--right: $border-width--right !default;
 $notice-body-border-width--bottom: $border-width--bottom !default;
 $notice-body-border-width--left: 0 !default;
-$notice-body-font-color: font-color('default') !default;
-$notice-body-link-color: $link-color !default;
-$notice-body-link-color--hover: $link-color--hover !default;
+$notice-body-font-color: base-color('white', 'invert') !default;
 $notice-border-radius--top-left: $border-radius--top-left !default;
 $notice-border-radius--top-right: $border-radius--top-right !default;
 $notice-border-radius--bottom-right: $border-radius--bottom-right !default;
 $notice-border-radius--bottom-left: $border-radius--bottom-left !default;
 $notice-border-style: $border-style !default;
-$notice-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$notice-box-shadow: $box-shadow !default;
 $notice-content-spacing: $content-spacing !default;
 $notice-content-spacing--small: $content-spacing--small !default;
 $notice-content-spacing--large: $content-spacing--large !default;
@@ -28,7 +27,7 @@ $notice-element-spacing--small: $element-spacing--small !default;
 $notice-element-spacing--large: $element-spacing--large !default;
 $notice-element-spacing--huge: $element-spacing--huge !default;
 $notice-feedback-background-color: feedback-color('info') !default;
-$notice-feedback-border-color: feedback-color('info', 'darken-3') !default;
+$notice-feedback-border-color: feedback-color('info', $pseudo-border-color-type) !default;
 $notice-feedback-border-style: $border-style !default;
 $notice-feedback-border-width--top: $border-width--top !default;
 $notice-feedback-border-width--right: $border-width--right !default;
@@ -46,6 +45,7 @@ $notice-font-size--huge: $font-size--huge !default;
    ============================================================================================= */
 
 .notice {
+    animation-duration: $notice-animation-duration;
     border-bottom-left-radius: $notice-border-radius--bottom-left;
     border-bottom-right-radius: $notice-border-radius--bottom-right;
     border-top-left-radius: $notice-border-radius--top-left;
@@ -56,7 +56,7 @@ $notice-font-size--huge: $font-size--huge !default;
     margin: 0;
     margin-bottom: $notice-element-spacing;
 
-    // Modifiers: Size
+    // Modifiers: Sizes
     &.is-small {
         font-size: $notice-font-size--small;
 
@@ -67,13 +67,6 @@ $notice-font-size--huge: $font-size--huge !default;
             // Nested selectors
             .notice__icons {
                 padding-left: $notice-content-spacing--small;
-
-                // Nested selectors
-                #{$button} {
-                    @include button-size--small();
-                    @include icon-button-size--small();
-                    margin-bottom: $notice-content-spacing--small / 4;
-                }
             }
         }
     }
@@ -88,13 +81,6 @@ $notice-font-size--huge: $font-size--huge !default;
             // Neseted selectors
             .notice__icons {
                 padding-left: $notice-content-spacing--large;
-
-                // Nested selectors
-                #{$button} {
-                    @include button-size--large();
-                    @include icon-button-size--large();
-                    margin-bottom: $notice-content-spacing--large / 4;
-                }
             }
         }
     }
@@ -109,29 +95,23 @@ $notice-font-size--huge: $font-size--huge !default;
             // Neseted selectors
             .notice__icons {
                 padding-left: $notice-content-spacing--huge;
-
-                // Nested selectors
-                #{$button} {
-                    @include button-size--huge();
-                    @include icon-button-size--huge();
-                    margin-bottom: $notice-content-spacing--huge / 4;
-                }
             }
         }
     }
 
-    // Modifiers: Feedback
+    // Modifiers: Feedback colors
     @each $name, $color in $feedback-colors {
-        &.with-#{$name} {
+        &.has-#{$name} {
             // Nested selectors
             .notice__feedback {
                 background-color: feedback-color($name);
-                border-color: feedback-color($name, 'darken-3');
+                border-color: feedback-color($name, $pseudo-border-color-type);
                 color: feedback-color($name, 'invert');
             }
         }
     }
 
+    // Nested selectors
     .notice__feedback {
         align-items: center;
         background-color: $notice-feedback-background-color;
@@ -168,34 +148,24 @@ $notice-font-size--huge: $font-size--huge !default;
         // Nested selectors
         .notice__message {
             flex-grow: 1;
-
-            // Nested selectors
-            a {
-                color: $notice-body-link-color;
-
-                // Pseudo classes
-                &:hover {
-                    color: $notice-body-link-color--hover;
-                }
-            }
         }
 
         .notice__icons {
             align-items: center;
             display: flex;
             flex-direction: column;
+            font-size: $body-font-size;
             justify-content: center;
             padding-left: $notice-content-spacing;
 
             // Nested selectors
             #{$button} {
                 color: inherit;
-                margin-bottom: $notice-content-spacing / 4;
                 opacity: 0.25;
 
                 // Pseudo classes
-                &:focus,
-                &:hover {
+                &:hover,
+                &:focus {
                     opacity: 0.5;
                 }
 

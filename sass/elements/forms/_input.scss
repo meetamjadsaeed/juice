@@ -1,0 +1,602 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> INPUT -> VARIABLES
+   ============================================================================================= */
+
+// Input shorthand types
+$input: "
+    input[type=checkbox],
+    input[type=radio],
+    input[type=color],
+    input[type=email],
+    input[type=file],
+    input[type=number],
+    input[type=password],
+    input[type=range],
+    input[type=search],
+    input[type=tel],
+    input[type=text],
+    input[type=url],
+    input[type=date],
+    input[type=datetime-local],
+    input[type=month],
+    input[type=week],
+    input[type=time]
+" !default;
+
+// Input
+$input-background-color: base-color('white', $pseudo-background-color-type) !default;
+$input-background-color--hover: $input-background-color !default;
+$input-background-color--focus: $input-background-color !default;
+$input-border-color: base-color('white', $pseudo-border-color-type) !default;
+$input-border-color--focus: feedback-color('info') !default;
+$input-border-color--hover: base-color('white', $pseudo-border-color-type--hover) !default;
+$input-border-radius--top-left: $border-radius--top-left !default;
+$input-border-radius--top-right: $border-radius--top-right !default;
+$input-border-radius--bottom-right: $border-radius--bottom-right !default;
+$input-border-radius--bottom-left: $border-radius--bottom-left !default;
+$input-border-style: $border-style !default;
+$input-border-width--top: $border-width--top !default;
+$input-border-width--right: $border-width--right !default;
+$input-border-width--bottom: $border-width--bottom !default;
+$input-border-width--left: $border-width--left !default;
+$input-border-width--separator: $border-width--separator !default;
+$input-element-spacing: $element-spacing !default;
+$input-element-spacing--small: $element-spacing--small !default;
+$input-element-spacing--large: $element-spacing--large !default;
+$input-element-spacing--huge: $element-spacing--huge !default;
+$input-font-color: base-color('white', 'invert') !default;
+$input-font-color--placeholder: base-color('white', 'darken-5') !default;
+$input-font-color--hover: $input-font-color !default;
+$input-font-color--focus: $input-font-color !default;
+$input-font-family: $primary-typeface !default;
+$input-font-size: $font-size !default;
+$input-font-size--small: $font-size--small !default;
+$input-font-size--large: $font-size--large !default;
+$input-font-size--huge: $font-size--huge !default;
+$input-height: $element-height !default;
+$input-height--small: $element-height--small !default;
+$input-height--large: $element-height--large !default;
+$input-height--huge: $element-height--huge !default;
+$input-padding: 0 10px !default;
+$input-range-thumb-background-color: $input-background-color !default;
+$input-range-thumb-width: 20px !default;
+$input-range-track-color: $input-border-color !default;
+$input-range-track-color--filled: $input-border-color--focus !default;
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> INPUT -> MIXINS
+   ============================================================================================= */
+
+// Default input
+@mixin input() {
+    -webkit-appearance: none;
+    background-color: $input-background-color;
+    border: 0 $input-border-style $input-border-color;
+    border-bottom-left-radius: $input-border-radius--bottom-left;
+    border-bottom-right-radius: $input-border-radius--bottom-right;
+    border-bottom-width: $input-border-width--bottom;
+    border-left-width: $input-border-width--left;
+    border-top-left-radius: $input-border-radius--top-left;
+    border-top-right-radius: $input-border-radius--top-right;
+    border-top-width: $input-border-width--top;
+    border-right-width: $input-border-width--right;
+    color: $input-font-color;
+    display: flex;
+    font-family: $input-font-family;
+    font-size: $input-font-size;
+    height: $input-height;
+    line-height: normal;
+    margin: 0;
+    margin-bottom: $input-element-spacing;
+    max-width: 100%;
+    padding: $input-padding;
+    position: relative;
+    width: 100%;
+
+    // Pseudo classes
+    &:hover {
+        background-color: $input-background-color--hover;
+        border-color: $input-border-color--hover;
+        color: $input-font-color--hover;
+    }
+
+    &:focus,
+    &:active {
+        background-color: $input-background-color--focus;
+        border-color: $input-border-color--focus;
+        color: $input-font-color--focus;
+    }
+}
+
+// Small input size
+@mixin input-size--small() {
+    font-size: $input-font-size--small;
+    height: $input-height--small;
+    margin-bottom: $input-element-spacing--small;
+
+    // Pseudo elements
+    &::-ms-clear {
+        width: $input-height--small / 2;
+    }
+
+    &::-ms-reveal {
+        width: $input-height--small / 2;
+    }
+}
+
+// Large input size
+@mixin input-size--large() {
+    font-size: $input-font-size--large;
+    height: $input-height--large;
+    margin-bottom: $input-element-spacing--large;
+
+    // Pseudo elements
+    &::-ms-clear {
+        width: $input-height--large / 2;
+    }
+
+    &::-ms-reveal {
+        width: $input-height--large / 2;
+    }
+}
+
+// Huge input size
+@mixin input-size--huge() {
+    font-size: $input-font-size--huge;
+    height: $input-height--huge;
+    margin-bottom: $input-element-spacing--huge;
+
+    // Pseudo elements
+    &::-ms-clear {
+        width: $input-height--huge / 2;
+    }
+
+    &::-ms-reveal {
+        width: $input-height--huge / 2;
+    }
+}
+
+// Input range track
+@mixin input-range-track() {
+    height: 100%;
+    background-color: $input-range-track-color;
+    border: none;
+    color: transparent;
+    height: 100%;
+}
+
+// Input range thumb
+@mixin input-range-thumb() {
+    -webkit-appearance: none;
+    background-color: $input-range-thumb-background-color;
+    border: none;
+    border-radius: 0;
+    box-shadow: -100vw 0 0 100vw $input-range-track-color--filled;
+    box-sizing: border-box;
+    height: 100%;
+    width: $input-range-thumb-width;
+}
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> INPUT
+   ============================================================================================= */
+
+// Input
+#{$input} {
+    @include input();
+
+    // Pseudo elements
+    &::placeholder {
+        color: $input-font-color--placeholder;
+        opacity: 1;
+    }
+
+    &::-ms-clear {
+        color: $input-font-color;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        width: $input-height / 2;
+    }
+
+    &::-ms-reveal {
+        background-color: transparent;
+        color: $input-font-color;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        width: $input-height / 2;
+    }
+
+    // Modifiers
+    &.input--pill {
+        border-radius: 999px;
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        @include input-size--small();
+    }
+
+    &.is-large {
+        @include input-size--large();
+    }
+
+    &.is-huge {
+        @include input-size--huge();
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            border-color: feedback-color($name);
+
+            // Pseudo classes
+            &:focus,
+            &:active {
+                box-shadow: $focus-outline-box-shadow-values transparentize(feedback-color($name), $focus-outline-box-shadow-transparentize);
+            }
+        }
+    }
+}
+
+// Checkbox and radio
+input[type=checkbox],
+input[type=radio] {
+    cursor: pointer;
+    display: inline-flex;
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    padding: 10px;
+    position: relative;
+    top: 2px;
+    width: auto;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: checkbox;
+}
+
+input[type=radio] {
+    -webkit-appearance: radio;
+    border-radius: 100%;
+}
+
+// Color
+input[type=color] {
+    cursor: pointer;
+    display: inline-flex;
+    max-width: 60px;
+    min-width: 60px;
+    padding: 5px;
+
+    // Pseudo elements
+    &::-webkit-color-swatch-wrapper {
+        background-color: $input-background-color;
+        border-bottom-left-radius: $input-border-radius--bottom-left;
+        border-bottom-right-radius: $input-border-radius--bottom-right;
+        border-top-left-radius: $input-border-radius--top-left;
+        border-top-right-radius: $input-border-radius--top-right;
+        padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+        border: none;
+        border-bottom-left-radius: $input-border-radius--bottom-left;
+        border-bottom-right-radius: $input-border-radius--bottom-right;
+        border-top-left-radius: $input-border-radius--top-left;
+        border-top-right-radius: $input-border-radius--top-right;
+    }
+
+    // Modifiers
+    &.input--pill {
+        // Pseudo elements
+        &::-webkit-color-swatch {
+            border-radius: 999px;
+        }
+    }
+
+}
+
+// File
+input[type=file] {
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    width: auto;
+
+    // Pseudo classes
+    &:hover {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            border-color: $input-border-color--hover;
+        }
+
+        &::-ms-browse {
+            border-color: $input-border-color--hover;
+        }
+    }
+
+    &:focus,
+    &:active {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            border-color: $input-border-color--focus;
+        }
+
+        &::-ms-browse {
+            border-color: $input-border-color--focus;
+        }
+    }
+
+    // Pseudo elements
+    &::-webkit-file-upload-button {
+        @include input();
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-width: 0;
+        border-right-width: $input-border-width--separator;
+        cursor: pointer;
+        height: $input-height - ($input-border-width--top + $input-border-width--bottom);
+        margin: 0;
+        outline: none;
+        width: auto;
+    }
+
+    &::-ms-value {
+        @include input();
+        border: none;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        margin: 0;
+    }
+
+    &::-ms-browse {
+        @include input();
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-width: 0;
+        border-left-width: $input-border-width--separator;
+        margin: 0;
+        width: auto;
+    }
+
+    // Modifiers
+    &.input--pill {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            border-bottom-left-radius: 999px;
+            border-top-left-radius: 999px;
+        }
+
+        &::-ms-value {
+            border-bottom-left-radius: 999px;
+            border-top-left-radius: 999px;
+        }
+
+        &::-ms-browse {
+            border-bottom-right-radius: 999px;
+            border-top-right-radius: 999px;
+        }
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            height: $input-height--small - ($input-border-width--top + $input-border-width--bottom);
+        }
+
+        &::-ms-value {
+            height: $input-height--small;
+        }
+
+        &::-ms-browse {
+            height: $input-height--small;
+        }
+    }
+
+    &.is-large {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            height: $input-height--large - ($input-border-width--top + $input-border-width--bottom);
+        }
+
+        &::-ms-value {
+            height: $input-height--large;
+        }
+
+        &::-ms-browse {
+            height: $input-height--large;
+        }
+    }
+
+    &.is-huge {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            height: $input-height--huge - ($input-border-width--top + $input-border-width--bottom);
+        }
+
+        &::-ms-value {
+            height: $input-height--huge;
+        }
+
+        &::-ms-browse {
+            height: $input-height--huge;
+        }
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            // Pseudo classes
+            &:hover {
+                // Pseudo elements
+                &::-webkit-file-upload-button {
+                    border-color: feedback-color($name, 'darken-2');
+                }
+
+                &::-ms-browse {
+                    border-color: feedback-color($name, 'darken-2');
+                }
+            }
+
+            &:focus,
+            &:active {
+                // Pseudo elements
+                &::-webkit-file-upload-button {
+                    border-color: feedback-color($name, 'darken-2');
+                }
+
+                &::-ms-browse {
+                    border-color: feedback-color($name, 'darken-2');
+                }
+            }
+
+            // Pseudo elements
+            &::-webkit-file-upload-button {
+                border-color: feedback-color($name);
+            }
+
+            &::-ms-browse {
+                border-color: feedback-color($name);
+            }
+        }
+    }
+}
+
+// Number
+input[type=number] {
+    -moz-appearance: textfield;
+
+    // Pseudo elements
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+// Range
+input[type=range] {
+    border-radius: 0;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+
+    // Pseudo elements
+    &::-webkit-slider-runnable-track {
+        @include input-range-track();
+    }
+
+    &::-webkit-slider-thumb {
+        @include input-range-thumb();
+    }
+
+    &::-moz-range-track {
+        @include input-range-track();
+    }
+
+    &::-moz-range-thumb {
+        @include input-range-thumb();
+    }
+
+    &::-ms-track {
+        @include input-range-track();
+    }
+
+    &::-ms-thumb {
+        display: none;
+    }
+
+    &::-ms-fill-lower {
+        background-color: $input-range-track-color--filled;
+        border-right: $input-range-thumb-width solid $input-range-thumb-background-color;
+    }
+
+    &::-ms-ticks-after {
+        display: none;
+    }
+
+    &::-ms-ticks-before {
+        display: none;
+    }
+
+    // Modifiers
+    &.input--pill {
+        // Pseudo elements
+        &::-moz-range-track {
+            border-radius: 999px;
+        }
+    }
+}
+
+// Search
+input[type=search] {
+    // Pseudo elements
+    &::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+
+    &::-webkit-search-results-button {
+        -webkit-appearance: none;
+    }
+}
+
+// Date and time
+input[type=date],
+input[type=datetime-local],
+input[type=month],
+input[type=week],
+input[type=time] {
+    cursor: text;
+    line-height: $input-height;
+
+    // Pseudo classes
+    &:hover {
+        // Pseudo elements
+        &::-webkit-calendar-picker-indicator {
+            opacity: 0.8;
+        }
+    }
+
+    // Pseudo elements
+    &::-webkit-clear-button {
+        display: none;
+    }
+
+    &::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+        background-color: transparent;
+        color: $input-font-color;
+        cursor: pointer;
+        margin: 0;
+        opacity: 0.5;
+
+        // Pseudo classes
+        &:hover {
+            background-color: transparent;
+            opacity: 1;
+        }
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        line-height: $input-height--small;
+    }
+
+    &.is-large {
+        line-height: $input-height--large;
+    }
+
+    &.is-huge {
+        line-height: $input-height--huge;
+    }
+}

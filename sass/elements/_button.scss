@@ -1,0 +1,763 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> BUTTON -> VARIABLES
+   ============================================================================================= */
+
+// Button shorthand types
+$button: "
+    button,
+    .button,
+    a.button,
+    input[type=submit],
+    input[type=reset],
+    input[type=button]
+" !default;
+
+// Button
+$button-background-color: base-color('white', $pseudo-background-color-type) !default;
+$button-background-color--hover: base-color('white', $pseudo-background-color-type--hover) !default;
+$button-background-color--focus: base-color('white', $pseudo-background-color-type--focus) !default;
+$button-background-color--active: base-color('white', $pseudo-background-color-type--active) !default;
+$button-background-alt-color: transparent !default;
+$button-background-alt-color--hover: hsla(0, 0%, 0%, 0.03) !default;
+$button-background-alt-color--focus: hsla(0, 0%, 0%, 0.03) !default;
+$button-background-alt-color--active: hsla(0, 0%, 0%, 0.06) !default;
+$button-border-color: base-color('white', $pseudo-border-color-type) !default;
+$button-border-color--hover: base-color('white', $pseudo-border-color-type--hover) !default;
+$button-border-color--focus: base-color('white', $pseudo-border-color-type--focus) !default;
+$button-border-color--active: base-color('white', $pseudo-border-color-type--active) !default;
+$button-border-radius--top-left: $border-radius--top-left !default;
+$button-border-radius--top-right: $border-radius--top-right !default;
+$button-border-radius--bottom-right: $border-radius--bottom-right !default;
+$button-border-radius--bottom-left: $border-radius--bottom-left !default;
+$button-border-style: $border-style !default;
+$button-border-width--top: $border-width--top !default;
+$button-border-width--right: $border-width--right !default;
+$button-border-width--bottom: $border-width--bottom !default;
+$button-border-width--left: $border-width--left !default;
+$button-border-width--separator: $border-width--separator !default;
+$button-content-spacing: $content-spacing !default;
+$button-content-spacing--small: $content-spacing--small !default;
+$button-content-spacing--large: $content-spacing--large !default;
+$button-content-spacing--huge: $content-spacing--huge !default;
+$button-element-spacing: $element-spacing !default;
+$button-element-spacing--small: $element-spacing--small !default;
+$button-element-spacing--large: $element-spacing--large !default;
+$button-element-spacing--huge: $element-spacing--huge !default;
+$button-font-color: base-color('white', 'invert') !default;
+$button-font-color--hover: base-color('white', 'invert') !default;
+$button-font-color--focus: base-color('white', 'invert') !default;
+$button-font-color--active: base-color('white', 'invert') !default;
+$button-font-family: $secondary-typeface !default;
+$button-font-size: $font-size !default;
+$button-font-size--small: $font-size--small !default;
+$button-font-size--large: $font-size--large !default;
+$button-font-size--huge: $font-size--huge !default;
+$button-font-variant: normal !default;
+$button-font-weight: 300 !default;
+$button-height: $input-height !default;
+$button-height--small: $input-height--small !default;
+$button-height--large: $input-height--large !default;
+$button-height--huge: $input-height--huge !default;
+$button-letter-spacing: 0 !default;
+$button-text-transform: uppercase !default;
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> BUTTON -> MIXINS
+   ============================================================================================= */
+
+// Small button size
+@mixin button-size--small() {
+    font-size: $button-font-size--small;
+    height: $button-height--small;
+    line-height: $button-height--small - ($button-border-width--top + $button-border-width--bottom);
+    margin-bottom: $button-element-spacing--small;
+    padding: 0 $button-content-spacing--small;
+}
+
+// Large button size
+@mixin button-size--large() {
+    font-size: $button-font-size--large;
+    height: $button-height--large;
+    line-height: $button-height--large - ($button-border-width--top + $button-border-width--bottom);
+    margin-bottom: $button-element-spacing--large;
+    padding: 0 $button-content-spacing--large;
+}
+
+// Huge button size
+@mixin button-size--huge() {
+    font-size: $button-font-size--huge;
+    height: $button-height--huge;
+    line-height: $button-height--huge - ($button-border-width--top + $button-border-width--bottom);
+    margin-bottom: $button-element-spacing--huge;
+    padding: 0 $button-content-spacing--huge;
+}
+
+// Standard icon button size
+@mixin icon-button-size() {
+    max-width: $button-height;
+    min-width: $button-height;
+    padding: 0;
+    width: $button-height;
+}
+
+// Small icon button size
+@mixin icon-button-size--small() {
+    max-width: $button-height--small;
+    min-width: $button-height--small;
+    padding: 0;
+    width: $button-height--small;
+}
+
+// Large icon button size
+@mixin icon-button-size--large() {
+    max-width: $button-height--large;
+    min-width: $button-height--large;
+    padding: 0;
+    width: $button-height--large;
+}
+
+// Huge icon button size
+@mixin icon-button-size--huge() {
+    max-width: $button-height--huge;
+    min-width: $button-height--huge;
+    padding: 0;
+    width: $button-height--huge;
+}
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> BUTTON
+   ============================================================================================= */
+
+#{$button} {
+    align-items: center;
+    background-color: $button-background-color;
+    border: 0 $button-border-style $button-border-color;
+    border-bottom-left-radius: $button-border-radius--bottom-left;
+    border-bottom-right-radius: $button-border-radius--bottom-right;
+    border-top-left-radius: $button-border-radius--top-left;
+    border-top-right-radius: $button-border-radius--top-right;
+    border-bottom-width: $button-border-width--bottom;
+    border-left-width: $button-border-width--left;
+    border-right-width: $button-border-width--right;
+    border-top-width: $button-border-width--top;
+    color: $button-font-color;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: $button-font-family;
+    font-size: $button-font-size;
+    font-variant: $button-font-variant;
+    font-weight: $button-font-weight;
+    height: $button-height;
+    justify-content: center;
+    letter-spacing: $button-letter-spacing;
+    line-height: $button-height - ($button-border-width--top + $button-border-width--bottom);
+    margin: 0;
+    margin-bottom: $button-element-spacing;
+    max-width: 100%;
+    padding: 0 $button-content-spacing;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: $button-text-transform;
+    user-select: none;
+    z-index: get-stack-index('default');
+
+    // Pseudo classes
+    &:hover {
+        background-color: $button-background-color--hover;
+        border-color: $button-border-color--hover;
+        color: $button-font-color--hover;
+        z-index: get-stack-index('hover');
+    }
+
+    &:focus {
+        background-color: $button-background-color--focus;
+        border-color: $button-border-color--focus;
+        color: $button-font-color--focus;
+        outline: none;
+        z-index: get-stack-index('focus');
+    }
+
+    &:active {
+        background-color: $button-background-color--active;
+        border-color: $button-border-color--active;
+        color: $button-font-color--active;
+        z-index: get-stack-index('active');
+    }
+
+    // Modifiers
+    &.button--block {
+        display: flex;
+        width: 100%;
+    }
+
+    &.button--icon {
+        @include icon-button-size();
+    }
+
+    &.button--outline,
+    &.button--text {
+        background-color: $button-background-alt-color;
+        color: inherit;
+        text-decoration: none;
+
+        // Pseudo classes
+        &:hover {
+            background-color: $button-background-alt-color--hover;
+        }
+
+        &:focus {
+            background-color: $button-background-alt-color--focus;
+        }
+
+        &:active {
+            background-color: $button-background-alt-color--active;
+        }
+    }
+
+    &.button--text {
+        border-color: transparent;
+    }
+
+    &.button--pill {
+        border-radius: 999px;
+    }
+
+    &.button--round {
+        border-radius: 100%;
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        @include button-size--small();
+
+        // Nested selectors
+        &.button--icon {
+            @include icon-button-size--small();
+        }
+    }
+
+    &.is-large {
+        @include button-size--large();
+
+        // Nested selectors
+        &.button--icon {
+            @include icon-button-size--large();
+        }
+    }
+
+    &.is-huge {
+        @include button-size--huge();
+
+        // Nested selectors
+        &.button--icon {
+            @include icon-button-size--huge();
+        }
+    }
+
+    // Modifiers: Base colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+            background-color: base-color($name, $pseudo-background-color-type);
+            border-color: base-color($name, $pseudo-border-color-type);
+            color: base-color($name, 'invert');
+
+            // Pseudo classes
+            &:hover {
+                background-color: base-color($name, $pseudo-background-color-type--hover);
+                border-color: base-color($name, $pseudo-border-color-type--hover);
+            }
+
+            &:focus {
+                background-color: base-color($name, $pseudo-background-color-type--focus);
+                border-color: base-color($name, $pseudo-border-color-type--focus);
+            }
+
+            &:active {
+                background-color: base-color($name,$pseudo-background-color-type--active);
+                border-color: base-color($name, $pseudo-border-color-type--active);
+            }
+
+            // Modifiers
+            &.button--outline,
+            &.button--text {
+                background-color: $button-background-alt-color;
+                border-color: base-color($name, $pseudo-border-color-type);
+                color: base-color($name, $pseudo-background-color-type);
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    color: base-color($name, 'invert');
+                }
+
+                &:hover {
+                    background-color: base-color($name, $pseudo-background-color-type--hover);
+                    border-color: base-color($name, $pseudo-border-color-type--hover);
+                }
+
+                &:focus {
+                    background-color: base-color($name, $pseudo-background-color-type--focus);
+                    border-color: base-color($name, $pseudo-border-color-type--focus);
+                }
+
+                &:active {
+                    background-color: base-color($name, $pseudo-background-color-type--active);
+                    border-color: base-color($name, $pseudo-border-color-type--active);
+                }
+            }
+
+            &.button--text {
+                border-color: transparent;
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    border-color: transparent;
+                    color: base-color($name, $pseudo-background-color-type);
+                }
+
+                &:hover {
+                    background-color: $button-background-alt-color--hover;
+                }
+
+                &:focus {
+                    background-color: $button-background-alt-color--focus;
+                }
+
+                &:active {
+                    background-color: $button-background-alt-color--active;
+                }
+            }
+        }
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            background-color: feedback-color($name, $pseudo-background-color-type);
+            border-color: feedback-color($name, $pseudo-border-color-type);
+            color: feedback-color($name, 'invert');
+
+            // Pseudo classes
+            &:hover {
+                background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                border-color: feedback-color($name, $pseudo-border-color-type--hover);
+            }
+
+            &:focus {
+                background-color: feedback-color($name, $pseudo-background-color-type--focus);
+                border-color: feedback-color($name, $pseudo-border-color-type--focus);
+            }
+
+            &:active {
+                background-color: feedback-color($name, $pseudo-background-color-type--active);
+                border-color: feedback-color($name, $pseudo-border-color-type--active);
+            }
+
+            // Modifiers
+            &.button--outline,
+            &.button--text {
+                background-color: $button-background-alt-color;
+                border-color: feedback-color($name, $pseudo-border-color-type);
+                color: feedback-color($name, $pseudo-background-color-type);
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    color: feedback-color($name, 'invert');
+                }
+
+                &:hover {
+                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                }
+
+                &:focus {
+                    background-color: feedback-color($name, $pseudo-background-color-type--focus);
+                    border-color: feedback-color($name, $pseudo-border-color-type--focus);
+                }
+
+                &:active {
+                    background-color: feedback-color($name, $pseudo-background-color-type--active);
+                    border-color: feedback-color($name, $pseudo-border-color-type--active);
+                }
+            }
+
+            &.button--text {
+                border-color: transparent;
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    border-color: transparent;
+                    color: feedback-color($name, $pseudo-background-color-type);
+                }
+
+                &:hover {
+                    background-color: $button-background-alt-color--hover;
+                }
+
+                &:focus {
+                    background-color: $button-background-alt-color--focus;
+                }
+
+                &:active {
+                    background-color: $button-background-alt-color--active;
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    .button__icon {
+        margin: 0 ($button-content-spacing / 2);
+
+        // Pseudo classes
+        &:first-child:not(:only-child) {
+            margin-left: -($button-content-spacing / 4);
+        }
+
+        &:last-child:not(:only-child) {
+            margin-right: -($button-content-spacing / 4);
+        }
+    }
+}
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> BUTTON GROUP
+   ============================================================================================= */
+
+.button-group {
+    display: inline-flex;
+    margin-bottom: $button-element-spacing;
+
+    // Modifiers
+    &.button-group--block {
+        display: flex;
+
+        // Nested selectors
+        #{$button} {
+            flex-grow: 1;
+        }
+    }
+
+    &.button-group--icons {
+        // Nested selectors
+        #{$button} {
+            @include icon-button-size();
+        }
+    }
+
+    &.button-group--outline,
+    &.button-group--text {
+        // Nested selectors
+        #{$button} {
+            background-color: $button-background-alt-color;
+            color: inherit;
+            text-decoration: none;
+
+            // Pseudo classes
+            &:hover {
+                background-color: $button-background-alt-color--hover;
+            }
+
+            &:focus {
+                background-color: $button-background-alt-color--focus;
+            }
+
+            &:active {
+                background-color: $button-background-alt-color--active;
+            }
+        }
+    }
+
+    &.button-group--text {
+        // Nested selectors
+        #{$button} {
+            border-color: transparent;
+        }
+    }
+
+    &.button-group--pill {
+        // Nested selectors
+        #{$button} {
+            // Pseudo classes
+            &:first-child {
+                border-bottom-left-radius: 999px;
+                border-top-left-radius: 999px;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: 999px;
+                border-top-right-radius: 999px;
+            }
+        }
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        margin-bottom: $button-element-spacing--small;
+
+        // Modifiers
+        &.button-group--icons {
+            // Nested selectors
+            #{$button} {
+                @include icon-button-size--small();
+            }
+        }
+
+        // Nested selectors
+        #{$button} {
+            @include button-size--small();
+            margin-bottom: 0;
+        }
+    }
+
+    &.is-large {
+        margin-bottom: $button-element-spacing--large;
+
+        // Modifiers
+        &.button-group--icons {
+            // Nested selectors
+            #{$button} {
+                @include icon-button-size--large();
+            }
+        }
+
+        // Nested selectors
+        #{$button} {
+            @include button-size--large();
+            margin-bottom: 0;
+        }
+    }
+
+    &.is-huge {
+        margin-bottom: $button-element-spacing--huge;
+
+        // Modifiers
+        &.button-group--icons {
+            // Nested selectors
+            #{$button} {
+                @include icon-button-size--huge();
+            }
+        }
+
+        // Nested selectors
+        #{$button} {
+            @include button-size--huge();
+            margin-bottom: 0;
+        }
+    }
+
+    // Modifiers: Base colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+            // Modifiers
+            &.button-group--outline,
+            &.button-group--text {
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent;
+                    border-color: base-color($name, $pseudo-border-color-type);
+                    color: base-color($name, $pseudo-background-color-type);
+
+                    // Pseudo classes
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        color: base-color($name, 'invert');
+                    }
+
+                    &:hover {
+                        background-color: base-color($name, $pseudo-background-color-type--hover);
+                        border-color: base-color($name, $pseudo-border-color-type--hover);
+                    }
+
+                    &:focus {
+                        background-color: base-color($name, $pseudo-background-color-type--focus);
+                        border-color: base-color($name, $pseudo-border-color-type--focus);
+                    }
+
+                    &:active {
+                        background-color: base-color($name, $pseudo-background-color-type--active);
+                        border-color: base-color($name, $pseudo-border-color-type--active);
+                    }
+                }
+            }
+
+            &.button-group--text {
+                // Nested selectors
+                #{$button} {
+                    border-color: $button-background-alt-color;
+
+                    // Pseudo classes
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-color: transparent;
+                        color: base-color($name, $pseudo-background-color-type);
+                    }
+
+                    &:hover {
+                        background-color: $button-background-alt-color--hover;
+                    }
+
+                    &:focus {
+                        background-color: $button-background-alt-color--focus;
+                    }
+
+                    &:active {
+                        background-color: $button-background-alt-color--active;
+                    }
+                }
+            }
+
+            // Nested selectors
+            #{$button} {
+                background-color: base-color($name, $pseudo-background-color-type);
+                border-color: base-color($name, $pseudo-border-color-type);
+                color: base-color($name, 'invert');
+
+                // Pseudo classes
+                &:hover {
+                    background-color: base-color($name, $pseudo-background-color-type--hover);
+                    border-color: base-color($name, $pseudo-border-color-type--hover);
+                }
+
+                &:focus {
+                    background-color: base-color($name, $pseudo-background-color-type--focus);
+                    border-color: base-color($name, $pseudo-border-color-type--focus);
+                }
+
+                &:active {
+                    background-color: base-color($name, $pseudo-background-color-type--active);
+                    border-color: base-color($name, $pseudo-border-color-type--active);
+                }
+            }
+        }
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            // Modifiers
+            &.button-group--outline,
+            &.button-group--text {
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent;
+                    border-color: feedback-color($name, $pseudo-border-color-type);
+                    color: feedback-color($name, $pseudo-background-color-type);
+
+                    // Pseudo classes
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        color: feedback-color($name, 'invert');
+                    }
+
+                    &:hover {
+                        background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                        border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                    }
+
+                    &:focus {
+                        background-color: feedback-color($name, $pseudo-background-color-type--focus);
+                        border-color: feedback-color($name, $pseudo-border-color-type--focus);
+                    }
+
+                    &:active {
+                        background-color: feedback-color($name, $pseudo-background-color-type--active);
+                        border-color: feedback-color($name, $pseudo-border-color-type--active);
+                    }
+                }
+            }
+
+            &.button-group--text {
+                // Nested selectors
+                #{$button} {
+                    border-color: $button-background-alt-color;
+
+                    // Pseudo classes
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-color: transparent;
+                        color: feedback-color($name, $pseudo-background-color-type);
+                    }
+
+                    &:hover {
+                        background-color: $button-background-alt-color--hover;
+                    }
+
+                    &:focus {
+                        background-color: $button-background-alt-color--focus;
+                    }
+
+                    &:active {
+                        background-color: $button-background-alt-color--active;
+                    }
+                }
+            }
+
+            // Nested selectors
+            #{$button} {
+                background-color: feedback-color($name, $pseudo-background-color-type);
+                border-color: feedback-color($name, $pseudo-border-color-type);
+                color: feedback-color($name, 'invert');
+
+                // Pseudo classes
+                &:hover {
+                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                }
+
+                &:focus {
+                    background-color: feedback-color($name, $pseudo-background-color-type--focus);
+                    border-color: feedback-color($name, $pseudo-border-color-type--focus);
+                }
+
+                &:active {
+                    background-color: feedback-color($name, $pseudo-background-color-type--active);
+                    border-color: feedback-color($name, $pseudo-border-color-type--active);
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    #{$button} {
+        margin-bottom: 0;
+
+        // Pseudo classes
+        &:not(:only-child) {
+            border-left-width: $button-border-width--separator;
+            border-radius: 0;
+            border-right-width: $button-border-width--separator;
+            margin-right: -$button-border-width--separator;
+        }
+
+        &:first-child {
+            border-bottom-left-radius: $button-border-radius--bottom-left;
+            border-left-width: $button-border-width--left;
+            border-top-left-radius: $button-border-radius--top-left;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: $button-border-radius--bottom-right;
+            border-right-width: $button-border-width--right;
+            border-top-right-radius: $button-border-radius--top-right;
+            margin-right: 0;
+        }
+    }
+}

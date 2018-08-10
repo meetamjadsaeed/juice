@@ -5,9 +5,9 @@
    ============================================================================================= */
 
 // Focus
-$focus-outline-color: feedback-color('info') !default;
-$focus-outline-style: dotted !default;
-$focus-outline-width: 1px !default;
+$focus-outline-box-shadow-values: 0 0 0 3px !default;
+$focus-outline-box-shadow-color: feedback-color('info') !default;
+$focus-outline-box-shadow-transparentize: 0.8 !default;
 
 // Background
 $background-color: base-color('background') !default;
@@ -39,7 +39,8 @@ html {
 
 // Accessibility
 *:focus {
-    outline: $focus-outline-width $focus-outline-style $focus-outline-color;
+    box-shadow: $focus-outline-box-shadow-values transparentize($focus-outline-box-shadow-color, $focus-outline-box-shadow-transparentize);
+    outline: none;
 }
 
 // Body
@@ -49,6 +50,7 @@ body {
     margin: 0;
     min-width: 300px;
     padding: 0;
+    overflow-x: hidden;
     width: 100%;
 
     // Pseudo elements

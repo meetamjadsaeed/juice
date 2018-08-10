@@ -1,0 +1,238 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> TABLE -> VARIABLES
+   ============================================================================================= */
+
+$table-body-border-color: base-color('white', $pseudo-border-color-type) !default;
+$table-body-font-color: base-color('white', 'invert') !default;
+$table-body-font-color--striped: base-color('white', 'invert') !default;
+$table-body-font-color--hover: feedback-color('info', 'invert') !default;
+$table-body-row-background-color: base-color('white', $pseudo-background-color-type) !default;
+$table-body-row-background-color--striped: base-color('white', $pseudo-background-color-type--active) !default;
+$table-body-row-background-color--hover: feedback-color('info', $pseudo-background-color-type--hover) !default;
+$table-border-style: $border-style !default;
+$table-border-width--top: $border-width--top !default;
+$table-border-width--right: $border-width--right !default;
+$table-border-width--bottom: $border-width--bottom !default;
+$table-border-width--left: $border-width--left !default;
+$table-border-width--separator: $border-width--separator !default;
+$table-content-spacing: $content-spacing !default;
+$table-content-spacing--small: $content-spacing--small !default;
+$table-content-spacing--large: $content-spacing--large !default;
+$table-content-spacing--huge: $content-spacing--huge !default;
+$table-element-spacing: $element-spacing !default;
+$table-element-spacing--small: $element-spacing--small !default;
+$table-element-spacing--large: $element-spacing--large !default;
+$table-element-spacing--huge: $element-spacing--huge !default;
+$table-font-size: $font-size !default;
+$table-font-size--small: $font-size--small !default;
+$table-font-size--large: $font-size--large !default;
+$table-font-size--huge: $font-size--huge !default;
+$table-foot-background-color: base-color('white', $pseudo-background-color-type) !default;
+$table-foot-border-color: base-color('white', $pseudo-border-color-type) !default;
+$table-foot-font-color: base-color('white', 'invert') !default;
+$table-head-background-color: base-color('charcoal', $pseudo-background-color-type) !default;
+$table-head-border-color: base-color('charcoal', $pseudo-border-color-type) !default;
+$table-head-font-color: base-color('charcoal', 'invert') !default;
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> TABLE
+   ============================================================================================= */
+
+table {
+    border-collapse: collapse;
+    font-size: $table-font-size;
+    margin: 0;
+    margin-bottom: $table-element-spacing;
+    max-width: 100%;
+    text-align: left;
+    width: 100%;
+
+    // Pseudo classes
+    &>*:first-child {
+        border-top-width: $table-border-width--top;
+    }
+
+    &>*:last-child  {
+        border-bottom-width: $table-border-width--bottom;
+    }
+
+    &>*:only-child {
+        border-bottom-width: $table-border-width--bottom;
+        border-top-width: $table-border-width--top;
+    }
+
+    // Modifiers
+    &.table--center {
+        text-align: center;
+
+        // Nested selectors
+        caption {
+            text-align: inherit;
+        }
+    }
+
+    &.table--border {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                border: 0 $table-border-style $table-body-border-color;
+                border-bottom-width: $table-border-width--separator;
+            }
+        }
+    }
+
+    &.table--stripe {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                // Pseudo classes
+                &:nth-of-type(even) {
+                    background-color: $table-body-row-background-color--striped;
+
+                    // Nested selectors
+                    th,
+                    td {
+                        color: $table-body-font-color--striped;
+                    }
+                }
+            }
+        }
+    }
+
+    &.table--hover {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                // Pseudo classes
+                &:hover {
+                    background-color: $table-body-row-background-color--hover;
+
+                    // Nested selectors
+                    th,
+                    td {
+                        color: $table-body-font-color--hover;
+                    }
+                }
+            }
+        }
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        font-size: $table-font-size--small;
+        margin-bottom: $table-element-spacing--small;
+
+        // Nested selectors
+        caption {
+            padding: $table-content-spacing--small;
+        }
+
+        thead,
+        tbody,
+        tfoot {
+            // Nested selectors
+            tr {
+                // Nested selectors
+                th,
+                td {
+                    padding: $table-content-spacing--small;
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $table-font-size--large;
+        margin-bottom: $table-element-spacing--large;
+
+        // Nested selectors
+        caption {
+            padding: $table-content-spacing--large;
+        }
+
+        thead,
+        tbody,
+        tfoot {
+            // Nested selectors
+            tr {
+                // Nested selectors
+                th,
+                td {
+                    padding: $table-content-spacing--large;
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $table-font-size--huge;
+        margin-bottom: $table-element-spacing--huge;
+
+        // Nested selectors
+        caption {
+            padding: $table-content-spacing--huge;
+        }
+
+        thead,
+        tbody,
+        tfoot {
+            // Nested selectors
+            tr {
+                // Nested selectors
+                th,
+                td {
+                    padding: $table-content-spacing--huge;
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    caption {
+        padding: $table-content-spacing;
+        text-align: inherit;
+    }
+
+    thead {
+        background-color: $table-head-background-color;
+        border: 0 $table-border-style $table-head-border-color;
+        border-bottom-width: $table-border-width--separator;
+        color: $table-head-font-color;
+    }
+
+    tbody {
+        background-color: $table-body-row-background-color;
+        border: 0 $table-border-style $table-body-border-color;
+        color: $table-body-font-color;
+    }
+
+    tfoot {
+        background-color: $table-foot-background-color;
+        border: 0 $table-border-style $table-foot-border-color;
+        border-bottom-width: $table-border-width--bottom;
+        color: $table-foot-font-color;
+    }
+
+    thead,
+    tbody,
+    tfoot {
+        border-left-width: $table-border-width--left;
+        border-right-width: $table-border-width--right;
+
+        // Nested selectors
+        tr {
+            // Nested selectors
+            th,
+            td {
+                padding: $table-content-spacing;
+                vertical-align: middle;
+            }
+        }
+    }
+}

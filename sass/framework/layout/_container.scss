@@ -4,7 +4,6 @@
    JUICE -> FRAMEWORK -> LAYOUT -> CONTAINER -> VARIABLES
    ============================================================================================= */
 
-// Container
 $container-gutter: $element-spacing !default;
 $container-max-width: 1200px !default;
 
@@ -13,7 +12,6 @@ $container-max-width: 1200px !default;
    JUICE -> FRAMEWORK -> LAYOUT -> CONTAINER
    ============================================================================================= */
 
-// Container
 .container {
     display: block;
     margin: 0 auto;

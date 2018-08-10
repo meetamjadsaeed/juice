@@ -21,7 +21,7 @@ const stopImmediatePropagationElements = document.querySelectorAll('.stop-immedi
 Array.from(preventDefaultElements).forEach(element => {
     // Add a click event handler to the element
     element.addEventListener('click', (event) => {
-        // Prevent default
+        // Prevent default behaviour
         event.preventDefault();
     });
 });
@@ -42,4 +42,13 @@ Array.from(stopImmediatePropagationElements).forEach(element => {
         // Stop immediate propagation
         event.stopImmediatePropagation();
     });
+});
+
+// Add a click event handler to scroll to top elements
+$('.scroll-to-top').on('click', (event) => {
+    // Prevent default behaviour
+    event.preventDefault();
+
+    // Scroll to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 });

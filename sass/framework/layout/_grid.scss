@@ -11,17 +11,11 @@ $grid-gutter: $element-spacing / 2 !default;
    JUICE -> FRAMEWORK -> LAYOUT -> GRID
    ============================================================================================= */
 
-// Grid
 .grid {
     display: flex;
     flex-wrap: wrap;
     margin: 0 (-$grid-gutter);
     position: relative;
-
-    // Pseudo classes
-    &:focus {
-        outline: none;
-    }
 
     // Modifiers
     &.grid--no-gutter {
@@ -93,11 +87,6 @@ $grid-gutter: $element-spacing / 2 !default;
         max-width: 100%;
         padding: 0 $grid-gutter;
 
-        // Pseudo classes
-        &:focus {
-            outline: none;
-        }
-
         // Modifiers
         @for $i from 1 through 12 {
             // Variables
@@ -112,6 +101,10 @@ $grid-gutter: $element-spacing / 2 !default;
             &.grid__item--offset-#{$i} {
                 margin-left: $width;
             }
+        }
+
+        &.grid__item--no-offset {
+            margin-left: 0;
         }
 
         &.grid__item--first {
@@ -218,6 +211,10 @@ $grid-gutter: $element-spacing / 2 !default;
                   &.grid__item--offset-#{$i}\@#{$name} {
                       margin-left: $width;
                   }
+              }
+
+              &.grid__item--no-offset\@#{$name} {
+                  margin-left: 0;
               }
 
               &.grid__item--first\@#{$name} {

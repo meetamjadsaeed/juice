@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> TEXTAREAS -> VARIABLES
+   ============================================================================================= */
+
+$textarea-background-color: $input-background-color !default;
+$textarea-background-color--hover: $input-background-color !default;
+$textarea-background-color--focus: $input-background-color !default;
+$textarea-border-color: $input-border-color !default;
+$textarea-border-color--hover: $input-border-color--hover !default;
+$textarea-border-color--focus: $input-border-color--focus !default;
+$textarea-border-radius--top-left: $input-border-radius--top-left !default;
+$textarea-border-radius--top-right: $input-border-radius--top-right !default;
+$textarea-border-radius--bottom-right: $input-border-radius--bottom-right !default;
+$textarea-border-radius--bottom-left: $input-border-radius--bottom-left !default;
+$textarea-border-style: $input-border-style !default;
+$textarea-border-width--top: $input-border-width--top !default;
+$textarea-border-width--right: $input-border-width--right !default;
+$textarea-border-width--bottom: $input-border-width--bottom !default;
+$textarea-border-width--left: $input-border-width--left !default;
+$textarea-element-spacing: $input-element-spacing !default;
+$textarea-element-spacing--small: $input-element-spacing--small !default;
+$textarea-element-spacing--large: $input-element-spacing--large !default;
+$textarea-element-spacing--huge: $input-element-spacing--huge !default;
+$textarea-font-color: $input-font-color !default;
+$textarea-font-color--placeholder: $input-font-color--placeholder !default;
+$textarea-font-color--hover: $input-font-color--hover !default;
+$textarea-font-color--focus: $input-font-color--focus !default;
+$textarea-font-family: $input-font-family !default;
+$textarea-font-size: $input-font-size !default;
+$textarea-font-size--small: $input-font-size--small !default;
+$textarea-font-size--large: $input-font-size--large !default;
+$textarea-font-size--huge: $input-font-size--huge !default;
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> TEXTAREAS
+   ============================================================================================= */
+
+textarea {
+    -webkit-appearance: none;
+    background-color: $textarea-background-color;
+    border: 0 $textarea-border-style $textarea-border-color;
+    border-bottom-left-radius: $textarea-border-radius--bottom-left;
+    border-bottom-right-radius: $textarea-border-radius--bottom-right;
+    border-top-left-radius: $textarea-border-radius--top-left;
+    border-top-right-radius: $textarea-border-radius--top-right;
+    border-bottom-width: $textarea-border-width--bottom;
+    border-left-width: $textarea-border-width--left;
+    border-right-width: $textarea-border-width--right;
+    border-top-width: $textarea-border-width--top;
+    color: $textarea-font-color;
+    display: flex;
+    font-family: $textarea-font-family;
+    font-size: $textarea-font-size;
+    line-height: 1.5;
+    margin: 0;
+    margin-bottom: $textarea-element-spacing;
+    min-width: 100%;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+
+    // Pseudo classes
+    &:hover {
+        background-color: $textarea-background-color--hover;
+        border-color: $textarea-border-color--hover;
+        color: $textarea-font-color--hover;
+    }
+
+    &:focus,
+    &:active {
+        background-color: $textarea-background-color--focus;
+        border-color: $textarea-border-color--focus;
+        color: $textarea-font-color--focus;
+    }
+
+    // Pseudo elements
+    &::placeholder {
+        color: $textarea-font-color--placeholder;
+    }
+
+    // Modifiers
+    &.textarea--resize {
+        resize: vertical;
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        font-size: $textarea-font-size--small;
+        line-height: 1.4;
+        margin-bottom: $textarea-element-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $textarea-font-size--large;
+        line-height: 1.6;
+        margin-bottom: $textarea-element-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $textarea-font-size--huge;
+        line-height: 1.7;
+        margin-bottom: $textarea-element-spacing--huge;
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            border-color: feedback-color($name);
+
+            // Pseudo classes
+            &:focus,
+            &:active {
+                box-shadow: $focus-outline-box-shadow-values transparentize(feedback-color($name), $focus-outline-box-shadow-transparentize);
+            }
+        }
+    }
+}

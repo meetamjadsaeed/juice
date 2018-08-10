@@ -42,6 +42,8 @@
             const $element = $(this.element);
             const $dropdown = $('.dropdown', $element);
 
+            // $element.attr('tabindex', 0);
+
             // Store the settings to the dropdown data
             $dropdown.data({
                 'animation-in': $element.data('animation-in') || this.settings.animationIn,
@@ -53,28 +55,31 @@
                 // Set the dropdown width
                 const dropdownWidth = $dropdown.outerWidth();
 
-                // Set the inline left margin
+                // Set the left margin inline style of the dropdown
                 $dropdown.css({
                     'margin-left': -(dropdownWidth / 2)
                 });
             }
 
-            // Add a click and blur handler to show and hide the dropdown
+            // Add a click handler to show and hide the dropdown
             $('.has-dropdown').off().on('click', '.js-dropdown-trigger', (event) => {
                 // Set the dropdown element
                 const $dropdown = $(event.currentTarget).next('.dropdown');
 
-                // Check if the dropdown has the active state hook class
-                if ($dropdown.hasClass('is-active')) {
-                    // Hide the dropdown
-                    this.hide($dropdown);
-                } else {
+                // Check if the dropdown has the is active state hook class
+                if (!$dropdown.hasClass('is-active')) {
                     // Show the dropdown
                     this.show($dropdown);
+                } else {
+                    // Hide the dropdown
+                    this.hide($dropdown);
                 }
-            }).on('blur', '.js-dropdown-trigger', (event) => {
+            });
+
+            // Add a focusout handler to hide the dropdown
+            $('.has-dropdown').on('focusout', (event) => {
                 // Set the dropdown element
-                const $dropdown = $(event.currentTarget).next('.dropdown');
+                const $dropdown = $(event.currentTarget).children('.dropdown');
 
                 // Hide the dropdown
                 this.hide($dropdown);
@@ -105,11 +110,11 @@
         hide($dropdown) {
             // Add the animation out class to the dropdown and check when the animation has ended
             $dropdown.addClass($dropdown.data('animation-out')).one('animationend', () => {
-                // Remove the is active state hook class on the dropdown
-                $dropdown.removeClass('is-active');
-
                 // Remove the animation out class
                 $dropdown.removeClass($dropdown.data('animation-out'));
+
+                // Remove the is active state hook class on the dropdown
+                $dropdown.removeClass('is-active');
             });
         },
     });

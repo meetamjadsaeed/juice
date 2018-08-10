@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> INITIALIZE -> SETTINGS -> COLORS -> BASE
+   ============================================================================================= */
+
+$base-colors: (
+    // Brands
+    'primary': hsla(203, 70%, 52%, 1),
+    'secondary': hsla(23, 70%, 52%, 1),
+
+    // Backgrounds
+    'background': hsla(0, 0%, 99%, 1),
+
+    // Black and white
+    'black': hsla(0, 0%, 0%, 1),
+    'white': hsla(0, 100%, 100%, 1),
+
+    // Colors
+    'blue': hsla(196, 85%, 57%, 1),
+    'brown': hsla(24, 44%, 45%, 1),
+    'charcoal': hsla(0, 0%, 23%, 1),
+    'emerald': hsla(140, 52%, 55%, 1),
+    'green': hsla(101, 55%, 60%, 1),
+    'grey': hsla(0, 0%, 47%, 1),
+    'indigo': hsla(225, 57%, 47%, 1),
+    'orange': hsla(34, 100%, 61%, 1),
+    'pink': hsla(309, 96%, 79%, 1),
+    'purple': hsla(285, 58%, 64%, 1),
+    'red': hsla(11, 85%, 57%, 1),
+    'silver': hsla(0, 0%, 92%, 1),
+    'slate': hsla(210, 20%, 33%, 1),
+    'teal': hsla(174, 94%, 32%, 1),
+    'yellow': hsla(63, 100%, 75%, 1)
+) !default;
+
+/* =============================================================================================
+   JUICE -> INITIALIZE -> SETTINGS -> COLORS -> FONT
+   ============================================================================================= */
+
+$font-colors: (
+    'dark': hsla(0, 0%, 13%, 1),
+    'default': hsla(0, 0%, 34%, 1),
+    'light': hsla(0, 0%, 91%, 1),
+) !default;
+
+/* =============================================================================================
+   JUICE -> INITIALIZE -> SETTINGS -> COLORS -> FEEDBACK
+   ============================================================================================= */
+
+$feedback-colors: (
+    'info': map-get($base-colors, 'blue'),
+    'success': map-get($base-colors, 'green'),
+    'warning': map-get($base-colors, 'orange'),
+    'error': map-get($base-colors, 'red'),
+) !default;
+
+/* =============================================================================================
+   JUICE -> INITIALIZE -> SETTINGS -> COLORS -> VARIATION TYPES
+   ============================================================================================= */
+
+// Pseudo class variation types
+$pseudo-background-color-type: 'base';
+$pseudo-background-color-type--focus: 'base';
+$pseudo-background-color-type--hover: 'lighten-1';
+$pseudo-background-color-type--active: 'darken-1';
+
+$pseudo-border-color-type: 'darken-3';
+$pseudo-border-color-type--focus: 'darken-6';
+$pseudo-border-color-type--hover: 'darken-6';
+$pseudo-border-color-type--active: 'darken-8';

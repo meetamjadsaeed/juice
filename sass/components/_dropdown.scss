@@ -4,8 +4,12 @@
    JUICE -> COMPONENTS -> DROPDOWN -> VARIABLES
    ============================================================================================= */
 
-$dropdown-background-color: base-color('white') !default;
-$dropdown-border-color: base-color('white', 'darken-3') !default;
+$dropdown-animation-duration: 300ms !default;
+$dropdown-background-color: base-color('white', $pseudo-background-color-type) !default;
+$dropdown-background-color--focus: base-color('white', $pseudo-background-color-type--focus) !default;
+$dropdown-background-color--hover: base-color('white', $pseudo-background-color-type--hover) !default;
+$dropdown-background-color--active: base-color('white', $pseudo-background-color-type--active) !default;
+$dropdown-border-color: base-color('white', $pseudo-border-color-type) !default;
 $dropdown-border-radius--top-left: $border-radius--top-left !default;
 $dropdown-border-radius--top-right: $border-radius--top-right !default;
 $dropdown-border-radius--bottom-right: $border-radius--bottom-right !default;
@@ -16,18 +20,16 @@ $dropdown-border-width--right: $border-width--right !default;
 $dropdown-border-width--bottom: $border-width--bottom !default;
 $dropdown-border-width--left: $border-width--left !default;
 $dropdown-border-width--separator: $border-width--separator !default;
-$dropdown-box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+$dropdown-box-shadow: $box-shadow !default;
 $dropdown-content-spacing: $content-spacing !default;
 $dropdown-content-spacing--small: $content-spacing--small !default;
 $dropdown-content-spacing--large: $content-spacing--large !default;
 $dropdown-content-spacing--huge: $content-spacing--huge !default;
-$dropdown-font-color: font-color('default') !default;
+$dropdown-font-color: base-color('white', 'invert') !default;
 $dropdown-font-size: $font-size !default;
 $dropdown-font-size--small: $font-size--small !default;
 $dropdown-font-size--large: $font-size--large !default;
 $dropdown-font-size--huge: $font-size--huge !default;
-$dropdown-link-color: $link-color !default;
-$dropdown-link-color--hover: $link-color--hover !default;
 $dropdown-min-width: 200px !default;
 $dropdown-min-width--small: 200px !default;
 $dropdown-min-width--large: 300px !default;
@@ -45,7 +47,7 @@ $dropdown-offset: 5px !default;
 
     // Nested selectors
     .dropdown {
-        animation-duration: 300ms;
+        animation-duration: $dropdown-animation-duration;
         background-color: $dropdown-background-color;
         border: 0 $dropdown-border-style $dropdown-border-color;
         border-bottom-left-radius: $dropdown-border-radius--bottom-left;
@@ -67,14 +69,14 @@ $dropdown-offset: 5px !default;
         position: absolute;
         text-align: left;
         top: 100%;
-        z-index: 1;
+        z-index: get-stack-index('dropdown');
 
         // Modifiers: State hooks
         &.is-active {
             display: block;
         }
 
-        // Modifiers: Size
+        // Modifiers: Sizes
         &.is-small {
             font-size: $dropdown-font-size--small;
             min-width: $dropdown-min-width--small;
@@ -123,14 +125,28 @@ $dropdown-offset: 5px !default;
 
         // Nested selectors
         a {
-            // Modifiers
+            // Nested selectors
             &.dropdown__item {
+                background-color: $dropdown-background-color;
                 display: block;
+                position: relative;
+                text-decoration: none;
+                z-index: get-stack-index('default');
 
                 // Pseudo classes
                 &:hover {
-                    background-color: base-color('white', 'darken-1');
-                    text-decoration: none;
+                    background-color: $dropdown-background-color--hover;
+                    z-index: get-stack-index('hover');
+                }
+
+                &:focus {
+                    background-color: $dropdown-background-color--focus;
+                    z-index: get-stack-index('focus');
+                }
+
+                &:active {
+                    background-color: $dropdown-background-color--active;
+                    z-index: get-stack-index('active');
                 }
             }
         }

@@ -4,22 +4,22 @@
    JUICE -> COMPONENTS -> TOOLTIP -> VARIABLES
    ============================================================================================= */
 
-$tooltip-arrow-size: 6px;
-$tooltip-background-color: base-color('charcoal');
-$tooltip-border-radius--top-left: $border-radius--top-left;
-$tooltip-border-radius--top-right: $border-radius--top-right;
-$tooltip-border-radius--bottom-right: $border-radius--bottom-right;
-$tooltip-border-radius--bottom-left: $border-radius--bottom-left;
-$tooltip-duration: 300ms;
-$tooltip-font-color: base-color('white');
-$tooltip-font-family: 'Trebuchet', sans-serif;
-$tooltip-font-size: $font-size - 0.2em;
-$tooltip-font-size--small: $font-size--small - 0.2em;
-$tooltip-font-size--large: $font-size--large - 0.2em;
-$tooltip-font-size--huge: $font-size--huge - 0.2em;
-$tooltip-offset: 2px;
-$tooltip-opacity: 0.9;
-$tooltip-padding: 6px 10px;
+$tooltip-animation-duration: 300ms !default;
+$tooltip-arrow-size: 6px !default;
+$tooltip-background-color: base-color('charcoal', $pseudo-background-color-type) !default;
+$tooltip-border-radius--top-left: $border-radius--top-left !default;
+$tooltip-border-radius--top-right: $border-radius--top-right !default;
+$tooltip-border-radius--bottom-right: $border-radius--bottom-right !default;
+$tooltip-border-radius--bottom-left: $border-radius--bottom-left !default;
+$tooltip-font-color: base-color('charcoal', 'invert') !default;
+$tooltip-font-family: 'Trebuchet', sans-serif !default;
+$tooltip-font-size: $font-size - 0.2em !default;
+$tooltip-font-size--small: $font-size--small - 0.2em !default;
+$tooltip-font-size--large: $font-size--large - 0.2em !default;
+$tooltip-font-size--huge: $font-size--huge - 0.2em !default;
+$tooltip-offset: 2px !default;
+$tooltip-opacity: 0.9 !default;
+$tooltip-padding: 6px 10px !default;
 
 
 /* =============================================================================================
@@ -27,13 +27,13 @@ $tooltip-padding: 6px 10px;
    ============================================================================================= */
 
 .tooltip {
-    animation-duration: $tooltip-duration;
+    animation-duration: $tooltip-animation-duration;
 	left: 0;
 	margin: 0;
 	margin-top: -($tooltip-arrow-size + $tooltip-offset);
 	position: absolute;
 	top: 0;
-	z-index: 1;
+	z-index: get-stack-index('tooltip');
 
 	// Pseudo elements
 	&::before {
@@ -71,23 +71,6 @@ $tooltip-padding: 6px 10px;
 		}
 	}
 
-	&.tooltip--left {
-		margin: 0;
-		margin-left: -($tooltip-arrow-size + $tooltip-offset);
-
-		// Pseudo elements
-		&::before {
-            border-bottom: $tooltip-arrow-size solid transparent;
-            border-left: $tooltip-arrow-size solid $tooltip-background-color;
-            border-right: 0;
-            border-top: $tooltip-arrow-size solid transparent;
-			left: 100%;
-			margin-left: 0;
-			margin-top: -$tooltip-arrow-size;
-			top: 50%;
-		}
-	}
-
 	&.tooltip--bottom {
 		margin: 0;
 		margin-top: $tooltip-arrow-size + $tooltip-offset;
@@ -105,7 +88,24 @@ $tooltip-padding: 6px 10px;
 		}
 	}
 
-    // Modifiers: Size
+	&.tooltip--left {
+		margin: 0;
+		margin-left: -($tooltip-arrow-size + $tooltip-offset);
+
+		// Pseudo elements
+		&::before {
+            border-bottom: $tooltip-arrow-size solid transparent;
+            border-left: $tooltip-arrow-size solid $tooltip-background-color;
+            border-right: 0;
+            border-top: $tooltip-arrow-size solid transparent;
+			left: 100%;
+			margin-left: 0;
+			margin-top: -$tooltip-arrow-size;
+			top: 50%;
+		}
+	}
+
+    // Modifiers: Sizes
     &.is-small {
         // Nested selectors
         .tooltip__content {
@@ -146,13 +146,13 @@ $tooltip-padding: 6px 10px;
 		text-align: center;
 	}
 
-    // Modifiers: Colors
+    // Modifiers: Base colors
     @each $name, $color in $base-colors {
         &.is-#{$name} {
         	// Pseudo elements
         	&::before {
                 border-color: transparent;
-        		border-top-color: base-color($name);
+        		border-top-color: base-color($name, $pseudo-background-color-type);
         	}
 
         	// Modifiers
@@ -168,39 +168,39 @@ $tooltip-padding: 6px 10px;
         	&.tooltip--right {
         		// Pseudo elements
         		&::before {
-            		border-right-color: base-color($name);
+            		border-right-color: base-color($name, $pseudo-background-color-type);
         		}
         	}
 
         	&.tooltip--bottom {
         		// Pseudo elements
         		&::before {
-            		border-bottom-color: base-color($name);
+            		border-bottom-color: base-color($name, $pseudo-background-color-type);
         		}
         	}
 
         	&.tooltip--left {
         		// Pseudo elements
         		&::before {
-            		border-left-color: base-color($name);
+            		border-left-color: base-color($name, $pseudo-background-color-type);
         		}
         	}
 
             // Nested selectors
         	.tooltip__content {
-        		background-color: base-color($name);
+        		background-color: base-color($name, $pseudo-background-color-type);
         		color: base-color($name, 'invert');
         	}
         }
     }
 
-    // Modifiers: Feedback
+    // Modifiers: Feedback colors
     @each $name, $color in $feedback-colors {
-        &.with-#{$name} {
+        &.has-#{$name} {
         	// Pseudo elements
         	&::before {
                 border-color: transparent;
-        		border-top-color: feedback-color($name);
+        		border-top-color: feedback-color($name, $pseudo-background-color-type);
         	}
 
         	// Modifiers
@@ -216,33 +216,33 @@ $tooltip-padding: 6px 10px;
         	&.tooltip--right {
         		// Pseudo elements
         		&::before {
-            		border-right-color: feedback-color($name);
+            		border-right-color: feedback-color($name, $pseudo-background-color-type);
         		}
         	}
 
         	&.tooltip--bottom {
         		// Pseudo elements
         		&::before {
-            		border-bottom-color: feedback-color($name);
+            		border-bottom-color: feedback-color($name, $pseudo-background-color-type);
         		}
         	}
 
         	&.tooltip--left {
         		// Pseudo elements
         		&::before {
-            		border-left-color: feedback-color($name);
+            		border-left-color: feedback-color($name, $pseudo-background-color-type);
         		}
         	}
 
             // Nested selectors
         	.tooltip__content {
-        		background-color: feedback-color($name);
+        		background-color: feedback-color($name, $pseudo-background-color-type);
         		color: feedback-color($name, 'invert');
         	}
         }
     }
 
-    // Breakpoint
+    // Breakpoints
     @include breakpoint('touch') {
         display: none;
     }
