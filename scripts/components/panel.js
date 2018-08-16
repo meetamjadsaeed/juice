@@ -10,7 +10,7 @@
 
     // Set the plugin defaults
     const defaults = {
-        toggleAnimation: 'slide',
+        toggleAnimation: 'fade',
         toggleAnimationDuration: 200,
         removeAnimation: 'fadeOut'
     };
@@ -94,20 +94,44 @@
 
                     // Slide
                     case 'slide':
-                        // Toggle the panel body and check when the animation has ended
-                        $body.slideToggle(settings.duration, () => {
+                        // Check if the panel has the expanded state hook class
+                        if ($panel.hasClass('is-expanded')) {
+                            // Toggle the panel body and check when the animation has ended
+                            $body.slideToggle(settings.duration, () => {
+                                // Toggle the expanded and collapsed state hook classes on the panel
+                                $panel.toggleClass('is-expanded is-collapsed');
+                            });
+                        }
+
+                        // Check if the panel has the collapsed state hook class
+                        if ($panel.hasClass('is-collapsed')) {
                             // Toggle the expanded and collapsed state hook classes on the panel
                             $panel.toggleClass('is-expanded is-collapsed');
-                        });
+
+                            // Toggle the panel body
+                            $body.slideToggle(settings.duration);
+                        }
                     break;
 
                     // Fade
                     case 'fade':
-                        // Toggle the panel body and check when the animation has ended
-                        $body.fadeToggle(settings.duration, () => {
+                        // Check if the panel has the expanded state hook class
+                        if ($panel.hasClass('is-expanded')) {
+                            // Toggle the panel body and check when the animation has ended
+                            $body.fadeToggle(settings.duration, () => {
+                                // Toggle the expanded and collapsed state hook classes on the panel
+                                $panel.toggleClass('is-expanded is-collapsed');
+                            });
+                        }
+
+                        // Check if the panel has the collapsed state hook class
+                        if ($panel.hasClass('is-collapsed')) {
                             // Toggle the expanded and collapsed state hook classes on the panel
                             $panel.toggleClass('is-expanded is-collapsed');
-                        });
+
+                            // Toggle the panel body
+                            $body.fadeToggle(settings.duration);
+                        }
                     break;
                 }
             }

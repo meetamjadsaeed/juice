@@ -28,7 +28,7 @@ $base-colors: (
     'pink': hsla(309, 96%, 79%, 1),
     'purple': hsla(285, 58%, 64%, 1),
     'red': hsla(11, 85%, 57%, 1),
-    'silver': hsla(0, 0%, 92%, 1),
+    'silver': hsla(0, 0%, 96%, 1),
     'slate': hsla(210, 20%, 33%, 1),
     'teal': hsla(174, 94%, 32%, 1),
     'yellow': hsla(63, 100%, 75%, 1)
@@ -59,13 +59,20 @@ $feedback-colors: (
    JUICE -> INITIALIZE -> SETTINGS -> COLORS -> VARIATION TYPES
    ============================================================================================= */
 
-// Pseudo class variation types
-$pseudo-background-color-type: 'base';
-$pseudo-background-color-type--focus: 'base';
-$pseudo-background-color-type--hover: 'lighten-1';
-$pseudo-background-color-type--active: 'darken-1';
+// Pseudo class background color variation types
+$pseudo-background-color-type: 'base' !default;
+$pseudo-background-color-type--focus: 'base' !default;
+$pseudo-background-color-type--hover: 'lighten-1' !default;
+$pseudo-background-color-type--active: 'darken-1' !default;
 
-$pseudo-border-color-type: 'darken-3';
-$pseudo-border-color-type--focus: 'darken-6';
-$pseudo-border-color-type--hover: 'darken-6';
-$pseudo-border-color-type--active: 'darken-8';
+// Pseudo class border color variation types
+$pseudo-border-color-type: 'darken-3' !default;
+$pseudo-border-color-type--focus: 'darken-6' !default;
+$pseudo-border-color-type--hover: 'darken-6' !default;
+$pseudo-border-color-type--active: 'darken-8' !default;
+
+// Pseudo class link color variation types
+$pseudo-link-color-type: 'base' !default;
+$pseudo-link-color-type--focus: 'base' !default;
+$pseudo-link-color-type--hover: 'lighten-4' !default;
+$pseudo-link-color-type--active: 'darken-2' !default;

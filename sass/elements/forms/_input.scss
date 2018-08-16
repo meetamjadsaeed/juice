@@ -26,7 +26,7 @@ $input: "
 " !default;
 
 // Input
-$input-background-color: base-color('white', $pseudo-background-color-type) !default;
+$input-background-color: base-color('white') !default;
 $input-background-color--hover: $input-background-color !default;
 $input-background-color--focus: $input-background-color !default;
 $input-border-color: base-color('white', $pseudo-border-color-type) !default;
@@ -41,7 +41,7 @@ $input-border-width--top: $border-width--top !default;
 $input-border-width--right: $border-width--right !default;
 $input-border-width--bottom: $border-width--bottom !default;
 $input-border-width--left: $border-width--left !default;
-$input-border-width--separator: $border-width--separator !default;
+$input-border-width--divider: $border-width--divider !default;
 $input-element-spacing: $element-spacing !default;
 $input-element-spacing--small: $element-spacing--small !default;
 $input-element-spacing--large: $element-spacing--large !default;
@@ -94,6 +94,7 @@ $input-range-track-color--filled: $input-border-color--focus !default;
     max-width: 100%;
     padding: $input-padding;
     position: relative;
+    outline: none;
     width: 100%;
 
     // Pseudo classes
@@ -107,6 +108,7 @@ $input-range-track-color--filled: $input-border-color--focus !default;
     &:active {
         background-color: $input-background-color--focus;
         border-color: $input-border-color--focus;
+        box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color('info'), $custom-focus-box-shadow-transparentize);
         color: $input-font-color--focus;
     }
 }
@@ -238,7 +240,7 @@ $input-range-track-color--filled: $input-border-color--focus !default;
             // Pseudo classes
             &:focus,
             &:active {
-                box-shadow: $focus-outline-box-shadow-values transparentize(feedback-color($name), $focus-outline-box-shadow-transparentize);
+                box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color($name), $custom-focus-box-shadow-transparentize);
             }
         }
     }
@@ -301,7 +303,6 @@ input[type=color] {
             border-radius: 999px;
         }
     }
-
 }
 
 // File
@@ -312,26 +313,10 @@ input[type=file] {
     width: auto;
 
     // Pseudo classes
-    &:hover {
+    &:focus {
         // Pseudo elements
         &::-webkit-file-upload-button {
-            border-color: $input-border-color--hover;
-        }
-
-        &::-ms-browse {
-            border-color: $input-border-color--hover;
-        }
-    }
-
-    &:focus,
-    &:active {
-        // Pseudo elements
-        &::-webkit-file-upload-button {
-            border-color: $input-border-color--focus;
-        }
-
-        &::-ms-browse {
-            border-color: $input-border-color--focus;
+            box-shadow: none !important;
         }
     }
 
@@ -341,7 +326,7 @@ input[type=file] {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
         border-width: 0;
-        border-right-width: $input-border-width--separator;
+        border-right-width: $input-border-width--divider;
         cursor: pointer;
         height: $input-height - ($input-border-width--top + $input-border-width--bottom);
         margin: 0;
@@ -351,7 +336,6 @@ input[type=file] {
 
     &::-ms-value {
         @include input();
-        border: none;
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
         margin: 0;
@@ -362,7 +346,6 @@ input[type=file] {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
         border-width: 0;
-        border-left-width: $input-border-width--separator;
         margin: 0;
         width: auto;
     }
@@ -429,44 +412,6 @@ input[type=file] {
 
         &::-ms-browse {
             height: $input-height--huge;
-        }
-    }
-
-    // Modifiers: Feedback colors
-    @each $name, $color in $feedback-colors {
-        &.has-#{$name} {
-            // Pseudo classes
-            &:hover {
-                // Pseudo elements
-                &::-webkit-file-upload-button {
-                    border-color: feedback-color($name, 'darken-2');
-                }
-
-                &::-ms-browse {
-                    border-color: feedback-color($name, 'darken-2');
-                }
-            }
-
-            &:focus,
-            &:active {
-                // Pseudo elements
-                &::-webkit-file-upload-button {
-                    border-color: feedback-color($name, 'darken-2');
-                }
-
-                &::-ms-browse {
-                    border-color: feedback-color($name, 'darken-2');
-                }
-            }
-
-            // Pseudo elements
-            &::-webkit-file-upload-button {
-                border-color: feedback-color($name);
-            }
-
-            &::-ms-browse {
-                border-color: feedback-color($name);
-            }
         }
     }
 }

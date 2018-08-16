@@ -4,7 +4,7 @@
    JUICE -> ELEMENTS -> BOX -> VARIABLES
    ============================================================================================= */
 
-$box-background-color: base-color('white', $pseudo-background-color-type) !default;
+$box-background-color: base-color('white') !default;
 $box-border-color: base-color('white', $pseudo-border-color-type) !default;
 $box-border-radius--top-left: $border-radius--top-left !default;
 $box-border-radius--top-right: $border-radius--top-right !default;

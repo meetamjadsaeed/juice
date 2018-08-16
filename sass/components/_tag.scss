@@ -15,8 +15,8 @@ $tag-border-width--top: $border-width--top !default;
 $tag-border-width--right: $border-width--right !default;
 $tag-border-width--bottom: $border-width--bottom !default;
 $tag-border-width--left: $border-width--left !default;
-$tag-border-width--separator: $border-width--separator !default;
-$tag-button-background-color: base-color('white', $pseudo-background-color-type) !default;
+$tag-border-width--divider: $border-width--divider !default;
+$tag-button-background-color: base-color('white') !default;
 $tag-button-background-color--hover: base-color('white', $pseudo-background-color-type--hover) !default;
 $tag-button-background-color--focus: base-color('white', $pseudo-background-color-type--focus) !default;
 $tag-button-background-color--active: base-color('white', $pseudo-background-color-type--active) !default;
@@ -44,7 +44,7 @@ $tag-font-size: $font-size - 0.2em !default;
 $tag-font-size--small: $font-size--small - 0.2em !default;
 $tag-font-size--large: $font-size--large - 0.2em !default;
 $tag-font-size--huge: $font-size--huge - 0.2em !default;
-$tag-text-background-color: base-color('white', $pseudo-background-color-type) !default;
+$tag-text-background-color: base-color('white') !default;
 $tag-text-border-color: base-color('white', $pseudo-border-color-type) !default;
 $tag-text-font-color: base-color('white', 'invert') !default;
 
@@ -69,6 +69,161 @@ $tag-group-element-spacing--huge: $element-spacing--huge !default;
     display: inline-flex;
     margin: 0;
     margin-bottom: $tag-element-spacing;
+
+    // Nested selectors
+    .tag__text,
+    .tag__button {
+        border: 0 $tag-border-style transparent;
+        border-bottom-width: $tag-border-width--bottom;
+        border-radius: 0;
+        border-top-width: $tag-border-width--top;
+        font-size: $tag-font-size;
+        height: $tag-element-height;
+        padding: 0 $tag-content-spacing;
+
+        // Pseudo classes
+        &:first-child {
+            border-bottom-left-radius: $tag-border-radius--bottom-left;
+            border-left-width: $tag-border-width--left;
+            border-top-left-radius: $tag-border-radius--top-left;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: $tag-border-radius--bottom-right;
+            border-right-width: $tag-border-width--right;
+            border-top-right-radius: $tag-border-radius--top-right;
+        }
+    }
+
+    .tag__text {
+        background-color: $tag-text-background-color;
+        border-color: $tag-text-border-color;
+        color: $tag-text-font-color;
+        line-height: $tag-element-height;
+
+        // Modifiers: Base colors
+        @each $name, $color in $base-colors {
+            &.is-#{$name} {
+                background-color: base-color($name);
+                border-color: base-color($name, 'darken-3');
+                color: base-color($name, 'invert');
+
+                // Nested selectors
+                a {
+                    color: base-color($name, 'invert');
+                }
+            }
+        }
+
+        // Modifiers: Feedback colors
+        @each $name, $color in $feedback-colors {
+            &.has-#{$name} {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, 'darken-3');
+                color: feedback-color($name, 'invert');
+
+                // Nested selectors
+                a {
+                    color: feedback-color($name, 'invert');
+                }
+            }
+        }
+    }
+
+    .tag__button {
+        background-color: $tag-button-background-color;
+        border-color: $tag-button-border-color;
+        color: $tag-button-font-color;
+        margin-bottom: 0;
+        width: $tag-element-height;
+
+        // Pseudo classes
+        &:hover {
+            background-color: $tag-button-background-color--hover;
+            border-color: $tag-button-border-color--hover;
+            color: $tag-button-font-color--hover;
+        }
+
+        &:focus {
+            background-color: $tag-button-background-color--focus;
+            border-color: $tag-button-border-color--focus;
+            color: $tag-button-font-color--focus;
+        }
+
+        &:active {
+            background-color: $tag-button-background-color--active;
+            border-color: $tag-button-border-color--active;
+            color: $tag-button-font-color--active;
+        }
+
+        &:first-child {
+            border-right-width: $tag-border-width--divider;
+        }
+
+        &:last-child {
+            border-left-width: $tag-border-width--divider;
+        }
+
+        // Modifiers: Base colors
+        @each $name, $color in $base-colors {
+            &.is-#{$name} {
+                background-color: base-color($name);
+                border-color: base-color($name, $pseudo-border-color-type);
+                color: base-color($name, 'invert');
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    color: base-color($name, 'invert');
+                }
+
+                &:hover {
+                    background-color: base-color($name, $pseudo-background-color-type--hover);
+                    border-color: base-color($name, $pseudo-border-color-type--hover);
+                }
+
+                &:focus {
+                    box-shadow: set-focus-box-shadow(base-color($name));
+                }
+
+                &:active {
+                    background-color: base-color($name, $pseudo-background-color-type--active);
+                    border-color: base-color($name, $pseudo-border-color-type--active);
+                }
+            }
+        }
+
+        // Modifiers: Feedback colors
+        @each $name, $color in $feedback-colors {
+            &.has-#{$name} {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, $pseudo-border-color-type);
+                color: feedback-color($name, 'invert');
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    color: feedback-color($name, 'invert');
+                }
+
+                &:hover {
+                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                }
+
+                &:focus {
+                    box-shadow: set-focus-box-shadow(feedback-color($name));
+                }
+
+                &:active {
+                    background-color: feedback-color($name, $pseudo-background-color-type--active);
+                    border-color: feedback-color($name, $pseudo-border-color-type--active);
+                }
+            }
+        }
+    }
 
     // Modifiers: Sizes
     &.is-small {
@@ -147,7 +302,7 @@ $tag-group-element-spacing--huge: $element-spacing--huge !default;
             }
 
             .tag__button {
-                background-color: base-color($name, $pseudo-background-color-type);
+                background-color: base-color($name);
                 border-color: base-color($name, $pseudo-border-color-type);
                 color: base-color($name, 'invert');
 
@@ -164,8 +319,7 @@ $tag-group-element-spacing--huge: $element-spacing--huge !default;
                 }
 
                 &:focus {
-                    background-color: base-color($name, $pseudo-background-color-type--focus);
-                    border-color: base-color($name, $pseudo-border-color-type--focus);
+                    box-shadow: set-focus-box-shadow(base-color($name));
                 }
 
                 &:active {
@@ -176,115 +330,47 @@ $tag-group-element-spacing--huge: $element-spacing--huge !default;
         }
     }
 
-    // Nested selectors
-    .tag__text,
-    .tag__button {
-        border: 0 $tag-border-style transparent;
-        border-bottom-width: $tag-border-width--bottom;
-        border-radius: 0;
-        border-top-width: $tag-border-width--top;
-        font-size: $tag-font-size;
-        height: $tag-element-height;
-        padding: 0 $tag-content-spacing;
-
-        // Pseudo classes
-        &:first-child {
-            border-bottom-left-radius: $tag-border-radius--bottom-left;
-            border-left-width: $tag-border-width--left;
-            border-top-left-radius: $tag-border-radius--top-left;
-        }
-
-        &:last-child {
-            border-bottom-right-radius: $tag-border-radius--bottom-right;
-            border-right-width: $tag-border-width--right;
-            border-top-right-radius: $tag-border-radius--top-right;
-        }
-    }
-
-    .tag__text {
-        background-color: $tag-text-background-color;
-        border-color: $tag-text-border-color;
-        color: $tag-text-font-color;
-        line-height: $tag-element-height;
-
-        // Modifiers: Base colors
-        @each $name, $color in $base-colors {
-            &.is-#{$name} {
-                background-color: base-color($name);
-                border-color: base-color($name, 'darken-3');
-                color: base-color($name, 'invert');
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            // Nested selectors
+            .tag__text {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, 'darken-3');
+                color: feedback-color($name, 'invert');
 
                 // Nested selectors
                 a {
-                    color: base-color($name, 'invert');
+                    color: feedback-color($name, 'invert');
                 }
             }
-        }
-    }
 
-    .tag__button {
-        background-color: $tag-button-background-color;
-        border-color: $tag-button-border-color;
-        color: $tag-button-font-color;
-        margin-bottom: 0;
-        width: $tag-element-height;
-
-        // Modifiers: Base colors
-        @each $name, $color in $base-colors {
-            &.is-#{$name} {
-                background-color: base-color($name, $pseudo-background-color-type);
-                border-color: base-color($name, $pseudo-border-color-type);
-                color: base-color($name, 'invert');
+            .tag__button {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, $pseudo-border-color-type);
+                color: feedback-color($name, 'invert');
 
                 // Pseudo classes
                 &:hover,
                 &:focus,
                 &:active {
-                    color: base-color($name, 'invert');
+                    color: feedback-color($name, 'invert');
                 }
 
                 &:hover {
-                    background-color: base-color($name, $pseudo-background-color-type--hover);
-                    border-color: base-color($name, $pseudo-border-color-type--hover);
+                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
                 }
 
                 &:focus {
-                    background-color: base-color($name, $pseudo-background-color-type--focus);
-                    border-color: base-color($name, $pseudo-border-color-type--focus);
+                    box-shadow: set-focus-box-shadow(feedback-color($name));
                 }
 
                 &:active {
-                    background-color: base-color($name, $pseudo-background-color-type--active);
-                    border-color: base-color($name, $pseudo-border-color-type--active);
+                    background-color: feedback-color($name, $pseudo-background-color-type--active);
+                    border-color: feedback-color($name, $pseudo-border-color-type--active);
                 }
             }
-        }
-
-        // Pseudo classes
-        &:hover {
-            background-color: $tag-button-background-color--hover;
-            border-color: $tag-button-border-color--hover;
-            color: $tag-button-font-color--hover;
-        }
-
-        &:focus {
-            background-color: $tag-button-background-color--focus;
-            border-color: $tag-button-border-color--focus;
-            color: $tag-button-font-color--focus;
-        }
-
-        &:active {
-            background-color: $tag-button-background-color--active;
-            border-color: $tag-button-border-color--active;
-            color: $tag-button-font-color--active;
-        }
-
-        &:first-child {
-            border-right-width: $tag-border-width--separator;
-        }
-
-        &:last-child {
-            border-left-width: $tag-border-width--separator;
         }
     }
 }
@@ -298,6 +384,17 @@ $tag-group-element-spacing--huge: $element-spacing--huge !default;
     display: inline-flex;
     flex-wrap: wrap;
     margin-bottom: $tag-group-element-spacing;
+
+    // Nested selectors
+    .tag {
+        margin-bottom: $tag-group-element-spacing / 2;
+        margin-right: $tag-group-element-spacing / 2;
+
+        // Pseudo classes
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 
     // Modifiers: Sizes
     &.is-small {
@@ -375,17 +472,6 @@ $tag-group-element-spacing--huge: $element-spacing--huge !default;
             .tag__button {
                 width: $tag-element-height--huge;
             }
-        }
-    }
-
-    // Nested selectors
-    .tag {
-        margin-bottom: $tag-group-element-spacing / 2;
-        margin-right: $tag-group-element-spacing / 2;
-
-        // Pseudo classes
-        &:last-child {
-            margin-right: 0;
         }
     }
 }

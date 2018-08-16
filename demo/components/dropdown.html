@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js no-touch" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -47,7 +47,7 @@
                         <button class="button--block js-dropdown-trigger has-no-element-spacing">Left Aligned</button>
 
                         <div class="dropdown">
-                            <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
+                            <div class="dropdown__item">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</div>
                             <div class="dropdown__divider"></div>
                             <a href="#" class="dropdown__item">Dropdown item 1</a>
                             <a href="#" class="dropdown__item">Dropdown item 2</a>
@@ -94,7 +94,9 @@
     </main>
 
     <!-- Footer -->
-    <footer><p>&nbsp;</p></footer>
+    <footer>
+        <p class="is-center-aligned"><a href="#" class="scroll-to-top">Top</a></p>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js" type="text/javascript"></script>

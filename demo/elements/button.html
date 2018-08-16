@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js no-touch" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -45,25 +45,41 @@
                 <div class="grid__item grid__item--span-6 grid__item--span-12@mobile">
                     <div class="box is-center-aligned">
                         <div class="has-element-spacing">
-                            <h6>Standard, outline and text</h6>
+                            <h6>Standard, Outline and Flat</h6>
                             <button>Button</button>
                             <button class="button--outline">Button</button>
-                            <button class="button--text">Button</button>
+                            <button class="button--flat">Button</button>
                         </div>
 
                         <hr />
 
                         <h6>Color</h6>
 
-                        <button class="is-primary">Primary</button>
-                        <button class="button--outline is-primary">Primary</button>
-                        <button class="button--text is-primary">Primary</button>
+                        <button class="is-primary">primary</button>
+                        <button class="button--outline is-primary">primary</button>
+                        <button class="button--flat is-primary">primary</button>
 
                         <hr />
 
                         <h6>Group</h6>
 
                         <div class="button-group">
+                            <button>Button</button>
+                            <button>Button</button>
+                            <button>Button</button>
+                        </div>
+
+                        <br />
+
+                        <div class="button-group button-group--outline">
+                            <button>Button</button>
+                            <button>Button</button>
+                            <button>Button</button>
+                        </div>
+
+                        <br />
+
+                        <div class="button-group button-group--flat">
                             <button>Button</button>
                             <button>Button</button>
                             <button>Button</button>
@@ -88,7 +104,7 @@
                                 Button
                             </span>
                         </button>
-                        <button class="button--text">
+                        <button class="button--flat">
                             <span class="button__icon">
                                 <i class="fas fa-user fa-fw"></i>
                             </span>
@@ -106,24 +122,24 @@
                         <p>
                             <button class="has-success">Success</button>
                             <button class="button--outline has-success">Success</button>
-                            <button class="button--text has-success">Success</button>
+                            <button class="button--flat has-success">Success</button>
                         </p>
 
                         <p>
                             <button class="has-info">Info</button>
                             <button class="button--outline has-info">Info</button>
-                            <button class="button--text has-info">Info</button>
+                            <button class="button--flat has-info">Info</button>
                         </p>
 
                         <p>
                             <button class="has-warning">Warning</button>
                             <button class="button--outline has-warning">Warning</button>
-                            <button class="button--text has-warning">Warning</button>
+                            <button class="button--flat has-warning">Warning</button>
                         </p>
 
                         <button class="has-error">Error</button>
                         <button class="button--outline has-error">Error</button>
-                        <button class="button--text has-error">Error</button>
+                        <button class="button--flat has-error">Error</button>
                     </div>
                 </div>
             </div>
@@ -131,7 +147,9 @@
     </main>
 
     <!-- Footer -->
-    <footer><p>&nbsp;</p></footer>
+    <footer>
+        <p class="is-center-aligned"><a href="#" class="scroll-to-top">Top</a></p>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js" type="text/javascript"></script>

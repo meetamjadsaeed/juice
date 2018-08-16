@@ -6,7 +6,7 @@
 
 $tooltip-animation-duration: 300ms !default;
 $tooltip-arrow-size: 6px !default;
-$tooltip-background-color: base-color('charcoal', $pseudo-background-color-type) !default;
+$tooltip-background-color: base-color('charcoal') !default;
 $tooltip-border-radius--top-left: $border-radius--top-left !default;
 $tooltip-border-radius--top-right: $border-radius--top-right !default;
 $tooltip-border-radius--bottom-right: $border-radius--bottom-right !default;
@@ -34,6 +34,25 @@ $tooltip-padding: 6px 10px !default;
 	position: absolute;
 	top: 0;
 	z-index: get-stack-index('tooltip');
+
+    // Nested selectors
+	.tooltip__content {
+        background-color: $tooltip-background-color;
+		border: 0;
+        border-bottom-left-radius: $tooltip-border-radius--bottom-left;
+        border-bottom-right-radius: $tooltip-border-radius--bottom-right;
+        border-top-left-radius: $tooltip-border-radius--top-left;
+        border-top-right-radius: $tooltip-border-radius--top-right;
+		color: $tooltip-font-color;
+		display: inline-block;
+		font-family: $tooltip-font-family;
+		font-size: $tooltip-font-size;
+        line-height: 1.6;
+		max-width: 300px;
+		opacity: $tooltip-opacity;
+		padding: $tooltip-padding;
+		text-align: center;
+	}
 
 	// Pseudo elements
 	&::before {
@@ -127,32 +146,19 @@ $tooltip-padding: 6px 10px !default;
         }
     }
 
-    // Nested selectors
-	.tooltip__content {
-        background-color: $tooltip-background-color;
-		border: 0;
-        border-bottom-left-radius: $tooltip-border-radius--bottom-left;
-        border-bottom-right-radius: $tooltip-border-radius--bottom-right;
-        border-top-left-radius: $tooltip-border-radius--top-left;
-        border-top-right-radius: $tooltip-border-radius--top-right;
-		color: $tooltip-font-color;
-		display: inline-block;
-		font-family: $tooltip-font-family;
-		font-size: $tooltip-font-size;
-        line-height: 1.6;
-		max-width: 300px;
-		opacity: $tooltip-opacity;
-		padding: $tooltip-padding;
-		text-align: center;
-	}
-
     // Modifiers: Base colors
     @each $name, $color in $base-colors {
         &.is-#{$name} {
         	// Pseudo elements
         	&::before {
                 border-color: transparent;
-        		border-top-color: base-color($name, $pseudo-background-color-type);
+        		border-top-color: base-color($name);
+        	}
+
+            // Nested selectors
+        	.tooltip__content {
+        		background-color: base-color($name);
+        		color: base-color($name, 'invert');
         	}
 
         	// Modifiers
@@ -168,28 +174,22 @@ $tooltip-padding: 6px 10px !default;
         	&.tooltip--right {
         		// Pseudo elements
         		&::before {
-            		border-right-color: base-color($name, $pseudo-background-color-type);
+            		border-right-color: base-color($name);
         		}
         	}
 
         	&.tooltip--bottom {
         		// Pseudo elements
         		&::before {
-            		border-bottom-color: base-color($name, $pseudo-background-color-type);
+            		border-bottom-color: base-color($name);
         		}
         	}
 
         	&.tooltip--left {
         		// Pseudo elements
         		&::before {
-            		border-left-color: base-color($name, $pseudo-background-color-type);
+            		border-left-color: base-color($name);
         		}
-        	}
-
-            // Nested selectors
-        	.tooltip__content {
-        		background-color: base-color($name, $pseudo-background-color-type);
-        		color: base-color($name, 'invert');
         	}
         }
     }
@@ -200,7 +200,13 @@ $tooltip-padding: 6px 10px !default;
         	// Pseudo elements
         	&::before {
                 border-color: transparent;
-        		border-top-color: feedback-color($name, $pseudo-background-color-type);
+        		border-top-color: feedback-color($name);
+        	}
+
+            // Nested selectors
+        	.tooltip__content {
+        		background-color: feedback-color($name);
+        		color: feedback-color($name, 'invert');
         	}
 
         	// Modifiers
@@ -216,28 +222,22 @@ $tooltip-padding: 6px 10px !default;
         	&.tooltip--right {
         		// Pseudo elements
         		&::before {
-            		border-right-color: feedback-color($name, $pseudo-background-color-type);
+            		border-right-color: feedback-color($name);
         		}
         	}
 
         	&.tooltip--bottom {
         		// Pseudo elements
         		&::before {
-            		border-bottom-color: feedback-color($name, $pseudo-background-color-type);
+            		border-bottom-color: feedback-color($name);
         		}
         	}
 
         	&.tooltip--left {
         		// Pseudo elements
         		&::before {
-            		border-left-color: feedback-color($name, $pseudo-background-color-type);
+            		border-left-color: feedback-color($name);
         		}
-        	}
-
-            // Nested selectors
-        	.tooltip__content {
-        		background-color: feedback-color($name, $pseudo-background-color-type);
-        		color: feedback-color($name, 'invert');
         	}
         }
     }

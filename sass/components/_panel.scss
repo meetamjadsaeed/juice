@@ -5,18 +5,19 @@
    ============================================================================================= */
 
 $panel-animation-duration: 300ms !default;
-$panel-body-background-color: base-color('white', $pseudo-background-color-type) !default;
+$panel-body-background-color: base-color('white') !default;
 $panel-body-border-color: base-color('white', $pseudo-border-color-type) !default;
-$panel-body-border-width--top: 0 !default;
-$panel-body-border-width--right: $border-width--right !default;
-$panel-body-border-width--bottom: $border-width--bottom !default;
-$panel-body-border-width--left: $border-width--left !default;
 $panel-body-font-color: base-color('white', 'invert') !default;
 $panel-border-radius--top-left: $border-radius--top-left !default;
 $panel-border-radius--top-right: $border-radius--top-right !default;
 $panel-border-radius--bottom-right: $border-radius--bottom-right !default;
 $panel-border-radius--bottom-left: $border-radius--bottom-left !default;
 $panel-border-style: $border-style !default;
+$panel-border-width--top: $border-width--top !default;
+$panel-border-width--right: $border-width--right !default;
+$panel-border-width--bottom: $border-width--bottom !default;
+$panel-border-width--left: $border-width--left !default;
+$panel-border-width--divider: $border-width--divider !default;
 $panel-box-shadow: $box-shadow !default;
 $panel-content-spacing: $content-spacing !default;
 $panel-content-spacing--small: $content-spacing--small !default;
@@ -30,12 +31,8 @@ $panel-font-size: $font-size !default;
 $panel-font-size--small: $font-size--small !default;
 $panel-font-size--large: $font-size--large !default;
 $panel-font-size--huge: $font-size--huge !default;
-$panel-head-background-color: base-color('white', $pseudo-background-color-type) !default;
+$panel-head-background-color: base-color('white') !default;
 $panel-head-border-color: base-color('white', $pseudo-border-color-type) !default;
-$panel-head-border-width--top: $border-width--top !default;
-$panel-head-border-width--right: $border-width--right !default;
-$panel-head-border-width--bottom: $border-width--bottom !default;
-$panel-head-border-width--left: $border-width--left !default;
 $panel-head-font-color: base-color('white', 'invert') !default;
 
 
@@ -57,6 +54,65 @@ $panel-head-font-color: base-color('white', 'invert') !default;
     margin: 0;
     margin-bottom: $panel-element-spacing;
     padding: 0;
+
+    // Nested selectors
+    .panel__head,
+    .panel__body {
+        border: 0 $panel-border-style transparent;
+        padding: $panel-content-spacing;
+    }
+
+    .panel__head {
+        align-items: center;
+        background-color: $panel-head-background-color;
+        border-bottom-width: $panel-border-width--divider;
+        border-color: $panel-head-border-color;
+        border-left-width: $panel-border-width--left;
+        border-right-width: $panel-border-width--right;
+        border-top-left-radius: $panel-border-radius--top-left;
+        border-top-right-radius: $panel-border-radius--top-right;
+        border-top-width: $panel-border-width--top;
+        color: $panel-head-font-color;
+        display: flex;
+
+        // Nested selectors
+        .panel__headings {
+            flex-grow: 1;
+
+            // Nested selectors
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-bottom: 0;
+                opacity: 0.5;
+
+                // Pseudo classes
+                &:first-child {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .panel__icons {
+            align-items: center;
+            display: flex;
+            font-size: $body-font-size;
+        }
+    }
+
+    .panel__body {
+        background-color: $panel-body-background-color;
+        border-bottom-left-radius: $panel-border-radius--bottom-left;
+        border-bottom-right-radius: $panel-border-radius--bottom-right;
+        border-bottom-width: $panel-border-width--bottom;
+        border-color: $panel-body-border-color;
+        border-left-width: $panel-border-width--left;
+        border-right-width: $panel-border-width--right;
+        color: $panel-body-font-color;
+    }
 
     // Modifiers: State hooks
     &.is-expanded {
@@ -85,6 +141,7 @@ $panel-head-font-color: base-color('white', 'invert') !default;
         .panel__head {
             border-bottom-left-radius: $panel-border-radius--bottom-left;
             border-bottom-right-radius: $panel-border-radius--bottom-right;
+            border-bottom-width: $panel-border-width--bottom;
 
             // Nested selectors
             .panel__icons {
@@ -160,81 +217,5 @@ $panel-head-font-color: base-color('white', 'invert') !default;
                 color: feedback-color($name, 'invert');
             }
         }
-    }
-
-    // Nested selectors
-    .panel__head,
-    .panel__body {
-        border: 0 $panel-border-style transparent;
-        padding: $panel-content-spacing;
-    }
-
-    .panel__head {
-        align-items: center;
-        background-color: $panel-head-background-color;
-        border-bottom-width: $panel-head-border-width--bottom;
-        border-color: $panel-head-border-color;
-        border-left-width: $panel-head-border-width--left;
-        border-right-width: $panel-head-border-width--right;
-        border-top-left-radius: $panel-border-radius--top-left;
-        border-top-right-radius: $panel-border-radius--top-right;
-        border-top-width: $panel-head-border-width--top;
-        color: $panel-head-font-color;
-        display: flex;
-
-        // Nested selectors
-        .panel__headings {
-            flex-grow: 1;
-
-            // Nested selectors
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                margin-bottom: 0;
-                opacity: 0.5;
-
-                // Pseudo classes
-                &:first-child {
-                    opacity: 1;
-                }
-            }
-        }
-
-        .panel__icons {
-            display: flex;
-            font-size: $body-font-size;
-
-            // Nested selectors
-            #{$button} {
-                color: inherit;
-                margin-bottom: 0;
-                opacity: 0.25;
-
-                // Pseudo classes
-                &:hover,
-                &:focus {
-                    opacity: 0.5;
-                }
-
-                &:active {
-                    opacity: 0.75;
-                }
-            }
-        }
-    }
-
-    .panel__body {
-        background-color: $panel-body-background-color;
-        border-bottom-left-radius: $panel-border-radius--bottom-left;
-        border-bottom-right-radius: $panel-border-radius--bottom-right;
-        border-bottom-width: $panel-body-border-width--bottom;
-        border-color: $panel-body-border-color;
-        border-left-width: $panel-body-border-width--left;
-        border-right-width: $panel-body-border-width--right;
-        border-top-width: $panel-body-border-width--top;
-        color: $panel-body-font-color;
     }
 }

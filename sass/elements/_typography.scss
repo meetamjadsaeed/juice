@@ -23,7 +23,7 @@ $p-font-size--large: $font-size--large !default;
 $p-font-size--huge: $font-size--huge !default;
 
 // Horizontal rule
-$hr-border-color: base-color('background', $pseudo-border-color-type) !default;
+$hr-border-color: hsla(0, 0, 50%, .15) !default;
 $hr-border-style: $border-style !default;
 $hr-border-width: 1px !default;
 $hr-element-spacing: $element-spacing !default;
@@ -32,11 +32,10 @@ $hr-element-spacing--large: $element-spacing--large !default;
 $hr-element-spacing--huge: $element-spacing--huge !default;
 
 // Link
-$link-color: base-color('primary', $pseudo-background-color-type) !default;
-$link-color--visited: base-color('primary', 'lighten-2') !default;
-$link-color--hover: base-color('primary', 'lighten-2') !default;
-$link-color--focus: base-color('primary', 'lighten-2') !default;
-$link-color--active: base-color('primary', 'lighten-2') !default;
+$link-color: base-color('primary', $pseudo-link-color-type) !default;
+$link-color--focus: base-color('primary', $pseudo-link-color-type--focus) !default;
+$link-color--hover: base-color('primary', $pseudo-link-color-type--hover) !default;
+$link-color--active: base-color('primary', $pseudo-link-color-type--active) !default;
 
 // Headings
 $heading-element-spacing: $element-spacing !default;
@@ -139,7 +138,7 @@ $mark-font-size--huge: $font-size--huge !default;
 $mark-padding: 4px !default;
 
 // Code
-$code-background-color: base-color('white', $pseudo-background-color-type) !default;
+$code-background-color: base-color('white') !default;
 $code-border-color: base-color('white', $pseudo-border-color-type) !default;
 $code-border-radius--top-left: $border-radius--top-left !default;
 $code-border-radius--top-right: $border-radius--top-right !default;
@@ -158,7 +157,7 @@ $code-font-size--huge: $font-size--huge !default;
 $code-padding: 4px !default;
 
 // Keyboard
-$kbd-background-color: base-color('charcoal', $pseudo-background-color-type) !default;
+$kbd-background-color: base-color('charcoal') !default;
 $kbd-border-color: base-color('charcoal', $pseudo-border-color-type) !default;
 $kbd-border-radius--top-left: $border-radius--top-left !default;
 $kbd-border-radius--top-right: $border-radius--top-right !default;
@@ -177,7 +176,7 @@ $kbd-font-size--huge: $font-size--huge !default;
 $kbd-padding: 4px !default;
 
 // Preformatted
-$pre-background-color: base-color('charcoal', $pseudo-background-color-type) !default;
+$pre-background-color: base-color('charcoal') !default;
 $pre-border-color: base-color('charcoal', $pseudo-border-color-type) !default;
 $pre-border-radius--top-left: $border-radius--top-left !default;
 $pre-border-radius--top-right: $border-radius--top-right !default;
@@ -242,7 +241,7 @@ $var-font-size--huge: $font-size--huge !default;
 $var-padding: 0 !default;
 
 // Blockquote
-$blockquote-background-color: base-color('silver', $pseudo-background-color-type) !default;
+$blockquote-background-color: base-color('silver') !default;
 $blockquote-border-color: base-color('silver', $pseudo-border-color-type) !default;
 $blockquote-border-color--hover: base-color('primary') !default;
 $blockquote-border-radius--top-left: 0 !default;
@@ -353,23 +352,7 @@ a {
     font-weight: inherit;
     text-decoration: none;
 
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            color: base-color($name);
-
-            // Pseudo classes
-            &:hover {
-                color: base-color($name, 'lighten-2');
-            }
-        }
-    }
-
     // Pseudo classes
-    &:visited {
-        color: $link-color--visited;
-    }
-
     &:hover {
         color: $link-color--hover;
     }
@@ -378,8 +361,28 @@ a {
         color: $link-color--focus;
     }
 
-    &:hover {
+    &:active {
         color: $link-color--active;
+    }
+
+    // Modifiers: Base colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+            color: base-color($name, $pseudo-link-color-type);
+
+            // Pseudo classes
+            &:hover {
+                color: base-color($name, $pseudo-link-color-type--hover);
+            }
+
+            &:focus {
+                color: base-color($name, $pseudo-link-color-type--focus);
+            }
+
+            &:active {
+                color: base-color($name, $pseudo-link-color-type--active);
+            }
+        }
     }
 }
 
@@ -723,6 +726,14 @@ pre {
         top: 0;
     }
 
+    // Nested selectors
+    code {
+        background-color: transparent;
+        color: inherit;
+        font-size: inherit;
+        white-space: nowrap;
+    }
+
     // Modifiers: Sizes
     &.is-small {
         font-size: $pre-font-size--small;
@@ -740,14 +751,6 @@ pre {
         font-size: $pre-font-size--huge;
         margin-bottom: $pre-element-spacing--huge;
         padding: $pre-content-spacing--huge;
-    }
-
-    // Nested selectors
-    code {
-        background-color: transparent;
-        color: inherit;
-        font-size: inherit;
-        white-space: nowrap;
     }
 }
 
@@ -837,6 +840,21 @@ blockquote {
         border-color: $blockquote-border-color--hover;
     }
 
+    // Nested selectors
+    cite {
+        color: inherit;
+        display: block;
+        font-size: 75%;
+        margin: 0;
+        margin-left: $blockquote-content-spacing;
+        margin-top: $blockquote-content-spacing / 2;
+
+        // Pseudo elements
+        &::before {
+            content: '\2014\00a0\00a0';
+        }
+    }
+
     // Modifiers: Sizes
     &.is-small {
         font-size: $blockquote-font-size--small;
@@ -854,20 +872,5 @@ blockquote {
         font-size: $blockquote-font-size--huge;
         margin-bottom: $blockquote-element-spacing--huge;
         padding: $blockquote-content-spacing--huge * 2;
-    }
-
-    // Nested selectors
-    cite {
-        color: inherit;
-        display: block;
-        font-size: 75%;
-        margin: 0;
-        margin-left: $blockquote-content-spacing;
-        margin-top: $blockquote-content-spacing / 2;
-
-        // Pseudo elements
-        &::before {
-            content: '\2014\00a0\00a0';
-        }
     }
 }

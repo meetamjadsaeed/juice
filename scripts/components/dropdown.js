@@ -42,7 +42,8 @@
             const $element = $(this.element);
             const $dropdown = $('.dropdown', $element);
 
-            // $element.attr('tabindex', 0);
+            // Add a tabindex attribute to the element
+            $element.attr('tabindex', -1);
 
             // Store the settings to the dropdown data
             $dropdown.data({
@@ -62,7 +63,7 @@
             }
 
             // Add a click handler to show and hide the dropdown
-            $('.has-dropdown').off().on('click', '.js-dropdown-trigger', (event) => {
+            $element.off().on('click', '.js-dropdown-trigger', (event) => {
                 // Set the dropdown element
                 const $dropdown = $(event.currentTarget).next('.dropdown');
 
@@ -76,13 +77,27 @@
                 }
             });
 
-            // Add a focusout handler to hide the dropdown
-            $('.has-dropdown').on('focusout', (event) => {
-                // Set the dropdown element
-                const $dropdown = $(event.currentTarget).children('.dropdown');
+            // Add a focus event handler on the dropdown container to focus on the dropdown trigger
+            $element.on('focus', (event) => {
+                // Set the dropdown trigger element
+                const $trigger = $(event.currentTarget).children('.js-dropdown-trigger');
 
-                // Hide the dropdown
-                this.hide($dropdown);
+                // Focus on the trigger element
+                $trigger.focus();
+            });
+
+            // Add a focusout handler to hide the dropdown
+            $element.on('focusout', (event) => {
+                // Set the current target, related target and dropdown elements
+                const $current = $(event.currentTarget);
+                const $related = $(event.relatedTarget);
+                const $dropdown = $current.children('.dropdown');
+
+                // Check if the related target element is not the dropdown container
+                if (!$related.closest('.has-dropdown').is($current)) {
+                    // Hide the dropdown
+                    this.hide($dropdown);
+                }
             });
         },
 

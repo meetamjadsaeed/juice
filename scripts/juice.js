@@ -4,8 +4,14 @@
    JUICE -> FEATURE DETECTION
    ============================================================================================= */
 
-// Javascript
-document.documentElement.className.replace('no-js', 'js');
+// Replace the no js class
+document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+// Check if touch is supported
+if ('ontouchstart' in document.documentElement) {
+    // Replace the no touch class
+    document.documentElement.className = document.documentElement.className.replace('no-touch', 'touch');
+}
 
 
 /* =============================================================================================
@@ -50,5 +56,9 @@ $('.scroll-to-top').on('click', (event) => {
     event.preventDefault();
 
     // Scroll to top
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    window.scrollTo({
+        behavior: 'smooth',
+        left: 0,
+        top: 0
+    });
 });

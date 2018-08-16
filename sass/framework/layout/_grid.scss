@@ -17,6 +17,53 @@ $grid-gutter: $element-spacing / 2 !default;
     margin: 0 (-$grid-gutter);
     position: relative;
 
+    // Nested selectors
+    .grid__item {
+        flex: 1 0 0;
+        max-width: 100%;
+        padding: 0 $grid-gutter;
+
+        // Modifiers
+        @for $i from 1 through 12 {
+            // Variables
+            $width: (100% / 12) * $i;
+
+            // Modifiers
+            &.grid__item--span-#{$i} {
+                flex-basis: $width;
+                max-width: $width;
+            }
+
+            &.grid__item--offset-#{$i} {
+                margin-left: $width;
+            }
+        }
+
+        &.grid__item--no-offset {
+            margin-left: 0;
+        }
+
+        &.grid__item--first {
+            order: -1;
+        }
+
+        &.grid__item--last {
+            order: 1;
+        }
+
+        &.grid__item--top {
+            align-self: flex-start;
+        }
+
+        &.grid__item--middle {
+            align-self: center;
+        }
+
+        &.grid__item--bottom {
+            align-self: flex-end;
+        }
+    }
+
     // Modifiers
     &.grid--no-gutter {
         margin: 0;
@@ -70,173 +117,126 @@ $grid-gutter: $element-spacing / 2 !default;
     &.grid--column {
         flex-direction: column;
 
-        // Modifiers
-        &.grid--reverse {
-            flex-direction: column-reverse;
-        }
-
         // Nested selectors
         .grid__item {
             flex-basis: auto;
         }
-    }
-
-    // Nested selectors
-    .grid__item {
-        flex: 1 0 0;
-        max-width: 100%;
-        padding: 0 $grid-gutter;
 
         // Modifiers
-        @for $i from 1 through 12 {
-            // Variables
-            $width: (100% / 12) * $i;
-
-            // Modifiers
-            &.grid__item--span-#{$i} {
-                flex-basis: $width;
-                max-width: $width;
-            }
-
-            &.grid__item--offset-#{$i} {
-                margin-left: $width;
-            }
-        }
-
-        &.grid__item--no-offset {
-            margin-left: 0;
-        }
-
-        &.grid__item--first {
-            order: -1;
-        }
-
-        &.grid__item--last {
-            order: 1;
-        }
-
-        &.grid__item--top {
-            align-self: flex-start;
-        }
-
-        &.grid__item--middle {
-            align-self: center;
-        }
-
-        &.grid__item--bottom {
-            align-self: flex-end;
+        &.grid--reverse {
+            flex-direction: column-reverse;
         }
     }
 
     // Breakpoints
     @each $name, $breakpoint in $breakpoints {
         @include breakpoint($name) {
-          // Modifiers
-          &.grid--no-gutter\@#{$name} {
-              margin: 0;
+            // Nested selectors
+            .grid__item {
+                // Modifiers
+                @for $i from 1 through 12 {
+                    // Variables
+                    $width: (100% / 12) * $i;
 
-              // Nested selectors
-              .grid__item {
-                  padding: 0;
-              }
-          }
+                    // Modifiers
+                    &.grid__item--span-#{$i}\@#{$name} {
+                        flex-basis: $width;
+                        max-width: $width;
+                    }
 
-          &.grid--nowrap\@#{$name} {
-              flex-wrap: nowrap;
-          }
+                    &.grid__item--offset-#{$i}\@#{$name} {
+                        margin-left: $width;
+                    }
+                }
 
-          &.grid--start\@#{$name} {
-              justify-content: flex-start;
-          }
+                &.grid__item--no-offset\@#{$name} {
+                    margin-left: 0;
+                }
 
-          &.grid--center\@#{$name} {
-              justify-content: center;
-          }
+                &.grid__item--first\@#{$name} {
+                    order: -1;
+                }
 
-          &.grid--end\@#{$name} {
-              justify-content: flex-end;
-          }
+                &.grid__item--last\@#{$name} {
+                    order: 1;
+                }
 
-          &.grid--around\@#{$name} {
-              justify-content: space-around;
-          }
+                &.grid__item--top\@#{$name} {
+                    align-self: flex-start;
+                }
 
-          &.grid--between\@#{$name} {
-              justify-content: space-between;
-          }
+                &.grid__item--middle\@#{$name} {
+                    align-self: center;
+                }
 
-          &.grid--top\@#{$name} {
-              align-items: flex-start;
-          }
+                &.grid__item--bottom\@#{$name} {
+                    align-self: flex-end;
+                }
+            }
 
-          &.grid--middle\@#{$name} {
-              align-items: center;
-          }
+            // Modifiers
+            &.grid--no-gutter\@#{$name} {
+                margin: 0;
 
-          &.grid--bottom\@#{$name} {
-              align-items: flex-end;
-          }
+                // Nested selectors
+                .grid__item {
+                    padding: 0;
+                }
+            }
 
-          &.grid--reverse\@#{$name} {
-              flex-direction: row-reverse;
-          }
+            &.grid--nowrap\@#{$name} {
+                flex-wrap: nowrap;
+            }
 
-          &.grid--column\@#{$name} {
-              flex-direction: column;
+            &.grid--start\@#{$name} {
+                justify-content: flex-start;
+            }
 
-              // Modifiers
-              &.grid--reverse {
-                  flex-direction: column-reverse;
-              }
+            &.grid--center\@#{$name} {
+                justify-content: center;
+            }
 
-              // Nested selectors
-              .grid__item {
-                  flex-basis: auto;
-              }
-          }
+            &.grid--end\@#{$name} {
+                justify-content: flex-end;
+            }
 
-          // Nested selectors
-          .grid__item {
-              // Modifiers
-              @for $i from 1 through 12 {
-                  // Variables
-                  $width: (100% / 12) * $i;
+            &.grid--around\@#{$name} {
+                justify-content: space-around;
+            }
 
-                  // Modifiers
-                  &.grid__item--span-#{$i}\@#{$name} {
-                      flex-basis: $width;
-                      max-width: $width;
-                  }
+            &.grid--between\@#{$name} {
+                justify-content: space-between;
+            }
 
-                  &.grid__item--offset-#{$i}\@#{$name} {
-                      margin-left: $width;
-                  }
-              }
+            &.grid--top\@#{$name} {
+                align-items: flex-start;
+            }
 
-              &.grid__item--no-offset\@#{$name} {
-                  margin-left: 0;
-              }
+            &.grid--middle\@#{$name} {
+                align-items: center;
+            }
 
-              &.grid__item--first\@#{$name} {
-                  order: -1;
-              }
+            &.grid--bottom\@#{$name} {
+                align-items: flex-end;
+            }
 
-              &.grid__item--last\@#{$name} {
-                  order: 1;
-              }
+            &.grid--reverse\@#{$name} {
+                flex-direction: row-reverse;
+            }
 
-              &.grid__item--top\@#{$name} {
-                  align-self: flex-start;
-              }
+            &.grid--column\@#{$name} {
+                flex-direction: column;
 
-              &.grid__item--middle\@#{$name} {
-                  align-self: center;
-              }
+                // Nested selectors
+                .grid__item {
+                    flex-basis: auto;
+                }
 
-              &.grid__item--bottom\@#{$name} {
-                  align-self: flex-end;
-              }
-          }
+                // Modifiers
+                &.grid--reverse {
+                    flex-direction: column-reverse;
+                }
+            }
         }
     }
 }

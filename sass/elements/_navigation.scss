@@ -33,6 +33,71 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     margin: 0;
     margin-bottom: $navigation-element-spacing;
 
+    // Nested selectors
+    .navigation__logo,
+    .navigation__links,
+    .navigation__search {
+        padding: 0 ($navigation-content-spacing / 2);
+
+        // Pseudo classes
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    .navigation__logo {
+        flex-basis: 25%;
+        flex-grow: 1;
+
+        // Nested selectors
+        a.navigation__link {
+            align-items: center;
+            display: flex;
+        }
+    }
+
+    .navigation__links {
+        // Nested selectors
+        ul,
+        ol {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            // Nested selectors
+            li {
+                flex: 1 0 auto;
+
+                // Nested selectors
+                a.navigation__link {
+                    display: inline-flex;
+                    padding: $navigation-content-spacing;
+                }
+            }
+        }
+
+        .navigation__bars {
+            display: none;
+
+            // Nested selectors
+            #{$button} {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .navigation__search {
+        // Nested selectors
+        #{$input} {
+            margin-bottom: 0;
+        }
+    }
+
     // Modifiers: Sizes
     &.is-small {
         font-size: $navigation-font-size--small;
@@ -139,71 +204,6 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 padding: 0;
                 padding-top: $navigation-content-spacing--huge;
             }
-        }
-    }
-
-    // Nested selectors
-    .navigation__logo,
-    .navigation__links,
-    .navigation__search {
-        padding: 0 ($navigation-content-spacing / 2);
-
-        // Pseudo classes
-        &:first-child {
-            padding-left: 0;
-        }
-
-        &:last-child {
-            padding-right: 0;
-        }
-    }
-
-    .navigation__logo {
-        flex-basis: 25%;
-        flex-grow: 1;
-
-        // Nested selectors
-        a.navigation__link {
-            align-items: center;
-            display: flex;
-        }
-    }
-
-    .navigation__links {
-        // Nested selectors
-        ul,
-        ol {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-
-            // Nested selectors
-            li {
-                flex: 1 0 auto;
-
-                // Nested selectors
-                a.navigation__link {
-                    display: inline-flex;
-                    padding: $navigation-content-spacing;
-                }
-            }
-        }
-
-        .navigation__bars {
-            display: none;
-
-            // Nested selectors
-            #{$button} {
-                margin-bottom: 0;
-            }
-        }
-    }
-
-    .navigation__search {
-        // Nested selectors
-        #{$input} {
-            margin-bottom: 0;
         }
     }
 

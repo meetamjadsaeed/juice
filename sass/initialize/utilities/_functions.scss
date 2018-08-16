@@ -92,6 +92,11 @@
     }
 }
 
+/**
+ * Get the z-index value from the stack index map/array
+ * @param  string  $element  The element in the stack index
+ * @return int               The z-index value
+ */
 @function get-stack-index($element) {
     // Check if the element exists in the stack index
     @if map-has-key($stack-index, $element) {
@@ -104,4 +109,14 @@
 
     // Return null
     @return null;
+}
+
+/**
+ * Set the box shadow for focused elements using the base custom focus variables
+ * @param  string  $color  The base color name
+ * @return string          The transparentized base color box-shadow value
+ */
+@function set-focus-box-shadow($color) {
+    // Return the transparentized base color box-shadow value
+    @return $custom-focus-box-shadow-values transparentize($color, $custom-focus-box-shadow-transparentize);
 }
