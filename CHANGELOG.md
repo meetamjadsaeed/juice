@@ -8,6 +8,91 @@
 -----
 
 
+# v0.4.0-beta
+
+### New
+- Add anchor link pseudo class variation type variables
+    - Add variables to settings colors
+    - Update default variables with variation type variables
+    - Update color modifier pseudo classes
+- Add get-stack-index docblock
+- Add scroll to top anchor to demo pages
+- Add touch detection script
+    - Add no-touch class to demo pages html tag
+- Add icon and button center item alignment to card and panel components
+
+
+### Updated
+- Update dropdown component
+    - Add tabindex attribute to the dropdown container
+    - Add focus event handler to force focus from the dropdown container to the dropdown trigger
+    - Add link color variables
+    - Add link color modifier classes
+    - Add item link background and color variables
+    - Add margin 0 to dropdown divider class for use with horizontal rules
+    - Update event handler selectors
+    - Update demo page
+    - Remove background pseudo color variables
+- Update pagination element
+    - Update font color variable names
+- Update default hr border color variable value
+- Update anchor focus accessibility visuals
+    - Add underline text decoration to focus pseudo class
+    - Remove box shadow on focus pseudo class
+- Update focus pseudo classes outline and box shadow
+    - Add outline none to input, select, textarea and button elements
+    - Add focus box shadow to input, select, textarea and button elements
+    - Update base focus variable names and default values
+    - Update button variable default values
+    - Remove global focus pseudo class values
+    - Remove button focus variables
+- Update button element
+    - Add button icon variables
+    - Update button icon modifier values
+- Update default custom focus box shadow variable values
+- Update scss declaration order
+- Update terminology
+    - Update all occurrences of 'separator' to 'divider'
+- Update button element
+    - Add focus outline box shadow function
+    - Update style
+    - Update default variables
+    - Update button--text modifier to button--flat
+    - Update focus box shadow to set-focus-box-shadow function calls
+    - Update demo page
+- Update input file element
+    - Remove input file upload/browse border divider
+- Update tag component
+    - Add feedback class modifiers
+    - Update button focus box shadow to set-focus-box-shadow function calls
+- Update notice component
+    - Update border width variables
+    - Update notice icon padding size
+- Update panel component
+    - Update border width variables
+    - Update expanded/collapsed state hook class toggling
+
+### Removed
+- Remove anchor link visited pseudo properties
+    - Remove visited variable
+    - Remove visited pseudo class
+- Remove dropdown divider margin bottom
+- Remove components button values
+
+### Bug Fixes
+- Fix dropdown focusout bug
+    - Add if statement to check if the related target element is a the has-dropdown container or a descendant of the has-dropdown container
+- Fix dropdown border radius
+    - Add border radius values to dropdown item first and last child pseudo classes
+- Fix anchor link pseudo classes
+    - Add active pseudo class
+    - Remove duplicate hover pseudo class
+- Fix no-js class
+
+
+-----
+
+
 # v0.3.0-beta
 
 ### New
@@ -103,3 +188,49 @@ For example adding the `is-huge` size modifier to a card component would apply t
 This has been removed so that the `is-huge` modifier now needs to be applied to each individual nested element/component, in this case each button.
 The reason for this is due to bloated code being applied for any nested elements/components within a parent component.
 It also makes it easier for code management of each component for future updates and keeps better consistency throughout and better size control for developers.
+
+
+-----
+
+
+# v0.2.0-beta
+
+### Updated
+- Update dropdown component
+    - Fix and add dropdown element z-index hierarchy
+ - Update navigation component
+    - Update flex wrap to wrap flex items
+    - Update navigation__search and navigation__links breakpoints display values
+    - Update navigation search
+        - Add flex order to push navigation__search flex item to the end on touch breakpoint
+        - Remove display none in mobile
+    - Update navigation demo
+        - Add navigation__link class to top tier links
+    - Remove flex flow column from mobile breakpoint
+    - Fix nested navigation links styling
+        - Add navigation__link classes to all a tags
+
+
+-----
+
+
+# v0.1.1-beta
+
+### New
+- Add juice component instantiation to demo pages
+
+### Updated
+- Update gulpfile.js browsersync hostname
+- Update index.html
+    - Remove redundant testing code
+
+### Bug Fixes
+- Fix overflow hidden bug
+    - Remove overflow css property from box, card, notice and panel components
+- Fix clearfix helper class
+    - Add nested after pseudo element and include clearfix mixin
+    - Remove clearfix mixin from class properties
+- Fix component stopPropagation conflicts
+    - Remove event.stopPropagation on dropdown and tooltip component event handlers
+- Fix demo pages
+    - Update juice script path file name on demo pages
