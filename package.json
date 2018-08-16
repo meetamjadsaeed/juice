@@ -1,7 +1,7 @@
 {
     "name": "just-add-juice",
     "description": "A responsive frontend framework with modular components.",
-    "version": "0.3.0-beta",
+    "version": "0.4.0-beta",
     "license": "MIT",
     "author": {
         "name": "Joe Mottershaw",
