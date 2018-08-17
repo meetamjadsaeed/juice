@@ -8,6 +8,23 @@
 -----
 
 
+# v0.4.1-beta
+
+### Updated
+- Update dropdown component
+    - Update anchor dropdown items focus box shadow to set-focus-box-shadow function call
+- Update panel component
+    - Update default toggle animation from fade to slide
+
+### Bug Fixes
+- Fix gulpfile dev task
+    - Add sass and script values to watch object
+    - Update gulp watch callbacks
+
+
+-----
+
+
 # v0.4.0-beta
 
 ### New
