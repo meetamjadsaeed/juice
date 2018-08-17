@@ -57,6 +57,8 @@ const build = {
  * @const {array}
  */
 const watch = {
+    sass: 'sass/**/*.scss',
+    scripts: 'scripts/**/*.js',
     html: '**/*.html',
     twig: '**/*.twig',
     php: '**/*.php'
@@ -133,14 +135,12 @@ gulp.task('dev', () => {
     });
 
     // Watch for resource development file changes and call the respecitve build task
-    gulp.watch(resource.sass, ['build:css']);
-    gulp.watch(resource.scripts, ['build:scripts']);
+    gulp.watch(watch.sass, ['build:css']);
+    gulp.watch(watch.scripts, ['build:scripts']);
 
     // Watch for declared file changes and reload browsersync
     gulp.watch([watch.html, watch.twig, watch.php]).on('change', () => {
         // Reload browsersync
-        browsersync.reload({
-            stream: true
-        });
+        browsersync.reload();
     });
 });

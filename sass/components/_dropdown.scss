@@ -116,7 +116,7 @@ $dropdown-offset: 5px !default;
 
                 &:focus {
                     background-color: $dropdown-item-link-background-color--focus;
-                    box-shadow: $custom-focus-box-shadow-values transparentize($dropdown-item-link-background-color--hover, $custom-focus-box-shadow-transparentize);
+                    box-shadow: set-focus-box-shadow($dropdown-item-link-background-color--hover);
                     color: $dropdown-item-link-color--focus;
                     z-index: get-stack-index('focus');
                 }

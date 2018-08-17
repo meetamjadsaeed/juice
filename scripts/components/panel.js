@@ -10,7 +10,7 @@
 
     // Set the plugin defaults
     const defaults = {
-        toggleAnimation: 'fade',
+        toggleAnimation: 'slide',
         toggleAnimationDuration: 200,
         removeAnimation: 'fadeOut'
     };
