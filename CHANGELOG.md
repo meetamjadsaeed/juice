@@ -1,8 +1,16 @@
 # Roadmap
 
 ### New
-- Add accordion component to components directory
 - Add tab component to components directory
+
+
+-----
+
+
+# v0.5.0-beta
+
+### New
+- Add accordion component
 
 
 -----
