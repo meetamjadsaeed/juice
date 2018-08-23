@@ -1,7 +1,7 @@
 {
     "name": "just-add-juice",
     "description": "A responsive frontend framework with modular components.",
-    "version": "0.5.0-beta",
+    "version": "0.5.1-beta",
     "license": "MIT",
     "author": {
         "name": "Joe Mottershaw",
@@ -37,6 +37,8 @@
         "gulp-babel": "^7.0.1",
         "gulp-concat": "^2.6.1",
         "gulp-connect-php7": "^1.0.1",
+        "gulp-notifier": "^1.0.5",
+        "gulp-plumber": "^1.2.0",
         "gulp-rename": "^1.4.0",
         "gulp-sass": "^4.0.1",
         "gulp-uglify": "^3.0.0"

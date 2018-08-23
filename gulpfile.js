@@ -14,6 +14,8 @@ const browsersync = require('browser-sync');
 const concat = require('gulp-concat');
 const connect = require('gulp-connect-php7');
 const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const notifier = require('gulp-notifier');
 const rename = require("gulp-rename");
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
@@ -77,6 +79,7 @@ const watch = {
  */
 gulp.task('build:css', () => {
     gulp.src(resource.sass)
+        .pipe(plumber({ errorHandler: notifier.error }))
         .pipe(sass({
             outputStyle: 'compressed'
         }))
@@ -99,10 +102,11 @@ gulp.task('build:css', () => {
  */
 gulp.task('build:scripts', () => {
     gulp.src(resource.scripts)
-		.pipe(concat(filename.scripts))
+        .pipe(plumber({ errorHandler: notifier.error }))
         .pipe(babel({
             presets: ['env']
         }))
+		.pipe(concat(filename.scripts))
         .pipe(uglify())
         .pipe(gulp.dest(build.scripts))
         .pipe(browsersync.reload({
