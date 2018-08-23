@@ -7,6 +7,21 @@
 -----
 
 
+# v0.5.1-beta
+
+### Bug fix
+- Fix gulpfile dev task ending on compile error
+    - Add gulp-plumber to devDependencies
+    - Add gulp-notifier to devDependencies
+    - Update build:css task
+        - Add gulp-plumber with gulp-notifier error handler
+    - Update build:scripts task
+        - Add gulp-plumber with gulp-notifier error handler
+
+
+-----
+
+
 # v0.5.0-beta
 
 ### New
