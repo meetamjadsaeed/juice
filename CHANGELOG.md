@@ -7,6 +7,15 @@
 -----
 
 
+# v0.5.3-beta
+
+### Updated
+- Update container gutter default size
+
+
+-----
+
+
 # v0.5.2-beta
 
 ### Updated
