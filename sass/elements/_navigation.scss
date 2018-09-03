@@ -17,6 +17,10 @@ $navigation-element-spacing: $element-spacing !default;
 $navigation-element-spacing--small: $element-spacing--small !default;
 $navigation-element-spacing--large: $element-spacing--large !default;
 $navigation-element-spacing--huge: $element-spacing--huge !default;
+$navigation-link-color: $link-color !default;
+$navigation-link-color--focus: $link-color--focus !default;
+$navigation-link-color--hover: $link-color--hover !default;
+$navigation-link-color--active: $link-color--active !default;
 
 
 /* =============================================================================================
@@ -34,6 +38,23 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
     margin-bottom: $navigation-element-spacing;
 
     // Nested selectors
+    a {
+        color: $navigation-link-color;
+
+        // Pseudo classes
+        &:focus {
+            color: $navigation-link-color--focus;
+        }
+
+        &:hover {
+            color: $navigation-link-color--hover;
+        }
+
+        &:active {
+            color: $navigation-link-color--active;
+        }
+    }
+
     .navigation__logo,
     .navigation__links,
     .navigation__search {
@@ -54,7 +75,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
         flex-grow: 1;
 
         // Nested selectors
-        a.navigation__link {
+        a {
             align-items: center;
             display: flex;
         }
@@ -74,7 +95,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 flex: 1 0 auto;
 
                 // Nested selectors
-                a.navigation__link {
+                a {
                     display: inline-flex;
                     padding: $navigation-content-spacing;
                 }
@@ -118,7 +139,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 // Nested selectors
                 li {
                     // Nested selectors
-                    a.navigation__link {
+                    a {
                         padding: $navigation-content-spacing--small;
                     }
                 }
@@ -154,7 +175,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 // Nested selectors
                 li {
                     // Nested selectors
-                    a.navigation__link {
+                    a {
                         padding: $navigation-content-spacing--large;
                     }
                 }
@@ -190,7 +211,7 @@ $navigation-element-spacing--huge: $element-spacing--huge !default;
                 // Nested selectors
                 li {
                     // Nested selectors
-                    a.navigation__link {
+                    a {
                         padding: $navigation-content-spacing--huge;
                     }
                 }
