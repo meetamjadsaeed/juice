@@ -7,6 +7,17 @@
 -----
 
 
+# v0.5.2-beta
+
+### Updated
+- Update navigation element
+    - Add navigation link variables
+    - Remove navigation__link class from nested anchor links
+
+
+-----
+
+
 # v0.5.1-beta
 
 ### Bug fix
