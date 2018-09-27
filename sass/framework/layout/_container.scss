@@ -4,7 +4,7 @@
    JUICE -> FRAMEWORK -> LAYOUT -> CONTAINER -> VARIABLES
    ============================================================================================= */
 
-$container-gutter: 20px !default;
+$container-gutter: $element-spacing !default;
 $container-max-width: 1200px !default;
 
 
