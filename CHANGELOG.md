@@ -1,8 +1,35 @@
 # Roadmap
 
 ### New
-- Add tab component to components directory
+- Add breadcrumb element
+- Add hero element
+- Add overlay element
+- Add spinner/loading element
+- Add chip component
+- Add dialog component
+- Add modal component
+- Add notification component
+- Add off canvas navigation component
+- Add popover component
+- Add tabs component
 
+### Update
+- Update form elements
+    - Add custom elements
+        - Checkbox and Radio
+        - Color Picker
+        - File
+        - Datepicker
+        - Password Show/Hide Toggle
+    - Add control groups
+        - Connected Elements with Buttons
+        - Merged Elements with Buttons
+    - Add disabled attribute styling
+- Update button element
+    - Add disabled attribute styling to button element
+- Update navigation element
+    - Add dropdown animations to navigation element
+    - Add megamenu class to navigation to element
 
 -----
 
