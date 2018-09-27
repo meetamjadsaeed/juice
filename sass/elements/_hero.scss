@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> HERO -> VARIABLES
+   ============================================================================================= */
+
+$hero-background-color: base-color('charcoal') !default;
+$hero-background-position: center !default;
+$hero-background-repeat: no-repeat !default;
+$hero-background-size: cover !default;
+$hero-font-color: base-color('charcoal', 'invert') !default;
+$hero-element-spacing: $element-spacing !default;
+$hero-element-spacing--small: $element-spacing--small !default;
+$hero-element-spacing--large: $element-spacing--large !default;
+$hero-element-spacing--huge: $element-spacing--huge !default;
+$hero-font-size: $font-size !default;
+$hero-font-size--small: $font-size--small !default;
+$hero-font-size--large: $font-size--large !default;
+$hero-font-size--huge: $font-size--huge !default;
+$hero-content-spacing: 5% !default;
+$hero-content-spacing--small: 3% !default;
+$hero-content-spacing--large: 7% !default;
+$hero-content-spacing--huge: 9% !default;
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> HERO
+   ============================================================================================= */
+
+.hero {
+    background-color: $hero-background-color;
+    background-position: $hero-background-position;
+    background-repeat: $hero-background-repeat;
+    background-size: $hero-background-size;
+    color: $hero-font-color;
+    display: flex;
+    flex-direction: column;
+    font-size: $hero-font-size;
+    justify-content: center;
+    padding: $hero-content-spacing 0;
+    margin-bottom: $hero-element-spacing;
+
+    // Modifiers
+    &.hero--quarter-viewport {
+        font-size: $hero-font-size--small;
+        height: 25vh;
+        padding: 0;
+    }
+
+    &.hero--half-viewport {
+        font-size: $hero-font-size--large;
+        height: 50vh;
+        padding: 0;
+    }
+
+    &.hero--viewport {
+        font-size: $hero-font-size--huge;
+        height: 100vh;
+        padding: 0;
+    }
+
+    &.hero--center {
+        text-align: center;
+    }
+
+    &.hero--right {
+        text-align: right;
+    }
+
+    &.hero--parallax {
+        background-attachment: fixed;
+    }
+
+    // Modifiers: Size
+    &.is-small {
+        font-size: $hero-font-size--small;
+        padding: $hero-content-spacing--small 0;
+        margin-bottom: $hero-element-spacing--small;
+    }
+
+    &.is-large {
+        font-size: $hero-font-size--large;
+        padding: $hero-content-spacing--large 0;
+        margin-bottom: $hero-element-spacing--large;
+    }
+
+    &.is-huge {
+        font-size: $hero-font-size--huge;
+        padding: $hero-content-spacing--huge 0;
+        margin-bottom: $hero-element-spacing--huge;
+    }
+}
