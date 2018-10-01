@@ -23,9 +23,19 @@
     - Add disabled attribute styling
 - Update button element
     - Add disabled attribute styling to button element
+
+
+-----
+
+
+# v0.8.0-beta
+
+### Updated
 - Update navigation element
-    - Add dropdown animations to navigation element
-    - Add megamenu class to navigation to element
+    - Add sub-nav dropdown
+    - Add megamenu dropdown
+    - Remove size modifier classes
+    - Fix logo anchor link full width bug
 
 
 -----
