@@ -32,9 +32,9 @@ $dropdown-item-link-background-color--focus: base-color('primary', $pseudo-backg
 $dropdown-item-link-background-color--hover: base-color('primary', $pseudo-background-color-type--hover) !default;
 $dropdown-item-link-background-color--active: base-color('primary', $pseudo-background-color-type--active) !default;
 $dropdown-item-link-color: $link-color !default;
-$dropdown-item-link-color--focus: base-color('primary','invert') !default;
-$dropdown-item-link-color--hover: base-color('primary','invert') !default;
-$dropdown-item-link-color--active: base-color('primary','invert') !default;
+$dropdown-item-link-color--focus: base-color('primary', 'invert') !default;
+$dropdown-item-link-color--hover: base-color('primary', 'invert') !default;
+$dropdown-item-link-color--active: base-color('primary', 'invert') !default;
 $dropdown-link-color: $link-color !default;
 $dropdown-link-color--focus: $link-color--focus !default;
 $dropdown-link-color--hover: $link-color--hover !default;
