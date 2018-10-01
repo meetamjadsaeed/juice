@@ -1,7 +1,6 @@
 # Roadmap
 
 ### New
-- Add spinner/loading element
 - Add chip component
 - Add off canvas navigation component
 - Add dialog component
@@ -27,6 +26,15 @@
 - Update navigation element
     - Add dropdown animations to navigation element
     - Add megamenu class to navigation to element
+
+
+-----
+
+
+# v0.7.0-beta
+
+### New
+- Add spinner element
 
 
 -----
