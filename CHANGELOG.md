@@ -2,12 +2,13 @@
 
 ### New
 - Add chip component
-- Add off canvas navigation component
 - Add dialog component
 - Add modal component
 - Add notification component
+- Add off canvas navigation component
 - Add popover component
 - Add tabs component
+- Add toggler script
 
 ### Update
 - Update form elements
@@ -18,11 +19,37 @@
         - Datepicker
         - Password Show/Hide Toggle
     - Add control groups
-        - Connected Elements with Buttons
-        - Merged Elements with Buttons
-    - Add disabled attribute styling
+        - Connected elements with buttons
+        - Merged elements with buttons
+    - Add disabled styling
 - Update button element
-    - Add disabled attribute styling to button element
+    - Add disabled styling
+- Update hero element
+    - Add head content and body elements
+- Update tooltip component
+    - Add click event listeners on touch devices
+    - Remove hover event listeners on touch devices
+
+
+-----
+
+
+# v0.9.0-beta
+
+### Updated
+- Update dropdown component
+    - Add is hoverable modifier class
+    - Add megamenu modifier class
+    - Add container element for offsets
+    - Add width values
+    - Update default animation duration
+    - Update default offset amount
+    - Remove injected tabindex attribute
+    - Remove min width values
+
+- Update navigation element
+    - Remove megamenu variables and styles
+    - Remove sub nav variables and styles
 
 
 -----
