@@ -48,16 +48,18 @@
             <div class="grid is-center-aligned">
                 <div class="grid__item">
                     <div class="has-dropdown">
-                        <button class="button--block js-dropdown-trigger has-no-element-spacing">Left Aligned</button>
+                        <a href="#" class="button button--block js-dropdown-trigger has-no-element-spacing prevent-default">Left Aligned</a>
 
-                        <div class="dropdown">
-                            <div class="dropdown__item">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</div>
-                            <div class="dropdown__divider"></div>
-                            <a href="#" class="dropdown__item">Dropdown item 1</a>
-                            <a href="#" class="dropdown__item">Dropdown item 2</a>
-                            <a href="#" class="dropdown__item">Dropdown item 3</a>
-                            <div class="dropdown__divider"></div>
-                            <a href="#" class="dropdown__item">More...</a>
+                        <div class="dropdown is-hoverable">
+                            <div class="dropdown__content">
+                                <div class="dropdown__item">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</div>
+                                <div class="dropdown__divider"></div>
+                                <a href="#" class="dropdown__item">Dropdown item 1</a>
+                                <a href="#" class="dropdown__item">Dropdown item 2</a>
+                                <a href="#" class="dropdown__item">Dropdown item 3</a>
+                                <div class="dropdown__divider"></div>
+                                <a href="#" class="dropdown__item">More...</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,13 +69,15 @@
                         <button class="js-dropdown-trigger has-no-element-spacing">Center Aligned</button>
 
                         <div class="dropdown dropdown--center">
-                            <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
-                            <div class="dropdown__divider"></div>
-                            <a href="#" class="dropdown__item">Dropdown item 1</a>
-                            <a href="#" class="dropdown__item">Dropdown item 2</a>
-                            <a href="#" class="dropdown__item">Dropdown item 3</a>
-                            <div class="dropdown__divider"></div>
-                            <a href="#" class="dropdown__item">More...</a>
+                            <div class="dropdown__content">
+                                <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
+                                <div class="dropdown__divider"></div>
+                                <a href="#" class="dropdown__item">Dropdown item 1</a>
+                                <a href="#" class="dropdown__item">Dropdown item 2</a>
+                                <a href="#" class="dropdown__item">Dropdown item 3</a>
+                                <div class="dropdown__divider"></div>
+                                <a href="#" class="dropdown__item">More...</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,13 +87,48 @@
                         <button class="js-dropdown-trigger has-no-element-spacing">Right Aligned</button>
 
                         <div class="dropdown dropdown--right">
-                            <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
-                            <div class="dropdown__divider"></div>
-                            <a href="#" class="dropdown__item">Dropdown item 1</a>
-                            <a href="#" class="dropdown__item">Dropdown item 2</a>
-                            <a href="#" class="dropdown__item">Dropdown item 3</a>
-                            <div class="dropdown__divider"></div>
-                            <a href="#" class="dropdown__item">More...</a>
+                            <div class="dropdown__content">
+                                <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#" class="is-red">consectetur</a> adipisicing elit...</p>
+                                <div class="dropdown__divider"></div>
+                                <a href="#" class="dropdown__item">Dropdown item 1</a>
+                                <a href="#" class="dropdown__item">Dropdown item 2</a>
+                                <a href="#" class="dropdown__item">Dropdown item 3</a>
+                                <div class="dropdown__divider"></div>
+                                <a href="#" class="dropdown__item">More...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__item">
+                    <div class="has-dropdown">
+                        <button class="js-dropdown-trigger has-no-element-spacing">Megamenu</button>
+
+                        <div class="dropdown dropdown--megamenu">
+                            <div class="dropdown__content">
+                                <div class="grid">
+                                    <div class="grid__item">
+                                        <h6>Column</h6>
+                                        <hr />
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+                                    </div>
+                                    <div class="grid__item">
+                                        <h6>Column</h6>
+                                        <hr />
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+                                    </div>
+                                    <div class="grid__item">
+                                        <h6>Column</h6>
+                                        <hr />
+                                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                                    </div>
+                                    <div class="grid__item">
+                                        <h6>Column</h6>
+                                        <hr />
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

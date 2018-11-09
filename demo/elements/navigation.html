@@ -57,39 +57,47 @@
                 <div class="navigation__links">
                     <ul role="navigation">
                         <li><a href="#" class="prevent-default">Link</a></li>
-                        <li class="has-sub-nav">
-                            <a href="#" class="prevent-default">Dropdown</a>
+                        <li class="has-dropdown">
+                            <a href="#" class="prevent-default js-dropdown-trigger">Dropdown</a>
 
-                            <div class="navigation__sub-nav">
-                                <p class="navigation__sub-nav-item has-no-element-spacing">
-                                    Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...
-                                </p>
-                                <div class="navigation__sub-nav-divider"></div>
-                                <a href="#" class="navigation__sub-nav-item prevent-default">Sub-Link 1</a>
-                                <a href="#" class="navigation__sub-nav-item prevent-default">Sub-Link 2</a>
-                                <a href="#" class="navigation__sub-nav-item prevent-default">Sub-Link 3</a>
-                                <div class="navigation__sub-nav-divider"></div>
-                                <a href="#" class="navigation__sub-nav-item prevent-default">More...</a>
+                            <div class="dropdown">
+                                <div class="dropdown__content">
+                                    <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
+                                    <div class="dropdown__divider"></div>
+                                    <a href="#" class="dropdown__item">Dropdown item 1</a>
+                                    <a href="#" class="dropdown__item">Dropdown item 2</a>
+                                    <a href="#" class="dropdown__item">Dropdown item 3</a>
+                                    <div class="dropdown__divider"></div>
+                                    <a href="#" class="dropdown__item">More...</a>
+                                </div>
                             </div>
                         </li>
-                        <li class="has-megamenu">
-                            <a href="#" class="prevent-default">Mega Menu</a>
+                        <li class="has-dropdown">
+                            <a href="#" class="prevent-default js-dropdown-trigger">Megamenu</a>
 
-                            <div class="navigation__megamenu">
-                                <h6>Mega Menu</h6>
-                                <hr />
-                                <div class="grid">
-                                    <div class="grid__item grid__item--span-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    </div>
-                                    <div class="grid__item grid__item--span-3">
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </div>
-                                    <div class="grid__item grid__item--span-3">
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    </div>
-                                    <div class="grid__item grid__item--span-3">
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <div class="dropdown dropdown--megamenu">
+                                <div class="dropdown__content">
+                                    <div class="grid">
+                                        <div class="grid__item">
+                                            <h6>Column</h6>
+                                            <hr />
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+                                        </div>
+                                        <div class="grid__item">
+                                            <h6>Column</h6>
+                                            <hr />
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+                                        </div>
+                                        <div class="grid__item">
+                                            <h6>Column</h6>
+                                            <hr />
+                                            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                                        </div>
+                                        <div class="grid__item">
+                                            <h6>Column</h6>
+                                            <hr />
+                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +131,7 @@
         $('.panel').panel();
         $('.tag').tag();
         $('.has-tooltip').tooltip();
-        // $('.has-dropdown').dropdown();
+        $('.has-dropdown').dropdown();
     </script>
 </body>
 </html>
