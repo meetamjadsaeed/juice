@@ -1,34 +1,176 @@
 # Roadmap
 
 ### New
-- Add chip component
 - Add dialog component
-- Add modal component
+- Add lightbox component
 - Add notification component
 - Add off canvas navigation component
-- Add popover component
 - Add tabs component
-- Add toggler script
+- Add toast component
 
 ### Update
 - Update form elements
     - Add custom elements
-        - Checkbox and Radio
-        - Color Picker
-        - File
-        - Datepicker
-        - Password Show/Hide Toggle
-    - Add control groups
-        - Connected elements with buttons
-        - Merged elements with buttons
-    - Add disabled styling
+        - Add custom checkbox and radio
+        - Add custom color picker
+        - Add custom file
+        - Add custom date picker
+
+
+-----
+
+
+# v0.10.0-beta
+
+### New
+- Add shield element
+- Add chip component
+- Add modal component
+- Add password reveal component
+- Add popover component
+    - Add a popover z-index value to the stack index variable map
+- Add toggler component
+- Add helper classes
+    - Add color modifier classes to p, a and h1-h6 elements
+    - Add feedback modifier classes to p, a and h1-h6 elements
+    - Remove typography color and feedback modifier classes from p, a and h1-h6 elements
+
+
+### Updated
+- Update feature detection script
+    - Update 'no-js' to 'has-no-js' and 'js' to 'has-js'
+    - Update 'no-touch' to 'has-no-touch' and 'touch' to 'has-touch'
+    - Update references to all detection classes in all components
+
+- Update click event helper handlers
+    - Update event handlers for dynamically added components
+    - Remove array based looping for attaching event handers
+
+- Update sass file and directory structure
+
+- Update mixins
+    - Add disabled mixin
+
+- Update grid framework
+    - Add grid column variable (default to 12)
+    - Add grid--stretch modifier class
+    - Add grid__item--stretch modifier class
+    - Update scss declaration order
+
+- Update breadrcrumb element
+    - Update scss declaration order
+
 - Update button element
+    - Add white space nowrap
+    - Add is static variables and modifier class
     - Add disabled styling
+    - Update scss declaration order
+    - Remove line height
+
+- Update form elements
+    - Add get-stack-index values to input, select and textarea elements
+    - Add form control classes
+    - Add label, inpout, select and textarea elements disabled styling
+    - Add textarea no scrollbar modifier class
+    - Update textarea default scrollbar styling
+    - Update label, input, select and textarea elements scss declaration order
+
 - Update hero element
-    - Add head content and body elements
+    - Add three quarter viewport modifier class
+    - Add head, body and foot elements
+    - Update half viewport font size
+    - Update viewport modifier naming convention
+    - Update scss declaration order
+
+- Update list element
+    - Update scss declaration order
+
+- Update media element
+    - Update media image scss declaration order
+    - Update media object scss declaration order
+
+- Update navigation element
+    - Add revealer element
+    - Update class naming conventions
+    - Update breakpoints (mobile first)
+    - Remove search element
+    - Update scss declaration order
+
+- Update overlay element
+    - Add animation duration variable and property
+    - Add outline none (focus trapping for dialogs/modals etc)
+
+- Update pagination element
+    - Add focus box shadow none to disabled elements
+    - Add missing disabled modifier classes
+    - Update disabled styling
+    - Update box shadow focus to use set-focus-box-shadow()
+    - Update scss declaration order
+
+- Update table element
+    - Update scss declaration order
+
+- Update typography elements
+    - Update scss declaration order
+    - Remove p, a and h1-h6 color modifiers
+
+- Update accordion component
+    - Add link color variables
+    - Add accordion__heading class for use instead of h1-h6 elements for headings
+    - Update event handlers for dynamically added components
+    - Update scss declaration order
+
+- Update card component
+    - Add animation duration variable
+    - Add link color variables
+    - Add card__heading class for use instead of h1-h6 elements for headings
+    - Update event handlers for dynamically added components
+    - Update remove animation if statement
+    - Update button styling
+    - Update scss declaration order
+    - Remove redundant styling
+
+- Update dropdown component
+    - Add injected focusable tabindex
+    - Add static modifier class for megamenus
+    - Add animation in and animation out if statements
+    - Update position modifier class calculations
+    - Update event handlers for dynamically added components
+    - Update variable declaration order
+    - Update scss declaration order
+
+- Update notice component
+    - Add link color variables
+    - Update event handlers for dynamically added components
+    - Update remove animation if statement
+    - Update scss declaration order
+
+- Update panel component
+    - Add link color variables
+    - Add panel__heading class for use instead of h1-h6 elements for headings
+    - Update event handlers for dynamically added components
+    - Update remove animation if statement
+    - Update scss declaration order
+
 - Update tooltip component
-    - Add click event listeners on touch devices
-    - Remove hover event listeners on touch devices
+    - Add focus event handlers
+    - Update event handlers for dynamically added components
+    - Update event handlers to only work on non touch devices
+    - Update method naming convention (show -> insert)
+    - Update scss declaration order
+    - Remove styling breakpoint mixin
+
+
+### Removed
+- Remove tag component
+
+
+### Bug Fixes
+- Fix spinner element
+    - Fix target is-color modifier class border colors
+
+- Fix card component
+    - Fix scss variable names
 
 
 -----
@@ -110,7 +252,7 @@
 
 # v0.5.1-beta
 
-### Bug fix
+### Bug Fixes
 - Fix gulpfile dev task ending on compile error
     - Add gulp-plumber to devDependencies
     - Add gulp-notifier to devDependencies
