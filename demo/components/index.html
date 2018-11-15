@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -54,7 +54,15 @@
                 </div>
 
                 <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
+                    <a href="chip.html" class="button button--block is-huge">Chip</a>
+                </div>
+
+                <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
                     <a href="dropdown.html" class="button button--block is-huge">Dropdown</a>
+                </div>
+
+                <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
+                    <a href="modal.html" class="button button--block is-huge">Modal</a>
                 </div>
 
                 <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
@@ -66,7 +74,11 @@
                 </div>
 
                 <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
-                    <a href="tag.html" class="button button--block is-huge">Tag</a>
+                    <a href="popover.html" class="button button--block is-huge">Popover</a>
+                </div>
+
+                <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
+                    <a href="toggler.html" class="button button--block is-huge">Toggler</a>
                 </div>
 
                 <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
@@ -90,11 +102,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

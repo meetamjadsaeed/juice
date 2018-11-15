@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -48,12 +48,12 @@
             <div class="box">
                 <form>
                     <div class="grid">
-                        <div class="grid__item grid__item--span-6 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <label for="input" class="has-no-element-spacing">Input</label>
-                            <input type="text" id="input" placeholder="Input..." />
+                            <input type="password" id="input" placeholder="Input..." />
                         </div>
 
-                        <div class="grid__item grid__item--span-6 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <label for="select" class="has-no-element-spacing">Select</label>
                             <select id="select" placeholder="Select">
                                 <option value="">Option 1</option>
@@ -71,20 +71,20 @@
                     </div>
 
                     <label for="textarea" class="has-no-element-spacing">Textarea</label>
-                    <textarea id="textarea" rows="6" placeholder="Textarea..."></textarea>
+                    <textarea id="textarea" rows="6" placeholder="Textarea..." ></textarea>
 
                     <div class="grid">
-                        <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
                             <label for="file" class="has-no-element-spacing">File</label>
                             <input type="file" id="file" />
                         </div>
 
-                        <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
                             <label for="color" class="has-no-element-spacing">Color</label>
                             <input type="color" id="color" />
                         </div>
 
-                        <div class="grid__item grid__item--span-4 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
                             <label for="range" class="has-no-element-spacing">Range</label>
                             <input type="range" id="range" />
                         </div>
@@ -93,14 +93,57 @@
                     <hr />
 
                     <div class="grid">
-                        <div class="grid__item grid__item--span-6 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <input type="checkbox" id="checkbox-1" /><label for="checkbox-1" class="label--inline has-no-element-spacing">Checkbox 1</label><br />
                             <input type="checkbox" id="checkbox-2" /><label for="checkbox-2" class="label--inline has-no-element-spacing">Checkbox 2</label><br />
                         </div>
-                        <div class="grid__item grid__item--span-6 grid__item--span-12@mobile">
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <input type="radio" id="radio-1" name="radio" /><label for="radio-1" class="label--inline has-no-element-spacing">Radio 1</label><br />
                             <input type="radio" id="radio-2" name="radio" /><label for="radio-2" class="label--inline has-no-element-spacing">Radio 2</label><br />
                             <input type="radio" id="radio-3" name="radio" /><label for="radio-3" class="label--inline has-no-element-spacing">Radio 3</label><br />
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="grid">
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                            <label for="form-control-input-addon-left" class="has-no-element-spacing">Left</label>
+                            <div class="form-control has-addons">
+                                <button class="is-static prevent-default"><i class="fas fa-user"></i></button>
+                                <input type="text" id="form-control-input-addon-left" class="form-control__spotlight" placeholder="Username" />
+                            </div>
+                        </div>
+
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                            <label for="form-control-input-addon-right" class="has-no-element-spacing">Right</label>
+                            <div class="form-control has-addons">
+                                <input type="text" id="form-control-input-addon-right" class="form-control__spotlight" placeholder="Search for a product..." />
+                                <button class="is-primary prevent-default">Go</button>
+                            </div>
+                        </div>
+
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                            <label for="form-control-input-addon-both" class="has-no-element-spacing">Both</label>
+                            <div class="form-control has-addons">
+                                <select>
+                                    <option>£</option>
+                                    <option>$</option>
+                                </select>
+                                <input type="text" id="form-control-input-addon-both" class="form-control__spotlight" placeholder="Amount..." />
+                                <button class="is-primary prevent-default">Deposit</button>
+                            </div>
+                        </div>
+
+                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                            <label for="form-control-password-toggle" class="has-no-element-spacing">Password</label>
+                            <div class="form-control has-addons has-password-reveal">
+                                <input type="password" id="password-form-control" class="form-control__spotlight" placeholder="Password..." />
+                                <button class="is-white js-password-reveal-trigger">
+                                    <i class="password-reveal__icon far fa-eye"></i>
+                                    <i class="password-reveal__icon far fa-eye-slash"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -122,11 +165,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

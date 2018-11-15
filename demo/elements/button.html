@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -57,11 +57,29 @@
 
                         <hr />
 
+                        <div class="has-element-spacing">
+                            <h6>Disabled Standard, Outline and Flat</h6>
+                            <button disabled>Disabled</button>
+                            <button class="button--outline" disabled>Disabled</button>
+                            <button class="button--flat" disabled>Disabled</button>
+                        </div>
+
+                        <hr />
+
                         <h6>Color</h6>
 
                         <button class="is-primary">primary</button>
                         <button class="button--outline is-primary">primary</button>
                         <button class="button--flat is-primary">primary</button>
+
+                        <hr />
+
+                        <div class="has-element-spacing">
+                            <h6>Disabled Color</h6>
+                            <button class="is-primary" disabled>Disabled</button>
+                            <button class="button--outline is-primary" disabled>Disabled</button>
+                            <button class="button--flat is-primary" disabled>Disabled</button>
+                        </div>
 
                         <hr />
 
@@ -91,7 +109,7 @@
 
                         <hr />
 
-                        <h6>Icon</h6>
+                        <h6>With Icons</h6>
                         <button>
                             <span class="button__icon">
                                 <i class="fas fa-user fa-fw"></i>
@@ -115,6 +133,17 @@
                             <span class"button__text">
                                 Button
                             </span>
+                        </button>
+
+                        <hr />
+
+                        <h6>Icon Standard and Rounded</h6>
+                        <button class="button--icon">
+                            <i class="fas fa-user fa-fw"></i>
+                        </button>
+
+                        <button class="button--icon button--round">
+                            <i class="fas fa-user fa-fw"></i>
                         </button>
                     </div>
                 </div>
@@ -141,9 +170,45 @@
                             <button class="button--flat has-warning">Warning</button>
                         </p>
 
-                        <button class="has-error">Error</button>
-                        <button class="button--outline has-error">Error</button>
-                        <button class="button--flat has-error">Error</button>
+                        <p>
+                            <button class="has-error">Error</button>
+                            <button class="button--outline has-error">Error</button>
+                            <button class="button--flat has-error">Error</button>
+                        </p>
+
+                        <hr />
+
+                        <h6>Disabled Feedback</h6>
+
+                        <p>
+                            <button class="has-success" disabled>Success</button>
+                            <button class="button--outline has-success" disabled>Success</button>
+                            <button class="button--flat has-success" disabled>Success</button>
+                        </p>
+
+                        <p>
+                            <button class="has-info" disabled>Info</button>
+                            <button class="button--outline has-info" disabled>Info</button>
+                            <button class="button--flat has-info" disabled>Info</button>
+                        </p>
+
+                        <p>
+                            <button class="has-warning" disabled>Warning</button>
+                            <button class="button--outline has-warning" disabled>Warning</button>
+                            <button class="button--flat has-warning" disabled>Warning</button>
+                        </p>
+
+                        <p>
+                            <button class="has-error" disabled>Disabled</button>
+                            <button class="button--outline has-error" disabled>Disabled</button>
+                            <button class="button--flat has-error" disabled>Disabled</button>
+                        </p>
+
+                        <hr />
+
+                        <h6>Various</h6>
+                        <button class="is-static">Static</button>
+                        <button class="is-static button--pill">Pill</button>
                     </div>
                 </div>
             </div>
@@ -164,11 +229,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

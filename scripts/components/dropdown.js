@@ -38,80 +38,55 @@
          * @return {void}
          */
         initialize() {
-            // Set the target element
+            // Set the dropdown elements
             const $element = $(this.element);
             const $dropdown = $element.find('.dropdown');
-            const $dropdownContent = $('.dropdown__content', $dropdown);
 
-            // Store the settings to the dropdown data
-            $dropdown.data({
-                'animation-in': $element.data('animation-in') || this.settings.animationIn,
-                'animation-out': $element.data('animation-out') || this.settings.animationOut
-            });
+            // Set the element to have a focusable tabindex
+            $element.attr('tabindex', -1);
 
-            // Check if the dropdown does not have the megamenu modifier class
-            if (!$dropdown.hasClass('dropdown--megamenu')) {
-                // Check if the dropdown has the center modifier class
-                if ($dropdown.hasClass('dropdown--center')) {
-                    // Set the element width
-                    const elementWidth = $element.outerWidth();
-
-                    // Set the left margin inline style of the dropdown
-                    $dropdown.css({
-                        'margin-left': elementWidth / 2
-                    });
-                }
-
-                // Check if the dropdown has the right modifier class
-                if ($dropdown.hasClass('dropdown--right')) {
-                    // Set the element width
-                    const elementWidth = $element.outerWidth();
-
-                    // Set the left margin inline style of the dropdown
-                    $dropdown.css({
-                        'margin-left': elementWidth
-                    });
-                }
-            }
-
-            // Check if the dropdown has the is hoverable state class and the html tag doesn't have the touch detection class
-            if ($dropdown.hasClass('is-hoverable') && !$('html').hasClass('touch')) {
+            // Check if the dropdown has the hoverable state class and the html tag has the no touch detection class
+            if ($dropdown.hasClass('is-hoverable') && $('html').hasClass('has-no-touch')) {
                 // Add a mouse enter event handler on the dropdown container
-                $element.on('mouseenter', (event) => {
+                $(document).on('mouseover', '.has-dropdown', (event) => {
                     // Set the dropdown element
                     const $dropdown = $(event.currentTarget).find('.dropdown');
 
-                    // Show the dropdown
-                    this.show($dropdown);
+                    if (!$dropdown.hasClass('is-active')) {
+                        // Show the dropdown
+                        this.show($dropdown);
+                    }
                 });
 
                 // Add a mouse leave event handler on the dropdown container
-                $element.on('mouseleave', (event) => {
+                $(document).on('mouseleave', '.has-dropdown', (event) => {
                     // Set the dropdown element
                     const $dropdown = $(event.currentTarget).find('.dropdown');
 
-                    // Hide the dropdown
-                    this.hide($dropdown);
+                    if ($dropdown.hasClass('is-active')) {
+                        // Hide the dropdown
+                        this.hide($dropdown);
+                    }
                 });
             }
 
             // Add a click event handler to show and hide the dropdown
-            $element.on('click', '.js-dropdown-trigger', (event) => {
+            $(document).on('click', '.js-dropdown-trigger', (event) => {
+                // Stop immediate propagation
+                event.stopImmediatePropagation();
+
                 // Set the dropdown element
                 const $dropdown = $(event.currentTarget).next('.dropdown');
 
-                // Check if the dropdown has the is active state hook class
-                if (!$dropdown.hasClass('is-active')) {
-                    // Show the dropdown
-                    this.show($dropdown);
-                } else {
-                    // Hide the dropdown
-                    this.hide($dropdown);
-                }
+                // Check if the dropdown has the active state hook class and show or hide the dropdown
+                (!$dropdown.hasClass('is-active')
+                    ? this.show($dropdown)
+                    : this.hide($dropdown)
+                );
             });
 
             // Add a focus out event handler to hide the dropdown
-            $element.on('focusout', (event) => {
+            $(document).on('focusout', '.has-dropdown', (event) => {
                 // Set the current target, related target and dropdown elements
                 const $current = $(event.currentTarget);
                 const $related = $(event.relatedTarget);
@@ -131,17 +106,24 @@
          * @return {void}
          */
         show($dropdown) {
-            // Set the dropdown content element
+            // Set the dropdown elements
+            const $element = $dropdown.parents('.has-dropdown');
             const $dropdownContent = $('.dropdown__content', $dropdown);
 
-            // Toggle the is active state hook class on the dropdown
+            // Toggle the active state hook class on the dropdown
             $dropdown.addClass('is-active');
 
-            // Add the animation in class to the dropdown content and check when the animation has ended
-            $dropdownContent.addClass($dropdown.data('animation-in')).one('animationend', () => {
-                // Remove the animation in class from the dropdown content
-                $dropdownContent.removeClass($dropdown.data('animation-in'));
-            });
+            // Set the dropdown animation in
+            const animationIn = $element.data('dropdown-animation-in') || this.settings.animationIn;
+
+            // Check if the animation in is set
+            if (animationIn && animationIn != 'none') {
+                // Add the animation in class to the dropdown content and check when the animation has ended
+                $dropdownContent.addClass(`animated ${animationIn}`).one('animationend', () => {
+                    // Remove the animation in class from the dropdown content
+                    $dropdownContent.removeClass(`animated ${animationIn}`);
+                });
+            }
         },
 
         /**
@@ -150,17 +132,27 @@
          * @return {void}
          */
         hide($dropdown) {
-            // Set the dropdown content element
+            // Set the dropdown elements
+            const $element = $dropdown.parents('.has-dropdown');
             const $dropdownContent = $('.dropdown__content', $dropdown);
 
-            // Add the animation out class to the dropdown content and check when the animation has ended
-            $dropdownContent.addClass($dropdown.data('animation-out')).one('animationend', () => {
-                // Remove the animation out class from the dropdown content
-                $dropdownContent.removeClass($dropdown.data('animation-out'));
+            // Set the dropdown animation out
+            const animationOut = $element.data('dropdown-animation-out') || this.settings.animationOut;
 
-                // Remove the is active state hook class on the dropdown
+            // Check if the animation out is set
+            if (animationOut && animationOut != 'none') {
+                // Add the animation out class to the dropdown content and check when the animation has ended
+                $dropdownContent.addClass(`animated ${animationOut}`).one('animationend', () => {
+                    // Remove the animation out class from the dropdown content
+                    $dropdownContent.removeClass(`animated ${animationOut}`);
+
+                    // Remove the active state hook class on the dropdown
+                    $dropdown.removeClass('is-active');
+                });
+            } else {
+                // Remove the active state hook class on the dropdown
                 $dropdown.removeClass('is-active');
-            });
+            }
         },
     });
 

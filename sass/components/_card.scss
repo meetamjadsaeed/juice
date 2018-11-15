@@ -4,6 +4,7 @@
    JUICE -> COMPONENTS -> CARD -> VARIABLES
    ============================================================================================= */
 
+$card-animation-duration: 300ms !default;
 $card-background-color: base-color('white') !default;
 $card-border-color: base-color('white', $pseudo-border-color-type) !default;
 $card-border-radius--top-left: $border-radius--top-left !default;
@@ -29,6 +30,10 @@ $card-font-size: $font-size !default;
 $card-font-size--small: $font-size--small !default;
 $card-font-size--large: $font-size--large !default;
 $card-font-size--huge: $font-size--huge !default;
+$card-link-color: $link-color !default;
+$card-link-color--focus: $link-color--focus !default;
+$card-link-color--hover: $link-color--hover !default;
+$card-link-color--active: $link-color--active !default;
 
 
 /* =============================================================================================
@@ -36,6 +41,7 @@ $card-font-size--huge: $font-size--huge !default;
    ============================================================================================= */
 
 .card {
+    animation-duration: $card-animation-duration;
     background-color: $card-background-color;
     border: 0 $card-border-style $card-border-color;
     border-bottom-left-radius: $card-border-radius--bottom-left;
@@ -55,10 +61,124 @@ $card-font-size--huge: $font-size--huge !default;
     margin-bottom: $card-element-spacing;
     padding: 0;
 
+    // Modifiers: Sizes
+    &.is-small {
+        font-size: $card-font-size--small;
+        margin-bottom: $card-element-spacing--small;
+
+        // Nested selectors
+        .card__content {
+            padding: $card-content-spacing--small;
+
+            // Nested selectors
+            .card__head,
+            .card__body,
+            .card__foot {
+                padding-bottom: $card-content-spacing--small;
+            }
+
+            .card__foot {
+                // Nested selectors
+                .card__buttons {
+                    // Nested selectors
+                    #{$button} {
+                        margin-left: $card-content-spacing--small / 2;
+
+                        // Pseudo classes
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $card-font-size--large;
+        margin-bottom: $card-element-spacing--large;
+
+        // Nested selectors
+        .card__content {
+            padding: $card-content-spacing--large;
+
+            // Nested selectors
+            .card__head,
+            .card__body,
+            .card__foot {
+                padding-bottom: $card-content-spacing--large;
+            }
+
+            .card__foot {
+                // Nested selectors
+                .card__buttons {
+                    // Nested selectors
+                    #{$button} {
+                        margin-left: $card-content-spacing--large / 2;
+
+                        // Pseudo classes
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $card-font-size--huge;
+        margin-bottom: $card-element-spacing--huge;
+
+        // Nested selectors
+        .card__content {
+            padding: $card-content-spacing--huge;
+
+            // Nested selectors
+            .card__head,
+            .card__body,
+            .card__foot {
+                padding-bottom: $card-content-spacing--huge;
+            }
+
+            .card__foot {
+                // Nested selectors
+                .card__buttons {
+                    // Nested selectors
+                    #{$button} {
+                        margin-left: $card-content-spacing--huge / 2;
+
+                        // Pseudo classes
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // Nested selectors
+    a {
+        color: $card-link-color;
+
+        // Pseudo classes
+        &:focus {
+            color: $card-link-color--focus;
+        }
+
+        &:hover {
+            color: $card-link-color--hover;
+        }
+
+        &:active {
+            color: $card-link-color--active;
+        }
+    }
+
     .card__media {
-        border-top-left-radius: $input-border-radius--top-left;
-        border-top-right-radius: $input-border-radius--top-right;
+        border-top-left-radius: $card-border-radius--top-left;
+        border-top-right-radius: $card-border-radius--top-right;
         overflow: hidden;
         padding: 0;
 
@@ -108,7 +228,8 @@ $card-font-size--huge: $font-size--huge !default;
                 h3,
                 h4,
                 h5,
-                h6 {
+                h6,
+                .card__heading {
                     margin-bottom: 0;
                     opacity: 0.5;
 
@@ -127,64 +248,18 @@ $card-font-size--huge: $font-size--huge !default;
                 display: flex;
                 flex-grow: 1;
                 font-size: $body-font-size;
-                justify-content: flex-start;
+                justify-content: flex-end;
 
-                // Pseudo classes
-                &:last-child {
-                    justify-content: flex-end;
+                // Nested selectors
+                #{$button} {
+                    margin-bottom: 0;
+                    margin-left: $card-content-spacing / 2;
+
+                    // Pseudo classes
+                    &:first-child {
+                        margin-left: 0;
+                    }
                 }
-            }
-        }
-    }
-
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $card-font-size--small;
-        margin-bottom: $card-element-spacing--small;
-
-        // Nested selectors
-        .card__content {
-            padding: $card-content-spacing--small;
-
-            // Nested selectors
-            .card__head,
-            .card__body,
-            .card__foot {
-                padding-bottom: $card-content-spacing--small;
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $card-font-size--large;
-        margin-bottom: $card-element-spacing--large;
-
-        // Nested selectors
-        .card__content {
-            padding: $card-content-spacing--large;
-
-            // Nested selectors
-            .card__head,
-            .card__body,
-            .card__foot {
-                padding-bottom: $card-content-spacing--large;
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $card-font-size--huge;
-        margin-bottom: $card-element-spacing--huge;
-
-        // Nested selectors
-        .card__content {
-            padding: $card-content-spacing--huge;
-
-            // Nested selectors
-            .card__head,
-            .card__body,
-            .card__foot {
-                padding-bottom: $card-content-spacing--huge;
             }
         }
     }

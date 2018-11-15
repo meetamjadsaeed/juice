@@ -48,7 +48,7 @@ $navigation-link-color--active: $link-color--active !default;
 
     .navigation__logo,
     .navigation__links,
-    .navigation__search {
+    .navigation__bars {
         padding: 0 ($navigation-content-spacing / 2);
 
         // Pseudo classes
@@ -63,8 +63,7 @@ $navigation-link-color--active: $link-color--active !default;
 
     .navigation__logo {
         display: flex;
-        flex-basis: 25%;
-        flex-grow: 1;
+        flex: 1 0 25%;
 
         // Nested selectors
         a {
@@ -73,10 +72,12 @@ $navigation-link-color--active: $link-color--active !default;
     }
 
     .navigation__links {
+        display: none;
+
         // Nested selectors
         ul,
         ol {
-            display: flex;
+            display: none;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -89,55 +90,73 @@ $navigation-link-color--active: $link-color--active !default;
                 a {
                     display: inline-flex;
                     padding: $navigation-content-spacing;
-
-                    // Pseudo classes
-                    &:focus-within + .navigation__sub-nav {
-                        display: inline-flex;
-                    }
                 }
-            }
-        }
-
-        .navigation__bars {
-            display: none;
-
-            // Nested selectors
-            #{$button} {
-                margin-bottom: 0;
             }
         }
     }
 
-    .navigation__search {
+    .navigation__icons {
         // Nested selectors
-        #{$input} {
+        #{$button} {
             margin-bottom: 0;
+            margin-right: $navigation-content-spacing / 4;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .navigation__revealer {
+        display: none;
+        flex: 1 0 100%;
+        padding: $navigation-content-spacing;
+
+         // Nested selectors
+        ul,
+        ol {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+             // Nested selectors
+            li {
+                flex: 1 0 auto;
+
+                 // Nested selectors
+                a {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    padding: ($navigation-content-spacing / 2) $navigation-content-spacing;
+                }
+            }
         }
     }
 
     // Breakpoints
-    @include breakpoint('touch') {
-        // Nested selectors
-        .navigation__search {
-            flex-basis: 100%;
-            padding: 0;
-            padding-top: $navigation-content-spacing;
-            order: 1;
-        }
-    }
-
-    @include breakpoint('until-desktop') {
+    @include breakpoint('laptop-up') {
         // Nested selectors
         .navigation__links {
             // Nested selectors
             ul,
             ol {
-                display: none;
+                display: flex;
             }
+        }
 
-            .navigation__bars {
-                display: block;
-            }
+        .navigation__links {
+            display: flex;
+        }
+
+        .navigation__icons {
+            display: none;
+        }
+        
+        .navigation__revealer {
+            display: none !important;
         }
     }
 }

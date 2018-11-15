@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -142,7 +142,7 @@
             </div>
         </div>
 
-        <div class="hero hero--quarter-viewport">
+        <div class="hero is-viewport-25">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -154,7 +154,7 @@
             </div>
         </div>
 
-        <div class="hero hero--half-viewport">
+        <div class="hero is-viewport-50">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -166,7 +166,19 @@
             </div>
         </div>
 
-        <div class="hero hero--viewport">
+        <div class="hero is-viewport-75">
+            <div class="container">
+                <div class="hero__content">
+                    <h3>
+                        Three Quarter Viewport
+                    </h3>
+
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                 </div>
+            </div>
+        </div>
+
+        <div class="hero is-viewport-100">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -175,6 +187,46 @@
 
                     <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                  </div>
+            </div>
+        </div>
+
+        <div class="hero is-viewport-100" style="background-image: url('https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');">
+            <div class="hero__head">
+                <div class="container">
+                    <nav class="navigation">
+                        <div class="navigation__logo">
+                            <h6 class="has-no-element-spacing">Text Logo</h6>
+                        </div>
+
+                        <div class="navigation__links">
+                            <ul role="navigation">
+                                <li><a href="#" class="prevent-default">Link</a></li>
+                                <li><a href="#" class="prevent-default">Link</a></li>
+                                <li><a href="#" class="prevent-default">Link</a></li>
+                                <li><a href="#" class="prevent-default">Link</a></li>
+                            </ul>
+
+                            <div class="navigation__bars">
+                                <button class="button--icon"><i class="fas fa-bars"></i></button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="hero__body">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="is-center-aligned">Juice Framework</h1>
+                        <h6 class="is-center-aligned">By Joe Mottershaw</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__foot">
+                <div class="container is-center-aligned">
+                    <button class="button--icon button--round is-huge has-element-spacing"><i class="fas fa-chevron-down"></i></button>
+                </div>
             </div>
         </div>
     </main>
@@ -193,11 +245,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

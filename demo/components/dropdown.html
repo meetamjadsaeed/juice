@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="grid__item">
-                    <div class="has-dropdown">
+                    <div class="has-dropdown has-dropdown--static">
                         <button class="js-dropdown-trigger has-no-element-spacing">Megamenu</button>
 
                         <div class="dropdown dropdown--megamenu">
@@ -150,11 +150,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

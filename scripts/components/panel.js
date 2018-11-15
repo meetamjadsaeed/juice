@@ -49,43 +49,41 @@
             }
 
             // Add a click event handler to toggle the panels body
-            $('.js-panel-toggle', this.element).on('click', () => {
-                // Set the toggle settings
-                const settings = {
-                    'animation': $panel.data('panel-toggle-animation') || this.settings.toggleAnimation,
-                    'duration': $panel.data('panel-toggle-animation-duration') || this.settings.toggleAnimationDuration,
-                };
+            $(document).on('click', '.js-panel-toggle', (event) => {
+                // Set the panel element
+                const $panel = $(event.currentTarget).parents('.panel');
 
                 // Toggle the panel
-                this.toggle($panel, settings);
+                this.toggle($panel);
             });
 
             // Add a click event handler to remove a panel
-            $('.js-panel-remove', this.element).on('click', () => {
-                // Set the remove settings
-                const settings = {
-                    'animation': $panel.data('panel-remove-animation') || this.settings.removeAnimation
-                };
+            $(document).on('click', '.js-panel-remove', (event) => {
+                // Set the panel element
+                const $panel = $(event.currentTarget).parents('.panel');
 
                 // Remove the panel
-                this.remove($panel, settings);
+                this.remove($panel);
             });
         },
 
         /**
          * Toggle the body of a panel
-         * @param  {element}  $panel    The panel element
-         * @param  {object}   settings  The plugin/user settings
+         * @param  {element}  $panel  The panel element
          * @return {void}
          */
-        toggle($panel, settings) {
+        toggle($panel) {
             // Set the panel body element
-            const $body = $('.panel__body', this.element);
+            const $body = $panel.find('.panel__body');
+
+            // Set the panel toggle settings
+            const toggleAnimation = $panel.data('panel-toggle-animation') || this.settings.toggleAnimation;
+            const toggleAnimationDuration = $panel.data('panel-toggle-animation-duration') || this.settings.toggleAnimationDuration;
 
             // Check if the panel body is not animating
             if (!$body.is(':animated')) {
-                // Start a switch statement for the animation
-                switch (settings.animation) {
+                // Start a switch statement for the toggle animation
+                switch (toggleAnimation) {
                     // Default
                     default:
                         // Toggle the expanded and collapsed state hook classes on the panel
@@ -97,7 +95,7 @@
                         // Check if the panel has the expanded state hook class
                         if ($panel.hasClass('is-expanded')) {
                             // Toggle the panel body and check when the animation has ended
-                            $body.slideToggle(settings.duration, () => {
+                            $body.slideToggle(toggleAnimationDuration, () => {
                                 // Toggle the expanded and collapsed state hook classes on the panel
                                 $panel.toggleClass('is-expanded is-collapsed');
                             });
@@ -109,7 +107,7 @@
                             $panel.toggleClass('is-expanded is-collapsed');
 
                             // Toggle the panel body
-                            $body.slideToggle(settings.duration);
+                            $body.slideToggle(toggleAnimationDuration);
                         }
                     break;
 
@@ -118,7 +116,7 @@
                         // Check if the panel has the expanded state hook class
                         if ($panel.hasClass('is-expanded')) {
                             // Toggle the panel body and check when the animation has ended
-                            $body.fadeToggle(settings.duration, () => {
+                            $body.fadeToggle(toggleAnimationDuration, () => {
                                 // Toggle the expanded and collapsed state hook classes on the panel
                                 $panel.toggleClass('is-expanded is-collapsed');
                             });
@@ -130,7 +128,7 @@
                             $panel.toggleClass('is-expanded is-collapsed');
 
                             // Toggle the panel body
-                            $body.fadeToggle(settings.duration);
+                            $body.fadeToggle(toggleAnimationDuration);
                         }
                     break;
                 }
@@ -139,15 +137,17 @@
 
         /**
          * Remove a panel
-         * @param  {element}  $panel    The panel element
-         * @param  {object}   settings  The plugin/user settings
+         * @param  {element}  $panel  The panel element
          * @return {void}
          */
-        remove($panel, settings) {
-            // Check if the animation is not set to none
-            if (settings.animation != 'none') {
+        remove($panel) {
+            // Set the panel remove animation
+            const removeAnimation = $panel.data('panel-remove-animation') || this.settings.removeAnimation;
+
+            // Check if the remove animation is set
+            if (removeAnimation && removeAnimation != 'none') {
                 // Add the animation classe to the panel and check when the animation has ended
-                $panel.addClass(`animated ${settings.animation}`).one('animationend', () => {
+                $panel.addClass(`animated ${removeAnimation}`).one('animationend', () => {
                     // Remove the panel
                     $panel.remove();
                 });

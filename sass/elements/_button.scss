@@ -70,6 +70,9 @@ $button-icon-opacity--hover: 0.6 !default;
 $button-icon-opacity--focus: 0.6 !default;
 $button-icon-opacity--active: 0.9 !default;
 $button-letter-spacing: 0 !default;
+$button-static-background-color: base-color('white') !default;
+$button-static-border-color: base-color('white', $pseudo-border-color-type) !default;
+$button-static-font-color: base-color('white', 'invert') !default;
 $button-text-transform: uppercase !default;
 
 
@@ -174,6 +177,7 @@ $button-text-transform: uppercase !default;
     text-decoration: none;
     text-transform: $button-text-transform;
     user-select: none;
+    white-space: nowrap;
     z-index: get-stack-index('default');
 
     // Pseudo classes
@@ -181,7 +185,6 @@ $button-text-transform: uppercase !default;
         background-color: $button-background-color--hover;
         border-color: $button-border-color--hover;
         color: $button-font-color--hover;
-        z-index: get-stack-index('hover');
     }
 
     &:focus {
@@ -196,104 +199,21 @@ $button-text-transform: uppercase !default;
         z-index: get-stack-index('active');
     }
 
-    // Nested selectors
-    .button__icon {
-        margin: 0 ($button-content-spacing / 2);
-
-        // Pseudo classes
-        &:first-child:not(:only-child) {
-            margin-left: -($button-content-spacing / 4);
-        }
-
-        &:last-child:not(:only-child) {
-            margin-right: -($button-content-spacing / 4);
-        }
+    // Modifiers: State hooks
+    &.is-static {
+        background-color: $button-static-background-color;
+        border-color: $button-static-border-color;
+        box-shadow: none;
+        color: $button-static-font-color;
+        pointer-events: none;
     }
 
-    // Modifiers
-    &.button--block {
-        display: flex;
-        width: 100%;
-    }
-
-    &.button--flat {
-        background-color: transparent;
-        border-color: transparent;
-        color: $button-background-color;
-
-        // Pseudo classes
-        &:hover {
-            background-color: transparentize($button-background-color, 0.95);
-            color: $button-background-color;
-        }
-
-        &:focus {
-            background-color: transparentize($button-background-color, 0.9);
-            box-shadow: none;
-        }
-
-        &:active {
-            background-color: transparentize($button-background-color, 0.85);
-            color: $button-background-color--active;
-        }
-    }
-
-    &.button--icon {
-        @include icon-button-size();
-        background-color: $button-icon-background-color;
-        border-color: $button-icon-border-color;
-        color: $button-icon-font-color;
-        opacity: $button-icon-opacity;
-
-        // Pseudo classes
-        &:focus {
-            background-color: $button-icon-background-color--focus;
-            border-color: $button-icon-border-color--focus;
-            box-shadow: none;
-            color: $button-icon-font-color--focus;
-            opacity: $button-icon-opacity--focus;
-        }
-
-        &:hover {
-            background-color: $button-icon-background-color--hover;
-            border-color: $button-icon-border-color--hover;
-            color: $button-icon-font-color--hover;
-            opacity: $button-icon-opacity--hover;
-        }
-
-        &:active {
-            background-color: $button-icon-background-color--active;
-            border-color: $button-icon-border-color--active;
-            color: $button-icon-font-color--active;
-            opacity: $button-icon-opacity--active;
-        }
-    }
-
-    &.button--outline {
-        background-color: transparent;
-        border-color: $button-background-color;
-        color: $button-background-color;
-
-        // Pseudo classes
-        &:hover {
-            background-color: $button-background-color;
-            border-color: $button-background-color;
-            color: $button-font-color;
-        }
-
-        &:active {
-            background-color: $button-background-color--active;
-            border-color: $button-background-color--active;
-            color: $button-font-color;
-        }
-    }
-
-    &.button--pill {
-        border-radius: 999px;
-    }
-
-    &.button--round {
-        border-radius: 100%;
+    &[disabled],
+    &.is-disabled {
+        @include disabled();
+        background-color: $button-background-color !important;
+        border-color: $button-border-color !important;
+        color: $button-font-color !important;
     }
 
     // Modifiers: Sizes
@@ -348,6 +268,14 @@ $button-text-transform: uppercase !default;
                 color: base-color($name, 'invert');
             }
 
+            // Modifiers: State hooks
+            &[disabled],
+            &.is-disabled {
+                background-color: base-color($name, $pseudo-background-color-type) !important;
+                border-color: base-color($name, $pseudo-border-color-type) !important;
+                color: base-color($name, 'invert') !important;
+            }
+
             // Modifiers
             &.button--flat {
                 background-color: transparent;
@@ -369,6 +297,14 @@ $button-text-transform: uppercase !default;
                     background-color: transparentize(base-color($name), 0.85);
                     color: base-color($name, $pseudo-background-color-type--active);
                 }
+
+                // Modifiers: State hooks
+                &[disabled],
+                &.is-disabled {
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                    color: base-color($name) !important;
+                }
             }
 
             &.button--outline {
@@ -387,6 +323,14 @@ $button-text-transform: uppercase !default;
                     background-color: base-color($name, $pseudo-background-color-type--active);
                     border-color: base-color($name, $pseudo-background-color-type--active);
                     color: base-color($name, 'invert');
+                }
+
+                // Modifiers: State hooks
+                &[disabled],
+                &.is-disabled {
+                    background-color: transparent !important;
+                    border-color: base-color($name) !important;
+                    color: base-color($name) !important;
                 }
             }
         }
@@ -416,6 +360,14 @@ $button-text-transform: uppercase !default;
                 color: feedback-color($name, 'invert');
             }
 
+            // Modifiers: State hooks
+            &[disabled],
+            &.is-disabled {
+                background-color: feedback-color($name, $pseudo-background-color-type) !important;
+                border-color: feedback-color($name, $pseudo-border-color-type) !important;
+                color: feedback-color($name, 'invert') !important;
+            }
+
             // Modifiers
             &.button--flat {
                 background-color: transparent;
@@ -437,6 +389,14 @@ $button-text-transform: uppercase !default;
                     background-color: transparentize(feedback-color($name), 0.85);
                     color: feedback-color($name, $pseudo-background-color-type--active);
                 }
+
+                // Modifiers: State hooks
+                &[disabled],
+                &.is-disabled {
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                    color: feedback-color($name) !important;
+                }
             }
 
             &.button--outline {
@@ -456,7 +416,140 @@ $button-text-transform: uppercase !default;
                     border-color: feedback-color($name, $pseudo-background-color-type--active);
                     color: feedback-color($name, 'invert');
                 }
+
+                // Modifiers: State hooks
+                &[disabled],
+                &.is-disabled {
+                    background-color: transparent !important;
+                    border-color: feedback-color($name) !important;
+                    color: feedback-color($name) !important;
+                }
             }
+        }
+    }
+
+    // Modifiers
+    &.button--block {
+        display: flex;
+        width: 100%;
+    }
+
+    &.button--flat {
+        background-color: transparent;
+        border-color: transparent;
+        color: $button-background-color;
+
+        // Pseudo classes
+        &:hover {
+            background-color: transparentize($button-background-color, 0.95);
+            color: $button-background-color;
+        }
+
+        &:focus {
+            background-color: transparentize($button-background-color, 0.9);
+            box-shadow: none;
+        }
+
+        &:active {
+            background-color: transparentize($button-background-color, 0.85);
+            color: $button-background-color--active;
+        }
+
+        // Modifiers: State hooks
+        &[disabled],
+        &.is-disabled {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            color: $button-background-color !important;
+        }
+    }
+
+    &.button--icon {
+        @include icon-button-size();
+        background-color: $button-icon-background-color;
+        border-color: $button-icon-border-color;
+        color: $button-icon-font-color;
+        opacity: $button-icon-opacity;
+
+        // Pseudo classes
+        &:focus {
+            background-color: $button-icon-background-color--focus;
+            border-color: $button-icon-border-color--focus;
+            box-shadow: none;
+            color: $button-icon-font-color--focus;
+            opacity: $button-icon-opacity--focus;
+        }
+
+        &:hover {
+            background-color: $button-icon-background-color--hover;
+            border-color: $button-icon-border-color--hover;
+            color: $button-icon-font-color--hover;
+            opacity: $button-icon-opacity--hover;
+        }
+
+        &:active {
+            background-color: $button-icon-background-color--active;
+            border-color: $button-icon-border-color--active;
+            color: $button-icon-font-color--active;
+            opacity: $button-icon-opacity--active;
+        }
+
+        // Modifiers: State hooks
+        &[disabled],
+        &.is-disabled {
+            background-color: $button-icon-background-color !important;
+            border-color: $button-icon-border-color !important;
+            color: $button-icon-font-color !important;
+            opacity: $button-icon-opacity !important;
+        }
+    }
+
+    &.button--outline {
+        background-color: transparent;
+        border-color: $button-background-color;
+        color: $button-background-color;
+
+        // Pseudo classes
+        &:hover {
+            background-color: $button-background-color;
+            border-color: $button-background-color;
+            color: $button-font-color;
+        }
+
+        &:active {
+            background-color: $button-background-color--active;
+            border-color: $button-background-color--active;
+            color: $button-font-color;
+        }
+
+        // Modifiers: State hooks
+        &[disabled],
+        &.is-disabled {
+            background-color: transparent !important;
+            border-color: $button-background-color !important;
+            color: $button-background-color !important;
+        }
+    }
+
+    &.button--pill {
+        border-radius: 999px;
+    }
+
+    &.button--round {
+        border-radius: 100%;
+    }
+
+    // Nested selectors
+    .button__icon {
+        margin: 0 ($button-content-spacing / 2);
+
+        // Pseudo classes
+        &:first-child:not(:only-child) {
+            margin-left: -($button-content-spacing / 4);
+        }
+
+        &:last-child:not(:only-child) {
+            margin-right: -($button-content-spacing / 4);
         }
     }
 }
@@ -470,29 +563,212 @@ $button-text-transform: uppercase !default;
     display: inline-flex;
     margin-bottom: $button-element-spacing;
 
-    // Nested selectors
-    #{$button} {
-        margin-bottom: 0;
+    // Modifiers: Sizes
+    &.is-small {
+        margin-bottom: $button-element-spacing--small;
 
-        // Pseudo classes
-        &:not(:only-child) {
-            border-left-width: $button-border-width--divider;
-            border-radius: 0;
-            border-right-width: $button-border-width--divider;
-            margin-right: -$button-border-width--divider;
+        // Modifiers
+        &.button-group--icons {
+            // Nested selectors
+            #{$button} {
+                @include icon-button-size--small();
+            }
         }
 
-        &:first-child {
-            border-bottom-left-radius: $button-border-radius--bottom-left;
-            border-left-width: $button-border-width--left;
-            border-top-left-radius: $button-border-radius--top-left;
+        // Nested selectors
+        #{$button} {
+            @include button-size--small();
+            margin-bottom: 0;
+        }
+    }
+
+    &.is-large {
+        margin-bottom: $button-element-spacing--large;
+
+        // Modifiers
+        &.button-group--icons {
+            // Nested selectors
+            #{$button} {
+                @include icon-button-size--large();
+            }
         }
 
-        &:last-child {
-            border-bottom-right-radius: $button-border-radius--bottom-right;
-            border-right-width: $button-border-width--right;
-            border-top-right-radius: $button-border-radius--top-right;
-            margin-right: 0;
+        // Nested selectors
+        #{$button} {
+            @include button-size--large();
+            margin-bottom: 0;
+        }
+    }
+
+    &.is-huge {
+        margin-bottom: $button-element-spacing--huge;
+
+        // Modifiers
+        &.button-group--icons {
+            // Nested selectors
+            #{$button} {
+                @include icon-button-size--huge();
+            }
+        }
+
+        // Nested selectors
+        #{$button} {
+            @include button-size--huge();
+            margin-bottom: 0;
+        }
+    }
+
+    // Modifiers: Base colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+            // Modifiers
+            &.button-group--flat {
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent;
+                    border-color: transparent;
+                    color: base-color($name);
+
+                    // Pseudo classes
+                    &:hover {
+                        background-color: transparentize(base-color($name), 0.95);
+                        color: base-color($name);
+                    }
+
+                    &:focus {
+                        background-color: transparentize(base-color($name), 0.9);
+                        box-shadow: none;
+                    }
+
+                    &:active {
+                        background-color: transparentize(base-color($name), 0.85);
+                        color: base-color($name, $pseudo-background-color-type--active);
+                    }
+                }
+            }
+
+            &.button-group--outline {
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent;
+                    border-color: base-color($name);
+                    color: base-color($name);
+
+                    // Pseudo classes
+                    &:hover {
+                        background-color: base-color($name);
+                        border-color: base-color($name);
+                        color: base-color($name, 'invert');
+                    }
+
+                    &:active {
+                        background-color: base-color($name, $pseudo-background-color-type--active);
+                        border-color: base-color($name, $pseudo-background-color-type--active);
+                        color: base-color($name, 'invert');
+                    }
+                }
+            }
+
+            // Nested selectors
+            #{$button} {
+                background-color: base-color($name);
+                border-color: base-color($name, $pseudo-border-color-type);
+                color: base-color($name, 'invert');
+
+                // Pseudo classes
+                &:hover {
+                    background-color: base-color($name, $pseudo-background-color-type--hover);
+                    border-color: base-color($name, $pseudo-border-color-type--hover);
+                    color: base-color($name, 'invert');
+                }
+
+                &:focus {
+                    box-shadow: set-focus-box-shadow(base-color($name));
+                }
+
+                &:active {
+                    background-color: base-color($name, $pseudo-background-color-type--active);
+                    border-color: base-color($name, $pseudo-border-color-type--active);
+                    color: base-color($name, 'invert');
+                }
+            }
+        }
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+            // Modifiers
+            &.button-group--flat {
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent;
+                    border-color: transparent;
+                    color: feedback-color($name);
+
+                    // Pseudo classes
+                    &:hover {
+                        background-color: transparentize(feedback-color($name), 0.95);
+                        color: feedback-color($name);
+                    }
+
+                    &:focus {
+                        background-color: transparentize(feedback-color($name), 0.9);
+                        box-shadow: none;
+                    }
+
+                    &:active {
+                        background-color: transparentize(feedback-color($name), 0.85);
+                        color: feedback-color($name, $pseudo-background-color-type--active);
+                    }
+                }
+            }
+
+            &.button-group--outline {
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent;
+                    border-color: feedback-color($name);
+                    color: feedback-color($name);
+
+                    // Pseudo classes
+                    &:hover {
+                        background-color: feedback-color($name);
+                        border-color: feedback-color($name);
+                        color: feedback-color($name, 'invert');
+                    }
+
+                    &:active {
+                        background-color: feedback-color($name, $pseudo-background-color-type--active);
+                        border-color: feedback-color($name, $pseudo-background-color-type--active);
+                        color: feedback-color($name, 'invert');
+                    }
+                }
+            }
+
+            // Nested selectors
+            #{$button} {
+                background-color: feedback-color($name);
+                border-color: feedback-color($name, $pseudo-border-color-type);
+                color: feedback-color($name, 'invert');
+
+                // Pseudo classes
+                &:hover {
+                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
+                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                    color: feedback-color($name, 'invert');
+                }
+
+                &:focus {
+                    box-shadow: set-focus-box-shadow(feedback-color($name));
+                }
+
+                &:active {
+                    background-color: feedback-color($name, $pseudo-background-color-type--active);
+                    border-color: feedback-color($name, $pseudo-border-color-type--active);
+                    color: feedback-color($name, 'invert');
+                }
+            }
         }
     }
 
@@ -576,212 +852,29 @@ $button-text-transform: uppercase !default;
         }
     }
 
-    // Modifiers: Sizes
-    &.is-small {
-        margin-bottom: $button-element-spacing--small;
+    // Nested selectors
+    #{$button} {
+        margin-bottom: 0;
 
-        // Nested selectors
-        #{$button} {
-            @include button-size--small();
-            margin-bottom: 0;
+        // Pseudo classes
+        &:not(:only-child) {
+            border-left-width: $button-border-width--divider;
+            border-radius: 0;
+            border-right-width: $button-border-width--divider;
+            margin-right: -$button-border-width--divider;
         }
 
-        // Modifiers
-        &.button-group--icons {
-            // Nested selectors
-            #{$button} {
-                @include icon-button-size--small();
-            }
-        }
-    }
-
-    &.is-large {
-        margin-bottom: $button-element-spacing--large;
-
-        // Nested selectors
-        #{$button} {
-            @include button-size--large();
-            margin-bottom: 0;
+        &:first-child {
+            border-bottom-left-radius: $button-border-radius--bottom-left;
+            border-left-width: $button-border-width--left;
+            border-top-left-radius: $button-border-radius--top-left;
         }
 
-        // Modifiers
-        &.button-group--icons {
-            // Nested selectors
-            #{$button} {
-                @include icon-button-size--large();
-            }
-        }
-    }
-
-    &.is-huge {
-        margin-bottom: $button-element-spacing--huge;
-
-        // Nested selectors
-        #{$button} {
-            @include button-size--huge();
-            margin-bottom: 0;
-        }
-
-        // Modifiers
-        &.button-group--icons {
-            // Nested selectors
-            #{$button} {
-                @include icon-button-size--huge();
-            }
-        }
-    }
-
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            // Nested selectors
-            #{$button} {
-                background-color: base-color($name);
-                border-color: base-color($name, $pseudo-border-color-type);
-                color: base-color($name, 'invert');
-
-                // Pseudo classes
-                &:hover {
-                    background-color: base-color($name, $pseudo-background-color-type--hover);
-                    border-color: base-color($name, $pseudo-border-color-type--hover);
-                    color: base-color($name, 'invert');
-                }
-
-                &:focus {
-                    box-shadow: set-focus-box-shadow(base-color($name));
-                }
-
-                &:active {
-                    background-color: base-color($name, $pseudo-background-color-type--active);
-                    border-color: base-color($name, $pseudo-border-color-type--active);
-                    color: base-color($name, 'invert');
-                }
-            }
-
-            // Modifiers
-            &.button-group--flat {
-                // Nested selectors
-                #{$button} {
-                    background-color: transparent;
-                    border-color: transparent;
-                    color: base-color($name);
-
-                    // Pseudo classes
-                    &:hover {
-                        background-color: transparentize(base-color($name), 0.95);
-                        color: base-color($name);
-                    }
-
-                    &:focus {
-                        background-color: transparentize(base-color($name), 0.9);
-                        box-shadow: none;
-                    }
-
-                    &:active {
-                        background-color: transparentize(base-color($name), 0.85);
-                        color: base-color($name, $pseudo-background-color-type--active);
-                    }
-                }
-            }
-
-            &.button-group--outline {
-                // Nested selectors
-                #{$button} {
-                    background-color: transparent;
-                    border-color: base-color($name);
-                    color: base-color($name);
-
-                    // Pseudo classes
-                    &:hover {
-                        background-color: base-color($name);
-                        border-color: base-color($name);
-                        color: base-color($name, 'invert');
-                    }
-
-                    &:active {
-                        background-color: base-color($name, $pseudo-background-color-type--active);
-                        border-color: base-color($name, $pseudo-background-color-type--active);
-                        color: base-color($name, 'invert');
-                    }
-                }
-            }
-        }
-    }
-
-    // Modifiers: Feedback colors
-    @each $name, $color in $feedback-colors {
-        &.has-#{$name} {
-            // Nested selectors
-            #{$button} {
-                background-color: feedback-color($name);
-                border-color: feedback-color($name, $pseudo-border-color-type);
-                color: feedback-color($name, 'invert');
-
-                // Pseudo classes
-                &:hover {
-                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
-                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
-                    color: feedback-color($name, 'invert');
-                }
-
-                &:focus {
-                    box-shadow: set-focus-box-shadow(feedback-color($name));
-                }
-
-                &:active {
-                    background-color: feedback-color($name, $pseudo-background-color-type--active);
-                    border-color: feedback-color($name, $pseudo-border-color-type--active);
-                    color: feedback-color($name, 'invert');
-                }
-            }
-
-            // Modifiers
-            &.button-group--flat {
-                // Nested selectors
-                #{$button} {
-                    background-color: transparent;
-                    border-color: transparent;
-                    color: feedback-color($name);
-
-                    // Pseudo classes
-                    &:hover {
-                        background-color: transparentize(feedback-color($name), 0.95);
-                        color: feedback-color($name);
-                    }
-
-                    &:focus {
-                        background-color: transparentize(feedback-color($name), 0.9);
-                        box-shadow: none;
-                    }
-
-                    &:active {
-                        background-color: transparentize(feedback-color($name), 0.85);
-                        color: feedback-color($name, $pseudo-background-color-type--active);
-                    }
-                }
-            }
-
-            &.button-group--outline {
-                // Nested selectors
-                #{$button} {
-                    background-color: transparent;
-                    border-color: feedback-color($name);
-                    color: feedback-color($name);
-
-                    // Pseudo classes
-                    &:hover {
-                        background-color: feedback-color($name);
-                        border-color: feedback-color($name);
-                        color: feedback-color($name, 'invert');
-                    }
-
-                    &:active {
-                        background-color: feedback-color($name, $pseudo-background-color-type--active);
-                        border-color: feedback-color($name, $pseudo-background-color-type--active);
-                        color: feedback-color($name, 'invert');
-                    }
-                }
-            }
+        &:last-child {
+            border-bottom-right-radius: $button-border-radius--bottom-right;
+            border-right-width: $button-border-width--right;
+            border-top-right-radius: $button-border-radius--top-right;
+            margin-right: 0;
         }
     }
 }

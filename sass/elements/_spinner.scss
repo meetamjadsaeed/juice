@@ -279,13 +279,15 @@ $spinner-element-size: 40px !default;
         // Modifiers: Base colors
         @each $name, $color in $base-colors {
             &.is-#{$name} {
-                border-color: rgba(base-color($name), $spinner-color-alpha);
+                border: 1px solid rgba(base-color($name), $spinner-color-alpha);
+                border-bottom-color: base-color($name);
                 border-top-color: base-color($name);
 
                 // Pseudo classes
                 &::before,
                 &::after {
-                    border-color: rgba(base-color($name), $spinner-color-alpha);
+                    border: 1px solid rgba(base-color($name), $spinner-color-alpha);
+                    border-bottom-color: base-color($name);
                     border-top-color: base-color($name);
                 }
             }

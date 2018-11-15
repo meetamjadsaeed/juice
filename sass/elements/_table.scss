@@ -64,108 +64,6 @@ table {
         border-top-width: $table-border-width--top;
     }
 
-    // Nested selectors
-    caption {
-        padding: $table-content-spacing;
-        text-align: inherit;
-    }
-
-    thead {
-        background-color: $table-head-background-color;
-        border: 0 $table-border-style $table-head-border-color;
-        border-bottom-width: $table-border-width--divider;
-        color: $table-head-font-color;
-    }
-
-    tbody {
-        background-color: $table-body-row-background-color;
-        border: 0 $table-border-style $table-body-border-color;
-        color: $table-body-font-color;
-    }
-
-    tfoot {
-        background-color: $table-foot-background-color;
-        border: 0 $table-border-style $table-foot-border-color;
-        border-bottom-width: $table-border-width--bottom;
-        color: $table-foot-font-color;
-    }
-
-    thead,
-    tbody,
-    tfoot {
-        border-left-width: $table-border-width--left;
-        border-right-width: $table-border-width--right;
-
-        // Nested selectors
-        tr {
-            // Nested selectors
-            th,
-            td {
-                padding: $table-content-spacing;
-                vertical-align: middle;
-            }
-        }
-    }
-
-    // Modifiers
-    &.table--center {
-        text-align: center;
-
-        // Nested selectors
-        caption {
-            text-align: inherit;
-        }
-    }
-
-    &.table--border {
-        // Nested selectors
-        tbody {
-            // Nested selectors
-            tr {
-                border: 0 $table-border-style $table-body-border-color;
-                border-bottom-width: $table-border-width--divider;
-            }
-        }
-    }
-
-    &.table--stripe {
-        // Nested selectors
-        tbody {
-            // Nested selectors
-            tr {
-                // Pseudo classes
-                &:nth-of-type(even) {
-                    background-color: $table-body-row-background-color--striped;
-
-                    // Nested selectors
-                    th,
-                    td {
-                        color: $table-body-font-color--striped;
-                    }
-                }
-            }
-        }
-    }
-
-    &.table--hover {
-        // Nested selectors
-        tbody {
-            // Nested selectors
-            tr {
-                // Pseudo classes
-                &:hover {
-                    background-color: $table-body-row-background-color--hover;
-
-                    // Nested selectors
-                    th,
-                    td {
-                        color: $table-body-font-color--hover;
-                    }
-                }
-            }
-        }
-    }
-
     // Modifiers: Sizes
     &.is-small {
         font-size: $table-font-size--small;
@@ -232,6 +130,108 @@ table {
                 td {
                     padding: $table-content-spacing--huge;
                 }
+            }
+        }
+    }
+
+    // Modifiers
+    &.table--center {
+        text-align: center;
+
+        // Nested selectors
+        caption {
+            text-align: inherit;
+        }
+    }
+
+    &.table--border {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                border: 0 $table-border-style $table-body-border-color;
+                border-bottom-width: $table-border-width--divider;
+            }
+        }
+    }
+
+    &.table--stripe {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                // Pseudo classes
+                &:nth-of-type(even) {
+                    background-color: $table-body-row-background-color--striped;
+
+                    // Nested selectors
+                    th,
+                    td {
+                        color: $table-body-font-color--striped;
+                    }
+                }
+            }
+        }
+    }
+
+    &.table--hover {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                // Pseudo classes
+                &:hover {
+                    background-color: $table-body-row-background-color--hover;
+
+                    // Nested selectors
+                    th,
+                    td {
+                        color: $table-body-font-color--hover;
+                    }
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    caption {
+        padding: $table-content-spacing;
+        text-align: inherit;
+    }
+
+    thead {
+        background-color: $table-head-background-color;
+        border: 0 $table-border-style $table-head-border-color;
+        border-bottom-width: $table-border-width--divider;
+        color: $table-head-font-color;
+    }
+
+    tbody {
+        background-color: $table-body-row-background-color;
+        border: 0 $table-border-style $table-body-border-color;
+        color: $table-body-font-color;
+    }
+
+    tfoot {
+        background-color: $table-foot-background-color;
+        border: 0 $table-border-style $table-foot-border-color;
+        border-bottom-width: $table-border-width--bottom;
+        color: $table-foot-font-color;
+    }
+
+    thead,
+    tbody,
+    tfoot {
+        border-left-width: $table-border-width--left;
+        border-right-width: $table-border-width--right;
+
+        // Nested selectors
+        tr {
+            // Nested selectors
+            th,
+            td {
+                padding: $table-content-spacing;
+                vertical-align: middle;
             }
         }
     }

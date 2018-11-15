@@ -5,6 +5,7 @@
    ============================================================================================= */
 
 $grid-gutter: $element-spacing / 2 !default;
+$grid-columns: 12 !default;
 
 
 /* =============================================================================================
@@ -16,53 +17,6 @@ $grid-gutter: $element-spacing / 2 !default;
     flex-wrap: wrap;
     margin: 0 (-$grid-gutter);
     position: relative;
-
-    // Nested selectors
-    .grid__item {
-        flex: 1 0 0;
-        max-width: 100%;
-        padding: 0 $grid-gutter;
-
-        // Modifiers
-        @for $i from 1 through 12 {
-            // Variables
-            $width: (100% / 12) * $i;
-
-            // Modifiers
-            &.grid__item--span-#{$i} {
-                flex-basis: $width;
-                max-width: $width;
-            }
-
-            &.grid__item--offset-#{$i} {
-                margin-left: $width;
-            }
-        }
-
-        &.grid__item--no-offset {
-            margin-left: 0;
-        }
-
-        &.grid__item--first {
-            order: -1;
-        }
-
-        &.grid__item--last {
-            order: 1;
-        }
-
-        &.grid__item--top {
-            align-self: flex-start;
-        }
-
-        &.grid__item--middle {
-            align-self: center;
-        }
-
-        &.grid__item--bottom {
-            align-self: flex-end;
-        }
-    }
 
     // Modifiers
     &.grid--no-gutter {
@@ -128,52 +82,64 @@ $grid-gutter: $element-spacing / 2 !default;
         }
     }
 
+    &.grid--stretch {
+        align-items: stretch;
+    }
+
+    // Nested selectors
+    .grid__item {
+        flex: 1 0 0;
+        max-width: 100%;
+        padding: 0 $grid-gutter;
+
+        // Modifiers
+        @for $i from 1 through $grid-columns {
+            // Variables
+            $width: (100% / $grid-columns) * $i;
+
+            // Modifiers
+            &.grid__item--span-#{$i} {
+                flex-basis: $width;
+                max-width: $width;
+            }
+
+            &.grid__item--offset-#{$i} {
+                margin-left: $width;
+            }
+        }
+
+        &.grid__item--no-offset {
+            margin-left: 0;
+        }
+
+        &.grid__item--first {
+            order: -1;
+        }
+
+        &.grid__item--last {
+            order: 1;
+        }
+
+        &.grid__item--top {
+            align-self: flex-start;
+        }
+
+        &.grid__item--middle {
+            align-self: center;
+        }
+
+        &.grid__item--bottom {
+            align-self: flex-end;
+        }
+
+        &.grid__item--stretch {
+            align-self: stretch;
+        }
+    }
+
     // Breakpoints
     @each $name, $breakpoint in $breakpoints {
         @include breakpoint($name) {
-            // Nested selectors
-            .grid__item {
-                // Modifiers
-                @for $i from 1 through 12 {
-                    // Variables
-                    $width: (100% / 12) * $i;
-
-                    // Modifiers
-                    &.grid__item--span-#{$i}\@#{$name} {
-                        flex-basis: $width;
-                        max-width: $width;
-                    }
-
-                    &.grid__item--offset-#{$i}\@#{$name} {
-                        margin-left: $width;
-                    }
-                }
-
-                &.grid__item--no-offset\@#{$name} {
-                    margin-left: 0;
-                }
-
-                &.grid__item--first\@#{$name} {
-                    order: -1;
-                }
-
-                &.grid__item--last\@#{$name} {
-                    order: 1;
-                }
-
-                &.grid__item--top\@#{$name} {
-                    align-self: flex-start;
-                }
-
-                &.grid__item--middle\@#{$name} {
-                    align-self: center;
-                }
-
-                &.grid__item--bottom\@#{$name} {
-                    align-self: flex-end;
-                }
-            }
-
             // Modifiers
             &.grid--no-gutter\@#{$name} {
                 margin: 0;
@@ -235,6 +201,49 @@ $grid-gutter: $element-spacing / 2 !default;
                 // Modifiers
                 &.grid--reverse {
                     flex-direction: column-reverse;
+                }
+            }
+
+            // Nested selectors
+            .grid__item {
+                // Modifiers
+                @for $i from 1 through $grid-columns {
+                    // Variables
+                    $width: (100% / $grid-columns) * $i;
+
+                    // Modifiers
+                    &.grid__item--span-#{$i}\@#{$name} {
+                        flex-basis: $width;
+                        max-width: $width;
+                    }
+
+                    &.grid__item--offset-#{$i}\@#{$name} {
+                        margin-left: $width;
+                    }
+                }
+
+                &.grid__item--no-offset\@#{$name} {
+                    margin-left: 0;
+                }
+
+                &.grid__item--first\@#{$name} {
+                    order: -1;
+                }
+
+                &.grid__item--last\@#{$name} {
+                    order: 1;
+                }
+
+                &.grid__item--top\@#{$name} {
+                    align-self: flex-start;
+                }
+
+                &.grid__item--middle\@#{$name} {
+                    align-self: center;
+                }
+
+                &.grid__item--bottom\@#{$name} {
+                    align-self: flex-end;
                 }
             }
         }

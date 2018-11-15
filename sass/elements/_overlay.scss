@@ -4,6 +4,7 @@
    JUICE -> ELEMENTS -> OVERLAY -> VARIABLES
    ============================================================================================= */
 
+$overlay-animation-duration: 200ms !default;
 $overlay-background-color: base-color('black') !default;
 $overlay-font-color: base-color('black', 'invert') !default;
 $overlay-opacity: 0.75 !default;
@@ -13,12 +14,18 @@ $overlay-opacity: 0.75 !default;
    JUICE -> ELEMENTS -> OVERLAY
    ============================================================================================= */
 
-.overlay {
-    background: rgba($overlay-background-color, $overlay-opacity);
-    height: 100vh;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: get-stack-index('overlay');
+.has-overlay {
+    overflow: hidden;
+
+    .overlay {
+        animation-duration: $overlay-animation-duration;
+        background: rgba($overlay-background-color, $overlay-opacity);
+        height: 100vh;
+        left: 0;
+        outline: none;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: get-stack-index('overlay');
+    }
 }

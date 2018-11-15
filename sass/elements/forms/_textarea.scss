@@ -39,13 +39,13 @@ $textarea-font-size--huge: $input-font-size--huge !default;
    ============================================================================================= */
 
 textarea {
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
     background-color: $textarea-background-color;
     border: 0 $textarea-border-style $textarea-border-color;
     border-bottom-left-radius: $textarea-border-radius--bottom-left;
-    border-bottom-right-radius: $textarea-border-radius--bottom-right;
+    border-bottom-right-radius: 0;
     border-top-left-radius: $textarea-border-radius--top-left;
-    border-top-right-radius: $textarea-border-radius--top-right;
+    border-top-right-radius: 0;
     border-bottom-width: $textarea-border-width--bottom;
     border-left-width: $textarea-border-width--left;
     border-right-width: $textarea-border-width--right;
@@ -59,9 +59,11 @@ textarea {
     margin-bottom: $textarea-element-spacing;
     min-width: 100%;
     outline: none;
+    overflow-y: scroll;
     padding: 10px;
     resize: none;
     width: 100%;
+    z-index: get-stack-index('default');
 
     // Pseudo classes
     &:hover {
@@ -78,14 +80,23 @@ textarea {
         color: $textarea-font-color--focus;
     }
 
+    &:focus {
+        z-index: get-stack-index('focus');
+    }
+
+    &:active {
+        z-index: get-stack-index('active');
+    }
+
     // Pseudo elements
     &::placeholder {
         color: $textarea-font-color--placeholder;
     }
 
-    // Modifiers
-    &.textarea--resize {
-        resize: vertical;
+    // Modifiers: State hooks
+    &[disabled],
+    &.is-disabled {
+        @include disabled();
     }
 
     // Modifiers: Sizes
@@ -117,6 +128,23 @@ textarea {
             &:active {
                 box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color($name), $custom-focus-box-shadow-transparentize);
             }
+
+            // Modifiers: State hook
+            &[disabled],
+            &.is-disabled {
+                border-color: feedback-color($name) !important;
+            }
         }
+    }
+
+    // Modifiers
+    &.textarea--resize {
+        resize: vertical;
+    }
+
+    &.textarea--no-scrollbar {
+        border-bottom-right-radius: $textarea-border-radius--bottom-right;
+        border-top-right-radius: $textarea-border-radius--top-right;
+        overflow-y: auto;
     }
 }

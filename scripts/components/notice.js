@@ -37,32 +37,29 @@
          * @return {void}
          */
         initialize() {
-            // Set the notice element
-            const $notice = $(this.element);
-
             // Add a click event handler to remove a notice
-            $('.js-notice-remove', this.element).on('click', () => {
-                // Set the remove settings
-                const settings = {
-                    'animation': $notice.data('notice-remove-animation') || this.settings.removeAnimation
-                };
+            $(document).on('click', '.js-notice-remove', (event) => {
+                // Set the notice element
+                const $notice = $(event.currentTarget).parents('.notice');
 
                 // Remove the notice
-                this.remove($notice, settings);
+                this.remove($notice);
             });
         },
 
         /**
          * Remove a notice
-         * @param  {element}  $notice   The notice element
-         * @param  {object}   settings  The plugin/user settings
+         * @param  {element}  $notice  The notice element
          * @return {void}
          */
-        remove($notice, settings) {
-            // Check if the animation is not set to none
-            if (settings.animation != 'none') {
+        remove($notice) {
+            // Set the notice remove animation
+            const removeAnimation = $notice.data('notice-remove-animation') || this.settings.removeAnimation;
+
+            // Check if the remove animation is set
+            if (removeAnimation && removeAnimation != 'none') {
                 // Add the animation classe to the notice and check when the animation has ended
-                $notice.addClass(`animated ${settings.animation}`).one('animationend', () => {
+                $notice.addClass(`animated ${removeAnimation}`).one('animationend', () => {
                     // Remove the notice
                     $notice.remove();
                 });

@@ -36,9 +36,10 @@ label {
     padding: 0;
     user-select: none;
 
-    // Modifiers
-    &.label--inline {
-        display: inline-block;
+    // Modifiers: State hooks
+    &[disabled],
+    &.is-disabled {
+        @include disabled();
     }
 
     // Modifiers: Sizes
@@ -65,5 +66,10 @@ label {
         &.has-#{$name} {
             color: feedback-color($name);
         }
+    }
+
+    // Modifiers
+    &.label--inline {
+        display: inline-block;
     }
 }

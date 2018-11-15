@@ -67,6 +67,195 @@ $pagination-font-size--huge: $font-size--huge !default;
     justify-content: space-between;
     margin-bottom: $pagination-element-spacing;
 
+    // Modifiers
+    &.pagination--left {
+        justify-content: flex-start;
+    }
+
+    &.pagination--center {
+        justify-content: center;
+    }
+
+    &.pagination--right {
+        justify-content: flex-end;
+    }
+
+    // Modifiers: Sizes
+    &.is-small {
+        font-size: $pagination-font-size--small;
+        margin-bottom: $pagination-element-spacing--small;
+
+        // Breakpoints
+        @include breakpoint('touch') {
+            // Nested selectors
+            .pagination__pager,
+            .pagination__list {
+                margin-bottom: $pagination-element-spacing--small;
+
+                // Pseudo classes
+                &:first-child {
+                    margin-right: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        // Nested selectors
+        .pagination__pager,
+        .pagination__list {
+            // Pseudo classes
+            &:first-child {
+                margin-right: $pagination-content-spacing--small;
+            }
+
+            &:last-child {
+                margin-left: $pagination-content-spacing--small;
+            }
+
+            // Nested selectors
+            li {
+                // Nested selectors
+                a,
+                .pagination__ellipsis {
+                    height: $pagination-element-height--small;
+                    padding: 0 $pagination-content-spacing--small;
+                }
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $pagination-font-size--large;
+        margin-bottom: $pagination-element-spacing--large;
+
+        // Breakpoints
+        @include breakpoint('touch') {
+            // Nested selectors
+            .pagination__pager,
+            .pagination__list {
+                margin-bottom: $pagination-element-spacing--large;
+
+                // Pseudo classes
+                &:first-child {
+                    margin-right: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        // Nested selectors
+        .pagination__pager,
+        .pagination__list {
+            // Pseudo classes
+            &:first-child {
+                margin-right: $pagination-content-spacing--large;
+            }
+
+            &:last-child {
+                margin-left: $pagination-content-spacing--large;
+            }
+
+            // Nested selectors
+            li {
+                // Nested selectors
+                a,
+                .pagination__ellipsis {
+                    height: $pagination-element-height--large;
+                    padding: 0 $pagination-content-spacing--large;
+                }
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $pagination-font-size--huge;
+        margin-bottom: $pagination-element-spacing--huge;
+
+        // Breakpoints
+        @include breakpoint('touch') {
+            // Nested selectors
+            .pagination__pager,
+            .pagination__list {
+                margin-bottom: $pagination-element-spacing--huge;
+
+                // Pseudo classes
+                &:first-child {
+                    margin-right: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        // Nested selectors
+        .pagination__pager,
+        .pagination__list {
+            // Pseudo classes
+            &:first-child {
+                margin-right: $pagination-content-spacing--huge;
+            }
+
+            &:last-child {
+                margin-left: $pagination-content-spacing--huge;
+            }
+
+            // Nested selectors
+            li {
+                // Nested selectors
+                a,
+                .pagination__ellipsis {
+                    height: $pagination-element-height--huge;
+                    padding: 0 $pagination-content-spacing--huge;
+                }
+            }
+        }
+    }
+
+    // Breakpoints
+    @include breakpoint('touch') {
+        flex-direction: column;
+
+        // Modifiers
+        &.pagination--left,
+        &.pagination--center,
+        &.pagination--right {
+            justify-content: center;
+        }
+
+        // Nested selectors
+        .pagination__pager,
+        .pagination__list {
+            justify-content: center;
+            margin-bottom: $pagination-element-spacing;
+
+            // Pseudo classes
+            &:first-child {
+                margin-right: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+                margin-left: 0;
+            }
+
+            // Nested selectors
+            li {
+                flex: 1 0 0;
+            }
+        }
+    }
+
     // Nested selectors
     .pagination__pager,
     .pagination__list {
@@ -148,7 +337,7 @@ $pagination-font-size--huge: $font-size--huge !default;
                 &:focus {
                     background-color: $pagination-background-color--focus;
                     border-color: $pagination-border-color--focus;
-                    box-shadow: $custom-focus-box-shadow-values transparentize($pagination-background-color--hover, $custom-focus-box-shadow-transparentize);
+                    box-shadow: set-focus-box-shadow($pagination-background-color--hover);
                     color: $pagination-link-color--focus;
                     z-index: get-stack-index('focus');
                 }
@@ -160,15 +349,7 @@ $pagination-font-size--huge: $font-size--huge !default;
                     z-index: get-stack-index('active');
                 }
 
-                // Modifiers
-                &[disabled] {
-                    background-color: $pagination-background-color !important;
-                    border-color: $pagination-border-color !important;
-                    color: $pagination-link-color !important;
-                    cursor: not-allowed !important;
-                    opacity: 0.75 !important;
-                }
-
+                // Modifiers: State hooks
                 &.is-active {
                     background-color: $pagination-active-background-color;
                     border-color: $pagination-active-border-color;
@@ -195,203 +376,21 @@ $pagination-font-size--huge: $font-size--huge !default;
                     }
 
                     // Modifiers
-                    &[disabled] {
+                    &[disabled],
+                    &.is-disabled {
                         background-color: $pagination-active-background-color !important;
                         border-color: $pagination-active-border-color !important;
                         color: $pagination-active-link-color !important;
-                        cursor: not-allowed !important;
-                        opacity: 0.75 !important;
                     }
                 }
-            }
-        }
-    }
 
-    // Modifiers
-    &.pagination--left {
-        justify-content: flex-start;
-    }
-
-    &.pagination--center {
-        justify-content: center;
-    }
-
-    &.pagination--right {
-        justify-content: flex-end;
-    }
-
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $pagination-font-size--small;
-        margin-bottom: $pagination-element-spacing--small;
-
-        // Nested selectors
-        .pagination__pager,
-        .pagination__list {
-            // Pseudo classes
-            &:first-child {
-                margin-right: $pagination-content-spacing--small;
-            }
-
-            &:last-child {
-                margin-left: $pagination-content-spacing--small;
-            }
-
-            // Nested selectors
-            li {
-                // Nested selectors
-                a,
-                .pagination__ellipsis {
-                    height: $pagination-element-height--small;
-                    padding: 0 $pagination-content-spacing--small;
+                &[disabled],
+                &.is-disabled {
+                    @include disabled();
+                    background-color: $pagination-background-color !important;
+                    border-color: $pagination-border-color !important;
+                    color: $pagination-link-color !important;
                 }
-            }
-        }
-
-        // Breakpoints
-        @include breakpoint('touch') {
-            // Nested selectors
-            .pagination__pager,
-            .pagination__list {
-                margin-bottom: $pagination-element-spacing--small;
-
-                // Pseudo classes
-                &:first-child {
-                    margin-right: 0;
-                }
-
-                &:last-child {
-                    margin-bottom: 0;
-                    margin-left: 0;
-                }
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $pagination-font-size--large;
-        margin-bottom: $pagination-element-spacing--large;
-
-        // Nested selectors
-        .pagination__pager,
-        .pagination__list {
-            // Pseudo classes
-            &:first-child {
-                margin-right: $pagination-content-spacing--large;
-            }
-
-            &:last-child {
-                margin-left: $pagination-content-spacing--large;
-            }
-
-            // Nested selectors
-            li {
-                // Nested selectors
-                a,
-                .pagination__ellipsis {
-                    height: $pagination-element-height--large;
-                    padding: 0 $pagination-content-spacing--large;
-                }
-            }
-        }
-
-        // Breakpoints
-        @include breakpoint('touch') {
-            // Nested selectors
-            .pagination__pager,
-            .pagination__list {
-                margin-bottom: $pagination-element-spacing--large;
-
-                // Pseudo classes
-                &:first-child {
-                    margin-right: 0;
-                }
-
-                &:last-child {
-                    margin-bottom: 0;
-                    margin-left: 0;
-                }
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $pagination-font-size--huge;
-        margin-bottom: $pagination-element-spacing--huge;
-
-        // Nested selectors
-        .pagination__pager,
-        .pagination__list {
-            // Pseudo classes
-            &:first-child {
-                margin-right: $pagination-content-spacing--huge;
-            }
-
-            &:last-child {
-                margin-left: $pagination-content-spacing--huge;
-            }
-
-            // Nested selectors
-            li {
-                // Nested selectors
-                a,
-                .pagination__ellipsis {
-                    height: $pagination-element-height--huge;
-                    padding: 0 $pagination-content-spacing--huge;
-                }
-            }
-        }
-
-        // Breakpoints
-        @include breakpoint('touch') {
-            // Nested selectors
-            .pagination__pager,
-            .pagination__list {
-                margin-bottom: $pagination-element-spacing--huge;
-
-                // Pseudo classes
-                &:first-child {
-                    margin-right: 0;
-                }
-
-                &:last-child {
-                    margin-bottom: 0;
-                    margin-left: 0;
-                }
-            }
-        }
-    }
-
-    // Breakpoints
-    @include breakpoint('touch') {
-        flex-direction: column;
-
-        // Modifiers
-        &.pagination--left,
-        &.pagination--center,
-        &.pagination--right {
-            justify-content: center;
-        }
-
-        // Nested selectors
-        .pagination__pager,
-        .pagination__list {
-            justify-content: center;
-            margin-bottom: $pagination-element-spacing;
-
-            // Pseudo classes
-            &:first-child {
-                margin-right: 0;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-                margin-left: 0;
-            }
-
-            // Nested selectors
-            li {
-                flex: 1 0 0;
             }
         }
     }

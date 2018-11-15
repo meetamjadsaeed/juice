@@ -1,20 +1,20 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   JUICE -> INITIALIZE -> UTILITIES -> COLOR PALETTES -> VARIABLES
+   JUICE -> UTILITIES -> COLOR PALETTES -> VARIABLES
    ============================================================================================= */
 
 // Color palettes
-$base-color-palette: ();
-$feedback-color-palette: ();
-$font-color-palette: ();
+$base-color-palette: () !default;
+$feedback-color-palette: () !default;
+$font-color-palette: () !default;
 
 // Color palette difference
 $color-palette-difference: 3% !default;
 
 
 /* =============================================================================================
-   JUICE -> INITIALIZE -> UTILITIES -> COLOR PALETTES -> BASE COLORS
+   JUICE -> UTILITIES -> COLOR PALETTES -> BASE COLORS
    ============================================================================================= */
 
 // Cycle through all the base colors
@@ -54,7 +54,7 @@ $color-palette-difference: 3% !default;
 
 
 /* =============================================================================================
-   JUICE -> INITIALIZE -> UTILITIES -> COLOR PALETTES -> FONT COLORS
+   JUICE -> UTILITIES -> COLOR PALETTES -> FONT COLORS
    ============================================================================================= */
 
 // Cycle through all the font colors
@@ -94,7 +94,7 @@ $color-palette-difference: 3% !default;
 
 
 /* =============================================================================================
-   JUICE -> INITIALIZE -> UTILITIES -> COLOR PALETTES -> FEEDBACK COLORS
+   JUICE -> UTILITIES -> COLOR PALETTES -> FEEDBACK COLORS
    ============================================================================================= */
 
 // Cycle through all the feedback colors

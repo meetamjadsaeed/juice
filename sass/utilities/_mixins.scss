@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   JUICE -> INITIALIZE -> UTILITIES -> MIXINS
+   JUICE -> UTILITIES -> MIXINS
    ============================================================================================= */
 
 // Breakpoints
@@ -24,6 +24,14 @@
     clear: both;
     content: '';
     display: block;
+}
+
+// Disabled
+@mixin disabled() {
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    opacity: 0.75 !important;
+    pointer-events: none;
 }
 
 // Truncate text

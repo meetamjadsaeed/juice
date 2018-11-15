@@ -39,11 +39,11 @@ $dropdown-link-color: $link-color !default;
 $dropdown-link-color--focus: $link-color--focus !default;
 $dropdown-link-color--hover: $link-color--hover !default;
 $dropdown-link-color--active: $link-color--active !default;
+$dropdown-offset: 10px !default;
 $dropdown-width: 200px !default;
 $dropdown-width--small: 200px !default;
 $dropdown-width--large: 300px !default;
 $dropdown-width--huge: 400px !default;
-$dropdown-offset: 10px !default;
 
 
 /* =============================================================================================
@@ -53,6 +53,12 @@ $dropdown-offset: 10px !default;
 .has-dropdown {
     display: inline-flex;
     outline: none;
+    position: relative;
+
+    // Modifiers
+    &.has-dropdown--static {
+        position: static;
+    }
 
     // Nested selectors
     .dropdown {
@@ -65,6 +71,95 @@ $dropdown-offset: 10px !default;
         text-align: left;
         top: 100%;
         z-index: get-stack-index('dropdown');
+
+        // Modifiers: State hooks
+        &.is-active {
+            display: block;
+        }
+
+        // Modifiers: Sizes
+        &.is-small {
+            font-size: $dropdown-font-size--small;
+            width: $dropdown-width--small;
+
+            // Modifiers
+            &.dropdown--megamenu {
+                // Nested selectors
+                .dropdown__content {
+                    padding: $dropdown-content-spacing--small;
+                }
+            }
+
+            // Nested selectors
+            .dropdown__content {
+                // Nested selectors
+                .dropdown__item {
+                    padding: ($dropdown-content-spacing--small / 2) $dropdown-content-spacing--small;
+                }
+            }
+        }
+
+        &.is-large {
+            font-size: $dropdown-font-size--large;
+            width: $dropdown-width--large;
+
+            // Modifiers
+            &.dropdown--megamenu {
+                // Nested selectors
+                .dropdown__content {
+                    padding: $dropdown-content-spacing--large;
+                }
+            }
+
+            // Nested selectors
+            .dropdown__content {
+                // Nested selectors
+                .dropdown__item {
+                    padding: ($dropdown-content-spacing--large / 2) $dropdown-content-spacing--large;
+                }
+            }
+        }
+
+        &.is-huge {
+            font-size: $dropdown-font-size--huge;
+            width: $dropdown-width--huge;
+
+            // Modifiers
+            &.dropdown--megamenu {
+                // Nested selectors
+                .dropdown__content {
+                    padding: $dropdown-content-spacing--huge;
+                }
+            }
+
+            // Nested selectors
+            .dropdown__content {
+                // Nested selectors
+                .dropdown__item {
+                    padding: ($dropdown-content-spacing--huge / 2) $dropdown-content-spacing--huge;
+                }
+            }
+        }
+
+        // Modifiers
+        &.dropdown--center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &.dropdown--right {
+            right: 0;
+        }
+
+        &.dropdown--megamenu {
+            left: 0;
+            width: 100%;
+
+            // Nested selectors
+            .dropdown__content {
+                padding: $dropdown-content-spacing;
+            }
+        }
 
         // Nested selectors
         .dropdown__content {
@@ -148,95 +243,6 @@ $dropdown-offset: 10px !default;
             .dropdown__divider {
                 border: 0 $dropdown-border-style $dropdown-border-color;
                 border-bottom-width: $dropdown-border-width--divider;
-            }
-        }
-
-        // Modifiers: State hooks
-        &.is-active {
-            display: block;
-        }
-
-        // Modifiers: Sizes
-        &.is-small {
-            font-size: $dropdown-font-size--small;
-            width: $dropdown-width--small;
-
-            // Nested selectors
-            .dropdown__content {
-                // Nested selectors
-                .dropdown__item {
-                    padding: ($dropdown-content-spacing--small / 2) $dropdown-content-spacing--small;
-                }
-            }
-
-            // Modifiers
-            &.dropdown--megamenu {
-                // Nested selectors
-                .dropdown__content {
-                    padding: $dropdown-content-spacing--small;
-                }
-            }
-        }
-
-        &.is-large {
-            font-size: $dropdown-font-size--large;
-            width: $dropdown-width--large;
-
-            // Nested selectors
-            .dropdown__content {
-                // Nested selectors
-                .dropdown__item {
-                    padding: ($dropdown-content-spacing--large / 2) $dropdown-content-spacing--large;
-                }
-            }
-
-            // Modifiers
-            &.dropdown--megamenu {
-                // Nested selectors
-                .dropdown__content {
-                    padding: $dropdown-content-spacing--large;
-                }
-            }
-        }
-
-        &.is-huge {
-            font-size: $dropdown-font-size--huge;
-            width: $dropdown-width--huge;
-
-            // Nested selectors
-            .dropdown__content {
-                // Nested selectors
-                .dropdown__item {
-                    padding: ($dropdown-content-spacing--huge / 2) $dropdown-content-spacing--huge;
-                }
-            }
-
-            // Modifiers
-            &.dropdown--megamenu {
-                // Nested selectors
-                .dropdown__content {
-                    padding: $dropdown-content-spacing--huge;
-                }
-            }
-        }
-
-        // Modifiers
-        &.dropdown--center {
-            transform: translateX(-50%);
-        }
-
-        &.dropdown--right {
-            transform: translateX(-100%);
-        }
-
-        &.dropdown--megamenu {
-            left: 0;
-            width: 100%;
-            transform: translatex(0);
-
-            // Nested selectors
-            .dropdown__content {
-                padding: $dropdown-content-spacing;
             }
         }
     }

@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* =============================================================================================
-   JUICE -> INITIALIZE -> SETTINGS -> VARIABLES
+   JUICE -> INITIALIZE -> VARIABLES
    ============================================================================================= */
 
 // Typeface
@@ -63,5 +63,6 @@ $stack-index: (
     'is-active': 500,
     'overlay': 600,
     'dropdown': 700,
+    'popover': 800,
     'tooltip': 800
 ) !default;

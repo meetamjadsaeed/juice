@@ -1,7 +1,7 @@
 'use strict';
 
 /* =============================================================================================
-   JUICE -> COMPONENTS -> CARD
+   JUICE -> COMPONENTS -> TOOLTIP
    ============================================================================================= */
 
 ;((($, window, document, undefined) => {
@@ -13,6 +13,7 @@
         animationIn: 'zoomIn',
         animationOut: 'zoomOut',
         color: null,
+        delay: 0,
         duration: 2000,
         feedback: null,
         position: 'top',
@@ -43,47 +44,48 @@
          * @return {void}
          */
         initialize() {
-            // Set the target element
-            const $element = $(this.element);
+            // Check if the html tag has the no touch detection class
+            if ($('html').hasClass('has-no-touch')) {
+                // Add a mouse enter and focus event handler to show the tooltip
+                $(document).on('mouseenter focus', '.has-tooltip', (event) => {
+                    // Stop immediate propagation
+                    event.stopImmediatePropagation();
 
-            // Add a mouseenter, mouseleave and click handler to show and hide the tooltip
-            $element.on('mouseenter', (event) => {
-                // Build the tooltip
-                const $tooltip = this.build($element);
+                    // Set the target element
+                    const $element = $(event.currentTarget);
 
-                // Append the tooltip to the body
-                $('body').append($tooltip);
+                    // Check if the target element doesn't have an assigned tooltip element
+                    if (!$element.data('tooltip-element')) {
+                        // Set the tooltip
+                        const $tooltip = this.build($element);
 
-                // Position the position
-                this.position($element, $tooltip);
-
-                // Store the tooltip to the target element
-                $element.data({
-                    'tooltip-element': $tooltip
+                        // Insert the tooltip
+                        this.insert($element, $tooltip);
+                    }
                 });
 
-                // Show the tooltip
-                this.show($tooltip);
+                // Add a mouse leave, click and focusout event handler to hide the tooltip
+                $(document).on('mouseleave click focusout', '.has-tooltip', (event) => {
+                    // Stop immediate propagation
+                    event.stopImmediatePropagation();
 
-                // Check if the tooltip has a display duration
-                if ($tooltip.data('duration') > 0) {
-                    // Start a timer
-                    setTimeout(() => {
+                    // Set the target element
+                    const $element = $(event.currentTarget);
+
+                    // Check if the target element has an assigned tooltip element
+                    if ($element.data('tooltip-element')) {
+                        // Set the tooltip element
+                        const $tooltip = $($element.data('tooltip-element'))
+
                         // Remove the tooltip
-                        this.remove($tooltip);
-                    }, $tooltip.data('duration'));
-                }
-            }).on('mouseleave click', (event) => {
-                // Set the tooltip
-                const $tooltip = $element.data('tooltip-element');
-
-                // Remove the tooltip
-                this.remove($tooltip);
-            });
+                        this.remove($element, $tooltip);
+                    }
+                });
+            }
         },
 
         /**
-         * Build the tooltip and apply any classes and append to the body
+         * Build the tooltip
          * @param  {element}  $element  The target element
          * @return {element}            The tooltip element
          */
@@ -99,39 +101,34 @@
                 )
             );
 
-            // Store the settings to the tooltip data
-            $tooltip.data({
-                'animation-in': $element.data('tooltip-animation-in') || this.settings.animationIn,
-                'animation-out': $element.data('tooltip-animation-out') || this.settings.animationOut,
-                'color': $element.data('tooltip-color') || this.settings.color,
-                'duration': $element.data('tooltip-duration') || this.settings.duration,
-                'feedback': $element.data('tooltip-feedback') || this.settings.feedback,
-                'position': $element.data('tooltip-position') || this.settings.position,
-                'size': $element.data('tooltip-size') || this.settings.size,
-            });
+            // Set the tooltip modifiers
+            const color = $element.data('tooltip-color') || this.settings.color;
+            const feedback = $element.data('tooltip-feedback') || this.settings.feedback;
+            const position = $element.data('tooltip-position') || this.settings.position;
+            const size = $element.data('tooltip-size') || this.settings.size;
 
-            // Check if a color value exists
-            if ($tooltip.data('color')) {
+            // Check if a color modifier exists
+            if (color) {
                 // Add the color class modifier to the tooltip
-                $tooltip.addClass(`is-${$tooltip.data('color')}`);
+                $tooltip.addClass(`is-${color}`);
             }
 
-            // Check if a feedback value exists
-            if ($tooltip.data('feedback')) {
+            // Check if a modifier value exists
+            if (feedback) {
                 // Add the feedback class modifier to the tooltip
-                $tooltip.addClass(`has-${$tooltip.data('feedback')}`);
+                $tooltip.addClass(`has-${feedback}`);
             }
 
-            // Check if a position value exists
-            if ($tooltip.data('position')) {
+            // Check if a position modifier exists
+            if (position) {
                 // Add the position class modifier to the tooltip
-                $tooltip.addClass(`tooltip--${$tooltip.data('position')}`);
+                $tooltip.addClass(`tooltip--${position}`);
             }
 
-            // Check if a size value exists
-            if ($tooltip.data('size')) {
+            // Check if a size modifier exists
+            if (size) {
                 // Add the size class modifier to the tooltip
-                $tooltip.addClass(`is-${$tooltip.data('size')}`);
+                $tooltip.addClass(`is-${size}`);
             }
 
             // Return the tooltip
@@ -158,8 +155,11 @@
             // Set the position, tooltip x and y positions
             let tooltipX, tooltipY;
 
+            // Set the tooltip position modifier
+            const position = $element.data('tooltip-position') || this.settings.position;
+
             // Start a switch statement for the tooltip position
-            switch ($tooltip.data('position')) {
+            switch (position) {
                 // Top (default)
                 default:
                     // Set the tooltip x and y positions
@@ -197,29 +197,99 @@
         },
 
         /**
-         * Show a tooltip
+         * Insert a tooltip
+         * @param  {element}  $element  The target element
          * @param  {element}  $tooltip  The tooltip element
          * @return {void}
          */
-        show($tooltip) {
-            // Add the animation in class to the tooltip and check when the animation has ended
-            $tooltip.addClass($tooltip.data('animation-in')).one('animationend', () => {
-                // Remove the animation in class
-                $tooltip.removeClass($tooltip.data('animation-in'));
-            });
+        insert($element, $tooltip) {
+            // Set the tooltip delay
+            const delay = $element.data('tooltip-delay') || this.settings.delay;
+
+            // Start a timer
+            setTimeout(() => {
+                // Append the tooltip to the body
+                $('body').append($tooltip);
+
+                // Position the tooltip
+                this.position($element, $tooltip);
+
+                // Assign the tooltip to the target element
+                $element.data({
+                    'tooltip-element': $tooltip
+                });
+
+                // Set the tooltip animation in
+                const animationIn = $element.data('tooltip-animation-in') || this.settings.animationIn;
+
+                // Check if the animation in is set
+                if (animationIn && animationIn != 'none') {
+                    // Add the animation in class to the tooltip and check when the animation has ended
+                    $tooltip.addClass(`animated ${animationIn}`).one('animationend', () => {
+                        // Remove the animation in class
+                        $tooltip.removeClass(`animated ${animationIn}`);
+
+                        // Set the tooltip duration
+                        const duration = $element.data('tooltip-duration') || this.settings.duration;
+
+                        // Check if the tooltip has a display duration
+                        if (duration > 0) {
+                            // Start a timer
+                            setTimeout(() => {
+                                // Check if the target element has an assigned tooltip element
+                                if ($element.data('tooltip-element')) {
+                                    // Remove the tooltip
+                                    this.remove($element, $tooltip);
+                                }
+                            }, duration);
+                        }
+                    });
+                } else {
+                    // Set the tooltip duration
+                    const duration = $element.data('tooltip-duration') || this.settings.duration;
+
+                    // Check if the tooltip has a display duration
+                    if (duration > 0) {
+                        // Start a timer
+                        setTimeout(() => {
+                            // Check if the target element has an assigned tooltip element
+                            if ($element.data('tooltip-element')) {
+                                // Remove the tooltip
+                                this.remove($element, $tooltip);
+                            }
+                        }, duration);
+                    }
+                }
+            }, delay);
         },
 
         /**
          * Remove a tooltip
+         * @param  {element}  $element  The target element
          * @param  {element}  $tooltip  The tooltip element
          * @return {void}
          */
-        remove($tooltip) {
-            // Add the animation out class to the tooltip and check when the animation has ended
-            $tooltip.addClass($tooltip.data('animation-out')).one('animationend', () => {
+        remove($element, $tooltip) {
+            // Set the tooltip animation out
+            const animationOut = $element.data('tooltip-animation-out') || this.settings.animationOut;
+
+            // Check if the animation out is set
+            if (animationOut && animationOut != 'none') {
+                // Add the animation out class to the tooltip and check when the animation has ended
+                $tooltip.addClass(`animated ${animationOut}`).one('animationend', () => {
+                    // Remove the tooltip
+                    $tooltip.remove();
+
+                    // Remove the assigned tooltip from the target element
+                    $element.removeData('tooltip-element');
+                });
+            } else {
                 // Remove the tooltip
                 $tooltip.remove();
-            });
+
+                // Remove the assigned tooltip from the target element
+                $element.removeData('tooltip-element');
+            }
         },
     });
 

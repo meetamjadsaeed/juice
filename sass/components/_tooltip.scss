@@ -35,25 +35,6 @@ $tooltip-padding: 6px 10px !default;
 	top: 0;
 	z-index: get-stack-index('tooltip');
 
-    // Nested selectors
-	.tooltip__content {
-        background-color: $tooltip-background-color;
-		border: 0;
-        border-bottom-left-radius: $tooltip-border-radius--bottom-left;
-        border-bottom-right-radius: $tooltip-border-radius--bottom-right;
-        border-top-left-radius: $tooltip-border-radius--top-left;
-        border-top-right-radius: $tooltip-border-radius--top-right;
-		color: $tooltip-font-color;
-		display: inline-block;
-		font-family: $tooltip-font-family;
-		font-size: $tooltip-font-size;
-        line-height: 1.6;
-		max-width: 300px;
-		opacity: $tooltip-opacity;
-		padding: $tooltip-padding;
-		text-align: center;
-	}
-
 	// Pseudo elements
 	&::before {
         border-bottom: 0;
@@ -71,6 +52,124 @@ $tooltip-padding: 6px 10px !default;
 		top: 100%;
 		width: 0;
 	}
+
+    // Modifiers: Sizes
+    &.is-small {
+        // Nested selectors
+        .tooltip__content {
+            font-size: $tooltip-font-size--small;
+        }
+    }
+
+    &.is-large {
+        // Nested selectors
+        .tooltip__content {
+            font-size: $tooltip-font-size--large;
+        }
+    }
+
+    &.is-huge {
+        // Nested selectors
+        .tooltip__content {
+            font-size: $tooltip-font-size--huge;
+        }
+    }
+
+    // Modifiers: Base colors
+    @each $name, $color in $base-colors {
+        &.is-#{$name} {
+        	// Pseudo elements
+        	&::before {
+                border-color: transparent;
+        		border-top-color: base-color($name);
+        	}
+
+        	// Modifiers
+        	&.tooltip--right,
+            &.tooltip--bottom,
+            &.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+                    border-color: transparent;
+                }
+            }
+
+        	&.tooltip--right {
+        		// Pseudo elements
+        		&::before {
+            		border-right-color: base-color($name);
+        		}
+        	}
+
+        	&.tooltip--bottom {
+        		// Pseudo elements
+        		&::before {
+            		border-bottom-color: base-color($name);
+        		}
+        	}
+
+        	&.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+            		border-left-color: base-color($name);
+        		}
+        	}
+
+            // Nested selectors
+        	.tooltip__content {
+        		background-color: base-color($name);
+        		color: base-color($name, 'invert');
+        	}
+        }
+    }
+
+    // Modifiers: Feedback colors
+    @each $name, $color in $feedback-colors {
+        &.has-#{$name} {
+        	// Pseudo elements
+        	&::before {
+                border-color: transparent;
+        		border-top-color: feedback-color($name);
+        	}
+
+        	// Modifiers
+        	&.tooltip--right,
+            &.tooltip--bottom,
+            &.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+                    border-color: transparent;
+                }
+            }
+
+        	&.tooltip--right {
+        		// Pseudo elements
+        		&::before {
+            		border-right-color: feedback-color($name);
+        		}
+        	}
+
+        	&.tooltip--bottom {
+        		// Pseudo elements
+        		&::before {
+            		border-bottom-color: feedback-color($name);
+        		}
+        	}
+
+        	&.tooltip--left {
+        		// Pseudo elements
+        		&::before {
+            		border-left-color: feedback-color($name);
+        		}
+        	}
+
+            // Nested selectors
+        	.tooltip__content {
+        		background-color: feedback-color($name);
+        		color: feedback-color($name, 'invert');
+        	}
+        }
+    }
 
 	// Modifiers
 	&.tooltip--right {
@@ -124,126 +223,22 @@ $tooltip-padding: 6px 10px !default;
 		}
 	}
 
-    // Modifiers: Sizes
-    &.is-small {
-        // Nested selectors
-        .tooltip__content {
-            font-size: $tooltip-font-size--small;
-        }
-    }
-
-    &.is-large {
-        // Nested selectors
-        .tooltip__content {
-            font-size: $tooltip-font-size--large;
-        }
-    }
-
-    &.is-huge {
-        // Nested selectors
-        .tooltip__content {
-            font-size: $tooltip-font-size--huge;
-        }
-    }
-
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-        	// Pseudo elements
-        	&::before {
-                border-color: transparent;
-        		border-top-color: base-color($name);
-        	}
-
-            // Nested selectors
-        	.tooltip__content {
-        		background-color: base-color($name);
-        		color: base-color($name, 'invert');
-        	}
-
-        	// Modifiers
-        	&.tooltip--right,
-            &.tooltip--bottom,
-            &.tooltip--left {
-        		// Pseudo elements
-        		&::before {
-                    border-color: transparent;
-                }
-            }
-
-        	&.tooltip--right {
-        		// Pseudo elements
-        		&::before {
-            		border-right-color: base-color($name);
-        		}
-        	}
-
-        	&.tooltip--bottom {
-        		// Pseudo elements
-        		&::before {
-            		border-bottom-color: base-color($name);
-        		}
-        	}
-
-        	&.tooltip--left {
-        		// Pseudo elements
-        		&::before {
-            		border-left-color: base-color($name);
-        		}
-        	}
-        }
-    }
-
-    // Modifiers: Feedback colors
-    @each $name, $color in $feedback-colors {
-        &.has-#{$name} {
-        	// Pseudo elements
-        	&::before {
-                border-color: transparent;
-        		border-top-color: feedback-color($name);
-        	}
-
-            // Nested selectors
-        	.tooltip__content {
-        		background-color: feedback-color($name);
-        		color: feedback-color($name, 'invert');
-        	}
-
-        	// Modifiers
-        	&.tooltip--right,
-            &.tooltip--bottom,
-            &.tooltip--left {
-        		// Pseudo elements
-        		&::before {
-                    border-color: transparent;
-                }
-            }
-
-        	&.tooltip--right {
-        		// Pseudo elements
-        		&::before {
-            		border-right-color: feedback-color($name);
-        		}
-        	}
-
-        	&.tooltip--bottom {
-        		// Pseudo elements
-        		&::before {
-            		border-bottom-color: feedback-color($name);
-        		}
-        	}
-
-        	&.tooltip--left {
-        		// Pseudo elements
-        		&::before {
-            		border-left-color: feedback-color($name);
-        		}
-        	}
-        }
-    }
-
-    // Breakpoints
-    @include breakpoint('touch') {
-        display: none;
-    }
+    // Nested selectors
+	.tooltip__content {
+        background-color: $tooltip-background-color;
+		border: 0;
+        border-bottom-left-radius: $tooltip-border-radius--bottom-left;
+        border-bottom-right-radius: $tooltip-border-radius--bottom-right;
+        border-top-left-radius: $tooltip-border-radius--top-left;
+        border-top-right-radius: $tooltip-border-radius--top-right;
+		color: $tooltip-font-color;
+		display: inline-block;
+		font-family: $tooltip-font-family;
+		font-size: $tooltip-font-size;
+        line-height: 1.6;
+		max-width: 300px;
+		opacity: $tooltip-opacity;
+		padding: $tooltip-padding;
+		text-align: center;
+	}
 }

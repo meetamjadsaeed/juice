@@ -65,6 +65,7 @@ select {
     padding: 0 10px;
     outline: none;
     width: 100%;
+    z-index: get-stack-index('default');
 
     // Pseudo classes
     &:hover {
@@ -81,16 +82,18 @@ select {
         color: $select-font-color--focus;
     }
 
-    // Modifiers
-    &[multiple] {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-        height: initial;
-        padding: 10px;
+    &:focus {
+        z-index: get-stack-index('focus');
     }
 
-    &.select--pill {
-        border-radius: 999px;
+    &:active {
+        z-index: get-stack-index('active');
+    }
+
+    // Modifiers: State hooks
+    &[disabled],
+    &.is-disabled {
+        @include disabled();
     }
 
     // Modifiers: Sizes
@@ -137,6 +140,24 @@ select {
             &:active {
                 box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color($name), $custom-focus-box-shadow-transparentize);
             }
+
+            // Modifiers: State hooks
+            &[disabled],
+            &.is-disabled {
+                border-color: feedback-color($name) !important;
+            }
         }
+    }
+
+    // Modifiers
+    &[multiple] {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        height: initial;
+        padding: 10px;
+    }
+
+    &.select--pill {
+        border-radius: 999px;
     }
 }

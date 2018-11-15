@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> CUSTOM -> CONTROL -> VARIABLES
+   ============================================================================================= */
+
+$form-control-elements: "
+    #{$input},
+    select,
+    textarea,
+    #{button}
+" !default;
+
+$form-control-border-style: $border-style !default;
+
+$form-control-border-width--top: $border-width--top !default;
+$form-control-border-width--right: $border-width--right !default;
+$form-control-border-width--bottom: $border-width--bottom !default;
+$form-control-border-width--left: $border-width--left !default;
+$form-control-border-width--divider: $border-width--divider !default;
+
+$form-control-border-radius--bottom-left: $border-radius--bottom-left !default;
+$form-control-border-radius--bottom-right: $border-radius--bottom-right !default;
+$form-control-border-radius--top-left: $border-radius--top-left !default;
+$form-control-border-radius--top-right: $border-radius--top-right !default;
+$form-control-element-spacing: $element-spacing !default;
+
+
+/* =============================================================================================
+   JUICE -> ELEMENTS -> FORMS -> CUSTOM -> CONTROL
+   ============================================================================================= */
+
+.form-control {
+    display: flex;
+    margin-bottom: $form-control-element-spacing;
+
+    // Modifiers
+    &.has-addons {
+        // Nested selectors
+        #{$form-control-elements} {
+            border-bottom-width: $form-control-border-width--bottom;
+            border-left-width: $form-control-border-width--divider;
+            border-right-width: $form-control-border-width--divider;
+            border-top-width: $form-control-border-width--top;
+            border-style: $form-control-border-style;
+            border-radius: 0;
+            margin-right: -$form-control-border-width--divider;
+            width: auto;
+
+            // Pseudo classes
+            &:first-child {
+                border-bottom-left-radius: $form-control-border-radius--bottom-left;
+                border-left-width: $form-control-border-width--left;
+                border-top-left-radius: $form-control-border-radius--top-left;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: $form-control-border-radius--bottom-right;
+                border-right-width: $form-control-border-width--right;
+                border-top-right-radius: $form-control-border-radius--top-right;
+                margin-right: 0;
+            }
+
+            // Modifiers
+            &.form-control__spotlight {
+                width: 100%;
+            }
+        }
+    }
+
+    // Nested selectors
+    #{$form-control-elements} {
+        display: inline-flex;
+        margin-bottom: 0;
+    }
+}

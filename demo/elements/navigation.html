@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -50,17 +50,13 @@
                     <a href="#" class="prevent-default"><img src="http://acmelogos.com/images/logo-8.svg" /></a>
                 </div>
 
-                <div class="navigation__search">
-                    <input type="text" placeholder="Type here to search..." />
-                </div>
-
                 <div class="navigation__links">
                     <ul role="navigation">
                         <li><a href="#" class="prevent-default">Link</a></li>
                         <li class="has-dropdown">
                             <a href="#" class="prevent-default js-dropdown-trigger">Dropdown</a>
 
-                            <div class="dropdown is-hoverable">
+                            <div class="dropdown dropdown--center is-hoverable">
                                 <div class="dropdown__content">
                                     <p class="dropdown__item has-no-element-spacing">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
                                     <div class="dropdown__divider"></div>
@@ -72,7 +68,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="has-dropdown">
+                        <li class="has-dropdown has-dropdown--static">
                             <a href="#" class="prevent-default js-dropdown-trigger">Megamenu</a>
 
                             <div class="dropdown dropdown--megamenu is-hoverable">
@@ -104,10 +100,19 @@
                         </li>
                         <li><a href="#" class="prevent-default">Link</a></li>
                     </ul>
+                </div>
 
-                    <div class="navigation__bars">
-                        <button class="button--icon"><i class="fas fa-bars"></i></button>
-                    </div>
+                <div class="navigation__icons">
+                    <button class="button--icon has-toggable" data-toggler-target="#navigation__revealer" data-toggler-slide="true"><i class="fas fa-bars"></i></button>
+                </div>
+
+                <div id="navigation__revealer" class="navigation__revealer">
+                    <ul role="navigation">
+                        <li><a href="#" class="prevent-default">Mobile Link 1</a></li>
+                        <li><a href="#" class="prevent-default">Mobile Link 2</a></li>
+                        <li><a href="#" class="prevent-default">Mobile Link 3</a></li>
+                        <li><a href="#" class="prevent-default">Mobile Link 4</a></li>
+                    </ul>
                 </div>
             </nav>
         </div>
@@ -127,11 +132,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

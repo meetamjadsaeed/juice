@@ -46,47 +46,6 @@ ol {
     margin: 0;
     margin-bottom: $list-element-spacing;
 
-    // Modifiers
-    @each $type in $list-style-types {
-        &.list--#{$type} {
-            list-style-type: $type;
-        }
-    }
-
-    &.list--clear {
-        list-style: none;
-        padding: 0;
-    }
-
-    &.list--rtl {
-        direction: rtl;
-    }
-
-    &.list--block,
-    &.list--inline-block,
-    &.list--stack,
-    &.list--inline-stack {
-        display: flex;
-        list-style: none;
-        padding: 0;
-
-        // Nested selectors
-        li {
-            flex: 1 0 0;
-            padding: $list-content-spacing;
-        }
-    }
-
-    &.list--inline-block,
-    &.list--inline-stack {
-        display: inline-flex;
-    }
-
-    &.list--stack,
-    &.list--inline-stack {
-        flex-flow: column;
-    }
-
     // Modifiers: Sizes
     &.is-small {
         font-size: $list-font-size--small;
@@ -134,5 +93,46 @@ ol {
                 padding: $list-content-spacing--huge;
             }
         }
+    }
+
+    // Modifiers
+    @each $type in $list-style-types {
+        &.list--#{$type} {
+            list-style-type: $type;
+        }
+    }
+
+    &.list--clear {
+        list-style: none;
+        padding: 0;
+    }
+
+    &.list--rtl {
+        direction: rtl;
+    }
+
+    &.list--block,
+    &.list--inline-block,
+    &.list--stack,
+    &.list--inline-stack {
+        display: flex;
+        list-style: none;
+        padding: 0;
+
+        // Nested selectors
+        li {
+            flex: 1 0 0;
+            padding: $list-content-spacing;
+        }
+    }
+
+    &.list--inline-block,
+    &.list--inline-stack {
+        display: inline-flex;
+    }
+
+    &.list--stack,
+    &.list--inline-stack {
+        flex-flow: column;
     }
 }

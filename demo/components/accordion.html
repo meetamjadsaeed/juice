@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-touch" lang="en">
+<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -50,7 +50,7 @@
                     <h3>Single</h3>
 
                     <div class="accordion">
-                        <div class="accordion__item">
+                        <div class="accordion__item is-expanded">
                             <div class="accordion__head js-accordion-toggle">
                                 <div class="accordion__headings">
                                     <h4>Heading 1</h4>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
 
-                        <div class="accordion__item">
+                        <div class="accordion__item is-expanded">
                             <div class="accordion__head js-accordion-toggle">
                                 <div class="accordion__headings">
                                     <h4>Heading 2</h4>
@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="accordion__item">
+                        <div class="accordion__item is-expanded">
                             <div class="accordion__head js-accordion-toggle">
                                 <div class="accordion__headings">
                                     <h4>Heading 3</h4>
@@ -122,7 +122,7 @@
                     <h3>Multiple with Color</h3>
 
                     <div class="accordion is-slate" data-accordion-open-multiple-items="true">
-                        <div class="accordion__item">
+                        <div class="accordion__item is-expanded">
                             <div class="accordion__head js-accordion-toggle">
                                 <div class="accordion__headings">
                                     <h4>Heading 1</h4>
@@ -144,7 +144,7 @@
                             </div>
                         </div>
 
-                        <div class="accordion__item">
+                        <div class="accordion__item is-expanded">
                             <div class="accordion__head js-accordion-toggle">
                                 <div class="accordion__headings">
                                     <h4>Heading 2</h4>
@@ -166,7 +166,7 @@
                             </div>
                         </div>
 
-                        <div class="accordion__item">
+                        <div class="accordion__item is-expanded">
                             <div class="accordion__head js-accordion-toggle">
                                 <div class="accordion__headings">
                                     <h4>Heading 3</h4>
@@ -207,11 +207,15 @@
     <script>
         $('.accordion').accordion();
         $('.card').card();
+        $('.chip').chip();
         $('.notice').notice();
         $('.panel').panel();
-        $('.tag').tag();
-        $('.has-tooltip').tooltip();
         $('.has-dropdown').dropdown();
+        $('.has-modal').modal();
+        $('.has-password-reveal').passwordReveal();
+        $('.has-popover').popover();
+        $('.has-toggable').toggler();
+        $('.has-tooltip').tooltip();
     </script>
 </body>
 </html>

@@ -37,32 +37,29 @@
          * @return {void}
          */
         initialize() {
-            // Set the card element
-            const $card = $(this.element);
-
             // Add a click event handler to remove a card
-            $('.js-card-remove', this.element).on('click', () => {
-                // Set the remove settings
-                const settings = {
-                    'animation': $card.data('card-remove-animation') || this.settings.removeAnimation
-                };
+            $(document).on('click', '.js-card-remove', (event) => {
+                // Set the card element
+                const $card = $(event.currentTarget).parents('.card');
 
                 // Remove the card
-                this.remove($card, settings);
+                this.remove($card);
             });
         },
 
         /**
          * Remove a card
-         * @param  {element}  $card     The card element
-         * @param  {object}   settings  The plugin/user settings
+         * @param  {element}  $card  The card element
          * @return {void}
          */
-        remove($card, settings) {
-            // Check if the animation is not set to none
-            if (settings.animation != 'none') {
-                // Add the animation classe to the card and check when the animation has ended
-                $card.addClass(`animated ${settings.animation}`).one('animationend', () => {
+        remove($card) {
+            // Set the card remove animation
+            const removeAnimation = $card.data('card-remove-animation') || this.settings.removeAnimation;
+
+            // Check if the remove animation is set
+            if (removeAnimation && removeAnimation != 'none') {
+                // Add the animation class to the card and check when the animation has ended
+                $card.addClass(`animated ${removeAnimation}`).one('animationend', () => {
                     // Remove the card
                     $card.remove();
                 });

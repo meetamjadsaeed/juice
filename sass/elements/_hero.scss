@@ -40,38 +40,7 @@ $hero-content-spacing--huge: 9% !default;
     padding: $hero-content-spacing 0;
     margin-bottom: $hero-element-spacing;
 
-    // Modifiers
-    &.hero--quarter-viewport {
-        font-size: $hero-font-size--small;
-        height: 25vh;
-        padding: 0;
-    }
-
-    &.hero--half-viewport {
-        font-size: $hero-font-size--large;
-        height: 50vh;
-        padding: 0;
-    }
-
-    &.hero--viewport {
-        font-size: $hero-font-size--huge;
-        height: 100vh;
-        padding: 0;
-    }
-
-    &.hero--center {
-        text-align: center;
-    }
-
-    &.hero--right {
-        text-align: right;
-    }
-
-    &.hero--parallax {
-        background-attachment: fixed;
-    }
-
-    // Modifiers: Size
+    // Modifiers: Sizes
     &.is-small {
         font-size: $hero-font-size--small;
         padding: $hero-content-spacing--small 0;
@@ -88,5 +57,54 @@ $hero-content-spacing--huge: 9% !default;
         font-size: $hero-font-size--huge;
         padding: $hero-content-spacing--huge 0;
         margin-bottom: $hero-element-spacing--huge;
+    }
+
+    &.is-viewport-25 {
+        font-size: $hero-font-size--small;
+        min-height: 25vh;
+        padding: 0;
+    }
+
+    &.is-viewport-50 {
+        font-size: $hero-font-size;
+        min-height: 50vh;
+        padding: 0;
+    }
+
+    &.is-viewport-75 {
+        font-size: $hero-font-size--large;
+        min-height: 75vh;
+        padding: 0;
+    }
+
+    &.is-viewport-100 {
+        font-size: $hero-font-size--huge;
+        min-height: 100vh;
+        padding: 0;
+    }
+
+    // Modifiers
+    &.hero--center {
+        text-align: center;
+    }
+
+    &.hero--right {
+        text-align: right;
+    }
+
+    &.hero--parallax {
+        background-attachment: fixed;
+    }
+
+    // Nested selectors
+    .hero__head,
+    .hero__foot {
+        flex: 0 0 auto;
+    }
+
+    .hero__body {
+        align-items: center;
+        display: flex;
+        flex: 1 0 auto;
     }
 }

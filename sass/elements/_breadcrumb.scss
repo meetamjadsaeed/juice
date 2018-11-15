@@ -37,6 +37,85 @@ $breadcrumb-link-color--active: $link-color--active !default;
     margin: 0;
     margin-bottom: $breadcrumb-element-spacing;
 
+    // Modifiers: Sizes
+    &.is-small {
+        font-size: $breadcrumb-font-size--small;
+        margin-bottom: $breadcrumb-element-spacing--small;
+
+        // Nested selectors
+        li {
+            // Pseudo classes
+            &:first-child {
+                // Pseudo elements
+                &::before {
+                    padding: 0;
+                }
+            }
+
+            // Pseudo elements
+            &::before {
+                padding: 0 $breadcrumb-content-spacing--small;
+            }
+
+            // Nested selectors
+            .breadcrumb__icon {
+                margin-right: $breadcrumb-content-spacing--small / 2;
+            }
+        }
+    }
+
+    &.is-large {
+        font-size: $breadcrumb-font-size--large;
+        margin-bottom: $breadcrumb-element-spacing--large;
+
+        // Nested selectors
+        li {
+            // Pseudo classes
+            &:first-child {
+                // Pseudo elements
+                &::before {
+                    padding: 0;
+                }
+            }
+
+            // Pseudo elements
+            &::before {
+                padding: 0 $breadcrumb-content-spacing--large;
+            }
+
+            // Nested selectors
+            .breadcrumb__icon {
+                margin-right: $breadcrumb-content-spacing--large / 2;
+            }
+        }
+    }
+
+    &.is-huge {
+        font-size: $breadcrumb-font-size--huge;
+        margin-bottom: $breadcrumb-element-spacing--huge;
+
+        // Nested selectors
+        li {
+            // Pseudo classes
+            &:first-child {
+                // Pseudo elements
+                &::before {
+                    padding: 0;
+                }
+            }
+
+            // Pseudo elements
+            &::before {
+                padding: 0 $breadcrumb-content-spacing--huge;
+            }
+
+            // Nested selectors
+            .breadcrumb__icon {
+                margin-right: $breadcrumb-content-spacing--huge / 2;
+            }
+        }
+    }
+
     // Modifiers
     &.breadcrumb--center {
         justify-content: center;
@@ -81,22 +160,20 @@ $breadcrumb-link-color--active: $link-color--active !default;
         display: inline-flex;
         position: relative;
 
-        // Pseudo elements
-        &::before {
-            content: '\203A';
-            padding: 0 $breadcrumb-content-spacing;
-            opacity: 0.5;
-        }
-
         // Pseudo classes
         &:first-child {
             // Pseudo elements
             &::before {
                 content: '';
-                // width: 0;
-                // height: 0;
                 padding: 0;
             }
+        }
+
+        // Pseudo elements
+        &::before {
+            content: '\203A';
+            padding: 0 $breadcrumb-content-spacing;
+            opacity: 0.5;
         }
 
         // Nested selectors
@@ -122,82 +199,6 @@ $breadcrumb-link-color--active: $link-color--active !default;
             display: inline-flex;
             justify-content: center;
             margin-right: $breadcrumb-content-spacing / 2;
-        }
-    }
-
-    // Modifiers: Size
-    &.is-small {
-        font-size: $breadcrumb-font-size--small;
-        margin-bottom: $breadcrumb-element-spacing--small;
-
-        // Nested selectors
-        li {
-            // Pseudo elements
-            &::before {
-                padding: 0 $breadcrumb-content-spacing--small;
-            }
-
-            // Pseudo classes
-            &:first-child {
-                // Pseudo elements
-                &::before {
-                    padding: 0;
-                }
-            }
-
-            .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing--small / 2;
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $breadcrumb-font-size--large;
-        margin-bottom: $breadcrumb-element-spacing--large;
-
-        // Nested selectors
-        li {
-            // Pseudo elements
-            &::before {
-                padding: 0 $breadcrumb-content-spacing--large;
-            }
-
-            // Pseudo classes
-            &:first-child {
-                // Pseudo elements
-                &::before {
-                    padding: 0;
-                }
-            }
-
-            .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing--large / 2;
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $breadcrumb-font-size--huge;
-        margin-bottom: $breadcrumb-element-spacing--huge;
-
-        // Nested selectors
-        li {
-            // Pseudo elements
-            &::before {
-                padding: 0 $breadcrumb-content-spacing--huge;
-            }
-
-            // Pseudo classes
-            &:first-child {
-                // Pseudo elements
-                &::before {
-                    padding: 0;
-                }
-            }
-
-            .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing--huge / 2;
-            }
         }
     }
 }

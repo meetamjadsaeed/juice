@@ -34,6 +34,10 @@ $panel-font-size--huge: $font-size--huge !default;
 $panel-head-background-color: base-color('white') !default;
 $panel-head-border-color: base-color('white', $pseudo-border-color-type) !default;
 $panel-head-font-color: base-color('white', 'invert') !default;
+$panel-link-color: $link-color !default;
+$panel-link-color--focus: $link-color--focus !default;
+$panel-link-color--hover: $link-color--hover !default;
+$panel-link-color--active: $link-color--active !default;
 
 
 /* =============================================================================================
@@ -55,65 +59,6 @@ $panel-head-font-color: base-color('white', 'invert') !default;
     margin-bottom: $panel-element-spacing;
     padding: 0;
 
-    // Nested selectors
-    .panel__head,
-    .panel__body {
-        border: 0 $panel-border-style transparent;
-        padding: $panel-content-spacing;
-    }
-
-    .panel__head {
-        align-items: center;
-        background-color: $panel-head-background-color;
-        border-bottom-width: $panel-border-width--divider;
-        border-color: $panel-head-border-color;
-        border-left-width: $panel-border-width--left;
-        border-right-width: $panel-border-width--right;
-        border-top-left-radius: $panel-border-radius--top-left;
-        border-top-right-radius: $panel-border-radius--top-right;
-        border-top-width: $panel-border-width--top;
-        color: $panel-head-font-color;
-        display: flex;
-
-        // Nested selectors
-        .panel__headings {
-            flex-grow: 1;
-
-            // Nested selectors
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                margin-bottom: 0;
-                opacity: 0.5;
-
-                // Pseudo classes
-                &:first-child {
-                    opacity: 1;
-                }
-            }
-        }
-
-        .panel__icons {
-            align-items: center;
-            display: flex;
-            font-size: $body-font-size;
-        }
-    }
-
-    .panel__body {
-        background-color: $panel-body-background-color;
-        border-bottom-left-radius: $panel-border-radius--bottom-left;
-        border-bottom-right-radius: $panel-border-radius--bottom-right;
-        border-bottom-width: $panel-border-width--bottom;
-        border-color: $panel-body-border-color;
-        border-left-width: $panel-border-width--left;
-        border-right-width: $panel-border-width--right;
-        color: $panel-body-font-color;
-    }
-
     // Modifiers: State hooks
     &.is-expanded {
         // Nested selectors
@@ -129,10 +74,6 @@ $panel-head-font-color: base-color('white', 'invert') !default;
                     display: inline-flex;
                 }
             }
-        }
-
-        .panel__body {
-            display: block;
         }
     }
 
@@ -154,10 +95,6 @@ $panel-head-font-color: base-color('white', 'invert') !default;
                     display: none;
                 }
             }
-        }
-
-        .panel__body {
-            display: none;
         }
     }
 
@@ -215,6 +152,84 @@ $panel-head-font-color: base-color('white', 'invert') !default;
                 background-color: feedback-color($name);
                 border-color: feedback-color($name, $pseudo-border-color-type);
                 color: feedback-color($name, 'invert');
+            }
+        }
+    }
+
+    // Nested selectors
+    .panel__head,
+    .panel__body {
+        border: 0 $panel-border-style transparent;
+        padding: $panel-content-spacing;
+    }
+
+    .panel__head {
+        align-items: center;
+        background-color: $panel-head-background-color;
+        border-bottom-width: $panel-border-width--divider;
+        border-color: $panel-head-border-color;
+        border-left-width: $panel-border-width--left;
+        border-right-width: $panel-border-width--right;
+        border-top-left-radius: $panel-border-radius--top-left;
+        border-top-right-radius: $panel-border-radius--top-right;
+        border-top-width: $panel-border-width--top;
+        color: $panel-head-font-color;
+        display: flex;
+
+        // Nested selectors
+        .panel__headings {
+            flex-grow: 1;
+
+            // Nested selectors
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            .panel__heading {
+                margin-bottom: 0;
+                opacity: 0.5;
+
+                // Pseudo classes
+                &:first-child {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .panel__icons {
+            align-items: center;
+            display: flex;
+            font-size: $body-font-size;
+        }
+    }
+
+    .panel__body {
+        background-color: $panel-body-background-color;
+        border-bottom-left-radius: $panel-border-radius--bottom-left;
+        border-bottom-right-radius: $panel-border-radius--bottom-right;
+        border-bottom-width: $panel-border-width--bottom;
+        border-color: $panel-body-border-color;
+        border-left-width: $panel-border-width--left;
+        border-right-width: $panel-border-width--right;
+        color: $panel-body-font-color;
+
+        // Nested selectors
+        a {
+            color: $panel-link-color;
+
+            // Pseudo classes
+            &:focus {
+                color: $panel-link-color--focus;
+            }
+
+            &:hover {
+                color: $panel-link-color--hover;
+            }
+
+            &:active {
+                color: $panel-link-color--active;
             }
         }
     }

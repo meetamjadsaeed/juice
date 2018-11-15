@@ -96,6 +96,7 @@ $input-range-track-color--filled: $input-border-color--focus !default;
     position: relative;
     outline: none;
     width: 100%;
+    z-index: get-stack-index('default');
 
     // Pseudo classes
     &:hover {
@@ -110,6 +111,14 @@ $input-range-track-color--filled: $input-border-color--focus !default;
         border-color: $input-border-color--focus;
         box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color('info'), $custom-focus-box-shadow-transparentize);
         color: $input-font-color--focus;
+    }
+
+    &:focus {
+        z-index: get-stack-index('focus');
+    }
+
+    &:active {
+        z-index: get-stack-index('active');
     }
 }
 
@@ -214,9 +223,10 @@ $input-range-track-color--filled: $input-border-color--focus !default;
         width: $input-height / 2;
     }
 
-    // Modifiers
-    &.input--pill {
-        border-radius: 999px;
+    // Modifiers: State hooks
+    &[disabled],
+    &.is-disabled {
+        @include disabled();
     }
 
     // Modifiers: Sizes
@@ -242,7 +252,18 @@ $input-range-track-color--filled: $input-border-color--focus !default;
             &:active {
                 box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color($name), $custom-focus-box-shadow-transparentize);
             }
+
+            // Modifiers: State hooks
+            &[disabled],
+            &.is-disabled {
+                border-color: feedback-color($name) !important;
+            }
         }
+    }
+
+    // Modifiers
+    &.input--pill {
+        border-radius: 999px;
     }
 }
 
@@ -350,25 +371,6 @@ input[type=file] {
         width: auto;
     }
 
-    // Modifiers
-    &.input--pill {
-        // Pseudo elements
-        &::-webkit-file-upload-button {
-            border-bottom-left-radius: 999px;
-            border-top-left-radius: 999px;
-        }
-
-        &::-ms-value {
-            border-bottom-left-radius: 999px;
-            border-top-left-radius: 999px;
-        }
-
-        &::-ms-browse {
-            border-bottom-right-radius: 999px;
-            border-top-right-radius: 999px;
-        }
-    }
-
     // Modifiers: Sizes
     &.is-small {
         // Pseudo elements
@@ -412,6 +414,25 @@ input[type=file] {
 
         &::-ms-browse {
             height: $input-height--huge;
+        }
+    }
+
+    // Modifiers
+    &.input--pill {
+        // Pseudo elements
+        &::-webkit-file-upload-button {
+            border-bottom-left-radius: 999px;
+            border-top-left-radius: 999px;
+        }
+
+        &::-ms-value {
+            border-bottom-left-radius: 999px;
+            border-top-left-radius: 999px;
+        }
+
+        &::-ms-browse {
+            border-bottom-right-radius: 999px;
+            border-top-right-radius: 999px;
         }
     }
 }
@@ -498,6 +519,7 @@ input[type=datetime-local],
 input[type=month],
 input[type=week],
 input[type=time] {
+    -webkit-appearance: none;
     cursor: text;
     line-height: $input-height;
 
@@ -519,29 +541,6 @@ input[type=time] {
     }
 
     &::-webkit-calendar-picker-indicator {
-        background-color: transparent;
-        color: $input-font-color;
-        cursor: pointer;
-        margin: 0;
-        opacity: 0.5;
-
-        // Pseudo classes
-        &:hover {
-            background-color: transparent;
-            opacity: 1;
-        }
-    }
-
-    // Modifiers: Sizes
-    &.is-small {
-        line-height: $input-height--small;
-    }
-
-    &.is-large {
-        line-height: $input-height--large;
-    }
-
-    &.is-huge {
-        line-height: $input-height--huge;
+        display: none;
     }
 }

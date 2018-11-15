@@ -33,6 +33,10 @@ $accordion-font-size--huge: $font-size--huge !default;
 $accordion-head-background-color: base-color('white') !default;
 $accordion-head-border-color: base-color('white', $pseudo-border-color-type) !default;
 $accordion-head-font-color: base-color('white', 'invert') !default;
+$accordion-link-color: $link-color !default;
+$accordion-link-color--focus: $link-color--focus !default;
+$accordion-link-color--hover: $link-color--hover !default;
+$accordion-link-color--active: $link-color--active !default;
 
 
 /* =============================================================================================
@@ -50,119 +54,6 @@ $accordion-head-font-color: base-color('white', 'invert') !default;
     font-size: $accordion-font-size;
     margin: 0;
     padding: 0;
-
-    // Nested selectors
-    .accordion__item {
-        box-shadow: $accordion-box-shadow;
-        margin-bottom: $accordion-element-spacing;
-
-        .accordion__head,
-        .accordion__body {
-            border: 0 $accordion-border-style transparent;
-            padding: $accordion-content-spacing;
-        }
-
-        .accordion__head {
-            align-items: center;
-            background-color: $accordion-head-background-color;
-            border-bottom-width: $accordion-border-width--divider;
-            border-color: $accordion-head-border-color;
-            border-left-width: $accordion-border-width--left;
-            border-right-width: $accordion-border-width--right;
-            border-top-left-radius: $accordion-border-radius--top-left;
-            border-top-right-radius: $accordion-border-radius--top-right;
-            border-top-width: $accordion-border-width--top;
-            color: $accordion-head-font-color;
-            display: flex;
-            cursor: pointer;
-            user-select: none;
-
-            // Nested selectors
-            .accordion__headings {
-                flex-grow: 1;
-
-                // Nested selectors
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6 {
-                    margin-bottom: 0;
-                    opacity: 0.5;
-
-                    // Pseudo classes
-                    &:first-child {
-                        opacity: 1;
-                    }
-                }
-            }
-
-            .accordion__icons {
-                align-items: center;
-                display: flex;
-                font-size: $body-font-size;
-            }
-        }
-
-        .accordion__body {
-            background-color: $accordion-body-background-color;
-            border-bottom-left-radius: $accordion-border-radius--bottom-left;
-            border-bottom-right-radius: $accordion-border-radius--bottom-right;
-            border-bottom-width: $accordion-border-width--bottom;
-            border-color: $accordion-body-border-color;
-            border-left-width: $accordion-border-width--left;
-            border-right-width: $accordion-border-width--right;
-            color: $accordion-body-font-color;
-        }
-
-        // Modifiers: State hooks
-        &.is-expanded {
-            // Nested selectors
-            .accordion__head {
-                // Nested selectors
-                .accordion__icons {
-                    // Nested selectors
-                    .accordion__icon--collapsed {
-                        display: none;
-                    }
-
-                    .accordion__icon--expanded {
-                        display: inline-flex;
-                    }
-                }
-            }
-
-            .accordion__body {
-                display: block;
-            }
-        }
-
-        &.is-collapsed {
-            // Nested selectors
-            .accordion__head {
-                border-bottom-left-radius: $accordion-border-radius--bottom-left;
-                border-bottom-right-radius: $accordion-border-radius--bottom-right;
-                border-bottom-width: $accordion-border-width--bottom;
-
-                // Nested selectors
-                .accordion__icons {
-                    // Nested selectors
-                    .accordion__icon--collapsed {
-                        display: inline-flex;
-                    }
-
-                    .accordion__icon--expanded {
-                        display: none;
-                    }
-                }
-            }
-
-            .accordion__body {
-                display: none;
-            }
-        }
-    }
 
     // Modifiers: Sizes
     &.is-small {
@@ -220,6 +111,131 @@ $accordion-head-font-color: base-color('white', 'invert') !default;
                     background-color: base-color($name);
                     border-color: base-color($name, 'darken-3');
                     color: base-color($name, 'invert');
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    .accordion__item {
+        box-shadow: $accordion-box-shadow;
+        margin-bottom: $accordion-element-spacing;
+
+        // Modifiers: State hooks
+        &.is-expanded {
+            // Nested selectors
+            .accordion__head {
+                // Nested selectors
+                .accordion__icons {
+                    // Nested selectors
+                    .accordion__icon--collapsed {
+                        display: none;
+                    }
+
+                    .accordion__icon--expanded {
+                        display: inline-flex;
+                    }
+                }
+            }
+        }
+
+        &.is-collapsed {
+            // Nested selectors
+            .accordion__head {
+                border-bottom-left-radius: $accordion-border-radius--bottom-left;
+                border-bottom-right-radius: $accordion-border-radius--bottom-right;
+                border-bottom-width: $accordion-border-width--bottom;
+
+                // Nested selectors
+                .accordion__icons {
+                    // Nested selectors
+                    .accordion__icon--collapsed {
+                        display: inline-flex;
+                    }
+
+                    .accordion__icon--expanded {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        .accordion__head,
+        .accordion__body {
+            border: 0 $accordion-border-style transparent;
+            padding: $accordion-content-spacing;
+        }
+
+        .accordion__head {
+            align-items: center;
+            background-color: $accordion-head-background-color;
+            border-bottom-width: $accordion-border-width--divider;
+            border-color: $accordion-head-border-color;
+            border-left-width: $accordion-border-width--left;
+            border-right-width: $accordion-border-width--right;
+            border-top-left-radius: $accordion-border-radius--top-left;
+            border-top-right-radius: $accordion-border-radius--top-right;
+            border-top-width: $accordion-border-width--top;
+            color: $accordion-head-font-color;
+            display: flex;
+            cursor: pointer;
+            user-select: none;
+
+            // Nested selectors
+            .accordion__headings {
+                flex-grow: 1;
+
+                // Nested selectors
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                .accordion__heading {
+                    margin-bottom: 0;
+                    opacity: 0.5;
+
+                    // Pseudo classes
+                    &:first-child {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .accordion__icons {
+                align-items: center;
+                display: flex;
+                font-size: $body-font-size;
+            }
+        }
+
+        .accordion__body {
+            background-color: $accordion-body-background-color;
+            border-bottom-left-radius: $accordion-border-radius--bottom-left;
+            border-bottom-right-radius: $accordion-border-radius--bottom-right;
+            border-bottom-width: $accordion-border-width--bottom;
+            border-color: $accordion-body-border-color;
+            border-left-width: $accordion-border-width--left;
+            border-right-width: $accordion-border-width--right;
+            color: $accordion-body-font-color;
+
+            // Nested selectors
+            a {
+                color: $accordion-link-color;
+
+                // Pseudo classes
+                &:focus {
+                    color: $accordion-link-color--focus;
+                }
+
+                &:hover {
+                    color: $accordion-link-color--hover;
+                }
+
+                &:active {
+                    color: $accordion-link-color--active;
                 }
             }
         }

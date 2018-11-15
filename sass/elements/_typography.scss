@@ -308,13 +308,6 @@ p {
         font-size: $p-font-size--huge;
         margin-bottom: $p-element-spacing--huge;
     }
-
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            color: base-color($name);
-        }
-    }
 }
 
 // Horizontal rule
@@ -364,26 +357,6 @@ a {
     &:active {
         color: $link-color--active;
     }
-
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            color: base-color($name, $pseudo-link-color-type);
-
-            // Pseudo classes
-            &:hover {
-                color: base-color($name, $pseudo-link-color-type--hover);
-            }
-
-            &:focus {
-                color: base-color($name, $pseudo-link-color-type--focus);
-            }
-
-            &:active {
-                color: base-color($name, $pseudo-link-color-type--active);
-            }
-        }
-    }
 }
 
 // Headings
@@ -410,13 +383,6 @@ h6 {
 
     &.is-huge {
         margin-bottom: $heading-element-spacing--huge;
-    }
-
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            color: base-color($name);
-        }
     }
 }
 
@@ -574,12 +540,6 @@ strong {
 abbr {
     text-decoration: none !important;
 
-    // Modifiers
-    &[title] {
-        border-bottom: 1px dotted $abbr-border-color;
-        cursor: help;
-    }
-
     // Modifiers: Base colors
     @each $name, $color in $base-colors {
         &.is-#{$name} {
@@ -588,6 +548,12 @@ abbr {
                 border-color: base-color($name);
             }
         }
+    }
+
+    // Modifiers
+    &[title] {
+        border-bottom: 1px dotted $abbr-border-color;
+        cursor: help;
     }
 }
 
@@ -726,14 +692,6 @@ pre {
         top: 0;
     }
 
-    // Nested selectors
-    code {
-        background-color: transparent;
-        color: inherit;
-        font-size: inherit;
-        white-space: nowrap;
-    }
-
     // Modifiers: Sizes
     &.is-small {
         font-size: $pre-font-size--small;
@@ -751,6 +709,14 @@ pre {
         font-size: $pre-font-size--huge;
         margin-bottom: $pre-element-spacing--huge;
         padding: $pre-content-spacing--huge;
+    }
+
+    // Nested selectors
+    code {
+        background-color: transparent;
+        color: inherit;
+        font-size: inherit;
+        white-space: nowrap;
     }
 }
 
@@ -840,21 +806,6 @@ blockquote {
         border-color: $blockquote-border-color--hover;
     }
 
-    // Nested selectors
-    cite {
-        color: inherit;
-        display: block;
-        font-size: 75%;
-        margin: 0;
-        margin-left: $blockquote-content-spacing;
-        margin-top: $blockquote-content-spacing / 2;
-
-        // Pseudo elements
-        &::before {
-            content: '\2014\00a0\00a0';
-        }
-    }
-
     // Modifiers: Sizes
     &.is-small {
         font-size: $blockquote-font-size--small;
@@ -872,5 +823,20 @@ blockquote {
         font-size: $blockquote-font-size--huge;
         margin-bottom: $blockquote-element-spacing--huge;
         padding: $blockquote-content-spacing--huge * 2;
+    }
+
+    // Nested selectors
+    cite {
+        color: inherit;
+        display: block;
+        font-size: 75%;
+        margin: 0;
+        margin-left: $blockquote-content-spacing;
+        margin-top: $blockquote-content-spacing / 2;
+
+        // Pseudo elements
+        &::before {
+            content: '\2014\00a0\00a0';
+        }
     }
 }

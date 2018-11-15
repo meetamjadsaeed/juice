@@ -126,6 +126,84 @@
     float: right !important;
 }
 
+// Modifiers: Base colors
+@each $name, $color in $base-colors {
+    p {
+        &.is-#{$name} {
+            color: base-color($name) !important;
+        }
+    }
+
+    a {
+        &.is-#{$name} {
+            color: base-color($name) !important;
+
+            // Pseudo classes
+            &:hover {
+                color: base-color($name, $pseudo-link-color-type--hover) !important;
+            }
+
+            &:focus {
+                color: base-color($name, $pseudo-link-color-type--focus) !important;
+            }
+
+            &:active {
+                color: base-color($name, $pseudo-link-color-type--active) !important;
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &.is-#{$name} {
+            color: base-color($name) !important;
+        }
+    }
+}
+
+// Modifiers: Feedback colors
+@each $name, $color in $feedback-colors {
+    p {
+        &.has-#{$name} {
+            color: feedback-color($name) !important;
+        }
+    }
+
+    a {
+        &.has-#{$name} {
+            color: feedback-color($name) !important;
+
+            // Pseudo classes
+            &:hover {
+                color: feedback-color($name, $pseudo-link-color-type--hover) !important;
+            }
+
+            &:focus {
+                color: feedback-color($name, $pseudo-link-color-type--focus) !important;
+            }
+
+            &:active {
+                color: feedback-color($name, $pseudo-link-color-type--active) !important;
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &.has-#{$name} {
+            color: feedback-color($name) !important;
+        }
+    }
+}
+
 // Breakpoints
 @each $name, $breakpoint in $breakpoints {
     @include breakpoint($name) {
