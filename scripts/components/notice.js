@@ -1,25 +1,12 @@
+'use strict';
+
 /* =============================================================================================
    JUICE -> COMPONENTS -> NOTICE
    ============================================================================================= */
 
-;(function (root, factory) {
+;((($, window, document, undefined) => {
     // Set the plugin name
-    const pluginName = 'Notice';
-
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
-    if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
-    } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
-    } else {
-        root[pluginName] = factory(pluginName);
-    }
-}((window || module || {}), function(pluginName) {
-    // Use strict mode
-    'use strict';
-
-    // Create an empty plugin object
-    const plugin = {};
+    const pluginName = 'notice';
 
     // Set the plugin defaults
     const defaults = {
@@ -28,82 +15,35 @@
 
     /**
      * Constructor
-     * @param  {element}  element  The initialized element
+     * @param  {element}  element  The target element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
-        plugin.this = this;
-        plugin.name = pluginName;
-        plugin.element = element;
-        plugin.defaults = defaults;
-        plugin.options = options;
-        plugin.settings = extendDefaults(defaults, options);
+        // Store the plugin defaults, element and settings
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.element = element;
+        this.settings = $.extend({}, defaults, options);
 
         // Initialize the plugin
-        plugin.this.initialize();
+        this.initialize();
     }
 
-    /**
-     * Merge the default plugin settings with the user options
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
-     */
-    const extendDefaults = (defaults, options) => {
-        // Cycle through the user options
-         for (let property in options) {
-             // Check if the property exists in the user options
-             if (options.hasOwnProperty(property)) {
-                 // Set the property key value in the defaults object with the options property key value
-                 defaults[property] = options[property];
-             }
-         }
-
-         // Return the extended plugin settings
-         return defaults;
-     };
-
-     /**
-      * Remove a notice when the js notice remove element is clicked
-      * @param  {object}  event  The event jobject
-      * @return {void}
-      */
-     const removeClickEventHandler = (event) => {
-         // Set the clicked element
-         const $clicked = event.target;
-
-         // Check if the clicked element contains the js notice remove class or is a child of the js notice remove element
-         if ($clicked.classList.contains('js-notice-remove') || $clicked.closest('.js-notice-remove')) {
-             // Set the notice element
-             const $notice = $clicked.closest('.notice');
-
-             // Remove the notice
-             plugin.this.remove($notice);
-         }
-     }
-
-    /**
-     * Public variables and methods
-     * @type {object}
-     */
-    Plugin.prototype = {
+    // Avoid Plugin.prototype conflicts
+    $.extend(Plugin.prototype, {
         /**
          * Initialize the plugin
          * @return {void}
          */
-        initialize: () => {
-            // Destroy the existing initialization
-            plugin.this.destroy();
+        initialize() {
+            // Add a click event handler to remove a notice
+            $(document).on('click', '.js-notice-remove', (event) => {
+                // Set the notice element
+                const $notice = $(event.currentTarget).parents('.notice');
 
-            // Set the notice elements
-            const $notices = document.querySelectorAll(plugin.element);
-
-            // Cycle through the notice elements
-            $notices.forEach(($notice) => {
-                // Add a click event handler to remove the notice element
-                $notice.addEventListener('click', removeClickEventHandler);
+                // Remove the notice
+                this.remove($notice);
             });
         },
 
@@ -112,55 +52,37 @@
          * @param  {element}  $notice  The notice element
          * @return {void}
          */
-        remove: ($notice) => {
+        remove($notice) {
             // Set the notice remove animation
-            const removeAnimation = $notice.getAttribute('data-notice-remove-animation') || plugin.settings.removeAnimation;
+            const removeAnimation = $notice.data('notice-remove-animation') || this.settings.removeAnimation;
 
             // Check if the remove animation is set
             if (removeAnimation && removeAnimation != 'none') {
-                // Add the animation classes to the notice
-                $notice.classList.add('animated');
-                $notice.classList.add(removeAnimation);
-
-                // Add an animationend event listener to the notice
-                $notice.addEventListener('animationend', () => {
+                // Add the animation classe to the notice and check when the animation has ended
+                $notice.addClass(`animated ${removeAnimation}`).one('animationend', () => {
                     // Remove the notice
-                    $notice.parentNode.removeChild($notice);
+                    $notice.remove();
                 });
             } else {
                 // Remove the notice
-                $notice.parentNode.removeChild($notice);
+                $notice.remove();
             }
         },
+    });
 
-        /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
-         * @return {void}
-         */
-        refresh: () => {
-            // Destroy the existing initialization
-            plugin.this.destroy();
-
-            // Initialize the plugin
-            plugin.this.initialize();
-        },
-
-        /**
-         * Destroy an existing initialization
-         * @return {void}
-         */
-        destroy: () => {
-            // Set the notice elements
-            const $notices = document.querySelectorAll(plugin.element);
-
-            // Cycle through the notice elements
-            $notices.forEach(($notice) => {
-                // Remove a click event handler to remove the notice element
-                $notice.removeEventListener('click', removeClickEventHandler);
-            });
-        }
+    /**
+     * Plugin wrapper around the constructor to prevent against multiple instantiations
+     * @param  {object}   options  The plugin options
+     * @return {element}           The target element
+     */
+    $.fn[pluginName] = function(options) {
+        // Return each element
+        return this.each(function() {
+            // Check the plugin does not exist in the elements data
+            if (!$.data(this, `plugin_${pluginName}`)) {
+                // Create a new instance of the plugin and assign it to the elements data
+                $.data(this, `plugin_${pluginName}`, new Plugin(this, options));
+            }
+        });
     };
-
-    // Return the plugin
-    return Plugin;
-}));
+}))(jQuery, window, document);
