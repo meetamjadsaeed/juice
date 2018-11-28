@@ -1,182 +1,442 @@
-'use strict';
-
 /* =============================================================================================
    JUICE -> COMPONENTS -> PASSWORD REVEAL
    ============================================================================================= */
 
-;((($, window, document, undefined) => {
+;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'passwordReveal';
+    const pluginName = 'PasswordReveal';
+
+    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    if (typeof define === 'function' && define.amd) {
+        define([], factory(pluginName));
+    } else if (typeof exports === 'object') {
+        module.exports = factory(pluginName);
+    } else {
+        root[pluginName] = factory(pluginName);
+    }
+}((window || module || {}), function(pluginName) {
+    // Use strict mode
+    'use strict';
+
+    // Create an empty plugin object
+    const plugin = {};
 
     // Set the plugin defaults
     const defaults = {
-        action: 'click'
+        action: 'click',
+        callbackInitializeBefore: () => {
+            console.log('Password Reveal: callbackInitializeBefore');
+        },
+        callbackInitializeAfter: () => {
+            console.log('Password Reveal: callbackInitializeAfter');
+        },
+        callbackShowBefore: () => {
+            console.log('Password Reveal: callbackShowBefore');
+        },
+        callbackShowAfter: () => {
+            console.log('Password Reveal: callbackShowAfter');
+        },
+        callbackHideBefore: () => {
+            console.log('Password Reveal: callbackHideBefore');
+        },
+        callbackHideAfter: () => {
+            console.log('Password Reveal: callbackHideAfter');
+        },
+        callbackRefreshBefore: () => {
+            console.log('Password Reveal: callbackRefreshBefore');
+        },
+        callbackRefreshAfter: () => {
+            console.log('Password Reveal: callbackRefreshAfter');
+        },
+        callbackDestroyBefore: () => {
+            console.log('Password Reveal: callbackDestroyBefore');
+        },
+        callbackDestroyAfter: () => {
+            console.log('Password Reveal: callbackDestroyAfter');
+        }
     };
 
     /**
      * Constructor
-     * @param  {element}  element  The target element
+     * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Store the plugin defaults, element and settings
-        this._defaults = defaults;
-        this._name = pluginName;
-        this.element = element;
-        this.settings = $.extend({}, defaults, options);
+        // Set the plugin instance, name, element, default settings, user options and extended settings
+        plugin.this = this;
+        plugin.name = pluginName;
+        plugin.element = element;
+        plugin.defaults = defaults;
+        plugin.options = options;
+        plugin.settings = extendDefaults(defaults, options);
 
         // Initialize the plugin
-        this.initialize();
+        plugin.this.initialize();
     }
 
-    // Avoid Plugin.prototype conflicts
-    $.extend(Plugin.prototype, {
+    /**
+     * Merge the default plugin settings with the user options
+     * @param  {object}  defaults  The default plugin settings
+     * @param  {object}  options   The user options
+     * @return {object}            The extended plugin settings
+     */
+    const extendDefaults = (defaults, options) => {
+        // Cycle through the user options
+        for (let property in options) {
+            // Check if the property exists in the user options
+            if (options.hasOwnProperty(property)) {
+                // Set the property key value in the defaults object with the options property key value
+                defaults[property] = options[property];
+            }
+        }
+
+        // Return the extended plugin settings
+        return defaults;
+    };
+
+    /**
+     * Event handler to toggle a password when the password reveal trigger is clicked
+     * @param  {object}  event  The event object
+     * @return {void}
+     */
+    const clickTriggerEventHandler = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+
+        // Set the password reveal container and input
+        const $container = event.target.closest('.has-password-reveal');
+        const $input = $container.querySelector('input');
+
+        // Check if the input is a password input and show or hide the password
+        ($input.getAttribute('type') == 'password'
+            ? plugin.this.show($input)
+            : plugin.this.hide($input)
+        );
+    };
+
+    /**
+     * Event handler to prevent the default action
+     * @param  {object}  event  The event object
+     * @return {void}
+     */
+    const preventDefaultEventHandler = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+    };
+
+    /**
+     * Event handler to show a password for various actions
+     * @param  {object}  event  The event object
+     * @return {void}
+     */
+    const showEventHandler = (event) => {
+        // Set the password reveal container and input
+        const $container = event.target.closest('.has-password-reveal');
+        const $input = $container.querySelector('input');
+
+        // Check if the container doesn't have the active state hook
+        if (!$container.classList.contains('is-active')) {
+            // Show the password
+            plugin.this.show($input);
+        }
+    };
+
+    /**
+     * Event handler to hide a password for various actions
+     * @param  {object}  event  The event object
+     * @return {void}
+     */
+    const hideEventHandler = (event) => {
+        // Set the password reveal container and input
+        const $container = event.target.closest('.has-password-reveal');
+        const $input = $container.querySelector('input');
+
+        // Check if the container has the active state hook
+        if ($container.classList.contains('is-active')) {
+            // Hide the password
+            plugin.this.hide($input);
+        }
+    };
+
+    /**
+     * Public variables and methods
+     * @type {object}
+     */
+    Plugin.prototype = {
         /**
          * Initialize the plugin
+         * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
-        initialize() {
-            // Set the elements
-            const $element = $(this.element);
-            const $input = $element.find('input');
+        initialize: (silent = false) => {
+            // Destroy the existing initialization silently
+            plugin.this.destroySilently();
 
-            // Hide the password by default
-            this.hide($input);
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize before callback
+                plugin.settings.callbackInitializeBefore.call();
+            }
 
-            // Check if the action is set to hover and the html tag has the no touch detection class and set the action/fallback
-            const action = (this.settings.action == 'hover' && $('html').hasClass('has-no-touch')
-                ? this.settings.action
-                : 'click'
-            );
+            // Set the containers
+            const $containers = document.querySelectorAll(plugin.element);
 
-            // Start a swtich statement for the action
-            switch (action) {
-                // Click
-                case ('click'):
-                    // Add a click event handler to reveal a password
-                    $(document).on('click', '.js-password-reveal-trigger', (event) => {
-                        // Prevent the default action
-                        event.preventDefault();
+            // Cycle through all of the containers
+            $containers.forEach(($container) => {
+                // Set the password reveal trigger and input
+                const $trigger = $container.querySelector('.js-password-reveal-trigger');
+                const $input = $container.querySelector('input');
 
-                        // Set the elements
-                        const $element = $(event.currentTarget).parents('.has-password-reveal');
-                        const $input = $element.find('input');
+                // Hide the password silently
+                plugin.this.hideSilently($input);
 
-                        // Check if the input is a password input and show or hide the input text/password
-                        ($input.attr('type') == 'password'
-                            ? this.show($input)
-                            : this.hide($input)
-                        );
-                    });
-                break;
+                // Check if the action is set to hover and check if the html tag has the touch detection class and set the action to click or the original action
+                const action = (plugin.settings.action == 'hover' && document.querySelector('html').classList.contains('has-touch')
+                    ? 'click'
+                    : plugin.settings.action
+                );
 
-                // Hover
-                case ('hover'):
-                    // Add a click event handler to prevent the default action
-                    $(document).on('click', '.js-password-reveal-trigger', (event) => {
-                        // Prevent the default action
-                        event.preventDefault();
-                    });
+                // Start a switch statement for the action
+                switch (action) {
+                    // Click
+                    case ('click'):
+                        // Add a click event handler to the password reveal trigger to toggle a password
+                        $trigger.addEventListener('click', clickTriggerEventHandler);
+                    break;
 
-                    // Add a mouse enter event handler to reveal a password
-                    $(document).on('mouseenter', '.js-password-reveal-trigger', (event) => {
-                        // Set the elements
-                        const $element = $(event.currentTarget).parents('.has-password-reveal');
-                        const $input = $element.find('input');
+                    // Hover
+                    case ('hover'):
+                        // Add a click event handler to the password reveal trigger to prevent the default action
+                        $trigger.addEventListener('click', preventDefaultEventHandler);
 
-                        // Show the input text
-                        this.show($input);
-                    });
+                        // Add a mouse enter event handler to the password reveal trigger to show a password
+                        $trigger.addEventListener('mouseenter', showEventHandler);
 
-                    // Add a mouse leave event handler to hide a password
-                    $(document).on('mouseleave', '.js-password-reveal-trigger', (event) => {
-                        // Set the elements
-                        const $element = $(event.currentTarget).parents('.has-password-reveal');
-                        const $input = $element.find('input');
+                        // Add a mouse leave event handler to the password reveal trigger to hide a password
+                        $trigger.addEventListener('mouseleave', hideEventHandler);
+                    break;
 
-                        // Show the input text
-                        this.hide($input);
-                    });
-                break;
+                    // Hold
+                    case ('hold'):
+                        // Add a click event handler to the password reveal trigger to prevent the default action
+                        $trigger.addEventListener('click', preventDefaultEventHandler);
 
-                // Hold
-                case ('hold'):
-                    // Add a click event handler to prevent the default action
-                    $(document).on('click', '.js-password-reveal-trigger', (event) => {
-                        // Prevent the default action
-                        event.preventDefault();
-                    });
+                        // Add a mouse down event handler to the password reveal trigger to show a password
+                        $trigger.addEventListener('mousedown', showEventHandler);
 
-                    // Add a mouse down event handler to reveal a password
-                    $(document).on('mousedown', '.js-password-reveal-trigger', (event) => {
-                        // Set the elements
-                        const $element = $(event.currentTarget).parents('.has-password-reveal');
-                        const $input = $element.find('input');
+                        // Add a mouse up event handler to the password reveal trigger to hide a password
+                        $trigger.addEventListener('mouseup', hideEventHandler);
 
-                        // Show the input text
-                        this.show($input);
-                    });
+                        // Add a mouse leave event handler to the password reveal trigger to hide a password
+                        $trigger.addEventListener('mouseleave', hideEventHandler);
+                    break;
+                }
+            });
 
-                    // Add a mouse up and mouse leave event handler to hide a password
-                    $(document).on('mouseup mouseleave', '.js-password-reveal-trigger', (event) => {
-                        // Set the elements
-                        const $element = $(event.currentTarget).parents('.has-password-reveal');
-                        const $input = $element.find('input');
-
-                        // Show the input text
-                        this.hide($input);
-                    });
-                break;
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize after callback
+                plugin.settings.callbackInitializeAfter.call();
             }
         },
 
         /**
          * Show a password
-         * @param  {element}  $input  The input element
+         * @param  {element}  $input  The input
+         * @param  {bool}     silent  Suppress callbacks
          * @return {void}
          */
-        show($input) {
-            // Set the target element
-            const $element = $input.parents('.has-password-reveal');
+        show: ($input, silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the show before callback
+                plugin.settings.callbackShowBefore.call();
+            }
 
-            // Add the active state hook to the target element
-            $element.addClass('is-active');
+            // Set the password reveal container
+            const $container = $input.closest('.has-password-reveal');
 
-            // Set the attribute type to text
-            $input[0].type = 'text';
+            // Add the active state hook to the container
+            $container.classList.add('is-active');
+
+            // Set the input attribute type to text
+            $input.type = 'text';
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the show after callback
+                plugin.settings.callbackShowAfter.call();
+            }
         },
 
         /**
          * Hide a password
-         * @param  {element}  $input  The input element
+         * @param  {element}  $input  The input
+         * @param  {bool}     silent  Suppress callbacks
          * @return {void}
          */
-        hide($input) {
-            // Set the target element
-            const $element = $input.parents('.has-password-reveal');
-
-            // Remove the active state hook to the target element
-            $element.removeClass('is-active');
-
-            // Set the attribute type to password
-            $input[0].type = 'password';
-        },
-    });
-
-    /**
-     * Plugin wrapper around the constructor to prevent against multiple instantiations
-     * @param  {object}   options  The plugin options
-     * @return {element}           The target element
-     */
-    $.fn[pluginName] = function(options) {
-        // Return each element
-        return this.each(function() {
-            // Check the plugin does not exist in the elements data
-            if (!$.data(this, `plugin_${pluginName}`)) {
-                // Create a new instance of the plugin and assign it to the elements data
-                $.data(this, `plugin_${pluginName}`, new Plugin(this, options));
+        hide: ($input, silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the hide before callback
+                plugin.settings.callbackHideBefore.call();
             }
-        });
+
+            // Set the password reveal container
+            const $container = $input.closest('.has-password-reveal');
+
+            // Add the active state hook to the container
+            $container.classList.remove('is-active');
+
+            // Set the input attribute type to password
+            $input.type = 'password';
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the hide after callback
+                plugin.settings.callbackHideAfter.call();
+            }
+        },
+
+        /**
+         * Refresh the plugin by destroying an existing initialization and initializing again
+         * @param  {bool}  silent  Suppress callbacks
+         * @return {void}
+         */
+        refresh: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh before callback
+                plugin.settings.callbackRefreshBefore.call();
+            }
+
+            // Destroy the existing initialization
+            plugin.this.destroy(silent);
+
+            // Initialize the plugin
+            plugin.this.initialize(silent);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh after callback
+                plugin.settings.callbackRefreshAfter.call();
+            }
+        },
+
+        /**
+         * Destroy an existing initialization
+         * @param  {bool}  silent  Suppress callbacks
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Set the password reveal containers
+            const $containers = document.querySelectorAll(plugin.element);
+
+            // Cycle through all of the containers
+            $containers.forEach(($container) => {
+                // Set the password reveal trigger and input
+                const $trigger = $container.querySelector('.js-password-reveal-trigger');
+                const $input = $container.querySelector('input');
+
+                // Hide the password silently
+                plugin.this.hideSilently($input);
+
+                // Check if the action is set to hover and check if the html tag has the touch detection class and set the action to click or the original action
+                const action = (plugin.settings.action == 'hover' && document.querySelector('html').classList.contains('has-touch')
+                    ? 'click'
+                    : plugin.settings.action
+                );
+
+                // Start a switch statement for the action
+                switch (action) {
+                    // Click
+                    case ('click'):
+                        // Remove the click event handler from the password reveal trigger
+                        $trigger.removeEventListener('click', clickTriggerEventHandler);
+                    break;
+
+                    // Hover
+                    case ('hover'):
+                        // Remove the click event handler from the password reveal trigger
+                        $trigger.removeEventListener('click', preventDefaultEventHandler);
+
+                        // Remove the mouse enter event handler from the password reveal trigger
+                        $trigger.removeEventListener('mouseenter', showEventHandler);
+
+                        // Remove the mouse leave event handler from the password reveal trigger
+                        $trigger.removeEventListener('mouseleave', hideEventHandler);
+                    break;
+
+                    // Hold
+                    case ('hold'):
+                        // Remove the click event handler from the password reveal trigger
+                        $trigger.removeEventListener('click', preventDefaultEventHandler);
+
+                        // Remove the mouse down event handler from the password reveal trigger
+                        $trigger.removeEventListener('mousedown', showEventHandler);
+
+                        // Remove the mouse up event handler from the password reveal trigger
+                        $trigger.removeEventListener('mouseup', hideEventHandler);
+
+                        // Remove the mouse leave event handler from the password reveal trigger
+                        $trigger.removeEventListener('mouseleave', hideEventHandler);
+                    break;
+                }
+            });
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the show method silently
+         * @param  {element}  $input  The input
+         * @return {void}
+         */
+        showSilently: ($input) => {
+            // Call the show method silently
+            plugin.this.show($input, true);
+        },
+
+        /**
+         * Call the hide method silently
+         * @param  {element}  $input  The input
+         * @return {void}
+         */
+        hideSilently: ($input) => {
+            // Call the hide method silently
+            plugin.this.hide($input, true);
+        },
+
+        /**
+         * Call the refresh method silently
+         * @return {void}
+         */
+        refreshSilently: () => {
+            // Call the refresh method silently
+            plugin.this.refresh(true);
+        },
+
+        /**
+         * Call the destroy method silently
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        }
     };
-}))(jQuery, window, document);
+
+    // Return the plugin
+    return Plugin;
+}));

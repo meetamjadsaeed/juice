@@ -158,6 +158,10 @@ $accordion-link-color--active: $link-color--active !default;
                     }
                 }
             }
+
+            .accordion__body {
+                display: none;
+            }
         }
 
         // Nested selectors

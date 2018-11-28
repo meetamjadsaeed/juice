@@ -96,6 +96,10 @@ $panel-link-color--active: $link-color--active !default;
                 }
             }
         }
+
+        .panel__body {
+            display: none;
+        }
     }
 
     // Modifiers: Sizes

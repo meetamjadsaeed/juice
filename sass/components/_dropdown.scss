@@ -55,6 +55,14 @@ $dropdown-width--huge: 400px !default;
     outline: none;
     position: relative;
 
+    // Modifiers: State hooks
+    &.is-active {
+        // Nested selectors
+        .dropdown {
+            display: block;
+        }
+    }
+
     // Modifiers
     &.has-dropdown--static {
         position: static;
@@ -71,11 +79,6 @@ $dropdown-width--huge: 400px !default;
         text-align: left;
         top: 100%;
         z-index: get-stack-index('dropdown');
-
-        // Modifiers: State hooks
-        &.is-active {
-            display: block;
-        }
 
         // Modifiers: Sizes
         &.is-small {

@@ -1,158 +1,474 @@
-'use strict';
-
 /* =============================================================================================
    JUICE -> COMPONENTS -> TOGGLER
    ============================================================================================= */
 
-;((($, window, document, undefined) => {
+;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'toggler';
+    const pluginName = 'Toggler';
+
+    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    if (typeof define === 'function' && define.amd) {
+        define([], factory(pluginName));
+    } else if (typeof exports === 'object') {
+        module.exports = factory(pluginName);
+    } else {
+        root[pluginName] = factory(pluginName);
+    }
+}((window || module || {}), function(pluginName) {
+    // Use strict mode
+    'use strict';
+
+    // Create an empty plugin object
+    const plugin = {};
 
     // Set the plugin defaults
     const defaults = {
     	animationIn: 'fadeInUpTiny',
         animationOut: 'fadeOutDownTiny',
-        slide: false
+        callbackInitializeBefore: () => {
+            console.log('Toggler: callbackInitializeBefore');
+        },
+        callbackInitializeAfter: () => {
+            console.log('Toggler: callbackInitializeAfter');
+        },
+        callbackShowBefore: () => {
+            console.log('Toggler: callbackShowBefore');
+        },
+        callbackShowAfter: () => {
+            console.log('Toggler: callbackShowAfter');
+        },
+        callbackHideBefore: () => {
+            console.log('Toggler: callbackHideBefore');
+        },
+        callbackHideAfter: () => {
+            console.log('Toggler: callbackHideAfter');
+        },
+        callbackRefreshBefore: () => {
+            console.log('Toggler: callbackRefreshBefore');
+        },
+        callbackRefreshAfter: () => {
+            console.log('Password: callbackRefreshAfter');
+        },
+        callbackDestroyBefore: () => {
+            console.log('Toggler: callbackDestroyBefore');
+        },
+        callbackDestroyAfter: () => {
+            console.log('Toggler: callbackDestroyAfter');
+        },
+        slide: false,
+        slideDuration: 200
     };
 
     /**
      * Constructor
-     * @param  {element}  element  The target element
+     * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Store the plugin defaults, element and settings
-        this._defaults = defaults;
-        this._name = pluginName;
-        this.element = element;
-        this.settings = $.extend({}, defaults, options);
+        // Set the plugin instance, name, element, default settings, user options and extended settings
+        plugin.this = this;
+        plugin.name = pluginName;
+        plugin.element = element;
+        plugin.defaults = defaults;
+        plugin.options = options;
+        plugin.settings = extendDefaults(defaults, options);
 
         // Initialize the plugin
-        this.initialize();
+        plugin.this.initialize();
     }
 
-    // Avoid Plugin.prototype conflicts
-    $.extend(Plugin.prototype, {
+    /**
+     * Merge the default plugin settings with the user options
+     * @param  {object}  defaults  The default plugin settings
+     * @param  {object}  options   The user options
+     * @return {object}            The extended plugin settings
+     */
+    const extendDefaults = (defaults, options) => {
+        // Cycle through the user options
+        for (let property in options) {
+            // Check if the property exists in the user options
+            if (options.hasOwnProperty(property)) {
+                // Set the property key value in the defaults object with the options property key value
+                defaults[property] = options[property];
+            }
+        }
+
+        // Return the extended plugin settings
+        return defaults;
+    };
+
+    /**
+     * Event handler to toggle an element when the trigger is clicked
+     * @param  {object}  event  The event object
+     * @return {void}
+     */
+    const clickTriggerEventHandler = (event) => {
+        // Set the trigger and target
+        const $trigger = event.currentTarget;
+        const $target = $trigger.data.target;
+
+        // Check if the trigger has the active state and show or hide the target
+        (!$trigger.classList.contains('is-active')
+            ? plugin.this.show($target)
+            : plugin.this.hide($target)
+        );
+    }
+
+    /**
+     * Public variables and methods
+     * @type {object}
+     */
+    Plugin.prototype = {
         /**
          * Initialize the plugin
+         * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
-        initialize() {
-            // Set the elements
-            const $element = $(this.element);
-            const $target = $($element.data('toggler-target'));
+        initialize: (silent = false) => {
+            // Destroy the existing initialization silently
+            plugin.this.destroySilently();
 
-            // Check if the target element is visible
-            if ($target.is(':visible')) {
-                // Add the active state class to the element
-                $element.addClass('is-active');
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize before callback
+                plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Add a click event handler to toggle the target element
-            $(document).on('click', '.has-toggable', (event) => {
-                // Stop immediate propagation
-                event.stopImmediatePropagation();
+            // Set the triggers
+            const $triggers = document.querySelectorAll(plugin.element);
 
-                // Set the elements
-                const $element = $(event.currentTarget);
-                const $target = $($element.data('toggler-target'));
+            // Cycle through all of the triggers
+            $triggers.forEach(($trigger) => {
+                // Set the target
+                const $target = document.querySelector($trigger.dataset.togglerTarget);
 
-                // Check if the element has the active state class and show or hide the target element
-                (!$element.hasClass('is-active')
-                	? this.show($element, $target)
-                	: this.hide($element, $target)
+                // Assign the target to the trigger data object
+                $trigger.data = {
+                    target: $target
+                };
+
+                // Assign the trigger to the target data object
+                $target.data = {
+                    trigger: $trigger
+                };
+
+                // Set the target css display value
+                const targetDisplay = ($target.currentStyle
+                    ? $target.currentStyle.display
+                    : getComputedStyle($target, null).display
                 );
+
+                // Check if the target is visible
+                if (targetDisplay != 'none') {
+                    // Add the active state to the trigger
+                    $trigger.classList.add('is-active');
+                }
+
+                // Add a click event handler to the trigger to toggle the target
+                $trigger.addEventListener('click', clickTriggerEventHandler);
             });
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize after callback
+                plugin.settings.callbackInitializeAfter.call();
+            }
         },
 
         /**
          * Show an element
-         * @param  {element}  $element  The trigger element
-         * @param  {element}  $target   The target element
+         * @param  {element}  $target  The target
+         * @param  {bool}     silent   Suppress callbacks
          * @return {void}
          */
-        show($element, $target) {
-            // Add the active state class to the element
-            $element.addClass('is-active');
+        show: ($target, silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the show before callback
+                plugin.settings.callbackShowBefore.call();
+            }
 
-            // Set the toggler slide status
-            const slide = $element.data('toggler-slide') || this.settings.slide;
+            // Set the trigger
+            const $trigger = $target.data.trigger;
 
-            // Check if the target element has the slide data attribute
+            // Add the active state to the trigger
+            $trigger.classList.add('is-active');
+
+            // Set the slide status
+            const slide = $trigger.dataset.togglerSlide || plugin.settings.slide;
+
+            // Check if a slide status exists
             if (slide) {
-                // Slide the target element down
-                $target.slideDown();
+                // Remove the animated state hook from the target
+                $target.classList.remove('has-animated');
+
+                // Add the animating state hook to the target
+                $target.classList.add('is-animating');
+
+                // Set the slide duration
+                const slideDuration = $trigger.dataset.togglerSlideDuration || plugin.settings.slideDuration;
+
+                // Slide the target down
+                Velocity($target, 'slideDown', {
+                    complete: () => {
+                        // Remove the animating state hook from the target
+                        $target.classList.remove('is-animating');
+
+                        // Add the animated state hook to the target
+                        $target.classList.add('has-animated');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the show after callback
+                            plugin.settings.callbackShowAfter.call();
+                        }
+                    },
+                    duration: slideDuration
+                });
             } else {
-                // Set the toggler animation in and out
-                const animationIn = $element.data('toggler-animation-in') || this.settings.animationIn;
+                // Set the target animation in
+                const animationIn = $trigger.dataset.togglerAnimationIn || plugin.settings.animationIn;
+
+                // Show the target
+                $target.style.display = '';
 
                 // Check if the animation in is set
                 if (animationIn && animationIn != 'none') {
-                    // Show the target element and add the animation in class to and check when the animation has ended
-                    $target.show().addClass(`animated ${animationIn}`).one('animationend', () => {
-                        // Remove the animation in class
-                        $target.removeClass(`animated ${animationIn}`);
+                    // Remove the animated state hook from the target
+                    $target.classList.remove('has-animated');
+
+                    // Add the animating state hook to the target
+                    $target.classList.add('is-animating');
+
+                    // Add the animation classes to the target
+                    $target.classList.add('animated');
+                    $target.classList.add(animationIn);
+
+                    // Add an animation end event listener to the target
+                    $target.addEventListener('animationend', (event) => {
+                        // Remove the animating state hook from the target
+                        $target.classList.remove('is-animating');
+
+                        // Remove the animation classes from the target
+                        $target.classList.remove('animated');
+                        $target.classList.remove(animationIn);
+
+                        // Add the animated state hook to the target
+                        $target.classList.add('has-animated');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the show after callback
+                            plugin.settings.callbackShowAfter.call();
+                        }
+                    }, {
+                        once: true
                     });
                 } else {
-                    // Show the target element
-                    $target.show()
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the show after callback
+                        plugin.settings.callbackShowAfter.call();
+                    }
                 }
             }
         },
 
         /**
          * Hide an element
-         * @param  {element}  $element  The trigger element
-         * @param  {element}  $target   The target element
+         * @param  {element}  $target  The target
+         * @param  {bool}     silent   Suppress callbacks
          * @return {void}
          */
-        hide($element, $target) {
-            // Remove the active state class from the element
-            $element.removeClass('is-active');
+        hide: ($target, silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the hide before callback
+                plugin.settings.callbackHideBefore.call();
+            }
 
-            // Set the toggler slide status
-            const slide = $element.data('toggler-slide') || this.settings.slide;
+            // Set the trigger
+            const $trigger = $target.data.trigger;
 
-            // Check if the target element has the slide data attribute
+            // Remove the active state from the trigger
+            $trigger.classList.remove('is-active');
+
+            // Set the slide status
+            const slide = $trigger.dataset.togglerSlide || plugin.settings.slide;
+
+            // Check if a slide status exists
             if (slide) {
-                // Slide the target element up
-                $target.slideUp();
+                // Remove the animated state hook from the target
+                $target.classList.remove('has-animated');
+
+                // Add the animating state hook to the target
+                $target.classList.add('is-animating');
+
+                // Set the slide duration
+                const slideDuration = $trigger.dataset.togglerSlideDuration || plugin.settings.slideDuration;
+
+                // Slide the target up
+                Velocity($target, 'slideUp', {
+                    complete: () => {
+                        // Remove the animating state hook from the target
+                        $target.classList.remove('is-animating');
+
+                        // Add the animated state hook to the target
+                        $target.classList.add('has-animated');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the hide after callback
+                            plugin.settings.callbackHideAfter.call();
+                        }
+                    },
+                    duration: slideDuration
+                });
             } else {
-                // Set the toggler animation in and out
-                const animationOut = $element.data('toggler-animation-out') || this.settings.animationOut;
+                // Set the target animation out
+                const animationOut = $trigger.dataset.togglerAnimationOut || plugin.settings.animationOut;
 
                 // Check if the animation out is set
                 if (animationOut && animationOut != 'none') {
-                    // Add the animation out class to the target element and check when the animation has ended
-                    $target.addClass(`animated ${animationOut}`).one('animationend', () => {
-                        // Remove the animation in class
-                        $target.removeClass(`animated ${animationOut}`);
+                    // Remove the animated state hook from the target
+                    $target.classList.remove('has-animated');
 
-                        // Hide the target element
-                        $target.hide();
+                    // Add the animating state hook to the target
+                    $target.classList.add('is-animating');
+
+                    // Add the animation classes to the target
+                    $target.classList.add('animated');
+                    $target.classList.add(animationOut);
+
+                    // Add an animation end event listener to the target
+                    $target.addEventListener('animationend', (event) => {
+                        // Remove the animating state hook from the target
+                        $target.classList.remove('is-animating');
+
+                        // Remove the animation classes from the target
+                        $target.classList.remove('animated');
+                        $target.classList.remove(animationOut);
+
+                        // Add the animated state hook to the target
+                        $target.classList.add('has-animated');
+
+                        // Hide the target
+                        $target.style.display = 'none';
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the hide after callback
+                            plugin.settings.callbackHideAfter.call();
+                        }
+                    }, {
+                        once: true
                     });
                 } else {
-                    // Hide the target element
-                    $target.hide();
+                    // Hide the target
+                    $target.style.display = 'none';
+
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the hide after callback
+                        plugin.settings.callbackHideAfter.call();
+                    }
                 }
             }
-        }
-    });
+        },
 
-    /**
-     * Plugin wrapper around the constructor to prevent against multiple instantiations
-     * @param  {object}   options  The plugin options
-     * @return {element}           The target element
-     */
-    $.fn[pluginName] = function(options) {
-        // Return each element
-        return this.each(function() {
-            // Check the plugin does not exist in the elements data
-            if (!$.data(this, `plugin_${pluginName}`)) {
-                // Create a new instance of the plugin and assign it to the elements data
-                $.data(this, `plugin_${pluginName}`, new Plugin(this, options));
+        /**
+         * Refresh the plugin by destroying an existing initialization and initializing again
+         * @param  {bool}  silent  Suppress callbacks
+         * @return {void}
+         */
+        refresh: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh before callback
+                plugin.settings.callbackRefreshBefore.call();
             }
-        });
+
+            // Destroy the existing initialization
+            plugin.this.destroy(silent);
+
+            // Initialize the plugin
+            plugin.this.initialize(silent);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh after callback
+                plugin.settings.callbackRefreshAfter.call();
+            }
+        },
+
+        /**
+         * Destroy an existing initialization
+         * @param  {bool}  silent  Suppress callbacks
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Set the triggers
+            const $triggers = document.querySelectorAll(plugin.element);
+
+            // Cycle through all of the triggers
+            $triggers.forEach(($trigger) => {
+                // Remove the click event handler from the toggler trigger
+                $trigger.removeEventListener('click', clickTriggerEventHandler);
+            });
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the show method silently
+         * @param  {element}  $target  The target
+         * @return {void}
+         */
+        showSilently: ($target) => {
+            // Call the show method silently
+            plugin.this.show($target, true);
+        },
+
+        /**
+         * Call the hide method silently
+         * @param  {element}  $target  The target
+         * @return {void}
+         */
+        hideSilently: ($target) => {
+            // Call the hide method silently
+            plugin.this.hide($target, true);
+        },
+
+        /**
+         * Call the refresh method silently
+         * @return {void}
+         */
+        refreshSilently: () => {
+            // Call the refresh method silently
+            plugin.this.refresh(true);
+        },
+
+        /**
+         * Call the destroy method silently
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        }
     };
-}))(jQuery, window, document);
+
+    // Return the plugin
+    return Plugin;
+}));
