@@ -3,8 +3,10 @@
 ### New
 - Add dialog component
 - Add lightbox component
+- Add modal component
 - Add notification component
 - Add off canvas navigation component
+- Add remover component
 - Add tabs component
 - Add toast component
 
@@ -20,157 +22,407 @@
 -----
 
 
+# v0.11.0-beta
+
+### New
+- Add requirement for Velocity.js (Release Notes)
+
+### Updated
+- Update accordion component
+    - Add the animating state hook when the accordion is animating
+    - Add the animated state hook when the accordion has finished animating
+    - Add initialize before and after callback options
+    - Add toggle before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add toggleSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update toggle arguments
+        - Add boolean silent argument to suppress toggle callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+        - Add requirement for Velocity.js (Release Notes)
+    - Fix is-collapsed body styling
+
+- Update card component
+    - Add the animating state hook when the card is animating
+    - Add initialize before and after callback options
+    - Add remove before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add removeSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update remove arguments
+        - Add boolean silent argument to suppress remove callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Update chip component
+    - Add the animating state hook when the chip is animating
+    - Add initialize before and after callback options
+    - Add remove before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add removeSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update remove arguments
+        - Add boolean silent argument to suppress remove callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Update dropdown component
+    - Add the animating state hook when the dropdown is animating
+    - Add the animated state hook when the dropdown has finished animating
+    - Add active state hook to dropdown container
+        - Remove active state hook from dropdown
+    - Add initialize before and after callback options
+    - Add show before and after callback options
+    - Add hide before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add showSilently public method
+    - Add hideSilently public method
+    - Add refresh public methods
+    - Add refreshSilently public method
+    - Add destroy public methods
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update show arguments
+        - Add boolean silent argument to show callbacks
+    - Update hide arguments
+        - Add boolean silent argument to hide callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Update notice component
+    - Add the animating state hook when the notice is animating
+    - Add initialize before and after callback options
+    - Add remove before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add removeSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update remove arguments
+        - Add boolean silent argument to suppress remove callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Update panel component
+    - Add the animating state hook when the panel is animating
+    - Add initialize before and after callback options
+    - Add toggle before and after callback options
+    - Add remove before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add toggleSilently public method
+    - Add removeSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update toggle arguments
+        - Add boolean silent argument to suppress toggle callbacks
+    - Update remove arguments
+        - Add boolean silent argument to suppress remove callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+        - Add requirement for Velocity.js (Release Notes)
+    - Fix is-collapsed body styling
+
+- Update password reveal component
+    - Add initialize before and after callback options
+    - Add show before and after callback options
+    - Add hide before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add showSilently public method
+    - Add hideSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update show arguments
+        - Add boolean silent argument to suppress show callbacks
+    - Update hide arguments
+        - Add boolean silent argument to suppress hide callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Update popover component
+    - Add outline none to popover
+    - Add delayIn and delayOut options
+    - Add injected focusable tabindex
+    - Add ability to focus in popovers without removing popover
+    - Add ability to insert html to popover
+    - Add the animating state hook when the popover is animating
+    - Add the animated state hook when the popover has finished animating
+    - Add the active state hook when the popover is active
+    - Add initialize before and after callback options
+    - Add insert before and after callback options
+    - Add remove before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add refresh public methods
+    - Add refreshSilently public method
+    - Add destroy public methods
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update insertPopoverEventHandler method name to togglePopoverEventHandler
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Update toggler component
+    - Add the animating state hook when the target is animating
+    - Add the animated state hook when the target has finished animating
+    - Add initialize before and after callback options
+    - Add show before and after callback options
+    - Add hide before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add showSilently public method
+    - Add hideSilently public method
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update show arguments
+        - Add boolean silent argument to suppress show callbacks
+    - Update hide arguments
+        - Add boolean silent argument to suppress hide callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+        - Add requirement for Velocity.js (Release Notes)
+
+- Update tooltip component
+    - Add delayIn and delayOut options
+        - Remove delay option
+    - Add initialize before and after callback options
+    - Add insert before and after callback options
+    - Add remove before and after callback options
+    - Add refresh before and after callback options
+    - Add destroy before and after callback options
+    - Add refresh public method
+    - Add refreshSilently public method
+    - Add destroy public method
+    - Add destroySilently public method
+    - Update initialize arguments
+        - Add boolean silent argument to suppress initialize callbacks
+    - Update demo page
+    - Remove jQuery requirement
+        - Add vanilla JavaScript
+
+- Remove modal component (Release Notes)
+
+### Release Notes
+Plugins no longer require jQuery to work, however, since removing jQuery we now require
+[Velocity.js](http://velocityjs.org/) for some of the plugins and their features. Previously we
+used jQuery's `slideUp/Down` and `fadeIn/Out` methods, but now we use Velocitys alternatives.
+Velocity has a much smaller file size and it creates smoother animations than jQuery. All
+future plugins will be written in vanilla JavaScript and will use Velocity where needed.
+
+Here is a list of the plugins that currently require Velocity:
+
+- Accordions: Sliding/fading accordion item body
+- Panels: Sliding/fading panel body
+- Toggler: Sliding target elements
+
+If you are only using the animate.css animations for Panels and Toggler, Velocity is not required.
+
+The modal component has only temporarily been removed while it is converted to vanilla JavaScript.
+If you require this component in your current project, do not update to v0.11.0-beta.
+
+
+-----
+
+
 # v0.10.0-beta
 
 ### New
-- Add shield element
-- Add chip component
-- Add modal component
-- Add password reveal component
-- Add popover component
-    - Add a popover z-index value to the stack index variable map
-- Add toggler component
-- Add helper classes
-    - Add color modifier classes to p, a and h1-h6 elements
-    - Add feedback modifier classes to p, a and h1-h6 elements
-    - Remove typography color and feedback modifier classes from p, a and h1-h6 elements
+- Added shield element
+- Added chip component
+- Added modal component
+- Added password reveal component
+- Added popover component
+    - Added a popover z-index value to the stack index variable map
+- Added toggler component
+- Added helper classes
+    - Added color modifier classes to p, a and h1-h6 elements
+    - Added feedback modifier classes to p, a and h1-h6 elements
+    - Removed typography color and feedback modifier classes from p, a and h1-h6 elements
 
 
 ### Updated
-- Update feature detection script
-    - Update 'no-js' to 'has-no-js' and 'js' to 'has-js'
-    - Update 'no-touch' to 'has-no-touch' and 'touch' to 'has-touch'
-    - Update references to all detection classes in all components
+- Updated feature detection script
+    - Updated 'no-js' to 'has-no-js' and 'js' to 'has-js'
+    - Updated 'no-touch' to 'has-no-touch' and 'touch' to 'has-touch'
+    - Updated references to all detection classes in all components
 
-- Update click event helper handlers
-    - Update event handlers for dynamically added components
-    - Remove array based looping for attaching event handers
+- Updated click event helper handlers
+    - Updated event handlers for dynamically added components
+    - Removed array based looping for attaching event handers
 
-- Update sass file and directory structure
+- Updated sass file and directory structure
 
-- Update mixins
-    - Add disabled mixin
+- Updated mixins
+    - Added disabled mixin
 
-- Update grid framework
-    - Add grid column variable (default to 12)
-    - Add grid--stretch modifier class
-    - Add grid__item--stretch modifier class
-    - Update scss declaration order
+- Updated grid framework
+    - Added grid column variable (default to 12)
+    - Added grid--stretch modifier class
+    - Added grid__item--stretch modifier class
+    - Updated scss declaration order
 
-- Update breadrcrumb element
-    - Update scss declaration order
+- Updated breadrcrumb element
+    - Updated scss declaration order
 
-- Update button element
-    - Add white space nowrap
-    - Add is static variables and modifier class
-    - Add disabled styling
-    - Update scss declaration order
-    - Remove line height
+- Updated button element
+    - Added white space nowrap
+    - Added is static variables and modifier class
+    - Added disabled styling
+    - Updated scss declaration order
+    - Removed line height
 
-- Update form elements
-    - Add get-stack-index values to input, select and textarea elements
-    - Add form control classes
-    - Add label, inpout, select and textarea elements disabled styling
-    - Add textarea no scrollbar modifier class
-    - Update textarea default scrollbar styling
-    - Update label, input, select and textarea elements scss declaration order
+- Updated form elements
+    - Added get-stack-index values to input, select and textarea elements
+    - Added form control classes
+    - Added label, inpout, select and textarea elements disabled styling
+    - Added textarea no scrollbar modifier class
+    - Updated textarea default scrollbar styling
+    - Updated label, input, select and textarea elements scss declaration order
 
-- Update hero element
-    - Add three quarter viewport modifier class
-    - Add head, body and foot elements
-    - Update half viewport font size
-    - Update viewport modifier naming convention
-    - Update scss declaration order
+- Updated hero element
+    - Added three quarter viewport modifier class
+    - Added head, body and foot elements
+    - Updated half viewport font size
+    - Updated viewport modifier naming convention
+    - Updated scss declaration order
 
-- Update list element
-    - Update scss declaration order
+- Updated list element
+    - Updated scss declaration order
 
-- Update media element
-    - Update media image scss declaration order
-    - Update media object scss declaration order
+- Updated media element
+    - Updated media image scss declaration order
+    - Updated media object scss declaration order
 
-- Update navigation element
-    - Add revealer element
-    - Update class naming conventions
-    - Update breakpoints (mobile first)
-    - Remove search element
-    - Update scss declaration order
+- Updated navigation element
+    - Added revealer element
+    - Updated class naming conventions
+    - Updated breakpoints (mobile first)
+    - Removed search element
+    - Updated scss declaration order
 
-- Update overlay element
-    - Add animation duration variable and property
-    - Add outline none (focus trapping for dialogs/modals etc)
+- Updated overlay element
+    - Added animation duration variable and property
+    - Added outline none (focus trapping for dialogs/modals etc)
 
-- Update pagination element
-    - Add focus box shadow none to disabled elements
-    - Add missing disabled modifier classes
-    - Update disabled styling
-    - Update box shadow focus to use set-focus-box-shadow()
-    - Update scss declaration order
+- Updated pagination element
+    - Added focus box shadow none to disabled elements
+    - Added missing disabled modifier classes
+    - Updated disabled styling
+    - Updated box shadow focus to use set-focus-box-shadow()
+    - Updated scss declaration order
 
-- Update table element
-    - Update scss declaration order
+- Updated table element
+    - Updated scss declaration order
 
-- Update typography elements
-    - Update scss declaration order
-    - Remove p, a and h1-h6 color modifiers
+- Updated typography elements
+    - Updated scss declaration order
+    - Removed p, a and h1-h6 color modifiers
 
-- Update accordion component
-    - Add link color variables
-    - Add accordion__heading class for use instead of h1-h6 elements for headings
-    - Update event handlers for dynamically added components
-    - Update scss declaration order
+- Updated accordion component
+    - Added link color variables
+    - Added accordion__heading class for use instead of h1-h6 elements for headings
+    - Updated event handlers for dynamically added components
+    - Updated scss declaration order
 
-- Update card component
-    - Add animation duration variable
-    - Add link color variables
-    - Add card__heading class for use instead of h1-h6 elements for headings
-    - Update event handlers for dynamically added components
-    - Update remove animation if statement
-    - Update button styling
-    - Update scss declaration order
-    - Remove redundant styling
+- Updated card component
+    - Added animation duration variable
+    - Added link color variables
+    - Added card__heading class for use instead of h1-h6 elements for headings
+    - Updated event handlers for dynamically added components
+    - Updated remove animation if statement
+    - Updated button styling
+    - Updated scss declaration order
+    - Removed redundant styling
 
-- Update dropdown component
-    - Add injected focusable tabindex
-    - Add static modifier class for megamenus
-    - Add animation in and animation out if statements
-    - Update position modifier class calculations
-    - Update event handlers for dynamically added components
-    - Update variable declaration order
-    - Update scss declaration order
+- Updated dropdown component
+    - Added injected focusable tabindex
+    - Added static modifier class for megamenus
+    - Added animation in and animation out if statements
+    - Updated position modifier class calculations
+    - Updated event handlers for dynamically added components
+    - Updated variable declaration order
+    - Updated scss declaration order
 
-- Update notice component
-    - Add link color variables
-    - Update event handlers for dynamically added components
-    - Update remove animation if statement
-    - Update scss declaration order
+- Updated notice component
+    - Added link color variables
+    - Updated event handlers for dynamically added components
+    - Updated remove animation if statement
+    - Updated scss declaration order
 
-- Update panel component
-    - Add link color variables
-    - Add panel__heading class for use instead of h1-h6 elements for headings
-    - Update event handlers for dynamically added components
-    - Update remove animation if statement
-    - Update scss declaration order
+- Updated panel component
+    - Added link color variables
+    - Added panel__heading class for use instead of h1-h6 elements for headings
+    - Updated event handlers for dynamically added components
+    - Updated remove animation if statement
+    - Updated scss declaration order
 
-- Update tooltip component
-    - Add focus event handlers
-    - Update event handlers for dynamically added components
-    - Update event handlers to only work on non touch devices
-    - Update method naming convention (show -> insert)
-    - Update scss declaration order
-    - Remove styling breakpoint mixin
+- Updated tooltip component
+    - Added focus event handlers
+    - Updated event handlers for dynamically added components
+    - Updated event handlers to only work on non touch devices
+    - Updated method naming convention (show -> insert)
+    - Updated scss declaration order
+    - Removed styling breakpoint mixin
 
 
 ### Removed
-- Remove tag component
+- Removed tag component
 
 
 ### Bug Fixes
-- Fix spinner element
-    - Fix target is-color modifier class border colors
+- Fixed spinner element
+    - Fixed target is-color modifier class border colors
 
-- Fix card component
-    - Fix scss variable names
+- Fixed card component
+    - Fixed scss variable names
 
 
 -----
@@ -179,19 +431,19 @@
 # v0.9.0-beta
 
 ### Updated
-- Update dropdown component
-    - Add is hoverable modifier class
-    - Add megamenu modifier class
-    - Add container element for offsets
-    - Add width values
-    - Update default animation duration
-    - Update default offset amount
-    - Remove injected tabindex attribute
-    - Remove min width values
+- Updated dropdown component
+    - Added is hoverable modifier class
+    - Added megamenu modifier class
+    - Added container element for offsets
+    - Added width values
+    - Updated default animation duration
+    - Updated default offset amount
+    - Removed injected tabindex attribute
+    - Removed min width values
 
-- Update navigation element
-    - Remove megamenu variables and styles
-    - Remove sub nav variables and styles
+- Updated navigation element
+    - Removed megamenu variables and styles
+    - Removed sub nav variables and styles
 
 
 -----
@@ -200,11 +452,11 @@
 # v0.8.0-beta
 
 ### Updated
-- Update navigation element
-    - Add sub-nav dropdown
-    - Add megamenu dropdown
-    - Remove size modifier classes
-    - Fix logo anchor link full width bug
+- Updated navigation element
+    - Added sub-nav dropdown
+    - Added megamenu dropdown
+    - Removed size modifier classes
+    - Fixed logo anchor link full width bug
 
 
 -----
@@ -213,7 +465,7 @@
 # v0.7.0-beta
 
 ### New
-- Add spinner element
+- Added spinner element
 
 
 -----
@@ -222,9 +474,9 @@
 # v0.6.0-beta
 
 ### New
-- Add breadcrumb element
-- Add hero element
-- Add overlay element
+- Added breadcrumb element
+- Added hero element
+- Added overlay element
 
 
 -----
@@ -233,7 +485,7 @@
 # v0.5.3-beta
 
 ### Updated
-- Update container gutter default size
+- Updated container gutter default size
 
 
 -----
@@ -242,9 +494,9 @@
 # v0.5.2-beta
 
 ### Updated
-- Update navigation element
-    - Add navigation link variables
-    - Remove navigation__link class from nested anchor links
+- Updated navigation element
+    - Added navigation link variables
+    - Removed navigation__link class from nested anchor links
 
 
 -----
@@ -253,13 +505,13 @@
 # v0.5.1-beta
 
 ### Bug Fixes
-- Fix gulpfile dev task ending on compile error
-    - Add gulp-plumber to devDependencies
-    - Add gulp-notifier to devDependencies
-    - Update build:css task
-        - Add gulp-plumber with gulp-notifier error handler
-    - Update build:scripts task
-        - Add gulp-plumber with gulp-notifier error handler
+- Fixed gulpfile dev task ending on compile error
+    - Added gulp-plumber to devDependencies
+    - Added gulp-notifier to devDependencies
+    - Updated build:css task
+        - Added gulp-plumber with gulp-notifier error handler
+    - Updated build:scripts task
+        - Added gulp-plumber with gulp-notifier error handler
 
 
 -----
@@ -268,7 +520,7 @@
 # v0.5.0-beta
 
 ### New
-- Add accordion component
+- Added accordion component
 
 
 -----
@@ -277,15 +529,15 @@
 # v0.4.1-beta
 
 ### Updated
-- Update dropdown component
-    - Update anchor dropdown items focus box shadow to set-focus-box-shadow function call
-- Update panel component
-    - Update default toggle animation from fade to slide
+- Updated dropdown component
+    - Updated anchor dropdown items focus box shadow to set-focus-box-shadow function call
+- Updated panel component
+    - Updated default toggle animation from fade to slide
 
 ### Bug Fixes
-- Fix gulpfile dev task
-    - Add sass and script values to watch object
-    - Update gulp watch callbacks
+- Fixed gulpfile dev task
+    - Added sass and script values to watch object
+    - Updated gulp watch callbacks
 
 
 -----
@@ -294,83 +546,83 @@
 # v0.4.0-beta
 
 ### New
-- Add anchor link pseudo class variation type variables
-    - Add variables to settings colors
-    - Update default variables with variation type variables
-    - Update color modifier pseudo classes
-- Add get-stack-index docblock
-- Add scroll to top anchor to demo pages
-- Add touch detection script
-    - Add no-touch class to demo pages html tag
-- Add icon and button center item alignment to card and panel components
+- Added anchor link pseudo class variation type variables
+    - Added variables to settings colors
+    - Updated default variables with variation type variables
+    - Updated color modifier pseudo classes
+- Added get-stack-index docblock
+- Added scroll to top anchor to demo pages
+- Added touch detection script
+    - Added no-touch class to demo pages html tag
+- Added icon and button center item alignment to card and panel components
 
 
 ### Updated
-- Update dropdown component
-    - Add tabindex attribute to the dropdown container
-    - Add focus event handler to force focus from the dropdown container to the dropdown trigger
-    - Add link color variables
-    - Add link color modifier classes
-    - Add item link background and color variables
-    - Add margin 0 to dropdown divider class for use with horizontal rules
-    - Update event handler selectors
-    - Update demo page
-    - Remove background pseudo color variables
-- Update pagination element
-    - Update font color variable names
-- Update default hr border color variable value
-- Update anchor focus accessibility visuals
-    - Add underline text decoration to focus pseudo class
-    - Remove box shadow on focus pseudo class
-- Update focus pseudo classes outline and box shadow
-    - Add outline none to input, select, textarea and button elements
-    - Add focus box shadow to input, select, textarea and button elements
-    - Update base focus variable names and default values
-    - Update button variable default values
-    - Remove global focus pseudo class values
-    - Remove button focus variables
-- Update button element
-    - Add button icon variables
-    - Update button icon modifier values
-- Update default custom focus box shadow variable values
-- Update scss declaration order
-- Update terminology
-    - Update all occurrences of 'separator' to 'divider'
-- Update button element
-    - Add focus outline box shadow function
-    - Update style
-    - Update default variables
-    - Update button--text modifier to button--flat
-    - Update focus box shadow to set-focus-box-shadow function calls
-    - Update demo page
-- Update input file element
-    - Remove input file upload/browse border divider
-- Update tag component
-    - Add feedback class modifiers
-    - Update button focus box shadow to set-focus-box-shadow function calls
-- Update notice component
-    - Update border width variables
-    - Update notice icon padding size
-- Update panel component
-    - Update border width variables
-    - Update expanded/collapsed state hook class toggling
+- Updated dropdown component
+    - Added tabindex attribute to the dropdown container
+    - Added focus event handler to force focus from the dropdown container to the dropdown trigger
+    - Added link color variables
+    - Added link color modifier classes
+    - Added item link background and color variables
+    - Added margin 0 to dropdown divider class for use with horizontal rules
+    - Updated event handler selectors
+    - Updated demo page
+    - Removed background pseudo color variables
+- Updated pagination element
+    - Updated font color variable names
+- Updated default hr border color variable value
+- Updated anchor focus accessibility visuals
+    - Added underline text decoration to focus pseudo class
+    - Removed box shadow on focus pseudo class
+- Updated focus pseudo classes outline and box shadow
+    - Added outline none to input, select, textarea and button elements
+    - Added focus box shadow to input, select, textarea and button elements
+    - Updated base focus variable names and default values
+    - Updated button variable default values
+    - Removed global focus pseudo class values
+    - Removed button focus variables
+- Updated button element
+    - Added button icon variables
+    - Updated button icon modifier values
+- Updated default custom focus box shadow variable values
+- Updated scss declaration order
+- Updated terminology
+    - Updated all occurrences of 'separator' to 'divider'
+- Updated button element
+    - Added focus outline box shadow function
+    - Updated style
+    - Updated default variables
+    - Updated button--text modifier to button--flat
+    - Updated focus box shadow to set-focus-box-shadow function calls
+    - Updated demo page
+- Updated input file element
+    - Removed input file upload/browse border divider
+- Updated tag component
+    - Added feedback class modifiers
+    - Updated button focus box shadow to set-focus-box-shadow function calls
+- Updated notice component
+    - Updated border width variables
+    - Updated notice icon padding size
+- Updated panel component
+    - Updated border width variables
+    - Updated expanded/collapsed state hook class toggling
 
 ### Removed
-- Remove anchor link visited pseudo properties
-    - Remove visited variable
-    - Remove visited pseudo class
-- Remove dropdown divider margin bottom
-- Remove components button values
+- Removed anchor link visited pseudo properties
+    - Removed visited variable
+    - Removed visited pseudo class
+- Removed dropdown divider margin bottom
+- Removed components button values
 
 ### Bug Fixes
-- Fix dropdown focusout bug
-    - Add if statement to check if the related target element is a the has-dropdown container or a descendant of the has-dropdown container
-- Fix dropdown border radius
-    - Add border radius values to dropdown item first and last child pseudo classes
-- Fix anchor link pseudo classes
-    - Add active pseudo class
-    - Remove duplicate hover pseudo class
-- Fix no-js class
+- Fixed dropdown focusout bug
+    - Added if statement to check if the related target element is a the has-dropdown container or a descendant of the has-dropdown container
+- Fixed dropdown border radius
+    - Added border radius values to dropdown item first and last child pseudo classes
+- Fixed anchor link pseudo classes
+    - Added active pseudo class
+    - Removed duplicate hover pseudo class
+- Fixed no-js class
 
 
 -----
@@ -379,90 +631,90 @@
 # v0.3.0-beta
 
 ### New
-- Add pagination element
-- Add tag component
-- Add top element spacing helper classes
-- Add no-offset modifier classes to grid item
-- Add scroll to top click event handler
-- Add color modifier classes to typography elements
-- Add form pill modifier classes
-- Add button and button-group pill modifier classes
-- Add link visited pseudo class
-- Add box-shadow variable
-    - Update box-shadow variable for card, dropdown, notice and panel components
-    - Update box-shadow variable for box and pagination elements
-- Add pseudo class variation type variables
-    - Add background and border pseudo class variation type variables
-    - Update element and component pseudo class variable values from hard coded values to variables
-- Add missing default flags
-- Add stack index declarations
-    - Add stack index map variable
-    - Add get stack index function
-    - Update hard coded z-index values to get-stack-index functions
+- Added pagination element
+- Added tag component
+- Added top element spacing helper classes
+- Added no-offset modifier classes to grid item
+- Added scroll to top click event handler
+- Added color modifier classes to typography elements
+- Added form pill modifier classes
+- Added button and button-group pill modifier classes
+- Added link visited pseudo class
+- Added box-shadow variable
+    - Updated box-shadow variable for card, dropdown, notice and panel components
+    - Updated box-shadow variable for box and pagination elements
+- Added pseudo class variation type variables
+    - Added background and border pseudo class variation type variables
+    - Updated element and component pseudo class variable values from hard coded values to variables
+- Added missing default flags
+- Added stack index declarations
+    - Added stack index map variable
+    - Added get stack index function
+    - Updated hard coded z-index values to get-stack-index functions
 
 ### Updated
-- Update elements directory location
-    - Update elements directory from `/sass/framework` to `/sass` directory
-- Update box component file location
-    - Update box component file from `/sass/components` to `/sass/elements` directory
-- Update navigation component file location
-    - Update navigation component file from `/sass/components` to `/sass/elements` directory
-- Update form scss import file and directory structure
-    - Add form base.scss file with form and fieldset values
-- Update feedback class naming conventions
-    - Add `has-*` feedback classes
-    - Remove `with-*` feedback classes
-- Update various modifier naming conventions
-    - Update table centered, bordered and striped modifiers to center border and stripe
-    - Update media image circle modifier to round
-- Update variable declaration location
-    - Add variation type variables to settings colors
-    - Add color palette difference variable to utilities color palettes
-    - Remove color palette difference and variation type variables from settings variables
-- Update body horizontal overflow to hidden to prevent scrolling
-- Update dropdown component
-    - Add focus and active background color variables
-    - Add focus and active pseudo classes to dropdown item links
-    - Add focus pseudo class to dropdown items
-    - Add focusout event handler for dropdown container
-    - Remove blur event handler for dropdown trigger
-- Update dropdown, notice, panel, tag and tooltip component animation duration
-    - Add animation-duration variables
-    - Remove hard coded animation-duration values
-- Update form elements display value
-    - Update form elements display values from block and inline-block to flex and inline-flex
-- Update media object badge size
-    - Update flex basis to flex grow shrink and basis
-- Update list style type modifier classes
-    - Add armenian, circle, decimal, decimal-leading-zero, disc, georgian, lower-alpha, lower-greek, lower-latin, lower-roman, square, upper-alpha, upper-latin, upper-roman list style type modifier classes
-- Update pseudo class declaration orders
-- Update accessibility
-    - Add focus variables to the foundation base
-    - Add focus variables to inputs, selects and textareas
-    - Update input, select and textarea property values to new focus variables
-- Update demo pages
-- Update various default variable values
+- Updated elements directory location
+    - Updated elements directory from `/sass/framework` to `/sass` directory
+- Updated box component file location
+    - Updated box component file from `/sass/components` to `/sass/elements` directory
+- Updated navigation component file location
+    - Updated navigation component file from `/sass/components` to `/sass/elements` directory
+- Updated form scss import file and directory structure
+    - Added form base.scss file with form and fieldset values
+- Updated feedback class naming conventions
+    - Added `has-*` feedback classes
+    - Removed `with-*` feedback classes
+- Updated various modifier naming conventions
+    - Updated table centered, bordered and striped modifiers to center border and stripe
+    - Updated media image circle modifier to round
+- Updated variable declaration location
+    - Added variation type variables to settings colors
+    - Added color palette difference variable to utilities color palettes
+    - Removed color palette difference and variation type variables from settings variables
+- Updated body horizontal overflow to hidden to prevent scrolling
+- Updated dropdown component
+    - Added focus and active background color variables
+    - Added focus and active pseudo classes to dropdown item links
+    - Added focus pseudo class to dropdown items
+    - Added focusout event handler for dropdown container
+    - Removed blur event handler for dropdown trigger
+- Updated dropdown, notice, panel, tag and tooltip component animation duration
+    - Added animation-duration variables
+    - Removed hard coded animation-duration values
+- Updated form elements display value
+    - Updated form elements display values from block and inline-block to flex and inline-flex
+- Updated media object badge size
+    - Updated flex basis to flex grow shrink and basis
+- Updated list style type modifier classes
+    - Added armenian, circle, decimal, decimal-leading-zero, disc, georgian, lower-alpha, lower-greek, lower-latin, lower-roman, square, upper-alpha, upper-latin, upper-roman list style type modifier classes
+- Updated pseudo class declaration orders
+- Updated accessibility
+    - Added focus variables to the foundation base
+    - Added focus variables to inputs, selects and textareas
+    - Updated input, select and textarea property values to new focus variables
+- Updated demo pages
+- Updated various default variable values
 
 ### Removed
-- Remove fixed height from labels
-- Remove nested element and component size mixins (See: Release Notes 1)
-- Remove all link-color variables and style declarations
-    - Remove all component `$link-color` variables to replace with anchor color classes
-- Remove transitions
-    - Remove border and box shadow transitions from input, select and textarea elements
-    - Remove border transition from blockquote elements
-- Remove notice icons bottom margin
-- Remove panel icons margin
+- Removed fixed height from labels
+- Removed nested element and component size mixins (See: Release Notes 1)
+- Removed all link-color variables and style declarations
+    - Removed all component `$link-color` variables to replace with anchor color classes
+- Removed transitions
+    - Removed border and box shadow transitions from input, select and textarea elements
+    - Removed border transition from blockquote elements
+- Removed notice icons bottom margin
+- Removed panel icons margin
 
 ### Bug Fixes
-- Fix panel is-collapsed modifier class on load bug
-- Fix single button margin in card component footers
-- Fix panel accessibility markup bug
-    - Add expanded and collapsed state hook classes to icon element
-    - Remove expanded and collapsed state hook classes on button elements
-- Fix tooltip feedback class names
-    - Update tooltip feedback class names from with-* to has-*
-- Fix various typos and comment naming conventions
+- Fixed panel is-collapsed modifier class on load bug
+- Fixed single button margin in card component footers
+- Fixed panel accessibility markup bug
+    - Added expanded and collapsed state hook classes to icon element
+    - Removed expanded and collapsed state hook classes on button elements
+- Fixed tooltip feedback class names
+    - Updated tooltip feedback class names from with-* to has-*
+- Fixed various typos and comment naming conventions
 
 
 ### Release Notes
@@ -479,19 +731,19 @@ It also makes it easier for code management of each component for future updates
 # v0.2.0-beta
 
 ### Updated
-- Update dropdown component
-    - Fix and add dropdown element z-index hierarchy
- - Update navigation component
-    - Update flex wrap to wrap flex items
-    - Update navigation__search and navigation__links breakpoints display values
-    - Update navigation search
-        - Add flex order to push navigation__search flex item to the end on touch breakpoint
-        - Remove display none in mobile
-    - Update navigation demo
-        - Add navigation__link class to top tier links
-    - Remove flex flow column from mobile breakpoint
-    - Fix nested navigation links styling
-        - Add navigation__link classes to all a tags
+- Updated dropdown component
+    - Fixed and add dropdown element z-index hierarchy
+ - Updated navigation component
+    - Updated flex wrap to wrap flex items
+    - Updated navigation__search and navigation__links breakpoints display values
+    - Updated navigation search
+        - Added flex order to push navigation__search flex item to the end on touch breakpoint
+        - Removed display none in mobile
+    - Updated navigation demo
+        - Added navigation__link class to top tier links
+    - Removed flex flow column from mobile breakpoint
+    - Fixed nested navigation links styling
+        - Added navigation__link classes to all a tags
 
 
 -----
@@ -500,20 +752,20 @@ It also makes it easier for code management of each component for future updates
 # v0.1.1-beta
 
 ### New
-- Add juice component instantiation to demo pages
+- Added juice component instantiation to demo pages
 
 ### Updated
-- Update gulpfile.js browsersync hostname
-- Update index.html
-    - Remove redundant testing code
+- Updated gulpfile.js browsersync hostname
+- Updated index.html
+    - Removed redundant testing code
 
 ### Bug Fixes
-- Fix overflow hidden bug
-    - Remove overflow css property from box, card, notice and panel components
-- Fix clearfix helper class
-    - Add nested after pseudo element and include clearfix mixin
-    - Remove clearfix mixin from class properties
-- Fix component stopPropagation conflicts
-    - Remove event.stopPropagation on dropdown and tooltip component event handlers
-- Fix demo pages
-    - Update juice script path file name on demo pages
+- Fixed overflow hidden bug
+    - Removed overflow css property from box, card, notice and panel components
+- Fixed clearfix helper class
+    - Added nested after pseudo element and include clearfix mixin
+    - Removed clearfix mixin from class properties
+- Fixed component stopPropagation conflicts
+    - Removed event.stopPropagation on dropdown and tooltip component event handlers
+- Fixed demo pages
+    - Updated juice script path file name on demo pages
