@@ -1,31 +1,31 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> BREADCRUMB -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> BREADCRUMB -> VARIABLES
+    ========================================================================= */
 
 $breadcrumb-content-spacing: $content-spacing / 2 !default;
-$breadcrumb-content-spacing--small: $content-spacing--small / 2 !default;
-$breadcrumb-content-spacing--large: $content-spacing--large / 2 !default;
-$breadcrumb-content-spacing--huge: $content-spacing--huge / 2 !default;
+$breadcrumb-content-spacing-small: $content-spacing-small / 2 !default;
+$breadcrumb-content-spacing-large: $content-spacing-large / 2 !default;
+$breadcrumb-content-spacing-huge: $content-spacing-huge / 2 !default;
 $breadcrumb-element-spacing: $element-spacing !default;
-$breadcrumb-element-spacing--small: $element-spacing--small !default;
-$breadcrumb-element-spacing--large: $element-spacing--large !default;
-$breadcrumb-element-spacing--huge: $element-spacing--huge !default;
+$breadcrumb-element-spacing-small: $element-spacing-small !default;
+$breadcrumb-element-spacing-large: $element-spacing-large !default;
+$breadcrumb-element-spacing-huge: $element-spacing-huge !default;
 $breadcrumb-font-color: inherit !default;
 $breadcrumb-font-size: $font-size !default;
-$breadcrumb-font-size--small: $font-size--small !default;
-$breadcrumb-font-size--large: $font-size--large !default;
-$breadcrumb-font-size--huge: $font-size--huge !default;
+$breadcrumb-font-size-small: $font-size-small !default;
+$breadcrumb-font-size-large: $font-size-large !default;
+$breadcrumb-font-size-huge: $font-size-huge !default;
 $breadcrumb-link-color: $link-color !default;
-$breadcrumb-link-color--focus: $link-color--focus !default;
-$breadcrumb-link-color--hover: $link-color--hover !default;
-$breadcrumb-link-color--active: $link-color--active !default;
+$breadcrumb-link-color-active: $link-color-active !default;
+$breadcrumb-link-color-focus: $link-color-focus !default;
+$breadcrumb-link-color-hover: $link-color-hover !default;
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> BREADCRUMB
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> BREADCRUMB
+    ========================================================================= */
 
 .breadcrumb {
     color: $breadcrumb-font-color;
@@ -39,8 +39,8 @@ $breadcrumb-link-color--active: $link-color--active !default;
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $breadcrumb-font-size--small;
-        margin-bottom: $breadcrumb-element-spacing--small;
+        font-size: $breadcrumb-font-size-small;
+        margin-bottom: $breadcrumb-element-spacing-small;
 
         // Nested selectors
         li {
@@ -54,19 +54,19 @@ $breadcrumb-link-color--active: $link-color--active !default;
 
             // Pseudo elements
             &::before {
-                padding: 0 $breadcrumb-content-spacing--small;
+                padding: 0 $breadcrumb-content-spacing-small;
             }
 
             // Nested selectors
             .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing--small / 2;
+                margin-right: $breadcrumb-content-spacing-small / 2;
             }
         }
     }
 
     &.is-large {
-        font-size: $breadcrumb-font-size--large;
-        margin-bottom: $breadcrumb-element-spacing--large;
+        font-size: $breadcrumb-font-size-large;
+        margin-bottom: $breadcrumb-element-spacing-large;
 
         // Nested selectors
         li {
@@ -80,19 +80,19 @@ $breadcrumb-link-color--active: $link-color--active !default;
 
             // Pseudo elements
             &::before {
-                padding: 0 $breadcrumb-content-spacing--large;
+                padding: 0 $breadcrumb-content-spacing-large;
             }
 
             // Nested selectors
             .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing--large / 2;
+                margin-right: $breadcrumb-content-spacing-large / 2;
             }
         }
     }
 
     &.is-huge {
-        font-size: $breadcrumb-font-size--huge;
-        margin-bottom: $breadcrumb-element-spacing--huge;
+        font-size: $breadcrumb-font-size-huge;
+        margin-bottom: $breadcrumb-element-spacing-huge;
 
         // Nested selectors
         li {
@@ -106,12 +106,12 @@ $breadcrumb-link-color--active: $link-color--active !default;
 
             // Pseudo elements
             &::before {
-                padding: 0 $breadcrumb-content-spacing--huge;
+                padding: 0 $breadcrumb-content-spacing-huge;
             }
 
             // Nested selectors
             .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing--huge / 2;
+                margin-right: $breadcrumb-content-spacing-huge / 2;
             }
         }
     }
@@ -182,15 +182,15 @@ $breadcrumb-link-color--active: $link-color--active !default;
 
             // Pseudo classes
             &:focus {
-                color: $breadcrumb-link-color--focus;
+                color: $breadcrumb-link-color-focus;
             }
 
             &:hover {
-                color: $breadcrumb-link-color--hover;
+                color: $breadcrumb-link-color-hover;
             }
 
             &:active {
-                color: $breadcrumb-link-color--active;
+                color: $breadcrumb-link-color-active;
             }
         }
 

@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> DROPDOWN
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> DROPDOWN
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'Dropdown';
+    const plugin_name = 'Dropdown';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -58,15 +58,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -77,7 +77,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -87,7 +87,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -97,7 +97,7 @@
     };
 
     /**
-     * Event handler to toggle a dropdown when the dropdown trigger is clicked
+     * Event handler to toggle a dropdown when the dropdown trigger is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -109,7 +109,7 @@
         const $container = $trigger.closest('.has-dropdown');
         const $dropdown = $container.querySelector('.dropdown');
 
-        // Check if the dropdown container has the active state hook and show or hide the dropdown
+        // Check if the dropdown container has the active state hook
         (!$container.classList.contains('is-active')
             ? plugin.this.show($dropdown)
             : plugin.this.hide($dropdown)
@@ -117,8 +117,8 @@
     };
 
     /**
-     * Event handler to hide a dropdown when the dropdown container or any of the dropdown
-     * containers descendants lose focus
+     * Event handler to hide a dropdown when the dropdown container or any
+     * of the dropdown containers descendants lose focus.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -144,7 +144,7 @@
     };
 
     /**
-     * Event handler to show a dropdown when the mouse enters the dropdown container
+     * Event handler to show a dropdown when the mouse enters the dropdown container.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -163,7 +163,7 @@
     }
 
     /**
-     * Event handler to hide a dropdown when the mouse leaves the dropdown container
+     * Event handler to hide a dropdown when the mouse leaves the dropdown container.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -182,12 +182,12 @@
     }
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -206,6 +206,9 @@
 
             // Cycle through all of the dropdown containers
             $containers.forEach(($container) => {
+                // Set the html element
+                const $html = document.querySelector('html');
+
                 // Set the dropdown trigger and dropdown
                 const $trigger = $container.querySelector('.js-dropdown-trigger');
                 const $dropdown = $container.querySelector('.dropdown');
@@ -219,8 +222,8 @@
                 // Add a focus out event handler to the dropdown container to hide the dropdown
                 $container.addEventListener('focusout', focusoutEventHandler);
 
-                // Check if the dropdown has the hoverable state class and check if the html tag has the no touch detection class
-                if ($dropdown.classList.contains('is-hoverable') && document.querySelector('html').classList.contains('has-no-touch')) {
+                // Check if the dropdown has the hoverable state hook and check if the html tag has the no touch detection class
+                if ($dropdown.classList.contains('is-hoverable') && $html.classList.contains('has-no-touch')) {
                     // Add a mouse enter event handler to the dropdown container to show the dropdown
                     $container.addEventListener('mouseenter', mouseenterEventHandler);
 
@@ -237,7 +240,7 @@
         },
 
         /**
-         * Show a dropdown
+         * Show a dropdown.
          * @param  {element}  $dropdown  The dropdown
          * @param  {bool}     silent     Suppress callbacks
          * @return {void}
@@ -257,10 +260,12 @@
             $container.classList.add('is-active');
 
             // Set the dropdown animation in
-            const animationIn = $container.dataset.dropdownAnimationIn || plugin.settings.animationIn;
+            const animation_in =
+                $container.dataset.dropdownAnimationIn ||
+                plugin.settings.animationIn;
 
             // Check if the animation in is set
-            if (animationIn && animationIn != 'none') {
+            if (animation_in && animation_in != 'none') {
                 // Remove the animated state hook from the dropdown
                 $dropdown.classList.remove('has-animated');
 
@@ -269,7 +274,7 @@
 
                 // Add the animation classes to the dropdown content
                 $content.classList.add('animated');
-                $content.classList.add(animationIn);
+                $content.classList.add(animation_in);
 
                 // Add an animation end event listener to the dropdown content
                 $content.addEventListener('animationend', (event) => {
@@ -278,7 +283,7 @@
 
                     // Remove the animation classes from the dropdown content
                     $content.classList.remove('animated');
-                    $content.classList.remove(animationIn);
+                    $content.classList.remove(animation_in);
 
                     // Add the animated state hook to the dropdown
                     $dropdown.classList.add('has-animated');
@@ -301,7 +306,7 @@
         },
 
         /**
-         * Hide a dropdown
+         * Hide a dropdown.
          * @param  {element}  $dropdown  The dropdown
          * @param  {bool}     silent     Suppress callbacks
          * @return {void}
@@ -318,10 +323,12 @@
             const $content = $dropdown.querySelector('.dropdown__content');
 
             // Set the dropdown animation out
-            const animationOut = $container.dataset.dropdownAnimationOut || plugin.settings.animationOut;
+            const animation_out =
+                $container.dataset.dropdownAnimationOut ||
+                plugin.settings.animationOut;
 
             // Check if the animation out is set
-            if (animationOut && animationOut != 'none') {
+            if (animation_out && animation_out != 'none') {
                 // Remove the animated state hook from the dropdown
                 $dropdown.classList.remove('has-animated');
 
@@ -330,7 +337,7 @@
 
                 // Add the animation classes to the dropdown content
                 $content.classList.add('animated');
-                $content.classList.add(animationOut);
+                $content.classList.add(animation_out);
 
                 // Add an animation end event listener to the dropdown content
                 $content.addEventListener('animationend', (event) => {
@@ -339,7 +346,7 @@
 
                     // Remove the animation classes from the dropdown content
                     $content.classList.remove('animated');
-                    $content.classList.remove(animationOut);
+                    $content.classList.remove(animation_out);
 
                     // Add the animated state hook to the dropdown
                     $dropdown.classList.add('has-animated');
@@ -365,7 +372,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -390,7 +397,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -406,6 +413,9 @@
 
             // Cycle through all of the dropdown containers
             $containers.forEach(($container) => {
+                // Set the html element
+                const $html = document.querySelector('html');
+
                 // Set the dropdown trigger and dropdown
                 const $trigger = $container.querySelector('.js-dropdown-trigger');
                 const $dropdown = $container.querySelector('.dropdown');
@@ -422,8 +432,8 @@
                 // Remove the focus out event handler from the dropdown container
                 $container.removeEventListener('focusout', focusoutEventHandler);
 
-                // Check if the dropdown has the hoverable state class and check if the html tag has the no touch detection class
-                if ($dropdown.classList.contains('is-hoverable') && document.querySelector('html').classList.contains('has-no-touch')) {
+                // Check if the dropdown has the hoverable state hook and check if the html tag has the no touch detection class
+                if ($dropdown.classList.contains('is-hoverable') && $html.classList.contains('has-no-touch')) {
                     // Remove the mouse enter event handler from the dropdown container
                     $container.removeEventListener('mouseenter', mouseenterEventHandler);
 
@@ -440,7 +450,7 @@
         },
 
         /**
-         * Call the show method silently
+         * Call the show method silently.
          * @return {void}
          */
         showSilently: ($dropdown) => {
@@ -449,7 +459,7 @@
         },
 
         /**
-         * Call the hide method silently
+         * Call the hide method silently.
          * @return {void}
          */
         hideSilently: ($dropdown) => {
@@ -458,7 +468,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -467,7 +477,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {

@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> BUTTON -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> BUTTON -> VARIABLES
+    ========================================================================= */
 
 // Button shorthand types
 $button: "
@@ -16,95 +16,95 @@ $button: "
 
 // Button
 $button-background-color: base-color('slate') !default;
-$button-background-color--hover: base-color('slate', $pseudo-background-color-type--hover) !default;
-$button-background-color--active: base-color('slate', $pseudo-background-color-type--active) !default;
-$button-border-color: base-color('slate', $pseudo-border-color-type) !default;
-$button-border-color--hover: base-color('slate', $pseudo-border-color-type--hover) !default;
-$button-border-color--active: base-color('slate', $pseudo-border-color-type--active) !default;
-$button-border-radius--top-left: $border-radius--top-left !default;
-$button-border-radius--top-right: $border-radius--top-right !default;
-$button-border-radius--bottom-right: $border-radius--bottom-right !default;
-$button-border-radius--bottom-left: $border-radius--bottom-left !default;
+$button-background-color-active: base-color('slate', $background-color-palette-type-active) !default;
+$button-background-color-hover: base-color('slate', $background-color-palette-type-hover) !default;
+$button-border-color: base-color('slate', $border-color-palette-type) !default;
+$button-border-color-active: base-color('slate', $border-color-palette-type-active) !default;
+$button-border-color-hover: base-color('slate', $border-color-palette-type-hover) !default;
+$button-border-radius-bottom-left: $border-radius-bottom-left !default;
+$button-border-radius-bottom-right: $border-radius-bottom-right !default;
+$button-border-radius-top-left: $border-radius-top-left !default;
+$button-border-radius-top-right: $border-radius-top-right !default;
 $button-border-style: $border-style !default;
-$button-border-width--top: $border-width--top !default;
-$button-border-width--right: $border-width--right !default;
-$button-border-width--bottom: $border-width--bottom !default;
-$button-border-width--left: $border-width--left !default;
-$button-border-width--divider: $border-width--divider !default;
+$button-border-width-bottom: $border-width-bottom !default;
+$button-border-width-left: $border-width-left !default;
+$button-border-width-right: $border-width-right !default;
+$button-border-width-top: $border-width-top !default;
+$button-border-width-divider: $border-width-divider !default;
 $button-content-spacing: $content-spacing !default;
-$button-content-spacing--small: $content-spacing--small !default;
-$button-content-spacing--large: $content-spacing--large !default;
-$button-content-spacing--huge: $content-spacing--huge !default;
+$button-content-spacing-small: $content-spacing-small !default;
+$button-content-spacing-large: $content-spacing-large !default;
+$button-content-spacing-huge: $content-spacing-huge !default;
 $button-element-spacing: $element-spacing !default;
-$button-element-spacing--small: $element-spacing--small !default;
-$button-element-spacing--large: $element-spacing--large !default;
-$button-element-spacing--huge: $element-spacing--huge !default;
+$button-element-spacing-small: $element-spacing-small !default;
+$button-element-spacing-large: $element-spacing-large !default;
+$button-element-spacing-huge: $element-spacing-huge !default;
 $button-font-color: base-color('slate', 'invert') !default;
-$button-font-color--hover: base-color('slate', 'invert') !default;
-$button-font-color--active: base-color('slate', 'invert') !default;
+$button-font-color-hover: base-color('slate', 'invert') !default;
+$button-font-color-active: base-color('slate', 'invert') !default;
 $button-font-family: $secondary-typeface !default;
 $button-font-size: $font-size !default;
-$button-font-size--small: $font-size--small !default;
-$button-font-size--large: $font-size--large !default;
-$button-font-size--huge: $font-size--huge !default;
+$button-font-size-small: $font-size-small !default;
+$button-font-size-large: $font-size-large !default;
+$button-font-size-huge: $font-size-huge !default;
 $button-font-variant: normal !default;
 $button-font-weight: 300 !default;
 $button-height: $input-height !default;
-$button-height--small: $input-height--small !default;
-$button-height--large: $input-height--large !default;
-$button-height--huge: $input-height--huge !default;
+$button-height-small: $input-height-small !default;
+$button-height-large: $input-height-large !default;
+$button-height-huge: $input-height-huge !default;
 $button-icon-background-color: transparent !default;
-$button-icon-background-color--focus: hsla(0, 0, 0, 0.04) !default;
-$button-icon-background-color--hover: hsla(0, 0, 0, 0.08) !default;
-$button-icon-background-color--active: hsla(0, 0, 0, 0.12) !default;
+$button-icon-background-color-active: hsla(0, 0, 0, 0.12) !default;
+$button-icon-background-color-focus: hsla(0, 0, 0, 0.04) !default;
+$button-icon-background-color-hover: hsla(0, 0, 0, 0.08) !default;
 $button-icon-border-color: transparent !default;
-$button-icon-border-color--focus: transparent !default;
-$button-icon-border-color--hover: transparent !default;
-$button-icon-border-color--active:  transparent !default;
+$button-icon-border-color-active:  transparent !default;
+$button-icon-border-color-focus: transparent !default;
+$button-icon-border-color-hover: transparent !default;
 $button-icon-font-color: inherit !default;
-$button-icon-font-color--focus: inherit !default;
-$button-icon-font-color--hover: inherit !default;
-$button-icon-font-color--active: inherit !default;
+$button-icon-font-color-active: inherit !default;
+$button-icon-font-color-focus: inherit !default;
+$button-icon-font-color-hover: inherit !default;
 $button-icon-opacity: 0.3 !default;
-$button-icon-opacity--hover: 0.6 !default;
-$button-icon-opacity--focus: 0.6 !default;
-$button-icon-opacity--active: 0.9 !default;
+$button-icon-opacity-active: 0.9 !default;
+$button-icon-opacity-hover: 0.6 !default;
+$button-icon-opacity-focus: 0.6 !default;
 $button-letter-spacing: 0 !default;
 $button-static-background-color: base-color('white') !default;
-$button-static-border-color: base-color('white', $pseudo-border-color-type) !default;
+$button-static-border-color: base-color('white', $border-color-palette-type) !default;
 $button-static-font-color: base-color('white', 'invert') !default;
 $button-text-transform: uppercase !default;
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> BUTTON -> MIXINS
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> BUTTON -> MIXINS
+    ========================================================================= */
 
 // Small button size
-@mixin button-size--small() {
-    font-size: $button-font-size--small;
-    height: $button-height--small;
-    line-height: $button-height--small - ($button-border-width--top + $button-border-width--bottom);
-    margin-bottom: $button-element-spacing--small;
-    padding: 0 $button-content-spacing--small;
+@mixin button-size-small() {
+    font-size: $button-font-size-small;
+    height: $button-height-small;
+    line-height: $button-height-small - ($button-border-width-top + $button-border-width-bottom);
+    margin-bottom: $button-element-spacing-small;
+    padding: 0 $button-content-spacing-small;
 }
 
 // Large button size
-@mixin button-size--large() {
-    font-size: $button-font-size--large;
-    height: $button-height--large;
-    line-height: $button-height--large - ($button-border-width--top + $button-border-width--bottom);
-    margin-bottom: $button-element-spacing--large;
-    padding: 0 $button-content-spacing--large;
+@mixin button-size-large() {
+    font-size: $button-font-size-large;
+    height: $button-height-large;
+    line-height: $button-height-large - ($button-border-width-top + $button-border-width-bottom);
+    margin-bottom: $button-element-spacing-large;
+    padding: 0 $button-content-spacing-large;
 }
 
 // Huge button size
-@mixin button-size--huge() {
-    font-size: $button-font-size--huge;
-    height: $button-height--huge;
-    line-height: $button-height--huge - ($button-border-width--top + $button-border-width--bottom);
-    margin-bottom: $button-element-spacing--huge;
-    padding: 0 $button-content-spacing--huge;
+@mixin button-size-huge() {
+    font-size: $button-font-size-huge;
+    height: $button-height-huge;
+    line-height: $button-height-huge - ($button-border-width-top + $button-border-width-bottom);
+    margin-bottom: $button-element-spacing-huge;
+    padding: 0 $button-content-spacing-huge;
 }
 
 // Standard icon button size
@@ -116,46 +116,46 @@ $button-text-transform: uppercase !default;
 }
 
 // Small icon button size
-@mixin icon-button-size--small() {
-    max-width: $button-height--small;
-    min-width: $button-height--small;
+@mixin icon-button-size-small() {
+    max-width: $button-height-small;
+    min-width: $button-height-small;
     padding: 0;
-    width: $button-height--small;
+    width: $button-height-small;
 }
 
 // Large icon button size
-@mixin icon-button-size--large() {
-    max-width: $button-height--large;
-    min-width: $button-height--large;
+@mixin icon-button-size-large() {
+    max-width: $button-height-large;
+    min-width: $button-height-large;
     padding: 0;
-    width: $button-height--large;
+    width: $button-height-large;
 }
 
 // Huge icon button size
-@mixin icon-button-size--huge() {
-    max-width: $button-height--huge;
-    min-width: $button-height--huge;
+@mixin icon-button-size-huge() {
+    max-width: $button-height-huge;
+    min-width: $button-height-huge;
     padding: 0;
-    width: $button-height--huge;
+    width: $button-height-huge;
 }
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> BUTTON
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> BUTTON
+    ========================================================================= */
 
 #{$button} {
     align-items: center;
     background-color: $button-background-color;
     border: 0 $button-border-style $button-border-color;
-    border-bottom-left-radius: $button-border-radius--bottom-left;
-    border-bottom-right-radius: $button-border-radius--bottom-right;
-    border-top-left-radius: $button-border-radius--top-left;
-    border-top-right-radius: $button-border-radius--top-right;
-    border-bottom-width: $button-border-width--bottom;
-    border-left-width: $button-border-width--left;
-    border-right-width: $button-border-width--right;
-    border-top-width: $button-border-width--top;
+    border-bottom-left-radius: $button-border-radius-bottom-left;
+    border-bottom-right-radius: $button-border-radius-bottom-right;
+    border-top-left-radius: $button-border-radius-top-left;
+    border-top-right-radius: $button-border-radius-top-right;
+    border-bottom-width: $button-border-width-bottom;
+    border-left-width: $button-border-width-left;
+    border-right-width: $button-border-width-right;
+    border-top-width: $button-border-width-top;
     color: $button-font-color;
     cursor: pointer;
     display: inline-flex;
@@ -166,7 +166,7 @@ $button-text-transform: uppercase !default;
     height: $button-height;
     justify-content: center;
     letter-spacing: $button-letter-spacing;
-    line-height: $button-height - ($button-border-width--top + $button-border-width--bottom);
+    line-height: $button-height - ($button-border-width-top + $button-border-width-bottom);
     margin: 0;
     margin-bottom: $button-element-spacing;
     max-width: 100%;
@@ -182,9 +182,9 @@ $button-text-transform: uppercase !default;
 
     // Pseudo classes
     &:hover {
-        background-color: $button-background-color--hover;
-        border-color: $button-border-color--hover;
-        color: $button-font-color--hover;
+        background-color: $button-background-color-hover;
+        border-color: $button-border-color-hover;
+        color: $button-font-color-hover;
     }
 
     &:focus {
@@ -193,9 +193,9 @@ $button-text-transform: uppercase !default;
     }
 
     &:active {
-        background-color: $button-background-color--active;
-        border-color: $button-border-color--active;
-        color: $button-font-color--active;
+        background-color: $button-background-color-active;
+        border-color: $button-border-color-active;
+        color: $button-font-color-active;
         z-index: get-stack-index('active');
     }
 
@@ -218,29 +218,29 @@ $button-text-transform: uppercase !default;
 
     // Modifiers: Sizes
     &.is-small {
-        @include button-size--small();
+        @include button-size-small();
 
         // Nested selectors
         &.button--icon {
-            @include icon-button-size--small();
+            @include icon-button-size-small();
         }
     }
 
     &.is-large {
-        @include button-size--large();
+        @include button-size-large();
 
         // Nested selectors
         &.button--icon {
-            @include icon-button-size--large();
+            @include icon-button-size-large();
         }
     }
 
     &.is-huge {
-        @include button-size--huge();
+        @include button-size-huge();
 
         // Nested selectors
         &.button--icon {
-            @include icon-button-size--huge();
+            @include icon-button-size-huge();
         }
     }
 
@@ -248,13 +248,13 @@ $button-text-transform: uppercase !default;
     @each $name, $color in $base-colors {
         &.is-#{$name} {
             background-color: base-color($name);
-            border-color: base-color($name, $pseudo-border-color-type);
+            border-color: base-color($name, $border-color-palette-type);
             color: base-color($name, 'invert');
 
             // Pseudo classes
             &:hover {
-                background-color: base-color($name, $pseudo-background-color-type--hover);
-                border-color: base-color($name, $pseudo-border-color-type--hover);
+                background-color: base-color($name, $background-color-palette-type-hover);
+                border-color: base-color($name, $border-color-palette-type-hover);
                 color: base-color($name, 'invert');
             }
 
@@ -263,16 +263,16 @@ $button-text-transform: uppercase !default;
             }
 
             &:active {
-                background-color: base-color($name, $pseudo-background-color-type--active);
-                border-color: base-color($name, $pseudo-border-color-type--active);
+                background-color: base-color($name, $background-color-palette-type-active);
+                border-color: base-color($name, $border-color-palette-type-active);
                 color: base-color($name, 'invert');
             }
 
             // Modifiers: State hooks
             &[disabled],
             &.is-disabled {
-                background-color: base-color($name, $pseudo-background-color-type) !important;
-                border-color: base-color($name, $pseudo-border-color-type) !important;
+                background-color: base-color($name, $background-color-palette-type) !important;
+                border-color: base-color($name, $border-color-palette-type) !important;
                 color: base-color($name, 'invert') !important;
             }
 
@@ -295,7 +295,7 @@ $button-text-transform: uppercase !default;
 
                 &:active {
                     background-color: transparentize(base-color($name), 0.85);
-                    color: base-color($name, $pseudo-background-color-type--active);
+                    color: base-color($name, $background-color-palette-type-active);
                 }
 
                 // Modifiers: State hooks
@@ -320,8 +320,8 @@ $button-text-transform: uppercase !default;
                 }
 
                 &:active {
-                    background-color: base-color($name, $pseudo-background-color-type--active);
-                    border-color: base-color($name, $pseudo-background-color-type--active);
+                    background-color: base-color($name, $background-color-palette-type-active);
+                    border-color: base-color($name, $background-color-palette-type-active);
                     color: base-color($name, 'invert');
                 }
 
@@ -340,13 +340,13 @@ $button-text-transform: uppercase !default;
     @each $name, $color in $feedback-colors {
         &.has-#{$name} {
             background-color: feedback-color($name);
-            border-color: feedback-color($name, $pseudo-border-color-type);
+            border-color: feedback-color($name, $border-color-palette-type);
             color: feedback-color($name, 'invert');
 
             // Pseudo classes
             &:hover {
-                background-color: feedback-color($name, $pseudo-background-color-type--hover);
-                border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                background-color: feedback-color($name, $background-color-palette-type-hover);
+                border-color: feedback-color($name, $border-color-palette-type-hover);
                 color: feedback-color($name, 'invert');
             }
 
@@ -355,16 +355,16 @@ $button-text-transform: uppercase !default;
             }
 
             &:active {
-                background-color: feedback-color($name, $pseudo-background-color-type--active);
-                border-color: feedback-color($name, $pseudo-border-color-type--active);
+                background-color: feedback-color($name, $background-color-palette-type-active);
+                border-color: feedback-color($name, $border-color-palette-type-active);
                 color: feedback-color($name, 'invert');
             }
 
             // Modifiers: State hooks
             &[disabled],
             &.is-disabled {
-                background-color: feedback-color($name, $pseudo-background-color-type) !important;
-                border-color: feedback-color($name, $pseudo-border-color-type) !important;
+                background-color: feedback-color($name, $background-color-palette-type) !important;
+                border-color: feedback-color($name, $border-color-palette-type) !important;
                 color: feedback-color($name, 'invert') !important;
             }
 
@@ -387,7 +387,7 @@ $button-text-transform: uppercase !default;
 
                 &:active {
                     background-color: transparentize(feedback-color($name), 0.85);
-                    color: feedback-color($name, $pseudo-background-color-type--active);
+                    color: feedback-color($name, $background-color-palette-type-active);
                 }
 
                 // Modifiers: State hooks
@@ -412,8 +412,8 @@ $button-text-transform: uppercase !default;
                 }
 
                 &:active {
-                    background-color: feedback-color($name, $pseudo-background-color-type--active);
-                    border-color: feedback-color($name, $pseudo-background-color-type--active);
+                    background-color: feedback-color($name, $background-color-palette-type-active);
+                    border-color: feedback-color($name, $background-color-palette-type-active);
                     color: feedback-color($name, 'invert');
                 }
 
@@ -452,7 +452,7 @@ $button-text-transform: uppercase !default;
 
         &:active {
             background-color: transparentize($button-background-color, 0.85);
-            color: $button-background-color--active;
+            color: $button-background-color-active;
         }
 
         // Modifiers: State hooks
@@ -473,25 +473,25 @@ $button-text-transform: uppercase !default;
 
         // Pseudo classes
         &:focus {
-            background-color: $button-icon-background-color--focus;
-            border-color: $button-icon-border-color--focus;
+            background-color: $button-icon-background-color-focus;
+            border-color: $button-icon-border-color-focus;
             box-shadow: none;
-            color: $button-icon-font-color--focus;
-            opacity: $button-icon-opacity--focus;
+            color: $button-icon-font-color-focus;
+            opacity: $button-icon-opacity-focus;
         }
 
         &:hover {
-            background-color: $button-icon-background-color--hover;
-            border-color: $button-icon-border-color--hover;
-            color: $button-icon-font-color--hover;
-            opacity: $button-icon-opacity--hover;
+            background-color: $button-icon-background-color-hover;
+            border-color: $button-icon-border-color-hover;
+            color: $button-icon-font-color-hover;
+            opacity: $button-icon-opacity-hover;
         }
 
         &:active {
-            background-color: $button-icon-background-color--active;
-            border-color: $button-icon-border-color--active;
-            color: $button-icon-font-color--active;
-            opacity: $button-icon-opacity--active;
+            background-color: $button-icon-background-color-active;
+            border-color: $button-icon-border-color-active;
+            color: $button-icon-font-color-active;
+            opacity: $button-icon-opacity-active;
         }
 
         // Modifiers: State hooks
@@ -517,8 +517,8 @@ $button-text-transform: uppercase !default;
         }
 
         &:active {
-            background-color: $button-background-color--active;
-            border-color: $button-background-color--active;
+            background-color: $button-background-color-active;
+            border-color: $button-background-color-active;
             color: $button-font-color;
         }
 
@@ -555,9 +555,9 @@ $button-text-transform: uppercase !default;
 }
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> BUTTON GROUP
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> BUTTON GROUP
+    ========================================================================= */
 
 .button-group {
     display: inline-flex;
@@ -565,55 +565,55 @@ $button-text-transform: uppercase !default;
 
     // Modifiers: Sizes
     &.is-small {
-        margin-bottom: $button-element-spacing--small;
+        margin-bottom: $button-element-spacing-small;
 
         // Modifiers
         &.button-group--icons {
             // Nested selectors
             #{$button} {
-                @include icon-button-size--small();
+                @include icon-button-size-small();
             }
         }
 
         // Nested selectors
         #{$button} {
-            @include button-size--small();
+            @include button-size-small();
             margin-bottom: 0;
         }
     }
 
     &.is-large {
-        margin-bottom: $button-element-spacing--large;
+        margin-bottom: $button-element-spacing-large;
 
         // Modifiers
         &.button-group--icons {
             // Nested selectors
             #{$button} {
-                @include icon-button-size--large();
+                @include icon-button-size-large();
             }
         }
 
         // Nested selectors
         #{$button} {
-            @include button-size--large();
+            @include button-size-large();
             margin-bottom: 0;
         }
     }
 
     &.is-huge {
-        margin-bottom: $button-element-spacing--huge;
+        margin-bottom: $button-element-spacing-huge;
 
         // Modifiers
         &.button-group--icons {
             // Nested selectors
             #{$button} {
-                @include icon-button-size--huge();
+                @include icon-button-size-huge();
             }
         }
 
         // Nested selectors
         #{$button} {
-            @include button-size--huge();
+            @include button-size-huge();
             margin-bottom: 0;
         }
     }
@@ -642,7 +642,7 @@ $button-text-transform: uppercase !default;
 
                     &:active {
                         background-color: transparentize(base-color($name), 0.85);
-                        color: base-color($name, $pseudo-background-color-type--active);
+                        color: base-color($name, $background-color-palette-type-active);
                     }
                 }
             }
@@ -662,8 +662,8 @@ $button-text-transform: uppercase !default;
                     }
 
                     &:active {
-                        background-color: base-color($name, $pseudo-background-color-type--active);
-                        border-color: base-color($name, $pseudo-background-color-type--active);
+                        background-color: base-color($name, $background-color-palette-type-active);
+                        border-color: base-color($name, $background-color-palette-type-active);
                         color: base-color($name, 'invert');
                     }
                 }
@@ -672,13 +672,13 @@ $button-text-transform: uppercase !default;
             // Nested selectors
             #{$button} {
                 background-color: base-color($name);
-                border-color: base-color($name, $pseudo-border-color-type);
+                border-color: base-color($name, $border-color-palette-type);
                 color: base-color($name, 'invert');
 
                 // Pseudo classes
                 &:hover {
-                    background-color: base-color($name, $pseudo-background-color-type--hover);
-                    border-color: base-color($name, $pseudo-border-color-type--hover);
+                    background-color: base-color($name, $background-color-palette-type-hover);
+                    border-color: base-color($name, $border-color-palette-type-hover);
                     color: base-color($name, 'invert');
                 }
 
@@ -687,8 +687,8 @@ $button-text-transform: uppercase !default;
                 }
 
                 &:active {
-                    background-color: base-color($name, $pseudo-background-color-type--active);
-                    border-color: base-color($name, $pseudo-border-color-type--active);
+                    background-color: base-color($name, $background-color-palette-type-active);
+                    border-color: base-color($name, $border-color-palette-type-active);
                     color: base-color($name, 'invert');
                 }
             }
@@ -719,7 +719,7 @@ $button-text-transform: uppercase !default;
 
                     &:active {
                         background-color: transparentize(feedback-color($name), 0.85);
-                        color: feedback-color($name, $pseudo-background-color-type--active);
+                        color: feedback-color($name, $background-color-palette-type-active);
                     }
                 }
             }
@@ -739,8 +739,8 @@ $button-text-transform: uppercase !default;
                     }
 
                     &:active {
-                        background-color: feedback-color($name, $pseudo-background-color-type--active);
-                        border-color: feedback-color($name, $pseudo-background-color-type--active);
+                        background-color: feedback-color($name, $background-color-palette-type-active);
+                        border-color: feedback-color($name, $background-color-palette-type-active);
                         color: feedback-color($name, 'invert');
                     }
                 }
@@ -749,13 +749,13 @@ $button-text-transform: uppercase !default;
             // Nested selectors
             #{$button} {
                 background-color: feedback-color($name);
-                border-color: feedback-color($name, $pseudo-border-color-type);
+                border-color: feedback-color($name, $border-color-palette-type);
                 color: feedback-color($name, 'invert');
 
                 // Pseudo classes
                 &:hover {
-                    background-color: feedback-color($name, $pseudo-background-color-type--hover);
-                    border-color: feedback-color($name, $pseudo-border-color-type--hover);
+                    background-color: feedback-color($name, $background-color-palette-type-hover);
+                    border-color: feedback-color($name, $border-color-palette-type-hover);
                     color: feedback-color($name, 'invert');
                 }
 
@@ -764,8 +764,8 @@ $button-text-transform: uppercase !default;
                 }
 
                 &:active {
-                    background-color: feedback-color($name, $pseudo-background-color-type--active);
-                    border-color: feedback-color($name, $pseudo-border-color-type--active);
+                    background-color: feedback-color($name, $background-color-palette-type-active);
+                    border-color: feedback-color($name, $border-color-palette-type-active);
                     color: feedback-color($name, 'invert');
                 }
             }
@@ -802,7 +802,7 @@ $button-text-transform: uppercase !default;
 
             &:active {
                 background-color: transparentize($button-background-color, 0.85);
-                color: $button-background-color--active;
+                color: $button-background-color-active;
             }
         }
     }
@@ -829,8 +829,8 @@ $button-text-transform: uppercase !default;
             }
 
             &:active {
-                background-color: $button-background-color--active;
-                border-color: $button-background-color--active;
+                background-color: $button-background-color-active;
+                border-color: $button-background-color-active;
                 color: $button-font-color;
             }
         }
@@ -858,22 +858,22 @@ $button-text-transform: uppercase !default;
 
         // Pseudo classes
         &:not(:only-child) {
-            border-left-width: $button-border-width--divider;
+            border-left-width: $button-border-width-divider;
             border-radius: 0;
-            border-right-width: $button-border-width--divider;
-            margin-right: -$button-border-width--divider;
+            border-right-width: $button-border-width-divider;
+            margin-right: -$button-border-width-divider;
         }
 
         &:first-child {
-            border-bottom-left-radius: $button-border-radius--bottom-left;
-            border-left-width: $button-border-width--left;
-            border-top-left-radius: $button-border-radius--top-left;
+            border-bottom-left-radius: $button-border-radius-bottom-left;
+            border-left-width: $button-border-width-left;
+            border-top-left-radius: $button-border-radius-top-left;
         }
 
         &:last-child {
-            border-bottom-right-radius: $button-border-radius--bottom-right;
-            border-right-width: $button-border-width--right;
-            border-top-right-radius: $button-border-radius--top-right;
+            border-bottom-right-radius: $button-border-radius-bottom-right;
+            border-right-width: $button-border-width-right;
+            border-top-right-radius: $button-border-radius-top-right;
             margin-right: 0;
         }
     }

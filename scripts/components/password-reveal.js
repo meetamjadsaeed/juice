@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> PASSWORD REVEAL
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> PASSWORD REVEAL
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'PasswordReveal';
+    const plugin_name = 'PasswordReveal';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -57,15 +57,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -76,7 +76,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -86,7 +86,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -96,7 +96,7 @@
     };
 
     /**
-     * Event handler to toggle a password when the password reveal trigger is clicked
+     * Event handler to toggle a password when the password reveal trigger is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -108,7 +108,7 @@
         const $container = event.target.closest('.has-password-reveal');
         const $input = $container.querySelector('input');
 
-        // Check if the input is a password input and show or hide the password
+        // Check if the input is a password input
         ($input.getAttribute('type') == 'password'
             ? plugin.this.show($input)
             : plugin.this.hide($input)
@@ -116,17 +116,17 @@
     };
 
     /**
-     * Event handler to prevent the default action
+     * Event handler to prevent the default behavior.
      * @param  {object}  event  The event object
      * @return {void}
      */
     const preventDefaultEventHandler = (event) => {
-        // Prevent the default action
+        // Prevent the default behavior
         event.preventDefault();
     };
 
     /**
-     * Event handler to show a password for various actions
+     * Event handler to show a password for various actions.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -143,7 +143,7 @@
     };
 
     /**
-     * Event handler to hide a password for various actions
+     * Event handler to hide a password for various actions.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -160,12 +160,12 @@
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -184,6 +184,9 @@
 
             // Cycle through all of the containers
             $containers.forEach(($container) => {
+                // Set the html element
+                const $html = document.querySelector('html');
+
                 // Set the password reveal trigger and input
                 const $trigger = $container.querySelector('.js-password-reveal-trigger');
                 const $input = $container.querySelector('input');
@@ -191,8 +194,8 @@
                 // Hide the password silently
                 plugin.this.hideSilently($input);
 
-                // Check if the action is set to hover and check if the html tag has the touch detection class and set the action to click or the original action
-                const action = (plugin.settings.action == 'hover' && document.querySelector('html').classList.contains('has-touch')
+                // Check if the action is set to hover and check if the html tag has the touch detection class
+                const action = (plugin.settings.action == 'hover' && $html.classList.contains('has-touch')
                     ? 'click'
                     : plugin.settings.action
                 );
@@ -242,7 +245,7 @@
         },
 
         /**
-         * Show a password
+         * Show a password.
          * @param  {element}  $input  The input
          * @param  {bool}     silent  Suppress callbacks
          * @return {void}
@@ -271,7 +274,7 @@
         },
 
         /**
-         * Hide a password
+         * Hide a password.
          * @param  {element}  $input  The input
          * @param  {bool}     silent  Suppress callbacks
          * @return {void}
@@ -300,7 +303,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -325,7 +328,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -341,6 +344,9 @@
 
             // Cycle through all of the containers
             $containers.forEach(($container) => {
+                // Set the html element
+                const $html = document.querySelector('html');
+
                 // Set the password reveal trigger and input
                 const $trigger = $container.querySelector('.js-password-reveal-trigger');
                 const $input = $container.querySelector('input');
@@ -348,8 +354,8 @@
                 // Hide the password silently
                 plugin.this.hideSilently($input);
 
-                // Check if the action is set to hover and check if the html tag has the touch detection class and set the action to click or the original action
-                const action = (plugin.settings.action == 'hover' && document.querySelector('html').classList.contains('has-touch')
+                // Check if the action is set to hover and check if the html tag has the touch detection class
+                const action = (plugin.settings.action == 'hover' && $html.classList.contains('has-touch')
                     ? 'click'
                     : plugin.settings.action
                 );
@@ -399,7 +405,7 @@
         },
 
         /**
-         * Call the show method silently
+         * Call the show method silently.
          * @param  {element}  $input  The input
          * @return {void}
          */
@@ -409,7 +415,7 @@
         },
 
         /**
-         * Call the hide method silently
+         * Call the hide method silently.
          * @param  {element}  $input  The input
          * @return {void}
          */
@@ -419,7 +425,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -428,7 +434,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {

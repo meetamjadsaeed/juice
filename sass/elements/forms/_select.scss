@@ -1,59 +1,59 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORMS -> SELECT -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> FORMS -> SELECT -> VARIABLES
+    ========================================================================= */
 
 $select-background-color: $input-background-color !default;
-$select-background-color--hover: $input-background-color !default;
-$select-background-color--focus: $input-background-color !default;
+$select-background-color-hover: $input-background-color !default;
+$select-background-color-focus: $input-background-color !default;
 $select-border-color: $input-border-color !default;
-$select-border-color--hover: $input-border-color--hover !default;
-$select-border-color--focus: $input-border-color--focus !default;
-$select-border-radius--top-left: $input-border-radius--top-left !default;
-$select-border-radius--top-right: $input-border-radius--top-right !default;
-$select-border-radius--bottom-right: $input-border-radius--bottom-right !default;
-$select-border-radius--bottom-left: $input-border-radius--bottom-left !default;
+$select-border-color-hover: $input-border-color-hover !default;
+$select-border-color-focus: $input-border-color-focus !default;
+$select-border-radius-bottom-left: $input-border-radius-bottom-left !default;
+$select-border-radius-bottom-right: $input-border-radius-bottom-right !default;
+$select-border-radius-top-left: $input-border-radius-top-left !default;
+$select-border-radius-top-right: $input-border-radius-top-right !default;
 $select-border-style: $input-border-style !default;
-$select-border-width--top: $input-border-width--top !default;
-$select-border-width--right: $input-border-width--right !default;
-$select-border-width--bottom: $input-border-width--bottom !default;
-$select-border-width--left: $input-border-width--left !default;
+$select-border-width-bottom: $input-border-width-bottom !default;
+$select-border-width-left: $input-border-width-left !default;
+$select-border-width-right: $input-border-width-right !default;
+$select-border-width-top: $input-border-width-top !default;
 $select-element-spacing: $input-element-spacing !default;
-$select-element-spacing--small: $input-element-spacing--small !default;
-$select-element-spacing--large: $input-element-spacing--large !default;
-$select-element-spacing--huge: $input-element-spacing--huge !default;
+$select-element-spacing-small: $input-element-spacing-small !default;
+$select-element-spacing-large: $input-element-spacing-large !default;
+$select-element-spacing-huge: $input-element-spacing-huge !default;
 $select-font-color: $input-font-color !default;
-$select-font-color--placeholder: $input-font-color--placeholder !default;
-$select-font-color--hover: $input-font-color--hover !default;
-$select-font-color--focus: $input-font-color--focus !default;
+$select-placeholder-color: $input-placeholder-color !default;
+$select-font-color-hover: $input-font-color-hover !default;
+$select-font-color-focus: $input-font-color-focus !default;
 $select-font-family: $input-font-family !default;
 $select-font-size: $input-font-size !default;
-$select-font-size--small: $input-font-size--small !default;
-$select-font-size--large: $input-font-size--large !default;
-$select-font-size--huge: $input-font-size--huge !default;
+$select-font-size-small: $input-font-size-small !default;
+$select-font-size-large: $input-font-size-large !default;
+$select-font-size-huge: $input-font-size-huge !default;
 $select-height: $input-height !default;
-$select-height--small: $input-height--small !default;
-$select-height--large: $input-height--large !default;
-$select-height--huge: $input-height--huge !default;
+$select-height-small: $input-height-small !default;
+$select-height-large: $input-height-large !default;
+$select-height-huge: $input-height-huge !default;
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORMS -> SELECT
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> FORMS -> SELECT
+    ========================================================================= */
 
 select {
     -webkit-appearance: none;
     background-color: $select-background-color;
     border: 0 $select-border-style $select-border-color;
-    border-bottom-left-radius: $select-border-radius--bottom-left;
-    border-bottom-right-radius: $select-border-radius--bottom-right;
-    border-top-left-radius: $select-border-radius--top-left;
-    border-top-right-radius: $select-border-radius--top-right;
-    border-bottom-width: $select-border-width--bottom;
-    border-left-width: $select-border-width--left;
-    border-right-width: $select-border-width--right;
-    border-top-width: $select-border-width--top;
+    border-bottom-left-radius: $select-border-radius-bottom-left;
+    border-bottom-right-radius: $select-border-radius-bottom-right;
+    border-top-left-radius: $select-border-radius-top-left;
+    border-top-right-radius: $select-border-radius-top-right;
+    border-bottom-width: $select-border-width-bottom;
+    border-left-width: $select-border-width-left;
+    border-right-width: $select-border-width-right;
+    border-top-width: $select-border-width-top;
     color: $select-font-color;
     cursor: pointer;
     display: flex;
@@ -69,17 +69,17 @@ select {
 
     // Pseudo classes
     &:hover {
-        background-color: $select-background-color--hover;
-        border-color: $select-border-color--hover;
-        color: $select-font-color--hover;
+        background-color: $select-background-color-hover;
+        border-color: $select-border-color-hover;
+        color: $select-font-color-hover;
     }
 
     &:focus,
     &:active {
-        background-color: $select-background-color--focus;
-        border-color: $select-border-color--focus;
+        background-color: $select-background-color-focus;
+        border-color: $select-border-color-focus;
         box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color('info'), $custom-focus-box-shadow-transparentize);
-        color: $select-font-color--focus;
+        color: $select-font-color-focus;
     }
 
     &:focus {
@@ -98,9 +98,9 @@ select {
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $select-font-size--small;
-        height: $select-height--small;
-        margin-bottom: $select-element-spacing--small;
+        font-size: $select-font-size-small;
+        height: $select-height-small;
+        margin-bottom: $select-element-spacing-small;
 
         // Modifiers
         &[multiple] {
@@ -109,9 +109,9 @@ select {
     }
 
     &.is-large {
-        font-size: $select-font-size--large;
-        height: $select-height--large;
-        margin-bottom: $select-element-spacing--large;
+        font-size: $select-font-size-large;
+        height: $select-height-large;
+        margin-bottom: $select-element-spacing-large;
 
         // Modifiers
         &[multiple] {
@@ -120,9 +120,9 @@ select {
     }
 
     &.is-huge {
-        font-size: $select-font-size--huge;
-        height: $select-height--huge;
-        margin-bottom: $select-element-spacing--huge;
+        font-size: $select-font-size-huge;
+        height: $select-height-huge;
+        margin-bottom: $select-element-spacing-huge;
 
         // Modifiers
         &[multiple] {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="has-no-js has-no-touch has-smooth-scroll" lang="en">
+<html class="has-no-js has-no-touch" lang="en">
 <head>
     <!-- Meta data -->
     <meta charset="utf-8" />
@@ -16,13 +16,15 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.2.0/dist/aos.css">
+    <link rel="stylesheet" href="//unpkg.com/aos@2.2.0/dist/aos.css">
     <link rel="stylesheet" href="../../dist/juice.min.css">
 </head>
 
 <body>
     <!-- Header -->
-    <header><p>&nbsp;</p></header>
+    <header>
+        <p>&nbsp;</p>
+    </header>
 
     <!-- Main -->
     <main>
@@ -37,7 +39,7 @@
             <hr class="has-huge-element-spacing" />
         </div>
 
-        <div class="hero" style="background-image: url('https://images.pexels.com/photos/704994/pexels-photo-704994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+        <div class="hero" style="background-image: url('//images.pexels.com/photos/704994/pexels-photo-704994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -49,7 +51,7 @@
             </div>
         </div>
 
-        <div class="hero hero--center" style="background-image: url('https://images.unsplash.com/photo-1438109491414-7198515b166b?q=80&fm=jpg&s=cbdabf7a79c087a0b060670a6d79726c');">
+        <div class="hero hero--center" style="background-image: url('//images.unsplash.com/photo-1438109491414-7198515b166b?q=80&fm=jpg&s=cbdabf7a79c087a0b060670a6d79726c');">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -61,7 +63,7 @@
             </div>
         </div>
 
-        <div class="hero hero--right" style="background-image: url('https://images.pexels.com/photos/1447128/pexels-photo-1447128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+        <div class="hero hero--right" style="background-image: url('//images.pexels.com/photos/1447128/pexels-photo-1447128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -121,7 +123,7 @@
             </div>
         </div>
 
-        <div class="hero hero--half-viewport hero--parallax" style="background-image: url('https://images.pexels.com/photos/1447128/pexels-photo-1447128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+        <div class="hero hero--half-viewport hero--parallax" style="background-image: url('//images.pexels.com/photos/1447128/pexels-photo-1447128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
             <div class="container">
                 <div class="hero__content">
                     <h3>
@@ -181,7 +183,7 @@
             </div>
         </div>
 
-        <div class="hero is-viewport-100" style="background-image: url('https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');">
+        <div class="hero is-viewport-100" style="background-image: url('//images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');">
             <div class="hero__head">
                 <div class="container">
                     <nav class="navigation">
@@ -228,8 +230,13 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/velocity-animate@1.5.2/velocity.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/aos@2.3.2/dist/aos.js" type="text/javascript"></script>
-    <script src="../../dist/juice.min.js" type="text/javascript"></script>
+    <script src="//unpkg.com/velocity-animate@1.5.2/velocity.min.js"></script>
+    <script src="//unpkg.com/aos@2.3.2/dist/aos.js"></script>
+    <script src="../../dist/juice.min.js"></script>
+
+    <!-- Juice components -->
+    <script>
+        var smooth_scroll = new SmoothScroll();
+    </script>
 </body>
 </html>

@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> NOTICE
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> NOTICE
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'Notice';
+    const plugin_name = 'Notice';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -51,15 +51,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -70,7 +70,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -80,7 +80,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -90,7 +90,7 @@
     };
 
     /**
-     * Event handler to remove a notice when the notice remove is clicked
+     * Event handler to remove a notice when the notice remove is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -106,12 +106,12 @@
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -145,7 +145,7 @@
         },
 
         /**
-         * Remove a notice
+         * Remove a notice.
          * @param  {element}  $notice  The notice
          * @param  {bool}     silent   Suppress callbacks
          * @return {void}
@@ -158,16 +158,18 @@
             }
 
             // Set the notice remove animation
-            const removeAnimation = $notice.dataset.noticeRemoveAnimation || plugin.settings.removeAnimation;
+            const remove_animation =
+                $notice.dataset.noticeRemoveAnimation ||
+                plugin.settings.removeAnimation;
 
             // Check if the remove animation is set
-            if (removeAnimation && removeAnimation != 'none') {
+            if (remove_animation && remove_animation != 'none') {
                 // Add the animating state hook to the notice
                 $notice.classList.add('is-animating');
 
                 // Add the animation classes to the notice
                 $notice.classList.add('animated');
-                $notice.classList.add(removeAnimation);
+                $notice.classList.add(remove_animation);
 
                 // Add an animation end event listener to the notice
                 $notice.addEventListener('animationend', () => {
@@ -195,7 +197,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -220,7 +222,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -251,7 +253,7 @@
         },
 
         /**
-         * Call the remove method silently
+         * Call the remove method silently.
          * @param  {element}  $notice   The notice
          * @return {void}
          */
@@ -261,7 +263,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -270,7 +272,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {

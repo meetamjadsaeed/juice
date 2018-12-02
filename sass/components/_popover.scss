@@ -1,51 +1,51 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> POPOVER -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> POPOVER -> VARIABLES
+    ========================================================================= */
 
 $popover-animation-duration: 300ms !default;
 $popover-arrow-size: 6px !default;
-$popover-arrow-color: base-color('white', $pseudo-border-color-type) !default;
+$popover-arrow-color: base-color('white', $border-color-palette-type) !default;
 $popover-body-background-color: base-color('white') !default;
-$popover-body-border-color: base-color('white', $pseudo-border-color-type) !default;
+$popover-body-border-color: base-color('white', $border-color-palette-type) !default;
 $popover-body-font-color: base-color('white', 'invert') !default;
-$popover-border-radius--top-left: $border-radius--top-left !default;
-$popover-border-radius--top-right: $border-radius--top-right !default;
-$popover-border-radius--bottom-right: $border-radius--bottom-right !default;
-$popover-border-radius--bottom-left: $border-radius--bottom-left !default;
+$popover-border-radius-bottom-left: $border-radius-bottom-left !default;
+$popover-border-radius-bottom-right: $border-radius-bottom-right !default;
+$popover-border-radius-top-left: $border-radius-top-left !default;
+$popover-border-radius-top-right: $border-radius-top-right !default;
 $popover-border-style: $border-style !default;
-$popover-border-width--top: $border-width--top !default;
-$popover-border-width--right: $border-width--right !default;
-$popover-border-width--bottom: $border-width--bottom !default;
-$popover-border-width--left: $border-width--left !default;
-$popover-border-width--divider: $border-width--divider !default;
+$popover-border-width-bottom: $border-width-bottom !default;
+$popover-border-width-divider: $border-width-divider !default;
+$popover-border-width-left: $border-width-left !default;
+$popover-border-width-right: $border-width-right !default;
+$popover-border-width-top: $border-width-top !default;
 $popover-box-shadow: $box-shadow !default;
 $popover-content-spacing: $content-spacing / 2 !default;
-$popover-content-spacing--small: $content-spacing--small / 2 !default;
-$popover-content-spacing--large: $content-spacing--large / 2 !default;
-$popover-content-spacing--huge: $content-spacing--huge / 2 !default;
+$popover-content-spacing-small: $content-spacing-small / 2 !default;
+$popover-content-spacing-large: $content-spacing-large / 2 !default;
+$popover-content-spacing-huge: $content-spacing-huge / 2 !default;
 $popover-font-size: $font-size - 0.2em !default;
-$popover-font-size--small: $font-size--small - 0.2em !default;
-$popover-font-size--large: $font-size--large - 0.2em !default;
-$popover-font-size--huge: $font-size--huge - 0.2em !default;
+$popover-font-size-small: $font-size-small - 0.2em !default;
+$popover-font-size-large: $font-size-large - 0.2em !default;
+$popover-font-size-huge: $font-size-huge - 0.2em !default;
 $popover-head-background-color: base-color('white') !default;
-$popover-head-border-color: base-color('white', $pseudo-border-color-type) !default;
+$popover-head-border-color: base-color('white', $border-color-palette-type) !default;
 $popover-head-font-color: base-color('white', 'invert') !default;
 $popover-link-color: $link-color !default;
-$popover-link-color--focus: $link-color--focus !default;
-$popover-link-color--hover: $link-color--hover !default;
-$popover-link-color--active: $link-color--active !default;
+$popover-link-color-active: $link-color-active !default;
+$popover-link-color-focus: $link-color-focus !default;
+$popover-link-color-hover: $link-color-hover !default;
 $popover-offset: 5px !default;
 $popover-width: 200px !default;
-$popover-width--small: 150px !default;
-$popover-width--large: 250px !default;
-$popover-width--huge: 300px !default;
+$popover-width-small: 150px !default;
+$popover-width-large: 250px !default;
+$popover-width-huge: 300px !default;
 
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> POPOVER
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> POPOVER
+    ========================================================================= */
 
 .has-popover {
     outline: none
@@ -81,52 +81,52 @@ $popover-width--huge: 300px !default;
 
     // Modifiers: Sizes
     &.is-small {
-        width: $popover-width--small;
+        width: $popover-width-small;
 
         // Nested selectors
     	.popover__content {
-            font-size: $popover-font-size--small;
+            font-size: $popover-font-size-small;
 
             .popover__head {
-                padding: $popover-content-spacing--small;
+                padding: $popover-content-spacing-small;
             }
 
             .popover__body {
-                padding: $popover-content-spacing--small;
+                padding: $popover-content-spacing-small;
             }
     	}
     }
 
     &.is-large {
-        width: $popover-width--large;
+        width: $popover-width-large;
 
         // Nested selectors
     	.popover__content {
-            font-size: $popover-font-size--large;
+            font-size: $popover-font-size-large;
 
             .popover__head {
-                padding: $popover-content-spacing--large;
+                padding: $popover-content-spacing-large;
             }
 
             .popover__body {
-                padding: $popover-content-spacing--large;
+                padding: $popover-content-spacing-large;
             }
     	}
     }
 
     &.is-huge {
-        width: $popover-width--huge;
+        width: $popover-width-huge;
 
         // Nested selectors
     	.popover__content {
-            font-size: $popover-font-size--huge;
+            font-size: $popover-font-size-huge;
 
             .popover__head {
-                padding: $popover-content-spacing--huge;
+                padding: $popover-content-spacing-huge;
             }
 
             .popover__body {
-                padding: $popover-content-spacing--huge;
+                padding: $popover-content-spacing-huge;
             }
     	}
     }
@@ -135,10 +135,10 @@ $popover-width--huge: 300px !default;
     @each $name, $color in $base-colors {
         &.is-#{$name} {
             // Modifiers
-        	&.popover--bottom {
+        	&.popover-bottom {
         		// Pseudo elements
         		&::before {
-                    border-bottom-color: base-color($name, $pseudo-border-color-type);
+                    border-bottom-color: base-color($name, $border-color-palette-type);
         		}
         	}
 
@@ -146,7 +146,7 @@ $popover-width--huge: 300px !default;
         	.popover__content {
                 .popover__head {
                     background-color: base-color($name);
-                    border-color: base-color($name, $pseudo-border-color-type);
+                    border-color: base-color($name, $border-color-palette-type);
                     color: base-color($name, 'invert');
                 }
         	}
@@ -157,10 +157,10 @@ $popover-width--huge: 300px !default;
     @each $name, $color in $feedback-colors {
         &.has-#{$name} {
             // Modifiers
-        	&.popover--bottom {
+        	&.popover-bottom {
         		// Pseudo elements
         		&::before {
-                    border-bottom-color: feedback-color($name, $pseudo-border-color-type);
+                    border-bottom-color: feedback-color($name, $border-color-palette-type);
         		}
         	}
 
@@ -168,7 +168,7 @@ $popover-width--huge: 300px !default;
         	.popover__content {
                 .popover__head {
                     background-color: feedback-color($name);
-                    border-color: feedback-color($name, $pseudo-border-color-type);
+                    border-color: feedback-color($name, $border-color-palette-type);
                     color: feedback-color($name, 'invert');
                 }
         	}
@@ -235,12 +235,12 @@ $popover-width--huge: 300px !default;
         .popover__head {
             background-color: $popover-head-background-color;
             border: 0 $popover-border-style $popover-head-border-color;
-            border-bottom-width: $popover-border-width--divider;
-            border-left-width: $popover-border-width--left;
-            border-right-width: $popover-border-width--right;
-            border-top-left-radius: $popover-border-radius--top-left;
-            border-top-right-radius: $popover-border-radius--top-right;
-            border-top-width: $popover-border-width--top;
+            border-bottom-width: $popover-border-width-divider;
+            border-left-width: $popover-border-width-left;
+            border-right-width: $popover-border-width-right;
+            border-top-left-radius: $popover-border-radius-top-left;
+            border-top-right-radius: $popover-border-radius-top-right;
+            border-top-width: $popover-border-width-top;
             color: $popover-head-font-color;
             font-weight: bold;
             padding: $popover-content-spacing;
@@ -249,11 +249,11 @@ $popover-width--huge: 300px !default;
         .popover__body {
             background-color: $popover-body-background-color;
             border: 0 $popover-border-style $popover-body-border-color;
-            border-bottom-left-radius: $popover-border-radius--bottom-left;
-            border-bottom-right-radius: $popover-border-radius--bottom-right;
-            border-bottom-width: $popover-border-width--bottom;
-            border-left-width: $popover-border-width--left;
-            border-right-width: $popover-border-width--right;
+            border-bottom-left-radius: $popover-border-radius-bottom-left;
+            border-bottom-right-radius: $popover-border-radius-bottom-right;
+            border-bottom-width: $popover-border-width-bottom;
+            border-left-width: $popover-border-width-left;
+            border-right-width: $popover-border-width-right;
             border-top-width: 0;
             color: $popover-body-font-color;
             padding: $popover-content-spacing;
@@ -264,15 +264,15 @@ $popover-width--huge: 300px !default;
 
                 // Pseudo classes
                 &:focus {
-                    color: $popover-link-color--focus;
+                    color: $popover-link-color-focus;
                 }
 
                 &:hover {
-                    color: $popover-link-color--hover;
+                    color: $popover-link-color-hover;
                 }
 
                 &:active {
-                    color: $popover-link-color--active;
+                    color: $popover-link-color-active;
                 }
             }
         }

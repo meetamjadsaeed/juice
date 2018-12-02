@@ -1,16 +1,16 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> FRAMEWORK -> LAYOUT -> GRID -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> FRAMEWORK -> LAYOUT -> GRID -> VARIABLES
+    ========================================================================= */
 
 $grid-gutter: $element-spacing / 2 !default;
 $grid-columns: 12 !default;
 
 
-/* =============================================================================================
-   JUICE -> FRAMEWORK -> LAYOUT -> GRID
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> FRAMEWORK -> LAYOUT -> GRID
+    ========================================================================= */
 
 .grid {
     display: flex;
@@ -52,7 +52,7 @@ $grid-columns: 12 !default;
         justify-content: space-between;
     }
 
-    &.grid--top {
+    &.grid-top {
         align-items: flex-start;
     }
 
@@ -60,7 +60,7 @@ $grid-columns: 12 !default;
         align-items: center;
     }
 
-    &.grid--bottom {
+    &.grid-bottom {
         align-items: flex-end;
     }
 
@@ -120,7 +120,7 @@ $grid-columns: 12 !default;
             order: 1;
         }
 
-        &.grid__item--top {
+        &.grid__item-top {
             align-self: flex-start;
         }
 
@@ -128,7 +128,7 @@ $grid-columns: 12 !default;
             align-self: center;
         }
 
-        &.grid__item--bottom {
+        &.grid__item-bottom {
             align-self: flex-end;
         }
 
@@ -174,7 +174,7 @@ $grid-columns: 12 !default;
                 justify-content: space-between;
             }
 
-            &.grid--top\@#{$name} {
+            &.grid-top\@#{$name} {
                 align-items: flex-start;
             }
 
@@ -182,7 +182,7 @@ $grid-columns: 12 !default;
                 align-items: center;
             }
 
-            &.grid--bottom\@#{$name} {
+            &.grid-bottom\@#{$name} {
                 align-items: flex-end;
             }
 
@@ -234,7 +234,7 @@ $grid-columns: 12 !default;
                     order: 1;
                 }
 
-                &.grid__item--top\@#{$name} {
+                &.grid__item-top\@#{$name} {
                     align-self: flex-start;
                 }
 
@@ -242,7 +242,7 @@ $grid-columns: 12 !default;
                     align-self: center;
                 }
 
-                &.grid__item--bottom\@#{$name} {
+                &.grid__item-bottom\@#{$name} {
                     align-self: flex-end;
                 }
             }

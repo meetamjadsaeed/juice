@@ -1,57 +1,57 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> CARD -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> CARD -> VARIABLES
+    ========================================================================= */
 
 $card-animation-duration: 300ms !default;
 $card-background-color: base-color('white') !default;
-$card-border-color: base-color('white', $pseudo-border-color-type) !default;
-$card-border-radius--top-left: $border-radius--top-left !default;
-$card-border-radius--top-right: $border-radius--top-right !default;
-$card-border-radius--bottom-right: $border-radius--bottom-right !default;
-$card-border-radius--bottom-left: $border-radius--bottom-left !default;
+$card-border-color: base-color('white', $border-color-palette-type) !default;
+$card-border-radius-bottom-left: $border-radius-bottom-left !default;
+$card-border-radius-bottom-right: $border-radius-bottom-right !default;
+$card-border-radius-top-left: $border-radius-top-left !default;
+$card-border-radius-top-right: $border-radius-top-right !default;
 $card-border-style: $border-style !default;
-$card-border-width--top: $border-width--top !default;
-$card-border-width--right: $border-width--right !default;
-$card-border-width--bottom: $border-width--bottom !default;
-$card-border-width--left: $border-width--left !default;
+$card-border-width-bottom: $border-width-bottom !default;
+$card-border-width-left: $border-width-left !default;
+$card-border-width-right: $border-width-right !default;
+$card-border-width-top: $border-width-top !default;
 $card-box-shadow: $box-shadow !default;
 $card-content-spacing: $content-spacing !default;
-$card-content-spacing--small: $content-spacing--small !default;
-$card-content-spacing--large: $content-spacing--large !default;
-$card-content-spacing--huge: $content-spacing--huge !default;
+$card-content-spacing-small: $content-spacing-small !default;
+$card-content-spacing-large: $content-spacing-large !default;
+$card-content-spacing-huge: $content-spacing-huge !default;
 $card-element-spacing: $element-spacing !default;
-$card-element-spacing--small: $element-spacing--small !default;
-$card-element-spacing--large: $element-spacing--large !default;
-$card-element-spacing--huge: $element-spacing--huge !default;
+$card-element-spacing-small: $element-spacing-small !default;
+$card-element-spacing-large: $element-spacing-large !default;
+$card-element-spacing-huge: $element-spacing-huge !default;
 $card-font-color: base-color('white', 'invert') !default;
 $card-font-size: $font-size !default;
-$card-font-size--small: $font-size--small !default;
-$card-font-size--large: $font-size--large !default;
-$card-font-size--huge: $font-size--huge !default;
+$card-font-size-small: $font-size-small !default;
+$card-font-size-large: $font-size-large !default;
+$card-font-size-huge: $font-size-huge !default;
 $card-link-color: $link-color !default;
-$card-link-color--focus: $link-color--focus !default;
-$card-link-color--hover: $link-color--hover !default;
-$card-link-color--active: $link-color--active !default;
+$card-link-color-active: $link-color-active !default;
+$card-link-color-focus: $link-color-focus !default;
+$card-link-color-hover: $link-color-hover !default;
 
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> CARD
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> CARD
+    ========================================================================= */
 
 .card {
     animation-duration: $card-animation-duration;
     background-color: $card-background-color;
     border: 0 $card-border-style $card-border-color;
-    border-bottom-left-radius: $card-border-radius--bottom-left;
-    border-bottom-right-radius: $card-border-radius--bottom-right;
-    border-bottom-width: $card-border-width--bottom;
-    border-left-width: $card-border-width--left;
-    border-top-left-radius: $card-border-radius--top-left;
-    border-top-right-radius: $card-border-radius--top-right;
-    border-top-width: $card-border-width--top;
-    border-right-width: $card-border-width--right;
+    border-bottom-left-radius: $card-border-radius-bottom-left;
+    border-bottom-right-radius: $card-border-radius-bottom-right;
+    border-bottom-width: $card-border-width-bottom;
+    border-left-width: $card-border-width-left;
+    border-top-left-radius: $card-border-radius-top-left;
+    border-top-right-radius: $card-border-radius-top-right;
+    border-top-width: $card-border-width-top;
+    border-right-width: $card-border-width-right;
     box-shadow: $card-box-shadow;
     color: $card-font-color;
     display: flex;
@@ -63,18 +63,18 @@ $card-link-color--active: $link-color--active !default;
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $card-font-size--small;
-        margin-bottom: $card-element-spacing--small;
+        font-size: $card-font-size-small;
+        margin-bottom: $card-element-spacing-small;
 
         // Nested selectors
         .card__content {
-            padding: $card-content-spacing--small;
+            padding: $card-content-spacing-small;
 
             // Nested selectors
             .card__head,
             .card__body,
             .card__foot {
-                padding-bottom: $card-content-spacing--small;
+                padding-bottom: $card-content-spacing-small;
             }
 
             .card__foot {
@@ -82,7 +82,7 @@ $card-link-color--active: $link-color--active !default;
                 .card__buttons {
                     // Nested selectors
                     #{$button} {
-                        margin-left: $card-content-spacing--small / 2;
+                        margin-left: $card-content-spacing-small / 2;
 
                         // Pseudo classes
                         &:first-child {
@@ -95,18 +95,18 @@ $card-link-color--active: $link-color--active !default;
     }
 
     &.is-large {
-        font-size: $card-font-size--large;
-        margin-bottom: $card-element-spacing--large;
+        font-size: $card-font-size-large;
+        margin-bottom: $card-element-spacing-large;
 
         // Nested selectors
         .card__content {
-            padding: $card-content-spacing--large;
+            padding: $card-content-spacing-large;
 
             // Nested selectors
             .card__head,
             .card__body,
             .card__foot {
-                padding-bottom: $card-content-spacing--large;
+                padding-bottom: $card-content-spacing-large;
             }
 
             .card__foot {
@@ -114,7 +114,7 @@ $card-link-color--active: $link-color--active !default;
                 .card__buttons {
                     // Nested selectors
                     #{$button} {
-                        margin-left: $card-content-spacing--large / 2;
+                        margin-left: $card-content-spacing-large / 2;
 
                         // Pseudo classes
                         &:first-child {
@@ -127,18 +127,18 @@ $card-link-color--active: $link-color--active !default;
     }
 
     &.is-huge {
-        font-size: $card-font-size--huge;
-        margin-bottom: $card-element-spacing--huge;
+        font-size: $card-font-size-huge;
+        margin-bottom: $card-element-spacing-huge;
 
         // Nested selectors
         .card__content {
-            padding: $card-content-spacing--huge;
+            padding: $card-content-spacing-huge;
 
             // Nested selectors
             .card__head,
             .card__body,
             .card__foot {
-                padding-bottom: $card-content-spacing--huge;
+                padding-bottom: $card-content-spacing-huge;
             }
 
             .card__foot {
@@ -146,7 +146,7 @@ $card-link-color--active: $link-color--active !default;
                 .card__buttons {
                     // Nested selectors
                     #{$button} {
-                        margin-left: $card-content-spacing--huge / 2;
+                        margin-left: $card-content-spacing-huge / 2;
 
                         // Pseudo classes
                         &:first-child {
@@ -164,21 +164,21 @@ $card-link-color--active: $link-color--active !default;
 
         // Pseudo classes
         &:focus {
-            color: $card-link-color--focus;
+            color: $card-link-color-focus;
         }
 
         &:hover {
-            color: $card-link-color--hover;
+            color: $card-link-color-hover;
         }
 
         &:active {
-            color: $card-link-color--active;
+            color: $card-link-color-active;
         }
     }
 
     .card__media {
-        border-top-left-radius: $card-border-radius--top-left;
-        border-top-right-radius: $card-border-radius--top-right;
+        border-top-left-radius: $card-border-radius-top-left;
+        border-top-right-radius: $card-border-radius-top-right;
         overflow: hidden;
         padding: 0;
 

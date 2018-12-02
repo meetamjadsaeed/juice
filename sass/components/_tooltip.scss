@@ -1,30 +1,30 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> TOOLTIP -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> TOOLTIP -> VARIABLES
+    ========================================================================= */
 
 $tooltip-animation-duration: 300ms !default;
 $tooltip-arrow-size: 6px !default;
 $tooltip-background-color: base-color('charcoal') !default;
-$tooltip-border-radius--top-left: $border-radius--top-left !default;
-$tooltip-border-radius--top-right: $border-radius--top-right !default;
-$tooltip-border-radius--bottom-right: $border-radius--bottom-right !default;
-$tooltip-border-radius--bottom-left: $border-radius--bottom-left !default;
+$tooltip-border-radius-bottom-left: $border-radius-bottom-left !default;
+$tooltip-border-radius-bottom-right: $border-radius-bottom-right !default;
+$tooltip-border-radius-top-left: $border-radius-top-left !default;
+$tooltip-border-radius-top-right: $border-radius-top-right !default;
 $tooltip-font-color: base-color('charcoal', 'invert') !default;
 $tooltip-font-family: 'Trebuchet', sans-serif !default;
 $tooltip-font-size: $font-size - 0.2em !default;
-$tooltip-font-size--small: $font-size--small - 0.2em !default;
-$tooltip-font-size--large: $font-size--large - 0.2em !default;
-$tooltip-font-size--huge: $font-size--huge - 0.2em !default;
+$tooltip-font-size-small: $font-size-small - 0.2em !default;
+$tooltip-font-size-large: $font-size-large - 0.2em !default;
+$tooltip-font-size-huge: $font-size-huge - 0.2em !default;
 $tooltip-offset: 2px !default;
 $tooltip-opacity: 0.9 !default;
 $tooltip-padding: 6px 10px !default;
 
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> TOOLTIP
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> TOOLTIP
+    ========================================================================= */
 
 .tooltip {
     animation-duration: $tooltip-animation-duration;
@@ -57,21 +57,21 @@ $tooltip-padding: 6px 10px !default;
     &.is-small {
         // Nested selectors
         .tooltip__content {
-            font-size: $tooltip-font-size--small;
+            font-size: $tooltip-font-size-small;
         }
     }
 
     &.is-large {
         // Nested selectors
         .tooltip__content {
-            font-size: $tooltip-font-size--large;
+            font-size: $tooltip-font-size-large;
         }
     }
 
     &.is-huge {
         // Nested selectors
         .tooltip__content {
-            font-size: $tooltip-font-size--huge;
+            font-size: $tooltip-font-size-huge;
         }
     }
 
@@ -227,10 +227,10 @@ $tooltip-padding: 6px 10px !default;
 	.tooltip__content {
         background-color: $tooltip-background-color;
 		border: 0;
-        border-bottom-left-radius: $tooltip-border-radius--bottom-left;
-        border-bottom-right-radius: $tooltip-border-radius--bottom-right;
-        border-top-left-radius: $tooltip-border-radius--top-left;
-        border-top-right-radius: $tooltip-border-radius--top-right;
+        border-bottom-left-radius: $tooltip-border-radius-bottom-left;
+        border-bottom-right-radius: $tooltip-border-radius-bottom-right;
+        border-top-left-radius: $tooltip-border-radius-top-left;
+        border-top-right-radius: $tooltip-border-radius-top-right;
 		color: $tooltip-font-color;
 		display: inline-block;
 		font-family: $tooltip-font-family;

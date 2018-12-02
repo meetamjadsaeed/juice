@@ -1,22 +1,22 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORM -> LIST -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> LIST -> VARIABLES
+    ========================================================================= */
 
 // List
 $list-content-spacing: $content-spacing !default;
-$list-content-spacing--small: $content-spacing--small !default;
-$list-content-spacing--large: $content-spacing--large !default;
-$list-content-spacing--huge: $content-spacing--huge !default;
+$list-content-spacing-small: $content-spacing-small !default;
+$list-content-spacing-large: $content-spacing-large !default;
+$list-content-spacing-huge: $content-spacing-huge !default;
 $list-element-spacing: $element-spacing !default;
-$list-element-spacing--small: $element-spacing--small !default;
-$list-element-spacing--large: $element-spacing--large !default;
-$list-element-spacing--huge: $element-spacing--huge !default;
+$list-element-spacing-small: $element-spacing-small !default;
+$list-element-spacing-large: $element-spacing-large !default;
+$list-element-spacing-huge: $element-spacing-huge !default;
 $list-font-size: $font-size !default;
-$list-font-size--small: $font-size--small !default;
-$list-font-size--large: $font-size--large !default;
-$list-font-size--huge: $font-size--huge !default;
+$list-font-size-small: $font-size-small !default;
+$list-font-size-large: $font-size-large !default;
+$list-font-size-huge: $font-size-huge !default;
 
 // List style types
 $list-style-types: (
@@ -36,9 +36,9 @@ $list-style-types: (
     upper-roman
 );
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORM -> LIST
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> LIST
+    ========================================================================= */
 
 ul,
 ol {
@@ -48,8 +48,8 @@ ol {
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $list-font-size--small;
-        margin-bottom: $list-element-spacing--small;
+        font-size: $list-font-size-small;
+        margin-bottom: $list-element-spacing-small;
 
         // Modifiers
         &.list--block,
@@ -58,14 +58,14 @@ ol {
         &.list--inline-stack {
             // Nested selectors
             li {
-                padding: $list-content-spacing--small;
+                padding: $list-content-spacing-small;
             }
         }
     }
 
     &.is-large {
-        font-size: $list-font-size--large;
-        margin-bottom: $list-element-spacing--large;
+        font-size: $list-font-size-large;
+        margin-bottom: $list-element-spacing-large;
 
         // Modifiers
         &.list--block,
@@ -74,14 +74,14 @@ ol {
         &.list--inline-stack {
             // Nested selectors
             li {
-                padding: $list-content-spacing--large;
+                padding: $list-content-spacing-large;
             }
         }
     }
 
     &.is-huge {
-        font-size: $list-font-size--huge;
-        margin-bottom: $list-element-spacing--huge;
+        font-size: $list-font-size-huge;
+        margin-bottom: $list-element-spacing-huge;
 
         // Modifiers
         &.list--block,
@@ -90,7 +90,7 @@ ol {
         &.list--inline-stack {
             // Nested selectors
             li {
-                padding: $list-content-spacing--huge;
+                padding: $list-content-spacing-huge;
             }
         }
     }

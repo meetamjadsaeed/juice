@@ -1,83 +1,83 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> CHIP -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> CHIP -> VARIABLES
+    ========================================================================= */
 
 // Chip
 $chip-animation-duration: 300ms !default;
 $chip-background-color: base-color('white') !default;
-$chip-border-color: base-color('white', $pseudo-border-color-type) !default;
-$chip-border-radius--top-left: $border-radius--top-left !default;
-$chip-border-radius--top-right: $border-radius--top-right !default;
-$chip-border-radius--bottom-right: $border-radius--bottom-right !default;
-$chip-border-radius--bottom-left: $border-radius--bottom-left !default;
+$chip-border-color: base-color('white', $border-color-palette-type) !default;
+$chip-border-radius-bottom-left: $border-radius-bottom-left !default;
+$chip-border-radius-bottom-right: $border-radius-bottom-right !default;
+$chip-border-radius-top-left: $border-radius-top-left !default;
+$chip-border-radius-top-right: $border-radius-top-right !default;
 $chip-border-style: $border-style !default;
-$chip-border-width--top: $border-width--top !default;
-$chip-border-width--right: $border-width--right !default;
-$chip-border-width--bottom: $border-width--bottom !default;
-$chip-border-width--left: $border-width--left !default;
+$chip-border-width-bottom: $border-width-bottom !default;
+$chip-border-width-left: $border-width-left !default;
+$chip-border-width-right: $border-width-right !default;
+$chip-border-width-top: $border-width-top !default;
 $chip-button-background-color: transparent !default;
-$chip-button-background-color--focus: hsla(0, 0, 0, 0.04) !default;
-$chip-button-background-color--hover: hsla(0, 0, 0, 0.08) !default;
-$chip-button-background-color--active: hsla(0, 0, 0, 0.12) !default;
-$chip-button-border-radius--top-left: 999px !default;
-$chip-button-border-radius--top-right: 999px !default;
-$chip-button-border-radius--bottom-right: 999px !default;
-$chip-button-border-radius--bottom-left: 999px !default;
+$chip-button-background-color-active: hsla(0, 0, 0, 0.12) !default;
+$chip-button-background-color-focus: hsla(0, 0, 0, 0.04) !default;
+$chip-button-background-color-hover: hsla(0, 0, 0, 0.08) !default;
+$chip-button-border-radius-bottom-left: 999px !default;
+$chip-button-border-radius-bottom-right: 999px !default;
+$chip-button-border-radius-top-left: 999px !default;
+$chip-button-border-radius-top-right: 999px !default;
 $chip-button-border-style: solid !default;
-$chip-button-border-width--top: 0 !default;
-$chip-button-border-width--right: 0 !default;
-$chip-button-border-width--bottom: 0 !default;
-$chip-button-border-width--left: 0 !default;
+$chip-button-border-width-bottom: 0 !default;
+$chip-button-border-width-left: 0 !default;
+$chip-button-border-width-right: 0 !default;
+$chip-button-border-width-top: 0 !default;
 $chip-button-border-color: transparent !default;
-$chip-button-border-color--focus: transparent !default;
-$chip-button-border-color--hover: transparent !default;
-$chip-button-border-color--active:  transparent !default;
+$chip-button-border-color-active:  transparent !default;
+$chip-button-border-color-focus: transparent !default;
+$chip-button-border-color-hover: transparent !default;
 $chip-button-font-color: inherit !default;
-$chip-button-font-color--focus: inherit !default;
-$chip-button-font-color--hover: inherit !default;
-$chip-button-font-color--active: inherit !default;
+$chip-button-font-color-active: inherit !default;
+$chip-button-font-color-focus: inherit !default;
+$chip-button-font-color-hover: inherit !default;
 $chip-button-opacity: 0.4 !default;
-$chip-button-opacity--hover: 0.8 !default;
-$chip-button-opacity--focus: 0.8 !default;
-$chip-button-opacity--active: 1 !default;
+$chip-button-opacity-active: 1 !default;
+$chip-button-opacity-hover: 0.8 !default;
+$chip-button-opacity-focus: 0.8 !default;
 $chip-content-spacing: $content-spacing / 2 !default;
-$chip-content-spacing--small: $content-spacing--small / 2 !default;
-$chip-content-spacing--large: $content-spacing--large / 2 !default;
-$chip-content-spacing--huge: $content-spacing--huge / 2 !default;
+$chip-content-spacing-small: $content-spacing-small / 2 !default;
+$chip-content-spacing-large: $content-spacing-large / 2 !default;
+$chip-content-spacing-huge: $content-spacing-huge / 2 !default;
 $chip-element-height: $element-height !default;
-$chip-element-height--small: $element-height--small  !default;
-$chip-element-height--large: $element-height--large  !default;
-$chip-element-height--huge: $element-height--huge  !default;
+$chip-element-height-small: $element-height-small  !default;
+$chip-element-height-large: $element-height-large  !default;
+$chip-element-height-huge: $element-height-huge  !default;
 $chip-element-spacing: $element-spacing !default;
-$chip-element-spacing--small: $element-spacing--small !default;
-$chip-element-spacing--large: $element-spacing--large !default;
-$chip-element-spacing--huge: $element-spacing--huge !default;
+$chip-element-spacing-small: $element-spacing-small !default;
+$chip-element-spacing-large: $element-spacing-large !default;
+$chip-element-spacing-huge: $element-spacing-huge !default;
 $chip-font-color: base-color('white', 'invert') !default;
 $chip-font-size: $font-size - 0.2em !default;
-$chip-font-size--small: $font-size--small - 0.2em !default;
-$chip-font-size--large: $font-size--large - 0.2em !default;
-$chip-font-size--huge: $font-size--huge - 0.2em !default;
+$chip-font-size-small: $font-size-small - 0.2em !default;
+$chip-font-size-large: $font-size-large - 0.2em !default;
+$chip-font-size-huge: $font-size-huge - 0.2em !default;
 
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> CHIP
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> CHIP
+    ========================================================================= */
 
 .chip {
     animation-duration: $chip-animation-duration;
     align-items: center;
     background-color: $chip-background-color;
     border: 0 $chip-border-style $chip-border-color;
-    border-bottom-left-radius: $chip-border-radius--bottom-left;
-    border-bottom-right-radius: $chip-border-radius--bottom-right;
-    border-bottom-width: $chip-border-width--bottom;
-    border-left-width: $chip-border-width--left;
-    border-right-width: $chip-border-width--right;
-    border-top-left-radius: $chip-border-radius--top-left;
-    border-top-right-radius: $chip-border-radius--top-right;
-    border-top-width: $chip-border-width--top;
+    border-bottom-left-radius: $chip-border-radius-bottom-left;
+    border-bottom-right-radius: $chip-border-radius-bottom-right;
+    border-bottom-width: $chip-border-width-bottom;
+    border-left-width: $chip-border-width-left;
+    border-right-width: $chip-border-width-right;
+    border-top-left-radius: $chip-border-radius-top-left;
+    border-top-right-radius: $chip-border-radius-top-right;
+    border-top-width: $chip-border-width-top;
     color: $chip-font-color;
     display: inline-flex;
     font-size: $chip-font-size;
@@ -87,21 +87,21 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $chip-font-size--small;
-        height: $chip-element-height--small;
-        margin-bottom: $chip-element-spacing--small;
+        font-size: $chip-font-size-small;
+        height: $chip-element-height-small;
+        margin-bottom: $chip-element-spacing-small;
 
         // Nested selectors
         .chip__image,
         .chip__text,
         .chip__button {
-            padding: 0 $chip-content-spacing--small / 2;
+            padding: 0 $chip-content-spacing-small / 2;
 
             // Pseudo classes
             &:only-child {
                 // Modifiers
                 &.chip__text {
-                    padding: 0 $chip-content-spacing--small;
+                    padding: 0 $chip-content-spacing-small;
                 }
             }
 
@@ -109,7 +109,7 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
                 // Modifiers
                 &.chip__text,
                 &.chip__button {
-                    padding-left: $chip-content-spacing--small;
+                    padding-left: $chip-content-spacing-small;
                 }
             }
 
@@ -117,41 +117,41 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
                 // Modifiers
                 &.chip__text,
                 &.chip__button {
-                    padding-right: $chip-content-spacing--small;
+                    padding-right: $chip-content-spacing-small;
                 }
             }
         }
 
         .chip__image {
-            padding-bottom: $chip-content-spacing--small / 2;
-            padding-top: $chip-content-spacing--small / 2;
+            padding-bottom: $chip-content-spacing-small / 2;
+            padding-top: $chip-content-spacing-small / 2;
         }
 
         .chip__button {
             // Nested selectors
             #{$button} {
-                height: $chip-element-height--small / 2;
-                width: $chip-element-height--small / 2;
+                height: $chip-element-height-small / 2;
+                width: $chip-element-height-small / 2;
             }
         }
     }
 
     &.is-large {
-        font-size: $chip-font-size--large;
-        height: $chip-element-height--large;
-        margin-bottom: $chip-element-spacing--large;
+        font-size: $chip-font-size-large;
+        height: $chip-element-height-large;
+        margin-bottom: $chip-element-spacing-large;
 
         // Nested selectors
         .chip__image,
         .chip__text,
         .chip__button {
-            padding: 0 $chip-content-spacing--large / 2;
+            padding: 0 $chip-content-spacing-large / 2;
 
             // Pseudo classes
             &:only-child {
                 // Modifiers
                 &.chip__text {
-                    padding: 0 $chip-content-spacing--large;
+                    padding: 0 $chip-content-spacing-large;
                 }
             }
 
@@ -159,7 +159,7 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
                 // Modifiers
                 &.chip__text,
                 &.chip__button {
-                    padding-left: $chip-content-spacing--large;
+                    padding-left: $chip-content-spacing-large;
                 }
             }
 
@@ -167,41 +167,41 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
                 // Modifiers
                 &.chip__text,
                 &.chip__button {
-                    padding-right: $chip-content-spacing--large;
+                    padding-right: $chip-content-spacing-large;
                 }
             }
         }
 
         .chip__image {
-            padding-bottom: $chip-content-spacing--large / 2;
-            padding-top: $chip-content-spacing--large / 2;
+            padding-bottom: $chip-content-spacing-large / 2;
+            padding-top: $chip-content-spacing-large / 2;
         }
 
         .chip__button {
             // Nested selectors
             #{$button} {
-                height: $chip-element-height--large / 2;
-                width: $chip-element-height--large / 2;
+                height: $chip-element-height-large / 2;
+                width: $chip-element-height-large / 2;
             }
         }
     }
 
     &.is-huge {
-        font-size: $chip-font-size--huge;
-        height: $chip-element-height--huge;
-        margin-bottom: $chip-element-spacing--huge;
+        font-size: $chip-font-size-huge;
+        height: $chip-element-height-huge;
+        margin-bottom: $chip-element-spacing-huge;
 
         // Nested selectors
         .chip__image,
         .chip__text,
         .chip__button {
-            padding: 0 $chip-content-spacing--huge / 2;
+            padding: 0 $chip-content-spacing-huge / 2;
 
             // Pseudo classes
             &:only-child {
                 // Modifiers
                 &.chip__text {
-                    padding: 0 $chip-content-spacing--huge;
+                    padding: 0 $chip-content-spacing-huge;
                 }
             }
 
@@ -209,7 +209,7 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
                 // Modifiers
                 &.chip__text,
                 &.chip__button {
-                    padding-left: $chip-content-spacing--huge;
+                    padding-left: $chip-content-spacing-huge;
                 }
             }
 
@@ -217,21 +217,21 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
                 // Modifiers
                 &.chip__text,
                 &.chip__button {
-                    padding-right: $chip-content-spacing--huge;
+                    padding-right: $chip-content-spacing-huge;
                 }
             }
         }
 
         .chip__image {
-            padding-bottom: $chip-content-spacing--huge / 2;
-            padding-top: $chip-content-spacing--huge / 2;
+            padding-bottom: $chip-content-spacing-huge / 2;
+            padding-top: $chip-content-spacing-huge / 2;
         }
 
         .chip__button {
             // Nested selectors
             #{$button} {
-                height: $chip-element-height--huge / 2;
-                width: $chip-element-height--huge / 2;
+                height: $chip-element-height-huge / 2;
+                width: $chip-element-height-huge / 2;
             }
         }
     }
@@ -240,7 +240,7 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
     @each $name, $color in $base-colors {
         &.is-#{$name} {
             background-color: base-color($name);
-            border-color: base-color($name, $pseudo-border-color-type);
+            border-color: base-color($name, $border-color-palette-type);
             color: base-color($name, 'invert');
 
             // Nested selectors
@@ -259,7 +259,7 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
     @each $name, $color in $feedback-colors {
         &.has-#{$name} {
             background-color: feedback-color($name);
-            border-color: feedback-color($name, $pseudo-border-color-type);
+            border-color: feedback-color($name, $border-color-palette-type);
             color: feedback-color($name, 'invert');
 
             // Nested selectors
@@ -346,10 +346,10 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
 
         // Nested selectors
         img {
-            border-bottom-left-radius: $chip-border-radius--bottom-left;
-            border-bottom-right-radius: $chip-border-radius--bottom-right;
-            border-top-left-radius: $chip-border-radius--top-left;
-            border-top-right-radius: $chip-border-radius--top-right;
+            border-bottom-left-radius: $chip-border-radius-bottom-left;
+            border-bottom-right-radius: $chip-border-radius-bottom-right;
+            border-top-left-radius: $chip-border-radius-top-left;
+            border-top-right-radius: $chip-border-radius-top-right;
             display: block;
             height: 100%;
             max-width: none;
@@ -371,10 +371,10 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
         #{$button} {
             background-color: $chip-button-background-color;
             border: 0 $chip-button-border-style $chip-button-border-color;
-            border-bottom-left-radius: $chip-button-border-radius--bottom-left;
-            border-bottom-right-radius: $chip-button-border-radius--bottom-right;
-            border-top-left-radius: $chip-button-border-radius--top-left;
-            border-top-right-radius: $chip-button-border-radius--top-right;
+            border-bottom-left-radius: $chip-button-border-radius-bottom-left;
+            border-bottom-right-radius: $chip-button-border-radius-bottom-right;
+            border-top-left-radius: $chip-button-border-radius-top-left;
+            border-top-right-radius: $chip-button-border-radius-top-right;
             box-shadow: none;
             color: $chip-button-font-color;
             font-size: inherit;
@@ -386,24 +386,24 @@ $chip-font-size--huge: $font-size--huge - 0.2em !default;
 
             // Pseudo classes
             &:focus {
-                background-color: $chip-button-background-color--focus;
-                border-color: $chip-button-border-color--focus;
-                color: $chip-button-font-color--focus;
-                opacity: $chip-button-opacity--focus;
+                background-color: $chip-button-background-color-focus;
+                border-color: $chip-button-border-color-focus;
+                color: $chip-button-font-color-focus;
+                opacity: $chip-button-opacity-focus;
             }
 
             &:hover {
-                background-color: $chip-button-background-color--hover;
-                border-color: $chip-button-border-color--hover;
-                color: $chip-button-font-color--hover;
-                opacity: $chip-button-opacity--hover;
+                background-color: $chip-button-background-color-hover;
+                border-color: $chip-button-border-color-hover;
+                color: $chip-button-font-color-hover;
+                opacity: $chip-button-opacity-hover;
             }
 
             &:active {
-                background-color: $chip-button-background-color--active;
-                border-color: $chip-button-border-color--active;
-                color: $chip-button-font-color--active;
-                opacity: $chip-button-opacity--active;
+                background-color: $chip-button-background-color-active;
+                border-color: $chip-button-border-color-active;
+                color: $chip-button-font-color-active;
+                opacity: $chip-button-opacity-active;
             }
         }
     }

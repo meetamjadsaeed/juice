@@ -1,22 +1,22 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> NAVIGATION -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> NAVIGATION -> VARIABLES
+    ========================================================================= */
 
 $navigation-content-spacing: $content-spacing !default;
 $navigation-font-color: inherit !default;
 $navigation-font-size: $font-size !default;
 $navigation-element-spacing: $element-spacing !default;
 $navigation-link-color: $link-color !default;
-$navigation-link-color--focus: $link-color--focus !default;
-$navigation-link-color--hover: $link-color--hover !default;
-$navigation-link-color--active: $link-color--active !default;
+$navigation-link-color-focus: $link-color-focus !default;
+$navigation-link-color-hover: $link-color-hover !default;
+$navigation-link-color-active: $link-color-active !default;
 
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> NAVIGATION
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> NAVIGATION
+    ========================================================================= */
 
 .navigation {
     align-items: center;
@@ -34,15 +34,15 @@ $navigation-link-color--active: $link-color--active !default;
 
         // Pseudo classes
         &:focus {
-            color: $navigation-link-color--focus;
+            color: $navigation-link-color-focus;
         }
 
         &:hover {
-            color: $navigation-link-color--hover;
+            color: $navigation-link-color-hover;
         }
 
         &:active {
-            color: $navigation-link-color--active;
+            color: $navigation-link-color-active;
         }
     }
 
@@ -154,7 +154,7 @@ $navigation-link-color--active: $link-color--active !default;
         .navigation__icons {
             display: none;
         }
-        
+
         .navigation__revealer {
             display: none !important;
         }

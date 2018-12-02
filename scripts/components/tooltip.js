@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> TOOLTIP
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> TOGGLER
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'Tooltip';
+    const plugin_name = 'Tooltip';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -65,15 +65,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -84,7 +84,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -94,7 +94,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -104,7 +104,7 @@
     };
 
     /**
-     * Get an elements offset
+     * Get an elements offset.
      * @param  {element}  $element  The element
      * @return {object}             The element offset
      */
@@ -131,7 +131,7 @@
     };
 
     /**
-     * Build a tooltip
+     * Build a tooltip.
      * @param  {element}  $container  The tooltip container
      * @return {element}              The tooltip
      */
@@ -149,10 +149,18 @@
         $content.append($container.dataset.tooltip);
 
         // Set the tooltip modifiers
-        const color = $container.dataset.tooltipColor || plugin.settings.color;
-        const feedback = $container.dataset.tooltipFeedback || plugin.settings.feedback;
-        const position = $container.dataset.tooltipPosition || plugin.settings.position;
-        const size = $container.dataset.tooltipSize || plugin.settings.size;
+        const color =
+            $container.dataset.tooltipColor ||
+            plugin.settings.color;
+        const feedback =
+            $container.dataset.tooltipFeedback ||
+            plugin.settings.feedback;
+        const position =
+            $container.dataset.tooltipPosition ||
+            plugin.settings.position;
+        const size =
+            $container.dataset.tooltipSize ||
+            plugin.settings.size;
 
         // Check if a color modifier exists
         if (color) {
@@ -183,71 +191,82 @@
     };
 
     /**
-     * Set the tooltip position relative to the tooltip container
+     * Set the tooltip position relative to the tooltip container.
      * @param  {element}  $container  The tooltip container
      * @param  {element}  $tooltip    The tooltip
      * @return {void}
      */
     const positionTooltip = ($container, $tooltip) => {
         // Set the tooltip container offset
-        const containerOffset = getElementOffset($container);
+        const container_offset = getElementOffset($container);
 
-        // Set the tooltip container x and y positions
-        const containerX = containerOffset.left;
-        const containerY = containerOffset.top;
+        // Set the tooltip container left and top positions
+        const container_left = container_offset.left;
+        const container_top = container_offset.top;
 
         // Set the tooltip container dimensions
-        const containerWidth = $container.offsetWidth;
-        const containerHeight = $container.offsetHeight;
+        const container_width = $container.offsetWidth;
+        const container_height = $container.offsetHeight;
 
         // Set the tooltip dimensions
-        const tooltipWidth = $tooltip.offsetWidth;
-        const tooltipHeight = $tooltip.offsetHeight;
+        const tooltip_width = $tooltip.offsetWidth;
+        const tooltip_height = $tooltip.offsetHeight;
 
-        // Set the tooltip x and y positions
-        let tooltipX, tooltipY;
+        // Set the tooltip left and top positions
+        let tooltip_left;
+        let tooltip_top;
 
         // Set the tooltip position modifier
-        const position = $container.dataset.tooltipPosition || plugin.settings.position;
+        const position =
+            $container.dataset.tooltipPosition ||
+            plugin.settings.position;
 
         // Start a switch statement for the tooltip position
         switch (position) {
             // Top (default)
             default:
-                // Set the tooltip x and y positions
-                tooltipX = containerX + ((containerWidth - tooltipWidth) / 2);
-                tooltipY = containerY - tooltipHeight;
+                // Set the tooltip left and top positions
+                tooltip_left =
+                    container_left + ((container_width - tooltip_width) / 2);
+                tooltip_top =
+                    container_top - tooltip_height;
             break;
 
             // Right
             case 'right':
-                // Set the tooltip x and y positions
-                tooltipX = containerX + containerWidth;
-                tooltipY = containerY + ((containerHeight - tooltipHeight) / 2);
+                // Set the tooltip left and top positions
+                tooltip_left =
+                    container_left + container_width;
+                tooltip_top =
+                    container_top + ((container_height - tooltip_height) / 2);
             break;
 
             // Bottom
             case 'bottom':
-                // Set the tooltip x and y positions
-                tooltipX = containerX + ((containerWidth - tooltipWidth) / 2);
-                tooltipY = containerY + containerHeight;
+                // Set the tooltip left and top positions
+                tooltip_left =
+                    container_left + ((container_width - tooltip_width) / 2);
+                tooltip_top =
+                    container_top + container_height;
             break;
 
             // Left
             case 'left':
-                // Set the tooltip x and y positions
-                tooltipX = containerX - tooltipWidth;
-                tooltipY = containerY + ((containerHeight - tooltipHeight) / 2);
+                // Set the tooltip left and top positions
+                tooltip_left =
+                    container_left - tooltip_width;
+                tooltip_top =
+                    container_top + ((container_height - tooltip_height) / 2);
             break;
         }
 
         // Set the inline top and left positions
-        $tooltip.style.left = `${Math.round(tooltipX)}px`;
-        $tooltip.style.top = `${Math.round(tooltipY)}px`;
+        $tooltip.style.left = `${Math.round(tooltip_left)}px`;
+        $tooltip.style.top = `${Math.round(tooltip_top)}px`;
     };
 
     /**
-     * Insert a tooltip
+     * Insert a tooltip.
      * @param  {element}  $container  The tooltip container
      * @param  {element}  $tooltip    The tooltip
      * @return {void}
@@ -257,7 +276,9 @@
         plugin.settings.callbackInsertBefore.call();
 
         // Set the tooltip delay in
-        const delayIn = $container.dataset.tooltipDelayIn || plugin.settings.delayIn;
+        const delay_in =
+            $container.dataset.tooltipDelayIn ||
+            plugin.settings.delayIn;
 
         // Start a timer
         setTimeout(() => {
@@ -287,16 +308,18 @@
             $container.classList.add('is-active');
 
             // Set the tooltip animation in
-            const animationIn = $container.dataset.tooltipAnimationIn || plugin.settings.animationIn;
+            const animation_in =
+                $container.dataset.tooltipAnimationIn ||
+                plugin.settings.animationIn;
 
             // Check if the animation in is set
-            if (animationIn && animationIn != 'none') {
+            if (animation_in && animation_in != 'none') {
                 // Add the animating state hook to the tooltip
                 $tooltip.classList.add('is-animating');
 
                 // Add the animation classes to the tooltip
                 $tooltip.classList.add('animated');
-                $tooltip.classList.add(animationIn);
+                $tooltip.classList.add(animation_in);
 
                 // Add an animation end event listener to the tooltip
                 $tooltip.addEventListener('animationend', (event) => {
@@ -305,7 +328,7 @@
 
                     // Remove the animation classes from the tooltip
                     $tooltip.classList.remove('animated');
-                    $tooltip.classList.remove(animationIn);
+                    $tooltip.classList.remove(animation_in);
 
                     // Add the animated state hook to the tooltip
                     $tooltip.classList.add('has-animated');
@@ -314,7 +337,9 @@
                     plugin.settings.callbackInsertAfter.call();
 
                     // Set the tooltip duration
-                    const duration = $container.dataset.tooltipDuration || plugin.settings.duration;
+                    const duration =
+                        $container.dataset.tooltipDuration ||
+                        plugin.settings.duration;
 
                     // Check if the tooltip has a display duration
                     if (duration > 0) {
@@ -338,7 +363,9 @@
                 plugin.settings.callbackInsertAfter.call();
 
                 // Set the tooltip duration
-                const duration = $container.dataset.tooltipDuration || plugin.settings.duration;
+                const duration =
+                    $container.dataset.tooltipDuration ||
+                    plugin.settings.duration;
 
                 // Check if the tooltip has a display duration
                 if (duration > 0) {
@@ -355,11 +382,11 @@
                     }, duration);
                 }
             }
-        }, delayIn);
+        }, delay_in);
     };
 
     /**
-     * Remove a tooltip
+     * Remove a tooltip.
      * @param  {element}  $container  The tooltip container
      * @param  {element}  $tooltip    The tooltip
      * @param  {bool}     silent      Suppress callbacks
@@ -373,15 +400,19 @@
         }
 
         // Set the tooltip delay out
-        const delayOut = $container.dataset.tooltipDelayOut || plugin.settings.delayOut;
+        const delay_out =
+            $container.dataset.tooltipDelayOut ||
+            plugin.settings.delayOut;
 
         // Start a timer
         setTimeout(() => {
             // Set the tooltip animation out
-            const animationOut = $container.dataset.tooltipAnimationOut || plugin.settings.animationOut;
+            const animation_out =
+                $container.dataset.tooltipAnimationOut ||
+                plugin.settings.animationOut;
 
             // Check if the animation out is set
-            if (animationOut && animationOut != 'none') {
+            if (animation_out && animation_out != 'none') {
                 // Remove the animated state hook from the tooltip
                 $tooltip.classList.remove('has-animated');
 
@@ -390,7 +421,7 @@
 
                 // Add the animation classes to the tooltip
                 $tooltip.classList.add('animated');
-                $tooltip.classList.add(animationOut);
+                $tooltip.classList.add(animation_out);
 
                 // Add an animation end event listener to the tooltip
                 $tooltip.addEventListener('animationend', (event) => {
@@ -433,11 +464,11 @@
                     plugin.settings.callbackRemoveAfter.call();
                 }
             }
-        }, delayOut);
+        }, delay_out);
     };
 
     /**
-     * Event handler to insert a tooltip relative to its tooltip container
+     * Event handler to insert a tooltip relative to its tooltip container.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -465,7 +496,7 @@
     };
 
     /**
-     * Event handler to remove a tooltip
+     * Event handler to remove a tooltip.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -487,12 +518,12 @@
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -538,7 +569,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -563,7 +594,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -610,7 +641,7 @@
                 });
             }
 
-            // Check if the callbacks should not be suppressed
+            // Check if the callbacks should not be suppressed.
             if (!silent) {
                 // Call the destroy after callback
                 plugin.settings.callbackDestroyAfter.call();
@@ -618,7 +649,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -627,7 +658,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {

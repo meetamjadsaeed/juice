@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> FRAMEWORK -> FOUNDATION -> HELPERS
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> FRAMEWORK -> FOUNDATION -> HELPERS
+    ========================================================================= */
 
 // Clearfix
 .clearfix {
@@ -48,15 +48,15 @@
 }
 
 .has-small-content-spacing {
-    padding: $content-spacing--small !important;
+    padding: $content-spacing-small !important;
 }
 
 .has-large-content-spacing {
-    padding: $content-spacing--large !important;
+    padding: $content-spacing-large !important;
 }
 
 .has-huge-content-spacing {
-    padding: $content-spacing--huge !important;
+    padding: $content-spacing-huge !important;
 }
 
 .has-no-content-spacing {
@@ -69,15 +69,15 @@
 }
 
 .has-small-element-spacing {
-    margin-bottom: $element-spacing--small !important;
+    margin-bottom: $element-spacing-small !important;
 }
 
 .has-large-element-spacing {
-    margin-bottom: $element-spacing--large !important;
+    margin-bottom: $element-spacing-large !important;
 }
 
 .has-huge-element-spacing {
-    margin-bottom: $element-spacing--huge !important;
+    margin-bottom: $element-spacing-huge !important;
 }
 
 .has-no-element-spacing {
@@ -89,15 +89,15 @@
 }
 
 .has-small-top-element-spacing {
-    margin-top: $element-spacing--small !important;
+    margin-top: $element-spacing-small !important;
 }
 
 .has-large-top-element-spacing {
-    margin-top: $element-spacing--large !important;
+    margin-top: $element-spacing-large !important;
 }
 
 .has-huge-top-element-spacing {
-    margin-top: $element-spacing--huge !important;
+    margin-top: $element-spacing-huge !important;
 }
 
 .has-no-top-element-spacing {
@@ -140,15 +140,15 @@
 
             // Pseudo classes
             &:hover {
-                color: base-color($name, $pseudo-link-color-type--hover) !important;
+                color: base-color($name, $link-color-palette-type-hover) !important;
             }
 
             &:focus {
-                color: base-color($name, $pseudo-link-color-type--focus) !important;
+                color: base-color($name, $link-color-palette-type-focus) !important;
             }
 
             &:active {
-                color: base-color($name, $pseudo-link-color-type--active) !important;
+                color: base-color($name, $link-color-palette-type-active) !important;
             }
         }
     }
@@ -179,15 +179,15 @@
 
             // Pseudo classes
             &:hover {
-                color: feedback-color($name, $pseudo-link-color-type--hover) !important;
+                color: feedback-color($name, $link-color-palette-type-hover) !important;
             }
 
             &:focus {
-                color: feedback-color($name, $pseudo-link-color-type--focus) !important;
+                color: feedback-color($name, $link-color-palette-type-focus) !important;
             }
 
             &:active {
-                color: feedback-color($name, $pseudo-link-color-type--active) !important;
+                color: feedback-color($name, $link-color-palette-type-active) !important;
             }
         }
     }
@@ -243,15 +243,15 @@
         }
 
         .has-small-content-spacing\@#{$name} {
-            padding: $content-spacing--small !important;
+            padding: $content-spacing-small !important;
         }
 
         .has-large-content-spacing\@#{$name} {
-            padding: $content-spacing--large !important;
+            padding: $content-spacing-large !important;
         }
 
         .has-huge-content-spacing\@#{$name} {
-            padding: $content-spacing--huge !important;
+            padding: $content-spacing-huge !important;
         }
 
         .has-no-content-spacing\@#{$name} {
@@ -264,15 +264,15 @@
         }
 
         .has-small-element-spacing\@#{$name} {
-            margin-bottom: $element-spacing--small !important;
+            margin-bottom: $element-spacing-small !important;
         }
 
         .has-large-element-spacing\@#{$name} {
-            margin-bottom: $element-spacing--large !important;
+            margin-bottom: $element-spacing-large !important;
         }
 
         .has-huge-element-spacing\@#{$name} {
-            margin-bottom: $element-spacing--huge !important;
+            margin-bottom: $element-spacing-huge !important;
         }
 
         .has-no-element-spacing\@#{$name} {
@@ -284,15 +284,15 @@
         }
 
         .has-small-top-element-spacing\@#{$name} {
-            margin-top: $element-spacing--small !important;
+            margin-top: $element-spacing-small !important;
         }
 
         .has-large-top-element-spacing\@#{$name} {
-            margin-top: $element-spacing--large !important;
+            margin-top: $element-spacing-large !important;
         }
 
         .has-huge-top-element-spacing\@#{$name} {
-            margin-top: $element-spacing--huge !important;
+            margin-top: $element-spacing-huge !important;
         }
 
         .has-no-top-element-spacing\@#{$name} {

@@ -1,10 +1,12 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> UTILITIES -> MIXINS
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> UTILITIES -> MIXINS
+    ========================================================================= */
 
-// Breakpoints
+/**
+ * Target an element and a particular breakpoint/media query
+ */
 @mixin breakpoint($breakpoint) {
     // Check if the breakpoint key exists in the breakpoints array
     @if map-has-key($breakpoints, $breakpoint) {
@@ -19,14 +21,18 @@
     }
 }
 
-// Clearfix
+/**
+ * Clear floating elements.
+ */
 @mixin clearfix() {
     clear: both;
     content: '';
     display: block;
 }
 
-// Disabled
+/**
+ * Set an element to display disabled attributes.
+ */
 @mixin disabled() {
     box-shadow: none !important;
     cursor: not-allowed !important;
@@ -34,14 +40,19 @@
     pointer-events: none;
 }
 
-// Truncate text
+/**
+ * Truncate overflowing text with ellipsis.
+ */
 @mixin truncate-text() {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-// Reserve bold space
+/**
+ * Resolve an elements bold spacing to stop an element jumping if the
+ * text jumps between standard and bold.
+ */
 @mixin reserve-bold-space() {
     color: transparent;
     content: attr(data-reserve-text);
@@ -52,7 +63,9 @@
     visibility: hidden;
 }
 
-// Zero positioning
+/**
+ * Set an element to be positioned absolutely and fill the containing element.
+ */
 @mixin zero-positioning() {
     bottom: 0;
     left: 0;

@@ -1,65 +1,65 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> PAGINATION -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> PAGINATION -> VARIABLES
+    ========================================================================= */
 
 $pagination-active-background-color: base-color('primary') !default;
-$pagination-active-background-color--focus: base-color('primary', $pseudo-background-color-type--focus) !default;
-$pagination-active-background-color--hover: base-color('primary', $pseudo-background-color-type--hover) !default;
-$pagination-active-background-color--active: base-color('primary', $pseudo-background-color-type--active) !default;
-$pagination-active-border-color: base-color('primary', $pseudo-border-color-type) !default;
-$pagination-active-border-color--focus: base-color('primary', $pseudo-border-color-type--focus) !default;
-$pagination-active-border-color--hover: base-color('primary', $pseudo-border-color-type--hover) !default;
-$pagination-active-border-color--active: base-color('primary', $pseudo-border-color-type--active) !default;
+$pagination-active-background-color-active: base-color('primary', $background-color-palette-type-active) !default;
+$pagination-active-background-color-focus: base-color('primary', $background-color-palette-type-focus) !default;
+$pagination-active-background-color-hover: base-color('primary', $background-color-palette-type-hover) !default;
+$pagination-active-border-color: base-color('primary', $border-color-palette-type) !default;
+$pagination-active-border-color-active: base-color('primary', $border-color-palette-type-active) !default;
+$pagination-active-border-color-focus: base-color('primary', $border-color-palette-type-focus) !default;
+$pagination-active-border-color-hover: base-color('primary', $border-color-palette-type-hover) !default;
 $pagination-active-link-color: base-color('primary', 'invert') !default;
-$pagination-active-link-color--focus: base-color('primary', 'invert') !default;
-$pagination-active-link-color--hover: base-color('primary', 'invert') !default;
-$pagination-active-link-color--active: base-color('primary', 'invert') !default;
+$pagination-active-link-color-active: base-color('primary', 'invert') !default;
+$pagination-active-link-color-focus: base-color('primary', 'invert') !default;
+$pagination-active-link-color-hover: base-color('primary', 'invert') !default;
 $pagination-background-color: base-color('white') !default;
-$pagination-background-color--focus: base-color('primary', $pseudo-background-color-type--focus) !default;
-$pagination-background-color--hover: base-color('primary', $pseudo-background-color-type--hover) !default;
-$pagination-background-color--active: base-color('primary', $pseudo-background-color-type--active) !default;
-$pagination-border-color: base-color('white', $pseudo-border-color-type) !default;
-$pagination-border-color--focus: base-color('primary', $pseudo-border-color-type--focus) !default;
-$pagination-border-color--hover: base-color('primary', $pseudo-border-color-type--hover) !default;
-$pagination-border-color--active: base-color('primary', $pseudo-border-color-type--active) !default;
-$pagination-border-radius--top-left: $border-radius--top-left !default;
-$pagination-border-radius--top-right: $border-radius--top-right !default;
-$pagination-border-radius--bottom-right: $border-radius--bottom-right !default;
-$pagination-border-radius--bottom-left: $border-radius--bottom-left !default;
+$pagination-background-color-active: base-color('primary', $background-color-palette-type-active) !default;
+$pagination-background-color-focus: base-color('primary', $background-color-palette-type-focus) !default;
+$pagination-background-color-hover: base-color('primary', $background-color-palette-type-hover) !default;
+$pagination-border-color: base-color('white', $border-color-palette-type) !default;
+$pagination-border-color-active: base-color('primary', $border-color-palette-type-active) !default;
+$pagination-border-color-focus: base-color('primary', $border-color-palette-type-focus) !default;
+$pagination-border-color-hover: base-color('primary', $border-color-palette-type-hover) !default;
+$pagination-border-radius-bottom-left: $border-radius-bottom-left !default;
+$pagination-border-radius-bottom-right: $border-radius-bottom-right !default;
+$pagination-border-radius-top-left: $border-radius-top-left !default;
+$pagination-border-radius-top-right: $border-radius-top-right !default;
 $pagination-border-style: $border-style !default;
-$pagination-border-width--top: $border-width--top !default;
-$pagination-border-width--right: $border-width--right !default;
-$pagination-border-width--bottom: $border-width--bottom !default;
-$pagination-border-width--left: $border-width--left !default;
-$pagination-border-width--divider: $border-width--divider !default;
+$pagination-border-width-bottom: $border-width-bottom !default;
+$pagination-border-width-divider: $border-width-divider !default;
+$pagination-border-width-left: $border-width-left !default;
+$pagination-border-width-right: $border-width-right !default;
+$pagination-border-width-top: $border-width-top !default;
 $pagination-box-shadow: $box-shadow !default;
 $pagination-content-spacing: $content-spacing / 2 !default;
-$pagination-content-spacing--small: $content-spacing--small / 2 !default;
-$pagination-content-spacing--large: $content-spacing--large / 2 !default;
-$pagination-content-spacing--huge: $content-spacing--huge / 2 !default;
+$pagination-content-spacing-small: $content-spacing-small / 2 !default;
+$pagination-content-spacing-large: $content-spacing-large / 2 !default;
+$pagination-content-spacing-huge: $content-spacing-huge / 2 !default;
 $pagination-element-height: $element-height !default;
-$pagination-element-height--small: $element-height--small !default;
-$pagination-element-height--large: $element-height--large !default;
-$pagination-element-height--huge: $element-height--huge !default;
+$pagination-element-height-small: $element-height-small !default;
+$pagination-element-height-large: $element-height-large !default;
+$pagination-element-height-huge: $element-height-huge !default;
 $pagination-element-spacing: $element-spacing !default;
-$pagination-element-spacing--small: $element-spacing--small !default;
-$pagination-element-spacing--large: $element-spacing--large !default;
-$pagination-element-spacing--huge: $element-spacing--huge !default;
+$pagination-element-spacing-small: $element-spacing-small !default;
+$pagination-element-spacing-large: $element-spacing-large !default;
+$pagination-element-spacing-huge: $element-spacing-huge !default;
 $pagination-link-color: base-color('white', 'invert') !default;
-$pagination-link-color--focus: base-color('slate', 'invert') !default;
-$pagination-link-color--hover: base-color('slate', 'invert') !default;
-$pagination-link-color--active: base-color('slate', 'invert') !default;
+$pagination-link-color-active: base-color('slate', 'invert') !default;
+$pagination-link-color-focus: base-color('slate', 'invert') !default;
+$pagination-link-color-hover: base-color('slate', 'invert') !default;
 $pagination-font-size: $font-size !default;
-$pagination-font-size--small: $font-size--small !default;
-$pagination-font-size--large: $font-size--large !default;
-$pagination-font-size--huge: $font-size--huge !default;
+$pagination-font-size-small: $font-size-small !default;
+$pagination-font-size-large: $font-size-large !default;
+$pagination-font-size-huge: $font-size-huge !default;
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> PAGINATION
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> PAGINATION
+    ========================================================================= */
 
 .pagination {
     display: flex;
@@ -68,7 +68,7 @@ $pagination-font-size--huge: $font-size--huge !default;
     margin-bottom: $pagination-element-spacing;
 
     // Modifiers
-    &.pagination--left {
+    &.pagination-left {
         justify-content: flex-start;
     }
 
@@ -76,21 +76,21 @@ $pagination-font-size--huge: $font-size--huge !default;
         justify-content: center;
     }
 
-    &.pagination--right {
+    &.pagination-right {
         justify-content: flex-end;
     }
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $pagination-font-size--small;
-        margin-bottom: $pagination-element-spacing--small;
+        font-size: $pagination-font-size-small;
+        margin-bottom: $pagination-element-spacing-small;
 
         // Breakpoints
         @include breakpoint('touch') {
             // Nested selectors
             .pagination__pager,
             .pagination__list {
-                margin-bottom: $pagination-element-spacing--small;
+                margin-bottom: $pagination-element-spacing-small;
 
                 // Pseudo classes
                 &:first-child {
@@ -109,11 +109,11 @@ $pagination-font-size--huge: $font-size--huge !default;
         .pagination__list {
             // Pseudo classes
             &:first-child {
-                margin-right: $pagination-content-spacing--small;
+                margin-right: $pagination-content-spacing-small;
             }
 
             &:last-child {
-                margin-left: $pagination-content-spacing--small;
+                margin-left: $pagination-content-spacing-small;
             }
 
             // Nested selectors
@@ -121,23 +121,23 @@ $pagination-font-size--huge: $font-size--huge !default;
                 // Nested selectors
                 a,
                 .pagination__ellipsis {
-                    height: $pagination-element-height--small;
-                    padding: 0 $pagination-content-spacing--small;
+                    height: $pagination-element-height-small;
+                    padding: 0 $pagination-content-spacing-small;
                 }
             }
         }
     }
 
     &.is-large {
-        font-size: $pagination-font-size--large;
-        margin-bottom: $pagination-element-spacing--large;
+        font-size: $pagination-font-size-large;
+        margin-bottom: $pagination-element-spacing-large;
 
         // Breakpoints
         @include breakpoint('touch') {
             // Nested selectors
             .pagination__pager,
             .pagination__list {
-                margin-bottom: $pagination-element-spacing--large;
+                margin-bottom: $pagination-element-spacing-large;
 
                 // Pseudo classes
                 &:first-child {
@@ -156,11 +156,11 @@ $pagination-font-size--huge: $font-size--huge !default;
         .pagination__list {
             // Pseudo classes
             &:first-child {
-                margin-right: $pagination-content-spacing--large;
+                margin-right: $pagination-content-spacing-large;
             }
 
             &:last-child {
-                margin-left: $pagination-content-spacing--large;
+                margin-left: $pagination-content-spacing-large;
             }
 
             // Nested selectors
@@ -168,23 +168,23 @@ $pagination-font-size--huge: $font-size--huge !default;
                 // Nested selectors
                 a,
                 .pagination__ellipsis {
-                    height: $pagination-element-height--large;
-                    padding: 0 $pagination-content-spacing--large;
+                    height: $pagination-element-height-large;
+                    padding: 0 $pagination-content-spacing-large;
                 }
             }
         }
     }
 
     &.is-huge {
-        font-size: $pagination-font-size--huge;
-        margin-bottom: $pagination-element-spacing--huge;
+        font-size: $pagination-font-size-huge;
+        margin-bottom: $pagination-element-spacing-huge;
 
         // Breakpoints
         @include breakpoint('touch') {
             // Nested selectors
             .pagination__pager,
             .pagination__list {
-                margin-bottom: $pagination-element-spacing--huge;
+                margin-bottom: $pagination-element-spacing-huge;
 
                 // Pseudo classes
                 &:first-child {
@@ -203,11 +203,11 @@ $pagination-font-size--huge: $font-size--huge !default;
         .pagination__list {
             // Pseudo classes
             &:first-child {
-                margin-right: $pagination-content-spacing--huge;
+                margin-right: $pagination-content-spacing-huge;
             }
 
             &:last-child {
-                margin-left: $pagination-content-spacing--huge;
+                margin-left: $pagination-content-spacing-huge;
             }
 
             // Nested selectors
@@ -215,8 +215,8 @@ $pagination-font-size--huge: $font-size--huge !default;
                 // Nested selectors
                 a,
                 .pagination__ellipsis {
-                    height: $pagination-element-height--huge;
-                    padding: 0 $pagination-content-spacing--huge;
+                    height: $pagination-element-height-huge;
+                    padding: 0 $pagination-content-spacing-huge;
                 }
             }
         }
@@ -227,9 +227,9 @@ $pagination-font-size--huge: $font-size--huge !default;
         flex-direction: column;
 
         // Modifiers
-        &.pagination--left,
+        &.pagination-left,
         &.pagination--center,
-        &.pagination--right {
+        &.pagination-right {
             justify-content: center;
         }
 
@@ -280,16 +280,16 @@ $pagination-font-size--huge: $font-size--huge !default;
 
         // Nested selectors
         li {
-            margin-right: -$pagination-border-width--divider;
+            margin-right: -$pagination-border-width-divider;
 
             // Pseudo classes
             &:first-child {
                 // Nested selectors
                 a,
                 .pagination__ellipsis {
-                    border-bottom-left-radius: $pagination-border-radius--bottom-left;
-                    border-left-width: $pagination-border-width--left;
-                    border-top-left-radius: $pagination-border-radius--top-left;
+                    border-bottom-left-radius: $pagination-border-radius-bottom-left;
+                    border-left-width: $pagination-border-width-left;
+                    border-top-left-radius: $pagination-border-radius-top-left;
                 }
             }
 
@@ -297,9 +297,9 @@ $pagination-font-size--huge: $font-size--huge !default;
                 // Nested selectors
                 a,
                 .pagination__ellipsis {
-                    border-bottom-right-radius: $pagination-border-radius--bottom-right;
-                    border-right-width: $pagination-border-width--right;
-                    border-top-right-radius: $pagination-border-radius--top-right;
+                    border-bottom-right-radius: $pagination-border-radius-bottom-right;
+                    border-right-width: $pagination-border-width-right;
+                    border-top-right-radius: $pagination-border-radius-top-right;
                 }
             }
 
@@ -309,10 +309,10 @@ $pagination-font-size--huge: $font-size--huge !default;
                 align-items: center;
                 background-color: $pagination-background-color;
                 border: 0 $pagination-border-style $pagination-border-color;
-                border-bottom-width: $pagination-border-width--bottom;
-                border-left-width: $pagination-border-width--divider;
-                border-right-width: $pagination-border-width--divider;
-                border-top-width: $pagination-border-width--top;
+                border-bottom-width: $pagination-border-width-bottom;
+                border-left-width: $pagination-border-width-divider;
+                border-right-width: $pagination-border-width-divider;
+                border-top-width: $pagination-border-width-top;
                 color: $pagination-link-color;
                 display: inline-flex;
                 height: $pagination-element-height;
@@ -328,24 +328,24 @@ $pagination-font-size--huge: $font-size--huge !default;
 
                 // Pseudo classes
                 &:hover {
-                    background-color: $pagination-background-color--hover;
-                    border-color: $pagination-border-color--hover;
-                    color: $pagination-link-color--hover;
+                    background-color: $pagination-background-color-hover;
+                    border-color: $pagination-border-color-hover;
+                    color: $pagination-link-color-hover;
                     z-index: get-stack-index('hover');
                 }
 
                 &:focus {
-                    background-color: $pagination-background-color--focus;
-                    border-color: $pagination-border-color--focus;
-                    box-shadow: set-focus-box-shadow($pagination-background-color--hover);
-                    color: $pagination-link-color--focus;
+                    background-color: $pagination-background-color-focus;
+                    border-color: $pagination-border-color-focus;
+                    box-shadow: set-focus-box-shadow($pagination-background-color-hover);
+                    color: $pagination-link-color-focus;
                     z-index: get-stack-index('focus');
                 }
 
                 &:active {
-                    background-color: $pagination-background-color--active;
-                    border-color: $pagination-border-color--active;
-                    color: $pagination-link-color--active;
+                    background-color: $pagination-background-color-active;
+                    border-color: $pagination-border-color-active;
+                    color: $pagination-link-color-active;
                     z-index: get-stack-index('active');
                 }
 
@@ -357,22 +357,22 @@ $pagination-font-size--huge: $font-size--huge !default;
                     z-index: get-stack-index('is-active');
 
                     &:hover {
-                        background-color: $pagination-active-background-color--hover;
-                        border-color: $pagination-active-border-color--hover;
-                        color: $pagination-active-link-color--hover;
+                        background-color: $pagination-active-background-color-hover;
+                        border-color: $pagination-active-border-color-hover;
+                        color: $pagination-active-link-color-hover;
                     }
 
                     // Pseudo classes
                     &:focus {
-                        background-color: $pagination-active-background-color--focus;
-                        border-color: $pagination-active-border-color--focus;
-                        color: $pagination-active-link-color--focus;
+                        background-color: $pagination-active-background-color-focus;
+                        border-color: $pagination-active-border-color-focus;
+                        color: $pagination-active-link-color-focus;
                     }
 
                     &:active {
-                        background-color: $pagination-active-background-color--active;
-                        border-color: $pagination-active-border-color--active;
-                        color: $pagination-active-link-color--active;
+                        background-color: $pagination-active-background-color-active;
+                        border-color: $pagination-active-border-color-active;
+                        color: $pagination-active-link-color-active;
                     }
 
                     // Modifiers

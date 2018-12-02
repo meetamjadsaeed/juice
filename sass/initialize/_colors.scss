@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> INITIALIZE -> COLORS -> BASE
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> INITIALIZE -> COLORS -> BASE
+    ========================================================================= */
 
 $base-colors: (
     // Brands
@@ -34,45 +34,48 @@ $base-colors: (
     'yellow': hsla(63, 100%, 75%, 1)
 ) !default;
 
-/* =============================================================================================
-   JUICE -> INITIALIZE -> COLORS -> FONT
-   ============================================================================================= */
+
+/*  =========================================================================
+    JUICE -> INITIALIZE -> COLORS -> FONT
+    ========================================================================= */
 
 $font-colors: (
     'dark': hsla(0, 0%, 13%, 1),
     'default': hsla(0, 0%, 34%, 1),
-    'light': hsla(0, 0%, 91%, 1),
+    'light': hsla(0, 0%, 91%, 1)
 ) !default;
 
-/* =============================================================================================
-   JUICE -> INITIALIZE -> COLORS -> FEEDBACK
-   ============================================================================================= */
+
+/*  =========================================================================
+    JUICE -> INITIALIZE -> COLORS -> FEEDBACK
+    ========================================================================= */
 
 $feedback-colors: (
     'info': map-get($base-colors, 'blue'),
     'success': map-get($base-colors, 'green'),
     'warning': map-get($base-colors, 'orange'),
-    'error': map-get($base-colors, 'red'),
+    'error': map-get($base-colors, 'red')
 ) !default;
 
-/* =============================================================================================
-   JUICE -> INITIALIZE -> COLORS -> VARIATION TYPES
-   ============================================================================================= */
 
-// Pseudo class background color variation types
-$pseudo-background-color-type: 'base' !default;
-$pseudo-background-color-type--focus: 'base' !default;
-$pseudo-background-color-type--hover: 'lighten-1' !default;
-$pseudo-background-color-type--active: 'darken-1' !default;
+/*  =========================================================================
+    JUICE -> INITIALIZE -> COLORS -> VARIATION TYPES
+    ========================================================================= */
 
-// Pseudo class border color variation types
-$pseudo-border-color-type: 'darken-3' !default;
-$pseudo-border-color-type--focus: 'darken-6' !default;
-$pseudo-border-color-type--hover: 'darken-6' !default;
-$pseudo-border-color-type--active: 'darken-8' !default;
+// Background color variation types
+$background-color-palette-type: 'base' !default;
+$background-color-palette-type-active: 'darken-1' !default;
+$background-color-palette-type-focus: 'base' !default;
+$background-color-palette-type-hover: 'lighten-1' !default;
 
-// Pseudo class link color variation types
-$pseudo-link-color-type: 'base' !default;
-$pseudo-link-color-type--focus: 'base' !default;
-$pseudo-link-color-type--hover: 'lighten-4' !default;
-$pseudo-link-color-type--active: 'darken-2' !default;
+// Border color variation types
+$border-color-palette-type: 'darken-3' !default;
+$border-color-palette-type-active: 'darken-8' !default;
+$border-color-palette-type-focus: 'darken-6' !default;
+$border-color-palette-type-hover: 'darken-6' !default;
+
+// Link color variation types
+$link-color-palette-type: 'base' !default;
+$link-color-palette-type-active: 'darken-2' !default;
+$link-color-palette-type-focus: 'base' !default;
+$link-color-palette-type-hover: 'lighten-4' !default;

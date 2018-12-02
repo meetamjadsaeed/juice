@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> TOGGLER
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> TOGGLER
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'Toggler';
+    const plugin_name = 'Toggler';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -60,15 +60,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -79,7 +79,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -89,7 +89,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -99,7 +99,7 @@
     };
 
     /**
-     * Event handler to toggle an element when the trigger is clicked
+     * Event handler to toggle an element when the trigger is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -108,7 +108,7 @@
         const $trigger = event.currentTarget;
         const $target = $trigger.data.target;
 
-        // Check if the trigger has the active state and show or hide the target
+        // Check if the trigger has the active state
         (!$trigger.classList.contains('is-active')
             ? plugin.this.show($target)
             : plugin.this.hide($target)
@@ -116,12 +116,12 @@
     }
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -154,13 +154,13 @@
                 };
 
                 // Set the target css display value
-                const targetDisplay = ($target.currentStyle
+                const target_display_style = ($target.currentStyle
                     ? $target.currentStyle.display
                     : getComputedStyle($target, null).display
                 );
 
                 // Check if the target is visible
-                if (targetDisplay != 'none') {
+                if (target_display_style != 'none') {
                     // Add the active state to the trigger
                     $trigger.classList.add('is-active');
                 }
@@ -177,7 +177,7 @@
         },
 
         /**
-         * Show an element
+         * Show an element.
          * @param  {element}  $target  The target
          * @param  {bool}     silent   Suppress callbacks
          * @return {void}
@@ -196,7 +196,9 @@
             $trigger.classList.add('is-active');
 
             // Set the slide status
-            const slide = $trigger.dataset.togglerSlide || plugin.settings.slide;
+            const slide =
+                $trigger.dataset.togglerSlide ||
+                plugin.settings.slide;
 
             // Check if a slide status exists
             if (slide) {
@@ -207,7 +209,9 @@
                 $target.classList.add('is-animating');
 
                 // Set the slide duration
-                const slideDuration = $trigger.dataset.togglerSlideDuration || plugin.settings.slideDuration;
+                const slider_duration =
+                    $trigger.dataset.togglerSlideDuration ||
+                    plugin.settings.slideDuration;
 
                 // Slide the target down
                 Velocity($target, 'slideDown', {
@@ -224,17 +228,19 @@
                             plugin.settings.callbackShowAfter.call();
                         }
                     },
-                    duration: slideDuration
+                    duration: slider_duration
                 });
             } else {
                 // Set the target animation in
-                const animationIn = $trigger.dataset.togglerAnimationIn || plugin.settings.animationIn;
+                const animation_in =
+                    $trigger.dataset.togglerAnimationIn ||
+                    plugin.settings.animationIn;
 
                 // Show the target
                 $target.style.display = '';
 
                 // Check if the animation in is set
-                if (animationIn && animationIn != 'none') {
+                if (animation_in && animation_in != 'none') {
                     // Remove the animated state hook from the target
                     $target.classList.remove('has-animated');
 
@@ -243,7 +249,7 @@
 
                     // Add the animation classes to the target
                     $target.classList.add('animated');
-                    $target.classList.add(animationIn);
+                    $target.classList.add(animation_in);
 
                     // Add an animation end event listener to the target
                     $target.addEventListener('animationend', (event) => {
@@ -252,7 +258,7 @@
 
                         // Remove the animation classes from the target
                         $target.classList.remove('animated');
-                        $target.classList.remove(animationIn);
+                        $target.classList.remove(animation_in);
 
                         // Add the animated state hook to the target
                         $target.classList.add('has-animated');
@@ -276,7 +282,7 @@
         },
 
         /**
-         * Hide an element
+         * Hide an element.
          * @param  {element}  $target  The target
          * @param  {bool}     silent   Suppress callbacks
          * @return {void}
@@ -295,7 +301,9 @@
             $trigger.classList.remove('is-active');
 
             // Set the slide status
-            const slide = $trigger.dataset.togglerSlide || plugin.settings.slide;
+            const slide =
+                $trigger.dataset.togglerSlide ||
+                plugin.settings.slide;
 
             // Check if a slide status exists
             if (slide) {
@@ -306,7 +314,9 @@
                 $target.classList.add('is-animating');
 
                 // Set the slide duration
-                const slideDuration = $trigger.dataset.togglerSlideDuration || plugin.settings.slideDuration;
+                const slider_duration =
+                    $trigger.dataset.togglerSlideDuration ||
+                    plugin.settings.slideDuration;
 
                 // Slide the target up
                 Velocity($target, 'slideUp', {
@@ -323,14 +333,16 @@
                             plugin.settings.callbackHideAfter.call();
                         }
                     },
-                    duration: slideDuration
+                    duration: slider_duration
                 });
             } else {
                 // Set the target animation out
-                const animationOut = $trigger.dataset.togglerAnimationOut || plugin.settings.animationOut;
+                const animation_out =
+                    $trigger.dataset.togglerAnimationOut ||
+                    plugin.settings.animationOut;
 
                 // Check if the animation out is set
-                if (animationOut && animationOut != 'none') {
+                if (animation_out && animation_out != 'none') {
                     // Remove the animated state hook from the target
                     $target.classList.remove('has-animated');
 
@@ -339,7 +351,7 @@
 
                     // Add the animation classes to the target
                     $target.classList.add('animated');
-                    $target.classList.add(animationOut);
+                    $target.classList.add(animation_out);
 
                     // Add an animation end event listener to the target
                     $target.addEventListener('animationend', (event) => {
@@ -348,7 +360,7 @@
 
                         // Remove the animation classes from the target
                         $target.classList.remove('animated');
-                        $target.classList.remove(animationOut);
+                        $target.classList.remove(animation_out);
 
                         // Add the animated state hook to the target
                         $target.classList.add('has-animated');
@@ -378,7 +390,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -403,7 +415,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -431,7 +443,7 @@
         },
 
         /**
-         * Call the show method silently
+         * Call the show method silently.
          * @param  {element}  $target  The target
          * @return {void}
          */
@@ -441,7 +453,7 @@
         },
 
         /**
-         * Call the hide method silently
+         * Call the hide method silently.
          * @param  {element}  $target  The target
          * @return {void}
          */
@@ -451,7 +463,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -460,7 +472,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {

@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> ACCORDION
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> ACCORDION
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'Accordion';
+    const plugin_name = 'Accordion';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -53,15 +53,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -72,7 +72,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -82,7 +82,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -92,12 +92,13 @@
     };
 
     /**
-     * Event handler to toggle an accordion item when an accordion item toggle is clicked
+     * Event handler to toggle an accordion item when an accordion item
+     * toggle is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
     const clickToggleEventHandler = (event) => {
-        // Set the accortion item toggle
+        // Set the accordion item toggle
         const $toggle = event.currentTarget;
 
         // Set the accordion item
@@ -108,12 +109,12 @@
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -143,7 +144,9 @@
                     const $toggle = $item.querySelector('.js-accordion-toggle');
 
                     // Set the accordion type
-                    const openMultipleItems = $accordion.dataset.accordionOpenMultipleItems || plugin.settings.openMultipleItems;
+                    const open_multiple_items =
+                        $accordion.dataset.accordionOpenMultipleItems ||
+                        plugin.settings.openMultipleItems;
 
                     // Check if the accordion item doesn't have the expanded or collapsed state hooks
                     if (!$item.classList.contains('is-expanded') && !$item.classList.contains('is-collapsed')) {
@@ -152,7 +155,7 @@
                     }
 
                     // Check if opening multiple items is not allowed
-                    if (!openMultipleItems) {
+                    if (!open_multiple_items) {
                         // Check if the accordion item has the expanded state hook
                         if ($item.classList.contains('is-expanded')) {
                             // Check if this is the first iterated item in the loop
@@ -181,7 +184,7 @@
         },
 
         /**
-         * Toggle an accordion item
+         * Toggle an accordion item.
          * @param  {element}  $item   The accordion item
          * @param  {bool}     silent  Suppress callbacks
          * @return {void}
@@ -198,11 +201,15 @@
             const $body = $item.querySelector('.accordion__body');
 
             // Set the accordion toggle settings
-            const toggleAnimation = $accordion.dataset.accordionToggleAnimation || plugin.settings.toggleAnimation;
-            const toggleAnimationDuration = $accordion.dataset.accordionToggleAnimationDuration || plugin.settings.toggleAnimationDuration;
+            const toggle_animation =
+                $accordion.dataset.accordionToggleAnimation ||
+                plugin.settings.toggleAnimation;
+            const toggle_animation_duration =
+                $accordion.dataset.accordionToggleAnimationDuration ||
+                plugin.settings.toggleAnimationDuration;
 
             // Start a switch statement for the toggle animation
-            switch (toggleAnimation) {
+            switch (toggle_animation) {
                 // Default
                 default:
                     // Toggle the expanded and collapsed state hooks on the accordion item
@@ -245,7 +252,7 @@
                                     plugin.settings.callbackToggleAfter.call();
                                 }
                             },
-                            duration: toggleAnimationDuration
+                            duration: toggle_animation_duration
                         });
                     }
 
@@ -270,7 +277,7 @@
                                     plugin.settings.callbackToggleAfter.call();
                                 }
                             },
-                            duration: toggleAnimationDuration
+                            duration: toggle_animation_duration
                         });
                     }
                 break;
@@ -304,7 +311,7 @@
                                     plugin.settings.callbackToggleAfter.call();
                                 }
                             },
-                            duration: toggleAnimationDuration
+                            duration: toggle_animation_duration
                         });
                     }
 
@@ -329,7 +336,7 @@
                                     plugin.settings.callbackToggleAfter.call();
                                 }
                             },
-                            duration: toggleAnimationDuration
+                            duration: toggle_animation_duration
                         });
                     }
                 break;
@@ -337,7 +344,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -362,7 +369,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -399,7 +406,7 @@
         },
 
         /**
-         * Call the toggle method silently
+         * Call the toggle method silently.
          * @param  {element}  $item  The accordion item
          * @return {void}
          */
@@ -409,7 +416,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -418,7 +425,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {

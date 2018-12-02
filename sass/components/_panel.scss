@@ -1,56 +1,56 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> PANEL -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> PANEL -> VARIABLES
+    ========================================================================= */
 
 $panel-animation-duration: 300ms !default;
 $panel-body-background-color: base-color('white') !default;
-$panel-body-border-color: base-color('white', $pseudo-border-color-type) !default;
+$panel-body-border-color: base-color('white', $border-color-palette-type) !default;
 $panel-body-font-color: base-color('white', 'invert') !default;
-$panel-border-radius--top-left: $border-radius--top-left !default;
-$panel-border-radius--top-right: $border-radius--top-right !default;
-$panel-border-radius--bottom-right: $border-radius--bottom-right !default;
-$panel-border-radius--bottom-left: $border-radius--bottom-left !default;
+$panel-border-radius-bottom-left: $border-radius-bottom-left !default;
+$panel-border-radius-bottom-right: $border-radius-bottom-right !default;
+$panel-border-radius-top-left: $border-radius-top-left !default;
+$panel-border-radius-top-right: $border-radius-top-right !default;
 $panel-border-style: $border-style !default;
-$panel-border-width--top: $border-width--top !default;
-$panel-border-width--right: $border-width--right !default;
-$panel-border-width--bottom: $border-width--bottom !default;
-$panel-border-width--left: $border-width--left !default;
-$panel-border-width--divider: $border-width--divider !default;
+$panel-border-width-bottom: $border-width-bottom !default;
+$panel-border-width-divider: $border-width-divider !default;
+$panel-border-width-left: $border-width-left !default;
+$panel-border-width-right: $border-width-right !default;
+$panel-border-width-top: $border-width-top !default;
 $panel-box-shadow: $box-shadow !default;
 $panel-content-spacing: $content-spacing !default;
-$panel-content-spacing--small: $content-spacing--small !default;
-$panel-content-spacing--large: $content-spacing--large !default;
-$panel-content-spacing--huge: $content-spacing--huge !default;
+$panel-content-spacing-small: $content-spacing-small !default;
+$panel-content-spacing-large: $content-spacing-large !default;
+$panel-content-spacing-huge: $content-spacing-huge !default;
 $panel-element-spacing: $element-spacing !default;
-$panel-element-spacing--small: $element-spacing--small !default;
-$panel-element-spacing--large: $element-spacing--large !default;
-$panel-element-spacing--huge: $element-spacing--huge !default;
+$panel-element-spacing-small: $element-spacing-small !default;
+$panel-element-spacing-large: $element-spacing-large !default;
+$panel-element-spacing-huge: $element-spacing-huge !default;
 $panel-font-size: $font-size !default;
-$panel-font-size--small: $font-size--small !default;
-$panel-font-size--large: $font-size--large !default;
-$panel-font-size--huge: $font-size--huge !default;
+$panel-font-size-small: $font-size-small !default;
+$panel-font-size-large: $font-size-large !default;
+$panel-font-size-huge: $font-size-huge !default;
 $panel-head-background-color: base-color('white') !default;
-$panel-head-border-color: base-color('white', $pseudo-border-color-type) !default;
+$panel-head-border-color: base-color('white', $border-color-palette-type) !default;
 $panel-head-font-color: base-color('white', 'invert') !default;
 $panel-link-color: $link-color !default;
-$panel-link-color--focus: $link-color--focus !default;
-$panel-link-color--hover: $link-color--hover !default;
-$panel-link-color--active: $link-color--active !default;
+$panel-link-color-active: $link-color-active !default;
+$panel-link-color-focus: $link-color-focus !default;
+$panel-link-color-hover: $link-color-hover !default;
 
 
-/* =============================================================================================
-   JUICE -> COMPONENTS -> PANEL
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> COMPONENTS -> PANEL
+    ========================================================================= */
 
 .panel {
     animation-duration: $panel-animation-duration;
     border: 0 $panel-border-style transparent;
-    border-bottom-left-radius: $panel-border-radius--bottom-left;
-    border-bottom-right-radius: $panel-border-radius--bottom-right;
-    border-top-left-radius: $panel-border-radius--top-left;
-    border-top-right-radius: $panel-border-radius--top-right;
+    border-bottom-left-radius: $panel-border-radius-bottom-left;
+    border-bottom-right-radius: $panel-border-radius-bottom-right;
+    border-top-left-radius: $panel-border-radius-top-left;
+    border-top-right-radius: $panel-border-radius-top-right;
     box-shadow: $panel-box-shadow;
     display: flex;
     flex-direction: column;
@@ -80,9 +80,9 @@ $panel-link-color--active: $link-color--active !default;
     &.is-collapsed {
         // Nested selectors
         .panel__head {
-            border-bottom-left-radius: $panel-border-radius--bottom-left;
-            border-bottom-right-radius: $panel-border-radius--bottom-right;
-            border-bottom-width: $panel-border-width--bottom;
+            border-bottom-left-radius: $panel-border-radius-bottom-left;
+            border-bottom-right-radius: $panel-border-radius-bottom-right;
+            border-bottom-width: $panel-border-width-bottom;
 
             // Nested selectors
             .panel__icons {
@@ -104,35 +104,35 @@ $panel-link-color--active: $link-color--active !default;
 
     // Modifiers: Sizes
     &.is-small {
-        font-size: $panel-font-size--small;
-        margin-bottom: $panel-element-spacing--small;
+        font-size: $panel-font-size-small;
+        margin-bottom: $panel-element-spacing-small;
 
         // Nested selectors
         .panel__head,
         .panel__body {
-            padding: $panel-content-spacing--small;
+            padding: $panel-content-spacing-small;
         }
     }
 
     &.is-large {
-        font-size: $panel-font-size--large;
-        margin-bottom: $panel-element-spacing--large;
+        font-size: $panel-font-size-large;
+        margin-bottom: $panel-element-spacing-large;
 
         // Nested selectors
         .panel__head,
         .panel__body {
-            padding: $panel-content-spacing--large;
+            padding: $panel-content-spacing-large;
         }
     }
 
     &.is-huge {
-        font-size: $panel-font-size--huge;
-        margin-bottom: $panel-element-spacing--huge;
+        font-size: $panel-font-size-huge;
+        margin-bottom: $panel-element-spacing-huge;
 
         // Nested selectors
         .panel__head,
         .panel__body {
-            padding: $panel-content-spacing--huge;
+            padding: $panel-content-spacing-huge;
         }
     }
 
@@ -142,7 +142,7 @@ $panel-link-color--active: $link-color--active !default;
             // Nested selectors
             .panel__head {
                 background-color: base-color($name);
-                border-color: base-color($name, 'darken-3');
+                border-color: base-color($name, $border-color-palette-type);
                 color: base-color($name, 'invert');
             }
         }
@@ -154,7 +154,7 @@ $panel-link-color--active: $link-color--active !default;
             // Nested selectors
             .panel__head {
                 background-color: feedback-color($name);
-                border-color: feedback-color($name, $pseudo-border-color-type);
+                border-color: feedback-color($name, $border-color-palette-type);
                 color: feedback-color($name, 'invert');
             }
         }
@@ -170,13 +170,13 @@ $panel-link-color--active: $link-color--active !default;
     .panel__head {
         align-items: center;
         background-color: $panel-head-background-color;
-        border-bottom-width: $panel-border-width--divider;
+        border-bottom-width: $panel-border-width-divider;
         border-color: $panel-head-border-color;
-        border-left-width: $panel-border-width--left;
-        border-right-width: $panel-border-width--right;
-        border-top-left-radius: $panel-border-radius--top-left;
-        border-top-right-radius: $panel-border-radius--top-right;
-        border-top-width: $panel-border-width--top;
+        border-left-width: $panel-border-width-left;
+        border-right-width: $panel-border-width-right;
+        border-top-left-radius: $panel-border-radius-top-left;
+        border-top-right-radius: $panel-border-radius-top-right;
+        border-top-width: $panel-border-width-top;
         color: $panel-head-font-color;
         display: flex;
 
@@ -211,12 +211,12 @@ $panel-link-color--active: $link-color--active !default;
 
     .panel__body {
         background-color: $panel-body-background-color;
-        border-bottom-left-radius: $panel-border-radius--bottom-left;
-        border-bottom-right-radius: $panel-border-radius--bottom-right;
-        border-bottom-width: $panel-border-width--bottom;
+        border-bottom-left-radius: $panel-border-radius-bottom-left;
+        border-bottom-right-radius: $panel-border-radius-bottom-right;
+        border-bottom-width: $panel-border-width-bottom;
         border-color: $panel-body-border-color;
-        border-left-width: $panel-border-width--left;
-        border-right-width: $panel-border-width--right;
+        border-left-width: $panel-border-width-left;
+        border-right-width: $panel-border-width-right;
         color: $panel-body-font-color;
 
         // Nested selectors
@@ -225,15 +225,15 @@ $panel-link-color--active: $link-color--active !default;
 
             // Pseudo classes
             &:focus {
-                color: $panel-link-color--focus;
+                color: $panel-link-color-focus;
             }
 
             &:hover {
-                color: $panel-link-color--hover;
+                color: $panel-link-color-hover;
             }
 
             &:active {
-                color: $panel-link-color--active;
+                color: $panel-link-color-active;
             }
         }
     }

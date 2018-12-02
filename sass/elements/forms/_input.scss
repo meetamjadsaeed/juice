@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORMS -> INPUT -> VARIABLES
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> FORMS -> INPUT -> VARIABLES
+    ========================================================================= */
 
 // Input shorthand types
 $input: "
@@ -27,62 +27,62 @@ $input: "
 
 // Input
 $input-background-color: base-color('white') !default;
-$input-background-color--hover: $input-background-color !default;
-$input-background-color--focus: $input-background-color !default;
-$input-border-color: base-color('white', $pseudo-border-color-type) !default;
-$input-border-color--focus: feedback-color('info') !default;
-$input-border-color--hover: base-color('white', $pseudo-border-color-type--hover) !default;
-$input-border-radius--top-left: $border-radius--top-left !default;
-$input-border-radius--top-right: $border-radius--top-right !default;
-$input-border-radius--bottom-right: $border-radius--bottom-right !default;
-$input-border-radius--bottom-left: $border-radius--bottom-left !default;
+$input-background-color-hover: $input-background-color !default;
+$input-background-color-focus: $input-background-color !default;
+$input-border-color: base-color('white', $border-color-palette-type) !default;
+$input-border-color-focus: feedback-color('info') !default;
+$input-border-color-hover: base-color('white', $border-color-palette-type-hover) !default;
+$input-border-radius-bottom-left: $border-radius-bottom-left !default;
+$input-border-radius-bottom-right: $border-radius-bottom-right !default;
+$input-border-radius-top-left: $border-radius-top-left !default;
+$input-border-radius-top-right: $border-radius-top-right !default;
 $input-border-style: $border-style !default;
-$input-border-width--top: $border-width--top !default;
-$input-border-width--right: $border-width--right !default;
-$input-border-width--bottom: $border-width--bottom !default;
-$input-border-width--left: $border-width--left !default;
-$input-border-width--divider: $border-width--divider !default;
+$input-border-width-bottom: $border-width-bottom !default;
+$input-border-width-divider: $border-width-divider !default;
+$input-border-width-left: $border-width-left !default;
+$input-border-width-right: $border-width-right !default;
+$input-border-width-top: $border-width-top !default;
 $input-element-spacing: $element-spacing !default;
-$input-element-spacing--small: $element-spacing--small !default;
-$input-element-spacing--large: $element-spacing--large !default;
-$input-element-spacing--huge: $element-spacing--huge !default;
+$input-element-spacing-small: $element-spacing-small !default;
+$input-element-spacing-large: $element-spacing-large !default;
+$input-element-spacing-huge: $element-spacing-huge !default;
 $input-font-color: base-color('white', 'invert') !default;
-$input-font-color--placeholder: base-color('white', 'darken-5') !default;
-$input-font-color--hover: $input-font-color !default;
-$input-font-color--focus: $input-font-color !default;
+$input-font-color-hover: $input-font-color !default;
+$input-font-color-focus: $input-font-color !default;
 $input-font-family: $primary-typeface !default;
 $input-font-size: $font-size !default;
-$input-font-size--small: $font-size--small !default;
-$input-font-size--large: $font-size--large !default;
-$input-font-size--huge: $font-size--huge !default;
+$input-font-size-small: $font-size-small !default;
+$input-font-size-large: $font-size-large !default;
+$input-font-size-huge: $font-size-huge !default;
 $input-height: $element-height !default;
-$input-height--small: $element-height--small !default;
-$input-height--large: $element-height--large !default;
-$input-height--huge: $element-height--huge !default;
+$input-height-small: $element-height-small !default;
+$input-height-large: $element-height-large !default;
+$input-height-huge: $element-height-huge !default;
 $input-padding: 0 10px !default;
+$input-placeholder-color: base-color('white', 'darken-5') !default;
 $input-range-thumb-background-color: $input-background-color !default;
 $input-range-thumb-width: 20px !default;
 $input-range-track-color: $input-border-color !default;
-$input-range-track-color--filled: $input-border-color--focus !default;
+$input-range-track-color-filled: $input-border-color-focus !default;
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORMS -> INPUT -> MIXINS
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> FORMS -> INPUT -> MIXINS
+    ========================================================================= */
 
 // Default input
 @mixin input() {
     -webkit-appearance: none;
     background-color: $input-background-color;
     border: 0 $input-border-style $input-border-color;
-    border-bottom-left-radius: $input-border-radius--bottom-left;
-    border-bottom-right-radius: $input-border-radius--bottom-right;
-    border-bottom-width: $input-border-width--bottom;
-    border-left-width: $input-border-width--left;
-    border-top-left-radius: $input-border-radius--top-left;
-    border-top-right-radius: $input-border-radius--top-right;
-    border-top-width: $input-border-width--top;
-    border-right-width: $input-border-width--right;
+    border-bottom-left-radius: $input-border-radius-bottom-left;
+    border-bottom-right-radius: $input-border-radius-bottom-right;
+    border-bottom-width: $input-border-width-bottom;
+    border-left-width: $input-border-width-left;
+    border-top-left-radius: $input-border-radius-top-left;
+    border-top-right-radius: $input-border-radius-top-right;
+    border-top-width: $input-border-width-top;
+    border-right-width: $input-border-width-right;
     color: $input-font-color;
     display: flex;
     font-family: $input-font-family;
@@ -100,17 +100,17 @@ $input-range-track-color--filled: $input-border-color--focus !default;
 
     // Pseudo classes
     &:hover {
-        background-color: $input-background-color--hover;
-        border-color: $input-border-color--hover;
-        color: $input-font-color--hover;
+        background-color: $input-background-color-hover;
+        border-color: $input-border-color-hover;
+        color: $input-font-color-hover;
     }
 
     &:focus,
     &:active {
-        background-color: $input-background-color--focus;
-        border-color: $input-border-color--focus;
+        background-color: $input-background-color-focus;
+        border-color: $input-border-color-focus;
         box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color('info'), $custom-focus-box-shadow-transparentize);
-        color: $input-font-color--focus;
+        color: $input-font-color-focus;
     }
 
     &:focus {
@@ -123,50 +123,50 @@ $input-range-track-color--filled: $input-border-color--focus !default;
 }
 
 // Small input size
-@mixin input-size--small() {
-    font-size: $input-font-size--small;
-    height: $input-height--small;
-    margin-bottom: $input-element-spacing--small;
+@mixin input-size-small() {
+    font-size: $input-font-size-small;
+    height: $input-height-small;
+    margin-bottom: $input-element-spacing-small;
 
     // Pseudo elements
     &::-ms-clear {
-        width: $input-height--small / 2;
+        width: $input-height-small / 2;
     }
 
     &::-ms-reveal {
-        width: $input-height--small / 2;
+        width: $input-height-small / 2;
     }
 }
 
 // Large input size
-@mixin input-size--large() {
-    font-size: $input-font-size--large;
-    height: $input-height--large;
-    margin-bottom: $input-element-spacing--large;
+@mixin input-size-large() {
+    font-size: $input-font-size-large;
+    height: $input-height-large;
+    margin-bottom: $input-element-spacing-large;
 
     // Pseudo elements
     &::-ms-clear {
-        width: $input-height--large / 2;
+        width: $input-height-large / 2;
     }
 
     &::-ms-reveal {
-        width: $input-height--large / 2;
+        width: $input-height-large / 2;
     }
 }
 
 // Huge input size
-@mixin input-size--huge() {
-    font-size: $input-font-size--huge;
-    height: $input-height--huge;
-    margin-bottom: $input-element-spacing--huge;
+@mixin input-size-huge() {
+    font-size: $input-font-size-huge;
+    height: $input-height-huge;
+    margin-bottom: $input-element-spacing-huge;
 
     // Pseudo elements
     &::-ms-clear {
-        width: $input-height--huge / 2;
+        width: $input-height-huge / 2;
     }
 
     &::-ms-reveal {
-        width: $input-height--huge / 2;
+        width: $input-height-huge / 2;
     }
 }
 
@@ -185,16 +185,16 @@ $input-range-track-color--filled: $input-border-color--focus !default;
     background-color: $input-range-thumb-background-color;
     border: none;
     border-radius: 0;
-    box-shadow: -100vw 0 0 100vw $input-range-track-color--filled;
+    box-shadow: -100vw 0 0 100vw $input-range-track-color-filled;
     box-sizing: border-box;
     height: 100%;
     width: $input-range-thumb-width;
 }
 
 
-/* =============================================================================================
-   JUICE -> ELEMENTS -> FORMS -> INPUT
-   ============================================================================================= */
+/*  =========================================================================
+    JUICE -> ELEMENTS -> FORMS -> INPUT
+    ========================================================================= */
 
 // Input
 #{$input} {
@@ -202,7 +202,7 @@ $input-range-track-color--filled: $input-border-color--focus !default;
 
     // Pseudo elements
     &::placeholder {
-        color: $input-font-color--placeholder;
+        color: $input-placeholder-color;
         opacity: 1;
     }
 
@@ -231,15 +231,15 @@ $input-range-track-color--filled: $input-border-color--focus !default;
 
     // Modifiers: Sizes
     &.is-small {
-        @include input-size--small();
+        @include input-size-small();
     }
 
     &.is-large {
-        @include input-size--large();
+        @include input-size-large();
     }
 
     &.is-huge {
-        @include input-size--huge();
+        @include input-size-huge();
     }
 
     // Modifiers: Feedback colors
@@ -302,19 +302,19 @@ input[type=color] {
     // Pseudo elements
     &::-webkit-color-swatch-wrapper {
         background-color: $input-background-color;
-        border-bottom-left-radius: $input-border-radius--bottom-left;
-        border-bottom-right-radius: $input-border-radius--bottom-right;
-        border-top-left-radius: $input-border-radius--top-left;
-        border-top-right-radius: $input-border-radius--top-right;
+        border-bottom-left-radius: $input-border-radius-bottom-left;
+        border-bottom-right-radius: $input-border-radius-bottom-right;
+        border-top-left-radius: $input-border-radius-top-left;
+        border-top-right-radius: $input-border-radius-top-right;
         padding: 0;
     }
 
     &::-webkit-color-swatch {
         border: none;
-        border-bottom-left-radius: $input-border-radius--bottom-left;
-        border-bottom-right-radius: $input-border-radius--bottom-right;
-        border-top-left-radius: $input-border-radius--top-left;
-        border-top-right-radius: $input-border-radius--top-right;
+        border-bottom-left-radius: $input-border-radius-bottom-left;
+        border-bottom-right-radius: $input-border-radius-bottom-right;
+        border-top-left-radius: $input-border-radius-top-left;
+        border-top-right-radius: $input-border-radius-top-right;
     }
 
     // Modifiers
@@ -347,9 +347,9 @@ input[type=file] {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
         border-width: 0;
-        border-right-width: $input-border-width--divider;
+        border-right-width: $input-border-width-divider;
         cursor: pointer;
-        height: $input-height - ($input-border-width--top + $input-border-width--bottom);
+        height: $input-height - ($input-border-width-top + $input-border-width-bottom);
         margin: 0;
         outline: none;
         width: auto;
@@ -375,45 +375,45 @@ input[type=file] {
     &.is-small {
         // Pseudo elements
         &::-webkit-file-upload-button {
-            height: $input-height--small - ($input-border-width--top + $input-border-width--bottom);
+            height: $input-height-small - ($input-border-width-top + $input-border-width-bottom);
         }
 
         &::-ms-value {
-            height: $input-height--small;
+            height: $input-height-small;
         }
 
         &::-ms-browse {
-            height: $input-height--small;
+            height: $input-height-small;
         }
     }
 
     &.is-large {
         // Pseudo elements
         &::-webkit-file-upload-button {
-            height: $input-height--large - ($input-border-width--top + $input-border-width--bottom);
+            height: $input-height-large - ($input-border-width-top + $input-border-width-bottom);
         }
 
         &::-ms-value {
-            height: $input-height--large;
+            height: $input-height-large;
         }
 
         &::-ms-browse {
-            height: $input-height--large;
+            height: $input-height-large;
         }
     }
 
     &.is-huge {
         // Pseudo elements
         &::-webkit-file-upload-button {
-            height: $input-height--huge - ($input-border-width--top + $input-border-width--bottom);
+            height: $input-height-huge - ($input-border-width-top + $input-border-width-bottom);
         }
 
         &::-ms-value {
-            height: $input-height--huge;
+            height: $input-height-huge;
         }
 
         &::-ms-browse {
-            height: $input-height--huge;
+            height: $input-height-huge;
         }
     }
 
@@ -480,7 +480,7 @@ input[type=range] {
     }
 
     &::-ms-fill-lower {
-        background-color: $input-range-track-color--filled;
+        background-color: $input-range-track-color-filled;
         border-right: $input-range-thumb-width solid $input-range-thumb-background-color;
     }
 

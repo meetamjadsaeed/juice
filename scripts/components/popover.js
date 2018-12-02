@@ -1,20 +1,20 @@
-/* =============================================================================================
-   JUICE -> COMPONENTS -> POPOVER
-   ============================================================================================= */
+/*  ========================================================================
+    JUICE -> COMPONENTS -> POPOVER
+    ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const pluginName = 'Popover';
+    const plugin_name = 'Popover';
 
-    // Check if the plugin should be instantiated via AMD, CommonJS or the Browser
+    // Check if instantiation should be via` amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
-        define([], factory(pluginName));
+        define([], factory(plugin_name));
     } else if (typeof exports === 'object') {
-        module.exports = factory(pluginName);
+        module.exports = factory(plugin_name);
     } else {
-        root[pluginName] = factory(pluginName);
+        root[plugin_name] = factory(plugin_name);
     }
-}((window || module || {}), function(pluginName) {
+}((window || module || {}), function(plugin_name) {
     // Use strict mode
     'use strict';
 
@@ -64,15 +64,15 @@
     };
 
     /**
-     * Constructor
+     * Constructor.
      * @param  {element}  element  The initialized element
      * @param  {object}   options  The plugin options
      * @return {void}
      */
     function Plugin(element, options) {
-        // Set the plugin instance, name, element, default settings, user options and extended settings
+        // Set the plugin object
         plugin.this = this;
-        plugin.name = pluginName;
+        plugin.name = plugin_name;
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
@@ -83,7 +83,7 @@
     }
 
     /**
-     * Merge the default plugin settings with the user options
+     * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings
      * @param  {object}  options   The user options
      * @return {object}            The extended plugin settings
@@ -93,7 +93,7 @@
         for (let property in options) {
             // Check if the property exists in the user options
             if (options.hasOwnProperty(property)) {
-                // Set the property key value in the defaults object with the options property key value
+                // Set the defaults property to the options property
                 defaults[property] = options[property];
             }
         }
@@ -103,7 +103,7 @@
     };
 
     /**
-     * Get an elements offset
+     * Get an elements offset.
      * @param  {element}  $element  The element
      * @return {object}             The element offset
      */
@@ -130,7 +130,7 @@
     };
 
     /**
-     * Build a popover
+     * Build a popover.
      * @param  {element}  $container  The popover container
      * @return {element}              The popover
      */
@@ -155,10 +155,18 @@
         $body.insertAdjacentHTML('beforeend', $container.dataset.popoverText);
 
         // Set the popover modifiers
-        const color = $container.dataset.popoverColor || plugin.settings.color;
-        const feedback = $container.dataset.popoverFeedback || plugin.settings.feedback;
-        const position = $container.dataset.popoverPosition || plugin.settings.position;
-        const size = $container.dataset.popoverSize || plugin.settings.size;
+        const color =
+            $container.dataset.popoverColor ||
+            plugin.settings.color;
+        const feedback =
+            $container.dataset.popoverFeedback ||
+            plugin.settings.feedback;
+        const position =
+            $container.dataset.popoverPosition ||
+            plugin.settings.position;
+        const size =
+            $container.dataset.popoverSize ||
+            plugin.settings.size;
 
         // Check if a color modifier exists
         if (color) {
@@ -195,71 +203,82 @@
     };
 
     /**
-     * Set the popover position relative to the popover container
+     * Set the popover position relative to the popover container.
      * @param  {element}  $container  The popover container
      * @param  {element}  $popover    The popover
      * @return {void}
      */
     const positionPopover = ($container, $popover) => {
         // Set the popover container offset
-        const containerOffset = getElementOffset($container);
+        const container_offset = getElementOffset($container);
 
-        // Set the popover container x and y positions
-        const containerX = containerOffset.left;
-        const containerY = containerOffset.top;
+        // Set the popover container left and top positions
+        const container_left = container_offset.left;
+        const container_top = container_offset.top;
 
         // Set the popover container dimensions
-        const containerWidth = $container.offsetWidth;
-        const containerHeight = $container.offsetHeight;
+        const container_width = $container.offsetWidth;
+        const container_height = $container.offsetHeight;
 
         // Set the popover dimensions
-        const popoverWidth = $popover.offsetWidth;
-        const popoverHeight = $popover.offsetHeight;
+        const popover_width = $popover.offsetWidth;
+        const popover_height = $popover.offsetHeight;
 
-        // Set the popover x and y positions
-        let popoverX, popoverY;
+        // Set the popover left and top positions
+        let popover_left;
+        let popover_top;
 
         // Set the popover position modifier
-        const position = $container.dataset.popoverPosition || plugin.settings.position;
+        const position =
+            $container.dataset.popoverPosition ||
+            plugin.settings.position;
 
         // Start a switch statement for the popover position
         switch (position) {
             // Top (default)
             default:
-                // Set the popover x and y positions
-                popoverX = containerX + ((containerWidth - popoverWidth) / 2);
-                popoverY = containerY - popoverHeight;
+                // Set the popover left and top positions
+                popover_left =
+                    container_left + ((container_width - popover_width) / 2);
+                popover_top =
+                    container_top - popover_height;
             break;
 
             // Right
             case 'right':
-                // Set the popover x and y positions
-                popoverX = containerX + containerWidth;
-                popoverY = containerY + ((containerHeight - popoverHeight) / 2);
+                // Set the popover left and top positions
+                popover_left =
+                    container_left + container_width;
+                popover_top =
+                    container_top + ((container_height - popover_height) / 2);
             break;
 
             // Bottom
             case 'bottom':
-                // Set the popover x and y positions
-                popoverX = containerX + ((containerWidth - popoverWidth) / 2);
-                popoverY = containerY + containerHeight;
+                // Set the popover left and top positions
+                popover_left =
+                    container_left + ((container_width - popover_width) / 2);
+                popover_top =
+                    container_top + container_height;
             break;
 
             // Left
             case 'left':
-                // Set the popover x and y positions
-                popoverX = containerX - popoverWidth;
-                popoverY = containerY + ((containerHeight - popoverHeight) / 2);
+                // Set the popover left and top positions
+                popover_left =
+                    container_left - popover_width;
+                popover_top =
+                    container_top + ((container_height - popover_height) / 2);
             break;
         }
 
         // Set the inline top and left positions
-        $popover.style.left = `${Math.round(popoverX)}px`;
-        $popover.style.top = `${Math.round(popoverY)}px`;
+        $popover.style.left = `${Math.round(popover_left)}px`;
+        $popover.style.top = `${Math.round(popover_top)}px`;
     };
 
     /**
-     * Insert a popover
+     * Insert a popover.
      * @param  {element}  $container  The popover container
      * @param  {element}  $popover    The popover
      * @return {void}
@@ -269,7 +288,9 @@
         plugin.settings.callbackInsertBefore.call();
 
         // Set the popover delay in
-        const delayIn = $container.dataset.popoverDelayIn || plugin.settings.delayIn;
+        const delay_in =
+            $container.dataset.popoverDelayIn ||
+            plugin.settings.delayIn;
 
         // Start a timer
         setTimeout(() => {
@@ -299,16 +320,18 @@
             $container.classList.add('is-active');
 
             // Set the popover animation in
-            const animationIn = $container.dataset.popoverAnimationIn || plugin.settings.animationIn;
+            const animation_in =
+                $container.dataset.popoverAnimationIn ||
+                plugin.settings.animationIn;
 
             // Check if the animation in is set
-            if (animationIn && animationIn != 'none') {
+            if (animation_in && animation_in != 'none') {
                 // Add the animating state hook to the popover
                 $popover.classList.add('is-animating');
 
                 // Add the animation classes to the popover
                 $popover.classList.add('animated');
-                $popover.classList.add(animationIn);
+                $popover.classList.add(animation_in);
 
                 // Add an animation end event listener to the popover
                 $popover.addEventListener('animationend', (event) => {
@@ -317,7 +340,7 @@
 
                     // Remove the animation classes from the popover
                     $popover.classList.remove('animated');
-                    $popover.classList.remove(animationIn);
+                    $popover.classList.remove(animation_in);
 
                     // Add the animated state hook to the popover
                     $popover.classList.add('has-animated');
@@ -328,11 +351,11 @@
                     once: true
                 });
             }
-        }, delayIn);
+        }, delay_in);
     };
 
     /**
-     * Remove a popover
+     * Remove a popover.
      * @param  {element}  $container  The popover container
      * @param  {element}  $popover    The popover
      * @param  {bool}     silent      Suppress callbacks
@@ -346,15 +369,19 @@
         }
 
         // Set the popover delay out
-        const delayOut = $container.dataset.popoverDelayOut || plugin.settings.delayOut;
+        const delay_out =
+            $container.dataset.popoverDelayOut ||
+            plugin.settings.delayOut;
 
         // Start a timer
         setTimeout(() => {
             // Set the popover animation out
-            const animationOut = $container.dataset.popoverAnimationOut || plugin.settings.animationOut;
+            const animation_out =
+                $container.dataset.popoverAnimationOut ||
+                plugin.settings.animationOut;
 
             // Check if the animation out is set
-            if (animationOut && animationOut != 'none') {
+            if (animation_out && animation_out != 'none') {
                 // Remove the animated state hook from the popover
                 $popover.classList.remove('has-animated');
 
@@ -363,7 +390,7 @@
 
                 // Add the animation classes to the popover
                 $popover.classList.add('animated');
-                $popover.classList.add(animationOut);
+                $popover.classList.add(animation_out);
 
                 // Add an animation end event listener to the popover
                 $popover.addEventListener('animationend', (event) => {
@@ -406,11 +433,11 @@
                     plugin.settings.callbackRemoveAfter.call();
                 }
             }
-        }, delayOut);
+        }, delay_out);
     };
 
     /**
-     * Event handler to toggle a popover when the popover container is clicked
+     * Event handler to toggle a popover when the popover container is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -444,7 +471,7 @@
     };
 
     /**
-     * Event handler to remove a popover when the popover container or popover lose focus
+     * Event handler to remove a popover when the popover container or popover lose focus.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -509,12 +536,12 @@
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin
+         * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -551,7 +578,7 @@
         },
 
         /**
-         * Refresh the plugin by destroying an existing initialization and initializing again
+         * Refresh the plugins initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -576,7 +603,7 @@
         },
 
         /**
-         * Destroy an existing initialization
+         * Destroy an existing initialization.
          * @param  {bool}  silent  Suppress callbacks
          * @return {void}
          */
@@ -622,7 +649,7 @@
         },
 
         /**
-         * Call the refresh method silently
+         * Call the refresh method silently.
          * @return {void}
          */
         refreshSilently: () => {
@@ -631,7 +658,7 @@
         },
 
         /**
-         * Call the destroy method silently
+         * Call the destroy method silently.
          * @return {void}
          */
         destroySilently: () => {
