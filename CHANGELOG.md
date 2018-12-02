@@ -22,6 +22,46 @@
 -----
 
 
+# v0.12.0-beta
+
+### New
+- Added smooth scrolling plugin
+
+### Updated
+- Updated blockquote typography element
+    - Added link color variables and styling
+
+- Updated form input element
+    - Updated placeholder color variable name from 'input-font-color-placeholder' to 'input-placeholder-color'
+
+- Updated form select element
+    - Updated placeholder color variable name from 'select-font-color-placeholder' to 'select-placeholder-color'
+
+- Updated form textarea element
+    - Updated placeholder color variable name from 'select-font-color-placeholder' to 'select-placeholder-color'
+
+- Updated box component
+    - Added link color variables and styling
+
+- Updated color palette variation type variable naming conventions
+
+- Updated scripts
+    - Updated variable naming conventions
+
+- Updated gulpfile.js
+    - Updated hostname
+
+- Updated demo pages
+
+
+### Fixed
+- Fixed breadcrumb element
+    - Fixed right modifier class name
+
+
+-----
+
+
 # v0.11.0-beta
 
 ### New
