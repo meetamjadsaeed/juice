@@ -64,13 +64,13 @@ $panel-link-color-hover: $link-color-hover !default;
         // Nested selectors
         .panel__head {
             // Nested selectors
-            .panel__icons {
+            .panel__actions {
                 // Nested selectors
-                .panel__icon--collapsed {
+                .panel__collapse {
                     display: none;
                 }
 
-                .panel__icon--expanded {
+                .panel__expand {
                     display: inline-flex;
                 }
             }
@@ -85,13 +85,13 @@ $panel-link-color-hover: $link-color-hover !default;
             border-bottom-width: $panel-border-width-bottom;
 
             // Nested selectors
-            .panel__icons {
+            .panel__actions {
                 // Nested selectors
-                .panel__icon--collapsed {
+                .panel__collapse {
                     display: inline-flex;
                 }
 
-                .panel__icon--expanded {
+                .panel__expand {
                     display: none;
                 }
             }
@@ -161,6 +161,25 @@ $panel-link-color-hover: $link-color-hover !default;
     }
 
     // Nested selectors
+
+    // Nested selectors
+    a {
+        color: $panel-link-color;
+
+        // Pseudo classes
+        &:focus {
+            color: $panel-link-color-focus;
+        }
+
+        &:hover {
+            color: $panel-link-color-hover;
+        }
+
+        &:active {
+            color: $panel-link-color-active;
+        }
+    }
+
     .panel__head,
     .panel__body {
         border: 0 $panel-border-style transparent;
@@ -181,7 +200,7 @@ $panel-link-color-hover: $link-color-hover !default;
         display: flex;
 
         // Nested selectors
-        .panel__headings {
+        .panel__heading {
             flex-grow: 1;
 
             // Nested selectors
@@ -202,10 +221,15 @@ $panel-link-color-hover: $link-color-hover !default;
             }
         }
 
-        .panel__icons {
+        .panel__actions {
             align-items: center;
             display: flex;
             font-size: $body-font-size;
+
+            // Nested selectors
+            #{$button} {
+                margin: 0;
+            }
         }
     }
 
@@ -218,23 +242,5 @@ $panel-link-color-hover: $link-color-hover !default;
         border-left-width: $panel-border-width-left;
         border-right-width: $panel-border-width-right;
         color: $panel-body-font-color;
-
-        // Nested selectors
-        a {
-            color: $panel-link-color;
-
-            // Pseudo classes
-            &:focus {
-                color: $panel-link-color-focus;
-            }
-
-            &:hover {
-                color: $panel-link-color-hover;
-            }
-
-            &:active {
-                color: $panel-link-color-active;
-            }
-        }
     }
 }

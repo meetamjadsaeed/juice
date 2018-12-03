@@ -154,6 +154,7 @@ $notice-link-color-hover: $link-color-hover !default;
         align-items: center;
         justify-content: center;
 
+        // Pseudo classes
         &:first-child {
             border-bottom-left-radius: $border-radius-bottom-left;
             border-top-left-radius: $border-radius-top-left;
@@ -191,6 +192,7 @@ $notice-link-color-hover: $link-color-hover !default;
         font-size: $notice-font-size;
         padding: $notice-content-spacing;
 
+        // Pseudo classes
         &:first-child {
             border-left-width: $notice-border-width-left;
         }
@@ -203,7 +205,6 @@ $notice-link-color-hover: $link-color-hover !default;
     .notice__action {
         display: flex;
         padding-left: 0;
-
 
         // Nested selectors
         #{$button} {
