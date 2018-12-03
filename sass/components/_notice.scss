@@ -5,9 +5,8 @@
     ========================================================================= */
 
 $notice-animation-duration: 300ms !default;
-$notice-body-background-color: base-color('white') !default;
-$notice-body-border-color: base-color('white', $border-color-palette-type) !default;
-$notice-body-font-color: base-color('white', 'invert') !default;
+$notice-background-color: base-color('white') !default;
+$notice-border-color: base-color('white', $border-color-palette-type) !default;
 $notice-border-radius-bottom-left: $border-radius-bottom-left !default;
 $notice-border-radius-bottom-right: $border-radius-bottom-right !default;
 $notice-border-radius-top-left: $border-radius-top-left !default;
@@ -30,6 +29,11 @@ $notice-element-spacing-huge: $element-spacing-huge !default;
 $notice-feedback-background-color: feedback-color('info') !default;
 $notice-feedback-border-color: feedback-color('info', $border-color-palette-type) !default;
 $notice-feedback-font-color: feedback-color('info', 'invert') !default;
+$notice-feedback-width: 70px !default;
+$notice-feedback-width-small: 60px !default;
+$notice-feedback-width-large: 80px !default;
+$notice-feedback-width-huge: 90px !default;
+$notice-font-color: base-color('white', 'invert') !default;
 $notice-font-size: $font-size !default;
 $notice-font-size-small: $font-size-small !default;
 $notice-font-size-large: $font-size-large !default;
@@ -59,64 +63,58 @@ $notice-link-color-hover: $link-color-hover !default;
     // Modifiers: Sizes
     &.is-small {
         font-size: $notice-font-size-small;
+        margin-bottom: $notice-element-spacing-small;
 
         // Nested selectors
-        .notice__body {
+        .notice__feedback {
+            flex: 0 0 $notice-feedback-width-small;
+        }
+
+        .notice__text,
+        .notice__action {
             padding: $notice-content-spacing-small;
+        }
 
-            // Nested selectors
-            .notice__icons {
-                // Pseudo classes
-                &:first-child {
-                    padding-right: $notice-content-spacing-small / 2;
-                }
-
-                &:last-child {
-                    padding-left: $notice-content-spacing-small / 2;
-                }
-            }
+        .notice__action {
+            padding-left: 0;
         }
     }
 
     &.is-large {
         font-size: $notice-font-size-large;
+        margin-bottom: $notice-element-spacing-large;
 
         // Nested selectors
-        .notice__body {
+        .notice__feedback {
+            flex: 0 0 $notice-feedback-width-large;
+        }
+
+        .notice__text,
+        .notice__action {
             padding: $notice-content-spacing-large;
+        }
 
-            // Neseted selectors
-            .notice__icons {
-                // Pseudo classes
-                &:first-child {
-                    padding-right: $notice-content-spacing-large / 2;
-                }
-
-                &:last-child {
-                    padding-left: $notice-content-spacing-large / 2;
-                }
-            }
+        .notice__action {
+            padding-left: 0;
         }
     }
 
     &.is-huge {
         font-size: $notice-font-size-huge;
+        margin-bottom: $notice-element-spacing-huge;
 
         // Nested selectors
-        .notice__body {
+        .notice__feedback {
+            flex: 0 0 $notice-feedback-width-huge;
+        }
+
+        .notice__text,
+        .notice__action {
             padding: $notice-content-spacing-huge;
+        }
 
-            // Neseted selectors
-            .notice__icons {
-                // Pseudo classes
-                &:first-child {
-                    padding-right: $notice-content-spacing-huge / 2;
-                }
-
-                &:last-child {
-                    padding-left: $notice-content-spacing-huge / 2;
-                }
-            }
+        .notice__action {
+            padding-left: 0;
         }
     }
 
@@ -133,108 +131,83 @@ $notice-link-color-hover: $link-color-hover !default;
     }
 
     // Nested selectors
-    .notice__feedback {
+    a {
+        color: $notice-link-color;
+
+        // Pseudo classes
+        &:focus {
+            color: $notice-link-color-focus;
+        }
+
+        &:hover {
+            color: $notice-link-color-hover;
+        }
+
+        &:active {
+            color: $notice-link-color-active;
+        }
+    }
+
+    .notice__feedback,
+    .notice__text,
+    .notice__action {
         align-items: center;
+        justify-content: center;
+
+        &:first-child {
+            border-bottom-left-radius: $border-radius-bottom-left;
+            border-top-left-radius: $border-radius-top-left;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: $border-radius-bottom-right;
+            border-top-right-radius: $border-radius-top-right;
+        }
+    }
+
+    .notice__feedback {
         background-color: $notice-feedback-background-color;
         border: 0 $notice-border-style $notice-feedback-border-color;
         border-bottom-width: $notice-border-width-bottom;
         border-left-width: $notice-border-width-left;
-        border-right-width: $notice-border-width-right;
+        border-right-width: $notice-border-width-divider;
         border-top-width: $notice-border-width-top;
         color: $notice-feedback-font-color;
         display: flex;
-        flex: 0 0 auto;
+        flex: 0 0 $notice-feedback-width;
         font-size: 2em;
-        justify-content: center;
-        width: 50px;
+    }
 
-        // Pseudo classes
+    .notice__text,
+    .notice__action {
+        background-color: $notice-background-color;
+        border: 0 $notice-border-style $notice-border-color;
+        border-bottom-width: $notice-border-width-bottom;
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top-width: $notice-border-width-top;
+        color: $notice-font-color;
+        flex-grow: 1;
+        font-size: $notice-font-size;
+        padding: $notice-content-spacing;
+
         &:first-child {
-            border-bottom-left-radius: $notice-border-radius-bottom-left;
-            border-right-width: $notice-border-width-divider;
-            border-top-left-radius: $notice-border-radius-top-left;
+            border-left-width: $notice-border-width-left;
         }
 
         &:last-child {
-            border-bottom-right-radius: $notice-border-radius-bottom-right;
-            border-left-width: $notice-border-width-divider;
-            border-top-right-radius: $notice-border-radius-top-right;
+            border-right-width: $notice-border-width-right;
         }
     }
 
-    .notice__body {
-        align-items: center;
-        background-color: $notice-body-background-color;
-        border: 0 $notice-border-style $notice-body-border-color;
-        border-bottom-width: $notice-border-width-bottom;
-        border-left-width: $notice-border-width-left;
-        border-right-width: $notice-border-width-right;
-        border-top-width: $notice-border-width-top;
-        color: $notice-body-font-color;
+    .notice__action {
         display: flex;
-        flex-grow: 1;
-        padding: $notice-content-spacing;
+        padding-left: 0;
 
-        // Pseudo classes
-        &:first-child {
-            border-bottom-left-radius: $notice-border-radius-bottom-left;
-            border-right-width: 0;
-            border-top-left-radius: $notice-border-radius-top-left;
-        }
-
-        &:last-child {
-            border-bottom-right-radius: $notice-border-radius-bottom-right;
-            border-left-width: 0;
-            border-top-right-radius: $notice-border-radius-top-right;
-        }
-
-        &:only-child {
-            border-bottom-left-radius: $notice-border-radius-bottom-left;
-            border-bottom-right-radius: $notice-border-radius-bottom-right;
-            border-left-width: $notice-border-width-left;
-            border-right-width: $notice-border-width-right;
-            border-top-left-radius: $notice-border-radius-top-left;
-            border-top-right-radius: $notice-border-radius-top-right;
-        }
 
         // Nested selectors
-        .notice__message {
-            flex-grow: 1;
-
-            // Nested selectors
-            a {
-                color: $notice-link-color;
-
-                // Pseudo classes
-                &:focus {
-                    color: $notice-link-color-focus;
-                }
-
-                &:hover {
-                    color: $notice-link-color-hover;
-                }
-
-                &:active {
-                    color: $notice-link-color-active;
-                }
-            }
-        }
-
-        .notice__icons {
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            font-size: $body-font-size;
-            justify-content: center;
-
-            // Pseudo classes
-            &:first-child {
-                padding-right: $notice-content-spacing / 2;
-            }
-
-            &:last-child {
-                padding-left: $notice-content-spacing / 2;
-            }
+        #{$button} {
+            margin: 0;
         }
     }
 }
