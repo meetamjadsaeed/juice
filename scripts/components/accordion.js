@@ -170,7 +170,7 @@
                             }
                         }
                     }
-                    
+
                     // Add a click event handler to the accordion toggle to toggle the accordion item
                     $toggle.addEventListener('click', clickToggleEventHandler);
                 });

@@ -47,7 +47,7 @@
             console.log('Toggler: callbackRefreshBefore');
         },
         callbackRefreshAfter: () => {
-            console.log('Password: callbackRefreshAfter');
+            console.log('Toggler: callbackRefreshAfter');
         },
         callbackDestroyBefore: () => {
             console.log('Toggler: callbackDestroyBefore');
@@ -99,7 +99,7 @@
     };
 
     /**
-     * Event handler to toggle an element when the trigger is clicked.
+     * Event handler to toggle a target when the trigger is clicked.
      * @param  {object}  event  The event object
      * @return {void}
      */
@@ -209,7 +209,7 @@
                 $target.classList.add('is-animating');
 
                 // Set the slide duration
-                const slider_duration =
+                const slide_duration =
                     $trigger.dataset.togglerSlideDuration ||
                     plugin.settings.slideDuration;
 
@@ -228,7 +228,7 @@
                             plugin.settings.callbackShowAfter.call();
                         }
                     },
-                    duration: slider_duration
+                    duration: slide_duration
                 });
             } else {
                 // Set the target animation in
@@ -314,7 +314,7 @@
                 $target.classList.add('is-animating');
 
                 // Set the slide duration
-                const slider_duration =
+                const slide_duration =
                     $trigger.dataset.togglerSlideDuration ||
                     plugin.settings.slideDuration;
 
@@ -333,7 +333,7 @@
                             plugin.settings.callbackHideAfter.call();
                         }
                     },
-                    duration: slider_duration
+                    duration: slide_duration
                 });
             } else {
                 // Set the target animation out
