@@ -126,13 +126,13 @@ $accordion-link-color-hover: $link-color-hover !default;
             // Nested selectors
             .accordion__head {
                 // Nested selectors
-                .accordion__icons {
+                .accordion__action {
                     // Nested selectors
-                    .accordion__icon--collapsed {
+                    .accordion__collapse {
                         display: none;
                     }
 
-                    .accordion__icon--expanded {
+                    .accordion__expand {
                         display: inline-flex;
                     }
                 }
@@ -147,13 +147,13 @@ $accordion-link-color-hover: $link-color-hover !default;
                 border-bottom-width: $accordion-border-width-bottom;
 
                 // Nested selectors
-                .accordion__icons {
+                .accordion__action {
                     // Nested selectors
-                    .accordion__icon--collapsed {
+                    .accordion__collapse {
                         display: inline-flex;
                     }
 
-                    .accordion__icon--expanded {
+                    .accordion__expand {
                         display: none;
                     }
                 }
@@ -187,7 +187,7 @@ $accordion-link-color-hover: $link-color-hover !default;
             user-select: none;
 
             // Nested selectors
-            .accordion__headings {
+            .accordion__heading {
                 flex-grow: 1;
 
                 // Nested selectors
@@ -208,10 +208,15 @@ $accordion-link-color-hover: $link-color-hover !default;
                 }
             }
 
-            .accordion__icons {
+            .accordion__action {
                 align-items: center;
                 display: flex;
                 font-size: $body-font-size;
+
+                // Nested selectors
+                #{$button} {
+                    margin: 0;
+                }
             }
         }
 
