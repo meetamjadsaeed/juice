@@ -79,7 +79,7 @@ $card-link-color-hover: $link-color-hover !default;
 
             .card__foot {
                 // Nested selectors
-                .card__buttons {
+                .card__actions {
                     // Nested selectors
                     #{$button} {
                         margin-left: $card-content-spacing-small / 2;
@@ -111,7 +111,7 @@ $card-link-color-hover: $link-color-hover !default;
 
             .card__foot {
                 // Nested selectors
-                .card__buttons {
+                .card__actions {
                     // Nested selectors
                     #{$button} {
                         margin-left: $card-content-spacing-large / 2;
@@ -143,7 +143,7 @@ $card-link-color-hover: $link-color-hover !default;
 
             .card__foot {
                 // Nested selectors
-                .card__buttons {
+                .card__actions {
                     // Nested selectors
                     #{$button} {
                         margin-left: $card-content-spacing-huge / 2;
@@ -209,9 +209,16 @@ $card-link-color-hover: $link-color-hover !default;
             display: flex;
 
             // Nested selectors
-            .card__icons {
+            .card__actions {
                 align-items: center;
                 display: flex;
+                flex-grow: 1;
+                font-size: $body-font-size;
+
+                // Nested selectors
+                #{$button} {
+                    margin: 0;
+                }
             }
         }
 
@@ -219,7 +226,7 @@ $card-link-color-hover: $link-color-hover !default;
             align-items: center;
 
             // Nested selectors
-            .card__headings {
+            .card__heading {
                 flex-grow: 1;
 
                 // Nested selectors
@@ -239,16 +246,20 @@ $card-link-color-hover: $link-color-hover !default;
                     }
                 }
             }
+
+            .card__actions {
+                justify-content: flex-end;
+            }
         }
 
         .card__foot {
             // Nested selectors
+            .card__actions,
             .card__buttons {
                 align-items: center;
                 display: flex;
                 flex-grow: 1;
                 font-size: $body-font-size;
-                justify-content: flex-end;
 
                 // Nested selectors
                 #{$button} {
@@ -259,7 +270,15 @@ $card-link-color-hover: $link-color-hover !default;
                     &:first-child {
                         margin-left: 0;
                     }
+
+                    &.button--icon {
+                        margin: 0;
+                    }
                 }
+            }
+
+            .card__buttons {
+                justify-content: flex-end;
             }
         }
     }
