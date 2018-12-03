@@ -6,7 +6,6 @@
 - Add modal component
 - Add notification component
 - Add off canvas navigation component
-- Add remover component
 - Add tabs component
 - Add toast component
 
@@ -22,10 +21,50 @@
 -----
 
 
+# v0.13.0-beta
+
+### New
+- Added remover component
+
+### Updated
+- Updated accordion component
+    - Updated class naming conventions
+    - Removed element spacing from action buttons
+
+- Updated card component
+    - Updated class naming conventions
+    - Removed element spacing from action buttons
+
+- Updated chip component
+    - Updated class naming conventions
+
+Updated notice component
+    - Updated variable names
+    - Updated class naming conventions
+
+- Updated panel component
+    - Updated class naming conventions
+    - Removed element spacing from action buttons
+
+- Updated popover component
+    - Updated width variables to max width
+
+- Updated tooltip component
+    - Added max width variables
+
+- Updated html element query selectors
+
+### Fixed
+- Fixed event listener on null errors for optional component elements
+
+
+-----
+
+
 # v0.12.0-beta
 
 ### New
-- Added smooth scrolling plugin
+- Added smooth scroll component
 
 ### Updated
 - Updated blockquote typography element
