@@ -18,6 +18,10 @@ $tooltip-font-size-small: $font-size-small - 0.2em !default;
 $tooltip-font-size-large: $font-size-large - 0.2em !default;
 $tooltip-font-size-huge: $font-size-huge - 0.2em !default;
 $tooltip-offset: 2px !default;
+$tooltip-max-width: 200px !default
+$tooltip-max-width-small: 175px !default
+$tooltip-max-width-large: 225px !default
+$tooltip-max-width-huge: 250px !default
 $tooltip-opacity: 0.9 !default;
 $tooltip-padding: 6px 10px !default;
 
@@ -58,6 +62,7 @@ $tooltip-padding: 6px 10px !default;
         // Nested selectors
         .tooltip__content {
             font-size: $tooltip-font-size-small;
+            max-width: $tooltip-max-width-small;
         }
     }
 
@@ -65,6 +70,7 @@ $tooltip-padding: 6px 10px !default;
         // Nested selectors
         .tooltip__content {
             font-size: $tooltip-font-size-large;
+            max-width: $tooltip-max-width-large;
         }
     }
 
@@ -72,6 +78,7 @@ $tooltip-padding: 6px 10px !default;
         // Nested selectors
         .tooltip__content {
             font-size: $tooltip-font-size-huge;
+            max-width: $tooltip-max-width-huge;
         }
     }
 
@@ -236,7 +243,7 @@ $tooltip-padding: 6px 10px !default;
         font-family: $tooltip-font-family;
         font-size: $tooltip-font-size;
         line-height: 1.6;
-        max-width: 300px;
+        max-width: $tooltip-max-width;
         opacity: $tooltip-opacity;
         padding: $tooltip-padding;
         text-align: center;
