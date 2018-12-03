@@ -133,8 +133,11 @@
                 // Set the card remove
                 const $remove = $card.querySelector('.js-card-remove');
 
-                // Add a click event handler to the card remove to remove the card
-                $remove.addEventListener('click', clickRemoveEventHandler);
+                // Check if the card remove exists
+                if ($card.contains($remove)) {
+                    // Add a click event handler to the card remove to remove the card
+                    $remove.addEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed
@@ -241,8 +244,11 @@
                 // Set the card remove
                 const $remove = $card.querySelector('.js-card-remove');
 
-                // Remove the click event handler from the card remove
-                $remove.removeEventListener('click', clickRemoveEventHandler);
+                // Check if the card remove exists
+                if ($card.contains($remove)) {
+                    // Remove the click event handler from the card remove
+                    $remove.removeEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed

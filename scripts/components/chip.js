@@ -133,8 +133,11 @@
                 // Set the chip remove
                 const $remove = $chip.querySelector('.js-chip-remove');
 
-                // Add a click event handler to the chip remove to remove the chip
-                $remove.addEventListener('click', clickRemoveEventHandler);
+                // Check if the chip remove exists
+                if ($chip.contains($remove)) {
+                    // Add a click event handler to the chip remove to remove the chip
+                    $remove.addEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed
@@ -241,8 +244,11 @@
                 // Set the chip remove
                 const $remove = $chip.querySelector('.js-chip-remove');
 
-                // Remove the click event handler from the chip remove
-                $remove.removeEventListener('click', clickRemoveEventHandler);
+                // Check if the chip remove exists
+                if ($chip.contains($remove)) {
+                    // Remove the click event handler from the chip remove
+                    $remove.removeEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed

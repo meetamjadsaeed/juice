@@ -133,8 +133,11 @@
                 // Set the notice remove
                 const $remove = $notice.querySelector('.js-notice-remove');
 
-                // Add a click event handler to the notice remove to remove the notice
-                $remove.addEventListener('click', clickRemoveEventHandler);
+                // Check if the notice remove exists
+                if ($notice.contains($remove)) {
+                    // Add a click event handler to the notice remove to remove the notice
+                    $remove.addEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed
@@ -241,8 +244,11 @@
                 // Set the notice remove
                 const $remove = $notice.querySelector('.js-notice-remove');
 
-                // Remove then click event handler from the notice remove
-                $remove.removeEventListener('click', clickRemoveEventHandler);
+                // Check if the notice remove exists
+                if ($notice.contains($remove)) {
+                    // Remove then click event handler from the notice remove
+                    $remove.removeEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed

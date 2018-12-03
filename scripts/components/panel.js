@@ -164,11 +164,17 @@
                     $panel.classList.add('is-expanded');
                 }
 
-                // Add a click event handler to the panel toggle to toggle the panel
-                $toggle.addEventListener('click', clickToggleEventHandler);
+                // Check if the panel toggle exists
+                if ($panel.contains($toggle)) {
+                    // Add a click event handler to the panel toggle to toggle the panel
+                    $toggle.addEventListener('click', clickToggleEventHandler);
+                }
 
-                // Add a click event handler to the panel remove to remove the panel
-                $remove.addEventListener('click', clickRemoveEventHandler);
+                // Check if the panel remove exists
+                if ($panel.contains($remove)) {
+                    // Add a click event handler to the panel remove to remove the panel
+                    $remove.addEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed
@@ -435,11 +441,17 @@
                 const $toggle = $panel.querySelector('.js-panel-toggle');
                 const $remove = $panel.querySelector('.js-panel-remove');
 
-                // Remove the click event handler from the panel toggle
-                $toggle.removeEventListener('click', clickToggleEventHandler);
+                // Check if the panel toggle exists
+                if ($panel.contains($toggle)) {
+                    // Remove the click event handler from the panel toggle
+                    $toggle.removeEventListener('click', clickToggleEventHandler);
+                }
 
-                // Remove the click event handler from the panel remove
-                $remove.removeEventListener('click', clickRemoveEventHandler);
+                // Check if the panel remove exists
+                if ($panel.contains($remove)) {
+                    // Remove the click event handler from the panel remove
+                    $remove.removeEventListener('click', clickRemoveEventHandler);
+                }
             });
 
             // Check if the callbacks should not be suppressed
