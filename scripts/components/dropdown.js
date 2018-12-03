@@ -206,9 +206,6 @@
 
             // Cycle through all of the dropdown containers
             $containers.forEach(($container) => {
-                // Set the html element
-                const $html = document.querySelector('html');
-
                 // Set the dropdown trigger and dropdown
                 const $trigger = $container.querySelector('.js-dropdown-trigger');
                 const $dropdown = $container.querySelector('.dropdown');
@@ -223,7 +220,7 @@
                 $container.addEventListener('focusout', focusoutEventHandler);
 
                 // Check if the dropdown has the hoverable state hook and check if the html tag has the no touch detection class
-                if ($dropdown.classList.contains('is-hoverable') && $html.classList.contains('has-no-touch')) {
+                if ($dropdown.classList.contains('is-hoverable') && document.documentElement.classList.contains('has-no-touch')) {
                     // Add a mouse enter event handler to the dropdown container to show the dropdown
                     $container.addEventListener('mouseenter', mouseenterEventHandler);
 
@@ -413,9 +410,6 @@
 
             // Cycle through all of the dropdown containers
             $containers.forEach(($container) => {
-                // Set the html element
-                const $html = document.querySelector('html');
-
                 // Set the dropdown trigger and dropdown
                 const $trigger = $container.querySelector('.js-dropdown-trigger');
                 const $dropdown = $container.querySelector('.dropdown');
@@ -433,7 +427,7 @@
                 $container.removeEventListener('focusout', focusoutEventHandler);
 
                 // Check if the dropdown has the hoverable state hook and check if the html tag has the no touch detection class
-                if ($dropdown.classList.contains('is-hoverable') && $html.classList.contains('has-no-touch')) {
+                if ($dropdown.classList.contains('is-hoverable') && document.documentElement.classList.contains('has-no-touch')) {
                     // Remove the mouse enter event handler from the dropdown container
                     $container.removeEventListener('mouseenter', mouseenterEventHandler);
 

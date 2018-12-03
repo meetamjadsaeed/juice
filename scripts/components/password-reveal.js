@@ -184,9 +184,6 @@
 
             // Cycle through all of the containers
             $containers.forEach(($container) => {
-                // Set the html element
-                const $html = document.querySelector('html');
-
                 // Set the password reveal trigger and input
                 const $trigger = $container.querySelector('.js-password-reveal-trigger');
                 const $input = $container.querySelector('input');
@@ -195,7 +192,7 @@
                 plugin.this.hideSilently($input);
 
                 // Check if the action is set to hover and check if the html tag has the touch detection class
-                const action = (plugin.settings.action == 'hover' && $html.classList.contains('has-touch')
+                const action = (plugin.settings.action == 'hover' && document.documentElement.classList.contains('has-touch')
                     ? 'click'
                     : plugin.settings.action
                 );
@@ -344,9 +341,6 @@
 
             // Cycle through all of the containers
             $containers.forEach(($container) => {
-                // Set the html element
-                const $html = document.querySelector('html');
-
                 // Set the password reveal trigger and input
                 const $trigger = $container.querySelector('.js-password-reveal-trigger');
                 const $input = $container.querySelector('input');
@@ -355,7 +349,7 @@
                 plugin.this.hideSilently($input);
 
                 // Check if the action is set to hover and check if the html tag has the touch detection class
-                const action = (plugin.settings.action == 'hover' && $html.classList.contains('has-touch')
+                const action = (plugin.settings.action == 'hover' && document.documentElement.classList.contains('has-touch')
                     ? 'click'
                     : plugin.settings.action
                 );

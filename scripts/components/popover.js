@@ -556,7 +556,7 @@
             }
 
             // Check if the html tag has the no touch detection class
-            if (document.querySelector('html').classList.contains('has-no-touch')) {
+            if (document.documentElement.classList.contains('has-no-touch')) {
                 // Set the popover containers
                 const $containers = document.querySelectorAll(plugin.element);
 
@@ -615,7 +615,7 @@
             }
 
             // Check if the html tag has the no touch detection class
-            if (document.querySelector('html').classList.contains('has-no-touch')) {
+            if (document.documentElement.classList.contains('has-no-touch')) {
                 // Set the popover containers
                 const $containers = document.querySelectorAll(plugin.element);
 
