@@ -161,8 +161,8 @@
          * @return {void}
          */
         remove: ($target, silent = false) => {
-            // Check if the target exists
-            if (document.body.contains($target)) {
+            // Check if the target exists and the target doesn't have the animating state hook
+            if (document.body.contains($target) && !$target.classList.contains('is-animating')) {
                 // Check if the callbacks should not be suppressed
                 if (!silent) {
                     // Call the remove before callback
