@@ -232,6 +232,24 @@ $popover-offset: 5px !default;
         box-shadow: $popover-box-shadow;
         font-size: $popover-font-size;
 
+        // Nested selectors
+        a {
+            color: $popover-link-color;
+
+            // Pseudo classes
+            &:focus {
+                color: $popover-link-color-focus;
+            }
+
+            &:hover {
+                color: $popover-link-color-hover;
+            }
+
+            &:active {
+                color: $popover-link-color-active;
+            }
+        }
+
         .popover__head {
             background-color: $popover-head-background-color;
             border: 0 $popover-border-style $popover-head-border-color;
@@ -257,24 +275,6 @@ $popover-offset: 5px !default;
             border-top-width: 0;
             color: $popover-body-font-color;
             padding: $popover-content-spacing;
-
-            // Nested selectors
-            a {
-                color: $popover-link-color;
-
-                // Pseudo classes
-                &:focus {
-                    color: $popover-link-color-focus;
-                }
-
-                &:hover {
-                    color: $popover-link-color-hover;
-                }
-
-                &:active {
-                    color: $popover-link-color-active;
-                }
-            }
         }
     }
 }

@@ -117,6 +117,25 @@ $accordion-link-color-hover: $link-color-hover !default;
     }
 
     // Nested selectors
+
+    // Nested selectors
+    a {
+        color: $accordion-link-color;
+
+        // Pseudo classes
+        &:focus {
+            color: $accordion-link-color-focus;
+        }
+
+        &:hover {
+            color: $accordion-link-color-hover;
+        }
+
+        &:active {
+            color: $accordion-link-color-active;
+        }
+    }
+    
     .accordion__item {
         box-shadow: $accordion-box-shadow;
         margin-bottom: $accordion-element-spacing;
@@ -229,24 +248,6 @@ $accordion-link-color-hover: $link-color-hover !default;
             border-left-width: $accordion-border-width-left;
             border-right-width: $accordion-border-width-right;
             color: $accordion-body-font-color;
-
-            // Nested selectors
-            a {
-                color: $accordion-link-color;
-
-                // Pseudo classes
-                &:focus {
-                    color: $accordion-link-color-focus;
-                }
-
-                &:hover {
-                    color: $accordion-link-color-hover;
-                }
-
-                &:active {
-                    color: $accordion-link-color-active;
-                }
-            }
         }
     }
 }
