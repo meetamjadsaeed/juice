@@ -1,53 +1,53 @@
 {
-	"name": "just-add-juice",
-	"description": "A responsive frontend framework with modular components.",
-	"version": "0.13.0-beta",
-	"license": "MIT",
-	"author": {
-		"name": "Joe Mottershaw",
-		"url": "https://github.com/joemottershaw"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/justaddjuice/juice.git"
-	},
-	"bugs": "https://github.com/justaddjuice/juice/issues",
-	"contributors": "https://github.com/justaddjuice/juice/graphs/contributors",
-	"keywords": [
-		"cloudeight",
-		"juice",
-		"responsive",
-		"frontend",
-		"framework",
-		"modular",
-		"components",
-		"css",
-		"sass",
-		"scss",
-		"javascript",
-		"just-add-juice"
-	],
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-loader": "^7.1.4",
-		"babel-preset-env": "^1.7.0",
-		"browser-sync": "^2.26.0",
-		"gulp": "^3.9.1",
-		"gulp-autoprefixer": "^5.0.0",
-		"gulp-babel": "^7.0.1",
-		"gulp-concat": "^2.6.1",
-		"gulp-connect-php7": "^1.0.1",
-		"gulp-notifier": "^1.0.5",
-		"gulp-plumber": "^1.2.0",
-		"gulp-rename": "^1.4.0",
-		"gulp-sass": "^4.0.1",
-		"gulp-uglify": "^3.0.0"
-	},
-	"files": [
-		"dist",
-		"sass",
-		"scripts",
-		"LICENSE",
-		"README.md"
-	]
+    "name": "just-add-juice",
+    "description": "A responsive frontend framework with modular components.",
+    "version": "0.14.0-beta",
+    "license": "MIT",
+    "author": {
+        "name": "Joe Mottershaw",
+        "url": "https://github.com/joemottershaw"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/justaddjuice/juice.git"
+    },
+    "bugs": "https://github.com/justaddjuice/juice/issues",
+    "contributors": "https://github.com/justaddjuice/juice/graphs/contributors",
+    "keywords": [
+        "cloudeight",
+        "juice",
+        "responsive",
+        "frontend",
+        "framework",
+        "modular",
+        "components",
+        "css",
+        "sass",
+        "scss",
+        "javascript",
+        "just-add-juice"
+    ],
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.7.0",
+        "browser-sync": "^2.26.0",
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-babel": "^7.0.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-connect-php7": "^1.0.1",
+        "gulp-notifier": "^1.0.5",
+        "gulp-plumber": "^1.2.0",
+        "gulp-rename": "^1.4.0",
+        "gulp-sass": "^4.0.1",
+        "gulp-uglify": "^3.0.0"
+    },
+    "files": [
+        "dist",
+        "sass",
+        "scripts",
+        "LICENSE",
+        "README.md"
+    ]
 }
