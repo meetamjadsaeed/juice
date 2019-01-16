@@ -42,12 +42,12 @@
                 <form>
                     <div class="grid">
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <label for="input" class="has-no-element-spacing">Input</label>
+                            <label for="input">Input</label>
                             <input type="password" id="input" placeholder="Input..." />
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <label for="select" class="has-no-element-spacing">Select</label>
+                            <label for="select">Select</label>
                             <select id="select" placeholder="Select">
                                 <option value="">Option 1</option>
                                 <option value="">Option 2</option>
@@ -63,22 +63,22 @@
                         </div>
                     </div>
 
-                    <label for="textarea" class="has-no-element-spacing">Textarea</label>
+                    <label for="textarea">Textarea</label>
                     <textarea id="textarea" rows="6" placeholder="Textarea..." ></textarea>
 
                     <div class="grid">
                         <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
-                            <label for="file" class="has-no-element-spacing">File</label>
+                            <label for="file">File</label>
                             <input type="file" id="file" />
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
-                            <label for="color" class="has-no-element-spacing">Color</label>
+                            <label for="color">Color</label>
                             <input type="color" id="color" />
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
-                            <label for="range" class="has-no-element-spacing">Range</label>
+                            <label for="range">Range</label>
                             <input type="range" id="range" />
                         </div>
                     </div>
@@ -87,13 +87,51 @@
 
                     <div class="grid">
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <input type="checkbox" id="checkbox-1" /><label for="checkbox-1" class="label--inline has-no-element-spacing">Checkbox 1</label><br />
-                            <input type="checkbox" id="checkbox-2" /><label for="checkbox-2" class="label--inline has-no-element-spacing">Checkbox 2</label><br />
+                            <div class="media-object media-object--seamless has-no-element-spacing">
+                                <div class="media-object__badge">
+                                    <input type="checkbox" id="checkbox-1" />
+                                </div>
+                                <div class="media-object__content">
+                                    <label for="checkbox-1" class="label--inline">Checkbox 1</label>
+                                </div>
+                            </div>
+
+                            <div class="media-object media-object--seamless has-no-element-spacing">
+                                <div class="media-object__badge">
+                                    <input type="checkbox" id="checkbox-2" />
+                                </div>
+                                <div class="media-object__content">
+                                    <label for="checkbox-2" class="label--inline">Checkbox 2</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <input type="radio" id="radio-1" name="radio" /><label for="radio-1" class="label--inline has-no-element-spacing">Radio 1</label><br />
-                            <input type="radio" id="radio-2" name="radio" /><label for="radio-2" class="label--inline has-no-element-spacing">Radio 2</label><br />
-                            <input type="radio" id="radio-3" name="radio" /><label for="radio-3" class="label--inline has-no-element-spacing">Radio 3</label><br />
+                            <div class="media-object media-object--seamless has-no-element-spacing">
+                                <div class="media-object__badge">
+                                    <input type="radio" id="radio-1" name="radio" />
+                                </div>
+                                <div class="media-object__content">
+                                    <label for="radio-1" class="label--inline">Radio 1</label>
+                                </div>
+                            </div>
+
+                            <div class="media-object media-object--seamless has-no-element-spacing">
+                                <div class="media-object__badge">
+                                    <input type="radio" id="radio-2" name="radio" />
+                                </div>
+                                <div class="media-object__content">
+                                    <label for="radio-2" class="label--inline">Radio 2</label>
+                                </div>
+                            </div>
+
+                            <div class="media-object media-object--seamless has-no-element-spacing">
+                                <div class="media-object__badge">
+                                    <input type="radio" id="radio-3" name="radio" />
+                                </div>
+                                <div class="media-object__content">
+                                    <label for="radio-3" class="label--inline">Radio 3</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -101,7 +139,7 @@
 
                     <div class="grid">
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <label for="form-control-input-addon-left" class="has-no-element-spacing">Left</label>
+                            <label for="form-control-input-addon-left">Left</label>
                             <div class="form-control has-addons">
                                 <button class="is-static prevent-default"><i class="fas fa-user"></i></button>
                                 <input type="text" id="form-control-input-addon-left" class="form-control__spotlight" placeholder="Username" />
@@ -109,7 +147,7 @@
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <label for="form-control-input-addon-right" class="has-no-element-spacing">Right</label>
+                            <label for="form-control-input-addon-right">Right</label>
                             <div class="form-control has-addons">
                                 <input type="text" id="form-control-input-addon-right" class="form-control__spotlight" placeholder="Search for a product..." />
                                 <button class="is-primary prevent-default">Go</button>
@@ -117,7 +155,7 @@
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <label for="form-control-input-addon-both" class="has-no-element-spacing">Both</label>
+                            <label for="form-control-input-addon-both">Both</label>
                             <div class="form-control has-addons">
                                 <select>
                                     <option>£</option>
@@ -129,7 +167,7 @@
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
-                            <label for="form-control-password-toggle" class="has-no-element-spacing">Password</label>
+                            <label for="form-control-password-toggle">Password</label>
                             <div class="form-control has-addons has-password-reveal">
                                 <input type="password" id="password-form-control" class="form-control__spotlight" placeholder="Password..." />
                                 <button class="is-white js-password-reveal-trigger">

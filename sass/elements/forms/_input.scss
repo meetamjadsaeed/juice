@@ -103,6 +103,7 @@ $input-range-track-color-filled: $input-border-color-focus !default;
         background-color: $input-background-color-hover;
         border-color: $input-border-color-hover;
         color: $input-font-color-hover;
+        z-index: get-stack-index('hover');
     }
 
     &:focus,

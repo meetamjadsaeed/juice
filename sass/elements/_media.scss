@@ -11,10 +11,10 @@ $media-image-element-spacing-large: $element-spacing-large !default;
 $media-image-element-spacing-huge: $element-spacing-huge !default;
 
 // Object
-$media-object-badge-width: 75px !default;
-$media-object-badge-width-small: 50px !default;
-$media-object-badge-width-large: 100px !default;
-$media-object-badge-width-huge: 125px !default;
+$media-object-badge-image-width: 75px !default;
+$media-object-badge-image-width-small: 50px !default;
+$media-object-badge-image-width-large: 100px !default;
+$media-object-badge-image-width-huge: 125px !default;
 $media-object-content-spacing: $content-spacing !default;
 $media-object-content-spacing-small: $content-spacing-small !default;
 $media-object-content-spacing-large: $content-spacing-large !default;
@@ -147,16 +147,22 @@ img {
             }
         }
 
+        &.media-object--seamless {
+            // Nested selectors
+            .media-object__badge {
+                margin-right: 0;
+            }
+        }
+
         // Nested selectors
         .media-object__badge {
             margin-right: $media-object-content-spacing-small;
-            flex: 0 0 $media-object-badge-width-small;
 
             // Nested selectors
             img {
-                max-width: $media-object-badge-width-small;
-                min-width: $media-object-badge-width-small;
-                width: $media-object-badge-width-small;
+                max-width: $media-object-badge-image-width-small;
+                min-width: $media-object-badge-image-width-small;
+                width: $media-object-badge-image-width-small;
             }
         }
     }
@@ -174,16 +180,22 @@ img {
             }
         }
 
+        &.media-object--seamless {
+            // Nested selectors
+            .media-object__badge {
+                margin-right: 0;
+            }
+        }
+
         // Nested selectors
         .media-object__badge {
             margin-right: $media-object-content-spacing-large;
-            flex: 0 0 $media-object-badge-width-large;
 
             // Nested selectors
             img {
-                max-width: $media-object-badge-width-large;
-                min-width: $media-object-badge-width-large;
-                width: $media-object-badge-width-large;
+                max-width: $media-object-badge-image-width-large;
+                min-width: $media-object-badge-image-width-large;
+                width: $media-object-badge-image-width-large;
             }
         }
     }
@@ -201,17 +213,22 @@ img {
             }
         }
 
+        &.media-object--seamless {
+            // Nested selectors
+            .media-object__badge {
+                margin-right: 0;
+            }
+        }
+
         // Nested selectors
         .media-object__badge {
             margin-right: $media-object-content-spacing-huge;
-            flex-basis: $media-object-badge-width-huge;
-            width: $media-object-badge-width;
 
             // Nested selectors
             img {
-                max-width: $media-object-badge-width-huge;
-                min-width: $media-object-badge-width-huge;
-                width: $media-object-badge-width-huge;
+                max-width: $media-object-badge-image-width-huge;
+                min-width: $media-object-badge-image-width-huge;
+                width: $media-object-badge-image-width-huge;
             }
         }
     }
@@ -227,18 +244,25 @@ img {
         }
     }
 
+    &.media-object--seamless {
+        // Nested selectors
+        .media-object__badge {
+            margin-right: 0;
+        }
+    }
+
     // Nested selectors
     .media-object__badge {
         margin: 0;
         margin-right: $media-object-content-spacing;
-        flex: 0 0 $media-object-badge-width;
+        flex: 0 0 auto;
 
         // Nested selectors
         img {
             display: block;
-            max-width: $media-object-badge-width;
-            min-width: $media-object-badge-width;
-            width: $media-object-badge-width;
+            max-width: $media-object-badge-image-width;
+            min-width: $media-object-badge-image-width;
+            width: $media-object-badge-image-width;
         }
     }
 
