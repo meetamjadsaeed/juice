@@ -21,6 +21,35 @@
 -----
 
 
+# v0.14.0-beta
+
+### Updated
+
+- Update form label element
+    - Update default element spacing variable values
+    - Update display from flex to block
+    - Remove height variables
+    - Remove line-height declarations
+
+- Update form input element
+    - Add z-index hover stack index
+
+- Update media object element
+    - Add seamless modifier class
+    - Update badge variable names
+    - Remove media badge flex basis values
+
+- Update base color and feedback color modifiers
+    - Fix button anchors with is-* and has-* color modifiers bug
+
+- Update build directory
+
+- Update demo pages
+
+
+-----
+
+
 # v0.13.0-beta
 
 ### New
