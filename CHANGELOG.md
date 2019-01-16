@@ -25,26 +25,26 @@
 
 ### Updated
 
-- Update form label element
-    - Update default element spacing variable values
-    - Update display from flex to block
-    - Remove height variables
-    - Remove line-height declarations
+- Updated form label element
+    - Updated default element spacing variable values
+    - Updated display from flex to block
+    - Removed height variables
+    - Removed line-height declarations
 
-- Update form input element
-    - Add z-index hover stack index
+- Updated form input element
+    - Added z-index hover stack index
 
-- Update media object element
-    - Add seamless modifier class
-    - Update badge variable names
-    - Remove media badge flex basis values
+- Updated media object element
+    - Added seamless modifier class
+    - Updated badge variable names
+    - Removed media badge flex basis values
 
-- Update base color and feedback color modifiers
-    - Fix button anchors with is-* and has-* color modifiers bug
+- Updated base color and feedback color modifiers
+    - Fixed button anchors with is-* and has-* color modifiers bug
 
-- Update build directory
+- Updated build directory
 
-- Update demo pages
+- Updated demo pages
 
 
 -----
