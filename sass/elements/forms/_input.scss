@@ -264,7 +264,7 @@ $input-range-track-color-filled: $input-border-color-focus !default;
 
     // Modifiers
     &.input--hp {
-        display: none;
+        display: none !important;
     }
 
     &.input--pill {
