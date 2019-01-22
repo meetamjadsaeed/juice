@@ -31,6 +31,22 @@ $button-border-width-left: $border-width-left !default;
 $button-border-width-right: $border-width-right !default;
 $button-border-width-top: $border-width-top !default;
 $button-border-width-divider: $border-width-divider !default;
+$button-component--background-color: transparent !default;
+$button-component--background-color-active: hsla(0, 0, 0, 0.12) !default;
+$button-component--background-color-focus: hsla(0, 0, 0, 0.04) !default;
+$button-component--background-color-hover: hsla(0, 0, 0, 0.08) !default;
+$button-component--border-color: transparent !default;
+$button-component--border-color-active:  transparent !default;
+$button-component--border-color-focus: transparent !default;
+$button-component--border-color-hover: transparent !default;
+$button-component--font-color: inherit !default;
+$button-component--font-color-active: inherit !default;
+$button-component--font-color-focus: inherit !default;
+$button-component--font-color-hover: inherit !default;
+$button-component--opacity: 0.3 !default;
+$button-component--opacity-active: 0.9 !default;
+$button-component--opacity-hover: 0.6 !default;
+$button-component--opacity-focus: 0.6 !default;
 $button-content-spacing: $content-spacing !default;
 $button-content-spacing-small: $content-spacing-small !default;
 $button-content-spacing-large: $content-spacing-large !default;
@@ -53,22 +69,6 @@ $button-height: $input-height !default;
 $button-height-small: $input-height-small !default;
 $button-height-large: $input-height-large !default;
 $button-height-huge: $input-height-huge !default;
-$button-icon-background-color: transparent !default;
-$button-icon-background-color-active: hsla(0, 0, 0, 0.12) !default;
-$button-icon-background-color-focus: hsla(0, 0, 0, 0.04) !default;
-$button-icon-background-color-hover: hsla(0, 0, 0, 0.08) !default;
-$button-icon-border-color: transparent !default;
-$button-icon-border-color-active:  transparent !default;
-$button-icon-border-color-focus: transparent !default;
-$button-icon-border-color-hover: transparent !default;
-$button-icon-font-color: inherit !default;
-$button-icon-font-color-active: inherit !default;
-$button-icon-font-color-focus: inherit !default;
-$button-icon-font-color-hover: inherit !default;
-$button-icon-opacity: 0.3 !default;
-$button-icon-opacity-active: 0.9 !default;
-$button-icon-opacity-hover: 0.6 !default;
-$button-icon-opacity-focus: 0.6 !default;
 $button-letter-spacing: 0 !default;
 $button-static-background-color: base-color('white') !default;
 $button-static-border-color: base-color('white', $border-color-palette-type) !default;
@@ -466,42 +466,6 @@ $button-text-transform: uppercase !default;
 
     &.button--icon {
         @include icon-button-size();
-        background-color: $button-icon-background-color;
-        border-color: $button-icon-border-color;
-        color: $button-icon-font-color;
-        opacity: $button-icon-opacity;
-
-        // Pseudo classes
-        &:focus {
-            background-color: $button-icon-background-color-focus;
-            border-color: $button-icon-border-color-focus;
-            box-shadow: none;
-            color: $button-icon-font-color-focus;
-            opacity: $button-icon-opacity-focus;
-        }
-
-        &:hover {
-            background-color: $button-icon-background-color-hover;
-            border-color: $button-icon-border-color-hover;
-            color: $button-icon-font-color-hover;
-            opacity: $button-icon-opacity-hover;
-        }
-
-        &:active {
-            background-color: $button-icon-background-color-active;
-            border-color: $button-icon-border-color-active;
-            color: $button-icon-font-color-active;
-            opacity: $button-icon-opacity-active;
-        }
-
-        // Modifiers: State hooks
-        &[disabled],
-        &.is-disabled {
-            background-color: $button-icon-background-color !important;
-            border-color: $button-icon-border-color !important;
-            color: $button-icon-font-color !important;
-            opacity: $button-icon-opacity !important;
-        }
     }
 
     &.button--outline {
@@ -537,6 +501,45 @@ $button-text-transform: uppercase !default;
 
     &.button--round {
         border-radius: 100%;
+    }
+
+    &.button--component {
+        background-color: $button-component--background-color;
+        border-color: $button-component--border-color;
+        color: $button-component--font-color;
+        opacity: $button-component--opacity;
+
+        // Pseudo classes
+        &:focus {
+            background-color: $button-component--background-color-focus;
+            border-color: $button-component--border-color-focus;
+            box-shadow: none;
+            color: $button-component--font-color-focus;
+            opacity: $button-component--opacity-focus;
+        }
+
+        &:hover {
+            background-color: $button-component--background-color-hover;
+            border-color: $button-component--border-color-hover;
+            color: $button-component--font-color-hover;
+            opacity: $button-component--opacity-hover;
+        }
+
+        &:active {
+            background-color: $button-component--background-color-active;
+            border-color: $button-component--border-color-active;
+            color: $button-component--font-color-active;
+            opacity: $button-component--opacity-active;
+        }
+
+        // Modifiers: State hooks
+        &[disabled],
+        &.is-disabled {
+            background-color: $button-component--background-color !important;
+            border-color: $button-component--border-color !important;
+            color: $button-component--font-color !important;
+            opacity: $button-component--opacity !important;
+        }
     }
 
     // Nested selectors

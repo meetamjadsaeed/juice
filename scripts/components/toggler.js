@@ -104,15 +104,27 @@
      * @return {void}
      */
     const clickTriggerEventHandler = (event) => {
-        // Set the trigger and target
+        // Set the trigger and targets
         const $trigger = event.currentTarget;
-        const $target = $trigger.data.target;
+        const $targets = $trigger.data.targets;
 
-        // Check if the trigger has the active state
-        (!$trigger.classList.contains('is-active')
-            ? plugin.this.show($target)
-            : plugin.this.hide($target)
-        );
+        // Cycle through all of the targets
+        $targets.forEach(($target) => {
+            // Set the target css display value
+            const target_display_style = ($target.currentStyle
+                ? $target.currentStyle.display
+                : getComputedStyle($target, null).display
+            );
+
+            // Check if the target is visible
+            if (target_display_style != 'none') {
+                // Hide the target
+                plugin.this.hide($target);
+            } else {
+                // Show the target
+                plugin.this.show($target);
+            }
+        });
     }
 
     /**
@@ -140,32 +152,44 @@
 
             // Cycle through all of the triggers
             $triggers.forEach(($trigger) => {
-                // Set the target
-                const $target = document.querySelector($trigger.dataset.togglerTarget);
+                // Create an empty targets array
+                let $targets = [];
 
-                // Assign the target to the trigger data object
-                $trigger.data = {
-                    target: $target
-                };
+                // Check if their are multiple targets
+                if ($trigger.dataset.togglerTargets.includes(', ')) {
+                    // Set the targets
+                    const targets = $trigger.dataset.togglerTargets.split(', ');
 
-                // Assign the trigger to the target data object
-                $target.data = {
-                    trigger: $trigger
-                };
+                    // Cycle through all of the targets
+                    targets.forEach((target) => {
+                        // Set the target
+                        const $target = document.querySelector(target);
 
-                // Set the target css display value
-                const target_display_style = ($target.currentStyle
-                    ? $target.currentStyle.display
-                    : getComputedStyle($target, null).display
-                );
+                        // Add the target to the targets array
+                        $targets.push($target);
+                    });
+                } else {
+                    // Set the target
+                    const $target = document.querySelector($trigger.dataset.togglerTargets);
 
-                // Check if the target is visible
-                if (target_display_style != 'none') {
-                    // Add the active state to the trigger
-                    $trigger.classList.add('is-active');
+                    // Add the target to the targets array
+                    $targets.push($target);
                 }
 
-                // Add a click event handler to the trigger to toggle the target
+                // Assign the targets to the trigger data object
+                $trigger.data = {
+                    targets: $targets
+                };
+
+                // Cycle through all of the targets
+                $targets.forEach(($target) => {
+                    // Assign the trigger to the target data object
+                    $target.data = {
+                        trigger: $trigger
+                    };
+                });
+
+                // Add a click event handler to the trigger to toggle the targets
                 $trigger.addEventListener('click', clickTriggerEventHandler);
             });
 
@@ -191,9 +215,6 @@
 
             // Set the trigger
             const $trigger = $target.data.trigger;
-
-            // Add the active state to the trigger
-            $trigger.classList.add('is-active');
 
             // Set the slide status
             const slide =
@@ -296,9 +317,6 @@
 
             // Set the trigger
             const $trigger = $target.data.trigger;
-
-            // Remove the active state from the trigger
-            $trigger.classList.remove('is-active');
 
             // Set the slide status
             const slide =

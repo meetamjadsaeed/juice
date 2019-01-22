@@ -263,6 +263,10 @@ $input-range-track-color-filled: $input-border-color-focus !default;
     }
 
     // Modifiers
+    &.input--hp {
+        display: none;
+    }
+
     &.input--pill {
         border-radius: 999px;
     }

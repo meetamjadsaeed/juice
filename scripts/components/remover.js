@@ -97,12 +97,15 @@
      * @return {void}
      */
     const clickTriggerEventHandler = (event) => {
-        // Set the trigger and target
+        // Set the trigger and targets
         const $trigger = event.currentTarget;
-        const $target = $trigger.data.target;
+        const $targets = $trigger.data.targets;
 
-        // Remove the target
-        plugin.this.remove($target);
+        // Cycle through all of the targets
+        $targets.forEach(($target) => {
+            // Remove the target
+            plugin.this.remove($target);
+        });
     }
 
     /**
@@ -130,20 +133,44 @@
 
             // Cycle through all of the triggers
             $triggers.forEach(($trigger) => {
-                // Set the target
-                const $target = document.querySelector($trigger.dataset.removerTarget);
+                // Create an empty targets array
+                let $targets = [];
 
-                // Assign the target to the trigger data object
+                // Check if their are multiple targets
+                if ($trigger.dataset.removerTargets.includes(', ')) {
+                    // Set the targets
+                    const targets = $trigger.dataset.removerTargets.split(', ');
+
+                    // Cycle through all of the targets
+                    targets.forEach((target) => {
+                        // Set the target
+                        const $target = document.querySelector(target);
+
+                        // Add the target to the targets array
+                        $targets.push($target);
+                    });
+                } else {
+                    // Set the target
+                    const $target = document.querySelector($trigger.dataset.removerTargets);
+
+                    // Add the target to the targets array
+                    $targets.push($target);
+                }
+
+                // Assign the targets to the trigger data object
                 $trigger.data = {
-                    target: $target
+                    targets: $targets
                 };
 
-                // Assign the trigger to the target data object
-                $target.data = {
-                    trigger: $trigger
-                };
+                // Cycle through all of the targets
+                $targets.forEach(($target) => {
+                    // Assign the trigger to the target data object
+                    $target.data = {
+                        trigger: $trigger
+                    };
+                });
 
-                // Add a click event handler to the trigger to remove the target
+                // Add a click event handler to the trigger to remove the targets
                 $trigger.addEventListener('click', clickTriggerEventHandler);
             });
 
