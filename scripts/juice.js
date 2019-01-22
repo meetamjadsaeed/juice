@@ -28,19 +28,19 @@ document.body.addEventListener('click', (event) => {
     // Start a switch statement for the following true values
     switch (true) {
         // Prevent default class name
-        case $element.classList.contains('prevent-default'):
+        case $element.classList.contains('js-prevent-default'):
             // Prevent the default behaviour
             event.preventDefault();
         break;
 
         // Stop propagation class name
-        case $element.classList.contains('stop-propagation'):
+        case $element.classList.contains('js-stop-propagation'):
             // Stop propagation
             event.stopPropagation();
         break;
 
         // Stop immediate propagation class name
-        case $element.classList.contains('stop-immediate-propagation'):
+        case $element.classList.contains('js-stop-immediate-propagation'):
             // Stop immediate propagation
             event.stopImmediatePropagation();
         break;
