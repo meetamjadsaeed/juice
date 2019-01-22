@@ -21,6 +21,25 @@
 -----
 
 
+# v0.16.0-beta
+
+### Updated
+- Update click event helper handlers
+    - Add js prefix
+
+- Update demo pages
+
+- Update package
+
+### Fixed
+
+- Fixed input honeypot
+    - Added !important flag to display (force hide)
+
+
+-----
+
+
 # v0.15.0-beta
 
 ### Updated
