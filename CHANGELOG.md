@@ -21,6 +21,38 @@
 -----
 
 
+# v0.15.0-beta
+
+### Updated
+
+- Updated button element
+    - Added component modifier
+    - Added component variables
+    - Removed icon variables
+    - Removed box shadow none from button icons
+
+- Updated form control element
+    - Updated spotlight width to flex-basis
+
+- Updated input element
+    - Added honeypot modifier
+
+- Updated remover component
+    - Added ability to remove multiple elements from a single trigger
+    - Updated data-remover-target to data-remover-targets
+
+- Updated toggler component
+    - Added ability to toggle multiple elements from a single trigger
+    - Updated data-toggler-target to data-toggler-targets
+
+- Updated build directory
+
+- Updated demo pages
+
+
+-----
+
+
 # v0.14.0-beta
 
 ### Updated
@@ -133,230 +165,230 @@ Updated notice component
 # v0.11.0-beta
 
 ### New
-- Add requirement for Velocity.js (Release Notes)
+- Added requirement for Velocity.js (Release Notes)
 
 ### Updated
-- Update accordion component
-    - Add the animating state hook when the accordion is animating
-    - Add the animated state hook when the accordion has finished animating
-    - Add initialize before and after callback options
-    - Add toggle before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add toggleSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update toggle arguments
-        - Add boolean silent argument to suppress toggle callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
-        - Add requirement for Velocity.js (Release Notes)
-    - Fix is-collapsed body styling
+- Updated accordion component
+    - Added the animating state hook when the accordion is animating
+    - Added the animated state hook when the accordion has finished animating
+    - Added initialize before and after callback options
+    - Added toggle before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added toggleSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated toggle arguments
+        - Added boolean silent argument to suppress toggle callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
+        - Added requirement for Velocity.js (Release Notes)
+    - Fixed is-collapsed body styling
 
-- Update card component
-    - Add the animating state hook when the card is animating
-    - Add initialize before and after callback options
-    - Add remove before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add removeSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update remove arguments
-        - Add boolean silent argument to suppress remove callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated card component
+    - Added the animating state hook when the card is animating
+    - Added initialize before and after callback options
+    - Added remove before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added removeSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated remove arguments
+        - Added boolean silent argument to suppress remove callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Update chip component
-    - Add the animating state hook when the chip is animating
-    - Add initialize before and after callback options
-    - Add remove before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add removeSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update remove arguments
-        - Add boolean silent argument to suppress remove callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated chip component
+    - Added the animating state hook when the chip is animating
+    - Added initialize before and after callback options
+    - Added remove before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added removeSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated remove arguments
+        - Added boolean silent argument to suppress remove callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Update dropdown component
-    - Add the animating state hook when the dropdown is animating
-    - Add the animated state hook when the dropdown has finished animating
-    - Add active state hook to dropdown container
-        - Remove active state hook from dropdown
-    - Add initialize before and after callback options
-    - Add show before and after callback options
-    - Add hide before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add showSilently public method
-    - Add hideSilently public method
-    - Add refresh public methods
-    - Add refreshSilently public method
-    - Add destroy public methods
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update show arguments
-        - Add boolean silent argument to show callbacks
-    - Update hide arguments
-        - Add boolean silent argument to hide callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated dropdown component
+    - Added the animating state hook when the dropdown is animating
+    - Added the animated state hook when the dropdown has finished animating
+    - Added active state hook to dropdown container
+        - Removed active state hook from dropdown
+    - Added initialize before and after callback options
+    - Added show before and after callback options
+    - Added hide before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added showSilently public method
+    - Added hideSilently public method
+    - Added refresh public methods
+    - Added refreshSilently public method
+    - Added destroy public methods
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated show arguments
+        - Added boolean silent argument to show callbacks
+    - Updated hide arguments
+        - Added boolean silent argument to hide callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Update notice component
-    - Add the animating state hook when the notice is animating
-    - Add initialize before and after callback options
-    - Add remove before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add removeSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update remove arguments
-        - Add boolean silent argument to suppress remove callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated notice component
+    - Added the animating state hook when the notice is animating
+    - Added initialize before and after callback options
+    - Added remove before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added removeSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated remove arguments
+        - Added boolean silent argument to suppress remove callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Update panel component
-    - Add the animating state hook when the panel is animating
-    - Add initialize before and after callback options
-    - Add toggle before and after callback options
-    - Add remove before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add toggleSilently public method
-    - Add removeSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update toggle arguments
-        - Add boolean silent argument to suppress toggle callbacks
-    - Update remove arguments
-        - Add boolean silent argument to suppress remove callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
-        - Add requirement for Velocity.js (Release Notes)
-    - Fix is-collapsed body styling
+- Updated panel component
+    - Added the animating state hook when the panel is animating
+    - Added initialize before and after callback options
+    - Added toggle before and after callback options
+    - Added remove before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added toggleSilently public method
+    - Added removeSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated toggle arguments
+        - Added boolean silent argument to suppress toggle callbacks
+    - Updated remove arguments
+        - Added boolean silent argument to suppress remove callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
+        - Added requirement for Velocity.js (Release Notes)
+    - Fixed is-collapsed body styling
 
-- Update password reveal component
-    - Add initialize before and after callback options
-    - Add show before and after callback options
-    - Add hide before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add showSilently public method
-    - Add hideSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update show arguments
-        - Add boolean silent argument to suppress show callbacks
-    - Update hide arguments
-        - Add boolean silent argument to suppress hide callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated password reveal component
+    - Added initialize before and after callback options
+    - Added show before and after callback options
+    - Added hide before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added showSilently public method
+    - Added hideSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated show arguments
+        - Added boolean silent argument to suppress show callbacks
+    - Updated hide arguments
+        - Added boolean silent argument to suppress hide callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Update popover component
-    - Add outline none to popover
-    - Add delayIn and delayOut options
-    - Add injected focusable tabindex
-    - Add ability to focus in popovers without removing popover
-    - Add ability to insert html to popover
-    - Add the animating state hook when the popover is animating
-    - Add the animated state hook when the popover has finished animating
-    - Add the active state hook when the popover is active
-    - Add initialize before and after callback options
-    - Add insert before and after callback options
-    - Add remove before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add refresh public methods
-    - Add refreshSilently public method
-    - Add destroy public methods
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update insertPopoverEventHandler method name to togglePopoverEventHandler
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated popover component
+    - Added outline none to popover
+    - Added delayIn and delayOut options
+    - Added injected focusable tabindex
+    - Added ability to focus in popovers without removing popover
+    - Added ability to insert html to popover
+    - Added the animating state hook when the popover is animating
+    - Added the animated state hook when the popover has finished animating
+    - Added the active state hook when the popover is active
+    - Added initialize before and after callback options
+    - Added insert before and after callback options
+    - Added remove before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added refresh public methods
+    - Added refreshSilently public method
+    - Added destroy public methods
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated insertPopoverEventHandler method name to togglePopoverEventHandler
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Update toggler component
-    - Add the animating state hook when the target is animating
-    - Add the animated state hook when the target has finished animating
-    - Add initialize before and after callback options
-    - Add show before and after callback options
-    - Add hide before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add showSilently public method
-    - Add hideSilently public method
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update show arguments
-        - Add boolean silent argument to suppress show callbacks
-    - Update hide arguments
-        - Add boolean silent argument to suppress hide callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
-        - Add requirement for Velocity.js (Release Notes)
+- Updated toggler component
+    - Added the animating state hook when the target is animating
+    - Added the animated state hook when the target has finished animating
+    - Added initialize before and after callback options
+    - Added show before and after callback options
+    - Added hide before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added showSilently public method
+    - Added hideSilently public method
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated show arguments
+        - Added boolean silent argument to suppress show callbacks
+    - Updated hide arguments
+        - Added boolean silent argument to suppress hide callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
+        - Added requirement for Velocity.js (Release Notes)
 
-- Update tooltip component
-    - Add delayIn and delayOut options
-        - Remove delay option
-    - Add initialize before and after callback options
-    - Add insert before and after callback options
-    - Add remove before and after callback options
-    - Add refresh before and after callback options
-    - Add destroy before and after callback options
-    - Add refresh public method
-    - Add refreshSilently public method
-    - Add destroy public method
-    - Add destroySilently public method
-    - Update initialize arguments
-        - Add boolean silent argument to suppress initialize callbacks
-    - Update demo page
-    - Remove jQuery requirement
-        - Add vanilla JavaScript
+- Updated tooltip component
+    - Added delayIn and delayOut options
+        - Removed delay option
+    - Added initialize before and after callback options
+    - Added insert before and after callback options
+    - Added remove before and after callback options
+    - Added refresh before and after callback options
+    - Added destroy before and after callback options
+    - Added refresh public method
+    - Added refreshSilently public method
+    - Added destroy public method
+    - Added destroySilently public method
+    - Updated initialize arguments
+        - Added boolean silent argument to suppress initialize callbacks
+    - Updated demo page
+    - Removed jQuery requirement
+        - Added vanilla JavaScript
 
-- Remove modal component (Release Notes)
+- Removed modal component (Release Notes)
 
 ### Release Notes
 Plugins no longer require jQuery to work, however, since removing jQuery we now require
