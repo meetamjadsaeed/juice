@@ -21,18 +21,31 @@
 -----
 
 
+# v0.16.1-beta
+
+### Updated
+- Update build directory
+- Updated package
+
+### Fixed
+- Fixed form control element
+    - Added 100% width to spotlight elements
+- Fixed notice component
+    - Updated notice__text element display to flex
+
+
+-----
+
+
 # v0.16.0-beta
 
 ### Updated
-- Update click event helper handlers
-    - Add js prefix
-
-- Update demo pages
-
-- Update package
+- Updated click event helper handlers
+    - Added js prefix
+- Updated demo pages
+- Updated package
 
 ### Fixed
-
 - Fixed input honeypot
     - Added !important flag to display (force hide)
 
@@ -43,29 +56,22 @@
 # v0.15.0-beta
 
 ### Updated
-
 - Updated button element
     - Added component modifier
     - Added component variables
     - Removed icon variables
     - Removed box shadow none from button icons
-
 - Updated form control element
     - Updated spotlight width to flex-basis
-
 - Updated input element
     - Added honeypot modifier
-
 - Updated remover component
     - Added ability to remove multiple elements from a single trigger
     - Updated data-remover-target to data-remover-targets
-
 - Updated toggler component
     - Added ability to toggle multiple elements from a single trigger
     - Updated data-toggler-target to data-toggler-targets
-
 - Updated build directory
-
 - Updated demo pages
 
 
@@ -75,26 +81,20 @@
 # v0.14.0-beta
 
 ### Updated
-
 - Updated form label element
     - Updated default element spacing variable values
     - Updated display from flex to block
     - Removed height variables
     - Removed line-height declarations
-
 - Updated form input element
     - Added z-index hover stack index
-
 - Updated media object element
     - Added seamless modifier class
     - Updated badge variable names
     - Removed media badge flex basis values
-
 - Updated base color and feedback color modifiers
     - Fixed button anchors with is-* and has-* color modifiers bug
-
 - Updated build directory
-
 - Updated demo pages
 
 
@@ -110,28 +110,21 @@
 - Updated accordion component
     - Updated class naming conventions
     - Removed element spacing from action buttons
-
 - Updated card component
     - Updated class naming conventions
     - Removed element spacing from action buttons
-
 - Updated chip component
     - Updated class naming conventions
-
 Updated notice component
     - Updated variable names
     - Updated class naming conventions
-
 - Updated panel component
     - Updated class naming conventions
     - Removed element spacing from action buttons
-
 - Updated popover component
     - Updated width variables to max width
-
 - Updated tooltip component
     - Added max width variables
-
 - Updated html element query selectors
 
 ### Fixed
@@ -149,27 +142,19 @@ Updated notice component
 ### Updated
 - Updated blockquote typography element
     - Added link color variables and styling
-
 - Updated form input element
     - Updated placeholder color variable name from 'input-font-color-placeholder' to 'input-placeholder-color'
-
 - Updated form select element
     - Updated placeholder color variable name from 'select-font-color-placeholder' to 'select-placeholder-color'
-
 - Updated form textarea element
     - Updated placeholder color variable name from 'select-font-color-placeholder' to 'select-placeholder-color'
-
 - Updated box component
     - Added link color variables and styling
-
 - Updated color palette variation type variable naming conventions
-
 - Updated scripts
     - Updated variable naming conventions
-
 - Updated gulpfile.js
     - Updated hostname
-
 - Updated demo pages
 
 
@@ -208,7 +193,6 @@ Updated notice component
         - Added vanilla JavaScript
         - Added requirement for Velocity.js (Release Notes)
     - Fixed is-collapsed body styling
-
 - Updated card component
     - Added the animating state hook when the card is animating
     - Added initialize before and after callback options
@@ -227,7 +211,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Updated chip component
     - Added the animating state hook when the chip is animating
     - Added initialize before and after callback options
@@ -246,7 +229,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Updated dropdown component
     - Added the animating state hook when the dropdown is animating
     - Added the animated state hook when the dropdown has finished animating
@@ -272,7 +254,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Updated notice component
     - Added the animating state hook when the notice is animating
     - Added initialize before and after callback options
@@ -291,7 +272,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Updated panel component
     - Added the animating state hook when the panel is animating
     - Added initialize before and after callback options
@@ -316,7 +296,6 @@ Updated notice component
         - Added vanilla JavaScript
         - Added requirement for Velocity.js (Release Notes)
     - Fixed is-collapsed body styling
-
 - Updated password reveal component
     - Added initialize before and after callback options
     - Added show before and after callback options
@@ -338,7 +317,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Updated popover component
     - Added outline none to popover
     - Added delayIn and delayOut options
@@ -363,7 +341,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Updated toggler component
     - Added the animating state hook when the target is animating
     - Added the animated state hook when the target has finished animating
@@ -388,7 +365,6 @@ Updated notice component
     - Removed jQuery requirement
         - Added vanilla JavaScript
         - Added requirement for Velocity.js (Release Notes)
-
 - Updated tooltip component
     - Added delayIn and delayOut options
         - Removed delay option
@@ -406,7 +382,6 @@ Updated notice component
     - Updated demo page
     - Removed jQuery requirement
         - Added vanilla JavaScript
-
 - Removed modal component (Release Notes)
 
 ### Release Notes
@@ -452,32 +427,25 @@ If you require this component in your current project, do not update to v0.11.0-
     - Updated 'no-js' to 'has-no-js' and 'js' to 'has-js'
     - Updated 'no-touch' to 'has-no-touch' and 'touch' to 'has-touch'
     - Updated references to all detection classes in all components
-
 - Updated click event helper handlers
     - Updated event handlers for dynamically added components
     - Removed array based looping for attaching event handers
-
 - Updated sass file and directory structure
-
 - Updated mixins
     - Added disabled mixin
-
 - Updated grid framework
     - Added grid column variable (default to 12)
     - Added grid--stretch modifier class
     - Added grid__item--stretch modifier class
     - Updated scss declaration order
-
 - Updated breadrcrumb element
     - Updated scss declaration order
-
 - Updated button element
     - Added white space nowrap
     - Added is static variables and modifier class
     - Added disabled styling
     - Updated scss declaration order
     - Removed line height
-
 - Updated form elements
     - Added get-stack-index values to input, select and textarea elements
     - Added form control classes
@@ -485,52 +453,42 @@ If you require this component in your current project, do not update to v0.11.0-
     - Added textarea no scrollbar modifier class
     - Updated textarea default scrollbar styling
     - Updated label, input, select and textarea elements scss declaration order
-
 - Updated hero element
     - Added three quarter viewport modifier class
     - Added head, body and foot elements
     - Updated half viewport font size
     - Updated viewport modifier naming convention
     - Updated scss declaration order
-
 - Updated list element
     - Updated scss declaration order
-
 - Updated media element
     - Updated media image scss declaration order
     - Updated media object scss declaration order
-
 - Updated navigation element
     - Added revealer element
     - Updated class naming conventions
     - Updated breakpoints (mobile first)
     - Removed search element
     - Updated scss declaration order
-
 - Updated overlay element
     - Added animation duration variable and property
     - Added outline none (focus trapping for dialogs/modals etc)
-
 - Updated pagination element
     - Added focus box shadow none to disabled elements
     - Added missing disabled modifier classes
     - Updated disabled styling
     - Updated box shadow focus to use set-focus-box-shadow()
     - Updated scss declaration order
-
 - Updated table element
     - Updated scss declaration order
-
 - Updated typography elements
     - Updated scss declaration order
     - Removed p, a and h1-h6 color modifiers
-
 - Updated accordion component
     - Added link color variables
     - Added accordion__heading class for use instead of h1-h6 elements for headings
     - Updated event handlers for dynamically added components
     - Updated scss declaration order
-
 - Updated card component
     - Added animation duration variable
     - Added link color variables
@@ -540,7 +498,6 @@ If you require this component in your current project, do not update to v0.11.0-
     - Updated button styling
     - Updated scss declaration order
     - Removed redundant styling
-
 - Updated dropdown component
     - Added injected focusable tabindex
     - Added static modifier class for megamenus
@@ -549,20 +506,17 @@ If you require this component in your current project, do not update to v0.11.0-
     - Updated event handlers for dynamically added components
     - Updated variable declaration order
     - Updated scss declaration order
-
 - Updated notice component
     - Added link color variables
     - Updated event handlers for dynamically added components
     - Updated remove animation if statement
     - Updated scss declaration order
-
 - Updated panel component
     - Added link color variables
     - Added panel__heading class for use instead of h1-h6 elements for headings
     - Updated event handlers for dynamically added components
     - Updated remove animation if statement
     - Updated scss declaration order
-
 - Updated tooltip component
     - Added focus event handlers
     - Updated event handlers for dynamically added components
@@ -579,7 +533,6 @@ If you require this component in your current project, do not update to v0.11.0-
 ### Bug Fixes
 - Fixed spinner element
     - Fixed target is-color modifier class border colors
-
 - Fixed card component
     - Fixed scss variable names
 
@@ -599,7 +552,6 @@ If you require this component in your current project, do not update to v0.11.0-
     - Updated default offset amount
     - Removed injected tabindex attribute
     - Removed min width values
-
 - Updated navigation element
     - Removed megamenu variables and styles
     - Removed sub nav variables and styles
