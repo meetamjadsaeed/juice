@@ -202,6 +202,11 @@ $notice-link-color-hover: $link-color-hover !default;
         }
     }
 
+    .notice__text {
+        display: flex;
+        flex-basis: 100%;
+    }
+
     .notice__action {
         display: flex;
         padding-left: 0;
