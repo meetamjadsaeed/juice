@@ -62,6 +62,7 @@ $form-control-element-spacing: $element-spacing !default;
             // Modifiers
             &.form-control__spotlight {
                 flex-basis: 100%;
+                width: 100%;
             }
         }
     }
