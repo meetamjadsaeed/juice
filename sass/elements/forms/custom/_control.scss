@@ -1,15 +1,15 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 /*  ========================================================================
     JUICE -> ELEMENTS -> FORMS -> CUSTOM -> CONTROL -> VARIABLES
     ========================================================================  */
 
-$form-control-elements: "
+$form-control-elements: '
     #{$input},
     select,
     textarea,
     #{button}
-" !default;
+' !default;
 
 $form-control-border-radius-bottom-left: $border-radius-bottom-left !default;
 $form-control-border-radius-bottom-right: $border-radius-bottom-right !default;

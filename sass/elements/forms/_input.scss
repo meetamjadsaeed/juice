@@ -1,11 +1,11 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 /*  ========================================================================
     JUICE -> ELEMENTS -> FORMS -> INPUT -> VARIABLES
     ========================================================================  */
 
 // Input shorthand types
-$input: "
+$input: '
     input[type=checkbox],
     input[type=radio],
     input[type=color],
@@ -23,7 +23,7 @@ $input: "
     input[type=month],
     input[type=week],
     input[type=time]
-" !default;
+' !default;
 
 // Input
 $input-background-color: base-color('white') !default;
