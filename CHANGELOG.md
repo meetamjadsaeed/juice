@@ -21,10 +21,20 @@
 -----
 
 
+# v0.16.2-beta
+
+### Updated
+- Updated animate.css version
+- Updated normalize.css version
+
+
+-----
+
+
 # v0.16.1-beta
 
 ### Updated
-- Update build directory
+- Updated build directory
 - Updated package
 
 ### Fixed
