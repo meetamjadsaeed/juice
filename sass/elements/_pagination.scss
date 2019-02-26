@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/*  =========================================================================
+/*  ========================================================================
     JUICE -> ELEMENTS -> PAGINATION -> VARIABLES
-    ========================================================================= */
+    ========================================================================  */
 
 $pagination-active-background-color: base-color('primary') !default;
 $pagination-active-background-color-active: base-color('primary', $background-color-palette-type-active) !default;
@@ -57,9 +57,9 @@ $pagination-font-size-large: $font-size-large !default;
 $pagination-font-size-huge: $font-size-huge !default;
 
 
-/*  =========================================================================
+/*  ========================================================================
     JUICE -> ELEMENTS -> PAGINATION
-    ========================================================================= */
+    ========================================================================  */
 
 .pagination {
     display: flex;

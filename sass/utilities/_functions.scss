@@ -1,15 +1,15 @@
 @charset "utf-8";
 
-/*  =========================================================================
+/*  ========================================================================
     JUICE -> UTILITIES -> FUNCTIONS
-    ========================================================================= */
+    ========================================================================  */
 
 /**
  *  Get a color or a color variant from a palette.
- *  @param  {string}  $palette  The palette name
- *  @param  {string}  $color    The color in the palette
- *  @param  {string}  $type     The color variant type
- *  @return {mixed}             The color value, null otherwise
+ *  @param  {string}  $palette  The palette name.
+ *  @param  {string}  $color    The color in the palette.
+ *  @param  {string}  $type     The color variant type.
+ *  @return {mixed}             The color value, null otherwise.
  */
 @function get-color($palette, $color, $type) {
     // Check if the color exists in the palette AND check if the variant type exists in the color
@@ -27,20 +27,20 @@
 
 /**
  *  Get a base color or a base color variant from the base colors palette.
- *  @param  {string}  $color  The color name in the palette
- *  @param  {string}  $type   The color variant type
- *  @return {mixed}           The color value, null otherwise
+ *  @param  {string}  $color  The color name in the palette.
+ *  @param  {string}  $type   The color variant type.
+ *  @return {mixed}           The color value, null otherwise.
  */
 @function base-color($color, $type: 'base') {
-    // Return the color value
+    // Return the color value, null otherwise
     @return get-color($base-color-palette, $color, $type);
 }
 
 /**
  *  Get a font color or a font color variant from the font colors palette.
- *  @param  {string}  $color  The color name in the palette
- *  @param  {string}  $type   The color variant type
- *  @return {mixed}           The color value, null otherwise
+ *  @param  {string}  $color  The color name in the palette.
+ *  @param  {string}  $type   The color variant type.
+ *  @return {mixed}           The color value, null otherwise.
  */
 @function font-color($color: 'default', $type: 'base') {
     // Return the color value
@@ -49,9 +49,9 @@
 
 /**
  *  Get a feedback color or a feedback color variant from the feedback colors palette.
- *  @param  {string}  $color  The color name in the palette
- *  @param  {string}  $type   The color variant type
- *  @return {mixed}           The color value, null otherwise
+ *  @param  {string}  $color  The color name in the palette.
+ *  @param  {string}  $type   The color variant type.
+ *  @return {mixed}           The color value, null otherwise.
  */
 @function feedback-color($color, $type: 'base') {
     // Return the color value
@@ -60,10 +60,10 @@
 
 /**
  * Set the invert color for fonts depending on the background color.
- * @param  {string}  $background-color  The background color
- * @param  {string}  $font-dark         The dark font color to return
- * @param  {string}  $font-light        The light font color to return
- * @return {string}                     The font color
+ * @param  {string}  $background-color  The background color.
+ * @param  {string}  $font-dark         The dark font color to return.
+ * @param  {string}  $font-light        The light font color to return.
+ * @return {string}                     The font color.
  */
 @function set-invert-font-color($background-color, $font-color-dark: hsla(0, 0, 0, 0.65), $font-color-light: hsla(0, 100%, 100%, 1)) {
     // Check if the background colors lightness is more than 65
@@ -78,8 +78,8 @@
 
 /**
  * Get the z-index value from the stack index map/array.
- * @param  {string}  $element  The element in the stack index
- * @return {int}               The z-index value, null otherwise
+ * @param  {string}  $element  The element in the stack index.
+ * @return {int}               The z-index value, null otherwise.
  */
 @function get-stack-index($element) {
     // Check if the element exists in the stack index
@@ -97,8 +97,8 @@
 
 /**
  * Set the box shadow for focused elements using the base custom focus variables.
- * @param  {string}  $color  The base color name
- * @return {string}          The transparentized base color box-shadow value
+ * @param  {string}  $color  The base color name.
+ * @return {string}          The transparentized base color box-shadow value.
  */
 @function set-focus-box-shadow($color) {
     // Return the transparentized base color box-shadow value

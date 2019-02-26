@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/*  =========================================================================
+/*  ========================================================================
     JUICE -> COMPONENTS -> ACCORDION -> VARIABLES
-    ========================================================================= */
+    ========================================================================  */
 
 $accordion-body-background-color: base-color('white') !default;
 $accordion-body-border-color: base-color('white', $border-color-palette-type) !default;
@@ -39,9 +39,9 @@ $accordion-link-color-focus: $link-color-focus !default;
 $accordion-link-color-hover: $link-color-hover !default;
 
 
-/*  =========================================================================
+/*  ========================================================================
     JUICE -> COMPONENTS -> ACCORDION
-    ========================================================================= */
+    ========================================================================  */
 
 .accordion {
     border: 0 $accordion-border-style transparent;
@@ -117,8 +117,6 @@ $accordion-link-color-hover: $link-color-hover !default;
     }
 
     // Nested selectors
-
-    // Nested selectors
     a {
         color: $accordion-link-color;
 
@@ -135,7 +133,7 @@ $accordion-link-color-hover: $link-color-hover !default;
             color: $accordion-link-color-active;
         }
     }
-    
+
     .accordion__item {
         box-shadow: $accordion-box-shadow;
         margin-bottom: $accordion-element-spacing;

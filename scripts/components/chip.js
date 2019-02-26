@@ -52,8 +52,8 @@
 
     /**
      * Constructor.
-     * @param  {element}  element  The initialized element
-     * @param  {object}   options  The plugin options
+     * @param  {element}  element  The initialized element.
+     * @param  {object}   options  The plugin options.
      * @return {void}
      */
     function Plugin(element, options) {
@@ -71,9 +71,9 @@
 
     /**
      * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
+     * @param  {object}  defaults  The default plugin settings.
+     * @param  {object}  options   The user options.
+     * @return {object}            The extended plugin settings.
      */
     const extendDefaults = (defaults, options) => {
         // Cycle through the user options
@@ -91,7 +91,7 @@
 
     /**
      * Event handler to remove a chip when the chip remove is clicked.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const clickRemoveEventHandler = (event) => {
@@ -112,7 +112,7 @@
     Plugin.prototype = {
         /**
          * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         initialize: (silent = false) => {
@@ -149,8 +149,8 @@
 
         /**
          * Remove a chip.
-         * @param  {element}  $chip  The chip
-         * @param  {bool}     silent  Suppress callbacks
+         * @param  {element}  $chip   The chip.
+         * @param  {bool}     silent  Suppress callbacks.
          * @return {void}
          */
         remove: ($chip, silent = false) => {
@@ -201,7 +201,7 @@
 
         /**
          * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         refresh: (silent = false) => {
@@ -226,7 +226,7 @@
 
         /**
          * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         destroy: (silent = false) => {
@@ -260,7 +260,7 @@
 
         /**
          * Call the remove method silently.
-         * @param  {element}  $chip   The chip
+         * @param  {element}  $chip   The chip.
          * @return {void}
          */
         removeSilently: ($chip) => {

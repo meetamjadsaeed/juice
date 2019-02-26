@@ -58,8 +58,8 @@
 
     /**
      * Constructor.
-     * @param  {element}  element  The initialized element
-     * @param  {object}   options  The plugin options
+     * @param  {element}  element  The initialized element.
+     * @param  {object}   options  The plugin options.
      * @return {void}
      */
     function Plugin(element, options) {
@@ -77,9 +77,9 @@
 
     /**
      * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
+     * @param  {object}  defaults  The default plugin settings.
+     * @param  {object}  options   The user options.
+     * @return {object}            The extended plugin settings.
      */
     const extendDefaults = (defaults, options) => {
         // Cycle through the user options
@@ -97,7 +97,7 @@
 
     /**
      * Event handler to toggle a password when the password reveal trigger is clicked.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const clickTriggerEventHandler = (event) => {
@@ -117,7 +117,7 @@
 
     /**
      * Event handler to prevent the default behavior.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const preventDefaultEventHandler = (event) => {
@@ -127,7 +127,7 @@
 
     /**
      * Event handler to show a password for various actions.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const showEventHandler = (event) => {
@@ -144,7 +144,7 @@
 
     /**
      * Event handler to hide a password for various actions.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const hideEventHandler = (event) => {
@@ -166,7 +166,7 @@
     Plugin.prototype = {
         /**
          * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         initialize: (silent = false) => {
@@ -243,8 +243,8 @@
 
         /**
          * Show a password.
-         * @param  {element}  $input  The input
-         * @param  {bool}     silent  Suppress callbacks
+         * @param  {element}  $input  The input.
+         * @param  {bool}     silent  Suppress callbacks.
          * @return {void}
          */
         show: ($input, silent = false) => {
@@ -272,8 +272,8 @@
 
         /**
          * Hide a password.
-         * @param  {element}  $input  The input
-         * @param  {bool}     silent  Suppress callbacks
+         * @param  {element}  $input  The input.
+         * @param  {bool}     silent  Suppress callbacks.
          * @return {void}
          */
         hide: ($input, silent = false) => {
@@ -301,7 +301,7 @@
 
         /**
          * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         refresh: (silent = false) => {
@@ -326,7 +326,7 @@
 
         /**
          * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         destroy: (silent = false) => {
@@ -400,7 +400,7 @@
 
         /**
          * Call the show method silently.
-         * @param  {element}  $input  The input
+         * @param  {element}  $input  The input.
          * @return {void}
          */
         showSilently: ($input) => {
@@ -410,7 +410,7 @@
 
         /**
          * Call the hide method silently.
-         * @param  {element}  $input  The input
+         * @param  {element}  $input  The input.
          * @return {void}
          */
         hideSilently: ($input) => {

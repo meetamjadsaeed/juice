@@ -76,8 +76,8 @@
 
     /**
      * Constructor.
-     * @param  {element}  element  The selector element(s)
-     * @param  {object}   options  The plugin options
+     * @param  {element}  element  The selector element(s).
+     * @param  {object}   options  The plugin options.
      * @return {void}
      */
     function Plugin(element, options) {
@@ -95,9 +95,9 @@
 
     /**
      * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
+     * @param  {object}  defaults  The default plugin settings.
+     * @param  {object}  options   The user options.
+     * @return {object}            The extended plugin settings.
      */
     const extendDefaults = (defaults, options) => {
         // Cycle through the user options
@@ -114,9 +114,9 @@
     };
 
     /**
-     * Set the target horizontal and vertical positions after scroll
-     * @param  {element}  $target  The target
-     * @return {object}            The positions
+     * Set the target horizontal and vertical positions after scroll.
+     * @param  {element}  $target  The target.
+     * @return {object}            The positions.
      */
     const setTargetPositions = ($target) => {
         // Set the target position properties
@@ -144,8 +144,8 @@
     };
 
     /**
-     * Update the browser history
-     * @param  {string}  hash  The hash
+     * Update the browser history.
+     * @param  {string}  hash  The hash.
      * @return {void}
      */
     const updateBrowserHistory = (hash) => {
@@ -157,7 +157,7 @@
     };
 
     /**
-     * Smooth scroll to an anchor on page load
+     * Smooth scroll to an anchor on page load.
      * @return {void}
      */
     const smoothScrollToAnchorOnLoad = () => {
@@ -188,8 +188,8 @@
     };
 
     /**
-     * Event handler to smooth scroll to a specific anchor on click
-     * @param  {object}  event  The event object
+     * Event handler to smooth scroll to a specific anchor on click.
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const clickSmoothScrollEventHandler = (event) => {
@@ -280,7 +280,7 @@
     Plugin.prototype = {
         /**
          * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         initialize: (silent = false) => {
@@ -310,12 +310,12 @@
         },
 
         /**
-         * Smooth scroll to a target
-         * @param   {string}   hash       The browser history hash
-         * @param   {element}  $target    The target
-         * @param   {object}   positions  The targets horizontal and vertical positions after scroll
-         * @param   {bool}     silent     Suppress callbacks
-         * @return  {void}
+         * Smooth scroll to a target.
+         * @param  {string}   hash       The browser history hash.
+         * @param  {element}  $target    The target.
+         * @param  {object}   positions  The targets horizontal and vertical positions after scroll.
+         * @param  {bool}     silent     Suppress callbacks.
+         * @return {void}
          */
         scroll: (hash, $target, positions = {}, silent = false) => {
             // Check if the callbacks should not be suppressed
@@ -345,11 +345,11 @@
         },
 
         /**
-         * Smooth scroll the window or container to the top
-         * @param   {string} hash        The browser history hash
-         * @param   {mixed}  $container  The container element or window
-         * @param   {bool}   silent      Suppress callbacks
-         * @return  {void}
+         * Smooth scroll the window or container to the top.
+         * @param  {string}  hash        The browser history hash.
+         * @param  {mixed}   $container  The container element or window.
+         * @param  {bool}    silent      Suppress callbacks.
+         * @return {void}
          */
         scrollTop: (hash, $container = window, silent = false) => {
             // Check if the callbacks should not be suppressed
@@ -395,11 +395,11 @@
         },
 
         /**
-         * Smooth scroll the window or container to the bottom
-         * @param   {string} hash        The browser history hash
-         * @param   {mixed}  $container  The container element or window
-         * @param   {bool}   silent      Suppress callbacks
-         * @return  {void}
+         * Smooth scroll the window or container to the bottom.
+         * @param  {string}  hash        The browser history hash.
+         * @param  {mixed}   $container  The container element or window.
+         * @param  {bool}    silent      Suppress callbacks.
+         * @return {void}
          */
         scrollBottom: (hash, $container = window, silent = false) => {
             // Check if the callbacks should not be suppressed
@@ -467,7 +467,7 @@
 
         /**
          * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         refresh: (silent = false) => {
@@ -492,7 +492,7 @@
 
         /**
          * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         destroy: (silent = false) => {
@@ -513,11 +513,11 @@
         },
 
         /**
-         * Call the scroll method silently
-         * @param   {string}   hash       The browser history hash
-         * @param   {element}  $target    The target
-         * @param   {object}   positions  The targets horizontal and vertical positions after scroll
-         * @return  {void}
+         * Call the scroll method silently.
+         * @param  {string}   hash       The browser history hash.
+         * @param  {element}  $target    The target.
+         * @param  {object}   positions  The targets horizontal and vertical positions after scroll.
+         * @return {void}
          */
         scrollSilently: (hash, $target, positions = {}) => {
             // Call the scroll method silently
@@ -525,10 +525,10 @@
         },
 
         /**
-         * Call the scroll top method silently
-         * @param   {string}  hash        The browser history hash
-         * @param   {mixed}   $container  The container element or window
-         * @return  {void}
+         * Call the scroll top method silently.
+         * @param  {string}  hash        The browser history hash.
+         * @param  {mixed}   $container  The container element or window.
+         * @return {void}
          */
         scrollTopSilently: (hash, $container = window) => {
             // Call the scroll top method silently
@@ -536,10 +536,10 @@
         },
 
         /**
-         * Call the scroll bottom method silently
-         * @param   {string}  hash        The browser history hash
-         * @param   {mixed}   $container  The container element or window
-         * @return  {void}
+         * Call the scroll bottom method silently.
+         * @param  {string}  hash        The browser history hash.
+         * @param  {mixed}   $container  The container element or window.
+         * @return {void}
          */
         scrollBottomSilently: (hash, $container = window) => {
             // Call the scroll top method silently

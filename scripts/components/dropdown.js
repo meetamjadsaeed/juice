@@ -59,8 +59,8 @@
 
     /**
      * Constructor.
-     * @param  {element}  element  The initialized element
-     * @param  {object}   options  The plugin options
+     * @param  {element}  element  The initialized element.
+     * @param  {object}   options  The plugin options.
      * @return {void}
      */
     function Plugin(element, options) {
@@ -78,9 +78,9 @@
 
     /**
      * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
+     * @param  {object}  defaults  The default plugin settings.
+     * @param  {object}  options   The user options.
+     * @return {object}            The extended plugin settings.
      */
     const extendDefaults = (defaults, options) => {
         // Cycle through the user options
@@ -98,7 +98,7 @@
 
     /**
      * Event handler to toggle a dropdown when the dropdown trigger is clicked.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const clickTriggerEventHandler = (event) => {
@@ -119,7 +119,7 @@
     /**
      * Event handler to hide a dropdown when the dropdown container or any
      * of the dropdown containers descendants lose focus.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const focusoutEventHandler = (event) => {
@@ -145,7 +145,7 @@
 
     /**
      * Event handler to show a dropdown when the mouse enters the dropdown container.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const mouseenterEventHandler = (event) => {
@@ -164,7 +164,7 @@
 
     /**
      * Event handler to hide a dropdown when the mouse leaves the dropdown container.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const mouseleaveEventHandler = (event) => {
@@ -188,7 +188,7 @@
     Plugin.prototype = {
         /**
          * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         initialize: (silent = false) => {
@@ -238,8 +238,8 @@
 
         /**
          * Show a dropdown.
-         * @param  {element}  $dropdown  The dropdown
-         * @param  {bool}     silent     Suppress callbacks
+         * @param  {element}  $dropdown  The dropdown.
+         * @param  {bool}     silent     Suppress callbacks.
          * @return {void}
          */
         show: ($dropdown, silent = false) => {
@@ -304,8 +304,8 @@
 
         /**
          * Hide a dropdown.
-         * @param  {element}  $dropdown  The dropdown
-         * @param  {bool}     silent     Suppress callbacks
+         * @param  {element}  $dropdown  The dropdown.
+         * @param  {bool}     silent     Suppress callbacks.
          * @return {void}
          */
         hide: ($dropdown, silent = false) => {
@@ -370,7 +370,7 @@
 
         /**
          * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         refresh: (silent = false) => {
@@ -395,7 +395,7 @@
 
         /**
          * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         destroy: (silent = false) => {

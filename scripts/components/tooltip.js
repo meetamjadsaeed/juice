@@ -66,8 +66,8 @@
 
     /**
      * Constructor.
-     * @param  {element}  element  The initialized element
-     * @param  {object}   options  The plugin options
+     * @param  {element}  element  The initialized element.
+     * @param  {object}   options  The plugin options.
      * @return {void}
      */
     function Plugin(element, options) {
@@ -85,9 +85,9 @@
 
     /**
      * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
+     * @param  {object}  defaults  The default plugin settings.
+     * @param  {object}  options   The user options.
+     * @return {object}            The extended plugin settings.
      */
     const extendDefaults = (defaults, options) => {
         // Cycle through the user options
@@ -105,8 +105,8 @@
 
     /**
      * Get an elements offset.
-     * @param  {element}  $element  The element
-     * @return {object}             The element offset
+     * @param  {element}  $element  The element.
+     * @return {object}             The element offset.
      */
     const getElementOffset = ($element) => {
         // Set the top and left positions
@@ -132,8 +132,8 @@
 
     /**
      * Build a tooltip.
-     * @param  {element}  $container  The tooltip container
-     * @return {element}              The tooltip
+     * @param  {element}  $container  The tooltip container.
+     * @return {element}              The tooltip.
      */
     const buildTooltip = ($container) => {
         // Create the tooltip and tooltip content
@@ -192,8 +192,8 @@
 
     /**
      * Set the tooltip position relative to the tooltip container.
-     * @param  {element}  $container  The tooltip container
-     * @param  {element}  $tooltip    The tooltip
+     * @param  {element}  $container  The tooltip container.
+     * @param  {element}  $tooltip    The tooltip.
      * @return {void}
      */
     const positionTooltip = ($container, $tooltip) => {
@@ -267,8 +267,8 @@
 
     /**
      * Insert a tooltip.
-     * @param  {element}  $container  The tooltip container
-     * @param  {element}  $tooltip    The tooltip
+     * @param  {element}  $container  The tooltip container.
+     * @param  {element}  $tooltip    The tooltip.
      * @return {void}
      */
     const insertTooltip = ($container, $tooltip) => {
@@ -387,9 +387,9 @@
 
     /**
      * Remove a tooltip.
-     * @param  {element}  $container  The tooltip container
-     * @param  {element}  $tooltip    The tooltip
-     * @param  {bool}     silent      Suppress callbacks
+     * @param  {element}  $container  The tooltip container.
+     * @param  {element}  $tooltip    The tooltip.
+     * @param  {bool}     silent      Suppress callbacks.
      * @return {void}
      */
     const removeTooltip = ($container, $tooltip, silent = false) => {
@@ -469,7 +469,7 @@
 
     /**
      * Event handler to insert a tooltip relative to its tooltip container.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const insertEventHandler = (event) => {
@@ -497,7 +497,7 @@
 
     /**
      * Event handler to remove a tooltip.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const removeEventHandler = (event) => {
@@ -524,7 +524,7 @@
     Plugin.prototype = {
         /**
          * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         initialize: (silent = false) => {
@@ -570,7 +570,7 @@
 
         /**
          * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         refresh: (silent = false) => {
@@ -595,7 +595,7 @@
 
         /**
          * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         destroy: (silent = false) => {

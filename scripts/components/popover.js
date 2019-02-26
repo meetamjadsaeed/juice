@@ -65,8 +65,8 @@
 
     /**
      * Constructor.
-     * @param  {element}  element  The initialized element
-     * @param  {object}   options  The plugin options
+     * @param  {element}  element  The initialized element.
+     * @param  {object}   options  The plugin options.
      * @return {void}
      */
     function Plugin(element, options) {
@@ -84,9 +84,9 @@
 
     /**
      * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings
-     * @param  {object}  options   The user options
-     * @return {object}            The extended plugin settings
+     * @param  {object}  defaults  The default plugin settings.
+     * @param  {object}  options   The user options.
+     * @return {object}            The extended plugin settings.
      */
     const extendDefaults = (defaults, options) => {
         // Cycle through the user options
@@ -104,8 +104,8 @@
 
     /**
      * Get an elements offset.
-     * @param  {element}  $element  The element
-     * @return {object}             The element offset
+     * @param  {element}  $element  The element.
+     * @return {object}             The element offset.
      */
     const getElementOffset = ($element) => {
         // Set the top and left positions
@@ -131,8 +131,8 @@
 
     /**
      * Build a popover.
-     * @param  {element}  $container  The popover container
-     * @return {element}              The popover
+     * @param  {element}  $container  The popover container.
+     * @return {element}              The popover.
      */
     const buildPopover = ($container) => {
         // Create the popover elements
@@ -204,8 +204,8 @@
 
     /**
      * Set the popover position relative to the popover container.
-     * @param  {element}  $container  The popover container
-     * @param  {element}  $popover    The popover
+     * @param  {element}  $container  The popover container.
+     * @param  {element}  $popover    The popover.
      * @return {void}
      */
     const positionPopover = ($container, $popover) => {
@@ -279,8 +279,8 @@
 
     /**
      * Insert a popover.
-     * @param  {element}  $container  The popover container
-     * @param  {element}  $popover    The popover
+     * @param  {element}  $container  The popover container.
+     * @param  {element}  $popover    The popover.
      * @return {void}
      */
     const insertPopover = ($container, $popover) => {
@@ -356,9 +356,9 @@
 
     /**
      * Remove a popover.
-     * @param  {element}  $container  The popover container
-     * @param  {element}  $popover    The popover
-     * @param  {bool}     silent      Suppress callbacks
+     * @param  {element}  $container  The popover container.
+     * @param  {element}  $popover    The popover.
+     * @param  {bool}     silent      Suppress callbacks.
      * @return {void}
      */
     const removePopover = ($container, $popover, silent = false) => {
@@ -438,7 +438,7 @@
 
     /**
      * Event handler to toggle a popover when the popover container is clicked.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
      const clickToggleEventHandler = (event) => {
@@ -472,7 +472,7 @@
 
     /**
      * Event handler to remove a popover when the popover container or popover lose focus.
-     * @param  {object}  event  The event object
+     * @param  {object}  event  The event object.
      * @return {void}
      */
     const focusoutEventHandler = (event) => {
@@ -542,7 +542,7 @@
     Plugin.prototype = {
         /**
          * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         initialize: (silent = false) => {
@@ -579,7 +579,7 @@
 
         /**
          * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         refresh: (silent = false) => {
@@ -604,7 +604,7 @@
 
         /**
          * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks
+         * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
         destroy: (silent = false) => {
