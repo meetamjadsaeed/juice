@@ -21,6 +21,31 @@
 -----
 
 
+# v0.17.0-beta
+
+### Added
+- Added custom reset.css
+
+### Updated
+- Update build directory
+- Update demo pages
+- Updated initialize variables file structure
+- Updated package
+    - Added animate.css to dependencies
+    - Added velocity-animate to dependencies
+    - Updated foundation animations animate.css import
+
+### Removed
+- Removed normalize.css
+
+### Fixed
+- Fixed grid bottom modifier class
+    - Updated grid-bottom typo to grid--bottom
+
+
+-----
+
+
 # v0.16.3-beta
 
 ### Updated
