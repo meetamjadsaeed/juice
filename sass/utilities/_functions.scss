@@ -1,15 +1,15 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> UTILITIES -> FUNCTIONS
+    JUICE -> UTILITIES -> FUNCTIONS -> COLORS
     ========================================================================  */
 
 /**
- *  Get a color or a color variant from a palette.
- *  @param  {string}  $palette  The palette name.
- *  @param  {string}  $color    The color in the palette.
- *  @param  {string}  $type     The color variant type.
- *  @return {mixed}             The color value, null otherwise.
+ * Get a color or a color variant from a palette.
+ * @param  {string}  $palette  The palette name.
+ * @param  {string}  $color    The color in the palette.
+ * @param  {string}  $type     The color variant type.
+ * @return {mixed}             The color value, null otherwise.
  */
 @function get-color($palette, $color, $type) {
     // Check if the color exists in the palette AND check if the variant type exists in the color
@@ -26,10 +26,10 @@
 }
 
 /**
- *  Get a base color or a base color variant from the base colors palette.
- *  @param  {string}  $color  The color name in the palette.
- *  @param  {string}  $type   The color variant type.
- *  @return {mixed}           The color value, null otherwise.
+ * Get a base color or a base color variant from the base colors palette.
+ * @param  {string}  $color  The color name in the palette.
+ * @param  {string}  $type   The color variant type.
+ * @return {mixed}           The color value, null otherwise.
  */
 @function base-color($color, $type: 'base') {
     // Return the color value, null otherwise
@@ -37,10 +37,10 @@
 }
 
 /**
- *  Get a font color or a font color variant from the font colors palette.
- *  @param  {string}  $color  The color name in the palette.
- *  @param  {string}  $type   The color variant type.
- *  @return {mixed}           The color value, null otherwise.
+ * Get a font color or a font color variant from the font colors palette.
+ * @param  {string}  $color  The color name in the palette.
+ * @param  {string}  $type   The color variant type.
+ * @return {mixed}           The color value, null otherwise.
  */
 @function font-color($color: 'default', $type: 'base') {
     // Return the color value
@@ -48,10 +48,10 @@
 }
 
 /**
- *  Get a feedback color or a feedback color variant from the feedback colors palette.
- *  @param  {string}  $color  The color name in the palette.
- *  @param  {string}  $type   The color variant type.
- *  @return {mixed}           The color value, null otherwise.
+ * Get a feedback color or a feedback color variant from the feedback colors palette.
+ * @param  {string}  $color  The color name in the palette.
+ * @param  {string}  $type   The color variant type.
+ * @return {mixed}           The color value, null otherwise.
  */
 @function feedback-color($color, $type: 'base') {
     // Return the color value
@@ -59,11 +59,11 @@
 }
 
 /**
- * Set the invert color for fonts depending on the background color.
- * @param  {string}  $background-color  The background color.
- * @param  {string}  $font-dark         The dark font color to return.
- * @param  {string}  $font-light        The light font color to return.
- * @return {string}                     The font color.
+ *Set the invert color for fonts depending on the background color.
+ *@param  {string}  $background-color  The background color.
+ *@param  {string}  $font-dark         The dark font color to return.
+ *@param  {string}  $font-light        The light font color to return.
+ *@return {string}                     The font color.
  */
 @function set-invert-font-color($background-color, $font-color-dark: hsla(0, 0, 0, 0.65), $font-color-light: hsla(0, 100%, 100%, 1)) {
     // Check if the background colors lightness is more than 65
@@ -75,6 +75,11 @@
         @return $font-color-light;
     }
 }
+
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> STYLES
+    ========================================================================  */
 
 /**
  * Get the z-index value from the stack index map/array.
@@ -103,4 +108,29 @@
 @function set-focus-box-shadow($color) {
     // Return the transparentized base color box-shadow value
     @return $custom-focus-box-shadow-values transparentize($color, $custom-focus-box-shadow-transparentize);
+}
+
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> SHOPIFY
+    ========================================================================  */
+
+/**
+ * Set the shopify liquid setting string
+ * @param  {string}  $setting  The shopify setting.
+ * @return {string}            The shopify liquid setting string.
+ */
+@function shopify($setting) {
+    // Return the shopify liquid setting string
+    @return unquote('"{{ settings.' + $setting + ' }}"');
+}
+
+/**
+ * Set the shopify asset liquid url string.
+ * @param  {string}  $file  The asset file name.
+ * @return {string}         The shopify asset liquid url string.
+ */
+@function shopify_asset($file) {
+    // Return the shopify asset liquid url string
+    @return unquote('url(\'"{{ "' + $file + '" | asset_url }}"\') ');
 }
