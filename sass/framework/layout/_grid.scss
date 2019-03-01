@@ -60,7 +60,7 @@ $grid-columns: 12 !default;
         align-items: center;
     }
 
-    &.grid-bottom {
+    &.grid--bottom {
         align-items: flex-end;
     }
 
@@ -182,7 +182,7 @@ $grid-columns: 12 !default;
                 align-items: center;
             }
 
-            &.grid-bottom\@#{$name} {
+            &.grid--bottom\@#{$name} {
                 align-items: flex-end;
             }
 

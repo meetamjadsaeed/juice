@@ -33,7 +33,10 @@ const port = 3001;
  */
 const resource = {
     sass: 'sass/juice.scss',
-    scripts: 'scripts/**/*.js'
+    scripts: [
+        'node_modules/velocity-animate/velocity.min.js',
+        'scripts/**/*.js'
+    ]
 };
 
 /**
@@ -85,7 +88,10 @@ gulp.task('build:css', () => {
             errorHandler: notifier.error
         }))
         .pipe(sass({
-            outputStyle: 'compressed'
+            outputStyle: 'compressed',
+            includePaths: [
+                'node_modules/'
+            ]
         }))
         .pipe(autoprefixer({
             browsers: [

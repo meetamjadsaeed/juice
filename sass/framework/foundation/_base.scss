@@ -22,30 +22,8 @@ $selection-text-shadow: base-color('black') !default;
     JUICE -> FRAMEWORK -> FOUNDATION -> BASE
     ========================================================================  */
 
-// Box model fix
-html {
-    box-sizing: border-box;
-}
-
-* {
-    box-sizing: inherit;
-
-    // Pseudo elements
-    &::before,
-    &::after {
-        box-sizing: inherit;
-    }
-}
-
-// Body
 body {
-    -webkit-tap-highlight-color: transparent;
     background-color: $background-color;
-    margin: 0;
-    min-width: 300px;
-    padding: 0;
-    overflow-x: hidden;
-    width: 100%;
 
     // Pseudo elements
     ::-moz-selection {

@@ -1,7 +1,115 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES
+    JUICE -> INITIALIZE -> VARIABLES -> BREAKPOINTS
+    ========================================================================  */
+
+$breakpoints: (
+    // ...only
+    'mobile': '(max-width: 599px)',
+    'touch': '(max-width: 899px)',
+    'tablet': '(min-width: 600px) and (max-width: 899px)',
+    'laptop': '(min-width: 900px) and (max-width: 1099px)',
+    'desktop': '(min-width: 1100px) and (max-width: 1399px)',
+    'widescreen': '(min-width: 1400px) and (max-width: 1799px)',
+    'ultrawide': '(min-width: 1800px)',
+
+    // ...up
+    'tablet-up': '(min-width: 600px)',
+    'laptop-up': '(min-width: 900px)',
+    'desktop-up': '(min-width: 1100px)',
+    'widescreen-up': '(min-width: 1400px)',
+
+    // ...until
+    'until-desktop': '(max-width: 1099px)',
+    'until-widescreen': '(max-width: 1399px)',
+    'until-ultrawide': '(max-width: 1799px)'
+) !default;
+
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> BASE
+    ========================================================================  */
+
+$base-colors: (
+    // Brands
+    'primary': hsla(203, 70%, 52%, 1),
+    'secondary': hsla(23, 70%, 52%, 1),
+
+    // Backgrounds
+    'background': hsla(0, 0%, 99%, 1),
+
+    // Black and white
+    'black': hsla(0, 0%, 0%, 1),
+    'white': hsla(0, 100%, 100%, 1),
+
+    // Colors
+    'blue': hsla(196, 85%, 57%, 1),
+    'brown': hsla(24, 44%, 45%, 1),
+    'charcoal': hsla(0, 0%, 23%, 1),
+    'emerald': hsla(140, 52%, 55%, 1),
+    'green': hsla(101, 55%, 60%, 1),
+    'grey': hsla(0, 0%, 47%, 1),
+    'indigo': hsla(225, 57%, 47%, 1),
+    'orange': hsla(34, 100%, 61%, 1),
+    'pink': hsla(309, 96%, 79%, 1),
+    'purple': hsla(285, 58%, 64%, 1),
+    'red': hsla(11, 85%, 57%, 1),
+    'silver': hsla(0, 0%, 96%, 1),
+    'slate': hsla(210, 20%, 33%, 1),
+    'teal': hsla(174, 94%, 32%, 1),
+    'yellow': hsla(63, 100%, 75%, 1)
+) !default;
+
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> FONT
+    ========================================================================  */
+
+$font-colors: (
+    'dark': hsla(0, 0%, 13%, 1),
+    'default': hsla(0, 0%, 34%, 1),
+    'light': hsla(0, 0%, 91%, 1)
+) !default;
+
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> FEEDBACK
+    ========================================================================  */
+
+$feedback-colors: (
+    'info': map-get($base-colors, 'blue'),
+    'success': map-get($base-colors, 'green'),
+    'warning': map-get($base-colors, 'orange'),
+    'error': map-get($base-colors, 'red')
+) !default;
+
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> VARIATION TYPES
+    ========================================================================  */
+
+// Background color variation types
+$background-color-palette-type: 'base' !default;
+$background-color-palette-type-active: 'darken-1' !default;
+$background-color-palette-type-focus: 'base' !default;
+$background-color-palette-type-hover: 'lighten-1' !default;
+
+// Border color variation types
+$border-color-palette-type: 'darken-3' !default;
+$border-color-palette-type-active: 'darken-8' !default;
+$border-color-palette-type-focus: 'darken-6' !default;
+$border-color-palette-type-hover: 'darken-6' !default;
+
+// Link color variation types
+$link-color-palette-type: 'base' !default;
+$link-color-palette-type-active: 'darken-2' !default;
+$link-color-palette-type-focus: 'base' !default;
+$link-color-palette-type-hover: 'lighten-4' !default;
+
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> FONTS
     ========================================================================  */
 
 // Typeface
@@ -20,6 +128,11 @@ $font-size: 1em !default;
 $font-size-small: $font-size - 0.1em !default;
 $font-size-large: $font-size + 0.1em !default;
 $font-size-huge: $font-size + 0.2em !default;
+
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> ELEMENTS
+    ========================================================================  */
 
 // Content spacing
 $content-spacing: 20px !default;

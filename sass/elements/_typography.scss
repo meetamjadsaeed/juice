@@ -10,7 +10,7 @@ $body-font-family: $primary-typeface !default;
 $body-font-size: $root-font-size !default;
 $body-font-weight: 400 !default;
 $body-letter-spacing: 0 !default;
-$body-line-height: 1.8 !default;
+$body-line-height: 2 !default;
 
 // Paragraph
 $p-element-spacing: $element-spacing !default;
@@ -275,11 +275,6 @@ $blockquote-link-color-hover: $link-color-hover !default;
 /*  ========================================================================
     JUICE -> ELEMENTS -> TYPOGRAPHY
     ========================================================================  */
-
-// Html
-html {
-    font-size: 62.5%;
-}
 
 // Body
 body {
