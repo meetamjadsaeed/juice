@@ -21,6 +21,17 @@
 -----
 
 
+# v0.17.1-beta
+
+### Updated
+- Updated animate.css dependency
+    - Added hardcoded animate.css import via unpkg
+    - Removed animate.css dependency
+
+
+-----
+
+
 # v0.17.0-beta
 
 ### Added
