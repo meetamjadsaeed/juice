@@ -21,6 +21,16 @@
 -----
 
 
+# v0.16.3-beta
+
+### Updated
+- Updated sass functions
+    - Added shopify and shopify_asset functions
+
+
+-----
+
+
 # v0.16.2-beta
 
 ### Updated
