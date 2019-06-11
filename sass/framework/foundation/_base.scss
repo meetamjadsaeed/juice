@@ -1,40 +1,29 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> FRAMEWORK -> FOUNDATION -> BASE -> VARIABLES
-    ========================================================================  */
-
-// Focus box shadow
-$custom-focus-box-shadow-values: 0 0 0 3px !default;
-$custom-focus-box-shadow-color: feedback-color('info') !default;
-$custom-focus-box-shadow-transparentize: 0.6 !default;
-
-// Background
-$background-color: base-color('background') !default;
-
-// Selection
-$selection-background-color: base-color('primary') !default;
-$selection-font-color: base-color('white') !default;
-$selection-text-shadow: base-color('black') !default;
-
-
-/*  ========================================================================
     JUICE -> FRAMEWORK -> FOUNDATION -> BASE
     ========================================================================  */
 
 body {
-    background-color: $background-color;
+    // Variables
+    --background-color: hsla(0, 0%, 99%, 1);
+    --selection-background-color: var(--color-primary);
+    --selection-font-color: var(--color-white);
+    --selection-text-shadow: var(--color-black);
+
+    // Styles
+    background-color: var(--background-color);
 
     // Pseudo elements
     ::-moz-selection {
-        background-color: $selection-background-color;
-        color: $selection-font-color;
-        text-shadow: 1px 1px $selection-text-shadow;
+        background-color: var(--selection-background-color);
+        color: var(--selection-font-color);
+        text-shadow: 1px 1px var(--selection-text-shadow);
     }
 
     ::selection {
-        background-color: $selection-background-color;
-        color: $selection-font-color;
-        text-shadow: 1px 1px $selection-text-shadow;
+        background-color: var(--selection-background-color);
+        color: var(--selection-font-color);
+        text-shadow: 1px 1px var(--selection-text-shadow);
     }
 }

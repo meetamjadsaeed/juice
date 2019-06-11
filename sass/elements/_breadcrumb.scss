@@ -1,122 +1,49 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> BREADCRUMB -> VARIABLES
-    ========================================================================  */
-
-$breadcrumb-content-spacing: $content-spacing / 2 !default;
-$breadcrumb-content-spacing-small: $content-spacing-small / 2 !default;
-$breadcrumb-content-spacing-large: $content-spacing-large / 2 !default;
-$breadcrumb-content-spacing-huge: $content-spacing-huge / 2 !default;
-$breadcrumb-element-spacing: $element-spacing !default;
-$breadcrumb-element-spacing-small: $element-spacing-small !default;
-$breadcrumb-element-spacing-large: $element-spacing-large !default;
-$breadcrumb-element-spacing-huge: $element-spacing-huge !default;
-$breadcrumb-font-color: inherit !default;
-$breadcrumb-font-size: $font-size !default;
-$breadcrumb-font-size-small: $font-size-small !default;
-$breadcrumb-font-size-large: $font-size-large !default;
-$breadcrumb-font-size-huge: $font-size-huge !default;
-$breadcrumb-link-color: $link-color !default;
-$breadcrumb-link-color-active: $link-color-active !default;
-$breadcrumb-link-color-focus: $link-color-focus !default;
-$breadcrumb-link-color-hover: $link-color-hover !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> BREADCRUMB
     ========================================================================  */
 
 .breadcrumb {
-    color: $breadcrumb-font-color;
+    // Variables
+    --content-spacing: calc(var(--default-content-spacing) / 2);
+    --element-spacing: var(--default-element-spacing);
+    --font-color: inherit;
+    --font-size: var(--default-font-size);
+
+    // Styles
+    color: var(--font-color);
     display: flex;
     flex-wrap: wrap;
-    font-size: $breadcrumb-font-size;
+    font-size: var(--font-size);
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-bottom: $breadcrumb-element-spacing;
-
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $breadcrumb-font-size-small;
-        margin-bottom: $breadcrumb-element-spacing-small;
-
-        // Nested selectors
-        li {
-            // Pseudo classes
-            &:first-child {
-                // Pseudo elements
-                &::before {
-                    padding: 0;
-                }
-            }
-
-            // Pseudo elements
-            &::before {
-                padding: 0 $breadcrumb-content-spacing-small;
-            }
-
-            // Nested selectors
-            .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing-small / 2;
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $breadcrumb-font-size-large;
-        margin-bottom: $breadcrumb-element-spacing-large;
-
-        // Nested selectors
-        li {
-            // Pseudo classes
-            &:first-child {
-                // Pseudo elements
-                &::before {
-                    padding: 0;
-                }
-            }
-
-            // Pseudo elements
-            &::before {
-                padding: 0 $breadcrumb-content-spacing-large;
-            }
-
-            // Nested selectors
-            .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing-large / 2;
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $breadcrumb-font-size-huge;
-        margin-bottom: $breadcrumb-element-spacing-huge;
-
-        // Nested selectors
-        li {
-            // Pseudo classes
-            &:first-child {
-                // Pseudo elements
-                &::before {
-                    padding: 0;
-                }
-            }
-
-            // Pseudo elements
-            &::before {
-                padding: 0 $breadcrumb-content-spacing-huge;
-            }
-
-            // Nested selectors
-            .breadcrumb__icon {
-                margin-right: $breadcrumb-content-spacing-huge / 2;
-            }
-        }
-    }
+    margin-bottom: var(--element-spacing);
 
     // Modifiers
+    &.breadcrumb--arrow {
+        // Nested selectors
+        li {
+            // Pseudo elements
+            &::before {
+                content: '\02192';
+                font-size: var(--font-size);
+            }
+        }
+    }
+
+    &.breadcrumb--bullet {
+        // Nested selectors
+        li {
+            // Pseudo elements
+            &::before {
+                content: '\02022';
+                font-size: var(--font-size);
+            }
+        }
+    }
+
     &.breadcrumb--center {
         justify-content: center;
     }
@@ -131,26 +58,7 @@ $breadcrumb-link-color-hover: $link-color-hover !default;
             // Pseudo elements
             &::before {
                 content: '\0002f';
-            }
-        }
-    }
-
-    &.breadcrumb--arrow {
-        // Nested selectors
-        li {
-            // Pseudo elements
-            &::before {
-                content: '\02192';
-            }
-        }
-    }
-
-    &.breadcrumb--bullet {
-        // Nested selectors
-        li {
-            // Pseudo elements
-            &::before {
-                content: '\02022';
+                font-size: var(--font-size);
             }
         }
     }
@@ -165,6 +73,7 @@ $breadcrumb-link-color-hover: $link-color-hover !default;
             // Pseudo elements
             &::before {
                 content: '';
+                font-size: var(--font-size);
                 padding: 0;
             }
         }
@@ -172,25 +81,29 @@ $breadcrumb-link-color-hover: $link-color-hover !default;
         // Pseudo elements
         &::before {
             content: '\203A';
-            padding: 0 $breadcrumb-content-spacing;
+            padding: 0 var(--content-spacing);
             opacity: 0.5;
         }
 
         // Nested selectors
         a {
-            color: $breadcrumb-link-color;
+            // Variables
+            --font-color: var(--default-link-color);
+
+            // Styles
+            color: var(--font-color);
 
             // Pseudo classes
-            &:focus {
-                color: $breadcrumb-link-color-focus;
+            &:hover {
+                --font-color: var(--default-link-color-hover);
             }
 
-            &:hover {
-                color: $breadcrumb-link-color-hover;
+            &:focus {
+                --font-color: var(--default-link-color-focus);
             }
 
             &:active {
-                color: $breadcrumb-link-color-active;
+                --font-color: var(--default-link-color-active);
             }
         }
 
@@ -198,7 +111,7 @@ $breadcrumb-link-color-hover: $link-color-hover !default;
             align-items: center;
             display: inline-flex;
             justify-content: center;
-            margin-right: $breadcrumb-content-spacing / 2;
+            margin-right: calc(var(--content-spacing) / 2);
         }
     }
 }

@@ -12,11 +12,11 @@
     <title>Juice - Elements: Form</title>
 
     <!-- Webfonts and icons -->
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.1.0/css/all.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="//unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="../../dist/juice.min.css">
 </head>
 
@@ -43,7 +43,7 @@
                     <div class="grid">
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <label for="input">Input</label>
-                            <input type="password" id="input" placeholder="Input..." />
+                            <input type="text" id="input" placeholder="Input..." />
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
@@ -139,16 +139,17 @@
 
                     <div class="grid">
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+
                             <label for="form-control-input-addon-left">Left</label>
-                            <div class="form-control has-addons">
-                                <button type="button" class="button--icon is-static js-prevent-default"><i class="fas fa-user"></i></button>
+                            <div class="form-control">
+                                <button type="button" class="button--icon is-white is-static js-prevent-default"><i class="fas fa-user"></i></button>
                                 <input type="text" id="form-control-input-addon-left" class="form-control__spotlight" placeholder="Username" />
                             </div>
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <label for="form-control-input-addon-right">Right</label>
-                            <div class="form-control has-addons">
+                            <div class="form-control">
                                 <input type="text" id="form-control-input-addon-right" class="form-control__spotlight" placeholder="Search for a product..." />
                                 <button type="button" class="is-primary js-prevent-default">Go</button>
                             </div>
@@ -156,7 +157,7 @@
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <label for="form-control-input-addon-both">Both</label>
-                            <div class="form-control has-addons">
+                            <div class="form-control">
                                 <select>
                                     <option>£</option>
                                     <option>$</option>
@@ -168,11 +169,11 @@
 
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <label for="form-control-password-toggle">Password</label>
-                            <div class="form-control has-addons has-password-reveal">
+                            <div class="form-control has-password-reveal">
                                 <input type="password" id="password-form-control" class="form-control__spotlight" placeholder="Password..." />
                                 <button type="button" class="button--icon is-white js-password-reveal-trigger">
-                                    <i class="password-reveal__icon far fa-eye"></i>
-                                    <i class="password-reveal__icon far fa-eye-slash"></i>
+                                    <i class="password-reveal__icon far fa-eye fa-fw"></i>
+                                    <i class="password-reveal__icon far fa-eye-slash fa-fw"></i>
                                 </button>
                             </div>
                         </div>

@@ -1,63 +1,44 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> FORMS -> LABEL -> VARIABLES
-    ========================================================================  */
-
-$label-element-spacing: $element-spacing / 2 !default;
-$label-element-spacing-small: $element-spacing-small / 2 !default;
-$label-element-spacing-large: $element-spacing-large / 2 !default;
-$label-element-spacing-huge: $element-spacing-huge / 2 !default;
-$label-font-color: inherit !default;
-$label-font-family: $primary-typeface !default;
-$label-font-size: $font-size !default;
-$label-font-size-small: $font-size-small !default;
-$label-font-size-large: $font-size-large !default;
-$label-font-size-huge: $font-size-huge !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> FORMS -> LABEL
     ========================================================================  */
 
 label {
-    color: $label-font-color;
+    // Variables
+    --element-spacing: var(--default-element-spacing) / 2;
+    --font-color: inherit;
+    --font-family: var(--primary-typeface);
+    --font-size: var(--default-font-size);
+
+    // Styles
+    color: var(--font-color);
     cursor: pointer;
     display: block;
-    font-family: $label-font-family;
-    font-size: $label-font-size;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $label-element-spacing;
+    margin-bottom: var(--element-spacing);
     padding: 0;
     user-select: none;
 
-    // Modifiers: State hooks
-    &[disabled],
-    &.is-disabled {
-        @include disabled();
-    }
-
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $label-font-size-small;
-        margin-bottom: $label-element-spacing-small;
-    }
-
-    &.is-large {
-        font-size: $label-font-size-large;
-        margin-bottom: $label-element-spacing-large;
-    }
-
-    &.is-huge {
-        font-size: $label-font-size-huge;
-        margin-bottom: $label-element-spacing-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 
     // Modifiers: Feedback colors
-    @each $name, $color in $feedback-colors {
-        &.has-#{$name} {
-            color: feedback-color($name);
+    @each $feedback-name, $color in $feedback-colors {
+        &.has-#{$feedback-name} {
+            color: feedback-color($feedback-name);
         }
+    }
+
+    // Modifiers: Props
+    &[disabled] {
+        @include disabled();
     }
 
     // Modifiers

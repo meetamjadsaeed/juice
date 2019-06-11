@@ -101,8 +101,44 @@
         // Set the accordion item toggle
         const $toggle = event.currentTarget;
 
-        // Set the accordion item
+        // Set the accordion item and accordion
         const $item = $toggle.closest('.accordion__item');
+        const $accordion = $item.closest('.accordion');
+
+        // Set the accordion type
+        const open_multiple_items =
+            $accordion.dataset.accordionOpenMultipleItems ||
+            plugin.settings.openMultipleItems;
+
+        // Check if opening multiple items is not allowed
+        if (!open_multiple_items) {
+            // Create an empty siblings array
+            const siblings = [];
+
+            // Set the first accordion item sibling
+            let $sibling = $item.parentNode.firstChild;
+
+            // Start a while loop for the accordion item siblings existance
+            while ($sibling) {
+                // Check if the accordion item sibling is an element and not the current accordion item
+                if ($sibling.nodeType === 1 && $sibling !== $item) {
+                    // Add the accordion item sibling to the siblings array
+                    siblings.push($sibling);
+                }
+
+                // Set the next accordion item sibling
+                $sibling = $sibling.nextSibling
+            }
+
+            // Cycle through all of the accordion item siblings
+            siblings.forEach(($sibling) => {
+                // Check if the accordion item sibling has the is expanded state hook
+                if ($sibling.classList.contains('is-expanded')) {
+                    // Toggle the accordion item sibling
+                    plugin.this.toggle($sibling);
+                }
+            });
+        }
 
         // Toggle the accordion item
         plugin.this.toggle($item);

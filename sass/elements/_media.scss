@@ -1,119 +1,49 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> MEDIA -> VARIABLES
-    ========================================================================  */
-
-// Image
-$media-image-element-spacing: $element-spacing !default;
-$media-image-element-spacing-small: $element-spacing-small !default;
-$media-image-element-spacing-large: $element-spacing-large !default;
-$media-image-element-spacing-huge: $element-spacing-huge !default;
-
-// Object
-$media-object-badge-image-width: 75px !default;
-$media-object-badge-image-width-small: 50px !default;
-$media-object-badge-image-width-large: 100px !default;
-$media-object-badge-image-width-huge: 125px !default;
-$media-object-content-spacing: $content-spacing !default;
-$media-object-content-spacing-small: $content-spacing-small !default;
-$media-object-content-spacing-large: $content-spacing-large !default;
-$media-object-content-spacing-huge: $content-spacing-huge !default;
-$media-object-element-spacing: $element-spacing !default;
-$media-object-element-spacing-small: $element-spacing !default;
-$media-object-element-spacing-large: $element-spacing !default;
-$media-object-element-spacing-huge: $element-spacing !default;
-$media-object-font-size: $font-size !default;
-$media-object-font-size-small: $font-size-small !default;
-$media-object-font-size-large: $font-size-large !default;
-$media-object-font-size-huge: $font-size-huge !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> MEDIA -> IMAGE
     ========================================================================  */
 
 img {
+    // Variables
+    --element-spacing: var(--default-element-spacing);
+
+    // Styles
     max-width: 100%;
 
+    // Modifiers: State hooks
+    &.is-fullwidth {
+        display: flex;
+        max-width: auto;
+        margin-bottom: var(--element-spacing);
+        margin-right: 0;
+        min-width: 100%;
+    }
+
     // Modifiers: Sizes
-    &.is-small {
-        // Modifiers
-        &.image-left {
-            margin-bottom: $media-image-element-spacing-small;
-            margin-right: $media-image-element-spacing-small;
-        }
-
-        &.image--center {
-            margin-bottom: $media-image-element-spacing-small;
-        }
-
-        &.image-right {
-            margin-bottom: $media-image-element-spacing-small;
-            margin-left: $media-image-element-spacing-small;
-        }
-    }
-
-    &.is-large {
-        // Modifiers
-        &.image-left {
-            margin-bottom: $media-image-element-spacing-large;
-            margin-right: $media-image-element-spacing-large;
-        }
-
-        &.image--center {
-            margin-bottom: $media-image-element-spacing-large;
-        }
-
-        &.image-right {
-            margin-bottom: $media-image-element-spacing-large;
-            margin-left: $media-image-element-spacing-large;
-        }
-    }
-
-    &.is-huge {
-        // Modifiers
-        &.image-left {
-            margin-bottom: $media-image-element-spacing-huge;
-            margin-right: $media-image-element-spacing-huge;
-        }
-
-        &.image--center {
-            margin-bottom: $media-image-element-spacing-huge;
-        }
-
-        &.image-right {
-            margin-bottom: $media-image-element-spacing-huge;
-            margin-left: $media-image-element-spacing-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --element-spacing: var(--default-element-spacing-#{$size});
         }
     }
 
     // Modifiers
-    &.image-left {
+    &.image--center {
+        display: flex;
+        float: none;
+        margin: 0 auto var(--element-spacing);
+    }
+
+    &.image--left {
         float: left;
         margin: 0;
-        margin-bottom: $media-image-element-spacing;
-        margin-right: $media-image-element-spacing;
+        margin-right: var(--element-spacing);
     }
 
-    &.image--center {
-        display: block;
-        float: none;
-        margin: 0 auto;
-        margin-bottom: $media-image-element-spacing;
-    }
-
-    &.image-right {
+    &.image--right {
         float: right;
         margin: 0;
-        margin-bottom: $media-image-element-spacing;
-        margin-left: $media-image-element-spacing;
-    }
-
-    &.image--block {
-        display: block;
-        max-width: auto;
-        min-width: 100%;
+        margin-left: var(--element-spacing);
     }
 
     &.image--round {
@@ -127,109 +57,28 @@ img {
     ========================================================================  */
 
 .media-object {
+    // Variables
+    --badge-image-width: 75px;
+    --badge-image-width-small: 50px;
+    --badge-image-width-large: 100px;
+    --badge-image-width-huge: 125px;
+    --content-spacing: var(--default-content-spacing);
+    --element-spacing: var(--default-element-spacing);
+    --font-size: var(--default-font-size);
+
+    // Styles
     display: flex;
-    font-size: $media-object-font-size;
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $media-object-element-spacing;
+    margin-bottom: var(--element-spacing);
     position: relative;
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $media-object-font-size-small;
-        margin-bottom: $media-object-element-spacing-small;
-
-        // Modifiers
-        &.media-object--reverse {
-            // Nested selectors
-            .media-object__badge {
-                margin: 0;
-                margin-left: $media-object-content-spacing-small;
-            }
-        }
-
-        &.media-object--seamless {
-            // Nested selectors
-            .media-object__badge {
-                margin-right: 0;
-            }
-        }
-
-        // Nested selectors
-        .media-object__badge {
-            margin-right: $media-object-content-spacing-small;
-
-            // Nested selectors
-            img {
-                max-width: $media-object-badge-image-width-small;
-                min-width: $media-object-badge-image-width-small;
-                width: $media-object-badge-image-width-small;
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $media-object-font-size-large;
-        margin-bottom: $media-object-element-spacing-large;
-
-        // Modifiers
-        &.media-object--reverse {
-            // Nested selectors
-            .media-object__badge {
-                margin: 0;
-                margin-left: $media-object-content-spacing-large;
-            }
-        }
-
-        &.media-object--seamless {
-            // Nested selectors
-            .media-object__badge {
-                margin-right: 0;
-            }
-        }
-
-        // Nested selectors
-        .media-object__badge {
-            margin-right: $media-object-content-spacing-large;
-
-            // Nested selectors
-            img {
-                max-width: $media-object-badge-image-width-large;
-                min-width: $media-object-badge-image-width-large;
-                width: $media-object-badge-image-width-large;
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $media-object-font-size-huge;
-        margin-bottom: $media-object-element-spacing-huge;
-
-        // Modifiers
-        &.media-object--reverse {
-            // Nested selectors
-            .media-object__badge {
-                margin: 0;
-                margin-left: $media-object-content-spacing-huge;
-            }
-        }
-
-        &.media-object--seamless {
-            // Nested selectors
-            .media-object__badge {
-                margin-right: 0;
-            }
-        }
-
-        // Nested selectors
-        .media-object__badge {
-            margin-right: $media-object-content-spacing-huge;
-
-            // Nested selectors
-            img {
-                max-width: $media-object-badge-image-width-huge;
-                min-width: $media-object-badge-image-width-huge;
-                width: $media-object-badge-image-width-huge;
-            }
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --badge-image-width: var(--badge-image-width-#{$size});
+            --content-spacing: var(--default-content-spacing-#{$size});
+            --font-size: var(--default-font-size-#{$size});
         }
     }
 
@@ -240,7 +89,7 @@ img {
         // Nested selectors
         .media-object__badge {
             margin: 0;
-            margin-left: $media-object-content-spacing;
+            margin-left: var(--element-spacing);
         }
     }
 
@@ -254,15 +103,15 @@ img {
     // Nested selectors
     .media-object__badge {
         margin: 0;
-        margin-right: $media-object-content-spacing;
+        margin-right: var(--content-spacing);
         flex: 0 0 auto;
 
         // Nested selectors
         img {
             display: block;
-            max-width: $media-object-badge-image-width;
-            min-width: $media-object-badge-image-width;
-            width: $media-object-badge-image-width;
+            max-width: var(--badge-image-width);
+            min-width: var(--badge-image-width);
+            width: var(--badge-image-width);
         }
     }
 

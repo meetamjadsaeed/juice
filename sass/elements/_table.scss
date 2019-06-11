@@ -1,192 +1,84 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> TABLE -> VARIABLES
-    ========================================================================  */
-
-$table-body-border-color: base-color('white', $border-color-palette-type) !default;
-$table-body-font-color: base-color('white', 'invert') !default;
-$table-body-font-color-hover: feedback-color('info', 'invert') !default;
-$table-body-font-color-striped: base-color('white', 'invert') !default;
-$table-body-row-background-color: base-color('white') !default;
-$table-body-row-background-color-hover: feedback-color('info', $background-color-palette-type-hover) !default;
-$table-body-row-background-color-striped: base-color('white', $background-color-palette-type-active) !default;
-$table-border-style: $border-style !default;
-$table-border-width-bottom: $border-width-bottom !default;
-$table-border-width-divider: $border-width-divider !default;
-$table-border-width-left: $border-width-left !default;
-$table-border-width-right: $border-width-right !default;
-$table-border-width-top: $border-width-top !default;
-$table-content-spacing: $content-spacing !default;
-$table-content-spacing-small: $content-spacing-small !default;
-$table-content-spacing-large: $content-spacing-large !default;
-$table-content-spacing-huge: $content-spacing-huge !default;
-$table-element-spacing: $element-spacing !default;
-$table-element-spacing-small: $element-spacing-small !default;
-$table-element-spacing-large: $element-spacing-large !default;
-$table-element-spacing-huge: $element-spacing-huge !default;
-$table-font-size: $font-size !default;
-$table-font-size-small: $font-size-small !default;
-$table-font-size-large: $font-size-large !default;
-$table-font-size-huge: $font-size-huge !default;
-$table-foot-background-color: base-color('white') !default;
-$table-foot-border-color: base-color('white', $border-color-palette-type) !default;
-$table-foot-font-color: base-color('white', 'invert') !default;
-$table-head-background-color: base-color('charcoal') !default;
-$table-head-border-color: base-color('charcoal', $border-color-palette-type) !default;
-$table-head-font-color: base-color('charcoal', 'invert') !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> TABLE
     ========================================================================  */
 
 table {
-    border-collapse: collapse;
-    font-size: $table-font-size;
+    // Variables
+    --border-style: var(--default-border-style);
+    --content-spacing: var(--default-content-spacing);
+    --element-spacing: var(--default-element-spacing);
+    --font-size: var(--default-font-size);
+
+    // Styles
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $table-element-spacing;
+    margin-bottom: var(--element-spacing);
     max-width: 100%;
-    text-align: left;
     width: 100%;
 
-    // Pseudo classes
-    &>*:first-child {
-        border-top-width: $table-border-width-top;
-    }
-
-    &>*:last-child  {
-        border-bottom-width: $table-border-width-bottom;
-    }
-
-    &>*:only-child {
-        border-bottom-width: $table-border-width-bottom;
-        border-top-width: $table-border-width-top;
-    }
-
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $table-font-size-small;
-        margin-bottom: $table-element-spacing-small;
-
-        // Nested selectors
-        caption {
-            padding: $table-content-spacing-small;
-        }
-
-        thead,
-        tbody,
-        tfoot {
-            // Nested selectors
-            tr {
-                // Nested selectors
-                th,
-                td {
-                    padding: $table-content-spacing-small;
-                }
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $table-font-size-large;
-        margin-bottom: $table-element-spacing-large;
-
-        // Nested selectors
-        caption {
-            padding: $table-content-spacing-large;
-        }
-
-        thead,
-        tbody,
-        tfoot {
-            // Nested selectors
-            tr {
-                // Nested selectors
-                th,
-                td {
-                    padding: $table-content-spacing-large;
-                }
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $table-font-size-huge;
-        margin-bottom: $table-element-spacing-huge;
-
-        // Nested selectors
-        caption {
-            padding: $table-content-spacing-huge;
-        }
-
-        thead,
-        tbody,
-        tfoot {
-            // Nested selectors
-            tr {
-                // Nested selectors
-                th,
-                td {
-                    padding: $table-content-spacing-huge;
-                }
-            }
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --content-spacing: var(--default-content-spacing-#{$size});
+            --font-size: var(--default-font-size-#{$size});
         }
     }
 
     // Modifiers
-    &.table--center {
-        text-align: center;
-
-        // Nested selectors
-        caption {
-            text-align: inherit;
-        }
-    }
-
     &.table--border {
         // Nested selectors
         tbody {
             // Nested selectors
             tr {
-                border: 0 $table-border-style $table-body-border-color;
-                border-bottom-width: $table-border-width-divider;
-            }
-        }
-    }
+                border-bottom: var(--border-width-divider) var(--border-style) var(--border-color);
 
-    &.table--stripe {
-        // Nested selectors
-        tbody {
-            // Nested selectors
-            tr {
-                // Pseudo classes
-                &:nth-of-type(even) {
-                    background-color: $table-body-row-background-color-striped;
+                // Nested selectors
+                td {
+                    border-left: var(--border-width-left) var(--border-style) var(--border-color);
+                    border-right: var(--border-width-right) var(--border-style) var(--border-color);
 
-                    // Nested selectors
-                    th,
-                    td {
-                        color: $table-body-font-color-striped;
+                    // Pseudo classes
+                    &:first-child {
+                        border-left: 0;
+                    }
+
+                    &:last-child {
+                        border-right: 0;
                     }
                 }
             }
         }
     }
 
-    &.table-hover {
+    &.table--border-horizontal {
         // Nested selectors
         tbody {
             // Nested selectors
             tr {
-                // Pseudo classes
-                &:hover {
-                    background-color: $table-body-row-background-color-hover;
+                border-bottom: var(--border-width-divider) var(--border-style) var(--border-color);
+            }
+        }
+    }
 
-                    // Nested selectors
-                    th,
-                    td {
-                        color: $table-body-font-color-hover;
+    &.table--border-vertical {
+        // Nested selectors
+        tbody {
+            // Nested selectors
+            tr {
+                // Nested selectors
+                td {
+                    border-left: var(--border-width-left) var(--border-style) var(--border-color);
+                    border-right: var(--border-width-right) var(--border-style) var(--border-color);
+
+                    // Pseudo classes
+                    &:first-child {
+                        border-left: 0;
+                    }
+
+                    &:last-child {
+                        border-right: 0;
                     }
                 }
             }
@@ -195,42 +87,59 @@ table {
 
     // Nested selectors
     caption {
-        padding: $table-content-spacing;
+        padding: var(--content-spacing);
         text-align: inherit;
     }
 
     thead {
-        background-color: $table-head-background-color;
-        border: 0 $table-border-style $table-head-border-color;
-        border-bottom-width: $table-border-width-divider;
-        color: $table-head-font-color;
+        // Variables
+        --background-color: var(--color-charcoal);
+        --border-color: var(--color-charcoal-darken-3);
+        --border-width-bottom: calc(var(--default-border-width-bottom) * 2);
+        --border-width-left: var(--default-border-width-left);
+        --border-width-right: var(--default-border-width-right);
+        --border-width-top: var(--default-border-width-top);
+        --font-color: var(--color-charcoal-inverted-text);
+
+        // Styles
+        background-color: var(--background-color);
+        border: 0 var(--border-style) var(--border-color);
+        border-bottom-width: var(--border-width-bottom);
+        border-left-width: var(--border-width-left);
+        border-right-width: var(--border-width-right);
+        border-top-width: var(--border-width-top);
+        color: var(--font-color);
     }
 
     tbody {
-        background-color: $table-body-row-background-color;
-        border: 0 $table-border-style $table-body-border-color;
-        color: $table-body-font-color;
-    }
+        // Variables
+        --background-color: var(--color-white);
+        --border-color: var(--color-white-darken-3);
+        --border-width-bottom: var(--default-border-width-bottom);
+        --border-width-left: var(--default-border-width-left);
+        --border-width-right: var(--default-border-width-right);
+        --border-width-top: var(--default-border-width-top);
+        --border-width-divider: var(--default-border-width-divider);
+        --font-color: var(--font-color-default);
 
-    tfoot {
-        background-color: $table-foot-background-color;
-        border: 0 $table-border-style $table-foot-border-color;
-        border-bottom-width: $table-border-width-bottom;
-        color: $table-foot-font-color;
+        // Styles
+        background-color: var(--background-color);
+        border: 0 var(--border-style) var(--border-color);
+        border-bottom-width: var(--border-width-bottom);
+        border-left-width: var(--border-width-left);
+        border-right-width: var(--border-width-right);
+        border-top-width: var(--border-width-top);
+        color: var(--font-color);
     }
 
     thead,
-    tbody,
-    tfoot {
-        border-left-width: $table-border-width-left;
-        border-right-width: $table-border-width-right;
-
+    tbody {
         // Nested selectors
         tr {
             // Nested selectors
             th,
             td {
-                padding: $table-content-spacing;
+                padding: var(--content-spacing);
                 vertical-align: middle;
             }
         }

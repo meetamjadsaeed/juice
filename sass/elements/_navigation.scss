@@ -1,55 +1,52 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> NAVIGATION -> VARIABLES
-    ========================================================================  */
-
-$navigation-content-spacing: $content-spacing !default;
-$navigation-font-color: inherit !default;
-$navigation-font-size: $font-size !default;
-$navigation-element-spacing: $element-spacing !default;
-$navigation-link-color: $link-color !default;
-$navigation-link-color-focus: $link-color-focus !default;
-$navigation-link-color-hover: $link-color-hover !default;
-$navigation-link-color-active: $link-color-active !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> NAVIGATION
     ========================================================================  */
 
 .navigation {
+    // Variables
+    --content-spacing: var(--default-content-spacing);
+    --font-color: inherit;
+    --font-size: var(--default-font-size);
+    --element-spacing: var(--default-element-spacing);
+
+    // Styles
     align-items: center;
-    color: $navigation-font-color;
+    color: var(--font-color);
     display: flex;
     flex-wrap: wrap;
-    font-size: $navigation-font-size;
+    font-size: var(--font-size);
     position: relative;
     margin: 0;
-    margin-bottom: $navigation-element-spacing;
+    margin-bottom: var(--element-spacing);
 
     // Nested selectors
     a {
-        color: $navigation-link-color;
+        // Variables
+        --font-color: var(--default-link-color);
+
+        // Styles
+        color: var(--font-color);
 
         // Pseudo classes
-        &:focus {
-            color: $navigation-link-color-focus;
+        &:hover {
+            --font-color: var(--default-link-color-hover);
         }
 
-        &:hover {
-            color: $navigation-link-color-hover;
+        &:focus {
+            --font-color: var(--default-link-color-focus);
         }
 
         &:active {
-            color: $navigation-link-color-active;
+            --font-color: var(--default-link-color-active);
         }
     }
 
     .navigation__logo,
     .navigation__links,
     .navigation__bars {
-        padding: 0 ($navigation-content-spacing / 2);
+        padding: 0 calc(var(--content-spacing) / 2);
 
         // Pseudo classes
         &:first-child {
@@ -89,7 +86,7 @@ $navigation-link-color-active: $link-color-active !default;
                 // Nested selectors
                 a {
                     display: inline-flex;
-                    padding: $navigation-content-spacing;
+                    padding: var(--content-spacing);
                 }
             }
         }
@@ -99,7 +96,7 @@ $navigation-link-color-active: $link-color-active !default;
         // Nested selectors
         #{$button} {
             margin-bottom: 0;
-            margin-right: $navigation-content-spacing / 4;
+            margin-right: calc(var(--content-spacing) / 4);
 
             &:last-child {
                 margin-right: 0;
@@ -110,7 +107,7 @@ $navigation-link-color-active: $link-color-active !default;
     .navigation__revealer {
         display: none;
         flex: 1 0 100%;
-        padding: $navigation-content-spacing;
+        padding: var(--content-spacing);
 
          // Nested selectors
         ul,
@@ -130,14 +127,14 @@ $navigation-link-color-active: $link-color-active !default;
                     align-items: center;
                     display: flex;
                     justify-content: center;
-                    padding: ($navigation-content-spacing / 2) $navigation-content-spacing;
+                    padding: calc(var(--content-spacing) / 2) var(--content-spacing);
                 }
             }
         }
     }
 
     // Breakpoints
-    @include breakpoint('laptop-up') {
+    @include breakpoint('desktop-up') {
         // Nested selectors
         .navigation__links {
             // Nested selectors
@@ -147,12 +144,12 @@ $navigation-link-color-active: $link-color-active !default;
             }
         }
 
-        .navigation__links {
-            display: flex;
-        }
-
         .navigation__icons {
             display: none;
+        }
+
+        .navigation__links {
+            display: flex;
         }
 
         .navigation__revealer {

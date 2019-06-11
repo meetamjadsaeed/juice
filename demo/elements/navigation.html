@@ -12,11 +12,11 @@
     <title>Juice - Elements: Navigation</title>
 
     <!-- Webfonts and icons -->
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.1.0/css/all.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="//unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="../../dist/juice.min.css">
 </head>
 
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="has-dropdown has-dropdown--static">
+                        <li class="has-dropdown has-dropdown--megamenu">
                             <a href="#" class="js-prevent-default js-dropdown-trigger">Megamenu</a>
 
                             <div class="dropdown dropdown--megamenu is-hoverable">
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="navigation__icons">
-                    <button class="button--icon has-toggable" data-toggler-target="#navigation__revealer" data-toggler-slide="true"><i class="fas fa-bars"></i></button>
+                    <button class="button--component has-toggable" data-toggler-targets="#navigation__revealer" data-toggler-slide="true"><i class="fas fa-bars fa-fw"></i></button>
                 </div>
 
                 <div id="navigation__revealer" class="navigation__revealer">
@@ -124,6 +124,7 @@
     <script>
         var smooth_scroll = new SmoothScroll;
         var dropdown = new Dropdown('.has-dropdown');
+        var toggler = new Toggler('.has-toggable');
     </script>
 </body>
 </html>

@@ -1,25 +1,23 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> OVERLAY -> VARIABLES
-    ========================================================================  */
-
-$overlay-animation-duration: 200ms !default;
-$overlay-background-color: base-color('black') !default;
-$overlay-font-color: base-color('black', 'invert') !default;
-$overlay-opacity: 0.75 !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> OVERLAY
     ========================================================================  */
 
 .has-overlay {
     overflow: hidden;
 
+    // Nested selectors
     .overlay {
-        animation-duration: $overlay-animation-duration;
-        background: rgba($overlay-background-color, $overlay-opacity);
+        // Variables
+        --animation-duration: 200ms;
+        --background-color: hsla(0, 0%, 0%, 0.75);
+        --font-color: var(--color-black-inverted-text);
+
+        // Styles
+        animation-duration: var(--animation-duration);
+        background: var(--background-color);
+        color: var(--font-color);
         height: 100vh;
         left: 0;
         outline: none;

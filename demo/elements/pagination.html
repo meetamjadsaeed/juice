@@ -12,11 +12,11 @@
     <title>Juice - Elements: Pagination</title>
 
     <!-- Webfonts and icons -->
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.1.0/css/all.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oswald">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="//unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="../../dist/juice.min.css">
 </head>
 
@@ -40,158 +40,52 @@
 
             <h3 class="is-center-aligned">Default</h3>
             <nav class="pagination">
-                <ul class="pagination__pager">
+                <ul>
                     <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
-                </ul>
-
-                <ul class="pagination__list">
+                    <li><a href="#" class="js-prevent-default">Prev</a></li>
                     <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
+                    <li><span>...</span></li>
                     <li><a href="#" class="js-prevent-default">59</a></li>
                     <li><a href="#" class="js-prevent-default is-active">60</a></li>
                     <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
+                    <li><span>...</span></li>
                     <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-
-                <ul class="pagination__pager">
                     <li><a href="#" class="js-prevent-default">Next</a></li>
                     <li><a href="#" class="js-prevent-default">Last</a></li>
                 </ul>
             </nav>
             <br />
 
-            <h3 class="is-center-aligned">Left</h3>
+            <h3>Left</h3>
             <nav class="pagination pagination--left">
-                <ul class="pagination__pager">
+                <ul>
                     <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
-                </ul>
-
-                <ul class="pagination__list">
+                    <li><a href="#" class="js-prevent-default">Prev</a></li>
                     <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
+                    <li><span>...</span></li>
                     <li><a href="#" class="js-prevent-default">59</a></li>
                     <li><a href="#" class="js-prevent-default is-active">60</a></li>
                     <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
+                    <li><span>...</span></li>
                     <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-
-                <ul class="pagination__pager">
                     <li><a href="#" class="js-prevent-default">Next</a></li>
                     <li><a href="#" class="js-prevent-default">Last</a></li>
                 </ul>
             </nav>
             <br />
 
-            <h3 class="is-center-aligned">Center</h3>
-            <nav class="pagination pagination--center">
-                <ul class="pagination__pager">
-                    <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
-                </ul>
-
-                <ul class="pagination__list">
-                    <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">59</a></li>
-                    <li><a href="#" class="js-prevent-default is-active">60</a></li>
-                    <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-
-                <ul class="pagination__pager">
-                    <li><a href="#" class="js-prevent-default">Next</a></li>
-                    <li><a href="#" class="js-prevent-default">Last</a></li>
-                </ul>
-            </nav>
-            <br />
-
-            <h3 class="is-center-aligned">Right</h3>
+            <h3 class="is-right-aligned">Right</h3>
             <nav class="pagination pagination--right">
-                <ul class="pagination__pager">
+                <ul>
                     <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
-                </ul>
-
-                <ul class="pagination__list">
+                    <li><a href="#" class="js-prevent-default">Prev</a></li>
                     <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
+                    <li><span>...</span></li>
                     <li><a href="#" class="js-prevent-default">59</a></li>
                     <li><a href="#" class="js-prevent-default is-active">60</a></li>
                     <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
+                    <li><span>...</span></li>
                     <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-
-                <ul class="pagination__pager">
-                    <li><a href="#" class="js-prevent-default">Next</a></li>
-                    <li><a href="#" class="js-prevent-default">Last</a></li>
-                </ul>
-            </nav>
-            <br />
-
-            <h3 class="is-center-aligned">Pager Left / List Right</h3>
-            <nav class="pagination">
-                <ul class="pagination__pager">
-                    <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
-                    <li><a href="#" class="js-prevent-default">Next</a></li>
-                    <li><a href="#" class="js-prevent-default">Last</a></li>
-                </ul>
-
-                <ul class="pagination__list">
-                    <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">59</a></li>
-                    <li><a href="#" class="js-prevent-default is-active">60</a></li>
-                    <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-            </nav>
-            <br />
-
-            <h3 class="is-center-aligned">List Left / Pager Right</h3>
-            <nav class="pagination">
-                <ul class="pagination__list">
-                    <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">59</a></li>
-                    <li><a href="#" class="js-prevent-default is-active">60</a></li>
-                    <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-
-                <ul class="pagination__pager">
-                    <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
-                    <li><a href="#" class="js-prevent-default">Next</a></li>
-                    <li><a href="#" class="js-prevent-default">Last</a></li>
-                </ul>
-            </nav>
-
-            <h3 class="is-center-aligned">Mixed</h3>
-            <nav class="pagination pagination--center">
-                <ul class="pagination__list">
-                    <li><a href="#" class="js-prevent-default">31</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">59</a></li>
-                    <li><a href="#" class="js-prevent-default is-active">60</a></li>
-                    <li><a href="#" class="js-prevent-default">61</a></li>
-                    <li><div class="pagination__ellipsis">...</div></li>
-                    <li><a href="#" class="js-prevent-default">89</a></li>
-                </ul>
-            </nav>
-
-            <nav class="pagination pagination--center">
-                <ul class="pagination__pager">
-                    <li><a href="#" class="js-prevent-default">First</a></li>
-                    <li><a href="#" class="js-prevent-default">Previous</a></li>
                     <li><a href="#" class="js-prevent-default">Next</a></li>
                     <li><a href="#" class="js-prevent-default">Last</a></li>
                 </ul>

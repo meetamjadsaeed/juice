@@ -1,140 +1,131 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> FORMS -> TEXTAREA -> VARIABLES
-    ========================================================================  */
-
-$textarea-background-color: $input-background-color !default;
-$textarea-background-color-hover: $input-background-color !default;
-$textarea-background-color-focus: $input-background-color !default;
-$textarea-border-color: $input-border-color !default;
-$textarea-border-color-hover: $input-border-color-hover !default;
-$textarea-border-color-focus: $input-border-color-focus !default;
-$textarea-border-radius-bottom-left: $input-border-radius-bottom-left !default;
-$textarea-border-radius-bottom-right: $input-border-radius-bottom-right !default;
-$textarea-border-radius-top-left: $input-border-radius-top-left !default;
-$textarea-border-radius-top-right: $input-border-radius-top-right !default;
-$textarea-border-style: $input-border-style !default;
-$textarea-border-width-bottom: $input-border-width-bottom !default;
-$textarea-border-width-left: $input-border-width-left !default;
-$textarea-border-width-right: $input-border-width-right !default;
-$textarea-border-width-top: $input-border-width-top !default;
-$textarea-element-spacing: $input-element-spacing !default;
-$textarea-element-spacing-small: $input-element-spacing-small !default;
-$textarea-element-spacing-large: $input-element-spacing-large !default;
-$textarea-element-spacing-huge: $input-element-spacing-huge !default;
-$textarea-font-color: $input-font-color !default;
-$textarea-placeholder-color: $input-placeholder-color !default;
-$textarea-font-color-hover: $input-font-color-hover !default;
-$textarea-font-color-focus: $input-font-color-focus !default;
-$textarea-font-family: $input-font-family !default;
-$textarea-font-size: $input-font-size !default;
-$textarea-font-size-small: $input-font-size-small !default;
-$textarea-font-size-large: $input-font-size-large !default;
-$textarea-font-size-huge: $input-font-size-huge !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> FORMS -> TEXTAREA
     ========================================================================  */
 
 textarea {
-    // -webkit-appearance: none;
-    background-color: $textarea-background-color;
-    border: 0 $textarea-border-style $textarea-border-color;
-    border-bottom-left-radius: $textarea-border-radius-bottom-left;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: $textarea-border-radius-top-left;
-    border-top-right-radius: 0;
-    border-bottom-width: $textarea-border-width-bottom;
-    border-left-width: $textarea-border-width-left;
-    border-right-width: $textarea-border-width-right;
-    border-top-width: $textarea-border-width-top;
-    color: $textarea-font-color;
+    // Variables
+    --accessibility-focus-width: var(--default-accessibility-focus-width);
+    --accessibility-focus-color: var(--default-accessibility-focus-color);
+    --background-color: var(--color-white);
+    --border-color: var(--color-white-darken-3);
+    --border-radius-bottom-left: var(--default-border-radius-bottom-left);
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: var(--default-border-radius-top-left);
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: var(--default-border-width-bottom);
+    --border-width-left: var(--default-border-width-left);
+    --border-width-right: var(--default-border-width-right);
+    --border-width-top: var(--default-border-width-top);
+    --content-spacing: calc(var(--default-content-spacing) / 2);
+    --element-spacing: var(--default-element-spacing);
+    --font-color: var(--color-white-inverted-text);
+    --font-family: var(--primary-typeface);
+    --font-size: var(--default-font-size);
+    --height: var(--default-element-height);
+
+    // Styles
+    appearance: none;
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-right-width: var(--border-width-right);
+    border-top-width: var(--border-width-top);
+    color: var(--font-color);
     display: flex;
-    font-family: $textarea-font-family;
-    font-size: $textarea-font-size;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
     line-height: 1.5;
     margin: 0;
-    margin-bottom: $textarea-element-spacing;
+    margin-bottom: var(--element-spacing);
     min-width: 100%;
     outline: none;
-    overflow-y: scroll;
-    padding: 10px;
+    padding: var(--content-spacing);
     resize: none;
     width: 100%;
     z-index: get-stack-index('default');
 
     // Pseudo classes
     &:hover {
-        background-color: $textarea-background-color-hover;
-        border-color: $textarea-border-color-hover;
-        color: $textarea-font-color-hover;
-    }
+        // Variables
+        --background-color: var(--color-white-lighten-1);
+        --border-color: var(--color-white-darken-6);
+        --font-color: var(--color-white-inverted-text);
 
-    &:focus,
-    &:active {
-        background-color: $textarea-background-color-focus;
-        border-color: $textarea-border-color-focus;
-        box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color('info'), $custom-focus-box-shadow-transparentize);
-        color: $textarea-font-color-focus;
+        // Styles
+        z-index: get-stack-index('hover');
     }
 
     &:focus {
+        // Variables
+        --background-color: var(--color-white);
+        --border-color: var(--feedback-color-info);
+        --font-color: var(--color-white-inverted-text);
+
+        // Styles
+        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
         z-index: get-stack-index('focus');
     }
 
     &:active {
+        // Variables
+        --background-color: var(--color-white);
+        --border-color: var(--feedback-color-info);
+        --font-color: var(--color-white-inverted-text);
+
+        // Styles
+        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
         z-index: get-stack-index('active');
     }
 
     // Pseudo elements
     &::placeholder {
-        color: $textarea-placeholder-color;
-    }
+        // Variables
+        --font-color: var(--color-white-darken-6);
 
-    // Modifiers: State hooks
-    &[disabled],
-    &.is-disabled {
-        @include disabled();
+        // Styles
+        color: var(--font-color);
     }
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $textarea-font-size-small;
-        line-height: 1.4;
-        margin-bottom: $textarea-element-spacing-small;
-    }
-
-    &.is-large {
-        font-size: $textarea-font-size-large;
-        line-height: 1.6;
-        margin-bottom: $textarea-element-spacing-large;
-    }
-
-    &.is-huge {
-        font-size: $textarea-font-size-huge;
-        line-height: 1.7;
-        margin-bottom: $textarea-element-spacing-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 
     // Modifiers: Feedback colors
-    @each $name, $color in $feedback-colors {
-        &.has-#{$name} {
-            border-color: feedback-color($name);
+    @each $feedback-name, $color in $feedback-colors {
+        &.has-#{$feedback-name} {
+            border-color: var(--feedback-color-#{$feedback-name});
 
             // Pseudo classes
-            &:focus,
-            &:active {
-                box-shadow: $custom-focus-box-shadow-values transparentize(feedback-color($name), $custom-focus-box-shadow-transparentize);
+            &:focus {
+                --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
             }
 
-            // Modifiers: State hook
-            &[disabled],
-            &.is-disabled {
-                border-color: feedback-color($name) !important;
+            &:active {
+                --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
+            }
+
+            // Modifiers: Props
+            &[disabled] {
+                border-color: var(--feedback-color-#{$feedback-name}) !important;
             }
         }
+    }
+
+    // Modifiers: Props
+    &[disabled] {
+        @include disabled();
     }
 
     // Modifiers
@@ -142,9 +133,9 @@ textarea {
         resize: vertical;
     }
 
-    &.textarea--no-scrollbar {
-        border-bottom-right-radius: $textarea-border-radius-bottom-right;
-        border-top-right-radius: $textarea-border-radius-top-right;
-        overflow-y: auto;
+    &.textarea--scrollbar {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        overflow-y: scroll;
     }
 }

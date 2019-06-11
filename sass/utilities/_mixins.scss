@@ -5,19 +5,19 @@
     ========================================================================  */
 
 /**
- * Target an element and a particular breakpoint/media query
+ * Target an element with a particular breakpoint/media query
  */
 @mixin breakpoint($breakpoint) {
     // Check if the breakpoint key exists in the breakpoints array
     @if map-has-key($breakpoints, $breakpoint) {
-        // Create the media query
+        // Set the breakpoint
         @media #{map-get($breakpoints, $breakpoint)} {
             // Apply the content
             @content;
         }
     } @else {
         // Show warning message
-        @warn 'No value could be retrieved from `#{$breakpoint}`. ';
+        @warn 'Breakpoint not found: #{$breakpoint}';
     }
 }
 
@@ -51,7 +51,7 @@
 
 /**
  * Resolve an elements bold spacing to stop an element jumping if the
- * text jumps between standard and bold.
+ * text jumps between weights.
  */
 @mixin reserve-bold-space() {
     color: transparent;

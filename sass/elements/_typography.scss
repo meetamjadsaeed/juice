@@ -1,360 +1,96 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> VARIABLES
-    ========================================================================  */
-
-// Body
-$body-font-color: font-color() !default;
-$body-font-family: $primary-typeface !default;
-$body-font-size: $root-font-size !default;
-$body-font-weight: 400 !default;
-$body-letter-spacing: 0 !default;
-$body-line-height: 2 !default;
-
-// Paragraph
-$p-element-spacing: $element-spacing !default;
-$p-element-spacing-small: $element-spacing-small !default;
-$p-element-spacing-large: $element-spacing-large !default;
-$p-element-spacing-huge: $element-spacing-huge !default;
-$p-font-size: $font-size !default;
-$p-font-size-small: $font-size-small !default;
-$p-font-size-large: $font-size-large !default;
-$p-font-size-huge: $font-size-huge !default;
-
-// Horizontal rule
-$hr-border-color: hsla(0, 0, 50%, .15) !default;
-$hr-border-style: $border-style !default;
-$hr-border-width: 1px !default;
-$hr-element-spacing: $element-spacing !default;
-$hr-element-spacing-small: $element-spacing-small !default;
-$hr-element-spacing-large: $element-spacing-large !default;
-$hr-element-spacing-huge: $element-spacing-huge !default;
-
-// Link
-$link-color: base-color('primary', $link-color-palette-type) !default;
-$link-color-active: base-color('primary', $link-color-palette-type-active) !default;
-$link-color-focus: base-color('primary', $link-color-palette-type-focus) !default;
-$link-color-hover: base-color('primary', $link-color-palette-type-hover) !default;
-
-// Headings
-$heading-element-spacing: $element-spacing !default;
-$heading-element-spacing-small: $element-spacing-small !default;
-$heading-element-spacing-large: $element-spacing-large !default;
-$heading-element-spacing-huge: $element-spacing-huge !default;
-
-// Heading 1
-$h1-font-color: inherit !default;
-$h1-font-family: $secondary-typeface !default;
-$h1-font-size: 3.0em !default;
-$h1-font-size-small: 2.9em !default;
-$h1-font-size-large: 3.1em !default;
-$h1-font-size-huge: 3.2em !default;
-$h1-font-variant: normal !default;
-$h1-font-weight: 400 !default;
-$h1-letter-spacing: 0 !default;
-$h1-text-transform: none !default;
-
-// Heading 2
-$h2-font-color: inherit !default;
-$h2-font-family: $secondary-typeface !default;
-$h2-font-size: 2.6em !default;
-$h2-font-size-small: 2.5em !default;
-$h2-font-size-large: 2.7em !default;
-$h2-font-size-huge: 2.8em !default;
-$h2-font-variant: normal !default;
-$h2-font-weight: 400 !default;
-$h2-letter-spacing: 0 !default;
-$h2-text-transform: none !default;
-
-// Heading 3
-$h3-font-color: inherit !default;
-$h3-font-family: $secondary-typeface !default;
-$h3-font-size: 2.2em !default;
-$h3-font-size-small: 2.1em !default;
-$h3-font-size-large: 2.3em !default;
-$h3-font-size-huge: 2.4em !default;
-$h3-font-variant: normal !default;
-$h3-font-weight: 400 !default;
-$h3-letter-spacing: 0 !default;
-$h3-text-transform: none !default;
-
-// Heading 4
-$h4-font-color: inherit !default;
-$h4-font-family: $secondary-typeface !default;
-$h4-font-size: 1.8em !default;
-$h4-font-size-small: 1.7em !default;
-$h4-font-size-large: 1.9em !default;
-$h4-font-size-huge: 2.0em !default;
-$h4-font-variant: normal !default;
-$h4-font-weight: 400 !default;
-$h4-letter-spacing: 0 !default;
-$h4-text-transform: none !default;
-
-// Heading 5
-$h5-font-color: inherit !default;
-$h5-font-family: $secondary-typeface !default;
-$h5-font-size: 1.6em !default;
-$h5-font-size-small: 1.5em !default;
-$h5-font-size-large: 1.7em !default;
-$h5-font-size-huge: 1.8em !default;
-$h5-font-variant: normal !default;
-$h5-font-weight: 400 !default;
-$h5-letter-spacing: 0 !default;
-$h5-text-transform: none !default;
-
-// Heading 6
-$h6-font-color: inherit !default;
-$h6-font-family: $secondary-typeface !default;
-$h6-font-size: 1.4em !default;
-$h6-font-size-small: 1.3em !default;
-$h6-font-size-large: 1.5em !default;
-$h6-font-size-huge: 1.6em !default;
-$h6-font-variant: normal !default;
-$h6-font-weight: 400 !default;
-$h6-letter-spacing: 0 !default;
-$h6-text-transform: none !default;
-
-// Abbreviation
-$abbr-border-color: feedback-color('info', $border-color-palette-type) !default;
-
-// Mark
-$mark-background-color: base-color('yellow', 'lighten-4') !default;
-$mark-border-color: transparent !default;
-$mark-border-radius-bottom-left: 0 !default;
-$mark-border-radius-bottom-right: 0 !default;
-$mark-border-radius-top-left: 0 !default;
-$mark-border-radius-top-right: 0 !default;
-$mark-border-style: $border-style !default;
-$mark-border-width-bottom: 0 !default;
-$mark-border-width-left: 0 !default;
-$mark-border-width-right: 0 !default;
-$mark-border-width-top: 0 !default;
-$mark-font-color: font-color() !default;
-$mark-font-size: $font-size !default;
-$mark-font-size-small: $font-size-small !default;
-$mark-font-size-large: $font-size-large !default;
-$mark-font-size-huge: $font-size-huge !default;
-$mark-padding: 4px !default;
-
-// Code
-$code-background-color: base-color('white') !default;
-$code-border-color: base-color('white', $border-color-palette-type) !default;
-$code-border-radius-bottom-left: $border-radius-bottom-left !default;
-$code-border-radius-bottom-right: $border-radius-bottom-right !default;
-$code-border-radius-top-left: $border-radius-top-left !default;
-$code-border-radius-top-right: $border-radius-top-right !default;
-$code-border-style: $border-style !default;
-$code-border-width-bottom: $border-width-bottom !default;
-$code-border-width-left: $border-width-left !default;
-$code-border-width-right: $border-width-right !default;
-$code-border-width-top: $border-width-top !default;
-$code-font-color: base-color('red') !default;
-$code-font-size: $font-size !default;
-$code-font-size-small: $font-size-small !default;
-$code-font-size-large: $font-size-large !default;
-$code-font-size-huge: $font-size-huge !default;
-$code-padding: 4px !default;
-
-// Keyboard
-$kbd-background-color: base-color('charcoal') !default;
-$kbd-border-color: base-color('charcoal', $border-color-palette-type) !default;
-$kbd-border-radius-bottom-left: $border-radius-bottom-left !default;
-$kbd-border-radius-bottom-right: $border-radius-bottom-right !default;
-$kbd-border-radius-top-left: $border-radius-top-left !default;
-$kbd-border-radius-top-right: $border-radius-top-right !default;
-$kbd-border-style: $border-style !default;
-$kbd-border-width-bottom: $border-width-bottom !default;
-$kbd-border-width-left: $border-width-left !default;
-$kbd-border-width-right: $border-width-right !default;
-$kbd-border-width-top: $border-width-top !default;
-$kbd-font-color: base-color('charcoal', 'invert') !default;
-$kbd-font-size: $font-size !default;
-$kbd-font-size-small: $font-size-small !default;
-$kbd-font-size-large: $font-size-large !default;
-$kbd-font-size-huge: $font-size-huge !default;
-$kbd-padding: 4px !default;
-
-// Preformatted
-$pre-background-color: base-color('charcoal') !default;
-$pre-border-color: base-color('charcoal', $border-color-palette-type) !default;
-$pre-border-radius-bottom-left: $border-radius-bottom-left !default;
-$pre-border-radius-bottom-right: $border-radius-bottom-right !default;
-$pre-border-radius-top-left: $border-radius-top-left !default;
-$pre-border-radius-top-right: $border-radius-top-right !default;
-$pre-border-style: $border-style !default;
-$pre-border-width-bottom: $border-width-bottom !default;
-$pre-border-width-left: $border-width-left !default;
-$pre-border-width-right: $border-width-right !default;
-$pre-border-width-top: $border-width-top !default;
-$pre-box-shadow: none !default;
-$pre-content-spacing: $content-spacing !default;
-$pre-content-spacing-small: $content-spacing-small !default;
-$pre-content-spacing-large: $content-spacing-large !default;
-$pre-content-spacing-huge: $content-spacing-huge !default;
-$pre-element-spacing: $element-spacing !default;
-$pre-element-spacing-small: $element-spacing-small !default;
-$pre-element-spacing-large: $element-spacing-large !default;
-$pre-element-spacing-huge: $element-spacing-huge !default;
-$pre-font-color: base-color('charcoal', 'invert') !default;
-$pre-font-size: $font-size !default;
-$pre-font-size-small: $font-size-small !default;
-$pre-font-size-large: $font-size-large !default;
-$pre-font-size-huge: $font-size-huge !default;
-
-// Sample
-$samp-background-color: transparent !default;
-$samp-border-color: transparent !default;
-$samp-border-radius-bottom-left: 0 !default;
-$samp-border-radius-bottom-right: 0 !default;
-$samp-border-radius-top-left: 0 !default;
-$samp-border-radius-top-right: 0 !default;
-$samp-border-style: $border-style !default;
-$samp-border-width-bottom: 0 !default;
-$samp-border-width-left: 0 !default;
-$samp-border-width-right: 0 !default;
-$samp-border-width-top: 0 !default;
-$samp-font-color: inherit !default;
-$samp-font-size: $font-size !default;
-$samp-font-size-small: $font-size-small !default;
-$samp-font-size-large: $font-size-large !default;
-$samp-font-size-huge: $font-size-huge !default;
-$samp-padding: 0 !default;
-
-// Variable
-$var-background-color: transparent !default;
-$var-border-color: transparent !default;
-$var-border-radius-bottom-left: 0 !default;
-$var-border-radius-bottom-right: 0 !default;
-$var-border-radius-top-left: 0 !default;
-$var-border-radius-top-right: 0 !default;
-$var-border-style: $border-style !default;
-$var-border-width-bottom: 0 !default;
-$var-border-width-left: 0 !default;
-$var-border-width-right: 0 !default;
-$var-border-width-top: 0 !default;
-$var-font-color: inherit !default;
-$var-font-size: $font-size !default;
-$var-font-size-small: $font-size-small !default;
-$var-font-size-large: $font-size-large !default;
-$var-font-size-huge: $font-size-huge !default;
-$var-padding: 0 !default;
-
-// Blockquote
-$blockquote-background-color: base-color('silver') !default;
-$blockquote-border-color: base-color('silver', $border-color-palette-type) !default;
-$blockquote-border-color-hover: base-color('primary') !default;
-$blockquote-border-radius-bottom-left: 0 !default;
-$blockquote-border-radius-bottom-right: $border-radius-bottom-right !default;
-$blockquote-border-radius-top-left: 0 !default;
-$blockquote-border-radius-top-right: $border-radius-top-right !default;
-$blockquote-border-style: $border-style !default;
-$blockquote-border-width-bottom: 0 !default;
-$blockquote-border-width-left: 5px !default;
-$blockquote-border-width-right: 0 !default;
-$blockquote-border-width-top: 0 !default;
-$blockquote-content-spacing: $content-spacing !default;
-$blockquote-content-spacing-small: $content-spacing-small !default;
-$blockquote-content-spacing-large: $content-spacing-large !default;
-$blockquote-content-spacing-huge: $content-spacing-huge !default;
-$blockquote-element-spacing: $element-spacing !default;
-$blockquote-element-spacing-small: $element-spacing-small !default;
-$blockquote-element-spacing-large: $element-spacing-large !default;
-$blockquote-element-spacing-huge: $element-spacing-huge !default;
-$blockquote-font-color: base-color('silver', 'invert') !default;
-$blockquote-font-size: $font-size + 0.4em !default;
-$blockquote-font-size-small: $font-size-small + 0.4em !default;
-$blockquote-font-size-large: $font-size-large + 0.4em !default;
-$blockquote-font-size-huge: $font-size-huge + 0.4em !default;
-$blockquote-link-color: $link-color !default;
-$blockquote-link-color-active: $link-color-active !default;
-$blockquote-link-color-focus: $link-color-focus !default;
-$blockquote-link-color-hover: $link-color-hover !default;
-
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> TYPOGRAPHY
     ========================================================================  */
 
 // Body
 body {
-    color: $body-font-color;
-    font-family: $body-font-family;
-    font-size: $body-font-size;
-    font-weight: $body-font-weight;
-    letter-spacing: $body-letter-spacing;
-    line-height: $body-line-height;
+    // Variables
+    --font-color: var(--font-color-default);
+    --font-family: var(--primary-typeface);
+    --font-size: var(--root-font-size);
+    --font-weight: var(--default-font-weight);
+    --letter-spacing: var(--default-letter-spacing);
+    --line-height: var(--default-line-height);
+
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    line-height: var(--line-height);
 }
 
 // Paragraph
 p {
-    font-size: $p-font-size;
+    // Variables
+    --element-spacing: var(--default-element-spacing);
+    --font-size: var(--default-font-size);
+
+    // Styles
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $p-element-spacing;
+    margin-bottom: var(--element-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $p-font-size-small;
-        margin-bottom: $p-element-spacing-small;
-    }
-
-    &.is-large {
-        font-size: $p-font-size-large;
-        margin-bottom: $p-element-spacing-large;
-    }
-
-    &.is-huge {
-        font-size: $p-font-size-huge;
-        margin-bottom: $p-element-spacing-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 }
 
 // Horizontal rule
 hr {
-    border: none;
-    border-bottom: $hr-border-width $hr-border-style $hr-border-color;
+    // Variables
+    --border-color: hsla(0, 0%, 50%, .15);
+    --border-style: var(--default-border-style);
+    --border-width: var(--default-border-width-divider);
+    --element-spacing: var(--default-element-spacing);
+
+    // Styles
+    border: 0;
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
     clear: both;
     margin: 0;
-    margin-bottom: $hr-element-spacing;
+    margin-bottom: var(--element-spacing);
 
-    // Modifiers: Sizes
-    &.is-small {
-        margin-bottom: $hr-element-spacing-small;
-    }
-
-    &.is-large {
-        margin-bottom: $hr-element-spacing-large;
-    }
-
-    &.is-huge {
-        margin-bottom: $hr-element-spacing-huge;
-    }
-
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            border-color: base-color($name);
+    // Modifiers: Colors
+    @each $color-name, $color in $colors {
+        &.is-#{$color-name} {
+            border-color: var(--color-#{$color-name});
         }
     }
 }
 
 // Link
 a {
-    color: $link-color;
+    // Variables
+    --font-color: var(--default-link-color);
+
+    // Styles
+    color: var(--font-color);
     font-weight: inherit;
+    outline: none;
     text-decoration: none;
 
     // Pseudo classes
     &:hover {
-        color: $link-color-hover;
+        --font-color: var(--default-link-color-hover);
     }
 
     &:focus {
-        color: $link-color-focus;
+        // Variables
+        --font-color: var(--default-link-color-focus);
+
+        // Styles
+        text-decoration: underline;
     }
 
     &:active {
-        color: $link-color-active;
+        --font-color: var(--default-link-color-active);
     }
 }
 
@@ -365,171 +101,144 @@ h3,
 h4,
 h5,
 h6 {
+    // Variables
+    --element-spacing: var(--default-element-spacing);
+
+    // Styles
     line-height: normal;
     margin: 0;
-    margin-bottom: $heading-element-spacing;
+    margin-bottom: var(--element-spacing);
     padding: 0;
     position: relative;
-
-    // Modifiers: Sizes
-    &.is-small {
-        margin-bottom: $heading-element-spacing-small;
-    }
-
-    &.is-large {
-        margin-bottom: $heading-element-spacing-large;
-    }
-
-    &.is-huge {
-        margin-bottom: $heading-element-spacing-huge;
-    }
 }
 
 // Heading 1
 h1 {
-    color: $h1-font-color;
-    font-family: $h1-font-family;
-    font-size: $h1-font-size;
-    font-variant: $h1-font-variant;
-    font-weight: $h1-font-weight;
-    letter-spacing: $h1-letter-spacing;
-    text-transform: $h1-text-transform;
+    // Variables
+    --font-color: inherit;
+    --font-family: var(--secondary-typeface);
+    --font-size: 3.0em;
+    --font-variant: normal;
+    --font-weight: 400;
+    --letter-spacing: 0;
+    --text-transform: none;
 
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $h1-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $h1-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $h1-font-size-huge;
-    }
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-variant: var(--font-variant);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    text-transform: var(--text-transform);
 }
 
 // Heading 2
 h2 {
-    color: $h2-font-color;
-    font-family: $h2-font-family;
-    font-size: $h2-font-size;
-    font-variant: $h2-font-variant;
-    font-weight: $h2-font-weight;
-    letter-spacing: $h2-letter-spacing;
-    text-transform: $h2-text-transform;
+    // Variables
+    --font-color: inherit;
+    --font-family: var(--secondary-typeface);
+    --font-size: 2.6em;
+    --font-variant: normal;
+    --font-weight: 400;
+    --letter-spacing: 0;
+    --text-transform: none;
 
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $h2-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $h2-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $h2-font-size-huge;
-    }
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-variant: var(--font-variant);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    text-transform: var(--text-transform);
 }
 
 // Heading 3
 h3 {
-    color: $h3-font-color;
-    font-family: $h3-font-family;
-    font-size: $h3-font-size;
-    font-variant: $h3-font-variant;
-    font-weight: $h3-font-weight;
-    letter-spacing: $h3-letter-spacing;
-    text-transform: $h3-text-transform;
+    // Variables
+    --font-color: inherit;
+    --font-family: var(--secondary-typeface);
+    --font-size: 2.2em;
+    --font-variant: normal;
+    --font-weight: 400;
+    --letter-spacing: 0;
+    --text-transform: none;
 
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $h3-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $h3-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $h3-font-size-huge;
-    }
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-variant: var(--font-variant);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    text-transform: var(--text-transform);
 }
 
 // Heading 4
 h4 {
-    color: $h4-font-color;
-    font-family: $h4-font-family;
-    font-size: $h4-font-size;
-    font-variant: $h4-font-variant;
-    font-weight: $h4-font-weight;
-    letter-spacing: $h4-letter-spacing;
-    text-transform: $h4-text-transform;
+    // Variables
+    --font-color: inherit;
+    --font-family: var(--secondary-typeface);
+    --font-size: 1.8em;
+    --font-variant: normal;
+    --font-weight: 400;
+    --letter-spacing: 0;
+    --text-transform: none;
 
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $h4-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $h4-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $h4-font-size-huge;
-    }
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-variant: var(--font-variant);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    text-transform: var(--text-transform);
 }
 
 // Heading 5
 h5 {
-    color: $h5-font-color;
-    font-family: $h5-font-family;
-    font-size: $h5-font-size;
-    font-variant: $h5-font-variant;
-    font-weight: $h5-font-weight;
-    letter-spacing: $h5-letter-spacing;
-    text-transform: $h5-text-transform;
+    // Variables
+    --font-color: inherit;
+    --font-family: var(--secondary-typeface);
+    --font-size: 1.6em;
+    --font-variant: normal;
+    --font-weight: 400;
+    --letter-spacing: 0;
+    --text-transform: none;
 
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $h5-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $h5-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $h5-font-size-huge;
-    }
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-variant: var(--font-variant);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    text-transform: var(--text-transform);
 }
 
 // Heading 6
 h6 {
-    color: $h6-font-color;
-    font-family: $h6-font-family;
-    font-size: $h6-font-size;
-    font-variant: $h6-font-variant;
-    font-weight: $h6-font-weight;
-    letter-spacing: $h6-letter-spacing;
-    text-transform: $h6-text-transform;
+    // Variables
+    --font-color: inherit;
+    --font-family: var(--secondary-typeface);
+    --font-size: 1.4em;
+    --font-variant: normal;
+    --font-weight: 400;
+    --letter-spacing: 0;
+    --text-transform: none;
 
-    // Modifiers: Sizes
-    &.is-small {
-        font-size: $h6-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $h6-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $h6-font-size-huge;
-    }
+    // Styles
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-variant: var(--font-variant);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    text-transform: var(--text-transform);
 }
 
-// Strong
+// Weight
 b,
 strong {
     font-weight: 700;
@@ -537,52 +246,67 @@ strong {
 
 // Abbreviation
 abbr {
+    // Variables
+    --border-color: var(--feedback-color-info);
+
+    // Styles
     text-decoration: none !important;
 
-    // Modifiers: Base colors
-    @each $name, $color in $base-colors {
-        &.is-#{$name} {
-            // Modifiers
+    // Modifiers: Colors
+    @each $color-name, $color in $colors {
+        &.is-#{$color-name} {
+            // Modifiers: Props
             &[title] {
-                border-color: base-color($name);
+                border-color: var(--color-#{$color-name});
             }
         }
     }
 
-    // Modifiers
+    // Modifiers: Props
     &[title] {
-        border-bottom: 1px dotted $abbr-border-color;
+        border-bottom: 1px dotted var(--border-color);
         cursor: help;
     }
 }
 
 // Mark
 mark {
-    background-color: $mark-background-color;
-    border: 0 $mark-border-style $mark-border-color;
-    border-bottom-left-radius: $mark-border-radius-bottom-left;
-    border-bottom-right-radius: $mark-border-radius-bottom-right;
-    border-bottom-width: $mark-border-width-bottom;
-    border-left-width: $mark-border-width-left;
-    border-right-width: $mark-border-width-right;
-    border-top-left-radius: $mark-border-radius-top-left;
-    border-top-right-radius: $mark-border-radius-top-right;
-    border-top-width: $mark-border-width-top;
-    color: $mark-font-color;
-    font-size: $mark-font-size;
-    padding: $mark-padding;
+    // Variables
+    --background-color: var(--color-yellow-lighten-2);
+    --border-color: transparent;
+    --border-radius-bottom-left: 0;
+    --border-radius-bottom-right: 0;
+    --border-radius-top-left: 0;
+    --border-radius-top-right: 0;
+    --border-style: var(--default-border-style);
+    --border-width-bottom: 0;
+    --border-width-left: 0 ;
+    --border-width-right: 0;
+    --border-width-top: 0;
+    --content-spacing: 4px;
+    --font-color: var(--font-color-default);
+    --font-size: var(--default-font-size);
+
+    // Styles
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-right-width: var(--border-width-right);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    color: var(--font-color);
+    font-size: var(--font-size);
+    padding: var(--content-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $mark-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $mark-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $mark-font-size-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 }
 
@@ -592,88 +316,128 @@ kbd,
 pre,
 samp,
 var {
-    font-family: $monoface-typeface;
+    font-family: var(--monoface-typeface);
 }
 
 // Code
 code {
-    background-color: $code-background-color;
-    border: 0 $code-border-style $code-border-color;
-    border-bottom-left-radius: $code-border-radius-bottom-left;
-    border-bottom-right-radius: $code-border-radius-bottom-right;
-    border-bottom-width: $code-border-width-bottom;
-    border-left-width: $code-border-width-left;
-    border-right-width: $code-border-width-right;
-    border-top-left-radius: $code-border-radius-top-left;
-    border-top-right-radius: $code-border-radius-top-right;
-    border-top-width: $code-border-width-top;
-    color: $code-font-color;
-    font-size: $code-font-size;
-    padding: $code-padding;
+    // Variables
+    --background-color: var(--color-white);
+    --border-color: var(--color-white-darken-3);
+    --border-radius-bottom-left: var(--default-border-radius-bottom-left);
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: var(--default-border-radius-top-left);
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: var(--default-border-width-bottom);
+    --border-width-left: var(--default-border-width-left);
+    --border-width-right: var(--default-border-width-right);
+    --border-width-top: var(--default-border-width-top);
+    --content-spacing: 4px;
+    --font-color: var(--color-red);
+    --font-size: var(--default-font-size);
+
+    // Styles
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-right-width: var(--border-width-right);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    color: var(--font-color);
+    font-size: var(--font-size);
+    padding: var(--content-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $code-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $code-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $code-font-size-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 }
 
 // Keyboard
 kbd {
-    background-color: $kbd-background-color;
-    border: 0 $kbd-border-style $kbd-border-color;
-    border-bottom-left-radius: $kbd-border-radius-bottom-left;
-    border-bottom-right-radius: $kbd-border-radius-bottom-right;
-    border-bottom-width: $kbd-border-width-bottom;
-    border-left-width: $kbd-border-width-left;
-    border-right-width: $kbd-border-width-right;
-    border-top-left-radius: $kbd-border-radius-top-left;
-    border-top-right-radius: $kbd-border-radius-top-right;
-    border-top-width: $kbd-border-width-top;
-    color: $kbd-font-color;
-    font-size: $kbd-font-size;
-    padding: $kbd-padding;
+    // Variables
+    --background-color: var(--color-charcoal);
+    --border-color: var(--color-charcoal-darken-3);
+    --border-radius-bottom-left: var(--default-border-radius-bottom-left);
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: var(--default-border-radius-top-left);
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: var(--default-border-width-bottom);
+    --border-width-left: var(--default-border-width-left);
+    --border-width-right: var(--default-border-width-right);
+    --border-width-top: var(--default-border-width-top);
+    --content-spacing: 4px;
+    --font-color: white;
+    --font-size: var(--default-font-size);
+
+    // Styles
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-right-width: var(--border-width-right);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    color: var(--font-color);
+    font-size: var(--font-size);
+    padding: var(--content-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $kbd-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $kbd-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $kbd-font-size-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 }
 
 // Preformatted
 pre {
+    // Variables
+    --background-color: var(--color-charcoal);
+    --border-color: var(--color-charcoal-darken-3);
+    --border-radius-bottom-left: var(--default-border-radius-bottom-left);
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: var(--default-border-radius-top-left);
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: var(--default-border-width-bottom);
+    --border-width-left: var(--default-border-width-left);
+    --border-width-right: var(--default-border-width-right);
+    --border-width-top: var(--default-border-width-top);
+    --content-spacing: var(--default-content-spacing);
+    --element-spacing: var(--default-element-spacing);
+    --font-color: var(--color-charcoal-inverted-text);
+    --font-size: var(--default-font-size);
+
+    // Styles
     display: block;
-    background-color: $pre-background-color;
-    border: 0 $pre-border-style $pre-border-color;
-    border-bottom-left-radius: $pre-border-radius-bottom-left;
-    border-bottom-right-radius: $pre-border-radius-bottom-right;
-    border-bottom-width: $pre-border-width-bottom;
-    border-left-width: $pre-border-width-left;
-    border-top-left-radius: $pre-border-radius-top-left;
-    border-top-right-radius: $pre-border-radius-top-right;
-    border-top-width: $pre-border-width-top;
-    border-right-width: $pre-border-width-right;
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    border-right-width: var(--border-width-right);
     box-shadow: none;
-    color: $pre-font-color;
-    font-size: $pre-font-size;
+    color: var(--font-color);
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $pre-element-spacing;
-    padding: $pre-content-spacing;
+    margin-bottom: var(--element-spacing);
+    padding: var(--content-spacing);
     position: relative;
     overflow-x: auto;
     white-space: pre-wrap;
@@ -682,7 +446,7 @@ pre {
     &::after {
         display: block;
         content: attr(data-language);
-        font-family: $primary-typeface;
+        font-family: var(--primary-typeface);
         font-size: 75%;
         padding: 5px 10px;
         position: absolute;
@@ -692,22 +456,11 @@ pre {
     }
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $pre-font-size-small;
-        margin-bottom: $pre-element-spacing-small;
-        padding: $pre-content-spacing-small;
-    }
-
-    &.is-large {
-        font-size: $pre-font-size-large;
-        margin-bottom: $pre-element-spacing-large;
-        padding: $pre-content-spacing-large;
-    }
-
-    &.is-huge {
-        font-size: $pre-font-size-huge;
-        margin-bottom: $pre-element-spacing-huge;
-        padding: $pre-content-spacing-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+            --content-spacing: var(--default-content-spacing-#{$size});
+        }
     }
 
     // Nested selectors
@@ -721,124 +474,153 @@ pre {
 
 // Sample
 samp {
-    background-color: $samp-background-color;
-    border: 0 $samp-border-style $samp-border-color;
-    border-bottom-left-radius: $samp-border-radius-bottom-left;
-    border-bottom-right-radius: $samp-border-radius-bottom-right;
-    border-bottom-width: $samp-border-width-bottom;
-    border-left-width: $samp-border-width-left;
-    border-right-width: $samp-border-width-right;
-    border-top-left-radius: $samp-border-radius-top-left;
-    border-top-right-radius: $samp-border-radius-top-right;
-    border-top-width: $samp-border-width-top;
-    color: $samp-font-color;
-    font-size: $samp-font-size;
-    padding: $samp-padding;
+    // Variables
+    --background-color: transparent;
+    --border-color: transparent;
+    --border-radius-bottom-left: var(--default-border-radius-bottom-left);
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: var(--default-border-radius-top-left);
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: var(--default-border-width-bottom);
+    --border-width-left: var(--default-border-width-left);
+    --border-width-right: var(--default-border-width-right);
+    --border-width-top: var(--default-border-width-top);
+    --content-spacing: 0;
+    --font-color: inherit;
+    --font-size: var(--default-font-size);
+
+    // Styles
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-right-width: var(--border-width-right);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    color: var(--font-color);
+    font-size: var(--font-size);
+    padding: var(--content-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $samp-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $samp-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $samp-font-size-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 }
 
 // Variable
 var {
-    background-color: $var-background-color;
-    border: 0 $var-border-style $var-border-color;
-    border-bottom-left-radius: $var-border-radius-bottom-left;
-    border-bottom-right-radius: $var-border-radius-bottom-right;
-    border-bottom-width: $var-border-width-bottom;
-    border-left-width: $var-border-width-left;
-    border-right-width: $var-border-width-right;
-    border-top-left-radius: $var-border-radius-top-left;
-    border-top-right-radius: $var-border-radius-top-right;
-    border-top-width: $var-border-width-top;
-    color: $var-font-color;
-    font-size: $var-font-size;
+    // Variables
+    --background-color: transparent;
+    --border-color: transparent;
+    --border-radius-bottom-left: var(--default-border-radius-bottom-left);
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: var(--default-border-radius-top-left);
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: var(--default-border-width-bottom);
+    --border-width-left: var(--default-border-width-left);
+    --border-width-right: var(--default-border-width-right);
+    --border-width-top: var(--default-border-width-top);
+    --content-spacing: 0;
+    --font-color: inherit;
+    --font-size: var(--default-font-size);
+
+    // Styles
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-right-width: var(--border-width-right);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    color: var(--font-color);
+    font-size: var(--font-size);
     font-style: italic;
-    padding: $var-padding;
+    padding: var(--content-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $var-font-size-small;
-    }
-
-    &.is-large {
-        font-size: $var-font-size-large;
-    }
-
-    &.is-huge {
-        font-size: $var-font-size-huge;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
+        }
     }
 }
 
 // Blockquote
 blockquote {
+    // Variables
+    --background-color: var(--color-white-darken-2);
+    --border-color: var(--color-white-darken-5);
+    --border-radius-bottom-left: 0;
+    --border-radius-bottom-right: var(--default-border-radius-bottom-right);
+    --border-radius-top-left: 0;
+    --border-radius-top-right: var(--default-border-radius-top-right);
+    --border-style: var(--default-border-style);
+    --border-width-bottom: 0;
+    --border-width-left: 5px;
+    --border-width-right: 0;
+    --border-width-top: 0;
+    --content-spacing: var(--default-content-spacing);
+    --element-spacing: var(--default-element-spacing);
+    --font-color: var(--color-white-inverted-text);
+    --font-size: calc(var(--default-font-size) + 0.2em);
+
+    // Styles
     display: block;
-    background-color: $blockquote-background-color;
-    border: 0 $blockquote-border-style $blockquote-border-color;
-    border-bottom-left-radius: $blockquote-border-radius-bottom-left;
-    border-bottom-right-radius: $blockquote-border-radius-bottom-right;
-    border-bottom-width: $blockquote-border-width-bottom;
-    border-left-width: $blockquote-border-width-left;
-    border-top-left-radius: $blockquote-border-radius-top-left;
-    border-top-right-radius: $blockquote-border-radius-top-right;
-    border-top-width: $blockquote-border-width-top;
-    border-right-width: $blockquote-border-width-right;
-    color: $blockquote-font-color;
-    font-size: $blockquote-font-size;
+    background-color: var(--background-color);
+    border: 0 var(--border-style) var(--border-color);
+    border-bottom-left-radius: var(--border-radius-bottom-left);
+    border-bottom-right-radius: var(--border-radius-bottom-right);
+    border-bottom-width: var(--border-width-bottom);
+    border-left-width: var(--border-width-left);
+    border-top-left-radius: var(--border-radius-top-left);
+    border-top-right-radius: var(--border-radius-top-right);
+    border-top-width: var(--border-width-top);
+    border-right-width: var(--border-width-right);
+    color: var(--font-color);
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $blockquote-element-spacing;
-    padding: $blockquote-content-spacing * 2;
+    margin-bottom: var(--element-spacing);
+    padding: var(--content-spacing);
     position: relative;
 
     // Pseudo classes
     &:hover {
-        border-color: $blockquote-border-color-hover;
+        --border-color: var(--color-primary);
     }
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $blockquote-font-size-small;
-        margin-bottom: $blockquote-element-spacing-small;
-        padding: $blockquote-content-spacing-small * 2;
-    }
-
-    &.is-large {
-        font-size: $blockquote-font-size-large;
-        margin-bottom: $blockquote-element-spacing-large;
-        padding: $blockquote-content-spacing-large * 2;
-    }
-
-    &.is-huge {
-        font-size: $blockquote-font-size-huge;
-        margin-bottom: $blockquote-element-spacing-huge;
-        padding: $blockquote-content-spacing-huge * 2;
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: calc(var(--default-font-size-#{$size}) + 0.2em);
+            --content-spacing: var(--default-content-spacing-#{$size});
+        }
     }
 
     // Nested selectors
     a {
-        color: $blockquote-link-color;
+        // Variables
+        --font-color: var(--default-link-color);
+
+        // Styles
+        color: var(--font-color);
 
         // Pseudo classes
-        &:focus {
-            color: $blockquote-link-color-focus;
-        }
-
         &:hover {
-            color: $blockquote-link-color-hover;
+            --font-color: var(--default-link-color-hover);
         }
 
         &:active {
-            color: $blockquote-link-color-active;
+            --font-color: var(--default-link-color-active);
         }
     }
 
@@ -847,8 +629,8 @@ blockquote {
         display: block;
         font-size: 75%;
         margin: 0;
-        margin-left: $blockquote-content-spacing;
-        margin-top: $blockquote-content-spacing / 2;
+        margin-left: calc(var(--default-content-spacing) / 2);
+        margin-top: calc(var(--default-content-spacing) / 2);
 
         // Pseudo elements
         &::before {

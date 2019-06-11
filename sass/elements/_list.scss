@@ -1,97 +1,26 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> ELEMENTS -> LIST -> VARIABLES
-    ========================================================================  */
-
-// List
-$list-content-spacing: $content-spacing !default;
-$list-content-spacing-small: $content-spacing-small !default;
-$list-content-spacing-large: $content-spacing-large !default;
-$list-content-spacing-huge: $content-spacing-huge !default;
-$list-element-spacing: $element-spacing !default;
-$list-element-spacing-small: $element-spacing-small !default;
-$list-element-spacing-large: $element-spacing-large !default;
-$list-element-spacing-huge: $element-spacing-huge !default;
-$list-font-size: $font-size !default;
-$list-font-size-small: $font-size-small !default;
-$list-font-size-large: $font-size-large !default;
-$list-font-size-huge: $font-size-huge !default;
-
-// List style types
-$list-style-types: (
-    armenian,
-    circle,
-    decimal,
-    decimal-leading-zero,
-    disc,
-    georgian,
-    lower-alpha,
-    lower-greek,
-    lower-latin,
-    lower-roman,
-    square,
-    upper-alpha,
-    upper-latin,
-    upper-roman
-);
-
-/*  ========================================================================
     JUICE -> ELEMENTS -> LIST
     ========================================================================  */
 
 ul,
 ol {
-    font-size: $list-font-size;
+    // Variables
+    --element-spacing: var(--default-element-spacing);
+    --font-size: var(--default-font-size);
+    --indent-spacing: var(--default-content-spacing);
+
+    // Styles
+    font-size: var(--font-size);
     margin: 0;
-    margin-bottom: $list-element-spacing;
+    margin-bottom: var(--element-spacing);
+    margin-left: var(--indent-spacing);
 
     // Modifiers: Sizes
-    &.is-small {
-        font-size: $list-font-size-small;
-        margin-bottom: $list-element-spacing-small;
-
-        // Modifiers
-        &.list--block,
-        &.list--inline-block,
-        &.list--stack,
-        &.list--inline-stack {
-            // Nested selectors
-            li {
-                padding: $list-content-spacing-small;
-            }
-        }
-    }
-
-    &.is-large {
-        font-size: $list-font-size-large;
-        margin-bottom: $list-element-spacing-large;
-
-        // Modifiers
-        &.list--block,
-        &.list--inline-block,
-        &.list--stack,
-        &.list--inline-stack {
-            // Nested selectors
-            li {
-                padding: $list-content-spacing-large;
-            }
-        }
-    }
-
-    &.is-huge {
-        font-size: $list-font-size-huge;
-        margin-bottom: $list-element-spacing-huge;
-
-        // Modifiers
-        &.list--block,
-        &.list--inline-block,
-        &.list--stack,
-        &.list--inline-stack {
-            // Nested selectors
-            li {
-                padding: $list-content-spacing-huge;
-            }
+    @each $size in $sizes {
+        &.is-#{$size} {
+            --font-size: var(--default-font-size-#{$size});
         }
     }
 
@@ -104,35 +33,9 @@ ol {
 
     &.list--clear {
         list-style: none;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
         padding: 0;
-    }
-
-    &.list--rtl {
-        direction: rtl;
-    }
-
-    &.list--block,
-    &.list--inline-block,
-    &.list--stack,
-    &.list--inline-stack {
-        display: flex;
-        list-style: none;
-        padding: 0;
-
-        // Nested selectors
-        li {
-            flex: 1 0 0;
-            padding: $list-content-spacing;
-        }
-    }
-
-    &.list--inline-block,
-    &.list--inline-stack {
-        display: inline-flex;
-    }
-
-    &.list--stack,
-    &.list--inline-stack {
-        flex-flow: column;
     }
 }

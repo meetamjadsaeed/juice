@@ -4,178 +4,449 @@
     JUICE -> INITIALIZE -> VARIABLES -> BREAKPOINTS
     ========================================================================  */
 
+// Set the breakpoints
 $breakpoints: (
-    // ...only
     'mobile': '(max-width: 599px)',
-    'touch': '(max-width: 899px)',
-    'tablet': '(min-width: 600px) and (max-width: 899px)',
-    'laptop': '(min-width: 900px) and (max-width: 1099px)',
-    'desktop': '(min-width: 1100px) and (max-width: 1399px)',
-    'widescreen': '(min-width: 1400px) and (max-width: 1799px)',
-    'ultrawide': '(min-width: 1800px)',
-
-    // ...up
+    'tablet': '(min-width: 600px) and (max-width: 1099px)',
     'tablet-up': '(min-width: 600px)',
-    'laptop-up': '(min-width: 900px)',
+    'desktop': '(min-width: 1100px) and (max-width: 1399px)',
     'desktop-up': '(min-width: 1100px)',
-    'widescreen-up': '(min-width: 1400px)',
-
-    // ...until
-    'until-desktop': '(max-width: 1099px)',
-    'until-widescreen': '(max-width: 1399px)',
-    'until-ultrawide': '(max-width: 1799px)'
+    'widescreen': '(min-width: 1400px)'
 ) !default;
 
 
 /*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> BASE
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS
     ========================================================================  */
 
-$base-colors: (
+// Set the colors
+$colors: (
     // Brands
     'primary': hsla(203, 70%, 52%, 1),
-    'secondary': hsla(23, 70%, 52%, 1),
-
-    // Backgrounds
-    'background': hsla(0, 0%, 99%, 1),
 
     // Black and white
     'black': hsla(0, 0%, 0%, 1),
     'white': hsla(0, 100%, 100%, 1),
 
     // Colors
-    'blue': hsla(196, 85%, 57%, 1),
-    'brown': hsla(24, 44%, 45%, 1),
     'charcoal': hsla(0, 0%, 23%, 1),
-    'emerald': hsla(140, 52%, 55%, 1),
-    'green': hsla(101, 55%, 60%, 1),
-    'grey': hsla(0, 0%, 47%, 1),
-    'indigo': hsla(225, 57%, 47%, 1),
-    'orange': hsla(34, 100%, 61%, 1),
-    'pink': hsla(309, 96%, 79%, 1),
-    'purple': hsla(285, 58%, 64%, 1),
-    'red': hsla(11, 85%, 57%, 1),
-    'silver': hsla(0, 0%, 96%, 1),
-    'slate': hsla(210, 20%, 33%, 1),
-    'teal': hsla(174, 94%, 32%, 1),
-    'yellow': hsla(63, 100%, 75%, 1)
+    'emerald': hsla(140, 52%, 55%, 1)
 ) !default;
 
-
-/*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> FONT
-    ========================================================================  */
-
+// Set the font colors
 $font-colors: (
-    'dark': hsla(0, 0%, 13%, 1),
+    'dark': hsla(0, 0%, 17%, 1),
     'default': hsla(0, 0%, 34%, 1),
-    'light': hsla(0, 0%, 91%, 1)
+    'light': hsla(0, 0%, 100%, 1)
 ) !default;
 
-
-/*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> FEEDBACK
-    ========================================================================  */
-
+// Set the feedback colors
 $feedback-colors: (
-    'info': map-get($base-colors, 'blue'),
-    'success': map-get($base-colors, 'green'),
-    'warning': map-get($base-colors, 'orange'),
-    'error': map-get($base-colors, 'red')
+    'info': hsla(196, 85%, 57%, 1),
+    'success': hsla(101, 55%, 60%, 1),
+    'warning': hsla(34, 100%, 61%, 1),
+    'error': hsla(11, 85%, 57%, 1)
 ) !default;
 
 
 /*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> VARIATION TYPES
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> VARIATIONS
     ========================================================================  */
 
-// Background color variation types
-$background-color-palette-type: 'base' !default;
-$background-color-palette-type-active: 'darken-1' !default;
-$background-color-palette-type-focus: 'base' !default;
-$background-color-palette-type-hover: 'lighten-1' !default;
+// Set the variation amount
+$variation_amount: 3%;
 
-// Border color variation types
-$border-color-palette-type: 'darken-3' !default;
-$border-color-palette-type-active: 'darken-8' !default;
-$border-color-palette-type-focus: 'darken-6' !default;
-$border-color-palette-type-hover: 'darken-6' !default;
-
-// Link color variation types
-$link-color-palette-type: 'base' !default;
-$link-color-palette-type-active: 'darken-2' !default;
-$link-color-palette-type-focus: 'base' !default;
-$link-color-palette-type-hover: 'lighten-4' !default;
+// Set the variations
+$variations: (
+    'lighten-10': $variation_amount * 10,
+    'lighten-9': $variation_amount * 9,
+    'lighten-8': $variation_amount * 8,
+    'lighten-7': $variation_amount * 7,
+    'lighten-6': $variation_amount * 6,
+    'lighten-5': $variation_amount * 5,
+    'lighten-4': $variation_amount * 4,
+    'lighten-3': $variation_amount * 3,
+    'lighten-2': $variation_amount * 2,
+    'lighten-1': $variation_amount * 1,
+    'darken-1': $variation_amount * 1,
+    'darken-2': $variation_amount * 2,
+    'darken-3': $variation_amount * 3,
+    'darken-4': $variation_amount * 4,
+    'darken-5': $variation_amount * 5,
+    'darken-6': $variation_amount * 6,
+    'darken-7': $variation_amount * 7,
+    'darken-8': $variation_amount * 8,
+    'darken-9': $variation_amount * 9,
+    'darken-10': $variation_amount * 10
+);
 
 
 /*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES -> FONTS
+    JUICE -> INITIALIZE -> VARIABLES -> COLORS -> CUSTOM PROPERTIES
     ========================================================================  */
 
-// Typeface
-$primary-typeface: 'Montserrat', Tahoma, sans-serif !default;
-$secondary-typeface: 'Oswald', Verdana, sans-serif !default;
-$monoface-typeface: 'Courier New', Courier, monospace !default;
+:root {
+    // Cycle through all of the colors
+    @each $color-name, $color in $colors {
+        // Set the color
+        --color-#{$color-name}: #{$color};
 
-// Root font size
-$root-font-size: 1.3rem !default;
-$root-font-size-small: 1.2rem !default;
-$root-font-size-large: 1.4rem !default;
-$root-font-size-huge: 1.5rem !default;
+        // Check if the color is a type of color
+        @if type_of($color) == 'color' {
+            // Set the hue, saturation, lightness and alpha
+            $hue: hue($color);
+            $saturation: saturation($color);
+            $lightness: lightness($color);
+            $alpha: alpha($color);
 
-// Font size
-$font-size: 1em !default;
-$font-size-small: $font-size - 0.1em !default;
-$font-size-large: $font-size + 0.1em !default;
-$font-size-huge: $font-size + 0.2em !default;
+            // Cycle through all of the variations
+            @each $variation, $amount in $variations {
+                // Check if the variation contains the lighten string
+                @if str-index($variation, 'lighten') != null {
+                    // Set the color variation
+                    --color-#{$color-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, #{$alpha});
+                }
 
+                // Check if the variation contains the darken string
+                @if str-index($variation, 'darken') != null {
+                    // Set the color variation
+                    --color-#{$color-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, #{$alpha});
+                }
+            }
 
-/*  ========================================================================
-    JUICE -> INITIALIZE -> VARIABLES -> ELEMENTS
-    ========================================================================  */
+            // Set the accessibility focus color
+            --color-#{$color-name}-accessibility-focus: hsla(#{$hue}, #{$saturation}, #{$lightness}, 0.5);
 
-// Content spacing
-$content-spacing: 20px !default;
-$content-spacing-small: 10px !default;
-$content-spacing-large: 30px !default;
-$content-spacing-huge: 40px !default;
+            // Cycle through all of the variations
+            @each $variation, $amount in $variations {
+                // Check if the variation contains the lighten string
+                @if str-index($variation, 'lighten') != null {
+                    // Set the accessibility focus variation color
+                    --color-#{$color-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, 0.5);
+                }
 
-// Element spacing
-$element-spacing: 20px !default;
-$element-spacing-small: 10px !default;
-$element-spacing-large: 30px !default;
-$element-spacing-huge: 40px !default;
+                // Check if the variation contains the darken string
+                @if str-index($variation, 'darken') != null {
+                    // Set the accessibility focus variation color
+                    --color-#{$color-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, 0.5);
+                }
+            }
 
-// Element height
-$element-height: 40px !default;
-$element-height-small: 30px !default;
-$element-height-large: 50px !default;
-$element-height-huge: 60px !default;
+            // Set the perceived red, green and blue lightness
+            $red: red($color) * 0.2126;
+            $green: green($color) * 0.7152;
+            $blue: blue($color) * 0.0722;
 
-// Borders
-$border-radius-top-left: 5px !default;
-$border-radius-top-right: 5px !default;
-$border-radius-bottom-right: 5px !default;
-$border-radius-bottom-left: 5px !default;
-$border-style: solid !default;
-$border-width-top: 1px !default;
-$border-width-right: 1px !default;
-$border-width-bottom: 1px !default;
-$border-width-left: 1px !default;
-$border-width-divider: 1px !default;
+            // Set the red, green and blue total
+            $rgb_total: $red + $green + $blue;
 
-// Box shadow
-$box-shadow: 1px 4px 21px 0 hsla(0, 0, 0, 0.05) !default;
+            // Set the perceived lightness
+            $perceived-lightness: $rgb_total / 255;
 
-// Stack index
+            // Calculate the srgb lightness
+            $srgb_lightness: ($perceived-lightness - 0.75) * -10000000;
+
+            // Set the light and dark font colors
+            $font_color_light: map-get($font-colors, 'light');
+            $font_color_dark: map-get($font-colors, 'dark');
+
+            // Check if the light and dark font colors are a type of color
+            @if type_of($font_color_light) == 'color' and type_of($font_color_dark) == 'color' {
+                // Check if the srgb lightness is over 50
+                @if $srgb_lightness >= 50 {
+                    // Set the inverted text color
+                    --color-#{$color-name}-inverted-text: #{$font_color_light};
+
+                    // Set the text hue, saturation, lightness and alpha
+                    $text-hue: hue($font_color_light);
+                    $text-saturation: saturation($font_color_light);
+                    $text-lightness: lightness($font_color_light);
+                    $text-alpha: alpha($font_color_light);
+
+                    // Cycle through all of the variations
+                    @each $variation, $amount in $variations {
+                        // Check if the variation contains the darken string
+                        @if str-index($variation, 'darken') != null {
+                            // Set the inverted text variation color
+                            --color-#{$color-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness - $amount}, #{$text-alpha});
+                        }
+                    }
+                } @else {
+                    // Set the inverted text color
+                    --color-#{$color-name}-inverted-text: #{$font_color_dark};
+
+                    // Set the text hue, saturation, lightness and alpha
+                    $text-hue: hue($font_color_dark);
+                    $text-saturation: saturation($font_color_dark);
+                    $text-lightness: lightness($font_color_dark);
+                    $text-alpha: alpha($font_color_dark);
+
+                    // Cycle through all of the variations
+                    @each $variation, $amount in $variations {
+                        // Check if the variation contains the lighten string
+                        @if str-index($variation, 'lighten') != null {
+                            // Set the inverted text variation color
+                            --color-#{$color-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness + $amount}, #{$text-alpha});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Cycle through all of the font colors
+    @each $font-name, $color in $font-colors {
+        // Set the color
+        --font-color-#{$font-name}: #{$color};
+
+        // Check if the color is a type of color
+        @if type_of($color) == 'color' {
+            // Set the hue, saturation, lightness and alpha
+            $hue: hue($color);
+            $saturation: saturation($color);
+            $lightness: lightness($color);
+            $alpha: alpha($color);
+
+            // Cycle through all of the variations
+            @each $variation, $amount in $variations {
+                // Check if the variation contains the lighten string
+                @if str-index($variation, 'lighten') != null {
+                    // Set the color variation
+                    --font-color-#{$font-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, #{$alpha});
+                }
+
+                // Check if the variation contains the darken string
+                @if str-index($variation, 'darken') != null {
+                    // Set the color variation
+                    --font-color-#{$font-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, #{$alpha});
+                }
+            }
+        }
+    }
+
+    // Cycle through all of the feedback colors
+    @each $feedback-name, $color in $feedback-colors {
+        // Set the color
+        --feedback-color-#{$feedback-name}: #{$color};
+
+        // Check if the color is a type of color
+        @if type_of($color) == 'color' {
+            // Set the hue, saturation, lightness and alpha
+            $hue: hue($color);
+            $saturation: saturation($color);
+            $lightness: lightness($color);
+            $alpha: alpha($color);
+
+            // Cycle through all of the variations
+            @each $variation, $amount in $variations {
+                // Check if the variation contains the lighten string
+                @if str-index($variation, 'lighten') != null {
+                    // Set the color variation
+                    --feedback-color-#{$feedback-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, #{$alpha});
+                }
+
+                // Check if the variation contains the darken string
+                @if str-index($variation, 'darken') != null {
+                    // Set the color variation
+                    --feedback-color-#{$feedback-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, #{$alpha});
+                }
+            }
+
+            // Set the accessibility focus color
+            --feedback-color-#{$feedback-name}-accessibility-focus: hsla(#{$hue}, #{$saturation}, #{$lightness}, 0.5);
+
+            // Cycle through all of the variations
+            @each $variation, $amount in $variations {
+                // Check if the variation contains the lighten string
+                @if str-index($variation, 'lighten') != null {
+                    // Set the accessibility focus variation color
+                    --feedback-color-#{$feedback-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, 0.5);
+                }
+
+                // Check if the variation contains the darken string
+                @if str-index($variation, 'darken') != null {
+                    // Set the accessibility focus variation color
+                    --feedback-color-#{$feedback-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, 0.5);
+                }
+            }
+
+            // Set the perceived red, green and blue lightness
+            $red: red($color) * 0.2126;
+            $green: green($color) * 0.7152;
+            $blue: blue($color) * 0.0722;
+
+            // Set the red, green and blue total
+            $rgb_total: $red + $green + $blue;
+
+            // Set the perceived lightness
+            $perceived-lightness: $rgb_total / 255;
+
+            // Calculate the srgb lightness
+            $srgb_lightness: ($perceived-lightness - 0.75) * -10000000;
+
+            // Set the light and dark font colors
+            $font_color_light: map-get($font-colors, 'light');
+            $font_color_dark: map-get($font-colors, 'dark');
+
+            // Check if the light and dark font colors are a type of color
+            @if type_of($font_color_light) == 'color' and type_of($font_color_dark) == 'color' {
+                // Check if the srgb lightness is over 50
+                @if $srgb_lightness >= 50 {
+                    // Set the inverted text color
+                    --feedback-color-#{$feedback-name}-inverted-text: #{$font_color_light};
+
+                    // Set the text hue, saturation, lightness and alpha
+                    $text-hue: hue($font_color_light);
+                    $text-saturation: saturation($font_color_light);
+                    $text-lightness: lightness($font_color_light);
+                    $text-alpha: alpha($font_color_light);
+
+                    // Cycle through all of the variations
+                    @each $variation, $amount in $variations {
+                        // Check if the variation contains the darken string
+                        @if str-index($variation, 'darken') != null {
+                            // Set the inverted text variation color
+                            --feedback-color-#{$feedback-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness - $amount}, #{$text-alpha});
+                        }
+                    }
+                } @else {
+                    // Set the inverted text color
+                    --feedback-color-#{$feedback-name}-inverted-text: #{$font_color_dark};
+
+                    // Set the text hue, saturation, lightness and alpha
+                    $text-hue: hue($font_color_dark);
+                    $text-saturation: saturation($font_color_dark);
+                    $text-lightness: lightness($font_color_dark);
+                    $text-alpha: alpha($font_color_dark);
+
+                    // Cycle through all of the variations
+                    @each $variation, $amount in $variations {
+                        // Check if the variation contains the lighten string
+                        @if str-index($variation, 'lighten') != null {
+                            // Set the inverted text variation color
+                            --feedback-color-#{$feedback-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness + $amount}, #{$text-alpha});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Set the typefaces
+    --primary-typeface: 'Montserrat', Tahoma, sans-serif;
+    --secondary-typeface: 'Oswald', Verdana, sans-serif;
+    --monoface-typeface: 'Courier New', Courier, monospace;
+
+    // Set the root font size
+    --root-font-size: 1.4rem;
+
+    // Set the font size
+    --default-font-size: 1em;
+    --default-font-size-small: calc(var(--default-font-size) - 0.1em);
+    --default-font-size-large: calc(var(--default-font-size) + 0.1em);
+    --default-font-size-huge: calc(var(--default-font-size) + 0.2em);
+
+    // Set font properties
+    --default-font-weight: 400;
+    --default-letter-spacing: 0;
+    --default-line-height: 2;
+
+    // Set the link color
+    --default-link-color: var(--color-primary);
+    --default-link-color-hover: var(--color-primary-darken-2);
+    --default-link-color-focus: var(--color-primary-darken-4);
+    --default-link-color-active: var(--color-primary-darken-6);
+
+    // Set the content spacing
+    --default-content-spacing: 20px;
+    --default-content-spacing-small: calc(var(--default-content-spacing) / 2);
+    --default-content-spacing-large: calc(var(--default-content-spacing) * 1.5);
+    --default-content-spacing-huge: calc(var(--default-content-spacing) * 2);
+
+    // Set the element spacing
+    --default-element-spacing: 20px;
+    --default-element-spacing-small: calc(var(--default-element-spacing) / 2);
+    --default-element-spacing-large: calc(var(--default-element-spacing) * 1.5);
+    --default-element-spacing-huge: calc(var(--default-element-spacing) * 2);
+
+    // Set the element height
+    --default-element-height: 40px;
+    --default-element-height-small: calc(var(--default-element-height) / 1.5);
+    --default-element-height-large: calc(var(--default-element-height) * 1.25);
+    --default-element-height-huge: calc(var(--default-element-height) * 1.5);
+
+    // Set the border radius
+    --default-border-radius-top-left: 5px;
+    --default-border-radius-top-right: 5px;
+    --default-border-radius-bottom-right: 5px;
+    --default-border-radius-bottom-left: 5px;
+
+    // Set the border style
+    --default-border-style: solid;
+
+    // Set the border widths
+    --default-border-width-top: 1px;
+    --default-border-width-right: 1px;
+    --default-border-width-bottom: 1px;
+    --default-border-width-left: 1px;
+    --default-border-width-divider: 1px;
+
+    // Set the box shadow
+    --default-box-shadow: 1px 4px 21px 0 hsla(0, 0%, 0%, 0.05);
+
+    // Set the accessibility
+    --default-accessibility-focus-width: 3px;
+    --default-accessibility-focus-color: var(--feedback-color-info-accessibility-focus);
+}
+
+// Set the buttons
+$button: '
+    button,
+    .button,
+    a.button
+' !default;
+
+// Set the form control elements
+$form-control-elements: '
+    input,
+    select,
+    textarea,
+    #{button}
+' !default;
+
+// Set the list style types
+$list-style-types: (
+    armenian,
+    circle,
+    decimal,
+    decimal-leading-zero,
+    disc,
+    georgian,
+    lower-alpha,
+    lower-greek,
+    lower-latin,
+    lower-roman,
+    square,
+    upper-alpha,
+    upper-latin,
+    upper-roman
+);
+
+// Set the sizes
+$sizes: (
+    'small',
+    'large',
+    'huge'
+);
+
+// Set the stack indexes
 $stack-index: (
     'default': 100,
     'hover': 200,
     'focus': 300,
     'active': 400,
-    'is-active': 500,
-    'overlay': 600,
-    'dropdown': 700,
-    'popover': 800,
+    'overlay': 500,
+    'dropdown': 600,
+    'popover': 700,
     'tooltip': 800
 ) !default;
