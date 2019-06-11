@@ -1,6 +1,7 @@
 # Roadmap
 
 ### New
+- Add breakpoint modifiers for size modifiers
 - Add dialog component
 - Add lightbox component
 - Add modal component
@@ -11,11 +12,149 @@
 
 ### Update
 - Update form elements
-    - Add custom elements
-        - Add custom checkbox and radio
-        - Add custom color picker
-        - Add custom file
-        - Add custom date picker
+    - Add custom checkbox and radio inputs
+    - Add custom date picker inputs
+    - Add custom file inputs
+    - Add custom select dropdown
+- Update table element
+    - Add table--stripe and table--hover modifiers
+    - Add tfoot style properties
+
+
+-----
+
+
+# v0.18.0-beta
+
+### Updated
+- Updated base variables
+    - Added css custom properties to all elements and components
+    - Added css custom properties based color palette generator via sass
+    - Updated breakpoints
+        - Updated tablet breakpoint values
+        - Removed touch breakpoint
+        - Removed laptop breakpoint
+        - Removed ultrawide breakpoint
+        - Removed until-* breakpoints
+    - Removed sass variables from all elements and components
+    - Removed sass based color palette generator
+- Updated functions
+    - Removed color based functions
+    - Removed focus box shadow function (use css custom properties)
+- Updated mixins
+    - Updated breakpoint mixin warning message
+- Updated reset
+    - Removed list (ul, ol) padding
+- Updated helpers
+    - Added font size helper classes
+    - Added p, a and h1-h6 color and feedback color helpers
+- Updated size modifiers
+    - Added foreach loop to generate size modifier classes for all elements/components
+    - Removed explicit size modifier declarations for all elements/components
+    - Removed element spacing variables from size modifiers
+- Updated container element
+    - Updated container--no-gutter to container--seamless
+- Updated grid element
+    - Updated grid--no-gutter to grid--seamless
+    - Fixed grid-top modifier to grid--top
+    - Fixed grid__item-top modifier to grid__item--top
+    - Fixed grid__item-bottom modifier to grid__item--bottom
+- Updated breadcrumb element
+    - Removed size modifiers (use font size helpers)
+- Updated button element
+    - Updated button--block modifier to is-fullwidth
+    - Removed input button/reset/submit from button shorthand variable (use button class)
+    - Removed button mixins
+    - Removed is-disabled modifier (use disabled prop)
+    - Removed button--component element spacing
+- Updated hero element
+    - Added link variables and style properties
+    - Updated is-viewport-* modifiers to hero--*vh
+    - Removed hero--center and hero--right modifiers (use typography helpers)
+- Updated list element
+    - Removed list--rtl, list--block, list--inline-block, list--stack and list--inline-stack modifiers
+- Updated media elements
+    - Updated image--block modifier to is-fullwidth
+    - Updated image modifier margins/element spacing
+    - Fixed image-left modifier to image--left
+    - Fixed image-right modifier to image--right
+- Updated navigation element
+    - Updated breakpoint from tablet-up to desktop-up (tablet-up deprecated)
+- Updated pagination element
+    - Updated default flex justification from space-between to center
+    - Removed pagination--center modifier
+    - Removed pagination__pager and pagination__list (use li element)
+    - Removed pagination__ellipsis (use span element)
+    - Removed breakpoints
+- Updated table element
+    - Removed table--center modifier
+    - Removed table--hover and table--stripe modifiers (roadmapped)
+    - Removed tfoot declarations (roadmapped)
+- Updated typography elements
+    - Updated link element
+        - Added underline text-decoration to focus pseudo element
+    - Updated mark element
+        - Added font size variable to mark element size modifiers
+- Updated form elemnets
+    - Updated label element
+        - Removed is-disabled modifier (use disabled prop)
+    - Updated input element
+        - Removed input shorthand variable (use input element)
+        - Removed input mixins
+        - Removed is-disabled modifier (use disabled prop)
+        - Removed browser specific pseudo elements (except for file, color and password reveals)
+        - Removed input type specific styles
+    - Updated select element
+        - Added svg data image as background image
+        - Updated multiple prop option styling
+        - Removed is-disabled modifier (use disabled prop)
+    - Updated textarea element
+        - Added textarea--scrollbar modifier
+        - Removed overflow-y styling
+        - Removed textarea--no-scrollbar modifier
+        - Removed is-disabled modifier (use disabled prop)
+    - Updated form control element
+        - Added size modifiers
+        - Added feedback modifiers (applies styling to form-control__spotlight input, select and textarea elements)
+        - Removed has-addons modifier (not required)
+- Updated accordion component
+    - Added accordion--spaced modifier (reverts to old default accordion item element spacing)
+    - Updated default accordion item element spacing (now seamless)
+    - Fixed missing functionality with openMultipleItems plugin option
+- Updated card component
+    - Added support for video and iframe media elements
+    - Added card__media--iframe modifier
+- Updated dropdown component
+    - Updated has-dropdown--static modifier to has-dropdown--megamenu
+- Updated package
+    - Added CHANGELOG.md to package files
+    - Added gulp notify
+    - Updated dependencies
+    - Removed gulp notifier
+    - Removed babel loader
+- Updated gulpfile
+    - Added custom notifications
+    - Updated tasks inline with gulp 4 syntax
+    - Updated tasks with gulp series and parallel functions
+    - Updated task names
+        - Added watch task
+        - Updated build:css task to css
+        - Updated build:scripts task to scripts
+        - Updated dev task to serve
+    - Updated variable names
+- Updated demo pages
+
+### Release Notes
+This update brings a much more customizable approach to manipulating variables
+by using CSS custom properties over SASS variables.
+
+It was also the start of reducing the minified file size without taking away
+any core features or functionality, this release has cut that file size down
+by almost 50% (~260kb).
+
+When using build tools you can currently import the required elements/components
+but are forced to also import all size/color modifiers. In the future, adding
+more modularity to size/color modifiers and styles will be included.
 
 
 -----
