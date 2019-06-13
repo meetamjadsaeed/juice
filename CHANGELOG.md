@@ -48,6 +48,7 @@
 - Updated helpers
     - Added font size helper classes
     - Added p, a and h1-h6 color and feedback color helpers
+    - Added has-no-last-child-element-spacing (with breakpoints)
 - Updated size modifiers
     - Added foreach loop to generate size modifier classes for all elements/components
     - Removed explicit size modifier declarations for all elements/components
