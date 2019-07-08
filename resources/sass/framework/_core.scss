@@ -14,8 +14,8 @@ body {
     // Styles
     background-color: var(--background-color);
 
-    // Check if the base selection pseudo elements should be declared
-    @if $base-selection-pseudo-elements {
+    // Check if the selection pseudo elements should be declared
+    @if $selection-pseudo-elements {
         // Pseudo elements
         ::-moz-selection {
             background-color: var(--selection-background-color);
