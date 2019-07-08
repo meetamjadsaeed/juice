@@ -1,7 +1,6 @@
 # Roadmap
 
 ### New
-- Add breakpoint modifiers for size modifiers
 - Add dialog component
 - Add lightbox component
 - Add modal component
@@ -12,13 +11,265 @@
 
 ### Update
 - Update form elements
-    - Add custom checkbox and radio inputs
     - Add custom date picker inputs
-    - Add custom file inputs
-    - Add custom select dropdown
+    - Add custom select
 - Update table element
-    - Add table--stripe and table--hover modifiers
-    - Add tfoot style properties
+    - Add table--hover modifiers
+    - Add tfoot styling
+
+
+-----
+
+
+# v0.18.0-beta
+
+### New
+- Added restructured file and directory names and locations
+    - Updated sass
+        - Added helpers directory
+            - Added clearfix.scss (previously in /framework/helpers.scss)
+            - Added content-spacing.scss (previously in /framework/helpers.scss)
+            - Added display.scss (previously in /framework/helpers.scss)
+            - Added element-spacing.scss (previously in /framework/helpers.scss)
+            - Added floats.scss (previously in /framework/helpers.scss)
+            - Added typography.scss (previously in /framework/helpers.scss)
+            - Added visibility.scss (previously in /framework/helpers.scss)
+        - Added variables directory
+            - Added css directory
+                - Added colors.scss (previously in /initialize/variables.scss)
+                - Added defaults.scss (previously in /initialize/variables.scss)
+            - Added sass directory
+                - Added maps.scss (previously in /initialize/variables.scss)
+                - Added settings.scss (previously in /initialize/variables.scss)
+                - Added shortcodes.scss (previously in /initialize/variables.scss)
+        - Updated elements directory
+            - Added button directory
+                - Added button.scss (previously in /elements/button.scss)
+                - Added button-group.scss (previously in /elements/button.scss)
+            - Added icon directory
+                - Added sheild.scss (previously in /elements/shield.scss)
+            - Added layout directory
+                - Added box.scss (previously in /elements/box.scss)
+                - Added container.scss (previously in /framework/layout/container.scss)
+                - Added grid.scss (previously in /framework/layout/grid.scss)
+                - Added hero.scss (previously in /elements/hero.scss)
+                - Added media-object.scss (previously in /elements/media.scss)
+            - Added media directory
+                - Added image.scss (previously in /elements/media.scss)
+            - Added navigation directory
+                - Added breadcrumb.scss (previously in /elements/breadcrumb.scss)
+                - Added navbar.scss (previously in /elements/navigation.scss)
+                - Added pagination.scss (previously in /elements/pagination.scss)
+            - Added spinner directory
+                - Added core.scss (previously in /elements/spinner.scss)
+                - Added dial.scss (previously in /elements/spinner.scss)
+                - Added ring.scss (previously in /elements/spinner.scss)
+                - Added spiral.scss (previously in /elements/spinner.scss)
+                - Added swoosh.scss (previously in /elements/spinner.scss)
+                - Added target.scss (previously in /elements/spinner.scss)
+            - Added typography directory
+                - Added abbr.scss (previously in /elements/typography.scss)
+                - Added blockquote.scss (previously in /elements/typography.scss)
+                - Added body.scss (previously in /elements/typography.scss)
+                - Added heading.scss (previously in /elements/typography.scss)
+                - Added horizontal-rule.scss (previously in /elements/typography.scss)
+                - Added link.scss (previously in /elements/typography.scss)
+                - Added list.scss (previously in /elements/list.scss)
+                - Added mark.scss (previously in /elements/typography.scss)
+                - Added paragraph.scss (previously in /elements/typography.scss)
+                - Added preformated.scss (previously in /elements/typography.scss)
+            - Updated form directory
+                - Updated base.scss to core.scss
+        - Updated framework directory
+            - Added core.scss (previously /framework/foundation/base.scss)
+            - Removed foundation directory
+            - Removed layout directory (Refer to 'Update elements directory')
+        - Updated imports
+    - Updated scripts
+        - Added plugins directory
+            - Updated /components/password-reveal.js to /plugins/password-reveal.js
+            - Updated /components/remover.js to /plugins/remover.js
+            - Updated /components/smooth-scroll.js to /plugins/smooth-scroll.js
+            - Updated /components/toggler.js to /plugins/toggler.js
+- Added element and component settings
+    - Added framework core settings
+    - Added box element settings
+    - Added breadcrumb element settings
+    - Added button element settings
+    - Added form element settings
+    - Added hero element settings
+    - Added list element settings
+    - Added media element settings
+    - Added pagination element settings
+    - Added shield element settings
+    - Added spinner element settings
+    - Added table element settings
+    - Added typography element settings
+    - Added accordion component settings
+    - Added card component settings
+    - Added chip component settings
+    - Added dropdown component settings
+    - Added notice component settings
+    - Added panel component settings
+    - Added popover component settings
+    - Added tooltip component settings
+- Added sass animations
+    - Added sass animations directory
+        - Added attractor animations
+            - Added flash animation
+            - Added pulse animation
+            - Added shake animation
+            - Added vibrate animation
+        - Added bounce entrance and exit animations
+            - Added bounce in animation
+            - Added bounce in down animation
+            - Added bounce in left animation
+            - Added bounce in right animation
+            - Added bounce in up animation
+            - Added bounce out animation
+            - Added bounce out down animation
+            - Added bounce out left animation
+            - Added bounce out right animation
+            - Added bounce out up animation
+        - Added fade entrance and exit animations
+            - Added fade in animation
+            - Added fade in down animation
+            - Added fade in left animation
+            - Added fade in right animation
+            - Added fade in up animation
+            - Added fade out animation
+            - Added fade out down animation
+            - Added fade out left animation
+            - Added fade out right animation
+            - Added fade out up animation
+        - Added flip entrance and exit animations
+            - Added flip in down animation
+            - Added flip in left animation
+            - Added flip in right animation
+            - Added flip in up animation
+            - Added flip out down animation
+            - Added flip out left animation
+            - Added flip out right animation
+            - Added flip out up animation
+        - Added slide entrance and exit animations
+            - Added slide in down animation
+            - Added slide in left animation
+            - Added slide in right animation
+            - Added slide in up animation
+            - Added slide out down animation
+            - Added slide out left animation
+            - Added slide out right animation
+            - Added slide out up animation
+        - Added zoom entrance and exit animations
+            - Added zoom in animation
+            - Added zoom in down animation
+            - Added zoom in left animation
+            - Added zoom in right animation
+            - Added zoom in up animation
+            - Added zoom out animation
+            - Added zoom out down animation
+            - Added zoom out left animation
+            - Added zoom out right animation
+            - Added zoom out up animation
+    - Added sass easings map to /variables/sass/maps.scss
+    - Added default css animation variables
+    - Added animations demo page
+    - Updated card component
+        - Updated animation classes
+    - Updated chip component
+        - Updated animation classes
+    - Updated dropdown component
+        - Updated animation classes
+    - Updated notice component
+        - Updated animation classes
+    - Updated panel component
+        - Updated animation classes
+    - Updated popover component
+        - Updated animation classes
+    - Updated remover component
+        - Updated animation classes
+    - Updated toggler component
+        - Updated animation classes
+    - Updated tooltip component
+        - Updated animation classes
+    - Removed animate.css
+- Added custom form elements
+    - Added custom checkbox
+    - Added custom radio
+    - Added custom file input
+        - Updated input file type default styling
+
+### Updated
+- Updated functions
+    - Updated get-stack-index if/else return markup
+- Updated reset
+    - Added default font weight for b and strong tags
+- Updated accordion component
+    - Added breakpoint based size modifiers
+- Updated card component
+    - Added breakpoint based size modifiers
+- Updated chip component
+    - Added breakpoint based size modifiers
+- Updated dropdown component
+    - Added breakpoint based size modifiers
+- Updated notice component
+    - Added breakpoint based size modifiers
+- Updated panel component
+    - Added breakpoint based size modifiers
+- Updated popover component
+    - Added breakpoint based size modifiers
+- Updated tooltip component
+    - Added breakpoint based size modifiers
+- Updated box element
+    - Added breakpoint based size modifiers
+- Updated button element
+    - Added font-color variables to pseudo classes
+    - Added breakpoint based size modifiers
+- Updated list element
+    - Added breakpoint based size modifiers
+- Updated form elements
+    - Updated label element
+        - Added font-color variable
+        - Added breakpoint based size modifiers
+        - Removed color style
+    - Updated input element
+        - Added border-color variable
+        - Added breakpoint based size modifiers
+        - Removed border-color style
+    - Updated select element
+        - Added feedback modifier border-color variable
+        - Added breakpoint based size modifiers
+        - Removed feedback modifier border-color style
+        - Removed size modifiers multiple modifier prop declaration
+    - Updated textarea element
+        - Added feedback modifier border-color variable
+        - Added breakpoint based size modifiers
+        - Removed feedback modifier border-color style
+    - Updated form control element
+        - Added spotlight feedback modifier border-color variable
+        - Added breakpoint based size modifiers to form control input, select, textarea and button elements
+        - Removed spotlight feedback modifier border-color style
+- Updated media elements
+    - Added breakpoint based size modifiers to images
+    - Added breakpoint based size modifiers to media objects
+- Updated navigation element
+    - Updated navigation name to navbar
+- Updated pagination element
+    - Added breakpoint based size modifiers
+- Updated shield element
+    - Added breakpoint based size modifiers
+- Updated table element
+    - Added breakpoint based size modifiers
+    - Added table--stripe modifier and settings
+    - Updated table background color and font color declaration location
+- Updated typography
+    - Added blockquote hyperlink focus pseudo class font-color variable
+    - Added breakpoint based size modifiers to p, mark, code, kbd, pre, samp, var and blockquote elements
+- Updated gulpfile
+    - Updated variable names
+- Updated build directory
+- Updated comments
+- Updated demo pages
 
 
 -----
@@ -70,7 +321,7 @@
     - Removed button--component element spacing
 - Updated hero element
     - Added link variables and style properties
-    - Updated is-viewport-* modifiers to hero--*vh
+    - Updated is-viewport-* modifiers to hero--vh
     - Removed hero--center and hero--right modifiers (use typography helpers)
 - Updated list element
     - Removed list--rtl, list--block, list--inline-block, list--stack and list--inline-stack modifiers
@@ -174,7 +425,7 @@ more modularity to size/color modifiers and styles will be included.
 
 # v0.17.0-beta
 
-### Added
+### New
 - Added custom reset.css
 
 ### Updated
