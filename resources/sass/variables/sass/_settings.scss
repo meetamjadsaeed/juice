@@ -1,10 +1,10 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> VARIABLES -> SASS -> SETTINGS -> FRAMEWORK -> BASE
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> FRAMEWORK -> CORE
     ========================================================================  */
 
-$base-selection-pseudo-elements: true !default;
+$selection-pseudo-elements: true !default;
 
 
 /*  ========================================================================
@@ -37,40 +37,6 @@ $button-group-pill-modifier: true !default;
 $button-group-round-modifier: true !default;
 $button-group-size-modifiers: true !default;
 $button-group-size-modifier-breakpoints: true !default;
-
-
-/*  ========================================================================
-    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> CONTROL
-    ========================================================================  */
-
-$form-control-feedback-modifiers: true !default;
-$form-control-size-modifiers: true !default;
-$form-control-size-modifier-breakpoints: true !default;
-
-
-/*  ========================================================================
-    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> CHECKBOX
-    ========================================================================  */
-
-$custom-checkbox-size-modifiers: true !default;
-$custom-checkbox-size-modifier-breakpoints: true !default;
-
-
-/*  ========================================================================
-    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> FILE
-    ========================================================================  */
-
-$custom-file-feedback-modifiers: true !default;
-$custom-file-size-modifiers: true !default;
-$custom-file-size-modifier-breakpoints: true !default;
-
-
-/*  ========================================================================
-    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> RADIO
-    ========================================================================  */
-
-$custom-radio-size-modifiers: true !default;
-$custom-radio-size-modifier-breakpoints: true !default;
 
 
 /*  ========================================================================
@@ -116,7 +82,41 @@ $textarea-size-modifier-breakpoints: true !default;
 
 
 /*  ========================================================================
-    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> ICON
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> CONTROL
+    ========================================================================  */
+
+$form-control-feedback-modifiers: true !default;
+$form-control-size-modifiers: true !default;
+$form-control-size-modifier-breakpoints: true !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> CHECKBOX
+    ========================================================================  */
+
+$custom-checkbox-size-modifiers: true !default;
+$custom-checkbox-size-modifier-breakpoints: true !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> FILE
+    ========================================================================  */
+
+$custom-file-feedback-modifiers: true !default;
+$custom-file-size-modifiers: true !default;
+$custom-file-size-modifier-breakpoints: true !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> FORM -> CUSTOM -> RADIO
+    ========================================================================  */
+
+$custom-radio-size-modifiers: true !default;
+$custom-radio-size-modifier-breakpoints: true !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> ELEMENT -> ICON -> SHIELD
     ========================================================================  */
 
 $shield-color-modifiers: true !default;
@@ -342,7 +342,7 @@ $tooltip-size-modifier-breakpoints: true !default;
     ========================================================================  */
 
 // Set the variation amount
-$variation_amount: 3%;
+$variation_amount: 3% !default;
 
 // Set the variations
 $variations: (
@@ -366,4 +366,4 @@ $variations: (
     'darken-8': $variation_amount * 8,
     'darken-9': $variation_amount * 9,
     'darken-10': $variation_amount * 10
-);
+) !default;
