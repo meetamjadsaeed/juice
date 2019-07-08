@@ -21,6 +21,21 @@
 -----
 
 
+# v0.19.2-beta
+
+- Update package
+    - Update version 0.19.1-beta to 0.19.2-beta
+    - Fix package files
+        - Add public directory
+        - Add resources directory
+        - Remove dist directory
+        - Remove sass directory
+        - Remove scripts directory
+
+
+-----
+
+
 # v0.19.1-beta
 
 - Updated sass settings
