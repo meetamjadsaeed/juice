@@ -21,7 +21,19 @@
 -----
 
 
-# v0.18.0-beta
+# v0.19.1-beta
+
+- Updated sass settings
+    - Added default flag to variation_amount variable
+    - Added default flag to variations map
+- Updated sass framework core settings variable name
+    - Updated base-selection-pseudo-elements variable name to selection-pseudo-elements
+
+
+-----
+
+
+# v0.19.0-beta
 
 ### New
 - Added restructured file and directory names and locations
