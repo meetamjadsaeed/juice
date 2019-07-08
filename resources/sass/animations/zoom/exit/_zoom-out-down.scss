@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM OUT DOWN
+    ========================================================================  */
+
+.zoom-out-down {
+    // Variables
+    --animation-delay: var(--default-animation-zoom-out-delay);
+    --animation-distance: var(--default-animation-zoom-out-distance);
+    --animation-duration: var(--default-animation-zoom-out-duration);
+    --animation-easing: var(--default-animation-zoom-out-easing);
+    --animation-scale: var(--default-animation-zoom-out-scale);
+
+    // Keyframes
+    @keyframes zoom-out-down {
+        from {
+            opacity: 1;
+            transform: translate3d(0, 0, 0)
+                       scale3d(1, 1, 1);
+        }
+
+        to {
+            opacity: 0;
+            transform: translate3d(0, var(--animation-distance), 0)
+                       scale3d(var(--animation-scale), var(--animation-scale), var(--animation-scale));
+        }
+    }
+
+    // Styles
+    animation-name: zoom-out-down;
+}

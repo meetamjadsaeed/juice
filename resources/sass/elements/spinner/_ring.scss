@@ -1,0 +1,49 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> SPINNER -> RING
+    ========================================================================  */
+
+// Set the keyframe
+@keyframes spinner-ring {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    // Modifiers
+    &.spinner--ring {
+        animation-duration: var(--animation-duration);
+        animation-iteration-count: infinite;
+        animation-name: spinner-ring;
+        animation-timing-function: linear;
+        border: 5px solid var(--color-alt);
+        border-radius: 100%;
+        display: inline-flex;
+        height: var(--element-size);
+        width: var(--element-size);
+
+        // Pseudo elements
+        &::before {
+            animation: none;
+            background: var(--color);
+            border-radius: 100%;
+            content: '';
+            height: 5px;
+            position: absolute;
+            top: -5px;
+            width: 5px;
+        }
+
+        // Cycle through all of the colors
+        @each $color-name, $color in $colors {
+            // Modifiers: Colors
+            &.is-#{$color-name} {
+                // Variables
+                --color: var(--color-#{$color-name});
+                --color-alt: var(--color-#{$color-name}-lighten-10);
+            }
+        }
+    }
+}

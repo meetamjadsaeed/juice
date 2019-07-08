@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FADE -> EXIT -> FADE OUT DOWN
+    ========================================================================  */
+
+.fade-out-down {
+    // Variables
+    --animation-delay: var(--default-animation-fade-out-delay);
+    --animation-distance: var(--default-animation-fade-out-distance);
+    --animation-duration: var(--default-animation-fade-out-duration);
+    --animation-easing: var(--default-animation-fade-out-easing);
+
+    // Keyframes
+    @keyframes fade-out-down {
+        from {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        to {
+            opacity: 0;
+            transform: translate3d(0, var(--animation-distance), 0);
+        }
+    }
+
+    // Styles
+    animation-name: fade-out-down;
+}

@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> HELPERS -> CLEARFIX
+    ========================================================================  */
+
+.clearfix {
+    // Pseudo elements
+    &::after {
+        @include clearfix();
+    }
+}
+
+// Cycle throuhgh all of the breakpoints
+@each $breakpoint-name, $breakpoint in $breakpoints {
+    // Breakpoint
+    @include breakpoint($breakpoint-name) {
+        .clearfix\@#{$breakpoint-name} {
+            // Pseudo elements
+            &::after {
+                @include clearfix();
+            }
+        }
+    }
+}

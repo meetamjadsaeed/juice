@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> SPINNER -> CORE
+    ========================================================================  */
+
+.spinner {
+    // Variables
+    --animation-duration: 1000ms;
+    --color: var(--color-charcoal);
+    --color-alt: var(--color-charcoal-lighten-10);
+    --element-size: 40px;
+
+    // Styles
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+}

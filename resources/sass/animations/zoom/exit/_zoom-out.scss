@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM OUT
+    ========================================================================  */
+
+.zoom-out {
+    // Variables
+    --animation-delay: var(--default-animation-zoom-out-delay);
+    --animation-duration: var(--default-animation-zoom-out-duration);
+    --animation-easing: var(--default-animation-zoom-out-easing);
+    --animation-scale: var(--default-animation-zoom-out-scale);
+
+    // Keframes
+    @keyframes zoom-out {
+        from {
+            opacity: 1;
+            transform: scale3d(1, 1, 1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale3d(var(--animation-scale), var(--animation-scale), var(--animation-scale));
+        }
+    }
+
+    // Styles
+    animation-name: zoom-out;
+}

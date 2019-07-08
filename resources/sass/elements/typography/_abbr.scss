@@ -1,0 +1,33 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> ABBR
+    ========================================================================  */
+
+abbr {
+    // Variables
+    --border-color: var(--feedback-color-info);
+
+    // Styles
+    text-decoration: none !important;
+
+    // Check if the abbr color modifiers should be declared
+    @if $abbr-color-modifiers {
+        // Cycle through all of the colors
+        @each $color-name, $color in $colors {
+            // Modifiers: Colors
+            &.is-#{$color-name} {
+                // Modifiers: Props
+                &[title] {
+                    border-color: var(--color-#{$color-name});
+                }
+            }
+        }
+    }
+
+    // Modifiers: Props
+    &[title] {
+        border-bottom: 1px dotted var(--border-color);
+        cursor: help;
+    }
+}

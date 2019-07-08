@@ -1,0 +1,161 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> HELPERS -> TYPOGRAPHY
+    ========================================================================  */
+
+.is-left-aligned {
+    text-align: left !important;
+}
+
+.is-center-aligned {
+    text-align: center !important;
+}
+
+.is-right-aligned {
+    text-align: right !important;
+}
+
+.has-default-font-size {
+    font-size: var(--default-font-size) !important;
+}
+
+// Cycle through all of the sizes
+@each $size in $sizes {
+    .has-#{$size}-font-size {
+        font-size: var(--default-font-size-#{$size}) !important;
+    }
+}
+
+// Cycle through all of the colors
+@each $color-name, $color in $colors {
+    p {
+        // Modifiers: Colors
+        &.is-#{$color-name} {
+            // Variables
+            --color: var(--color-#{$color-name});
+
+            // Styles
+            color: var(--color) !important;
+        }
+    }
+
+    a {
+        // Modifiers: Colors
+        &.is-#{$color-name}:not(.button) {
+            // Variables
+            --color: var(--color-#{$color-name});
+
+            // Styles
+            color: var(--color) !important;
+
+            // Pseudo classes
+            &:hover {
+                --color: var(--color-#{$color-name}-darken-2);
+            }
+
+            &:hover {
+                --color: var(--color-#{$color-name}-darken-4);
+            }
+
+            &:active {
+                --color: var(--color-#{$color-name}-darken-6);
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        // Modifiers: Colors
+        &.is-#{$color-name} {
+            // Variables
+            --color: var(--color-#{$color-name});
+
+            // Styles
+            color: var(--color) !important;
+        }
+    }
+}
+
+// Cycle through all of the feedback colors
+@each $feedback-name, $color in $feedback-colors {
+    p {
+        // Modifiers: Feedback colors
+        &.has-#{$feedback-name} {
+            // Variables
+            --color: var(--feedback-color-#{$feedback-name});
+
+            // Styles
+            color: var(--color) !important;
+        }
+    }
+
+    a {
+        // Modifiers: Feedback colors
+        &.has-#{$feedback-name}:not(.button) {
+            // Variables
+            --color: var(--feedback-color-#{$feedback-name});
+
+            // Styles
+            color: var(--color) !important;
+
+            // Pseudo classes
+            &:hover {
+                --color: var(--feedback-color-#{$feedback-name}-darken-2);
+            }
+
+            &:active {
+                --color: var(--feedback-color-#{$feedback-name}-lighten-4);
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        // Modifiers: Feedback colors
+        &.has-#{$feedback-name} {
+            // Variables
+            --color: var(--feedback-color-#{$feedback-name});
+
+            // Styles
+            color: var(--color) !important;
+        }
+    }
+}
+
+// Cycle throuhgh all of the breakpoints
+@each $breakpoint-name, $breakpoint in $breakpoints {
+    // Breakpoint
+    @include breakpoint($breakpoint-name) {
+        .is-left-aligned\@#{$breakpoint-name} {
+            text-align: left !important;
+        }
+
+        .is-center-aligned\@#{$breakpoint-name} {
+            text-align: center !important;
+        }
+
+        .is-right-aligned\@#{$breakpoint-name} {
+            text-align: right !important;
+        }
+
+        .has-default-font-size\@#{$breakpoint-name} {
+            font-size: var(--default-font-size) !important;
+        }
+
+        // Cycle through all of the sizes
+        @each $size in $sizes {
+            .has-#{$size}-font-size\@#{$breakpoint-name} {
+                font-size: var(--default-font-size-#{$size}) !important;
+            }
+        }
+    }
+}

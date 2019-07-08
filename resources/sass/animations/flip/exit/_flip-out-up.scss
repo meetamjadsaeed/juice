@@ -1,0 +1,27 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FLIP -> EXIT -> FLIP OUT UP
+    ========================================================================  */
+
+.flip-out-up {
+    // Variables
+    --animation-delay: var(--default-animation-flip-out-delay);
+    --animation-duration: var(--default-animation-flip-out-duration);
+    --animation-easing: var(--default-animation-flip-out-easing);
+    --animation-perspective: var(--default-animation-flip-in-perspective);
+
+    // Keyframes
+    @keyframes flip-out-up {
+        from {
+            transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, 0deg);
+        }
+
+        to {
+            transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, 90deg);
+        }
+    }
+
+    // Styles
+    animation-name: flip-out-up;
+}

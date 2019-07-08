@@ -1,0 +1,47 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> STACK INDEX
+    ========================================================================  */
+
+/**
+ * Get the z-index value from the stack index map/array.
+ * @param  {string}  $element  The element in the stack index.
+ * @return {int}               The z-index value, null otherwise.
+ */
+@function get-stack-index($element) {
+    // Check if the element exists in the stack index
+    @if map-has-key($stack-indexes, $element) {
+        // Return the z-index value
+        @return map-get($stack-indexes, $element);
+    } @else {
+        // Display a warning anf return null.
+        @warn 'Unknown element "#{$element}" in stack-index map';
+        @return null;
+    }
+}
+
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> SHOPIFY
+    ========================================================================  */
+
+/**
+ * Set the shopify liquid setting string
+ * @param  {string}  $setting  The shopify setting.
+ * @return {string}            The shopify liquid setting string.
+ */
+@function shopify($setting) {
+    // Return the shopify liquid setting string
+    @return unquote('"{{ settings.' + $setting + ' }}"');
+}
+
+/**
+ * Set the shopify asset liquid url string.
+ * @param  {string}  $file  The asset file name.
+ * @return {string}         The shopify asset liquid url string.
+ */
+@function shopify_asset($file) {
+    // Return the shopify asset liquid url string
+    @return unquote('url(\'"{{ "' + $file + '" | asset_url }}"\') ');
+}

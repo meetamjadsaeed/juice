@@ -1,0 +1,78 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> MEDIA -> IMAGE
+    ========================================================================  */
+
+img {
+    // Variables
+    --element-spacing: var(--default-element-spacing);
+
+    // Styles
+    max-width: 100%;
+
+    // Modifiers: State hooks
+    &.is-fullwidth {
+        display: flex;
+        max-width: auto;
+        margin-bottom: var(--element-spacing);
+        margin-right: 0;
+        min-width: 100%;
+    }
+
+    // Check if the image size modifiers should be declared
+    @if $image-size-modifiers {
+        // Cycle through all of the sizes
+        @each $size in $sizes {
+            // Modifiers: Sizes
+            &.is-#{$size} {
+                // Variables
+                --element-spacing: var(--default-element-spacing-#{$size});
+            }
+
+            // Check if the image size modifier breakpoints should be declared
+            @if $image-size-modifier-breakpoints {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint in $breakpoints {
+                    // Breakpoint
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Size
+                        &.is-#{$size}\@#{$breakpoint-name} {
+                            // Variables
+                            --element-spacing: var(--default-element-spacing-#{$size});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Check if the image alignment modifiers should be declared
+    @if $image-alignment-modifiers {
+        // Modifiers
+        &.image--center {
+            display: flex;
+            float: none;
+            margin: 0 auto var(--element-spacing);
+        }
+
+        &.image--left {
+            float: left;
+            margin: 0;
+            margin-right: var(--element-spacing);
+        }
+
+        &.image--right {
+            float: right;
+            margin: 0;
+            margin-left: var(--element-spacing);
+        }
+    }
+
+    // Check if the image round modifier should be declared
+    @if $image-round-modifier {
+        &.image--round {
+            border-radius: 100%;
+        }
+    }
+}

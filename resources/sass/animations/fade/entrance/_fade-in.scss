@@ -1,0 +1,26 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FADE -> ENTRANCE -> FADE IN
+    ========================================================================  */
+
+.fade-in {
+    // Variables
+    --animation-delay: var(--default-animation-fade-in-delay);
+    --animation-duration: var(--default-animation-fade-in-duration);
+    --animation-easing: var(--default-animation-fade-in-easing);
+
+    // Keframes
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    // Styles
+    animation-name: fade-in;
+}

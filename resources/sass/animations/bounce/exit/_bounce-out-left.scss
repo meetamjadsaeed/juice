@@ -1,0 +1,41 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT LEFT
+    ========================================================================  */
+
+.bounce-out-left {
+    // Variables
+    --animation-delay: var(--default-animation-bounce-out-delay);
+    --animation-distance: var(--default-animation-bounce-out-distance);
+    --animation-duration: var(--default-animation-bounce-out-duration);
+    --animation-easing: var(--default-animation-bounce-out-easing);
+
+    // Keyframes
+    @keyframes bounce-out-left {
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+
+        30% {
+            transform: translate3d(calc(0px - calc(var(--animation-distance) * 1.5 / 100)), 0, 0);
+        }
+
+        50% {
+            opacity: 1;
+            transform: translate3d(calc(0px + calc(var(--animation-distance) * 2.5 / 100)), 0, 0);
+        }
+
+        to {
+            opacity: 0;
+            transform: translate3d(calc(0px - var(--animation-distance)), 0, 0);
+        }
+    }
+
+    // Styles
+    animation-name: bounce-out-left;
+}

@@ -38,17 +38,12 @@ const port = 3001;
     ========================================================================  */
 
 /**
- * Set the resource files.
- * @type {object}
+ * Set the output build directories.
+ * @const {object}
  */
-const resource = {
-    sass: [
-        'sass/juice.scss'
-    ],
-    scripts: [
-        'node_modules/velocity-animate/velocity.min.js',
-        'scripts/**/*.js'
-    ]
+const destination = {
+    css: 'public/css',
+    scripts: 'public/scripts'
 };
 
 /**
@@ -61,22 +56,27 @@ const filename = {
 };
 
 /**
- * Set the output dist directories.
- * @const {object}
- */
-const dist = {
-    css: 'dist/',
-    scripts: 'dist/'
-};
-
-/**
  * Set the files to watch for changes.
  * @const {object}
  */
 const files = {
-    sass: 'sass/**/*.scss',
-    scripts: 'scripts/**/*.js',
+    sass: 'resources/sass/**/*.scss',
+    scripts: 'resources/scripts/**/*.js',
     html: '**/*.html'
+};
+
+/**
+ * Set the resource files.
+ * @type {object}
+ */
+const resource = {
+    sass: [
+        'resources/sass/juice.scss'
+    ],
+    scripts: [
+        'node_modules/velocity-animate/velocity.min.js',
+        'resources/scripts/**/*.js'
+    ]
 };
 
 
@@ -110,7 +110,7 @@ const css = () => {
         }))
         .pipe(autoprefixer())
         .pipe(rename(filename.css))
-        .pipe(gulp.dest(dist.css))
+        .pipe(gulp.dest(destination.css))
         .pipe(notify({
             title: 'Gulp CSS Task',
             message: 'Task completed.',
@@ -151,7 +151,7 @@ const scripts = () => {
             }))
             .pipe(concat(filename.scripts))
             .pipe(uglify())
-            .pipe(gulp.dest(dist.scripts))
+            .pipe(gulp.dest(destination.scripts))
             .pipe(notify({
                 title: 'Gulp Scripts Task',
                 message: 'Task completed.',

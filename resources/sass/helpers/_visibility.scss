@@ -1,0 +1,27 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> HELPERS -> VISIBILITY
+    ========================================================================  */
+
+.is-visible {
+    visibility: visible !important;
+}
+
+.is-hidden {
+    visibility: hidden !important;
+}
+
+// Cycle throuhgh all of the breakpoints
+@each $breakpoint-name, $breakpoint in $breakpoints {
+    // Breakpoint
+    @include breakpoint($breakpoint-name) {
+        .is-visible\@#{$breakpoint-name} {
+            visibility: visible !important;
+        }
+
+        .is-hidden\@#{$breakpoint-name} {
+            visibility: hidden !important;
+        }
+    }
+}

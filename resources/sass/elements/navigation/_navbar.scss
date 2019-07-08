@@ -1,0 +1,163 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> NAVIGATION -> NAVBAR
+    ========================================================================  */
+
+.navbar {
+    // Variables
+    --content-spacing: var(--default-content-spacing);
+    --font-color: inherit;
+    --font-size: var(--default-font-size);
+    --element-spacing: var(--default-element-spacing);
+
+    // Styles
+    align-items: center;
+    color: var(--font-color);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--font-size);
+    position: relative;
+    margin: 0;
+    margin-bottom: var(--element-spacing);
+
+    // Nested selectors
+    a {
+        // Variables
+        --font-color: var(--default-link-color);
+
+        // Styles
+        color: var(--font-color);
+
+        // Pseudo classes
+        &:hover {
+            // Variables
+            --font-color: var(--default-link-color-hover);
+        }
+
+        &:focus {
+            // Variables
+            --font-color: var(--default-link-color-focus);
+        }
+
+        &:active {
+            // Variables
+            --font-color: var(--default-link-color-active);
+        }
+    }
+
+    .navbar__logo,
+    .navbar__links,
+    .navbar__bars {
+        padding: 0 calc(var(--content-spacing) / 2);
+
+        // Pseudo classes
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    .navbar__logo {
+        display: flex;
+        flex: 1 0 25%;
+
+        // Nested selectors
+        a {
+            display: inline-flex;
+        }
+    }
+
+    .navbar__links {
+        display: none;
+
+        // Nested selectors
+        ul,
+        ol {
+            display: none;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            // Nested selectors
+            li {
+                flex: 1 0 auto;
+
+                // Nested selectors
+                a {
+                    display: inline-flex;
+                    padding: var(--content-spacing);
+                }
+            }
+        }
+    }
+
+    .navbar__icons {
+        // Nested selectors
+        #{$button} {
+            margin-bottom: 0;
+            margin-right: calc(var(--content-spacing) / 4);
+
+            // Pseudo classes
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .navbar__revealer {
+        display: none;
+        flex: 1 0 100%;
+        padding: var(--content-spacing);
+
+         // Nested selectors
+        ul,
+        ol {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+             // Nested selectors
+            li {
+                flex: 1 0 auto;
+
+                 // Nested selectors
+                a {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    padding: calc(var(--content-spacing) / 2) var(--content-spacing);
+                }
+            }
+        }
+    }
+
+    // Breakpoint
+    @include breakpoint('desktop-up') {
+        // Nested selectors
+        .navbar__links {
+            // Nested selectors
+            ul,
+            ol {
+                display: flex;
+            }
+        }
+
+        .navbar__icons {
+            display: none;
+        }
+
+        .navbar__links {
+            display: flex;
+        }
+
+        .navbar__revealer {
+            display: none !important;
+        }
+    }
+}

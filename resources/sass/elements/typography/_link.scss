@@ -1,0 +1,35 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> LINK
+    ========================================================================  */
+
+a {
+    // Variables
+    --font-color: var(--default-link-color);
+
+    // Styles
+    color: var(--font-color);
+    font-weight: inherit;
+    outline: none;
+    text-decoration: none;
+
+    // Pseudo classes
+    &:hover {
+        // Variables
+        --font-color: var(--default-link-color-hover);
+    }
+
+    &:focus {
+        // Variables
+        --font-color: var(--default-link-color-focus);
+
+        // Styles
+        text-decoration: underline;
+    }
+
+    &:active {
+        // Variables
+        --font-color: var(--default-link-color-active);
+    }
+}

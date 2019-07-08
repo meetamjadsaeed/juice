@@ -1,0 +1,77 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> HELPERS -> ELEMENT SPACING
+    ========================================================================  */
+
+.has-no-element-spacing {
+    margin-bottom: 0 !important;
+}
+
+.has-default-element-spacing {
+    margin-bottom: var(--default-element-spacing) !important;
+}
+
+.has-no-top-element-spacing {
+    margin-bottom: 0 !important;
+}
+
+.has-top-element-spacing {
+    margin-bottom: var(--default-element-spacing) !important;
+}
+
+.has-no-last-child-element-spacing {
+    &>*:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+// Cycle through all of the sizes
+@each $size in $sizes {
+    .has-#{$size}-element-spacing {
+        margin-bottom: var(--default-element-spacing-#{$size}) !important;
+    }
+
+    .has-#{$size}-top-element-spacing {
+        margin-top: var(--default-element-spacing-#{$size}) !important;
+    }
+}
+
+// Cycle throuhgh all of the breakpoints
+@each $breakpoint-name, $breakpoint in $breakpoints {
+    // Breakpoint
+    @include breakpoint($breakpoint-name) {
+        .has-no-element-spacing\@#{$breakpoint-name} {
+            margin-bottom: 0 !important;
+        }
+
+        .has-default-element-spacing\@#{$breakpoint-name} {
+            margin-bottom: var(--default-element-spacing) !important;
+        }
+
+        .has-no-top-element-spacing\@#{$breakpoint-name} {
+            margin-bottom: 0 !important;
+        }
+
+        .has-top-element-spacing\@#{$breakpoint-name} {
+            margin-bottom: var(--default-element-spacing) !important;
+        }
+
+        .has-no-last-child-element-spacing\@#{$breakpoint-name} {
+            &>*:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        // Cycle through all of the sizes
+        @each $size in $sizes {
+            .has-#{$size}-element-spacing\@#{$breakpoint-name} {
+                margin-bottom: var(--default-element-spacing-#{$size}) !important;
+            }
+
+            .has-#{$size}-top-element-spacing\@#{$breakpoint-name} {
+                margin-top: var(--default-element-spacing-#{$size}) !important;
+            }
+        }
+    }
+}

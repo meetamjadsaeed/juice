@@ -17,7 +17,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-    <link rel="stylesheet" href="../../dist/juice.min.css">
+    <link rel="stylesheet" href="../../public/css/juice.min.css">
 </head>
 
 <body>
@@ -70,6 +70,14 @@
                         <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
                             <label for="file">File</label>
                             <input type="file" id="file" />
+
+                            <hr />
+
+                            <label class="custom-file" data-custom-file-text="No file selected">
+                                <input type="file" multiple />
+                                <div class="custom-file__button">Browse</div>
+                                <div class="custom-file__text">No file selected</div>
+                            </label>
                         </div>
 
                         <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
@@ -104,6 +112,32 @@
                                     <label for="checkbox-2" class="label--inline">Checkbox 2</label>
                                 </div>
                             </div>
+
+                            <div class="media-object media-object--seamless">
+                                <div class="media-object__badge">
+                                    <input type="checkbox" id="checkbox-3" />
+                                </div>
+                                <div class="media-object__content">
+                                    <label for="checkbox-3" class="label--inline">Checkbox 3</label>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <label class="custom-checkbox has-small-element-spacing">
+                                <input type="checkbox" />
+                                <div>Custom Checkbox 1</div>
+                            </label>
+
+                            <label class="custom-checkbox has-small-element-spacing">
+                                <input type="checkbox" />
+                                <div>Custom Checkbox 2</div>
+                            </label>
+
+                            <label class="custom-checkbox">
+                                <input type="checkbox" />
+                                <div>Custom Checkbox 3</div>
+                            </label>
                         </div>
                         <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
                             <div class="media-object media-object--seamless has-no-element-spacing">
@@ -124,7 +158,7 @@
                                 </div>
                             </div>
 
-                            <div class="media-object media-object--seamless has-no-element-spacing">
+                            <div class="media-object media-object--seamless">
                                 <div class="media-object__badge">
                                     <input type="radio" id="radio-3" name="radio" />
                                 </div>
@@ -132,6 +166,23 @@
                                     <label for="radio-3" class="label--inline">Radio 3</label>
                                 </div>
                             </div>
+
+                            <hr />
+
+                            <label class="custom-radio has-small-element-spacing">
+                                <input type="radio" name="custom-radio" />
+                                <div>Custom Radio 1</div>
+                            </label>
+
+                            <label class="custom-radio has-small-element-spacing">
+                                <input type="radio" name="custom-radio" />
+                                <div>Custom Radio 2</div>
+                            </label>
+
+                            <label class="custom-radio">
+                                <input type="radio" name="custom-radio" />
+                                <div>Custom Radio 3</div>
+                            </label>
                         </div>
                     </div>
 
@@ -190,11 +241,12 @@
 
     <!-- Scripts -->
     <script src="//unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="../../dist/juice.min.js"></script>
+    <script src="../../public/css/juice.min.js"></script>
 
     <!-- Juice components -->
     <script>
         var smooth_scroll = new SmoothScroll;
+        var custom_file = new CustomFile('.custom-file');
         var password_reveal = new PasswordReveal('.has-password-reveal');
     </script>
 </body>

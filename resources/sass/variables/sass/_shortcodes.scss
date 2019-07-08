@@ -1,0 +1,20 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SHORTCODES
+    ========================================================================  */
+
+// Set the buttons
+$button: '
+    button,
+    .button,
+    a.button
+' !default;
+
+// Set the form control elements
+$form-control-element: '
+    input,
+    select,
+    textarea,
+    #{button}
+' !default;

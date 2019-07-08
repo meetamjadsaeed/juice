@@ -1,0 +1,88 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> SPINNER -> SPIRAL
+    ========================================================================  */
+
+// Set the keyframe
+@keyframes spinner-spiral {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    // Modifiers
+    &.spinner--spiral,
+    &.spinner--spiral-x2,
+    &.spinner--spiral-x3 {
+        animation-duration: var(--animation-duration);
+        animation-iteration-count: infinite;
+        animation-name: spinner-spiral;
+        animation-timing-function: linear;
+        border: 1px solid var(--color-alt);
+        border-radius: 100%;
+        border-top-color: var(--color);
+        display: inline-flex;
+        height: var(--element-size);
+        width: var(--element-size);
+
+        // Cycle through all of the colors
+        @each $color-name, $color in $colors {
+            // Modifiers: Colors
+            &.is-#{$color-name} {
+                // Variables
+                --color: var(--color-#{$color-name});
+                --color-alt: var(--color-#{$color-name}-lighten-10);
+            }
+        }
+    }
+
+    &.spinner--spiral {
+        border-width: 2px;
+    }
+
+    &.spinner--spiral-x2 {
+        // Pseudo elements
+        &::before {
+            animation-duration: calc(var(--animation-duration) * 3);
+            animation-iteration-count: infinite;
+            animation-name: spinner-spiral;
+            animation-timing-function: linear;
+            border: 1px solid var(--color-alt);
+            border-radius: 100%;
+            border-top-color: var(--color);
+            content: '';
+            height: calc(var(--element-size) - 8px);
+            position: absolute;
+            width: calc(var(--element-size) - 8px);
+        }
+    }
+
+    &.spinner--spiral-x3 {
+        // Pseudo elements
+        &::before,
+        &::after {
+            animation-iteration-count: infinite;
+            animation-name: spinner-spiral;
+            animation-timing-function: linear;
+            border: 1px solid var(--color-alt);
+            border-radius: 100%;
+            border-top-color: var(--color);
+            content: '';
+            position: absolute;
+        }
+
+        &::before {
+            animation-duration: calc(var(--animation-duration) * 3);
+            height: calc(var(--element-size) - 8px);
+            width: calc(var(--element-size) - 8px);
+        }
+
+        &::after {
+            animation-duration: calc(var(--animation-duration) * 1.5);
+            height: calc(var(--element-size) - 16px);
+            width: calc(var(--element-size) - 16px);
+        }
+    }
+}
