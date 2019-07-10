@@ -21,8 +21,68 @@
 -----
 
 
+# v0.20.0-beta
+
+### Updated
+- Update sass settings
+    - Add settings directory
+        - Add components.scss (previously in settings.scss)
+        - Add elements.scss (previously in settings.scss)
+        - Add imports.scss (previously in settings.scss)
+    - Add animation import settings
+    - Add component import settings
+    - Add element import settings
+    - Update $variations to $color-variations
+    - Update $variations declared location to maps.scss
+    - Remove $body-selection-pseudo-elements
+    - Remove $variation_amount
+    - Remove settings.scss
+- Update reset
+    - Add form element (previously in form core)
+    - Add fieldset element (previously in form core)
+- Update sass framework core
+    - Update core.scss to body.scss
+    - Update $selection-pseudo-elements settings variable name to $body-selection-pseudo-elements
+- Update password reveal component
+    - Update from a component to a plugin
+    - Update name to custom file
+- Update sass form elements
+    - Update form-control class to custom-fieldset
+        - Update form-control-element shortcode variable to custom-fieldset-element
+        - Update form-control-* settings variable names to custom-fieldset-*
+- Update shield element
+    - Update icon directory name to badge
+- Update spinner element
+    - Add spinner modifier settings
+    - Update core.scss to spinner.scss
+    - Update keyframe sass scope
+    - Update spinner directory to loading
+    - Remove dial.scss (now in spinner.scss)
+    - Remove ring.scss (now in spinner.scss)
+    - Remove spiral.scss (now in spinner.scss)
+    - Remove swoosh.scss (now in spinner.scss)
+    - Remove target.scss (now in spinner.scss)
+- Update typography elements
+    - Add code.scss (previously in preformatted.scss)
+    - Add kbd.scss (previously in prefromatted.scss)
+    - Add pre.scss (previously in prefromatted.scss)
+    - Add samp.scss (previously in preformatted.scss)
+    - Add var.scss (previously in preformatted.scss)
+    - Remove preformatted.scss
+- Update sass animations
+    - Update animation classes to be nested with has-animation
+    - Update core.scss to animation.scss
+- Update demo pages
+- Update build directory
+
+
+
+-----
+
+
 # v0.19.2-beta
 
+### Updated
 - Update package
     - Update version 0.19.1-beta to 0.19.2-beta
     - Fix package files
@@ -38,6 +98,7 @@
 
 # v0.19.1-beta
 
+### Updated
 - Updated sass settings
     - Added default flag to variation_amount variable
     - Added default flag to variations map
