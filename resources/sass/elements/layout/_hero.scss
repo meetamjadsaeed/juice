@@ -4,116 +4,119 @@
     JUICE -> ELEMENTS -> LAYOUT -> HERO
     ========================================================================  */
 
-.hero {
-    // Variables
-    --background-color: var(--color-charcoal);
-    --background-position: center;
-    --background-repeat: no-repeat;
-    --background-size: cover;
-    --content-spacing: calc(var(--default-content-spacing) * 2);
-    --element-spacing: var(--default-element-spacing);
-    --font-color: var(--color-charcoal-inverted-text);
-    --font-size: var(--default-font-size);
-
-    // Styles
-    background-color: var(--background-color);
-    background-position: var(--background-position);
-    background-repeat: var(--background-repeat);
-    background-size: var(--background-size);
-    color: var(--font-color);
-    display: flex;
-    flex-direction: column;
-    font-size: var(--font-size);
-    justify-content: center;
-    padding: var(--content-spacing);
-    margin-bottom: var(--element-spacing);
-
-    // Check if the hero color modifiers should be declared
-    @if $hero-color-modifiers {
-        // Cycle through all of the colors
-        @each $color-name, $color in $colors {
-            // Modifiers: Colors
-            &.is-#{$color-name} {
-                // Variables
-                --background-color: var(--color-#{$color-name});
-                --font-color: var(--color-#{$color-name}-inverted-text);
-            }
-        }
-    }
-
-    // Check if the hero feedback modifiers should be declared
-    @if $hero-feedback-modifiers {
-        // Cycle through all of the feedback colors
-        @each $feedback-name, $color in $feedback-colors {
-            // Modifiers: Feedback colors
-            &.has-#{$feedback-name} {
-                // Variables
-                --background-color: var(--feedback-color-#{$feedback-name});
-                --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
-            }
-        }
-    }
-
-    // Check if the hero viewport modifiers should be declared
-    @if $hero-viewport-modifiers {
-        // Modifiers
-        &.hero--25vh {
-            min-height: 25vh;
-        }
-
-        &.hero--50vh {
-            min-height: 50vh;
-        }
-
-        &.hero--75vh {
-            min-height: 75vh;
-        }
-
-        &.hero--100vh {
-            min-height: 100vh;
-        }
-    }
-
-    // Check if the hero parallax modifier should be declared
-    @if $hero-parallax-modifier {
-        &.hero--parallax {
-            background-attachment: fixed;
-        }
-    }
-
-    // Nested selectors
-    .hero__head,
-    .hero__foot {
-        flex: 0 0 auto;
-    }
-
-    .hero__body {
-        align-items: center;
-        display: flex;
-        flex: 1 0 auto;
-    }
-
-    a {
+// Check if the elements with hero should be imported
+@if $import-elements and $import-element-hero {
+    .hero {
         // Variables
-        --font-color: var(--color-white);
+        --background-color: var(--color-charcoal);
+        --background-position: center;
+        --background-repeat: no-repeat;
+        --background-size: cover;
+        --content-spacing: calc(var(--default-content-spacing) * 2);
+        --element-spacing: var(--default-element-spacing);
+        --font-color: var(--color-charcoal-inverted-text);
+        --font-size: var(--default-font-size);
 
         // Styles
+        background-color: var(--background-color);
+        background-position: var(--background-position);
+        background-repeat: var(--background-repeat);
+        background-size: var(--background-size);
         color: var(--font-color);
+        display: flex;
+        flex-direction: column;
+        font-size: var(--font-size);
+        justify-content: center;
+        padding: var(--content-spacing);
+        margin-bottom: var(--element-spacing);
 
-        // Pseudo classes
-        &:hover {
-            // Variables
-            --font-color: var(--color-white-darken-2);
+        // Check if the hero color modifiers should be declared
+        @if $hero-color-modifiers {
+            // Cycle through all of the colors
+            @each $color-name, $color in $colors {
+                // Modifiers: Colors
+                &.is-#{$color-name} {
+                    // Variables
+                    --background-color: var(--color-#{$color-name});
+                    --font-color: var(--color-#{$color-name}-inverted-text);
+                }
+            }
         }
 
-        &:focus {
-            // Variables
-            --font-color: var(--color-white-darken-4);
+        // Check if the hero feedback modifiers should be declared
+        @if $hero-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $color in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    // Variables
+                    --background-color: var(--feedback-color-#{$feedback-name});
+                    --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+                }
+            }
         }
 
-        &:active {
+        // Check if the hero viewport modifiers should be declared
+        @if $hero-viewport-modifiers {
+            // Modifiers
+            &.hero--25vh {
+                min-height: 25vh;
+            }
+
+            &.hero--50vh {
+                min-height: 50vh;
+            }
+
+            &.hero--75vh {
+                min-height: 75vh;
+            }
+
+            &.hero--100vh {
+                min-height: 100vh;
+            }
+        }
+
+        // Check if the hero parallax modifier should be declared
+        @if $hero-parallax-modifier {
+            &.hero--parallax {
+                background-attachment: fixed;
+            }
+        }
+
+        // Nested selectors
+        .hero__head,
+        .hero__foot {
+            flex: 0 0 auto;
+        }
+
+        .hero__body {
+            align-items: center;
+            display: flex;
+            flex: 1 0 auto;
+        }
+
+        a {
             // Variables
-            --font-color: var(--color-white-darken-6);
+            --font-color: var(--color-white);
+
+            // Styles
+            color: var(--font-color);
+
+            // Pseudo classes
+            &:hover {
+                // Variables
+                --font-color: var(--color-white-darken-2);
+            }
+
+            &:focus {
+                // Variables
+                --font-color: var(--color-white-darken-4);
+            }
+
+            &:active {
+                // Variables
+                --font-color: var(--color-white-darken-6);
+            }
         }
     }
 }

@@ -4,23 +4,29 @@
     JUICE -> ANIMATIONS -> FADE -> ENTRANCE -> FADE IN
     ========================================================================  */
 
-.fade-in {
-    // Variables
-    --animation-delay: var(--default-animation-fade-in-delay);
-    --animation-duration: var(--default-animation-fade-in-duration);
-    --animation-easing: var(--default-animation-fade-in-easing);
+// Check if the animations with fade in should be imported
+@if $import-animations and $import-animation-fade-in {
+    .has-animation {
+        // Nested selectors
+        &.fade-in {
+            // Variables
+            --animation-delay: var(--default-animation-fade-in-delay);
+            --animation-duration: var(--default-animation-fade-in-duration);
+            --animation-easing: var(--default-animation-fade-in-easing);
 
-    // Keframes
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-        }
+            // Keframes
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                }
 
-        to {
-            opacity: 1;
+                to {
+                    opacity: 1;
+                }
+            }
+
+            // Styles
+            animation-name: fade-in;
         }
     }
-
-    // Styles
-    animation-name: fade-in;
 }

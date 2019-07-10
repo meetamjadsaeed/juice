@@ -4,34 +4,40 @@
     JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT UP
     ========================================================================  */
 
-.bounce-out-up {
-    // Variables
-    --animation-delay: var(--default-animation-bounce-out-delay);
-    --animation-distance: var(--default-animation-bounce-out-distance);
-    --animation-duration: var(--default-animation-bounce-out-duration);
-    --animation-easing: var(--default-animation-bounce-out-easing);
+// Check if the animations with bounce out up should be imported
+@if $import-animations and $import-animation-bounce-out-up {
+    .has-animation {
+        // Nested selectors
+        &.bounce-out-up {
+            // Variables
+            --animation-delay: var(--default-animation-bounce-out-delay);
+            --animation-distance: var(--default-animation-bounce-out-distance);
+            --animation-duration: var(--default-animation-bounce-out-duration);
+            --animation-easing: var(--default-animation-bounce-out-easing);
 
-    // Keyframes
-    @keyframes bounce-out-up {
-        from {
-            transform: translate3d(0, 0, 0);
-        }
+            // Keyframes
+            @keyframes bounce-out-up {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
 
-        30% {
-            transform: translate3d(0, calc(0px - calc(var(--animation-distance) * 1.5 / 100)), 0);
-        }
+                30% {
+                    transform: translate3d(0, calc(0px - calc(var(--animation-distance) * 1.5 / 100)), 0);
+                }
 
-        50% {
-            opacity: 1;
-            transform: translate3d(0, calc(0px + calc(var(--animation-distance) * 2.5 / 100)), 0);
-        }
+                50% {
+                    opacity: 1;
+                    transform: translate3d(0, calc(0px + calc(var(--animation-distance) * 2.5 / 100)), 0);
+                }
 
-        to {
-            opacity: 0;
-            transform: translate3d(0, calc(0px - var(--animation-distance)), 0);
+                to {
+                    opacity: 0;
+                    transform: translate3d(0, calc(0px - var(--animation-distance)), 0);
+                }
+            }
+
+            // Styles
+            animation-name: bounce-out-up;
         }
     }
-
-    // Styles
-    animation-name: bounce-out-up;
 }

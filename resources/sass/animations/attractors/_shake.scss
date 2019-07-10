@@ -4,27 +4,33 @@
     JUICE -> ANIMATIONS -> ATTRACTORS -> SHAKE
     ========================================================================  */
 
-.shake {
-    // Variables
-    --animation-delay: var(--default-animation-shake-delay);
-    --animation-duration: var(--default-animation-shake-duration);
-    --animation-easing: var(--default-animation-shake-easing);
+// Check if the animations with shake should be imported
+@if $import-animations and $import-animation-shake {
+    .has-animation {
+        // Nested selectors
+        &.shake {
+            // Variables
+            --animation-delay: var(--default-animation-shake-delay);
+            --animation-duration: var(--default-animation-shake-duration);
+            --animation-easing: var(--default-animation-shake-easing);
 
-    // Keyframes
-    @keyframes shake {
-        from, to {
-            transform: translate3d(0, 0, 0);
-        }
+            // Keyframes
+            @keyframes shake {
+                from, to {
+                    transform: translate3d(0, 0, 0);
+                }
 
-        10%, 30%, 50%, 70%, 90% {
-            transform: translate3d(5px, 0, 0);
-        }
+                10%, 30%, 50%, 70%, 90% {
+                    transform: translate3d(5px, 0, 0);
+                }
 
-        20%, 40%, 60%, 80% {
-            transform: translate3d(-5px, 0, 0);
+                20%, 40%, 60%, 80% {
+                    transform: translate3d(-5px, 0, 0);
+                }
+            }
+
+            // Styles
+            animation-name: shake;
         }
     }
-
-    // Styles
-    animation-name: shake;
 }

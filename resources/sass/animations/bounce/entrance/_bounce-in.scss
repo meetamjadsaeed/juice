@@ -4,33 +4,39 @@
     JUICE -> ANIMATIONS -> BOUNCE -> ENTRANCE -> BOUNCE IN
     ========================================================================  */
 
-.bounce-in {
-    // Variables
-    --animation-delay: var(--default-animation-bounce-in-delay);
-    --animation-duration: var(--default-animation-bounce-in-duration);
-    --animation-easing: var(--default-animation-bounce-in-easing);
+// Check if the animations with bounce in should be imported
+@if $import-animations and $import-animation-bounce-in {
+    .has-animation {
+        // Nested selectors
+        &.bounce-in {
+            // Variables
+            --animation-delay: var(--default-animation-bounce-in-delay);
+            --animation-duration: var(--default-animation-bounce-in-duration);
+            --animation-easing: var(--default-animation-bounce-in-easing);
 
-    // Keframes
-    @keyframes bounce-in {
-        from {
-            opacity: 0;
-            transform: scale3d(0.2, 0.2, 0.2);
-        }
+            // Keframes
+            @keyframes bounce-in {
+                from {
+                    opacity: 0;
+                    transform: scale3d(0.2, 0.2, 0.2);
+                }
 
-        40% {
-            opacity: 1;
-            transform: scale3d(1.03, 1.03, 1.03);
-        }
+                40% {
+                    opacity: 1;
+                    transform: scale3d(1.03, 1.03, 1.03);
+                }
 
-        60% {
-            transform: scale3d(0.95, 0.95, 0.95);
-        }
+                60% {
+                    transform: scale3d(0.95, 0.95, 0.95);
+                }
 
-        to {
-            transform: scale3d(1, 1, 1);
+                to {
+                    transform: scale3d(1, 1, 1);
+                }
+            }
+
+            // Styles
+            animation-name: bounce-in;
         }
     }
-
-    // Styles
-    animation-name: bounce-in;
 }

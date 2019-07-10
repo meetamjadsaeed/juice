@@ -4,24 +4,30 @@
     JUICE -> ANIMATIONS -> FLIP -> EXIT -> FLIP OUT DOWN
     ========================================================================  */
 
-.flip-out-down {
-    // Variables
-    --animation-delay: var(--default-animation-flip-out-delay);
-    --animation-duration: var(--default-animation-flip-out-duration);
-    --animation-easing: var(--default-animation-flip-out-easing);
-    --animation-perspective: var(--default-animation-flip-in-perspective);
+// Check if the animations with flip out down should be imported
+@if $import-animations and $import-animation-flip-out-down {
+    .has-animation {
+        // Nested selectors
+        &.flip-out-down {
+            // Variables
+            --animation-delay: var(--default-animation-flip-out-delay);
+            --animation-duration: var(--default-animation-flip-out-duration);
+            --animation-easing: var(--default-animation-flip-out-easing);
+            --animation-perspective: var(--default-animation-flip-in-perspective);
 
-    // Keyframes
-    @keyframes flip-out-down {
-        from {
-            transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, 0deg);
-        }
+            // Keyframes
+            @keyframes flip-out-down {
+                from {
+                    transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, 0deg);
+                }
 
-        to {
-            transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, -90deg);
+                to {
+                    transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, -90deg);
+                }
+            }
+
+            // Styles
+            animation-name: flip-out-down;
         }
     }
-
-    // Styles
-    animation-name: flip-out-down;
 }

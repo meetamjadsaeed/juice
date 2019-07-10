@@ -4,32 +4,35 @@
     JUICE -> ELEMENTS -> TYPOGRAPHY -> LINK
     ========================================================================  */
 
-a {
-    // Variables
-    --font-color: var(--default-link-color);
-
-    // Styles
-    color: var(--font-color);
-    font-weight: inherit;
-    outline: none;
-    text-decoration: none;
-
-    // Pseudo classes
-    &:hover {
+// Check if the elements with link should be imported
+@if $import-elements and $import-element-link {
+    a {
         // Variables
-        --font-color: var(--default-link-color-hover);
-    }
-
-    &:focus {
-        // Variables
-        --font-color: var(--default-link-color-focus);
+        --font-color: var(--default-link-color);
 
         // Styles
-        text-decoration: underline;
-    }
+        color: var(--font-color);
+        font-weight: inherit;
+        outline: none;
+        text-decoration: none;
 
-    &:active {
-        // Variables
-        --font-color: var(--default-link-color-active);
+        // Pseudo classes
+        &:hover {
+            // Variables
+            --font-color: var(--default-link-color-hover);
+        }
+
+        &:focus {
+            // Variables
+            --font-color: var(--default-link-color-focus);
+
+            // Styles
+            text-decoration: underline;
+        }
+
+        &:active {
+            // Variables
+            --font-color: var(--default-link-color-active);
+        }
     }
 }

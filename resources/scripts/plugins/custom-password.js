@@ -1,10 +1,10 @@
 /*  ========================================================================
-    JUICE -> COMPONENTS -> PASSWORD REVEAL
+    JUICE -> COMPONENTS -> CUSTOM PASSWORD
     ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const plugin_name = 'PasswordReveal';
+    const plugin_name = 'CustomPassword';
 
     // Check if instantiation should be via amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
@@ -25,34 +25,34 @@
     const defaults = {
         action: 'click',
         callbackInitializeBefore: () => {
-            console.log('Password Reveal: callbackInitializeBefore');
+            console.log('Custom Password: callbackInitializeBefore');
         },
         callbackInitializeAfter: () => {
-            console.log('Password Reveal: callbackInitializeAfter');
+            console.log('Custom Password: callbackInitializeAfter');
         },
         callbackShowBefore: () => {
-            console.log('Password Reveal: callbackShowBefore');
+            console.log('Custom Password: callbackShowBefore');
         },
         callbackShowAfter: () => {
-            console.log('Password Reveal: callbackShowAfter');
+            console.log('Custom Password: callbackShowAfter');
         },
         callbackHideBefore: () => {
-            console.log('Password Reveal: callbackHideBefore');
+            console.log('Custom Password: callbackHideBefore');
         },
         callbackHideAfter: () => {
-            console.log('Password Reveal: callbackHideAfter');
+            console.log('Custom Password: callbackHideAfter');
         },
         callbackRefreshBefore: () => {
-            console.log('Password Reveal: callbackRefreshBefore');
+            console.log('Custom Password: callbackRefreshBefore');
         },
         callbackRefreshAfter: () => {
-            console.log('Password Reveal: callbackRefreshAfter');
+            console.log('Custom Password: callbackRefreshAfter');
         },
         callbackDestroyBefore: () => {
-            console.log('Password Reveal: callbackDestroyBefore');
+            console.log('Custom Password: callbackDestroyBefore');
         },
         callbackDestroyAfter: () => {
-            console.log('Password Reveal: callbackDestroyAfter');
+            console.log('Custom Password: callbackDestroyAfter');
         }
     };
 
@@ -96,7 +96,7 @@
     };
 
     /**
-     * Event handler to toggle a password when the password reveal trigger is clicked.
+     * Event handler to toggle a password when the custom password trigger is clicked.
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -104,8 +104,8 @@
         // Prevent the default action
         event.preventDefault();
 
-        // Set the password reveal container and input
-        const $container = event.target.closest('.has-password-reveal');
+        // Set the custom password container and input
+        const $container = event.target.closest('.custom-password');
         const $input = $container.querySelector('input');
 
         // Check if the input is a password input
@@ -131,8 +131,8 @@
      * @return {void}
      */
     const showEventHandler = (event) => {
-        // Set the password reveal container and input
-        const $container = event.target.closest('.has-password-reveal');
+        // Set the custom password container and input
+        const $container = event.target.closest('.custom-password');
         const $input = $container.querySelector('input');
 
         // Check if the container doesn't have the active state hook
@@ -148,8 +148,8 @@
      * @return {void}
      */
     const hideEventHandler = (event) => {
-        // Set the password reveal container and input
-        const $container = event.target.closest('.has-password-reveal');
+        // Set the custom password container and input
+        const $container = event.target.closest('.custom-password');
         const $input = $container.querySelector('input');
 
         // Check if the container has the active state hook
@@ -184,8 +184,8 @@
 
             // Cycle through all of the containers
             $containers.forEach(($container) => {
-                // Set the password reveal trigger and input
-                const $trigger = $container.querySelector('.js-password-reveal-trigger');
+                // Set the custom password trigger and input
+                const $trigger = $container.querySelector('.js-custom-password-trigger');
                 const $input = $container.querySelector('input');
 
                 // Hide the password silently
@@ -201,34 +201,34 @@
                 switch (action) {
                     // Click
                     case ('click'):
-                        // Add a click event handler to the password reveal trigger to toggle a password
+                        // Add a click event handler to the custom password trigger to toggle a password
                         $trigger.addEventListener('click', clickTriggerEventHandler);
                     break;
 
                     // Hover
                     case ('hover'):
-                        // Add a click event handler to the password reveal trigger to prevent the default action
+                        // Add a click event handler to the custom password trigger to prevent the default action
                         $trigger.addEventListener('click', preventDefaultEventHandler);
 
-                        // Add a mouse enter event handler to the password reveal trigger to show a password
+                        // Add a mouse enter event handler to the custom password trigger to show a password
                         $trigger.addEventListener('mouseenter', showEventHandler);
 
-                        // Add a mouse leave event handler to the password reveal trigger to hide a password
+                        // Add a mouse leave event handler to the custom password trigger to hide a password
                         $trigger.addEventListener('mouseleave', hideEventHandler);
                     break;
 
                     // Hold
                     case ('hold'):
-                        // Add a click event handler to the password reveal trigger to prevent the default action
+                        // Add a click event handler to the custom password trigger to prevent the default action
                         $trigger.addEventListener('click', preventDefaultEventHandler);
 
-                        // Add a mouse down event handler to the password reveal trigger to show a password
+                        // Add a mouse down event handler to the custom password trigger to show a password
                         $trigger.addEventListener('mousedown', showEventHandler);
 
-                        // Add a mouse up event handler to the password reveal trigger to hide a password
+                        // Add a mouse up event handler to the custom password trigger to hide a password
                         $trigger.addEventListener('mouseup', hideEventHandler);
 
-                        // Add a mouse leave event handler to the password reveal trigger to hide a password
+                        // Add a mouse leave event handler to the custom password trigger to hide a password
                         $trigger.addEventListener('mouseleave', hideEventHandler);
                     break;
                 }
@@ -254,8 +254,8 @@
                 plugin.settings.callbackShowBefore.call();
             }
 
-            // Set the password reveal container
-            const $container = $input.closest('.has-password-reveal');
+            // Set the custom password container
+            const $container = $input.closest('.custom-password');
 
             // Add the active state hook to the container
             $container.classList.add('is-active');
@@ -283,8 +283,8 @@
                 plugin.settings.callbackHideBefore.call();
             }
 
-            // Set the password reveal container
-            const $container = $input.closest('.has-password-reveal');
+            // Set the custom password container
+            const $container = $input.closest('.custom-password');
 
             // Add the active state hook to the container
             $container.classList.remove('is-active');
@@ -336,13 +336,13 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the password reveal containers
+            // Set the custom password containers
             const $containers = document.querySelectorAll(plugin.element);
 
             // Cycle through all of the containers
             $containers.forEach(($container) => {
-                // Set the password reveal trigger and input
-                const $trigger = $container.querySelector('.js-password-reveal-trigger');
+                // Set the custom password trigger and input
+                const $trigger = $container.querySelector('.js-custom-password-trigger');
                 const $input = $container.querySelector('input');
 
                 // Hide the password silently
@@ -358,34 +358,34 @@
                 switch (action) {
                     // Click
                     case ('click'):
-                        // Remove the click event handler from the password reveal trigger
+                        // Remove the click event handler from the custom password trigger
                         $trigger.removeEventListener('click', clickTriggerEventHandler);
                     break;
 
                     // Hover
                     case ('hover'):
-                        // Remove the click event handler from the password reveal trigger
+                        // Remove the click event handler from the custom password trigger
                         $trigger.removeEventListener('click', preventDefaultEventHandler);
 
-                        // Remove the mouse enter event handler from the password reveal trigger
+                        // Remove the mouse enter event handler from the custom password trigger
                         $trigger.removeEventListener('mouseenter', showEventHandler);
 
-                        // Remove the mouse leave event handler from the password reveal trigger
+                        // Remove the mouse leave event handler from the custom password trigger
                         $trigger.removeEventListener('mouseleave', hideEventHandler);
                     break;
 
                     // Hold
                     case ('hold'):
-                        // Remove the click event handler from the password reveal trigger
+                        // Remove the click event handler from the custom password trigger
                         $trigger.removeEventListener('click', preventDefaultEventHandler);
 
-                        // Remove the mouse down event handler from the password reveal trigger
+                        // Remove the mouse down event handler from the custom password trigger
                         $trigger.removeEventListener('mousedown', showEventHandler);
 
-                        // Remove the mouse up event handler from the password reveal trigger
+                        // Remove the mouse up event handler from the custom password trigger
                         $trigger.removeEventListener('mouseup', hideEventHandler);
 
-                        // Remove the mouse leave event handler from the password reveal trigger
+                        // Remove the mouse leave event handler from the custom password trigger
                         $trigger.removeEventListener('mouseleave', hideEventHandler);
                     break;
                 }

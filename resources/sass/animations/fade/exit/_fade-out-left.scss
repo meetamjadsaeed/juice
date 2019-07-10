@@ -4,26 +4,32 @@
     JUICE -> ANIMATIONS -> FADE -> EXIT -> FADE OUT LEFT
     ========================================================================  */
 
-.fade-out-left {
-    // Variables
-    --animation-delay: var(--default-animation-fade-out-delay);
-    --animation-distance: calc(0px - var(--default-animation-fade-out-distance));
-    --animation-duration: var(--default-animation-fade-out-duration);
-    --animation-easing: var(--default-animation-fade-out-easing);
+// Check if the animations with fade out left should be imported
+@if $import-animations and $import-animation-fade-out-left {
+    .has-animation {
+        // Nested selectors
+        &.fade-out-left {
+            // Variables
+            --animation-delay: var(--default-animation-fade-out-delay);
+            --animation-distance: calc(0px - var(--default-animation-fade-out-distance));
+            --animation-duration: var(--default-animation-fade-out-duration);
+            --animation-easing: var(--default-animation-fade-out-easing);
 
-    // Keyframes
-    @keyframes fade-out-left {
-        from {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-        }
+            // Keyframes
+            @keyframes fade-out-left {
+                from {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
 
-        to {
-            opacity: 0;
-            transform: translate3d(var(--animation-distance), 0, 0);
+                to {
+                    opacity: 0;
+                    transform: translate3d(var(--animation-distance), 0, 0);
+                }
+            }
+
+            // Styles
+            animation-name: fade-out-left;
         }
     }
-
-    // Styles
-    animation-name: fade-out-left;
 }

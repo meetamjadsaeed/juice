@@ -4,24 +4,30 @@
     JUICE -> ANIMATIONS -> FLIP -> ENTRANCE -> FLIP IN LEFT
     ========================================================================  */
 
-.flip-in-left {
-    // Variables
-    --animation-delay: var(--default-animation-flip-in-delay);
-    --animation-duration: var(--default-animation-flip-in-duration);
-    --animation-easing: var(--default-animation-flip-in-easing);
-    --animation-perspective: var(--default-animation-flip-in-perspective);
+// Check if the animations with flip in left should be imported
+@if $import-animations and $import-animation-flip-in-left {
+    .has-animation {
+        // Nested selectors
+        &.flip-in-left {
+            // Variables
+            --animation-delay: var(--default-animation-flip-in-delay);
+            --animation-duration: var(--default-animation-flip-in-duration);
+            --animation-easing: var(--default-animation-flip-in-easing);
+            --animation-perspective: var(--default-animation-flip-in-perspective);
 
-    // Keyframes
-    @keyframes flip-in-left {
-        from {
-            transform: perspective(var(--animation-perspective)) rotate3d(0, 1, 0, -90deg);
-        }
+            // Keyframes
+            @keyframes flip-in-left {
+                from {
+                    transform: perspective(var(--animation-perspective)) rotate3d(0, 1, 0, -90deg);
+                }
 
-        to {
-            transform: perspective(var(--animation-perspective)) rotate3d(0, 1, 0, 0deg);
+                to {
+                    transform: perspective(var(--animation-perspective)) rotate3d(0, 1, 0, 0deg);
+                }
+            }
+
+            // Styles
+            animation-name: flip-in-left;
         }
     }
-
-    // Styles
-    animation-name: flip-in-left;
 }

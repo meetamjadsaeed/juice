@@ -4,24 +4,30 @@
     JUICE -> ANIMATIONS -> ATTRACTORS -> FLASH
     ========================================================================  */
 
-.flash {
-    // Variables
-    --animation-delay: var(--default-animation-flash-delay);
-    --animation-duration: var(--default-animation-flash-duration);
-    --animation-easing: var(--default-animation-flash-easing);
-    --animation-iteration-count: var(--default-animation-flash-iteration-count);
+// Check if the animations with flash should be imported
+@if $import-animations and $import-animation-flash {
+    .has-animation {
+        // Nested selectors
+        &.flash {
+            // Variables
+            --animation-delay: var(--default-animation-flash-delay);
+            --animation-duration: var(--default-animation-flash-duration);
+            --animation-easing: var(--default-animation-flash-easing);
+            --animation-iteration-count: var(--default-animation-flash-iteration-count);
 
-    // Keyframes
-    @keyframes flash {
-        from, to {
-            opacity: 1;
-        }
+            // Keyframes
+            @keyframes flash {
+                from, to {
+                    opacity: 1;
+                }
 
-    	50% {
-            opacity: 0.2;
+            	50% {
+                    opacity: 0.2;
+                }
+            }
+
+            // Styles
+            animation-name: flash;
         }
     }
-
-    // Styles
-    animation-name: flash;
 }

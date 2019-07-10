@@ -4,120 +4,123 @@
     JUICE -> ELEMENTS -> NAVIGATION -> BREADCRUMB
     ========================================================================  */
 
-.breadcrumb {
-    // Variables
-    --content-spacing: calc(var(--default-content-spacing) / 2);
-    --element-spacing: var(--default-element-spacing);
-    --font-color: inherit;
-    --font-size: var(--default-font-size);
-    --separator: '\203A';
+// Check if the elements with breadcrumb should be imported
+@if $import-elements and $import-element-breadcrumb {
+    .breadcrumb {
+        // Variables
+        --content-spacing: calc(var(--default-content-spacing) / 2);
+        --element-spacing: var(--default-element-spacing);
+        --font-color: inherit;
+        --font-size: var(--default-font-size);
+        --separator: '\203A';
 
-    // Styles
-    color: var(--font-color);
-    display: flex;
-    flex-wrap: wrap;
-    font-size: var(--font-size);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-bottom: var(--element-spacing);
+        // Styles
+        color: var(--font-color);
+        display: flex;
+        flex-wrap: wrap;
+        font-size: var(--font-size);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-bottom: var(--element-spacing);
 
-    // Check if the breadcrumb alignment modifiers should be declared
-    @if $breadcrumb-alignment-modifiers {
-        // Modifiers
-        &.breadcrumb--center {
-            justify-content: center;
-        }
+        // Check if the breadcrumb alignment modifiers should be declared
+        @if $breadcrumb-alignment-modifiers {
+            // Modifiers
+            &.breadcrumb--center {
+                justify-content: center;
+            }
 
-        &.breadcrumb--right {
-            justify-content: flex-end;
-        }
-    }
-
-    // Check if the breadcrumb angle separator modifier should be declared
-    @if $breadcrumb-angle-separator-modifier {
-        // Modifiers
-        &.breadcrumb--angle {
-            --separator: '\203A';
-        }
-    }
-
-    // Check if the breadcrumb arrow separator modifier should be declared
-    @if $breadcrumb-arrow-separator-modifier {
-        // Modifiers
-        &.breadcrumb--arrow {
-            --separator: '\02192';
-        }
-    }
-
-    // Check if the breadcrumb bullet separator modifier should be declared
-    @if $breadcrumb-bullet-separator-modifier {
-        // Modifiers
-        &.breadcrumb--bullet {
-            --separator: '\02022';
-        }
-    }
-
-    // Check if the breadcrumb slash separator modifier should be declared
-    @if $breadcrumb-slash-separator-modifier {
-        // Modifiers
-        &.breadcrumb--slash {
-            --separator: '\0002f';
-        }
-    }
-
-    // Nested selectors
-    li {
-        display: inline-flex;
-        position: relative;
-
-        // Pseudo classes
-        &:first-child {
-            // Pseudo elements
-            &::before {
-                content: '';
-                font-size: var(--font-size);
-                padding: 0;
+            &.breadcrumb--right {
+                justify-content: flex-end;
             }
         }
 
-        // Pseudo elements
-        &::before {
-            content: var(--separator);
-            padding: 0 var(--content-spacing);
-            opacity: 0.5;
+        // Check if the breadcrumb angle separator modifier should be declared
+        @if $breadcrumb-angle-separator-modifier {
+            // Modifiers
+            &.breadcrumb--angle {
+                --separator: '\203A';
+            }
+        }
+
+        // Check if the breadcrumb arrow separator modifier should be declared
+        @if $breadcrumb-arrow-separator-modifier {
+            // Modifiers
+            &.breadcrumb--arrow {
+                --separator: '\02192';
+            }
+        }
+
+        // Check if the breadcrumb bullet separator modifier should be declared
+        @if $breadcrumb-bullet-separator-modifier {
+            // Modifiers
+            &.breadcrumb--bullet {
+                --separator: '\02022';
+            }
+        }
+
+        // Check if the breadcrumb slash separator modifier should be declared
+        @if $breadcrumb-slash-separator-modifier {
+            // Modifiers
+            &.breadcrumb--slash {
+                --separator: '\0002f';
+            }
         }
 
         // Nested selectors
-        a {
-            // Variables
-            --font-color: var(--default-link-color);
-
-            // Styles
-            color: var(--font-color);
+        li {
+            display: inline-flex;
+            position: relative;
 
             // Pseudo classes
-            &:hover {
-                // Variables
-                --font-color: var(--default-link-color-hover);
+            &:first-child {
+                // Pseudo elements
+                &::before {
+                    content: '';
+                    font-size: var(--font-size);
+                    padding: 0;
+                }
             }
 
-            &:focus {
-                // Variables
-                --font-color: var(--default-link-color-focus);
+            // Pseudo elements
+            &::before {
+                content: var(--separator);
+                padding: 0 var(--content-spacing);
+                opacity: 0.5;
             }
 
-            &:active {
+            // Nested selectors
+            a {
                 // Variables
-                --font-color: var(--default-link-color-active);
-            }
-        }
+                --font-color: var(--default-link-color);
 
-        .breadcrumb__icon {
-            align-items: center;
-            display: inline-flex;
-            justify-content: center;
-            margin-right: calc(var(--content-spacing) / 2);
+                // Styles
+                color: var(--font-color);
+
+                // Pseudo classes
+                &:hover {
+                    // Variables
+                    --font-color: var(--default-link-color-hover);
+                }
+
+                &:focus {
+                    // Variables
+                    --font-color: var(--default-link-color-focus);
+                }
+
+                &:active {
+                    // Variables
+                    --font-color: var(--default-link-color-active);
+                }
+            }
+
+            .breadcrumb__icon {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                margin-right: calc(var(--content-spacing) / 2);
+            }
         }
     }
 }

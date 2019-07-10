@@ -19,17 +19,17 @@
             $alpha: alpha($color);
 
             // Cycle through all of the variations
-            @each $variation, $amount in $variations {
+            @each $variation-name, $color-variation in $color-variations {
                 // Check if the variation contains the lighten string
-                @if str-index($variation, 'lighten') != null {
+                @if str-index($variation-name, 'lighten') != null {
                     // Set the color variation
-                    --color-#{$color-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, #{$alpha});
+                    --color-#{$color-name}-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness + $color-variation}, #{$alpha});
                 }
 
                 // Check if the variation contains the darken string
-                @if str-index($variation, 'darken') != null {
+                @if str-index($variation-name, 'darken') != null {
                     // Set the color variation
-                    --color-#{$color-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, #{$alpha});
+                    --color-#{$color-name}-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness - $color-variation}, #{$alpha});
                 }
             }
 
@@ -37,17 +37,17 @@
             --color-#{$color-name}-accessibility-focus: hsla(#{$hue}, #{$saturation}, #{$lightness}, 0.5);
 
             // Cycle through all of the variations
-            @each $variation, $amount in $variations {
+            @each $variation-name, $color-variation in $color-variations {
                 // Check if the variation contains the lighten string
-                @if str-index($variation, 'lighten') != null {
+                @if str-index($variation-name, 'lighten') != null {
                     // Set the accessibility focus variation color
-                    --color-#{$color-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, 0.5);
+                    --color-#{$color-name}-accessibility-focus-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness + $color-variation}, 0.5);
                 }
 
                 // Check if the variation contains the darken string
-                @if str-index($variation, 'darken') != null {
+                @if str-index($variation-name, 'darken') != null {
                     // Set the accessibility focus variation color
-                    --color-#{$color-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, 0.5);
+                    --color-#{$color-name}-accessibility-focus-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness - $color-variation}, 0.5);
                 }
             }
 
@@ -83,11 +83,11 @@
                     $text-alpha: alpha($font_color_light);
 
                     // Cycle through all of the variations
-                    @each $variation, $amount in $variations {
+                    @each $variation-name, $color-variation in $color-variations {
                         // Check if the variation contains the darken string
-                        @if str-index($variation, 'darken') != null {
+                        @if str-index($variation-name, 'darken') != null {
                             // Set the inverted text variation color
-                            --color-#{$color-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness - $amount}, #{$text-alpha});
+                            --color-#{$color-name}-inverted-text-#{$variation-name}: hsla(#{$text-hue}, 0%, #{$text-lightness - $color-variation}, #{$text-alpha});
                         }
                     }
                 } @else {
@@ -101,11 +101,11 @@
                     $text-alpha: alpha($font_color_dark);
 
                     // Cycle through all of the variations
-                    @each $variation, $amount in $variations {
+                    @each $variation-name, $color-variation in $color-variations {
                         // Check if the variation contains the lighten string
-                        @if str-index($variation, 'lighten') != null {
+                        @if str-index($variation-name, 'lighten') != null {
                             // Set the inverted text variation color
-                            --color-#{$color-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness + $amount}, #{$text-alpha});
+                            --color-#{$color-name}-inverted-text-#{$variation-name}: hsla(#{$text-hue}, 0%, #{$text-lightness + $color-variation}, #{$text-alpha});
                         }
                     }
                 }
@@ -127,17 +127,17 @@
             $alpha: alpha($color);
 
             // Cycle through all of the variations
-            @each $variation, $amount in $variations {
+            @each $variation-name, $color-variation in $color-variations {
                 // Check if the variation contains the lighten string
-                @if str-index($variation, 'lighten') != null {
+                @if str-index($variation-name, 'lighten') != null {
                     // Set the color variation
-                    --font-color-#{$font-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, #{$alpha});
+                    --font-color-#{$font-name}-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness + $color-variation}, #{$alpha});
                 }
 
                 // Check if the variation contains the darken string
-                @if str-index($variation, 'darken') != null {
+                @if str-index($variation-name, 'darken') != null {
                     // Set the color variation
-                    --font-color-#{$font-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, #{$alpha});
+                    --font-color-#{$font-name}-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness - $color-variation}, #{$alpha});
                 }
             }
         }
@@ -157,17 +157,17 @@
             $alpha: alpha($color);
 
             // Cycle through all of the variations
-            @each $variation, $amount in $variations {
+            @each $variation-name, $color-variation in $color-variations {
                 // Check if the variation contains the lighten string
-                @if str-index($variation, 'lighten') != null {
+                @if str-index($variation-name, 'lighten') != null {
                     // Set the color variation
-                    --feedback-color-#{$feedback-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, #{$alpha});
+                    --feedback-color-#{$feedback-name}-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness + $color-variation}, #{$alpha});
                 }
 
                 // Check if the variation contains the darken string
-                @if str-index($variation, 'darken') != null {
+                @if str-index($variation-name, 'darken') != null {
                     // Set the color variation
-                    --feedback-color-#{$feedback-name}-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, #{$alpha});
+                    --feedback-color-#{$feedback-name}-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness - $color-variation}, #{$alpha});
                 }
             }
 
@@ -175,17 +175,17 @@
             --feedback-color-#{$feedback-name}-accessibility-focus: hsla(#{$hue}, #{$saturation}, #{$lightness}, 0.5);
 
             // Cycle through all of the variations
-            @each $variation, $amount in $variations {
+            @each $variation-name, $color-variation in $color-variations {
                 // Check if the variation contains the lighten string
-                @if str-index($variation, 'lighten') != null {
+                @if str-index($variation-name, 'lighten') != null {
                     // Set the accessibility focus variation color
-                    --feedback-color-#{$feedback-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness + $amount}, 0.5);
+                    --feedback-color-#{$feedback-name}-accessibility-focus-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness + $color-variation}, 0.5);
                 }
 
                 // Check if the variation contains the darken string
-                @if str-index($variation, 'darken') != null {
+                @if str-index($variation-name, 'darken') != null {
                     // Set the accessibility focus variation color
-                    --feedback-color-#{$feedback-name}-accessibility-focus-#{$variation}: hsla(#{$hue}, #{$saturation}, #{$lightness - $amount}, 0.5);
+                    --feedback-color-#{$feedback-name}-accessibility-focus-#{$variation-name}: hsla(#{$hue}, #{$saturation}, #{$lightness - $color-variation}, 0.5);
                 }
             }
 
@@ -221,11 +221,11 @@
                     $text-alpha: alpha($font_color_light);
 
                     // Cycle through all of the variations
-                    @each $variation, $amount in $variations {
+                    @each $variation-name, $color-variation in $color-variations {
                         // Check if the variation contains the darken string
-                        @if str-index($variation, 'darken') != null {
+                        @if str-index($variation-name, 'darken') != null {
                             // Set the inverted text variation color
-                            --feedback-color-#{$feedback-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness - $amount}, #{$text-alpha});
+                            --feedback-color-#{$feedback-name}-inverted-text-#{$variation-name}: hsla(#{$text-hue}, 0%, #{$text-lightness - $color-variation}, #{$text-alpha});
                         }
                     }
                 } @else {
@@ -239,11 +239,11 @@
                     $text-alpha: alpha($font_color_dark);
 
                     // Cycle through all of the variations
-                    @each $variation, $amount in $variations {
+                    @each $variation-name, $color-variation in $color-variations {
                         // Check if the variation contains the lighten string
-                        @if str-index($variation, 'lighten') != null {
+                        @if str-index($variation-name, 'lighten') != null {
                             // Set the inverted text variation color
-                            --feedback-color-#{$feedback-name}-inverted-text-#{$variation}: hsla(#{$text-hue}, 0%, #{$text-lightness + $amount}, #{$text-alpha});
+                            --feedback-color-#{$feedback-name}-inverted-text-#{$variation-name}: hsla(#{$text-hue}, 0%, #{$text-lightness + $color-variation}, #{$text-alpha});
                         }
                     }
                 }

@@ -1,0 +1,53 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> COMPONENTS
+    ========================================================================  */
+
+// Accordion
+$accordion-color-modifiers: true !default;
+$accordion-size-modifiers: true !default;
+$accordion-size-modifier-breakpoints: true !default;
+$accordion-spaced-modifier: true !default;
+
+// Card
+$card-size-modifiers: true !default;
+$card-size-modifier-breakpoints: true !default;
+
+// Chip
+$chip-color-modifiers: true !default;
+$chip-feedback-modifiers: true !default;
+$chip-pill-modifier: true !default;
+$chip-size-modifiers: true !default;
+$chip-size-modifier-breakpoints: true !default;
+
+// Dropdown
+$dropdown-alignment-modifiers: true !default;
+$dropdown-megamenu-modifier: true !default;
+$dropdown-size-modifiers: true !default;
+$dropdown-size-modifier-breakpoints: true !default;
+
+// Notice
+$notice-feedback-modifiers: true !default;
+$notice-size-modifiers: true !default;
+$notice-size-modifier-breakpoints: true !default;
+
+// Panel
+$panel-color-modifiers: true !default;
+$panel-feedback-modifiers: true !default;
+$panel-size-modifiers: true !default;
+$panel-size-modifier-breakpoints: true !default;
+
+// Popover
+$popover-alignment-modifiers: true !default;
+$popover-color-modifiers: true !default;
+$popover-feedback-modifiers: true !default;
+$popover-size-modifiers: true !default;
+$popover-size-modifier-breakpoints: true !default;
+
+// Tooltip
+$tooltip-alignment-modifiers: true !default;
+$tooltip-color-modifiers: true !default;
+$tooltip-feedback-modifiers: true !default;
+$tooltip-size-modifiers: true !default;
+$tooltip-size-modifier-breakpoints: true !default;

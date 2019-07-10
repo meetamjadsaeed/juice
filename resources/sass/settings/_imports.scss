@@ -1,0 +1,146 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> IMPORTS -> ANIMATIONS
+    ========================================================================  */
+
+// Global
+$import-animations: true !default;
+
+// Attractors
+$import-animation-flash: true !default;
+$import-animation-pulse: true !default;
+$import-animation-shake: true !default;
+$import-animation-vibrate: true !default;
+
+// Bounce entrances
+$import-animation-bounce-in-down: true !default;
+$import-animation-bounce-in-left: true !default;
+$import-animation-bounce-in-right: true !default;
+$import-animation-bounce-in-up: true !default;
+$import-animation-bounce-in: true !default;
+
+// Bounce exits
+$import-animation-bounce-out-down: true !default;
+$import-animation-bounce-out-left: true !default;
+$import-animation-bounce-out-right: true !default;
+$import-animation-bounce-out-up: true !default;
+$import-animation-bounce-out: true !default;
+
+// Fade entrances
+$import-animation-fade-in-down: true !default;
+$import-animation-fade-in-left: true !default;
+$import-animation-fade-in-right: true !default;
+$import-animation-fade-in-up: true !default;
+$import-animation-fade-in: true !default;
+
+// Fade exits
+$import-animation-fade-out-down: true !default;
+$import-animation-fade-out-left: true !default;
+$import-animation-fade-out-right: true !default;
+$import-animation-fade-out-up: true !default;
+$import-animation-fade-out: true !default;
+
+// Flip entrances
+$import-animation-flip-in-down: true !default;
+$import-animation-flip-in-left: true !default;
+$import-animation-flip-in-right: true !default;
+$import-animation-flip-in-up: true !default;
+
+// Flip exits
+$import-animation-flip-out-down: true !default;
+$import-animation-flip-out-left: true !default;
+$import-animation-flip-out-right: true !default;
+$import-animation-flip-out-up: true !default;
+
+// Slide entrances
+$import-animation-slide-in-down: true !default;
+$import-animation-slide-in-left: true !default;
+$import-animation-slide-in-right: true !default;
+$import-animation-slide-in-up: true !default;
+
+// Slide exits
+$import-animation-slide-out-down: true !default;
+$import-animation-slide-out-left: true !default;
+$import-animation-slide-out-right: true !default;
+$import-animation-slide-out-up: true !default;
+
+// Zoom entrances
+$import-animation-zoom-in-down: true !default;
+$import-animation-zoom-in-left: true !default;
+$import-animation-zoom-in-right: true !default;
+$import-animation-zoom-in-up: true !default;
+$import-animation-zoom-in: true !default;
+
+// Zoom exits
+$import-animation-zoom-out-down: true !default;
+$import-animation-zoom-out-left: true !default;
+$import-animation-zoom-out-right: true !default;
+$import-animation-zoom-out-up: true !default;
+$import-animation-zoom-out: true !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> IMPORTS -> COMPONENTS
+    ========================================================================  */
+
+// Global
+$import-components: true !default;
+
+// Components
+$import-component-accordion: true !default;
+$import-component-card: true !default;
+$import-component-chip: true !default;
+$import-component-dropdown: true !default;
+$import-component-notice: true !default;
+$import-component-panel: true !default;
+$import-component-popover: true !default;
+$import-component-tooltip: true !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> SASS -> SETTINGS -> IMPORTS -> ELEMENTS
+    ========================================================================  */
+
+// Global
+$import-elements: true !default;
+
+// Elements
+$import-element-abbr: true !default;
+$import-element-blockquote: true !default;
+$import-element-body: true !default;
+$import-element-box: true !default;
+$import-element-breadcrumb: true !default;
+$import-element-button: true !default;
+$import-element-button-group: true !default;
+$import-element-code: true !default;
+$import-element-container: true !default;
+$import-element-custom-checkbox: true !default;
+$import-element-custom-fieldset: true !default;
+$import-element-custom-file: true !default;
+$import-element-custom-password: true !default;
+$import-element-custom-radio: true !default;
+$import-element-grid: true !default;
+$import-element-heading: true !default;
+$import-element-hero: true !default;
+$import-element-horizontal-rule: true !default;
+$import-element-image: true !default;
+$import-element-input: true !default;
+$import-element-kbd: true !default;
+$import-element-label: true !default;
+$import-element-link: true !default;
+$import-element-list: true !default;
+$import-element-mark: true !default;
+$import-element-media-object: true !default;
+$import-element-navbar: true !default;
+$import-element-overlay: true !default;
+$import-element-pagination: true !default;
+$import-element-paragraph: true !default;
+$import-element-pre: true !default;
+$import-element-samp: true !default;
+$import-element-select: true !default;
+$import-element-shield: true !default;
+$import-element-spinner: true !default;
+$import-element-table: true !default;
+$import-element-textarea: true !default;
+$import-element-var: true !default;

@@ -4,34 +4,40 @@
     JUICE -> ANIMATIONS -> BOUNCE -> ENTRANCE -> BOUNCE IN RIGHT
     ========================================================================  */
 
-.bounce-in-right {
-    // Variables
-    --animation-delay: var(--default-animation-bounce-in-delay);
-    --animation-distance: var(--default-animation-bounce-in-distance);
-    --animation-duration: var(--default-animation-bounce-in-duration);
-    --animation-easing: var(--default-animation-bounce-in-easing);
+// Check if the animations with bounce in right should be imported
+@if $import-animations and $import-animation-bounce-in-right {
+    .has-animation {
+        // Nested selectors
+        &.bounce-in-right {
+            // Variables
+            --animation-delay: var(--default-animation-bounce-in-delay);
+            --animation-distance: var(--default-animation-bounce-in-distance);
+            --animation-duration: var(--default-animation-bounce-in-duration);
+            --animation-easing: var(--default-animation-bounce-in-easing);
 
-    // Keyframes
-    @keyframes bounce-in-right {
-        from {
-            opacity: 0;
-            transform: translate3d(calc(0px - var(--animation-distance)), 0, 0);
-        }
+            // Keyframes
+            @keyframes bounce-in-right {
+                from {
+                    opacity: 0;
+                    transform: translate3d(calc(0px - var(--animation-distance)), 0, 0);
+                }
 
-        50% {
-            opacity: 1;
-            transform: translate3d(calc(0px + calc(var(--animation-distance) * 2.5 / 100)), 0, 0);
-        }
+                50% {
+                    opacity: 1;
+                    transform: translate3d(calc(0px + calc(var(--animation-distance) * 2.5 / 100)), 0, 0);
+                }
 
-        70% {
-            transform: translate3d(calc(0px - calc(var(--animation-distance) * 1.5 / 100)), 0, 0);
-        }
+                70% {
+                    transform: translate3d(calc(0px - calc(var(--animation-distance) * 1.5 / 100)), 0, 0);
+                }
 
-        to {
-            transform: translate3d(0, 0, 0);
+                to {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            // Styles
+            animation-name: bounce-in-right;
         }
     }
-
-    // Styles
-    animation-name: bounce-in-right;
 }

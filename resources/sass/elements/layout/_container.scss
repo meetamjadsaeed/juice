@@ -4,32 +4,35 @@
     JUICE -> ELEMENTS -> LAYOUT -> CONTAINER
     ========================================================================  */
 
-.container {
-    // Variables
-    --gutter: var(--default-content-spacing);
-    --max-width: 1200px;
+// Check if the elements with container should be imported
+@if $import-elements and $import-element-container {
+    .container {
+        // Variables
+        --gutter: var(--default-content-spacing);
+        --max-width: 1200px;
 
-    // Styles
-    display: block;
-    margin: 0 auto;
-    max-width: var(--max-width);
-    min-height: 1px;
-    padding: 0 var(--gutter);
-    position: relative;
-    width: 100%;
+        // Styles
+        display: block;
+        margin: 0 auto;
+        max-width: var(--max-width);
+        min-height: 1px;
+        padding: 0 var(--gutter);
+        position: relative;
+        width: 100%;
 
-    // Modifiers
-    &.container--seamless {
-        padding: 0;
-    }
+        // Modifiers
+        &.container--seamless {
+            padding: 0;
+        }
 
-    // Cycle through all of the breakpoints
-    @each $breakpoint-name, $breakpoint in $breakpoints {
-        // Breakpoint
-        @include breakpoint($breakpoint-name) {
-            // Modifiers
-            &.container--seamless\@#{$breakpoint-name} {
-                padding: 0;
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint in $breakpoints {
+            // Breakpoint
+            @include breakpoint($breakpoint-name) {
+                // Modifiers
+                &.container--seamless\@#{$breakpoint-name} {
+                    padding: 0;
+                }
             }
         }
     }

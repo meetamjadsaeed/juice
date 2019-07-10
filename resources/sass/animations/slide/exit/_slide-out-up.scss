@@ -4,24 +4,30 @@
     JUICE -> ANIMATIONS -> SLIDE -> EXIT -> SLIDE OUT UP
     ========================================================================  */
 
-.slide-out-up {
-    // Variables
-    --animation-delay: var(--default-animation-slide-out-delay);
-    --animation-distance: calc(0px - var(--default-animation-slide-out-distance));
-    --animation-duration: var(--default-animation-slide-out-duration);
-    --animation-easing: var(--default-animation-slide-out-easing);
+// Check if the animations with slide out up should be imported
+@if $import-animations and $import-animation-slide-out-up {
+    .has-animation {
+        // Nested selectors
+        &.slide-out-up {
+            // Variables
+            --animation-delay: var(--default-animation-slide-out-delay);
+            --animation-distance: calc(0px - var(--default-animation-slide-out-distance));
+            --animation-duration: var(--default-animation-slide-out-duration);
+            --animation-easing: var(--default-animation-slide-out-easing);
 
-    // Keyframes
-    @keyframes slide-out-up {
-        from {
-            transform: translate3d(0, 0, 0);
-        }
+            // Keyframes
+            @keyframes slide-out-up {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
 
-        to {
-            transform: translate3d(0, var(--animation-distance), 0);
+                to {
+                    transform: translate3d(0, var(--animation-distance), 0);
+                }
+            }
+
+            // Styles
+            animation-name: slide-out-up;
         }
     }
-
-    // Styles
-    animation-name: slide-out-up;
 }

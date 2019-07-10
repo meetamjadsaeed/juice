@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> FRAMEWORK -> BODY
+    ========================================================================  */
+
+body {
+    // Variables
+    --background-color: hsla(0, 0%, 99%, 1);
+    --selection-background-color: var(--color-primary);
+    --selection-font-color: var(--color-white);
+    --selection-text-shadow: var(--color-black);
+
+    // Styles
+    background-color: var(--background-color);
+
+    // Pseudo elements
+    ::-moz-selection {
+        background-color: var(--selection-background-color);
+        color: var(--selection-font-color);
+        text-shadow: 1px 1px var(--selection-text-shadow);
+    }
+
+    ::selection {
+        background-color: var(--selection-background-color);
+        color: var(--selection-font-color);
+        text-shadow: 1px 1px var(--selection-text-shadow);
+    }
+}

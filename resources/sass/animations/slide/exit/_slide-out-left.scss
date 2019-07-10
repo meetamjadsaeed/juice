@@ -4,24 +4,30 @@
     JUICE -> ANIMATIONS -> SLIDE -> EXIT -> SLIDE OUT LEFT
     ========================================================================  */
 
-.slide-out-left {
-    // Variables
-    --animation-delay: var(--default-animation-slide-out-delay);
-    --animation-distance: calc(0px - var(--default-animation-slide-out-distance));
-    --animation-duration: var(--default-animation-slide-out-duration);
-    --animation-easing: var(--default-animation-slide-out-easing);
+// Check if the animations with slide out left should be imported
+@if $import-animations and $import-animation-slide-out-left {
+    .has-animation {
+        // Nested selectors
+        &.slide-out-left {
+            // Variables
+            --animation-delay: var(--default-animation-slide-out-delay);
+            --animation-distance: calc(0px - var(--default-animation-slide-out-distance));
+            --animation-duration: var(--default-animation-slide-out-duration);
+            --animation-easing: var(--default-animation-slide-out-easing);
 
-    // Keyframes
-    @keyframes slide-out-left {
-        from {
-            transform: translate3d(0, 0, 0);
-        }
+            // Keyframes
+            @keyframes slide-out-left {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
 
-        to {
-            transform: translate3d(var(--animation-distance), 0, 0);
+                to {
+                    transform: translate3d(var(--animation-distance), 0, 0);
+                }
+            }
+
+            // Styles
+            animation-name: slide-out-left;
         }
     }
-
-    // Styles
-    animation-name: slide-out-left;
 }
