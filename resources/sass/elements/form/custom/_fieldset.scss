@@ -24,39 +24,6 @@
         display: flex;
         margin-bottom: var(--element-spacing);
 
-        // Nested selectors
-        #{$custom-fieldset-element} {
-            border-bottom-width: var(--border-width-bottom);
-            border-left-width: var(--border-width-divider);
-            border-right-width: var(--border-width-divider);
-            border-top-width: var(--border-width-top);
-            border-style: var(--border-style);
-            border-radius: 0;
-            margin-right: calc(0px - var(--border-width-divider));
-            margin-bottom: 0;
-            width: auto;
-
-            // Pseudo classes
-            &:first-child {
-                border-bottom-left-radius: var(--border-radius-bottom-left);
-                border-left-width: var(--border-width-left);
-                border-top-left-radius: var(--border-radius-top-left);
-            }
-
-            &:last-child {
-                border-bottom-right-radius: var(--border-radius-bottom-right);
-                border-right-width: var(--border-width-right);
-                border-top-right-radius: var(--border-radius-top-right);
-                margin-right: 0;
-            }
-
-            // Modifiers
-            &.custom-fieldset__spotlight {
-                flex-basis: 100%;
-                width: 100%;
-            }
-        }
-
         // Check if the custom fieldset size modifiers should be declared
         @if $custom-fieldset-size-modifiers {
             // Cycle through all of the sizes
@@ -167,6 +134,39 @@
                         }
                     }
                 }
+            }
+        }
+
+        // Nested selectors
+        #{$custom-fieldset-element} {
+            border-bottom-width: var(--border-width-bottom);
+            border-left-width: var(--border-width-divider);
+            border-right-width: var(--border-width-divider);
+            border-top-width: var(--border-width-top);
+            border-style: var(--border-style);
+            border-radius: 0;
+            margin-right: calc(0px - var(--border-width-divider));
+            margin-bottom: 0;
+            width: auto;
+
+            // Pseudo classes
+            &:first-child {
+                border-bottom-left-radius: var(--border-radius-bottom-left);
+                border-left-width: var(--border-width-left);
+                border-top-left-radius: var(--border-radius-top-left);
+            }
+
+            &:last-child {
+                border-bottom-right-radius: var(--border-radius-bottom-right);
+                border-right-width: var(--border-width-right);
+                border-top-right-radius: var(--border-radius-top-right);
+                margin-right: 0;
+            }
+
+            // Modifiers
+            &.custom-fieldset__spotlight {
+                flex-basis: 100%;
+                width: 100%;
             }
         }
     }
