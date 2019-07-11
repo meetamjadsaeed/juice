@@ -8,7 +8,7 @@
 @if $import-elements and $import-element-mark {
     mark {
         // Variables
-        --background-color: var(--color-yellow-lighten-2);
+        --background-color: hsla(51, 90%, 83%, 1);
         --border-color: transparent;
         --border-radius-bottom-left: 0;
         --border-radius-bottom-right: 0;
