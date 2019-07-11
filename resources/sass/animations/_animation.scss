@@ -14,23 +14,29 @@
         animation-timing-function: var(--animation-easing);
         backface-visibility: hidden;
 
-        // Start a for loop
-        @for $i from 1 through 20 {
-            // Modifiers
-            &[data-animation-duration="#{$i * 50}"] {
-                animation-duration: #{$i * 50}ms;
-            }
-
-            &[data-animation-delay="#{$i * 50}"] {
-                animation-delay: #{$i * 50}ms;
+        // Check if the animation delay modifiers should be declared
+        @if $animation-delay-modifiers {
+            // Cycle through all of the easings
+            @each $easing-name, $easing in $easings {
+                // Modifiers
+                &[data-animation-easing="#{$easing-name}"] {
+                    animation-timing-function: $easing;
+                }
             }
         }
 
-        // Cycle through all of the easings
-        @each $easing-name, $easing in $easings {
-            // Modifiers
-            &[data-animation-easing="#{$easing-name}"] {
-                animation-timing-function: $easing;
+        // Check if the animation duration modifiers should be declared
+        @if $animation-duration-modifiers {
+            // Start a for loop
+            @for $i from 1 through 20 {
+                // Modifiers
+                &[data-animation-duration="#{$i * 50}"] {
+                    animation-duration: #{$i * 50}ms;
+                }
+
+                &[data-animation-delay="#{$i * 50}"] {
+                    animation-delay: #{$i * 50}ms;
+                }
             }
         }
     }
