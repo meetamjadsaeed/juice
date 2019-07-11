@@ -21,59 +21,91 @@
 -----
 
 
+# v0.21.0-beta
+
+### New
+- Added animation settings
+    - Added animation delay modifier setting
+    - Added animation duration modifier setting
+
+### Updated
+- Updated shortcodes
+    - Added $heading shortcode
+    - Updated h1-h6 group declarations with shortcode
+- Updated abbr element
+    - Updated color modifier
+        - Added border-color variable
+        - Removed title prop modifier declaration
+- Updated horizontal rule element
+    - Updated color modifier
+        - Added border-color variable
+        - Removed duplicate border modifier declaration
+- Updated form elements
+    - Updated custom fieldset element
+        - Updated custom fieldset nested selector declaration location
+- Updated build directory
+
+### Fixed
+- Fix mark element
+    - Updated background-color variable value
+
+
+-----
+
+
 # v0.20.0-beta
 
 ### Updated
-- Update sass settings
-    - Add settings directory
-        - Add components.scss (previously in settings.scss)
-        - Add elements.scss (previously in settings.scss)
-        - Add imports.scss (previously in settings.scss)
-    - Add animation import settings
-    - Add component import settings
-    - Add element import settings
-    - Update $variations to $color-variations
-    - Update $variations declared location to maps.scss
-    - Remove $body-selection-pseudo-elements
-    - Remove $variation_amount
-    - Remove settings.scss
-- Update reset
-    - Add form element (previously in form core)
-    - Add fieldset element (previously in form core)
-- Update sass framework core
-    - Update core.scss to body.scss
-    - Update $selection-pseudo-elements settings variable name to $body-selection-pseudo-elements
-- Update password reveal component
-    - Update from a component to a plugin
-    - Update name to custom file
-- Update sass form elements
-    - Update form-control class to custom-fieldset
-        - Update form-control-element shortcode variable to custom-fieldset-element
-        - Update form-control-* settings variable names to custom-fieldset-*
-- Update shield element
-    - Update icon directory name to badge
-- Update spinner element
-    - Add spinner modifier settings
-    - Update core.scss to spinner.scss
-    - Update keyframe sass scope
-    - Update spinner directory to loading
-    - Remove dial.scss (now in spinner.scss)
-    - Remove ring.scss (now in spinner.scss)
-    - Remove spiral.scss (now in spinner.scss)
-    - Remove swoosh.scss (now in spinner.scss)
-    - Remove target.scss (now in spinner.scss)
-- Update typography elements
-    - Add code.scss (previously in preformatted.scss)
-    - Add kbd.scss (previously in prefromatted.scss)
-    - Add pre.scss (previously in prefromatted.scss)
-    - Add samp.scss (previously in preformatted.scss)
-    - Add var.scss (previously in preformatted.scss)
-    - Remove preformatted.scss
-- Update sass animations
-    - Update animation classes to be nested with has-animation
-    - Update core.scss to animation.scss
-- Update demo pages
-- Update build directory
+- Updated sass settings
+    - Added settings directory
+        - Added components.scss (previously in settings.scss)
+        - Added elements.scss (previously in settings.scss)
+        - Added imports.scss (previously in settings.scss)
+    - Added animation import settings
+    - Added component import settings
+    - Added element import settings
+    - Updated $variations to $color-variations
+    - Updated $variations declared location to maps.scss
+    - Removed $body-selection-pseudo-elements
+    - Removed $variation_amount
+    - Removed settings.scss
+- Updated reset
+    - Added form element (previously in form core)
+    - Added fieldset element (previously in form core)
+- Updated sass framework core
+    - Updated core.scss to body.scss
+    - Updated $selection-pseudo-elements settings variable name to $body-selection-pseudo-elements
+- Updated password reveal component
+    - Updated from a component to a plugin
+    - Updated name to custom file
+- Updated sass form elements
+    - Updated form-control class to custom-fieldset
+        - Updated form-control-element shortcode variable to custom-fieldset-element
+        - Updated form-control-* settings variable names to custom-fieldset-*
+- Updated shield element
+    - Updated icon directory name to badge
+- Updated spinner element
+    - Added spinner modifier settings
+    - Updated core.scss to spinner.scss
+    - Updated keyframe sass scope
+    - Updated spinner directory to loading
+    - Removed dial.scss (now in spinner.scss)
+    - Removed ring.scss (now in spinner.scss)
+    - Removed spiral.scss (now in spinner.scss)
+    - Removed swoosh.scss (now in spinner.scss)
+    - Removed target.scss (now in spinner.scss)
+- Updated typography elements
+    - Added code.scss (previously in preformatted.scss)
+    - Added kbd.scss (previously in prefromatted.scss)
+    - Added pre.scss (previously in prefromatted.scss)
+    - Added samp.scss (previously in preformatted.scss)
+    - Added var.scss (previously in preformatted.scss)
+    - Removed preformatted.scss
+- Updated sass animations
+    - Updated animation classes to be nested with has-animation
+    - Updated core.scss to animation.scss
+- Updated demo pages
+- Updated build directory
 
 
 
@@ -83,14 +115,14 @@
 # v0.19.2-beta
 
 ### Updated
-- Update package
-    - Update version 0.19.1-beta to 0.19.2-beta
+- Updated package
+    - Updated version 0.19.1-beta to 0.19.2-beta
     - Fix package files
-        - Add public directory
-        - Add resources directory
-        - Remove dist directory
-        - Remove sass directory
-        - Remove scripts directory
+        - Added public directory
+        - Added resources directory
+        - Removed dist directory
+        - Removed sass directory
+        - Removed scripts directory
 
 
 -----
@@ -517,8 +549,8 @@ more modularity to size/color modifiers and styles will be included.
 - Added custom reset.css
 
 ### Updated
-- Update build directory
-- Update demo pages
+- Updated build directory
+- Updated demo pages
 - Updated initialize variables file structure
 - Updated package
     - Added animate.css to dependencies
