@@ -19,10 +19,8 @@
             @each $color-name, $color in $colors {
                 // Modifiers: Colors
                 &.is-#{$color-name} {
-                    // Modifiers: Props
-                    &[title] {
-                        border-color: var(--color-#{$color-name});
-                    }
+                    // Variables
+                    --border-color: var(--color-#{$color-name});
                 }
             }
         }
