@@ -18,3 +18,13 @@ $custom-fieldset-element: '
     textarea,
     #{button}
 ' !default;
+
+// Set the headings
+$heading: '
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+' !default;

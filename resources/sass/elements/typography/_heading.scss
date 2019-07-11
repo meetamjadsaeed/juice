@@ -6,12 +6,7 @@
 
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    #{$heading} {
         // Variables
         --element-spacing: var(--default-element-spacing);
 
