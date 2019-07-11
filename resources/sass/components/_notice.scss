@@ -45,6 +45,7 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
+                    // Variables
                     --content-spacing: var(--default-content-spacing-#{$size});
                     --font-size: var(--default-font-size-#{$size});
                 }

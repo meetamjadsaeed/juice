@@ -40,6 +40,7 @@
         @if $breadcrumb-angle-separator-modifier {
             // Modifiers
             &.breadcrumb--angle {
+                // Variables
                 --separator: '\203A';
             }
         }
@@ -48,6 +49,7 @@
         @if $breadcrumb-arrow-separator-modifier {
             // Modifiers
             &.breadcrumb--arrow {
+                // Variables
                 --separator: '\02192';
             }
         }
@@ -56,6 +58,7 @@
         @if $breadcrumb-bullet-separator-modifier {
             // Modifiers
             &.breadcrumb--bullet {
+                // Variables
                 --separator: '\02022';
             }
         }
@@ -64,6 +67,7 @@
         @if $breadcrumb-slash-separator-modifier {
             // Modifiers
             &.breadcrumb--slash {
+                // Variables
                 --separator: '\0002f';
             }
         }

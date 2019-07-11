@@ -115,19 +115,19 @@
             @if $shield-feedback-modifiers {
                 // Cycle through all of the feedback colors
                 @each $feedback-name, $color in $feedback-colors {
-                // Modifiers: Feedback colors
-                &.has-#{$feedback-name} {
-                    // Variables
-                    --background-color: var(--feedback-color-#{$feedback-name});
-                    --border-color: var(--feedback-color-#{$feedback-name}-darken-3);
-                    --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+                    // Modifiers: Feedback colors
+                    &.has-#{$feedback-name} {
+                        // Variables
+                        --background-color: var(--feedback-color-#{$feedback-name});
+                        --border-color: var(--feedback-color-#{$feedback-name}-darken-3);
+                        --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
 
-                    // Nested selectors
-                    a {
-                        color: inherit;
+                        // Nested selectors
+                        a {
+                            color: inherit;
+                        }
                     }
                 }
-            }
             }
 
             // Nested selectors

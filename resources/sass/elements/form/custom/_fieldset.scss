@@ -151,10 +151,12 @@
 
                             // Pseudo classes
                             &:focus {
+                                // Variables
                                 --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
                             }
 
                             &:active {
+                                // Variables
                                 --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
                             }
 
