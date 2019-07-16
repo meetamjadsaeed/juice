@@ -112,9 +112,9 @@
         - Fixed duplicate remove callbacks
             - Added popover data checks to open method
             - Added is animating checks to close method
-        - Removedprivate method insertPopover
-        - Removedprivate method removePopover
-        - Removedfocus event listeners
+        - Removed private method insertPopover
+        - Removed private method removePopover
+        - Removed focus event listeners
 - Updated tooltip component
     - Added option animation
     - Added option animationClass
@@ -129,8 +129,8 @@
     - Updated is-animating class to is-animating-in and is-animating-out
     - Updated $container to $trigger
     - Updated parentNode removeChild chain with single remove
-    - Removedprivate method insertTooltip
-    - Removedprivate method removeTooltip
+    - Removed private method insertTooltip
+    - Removed private method removeTooltip
     - Fixed duplicate remove callbacks
         - Added is animating checks
 - Updated remover plugin
@@ -139,8 +139,8 @@
 - Updated smoothscroll plugin
     - Updated option historyBottom default value from #js-smooth-scroll-bottom to #bottom
     - Updated option historyTop default value from #js-smooth-scroll-top to #top
-    - Removedconstructor element parameter
-        - Removedplugin.element
+    - Removed constructor element parameter
+        - Removed plugin.element
 - Updated toggler plugin
     - Added option animationClass
 
