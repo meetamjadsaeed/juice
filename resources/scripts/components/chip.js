@@ -23,6 +23,10 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
+        animationRemove: 'fade-out',
+
         callbackInitializeBefore: () => {
             console.log('Chip: callbackInitializeBefore');
         },
@@ -47,7 +51,6 @@
         callbackDestroyAfter: () => {
             console.log('Chip: callbackDestroyAfter');
         },
-        removeAnimation: 'fade-out'
     };
 
     /**
@@ -70,6 +73,20 @@
     }
 
     /**
+     * Event handler to remove a chip when the chip remove is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickRemoveEventHandler = (event) => {
+        // Set the remove and chip
+        const $remove = event.currentTarget;
+        const $chip = $remove.closest('.chip');
+
+        // Remove the chip
+        plugin.this.remove($chip);
+    };
+
+    /**
      * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings.
      * @param  {object}  options   The user options.
@@ -87,22 +104,6 @@
 
         // Return the extended plugin settings
         return defaults;
-    };
-
-    /**
-     * Event handler to remove a chip when the chip remove is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickRemoveEventHandler = (event) => {
-        // Set the chip remove
-        const $remove = event.currentTarget;
-
-        // Set the chip
-        const $chip = $remove.closest('.chip');
-
-        // Remove the chip
-        plugin.this.remove($chip);
     };
 
     /**
@@ -128,17 +129,20 @@
             // Set the chips
             const $chips = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the chips
-            $chips.forEach(($chip) => {
-                // Set the chip remove
-                const $remove = $chip.querySelector('.js-chip-remove');
+            // Check if any chips exist
+            if ($chips) {
+                // Cycle through all of the chips
+                $chips.forEach(($chip) => {
+                    // Set the remove
+                    const $remove = $chip.querySelector('.js-chip-remove');
 
-                // Check if the chip remove exists
-                if ($chip.contains($remove)) {
-                    // Add a click event handler to the chip remove to remove the chip
-                    $remove.addEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Add a click event handler to the remove to remove the chip
+                        $remove.addEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -154,47 +158,44 @@
          * @return {void}
          */
         remove: ($chip, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the remove before callback
-                plugin.settings.callbackRemoveBefore.call();
-            }
+            // Check if the chip exists and isn't animating out
+            if ($chip && !$chip.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the remove before callback
+                    plugin.settings.callbackRemoveBefore.call();
+                }
 
-            // Set the chip remove animation
-            const remove_animation =
-                $chip.dataset.chipRemoveAnimation ||
-                plugin.settings.removeAnimation;
+                // Check if the chip is animated
+                if (plugin.settings.animation) {
+                    // Set the chip remove animation
+                    const remove_animation = $chip.dataset.chipAnimationRemove || plugin.settings.animationRemove;
 
-            // Check if the remove animation is set
-            if (remove_animation && remove_animation != 'none') {
-                // Add the animating state hook to the chip
-                $chip.classList.add('is-animating');
+                    // Set the chip animation classes
+                    $chip.classList.add('is-animating-out', plugin.settings.animationClass, remove_animation);
 
-                // Add the animation classes to the chip
-                $chip.classList.add('has-animation');
-                $chip.classList.add(remove_animation);
+                    // Add an animation end event listener to the chip
+                    $chip.addEventListener('animationend', () => {
+                        // Remove the chip
+                        $chip.remove();
 
-                // Add an animation end event listener to the chip
-                $chip.addEventListener('animationend', () => {
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the remove after callback
+                            plugin.settings.callbackRemoveAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
                     // Remove the chip
-                    $chip.parentNode.removeChild($chip);
+                    $chip.remove();
 
                     // Check if the callbacks should not be suppressed
                     if (!silent) {
                         // Call the remove after callback
                         plugin.settings.callbackRemoveAfter.call();
                     }
-                }, {
-                    once: true
-                });
-            } else {
-                // Remove the chip
-                $chip.parentNode.removeChild($chip);
-
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove after callback
-                    plugin.settings.callbackRemoveAfter.call();
                 }
             }
         },
@@ -239,17 +240,20 @@
             // Set the chips
             const $chips = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the chips
-            $chips.forEach(($chip) => {
-                // Set the chip remove
-                const $remove = $chip.querySelector('.js-chip-remove');
+            // Check if any chips exist
+            if ($chips) {
+                // Cycle through all of the chips
+                $chips.forEach(($chip) => {
+                    // Set the remove
+                    const $remove = $chip.querySelector('.js-chip-remove');
 
-                // Check if the chip remove exists
-                if ($chip.contains($remove)) {
-                    // Remove the click event handler from the chip remove
-                    $remove.removeEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Remove the click event handler from the remove
+                        $remove.removeEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

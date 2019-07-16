@@ -29,7 +29,7 @@
         --box-shadow: var(--default-box-shadow);
         --content-spacing: calc(var(--default-content-spacing) / 2);
         --font-color: var(--font-color-default);
-        --font-size: calc(var(--default-font-size) - 0.2em);
+        --font-size: calc(var(--default-font-size) - 0.1em);
         --max-width: 300px;
         --min-width: 200px;
         --offset: 5px;
@@ -72,7 +72,7 @@
                 &.is-#{$size} {
                     // Variables
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
-                    --font-size: calc(var(--default-font-size-#{$size}) - 0.2em);
+                    --font-size: calc(var(--default-font-size-#{$size}) - 0.1em);
                 }
 
                 // Check if the popover size modifier breakpoints should be declared
@@ -85,7 +85,7 @@
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Variables
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
-                                --font-size: calc(var(--default-font-size-#{$size}) - 0.2em);
+                                --font-size: calc(var(--default-font-size-#{$size}) - 0.1em);
                             }
                         }
                     }
@@ -233,8 +233,22 @@
                 border-top-right-radius: var(--border-radius-top-right);
                 border-top-width: var(--border-width-top);
                 color: var(--font-color);
+                display: flex;
                 font-weight: bold;
                 padding: var(--content-spacing);
+
+                // Nested selectors
+                .popover__heading {
+                    align-items: center;
+                    display: flex;
+                    flex-grow: 1;
+                    font-weight: bold;
+                }
+
+                .popover__actions {
+                    align-items: center;
+                    display: flex;
+                }
             }
 
             .popover__body {

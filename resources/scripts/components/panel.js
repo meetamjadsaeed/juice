@@ -23,6 +23,12 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
+        animationRemove: 'fade-out',
+        toggle: 'slide',
+        toggleDuration: 200,
+
         callbackInitializeBefore: () => {
             console.log('Panel: callbackInitializeBefore');
         },
@@ -52,10 +58,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Panel: callbackDestroyAfter');
-        },
-        toggleAnimation: 'slide',
-        toggleAnimationDuration: 200,
-        removeAnimation: 'fade-out'
+        }
     };
 
     /**
@@ -78,6 +81,34 @@
     }
 
     /**
+     * Event handler to remove a panel when the panel remove is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickRemoveEventHandler = (event) => {
+        // Set the remove and panel
+        const $remove = event.currentTarget;
+        const $panel = $remove.closest('.panel');
+
+        // Remove the panel
+        plugin.this.remove($panel);
+    };
+
+    /**
+     * Event handler to toggle a panel when the panel toggle is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickToggleEventHandler = (event) => {
+        // Set the remove and panel
+        const $remove = event.currentTarget;
+        const $panel = $remove.closest('.panel');
+
+        // Toggle the panel
+        plugin.this.toggle($panel);
+    };
+
+    /**
      * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings.
      * @param  {object}  options   The user options.
@@ -95,38 +126,6 @@
 
         // Return the extended plugin settings
         return defaults;
-    };
-
-    /**
-     * Event handler to toggle a panel when the panel toggle is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickToggleEventHandler = (event) => {
-        // Set the panel remove
-        const $remove = event.currentTarget;
-
-        // Set the panel
-        const $panel = $remove.closest('.panel');
-
-        // Toggle the panel
-        plugin.this.toggle($panel);
-    };
-
-    /**
-     * Event handler to remove a panel when the panel remove is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickRemoveEventHandler = (event) => {
-        // Set the panel remove
-        const $remove = event.currentTarget;
-
-        // Set the panel
-        const $panel = $remove.closest('.panel');
-
-        // Remove the panel
-        plugin.this.remove($panel);
     };
 
     /**
@@ -152,30 +151,33 @@
             // Set the panels
             const $panels = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the panels
-            $panels.forEach(($panel) => {
-                // Set the panel toggle and remove
-                const $toggle = $panel.querySelector('.js-panel-toggle');
-                const $remove = $panel.querySelector('.js-panel-remove');
+            // Check if any panels exist
+            if ($panels) {
+                // Cycle through all of the panels
+                $panels.forEach(($panel) => {
+                    // Set the toggle and remove
+                    const $toggle = $panel.querySelector('.js-panel-toggle');
+                    const $remove = $panel.querySelector('.js-panel-remove');
 
-                // Check if the panel doesn't have either the expanded or collapsed state hooks
-                if (!$panel.classList.contains('is-expanded') && !$panel.classList.contains('is-collapsed')) {
-                    // Add the expanded state hook to the panel
-                    $panel.classList.add('is-expanded');
-                }
+                    // Check if the panel doesn't have either the expanded or collapsed state hooks
+                    if (!$panel.classList.contains('is-expanded') && !$panel.classList.contains('is-collapsed')) {
+                        // Add the expanded state hook to the panel
+                        $panel.classList.add('is-expanded');
+                    }
 
-                // Check if the panel toggle exists
-                if ($panel.contains($toggle)) {
-                    // Add a click event handler to the panel toggle to toggle the panel
-                    $toggle.addEventListener('click', clickToggleEventHandler);
-                }
+                    // Check if the toggle exists
+                    if ($toggle) {
+                        // Add a click event handler to the toggle to toggle the panel
+                        $toggle.addEventListener('click', clickToggleEventHandler);
+                    }
 
-                // Check if the panel remove exists
-                if ($panel.contains($remove)) {
-                    // Add a click event handler to the panel remove to remove the panel
-                    $remove.addEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Add a click event handler to the remove to remove the panel
+                        $remove.addEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -191,155 +193,148 @@
          * @return {void}
          */
         toggle: ($panel, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the toggle before callback
-                plugin.settings.callbackToggleBefore.call();
-            }
+            // Check if the panel exists and isn't animating
+            if ($panel && !$panel.classList.contains('is-animating')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the toggle before callback
+                    plugin.settings.callbackToggleBefore.call();
+                }
 
-            // Set the panel body
-            const $body = $panel.querySelector('.panel__body');
+                // Set the body
+                const $body = $panel.querySelector('.panel__body');
 
-            // Set the panel toggle settings
-            const toggle_animation =
-                $panel.dataset.panelToggleAnimation ||
-                plugin.settings.toggleAnimation;
-            const toggle_animation_duration =
-                $panel.dataset.panelToggleAnimationDuration ||
-                plugin.settings.toggleAnimationDuration;
+                // Set the toggle settings
+                const toggle = $panel.dataset.panelToggle || plugin.settings.toggle;
+                const toggle_duration = $panel.dataset.panelToggleDuration || plugin.settings.toggleDuration;
 
-            // Start a switch statement for the toggle animation
-            switch (toggle_animation) {
-                // Default
-                default:
-                    // Toggle the expanded and collapsed state hooks on the panel
-                    $panel.classList.toggle('is-expanded');
-                    $panel.classList.toggle('is-collapsed');
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the toggle after callback
-                        plugin.settings.callbackToggleAfter.call();
-                    }
-                break;
-
-                // Slide
-                case 'slide':
-                    // Remove the animated state hook from the panel
-                    $panel.classList.remove('has-animated');
-
-                    // Add the animating state hook to the panel
-                    $panel.classList.add('is-animating');
-
-                    // Check if the panel has the expanded state hook
-                    if ($panel.classList.contains('is-expanded')) {
-                        // Slide the body up
-                        Velocity($body, 'slideUp', {
-                            complete: () => {
-                                // Remove the animating state hook from the panel
-                                $panel.classList.remove('is-animating');
-
-                                // Toggle the expanded and collapsed state hooks on the panel
-                                $panel.classList.toggle('is-expanded');
-                                $panel.classList.toggle('is-collapsed');
-
-                                // Add the animated state hook to the panel
-                                $panel.classList.add('has-animated');
-
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
-
-                    // Check if the panel has the collapsed state hook
-                    if ($panel.classList.contains('is-collapsed')) {
-                        // Toggle the expanded and collapsed state hooks on the panel
+                // Start a switch statement for the toggle animation
+                switch (toggle) {
+                    // Default
+                    default:
+                        // Set the panel expanded/collapsed state hooks
                         $panel.classList.toggle('is-expanded');
                         $panel.classList.toggle('is-collapsed');
 
-                        // Slide the body down
-                        Velocity($body, 'slideDown', {
-                            complete: () => {
-                                // Remove the animating state hook from the panel
-                                $panel.classList.remove('is-animating');
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the toggle after callback
+                            plugin.settings.callbackToggleAfter.call();
+                        }
 
-                                // Add the animated state hook to the panel
-                                $panel.classList.add('has-animated');
+                        // Break the switch
+                        break;
 
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
-                break;
+                    // Slide
+                    case 'slide':
+                        // Set the panel animation classes
+                        $panel.classList.remove('has-animated');
+                        $panel.classList.add('is-animating');
 
-                // Fade
-                case 'fade':
-                    // Remove the animated state hook from the panel
-                    $panel.classList.remove('has-animated');
+                        // Check if the panel has the expanded state hook
+                        if ($panel.classList.contains('is-expanded')) {
+                            // Slide the body up
+                            Velocity($body, 'slideUp', {
+                                complete: () => {
+                                    // Set the panel animation classes
+                                    $panel.classList.remove('is-animating');
+                                    $panel.classList.add('has-animated');
 
-                    // Add the animating state hook to the panel
-                    $panel.classList.add('is-animating');
+                                    // Set the panel expanded/collapsed state hooks
+                                    $panel.classList.toggle('is-expanded');
+                                    $panel.classList.toggle('is-collapsed');
 
-                    // Check if the panel has the expanded state hook
-                    if ($panel.classList.contains('is-expanded')) {
-                        // Fade the body out
-                        Velocity($body, 'fadeOut', {
-                            complete: () => {
-                                // Remove the animating state hook from the panel
-                                $panel.classList.remove('is-animating');
+                                    // Check if the callbacks should not be suppressed
+                                    if (!silent) {
+                                        // Call the toggle after callback
+                                        plugin.settings.callbackToggleAfter.call();
+                                    }
+                                },
+                                duration: toggle_duration
+                            });
+                        }
 
-                                // Toggle the expanded and collapsed state hooks on the panel
-                                $panel.classList.toggle('is-expanded');
-                                $panel.classList.toggle('is-collapsed');
+                        // Check if the panel has the collapsed state hook
+                        if ($panel.classList.contains('is-collapsed')) {
+                            // Set the panel expanded/collapsed state hooks
+                            $panel.classList.toggle('is-expanded');
+                            $panel.classList.toggle('is-collapsed');
 
-                                // Add the animated state hook to the panel
-                                $panel.classList.add('has-animated');
+                            // Slide the body down
+                            Velocity($body, 'slideDown', {
+                                complete: () => {
+                                    // Set the panel animation classes
+                                    $panel.classList.remove('is-animating');
+                                    $panel.classList.add('has-animated');
 
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
+                                    // Check if the callbacks should not be suppressed
+                                    if (!silent) {
+                                        // Call the toggle after callback
+                                        plugin.settings.callbackToggleAfter.call();
+                                    }
+                                },
+                                duration: toggle_duration
+                            });
+                        }
 
-                    // Check if the panel has the collapsed state hook
-                    if ($panel.classList.contains('is-collapsed')) {
-                        // Toggle the expanded and collapsed state hooks on the panel
-                        $panel.classList.toggle('is-expanded');
-                        $panel.classList.toggle('is-collapsed');
+                        // Break the switch
+                        break;
 
-                        // Fade the body in
-                        Velocity($body, 'fadeIn', {
-                            complete: () => {
-                                // Remove the animating state hook from the panel
-                                $panel.classList.remove('is-animating');
+                    // Fade
+                    case 'fade':
+                        // Set the panel animation classes
+                        $panel.classList.remove('has-animated');
+                        $panel.classList.add('is-animating');
 
-                                // Add the animated state hook to the panel
-                                $panel.classList.add('has-animated');
+                        // Check if the panel has the expanded state hook
+                        if ($panel.classList.contains('is-expanded')) {
+                            // Fade the body out
+                            Velocity($body, 'fadeOut', {
+                                complete: () => {
+                                    // Set the panel animation calsses
+                                    $panel.classList.remove('is-animating');
+                                    $panel.classList.add('has-animated');
 
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
-                break;
+                                    // Set the panel expanded/collapsed state hooks
+                                    $panel.classList.toggle('is-expanded');
+                                    $panel.classList.toggle('is-collapsed');
+
+                                    // Check if the callbacks should not be suppressed
+                                    if (!silent) {
+                                        // Call the toggle after callback
+                                        plugin.settings.callbackToggleAfter.call();
+                                    }
+                                },
+                                duration: toggle_duration
+                            });
+                        }
+
+                        // Check if the panel has the collapsed state hook
+                        if ($panel.classList.contains('is-collapsed')) {
+                            // Set the panel expanded/collapsed state hooks
+                            $panel.classList.toggle('is-expanded');
+                            $panel.classList.toggle('is-collapsed');
+
+                            // Fade the body in
+                            Velocity($body, 'fadeIn', {
+                                complete: () => {
+                                    // Set the panel animation classes
+                                    $panel.classList.remove('is-animating');
+                                    $panel.classList.add('has-animated');
+
+                                    // Check if the callbacks should not be suppressed
+                                    if (!silent) {
+                                        // Call the toggle after callback
+                                        plugin.settings.callbackToggleAfter.call();
+                                    }
+                                },
+                                duration: toggle_duration
+                            });
+                        }
+
+                        // Break the switch
+                        break;
+                }
             }
         },
 
@@ -350,47 +345,44 @@
          * @return {void}
          */
         remove: ($panel, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the remove before callback
-                plugin.settings.callbackRemoveBefore.call();
-            }
+            // Check if the panel exists and isn't animating out
+            if ($panel && !$panel.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the remove before callback
+                    plugin.settings.callbackRemoveBefore.call();
+                }
 
-            // Set the panel remove animation
-            const remove_animation =
-                $panel.dataset.panelRemoveAnimation ||
-                plugin.settings.removeAnimation;
+                // Check if the panel is animated
+                if (plugin.settings.animation) {
+                    // Set the remove animation
+                    const remove_animation = $panel.dataset.panelAnimationRemove || plugin.settings.animationRemove;
 
-            // Check if the remove animation is set
-            if (remove_animation && remove_animation != 'none') {
-                // Add the animating state hook to the panel
-                $panel.classList.add('is-animating');
+                    // Set the panel animation classes
+                    $panel.classList.add('is-animating-out', plugin.settings.animationClass, remove_animation);
 
-                // Add the animation classes to the panel
-                $panel.classList.add('has-animation');
-                $panel.classList.add(remove_animation);
+                    // Add an animation end event listener to the panel
+                    $panel.addEventListener('animationend', () => {
+                        // Remove the panel
+                        $panel.remove();
 
-                // Add an animation end event listener to the panel
-                $panel.addEventListener('animationend', () => {
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the remove after callback
+                            plugin.settings.callbackRemoveAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
                     // Remove the panel
-                    $panel.parentNode.removeChild($panel);
+                    $panel.remove();
 
                     // Check if the callbacks should not be suppressed
                     if (!silent) {
                         // Call the remove after callback
                         plugin.settings.callbackRemoveAfter.call();
                     }
-                }, {
-                    once: true
-                });
-            } else {
-                // Remove the panel
-                $panel.parentNode.removeChild($panel);
-
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove after callback
-                    plugin.settings.callbackRemoveAfter.call();
                 }
             }
         },
@@ -435,24 +427,27 @@
             // Set the panels
             const $panels = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the panels
-            $panels.forEach(($panel) => {
-                // Set the panel toggle and remove
-                const $toggle = $panel.querySelector('.js-panel-toggle');
-                const $remove = $panel.querySelector('.js-panel-remove');
+            // Check if any panels exist
+            if ($panels) {
+                // Cycle through all of the panels
+                $panels.forEach(($panel) => {
+                    // Set the toggle and remove
+                    const $toggle = $panel.querySelector('.js-panel-toggle');
+                    const $remove = $panel.querySelector('.js-panel-remove');
 
-                // Check if the panel toggle exists
-                if ($panel.contains($toggle)) {
-                    // Remove the click event handler from the panel toggle
-                    $toggle.removeEventListener('click', clickToggleEventHandler);
-                }
+                    // Check if the toggle exists
+                    if ($toggle) {
+                        // Remove the click event handler from the toggle
+                        $toggle.removeEventListener('click', clickToggleEventHandler);
+                    }
 
-                // Check if the panel remove exists
-                if ($panel.contains($remove)) {
-                    // Remove the click event handler from the panel remove
-                    $remove.removeEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Remove the click event handler from the remove
+                        $remove.removeEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

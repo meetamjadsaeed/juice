@@ -23,8 +23,11 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
         animationIn: 'fade-in-up',
         animationOut: 'fade-out-down',
+
         callbackInitializeBefore: () => {
             console.log('Dropdown: callbackInitializeBefore');
         },
@@ -77,6 +80,26 @@
     }
 
     /**
+     * Event handler to toggle a dropdown when the dropdown trigger is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickTriggerEventHandler = (event) => {
+        // Set the trigger
+        const $trigger = event.target;
+
+        // Set the container and dropdown
+        const $container = $trigger.closest('.has-dropdown');
+        const $dropdown = $container.querySelector('.dropdown');
+
+        // Check if the container is active and show/hide the dropdown
+        (!$container.classList.contains('is-active')
+            ? plugin.this.show($dropdown)
+            : plugin.this.hide($dropdown)
+        );
+    };
+
+    /**
      * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings.
      * @param  {object}  options   The user options.
@@ -97,37 +120,15 @@
     };
 
     /**
-     * Event handler to toggle a dropdown when the dropdown trigger is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickTriggerEventHandler = (event) => {
-        // Set the dropdown trigger
-        const $trigger = event.target;
-
-        // Set the dropdown container and dropdown
-        const $container = $trigger.closest('.has-dropdown');
-        const $dropdown = $container.querySelector('.dropdown');
-
-        // Check if the dropdown container has the active state hook
-        (!$container.classList.contains('is-active')
-            ? plugin.this.show($dropdown)
-            : plugin.this.hide($dropdown)
-        );
-    };
-
-    /**
      * Event handler to hide a dropdown when the dropdown container or any
      * of the dropdown containers descendants lose focus.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const focusoutEventHandler = (event) => {
-        // Set the current and related targets
+    const focusoutContainerEventHandler = (event) => {
+        // Set the current target, related target and dropdown
         const $current = event.currentTarget;
         const $related = event.relatedTarget;
-
-        // Set the dropdown
         const $dropdown = $current.querySelector('.dropdown');
 
         // Check if a related target exists
@@ -148,14 +149,12 @@
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const mouseenterEventHandler = (event) => {
-        // Set the dropdown container
+    const mouseenterContainerEventHandler = (event) => {
+        // Set the container and dropdown
         const $container = event.currentTarget;
-
-        // Set the dropdown
         const $dropdown = event.currentTarget.querySelector('.dropdown');
 
-        // Check if the dropdown container doesn't have the active state hook
+        // Check if the container isn't active
         if (!$container.classList.contains('is-active')) {
             // Show the dropdown
             plugin.this.show($dropdown);
@@ -167,14 +166,12 @@
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const mouseleaveEventHandler = (event) => {
-        // Set the dropdown container
+    const mouseleaveContainerEventHandler = (event) => {
+        // Set the container and dropdown
         const $container = event.currentTarget;
-
-        // Set the dropdown
         const $dropdown = event.currentTarget.querySelector('.dropdown');
 
-        // Check if the dropdown has the active state hook
+        // Check if the container is active
         if ($container.classList.contains('is-active')) {
             // Hide the dropdown
             plugin.this.hide($dropdown);
@@ -201,33 +198,34 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Set the dropdown containers
+            // Set the containers
             const $containers = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the dropdown containers
-            $containers.forEach(($container) => {
-                // Set the dropdown trigger and dropdown
-                const $trigger = $container.querySelector('.js-dropdown-trigger');
-                const $dropdown = $container.querySelector('.dropdown');
+            // Check if any containers exist
+            if ($containers) {
+                // Cycle through all of the containers
+                $containers.forEach(($container) => {
+                    // Set the trigger and dropdown
+                    const $trigger = $container.querySelector('.js-dropdown-trigger');
+                    const $dropdown = $container.querySelector('.dropdown');
 
-                // Set the container to have a focusable tabindex
-                $container.setAttribute('tabindex', -1);
+                    // Check if the trigger exists
+                    if ($trigger) {
+                        // Add a click event handler to the trigger to toggle the dropdown
+                        $trigger.addEventListener('click', clickTriggerEventHandler);
+                    }
 
-                // Add a click event handler to the dropdown trigger to toggle the dropdown
-                $trigger.addEventListener('click', clickTriggerEventHandler);
+                    // Add a focus out event handler to the container to hide the dropdown
+                    $container.addEventListener('focusout', focusoutContainerEventHandler);
 
-                // Add a focus out event handler to the dropdown container to hide the dropdown
-                $container.addEventListener('focusout', focusoutEventHandler);
-
-                // Check if the dropdown has the hoverable state hook and check if the html tag has the no touch detection class
-                if ($dropdown.classList.contains('is-hoverable') && document.documentElement.classList.contains('has-no-touch')) {
-                    // Add a mouse enter event handler to the dropdown container to show the dropdown
-                    $container.addEventListener('mouseenter', mouseenterEventHandler);
-
-                    // Add a mouse leave event handler to the dropdown container the hide the dropdown
-                    $container.addEventListener('mouseleave', mouseleaveEventHandler);
-                }
-            });
+                    // Check if the dropdown is hoverable
+                    if ($dropdown.classList.contains('is-hoverable') && document.documentElement.classList.contains('has-no-touch')) {
+                        // Add mouse enter and mouse leave event handlers to the container to show and hide the dropdown
+                        $container.addEventListener('mouseenter', mouseenterContainerEventHandler);
+                        $container.addEventListener('mouseleave', mouseleaveContainerEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -243,61 +241,57 @@
          * @return {void}
          */
         show: ($dropdown, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the show before callback
-                plugin.settings.callbackShowBefore.call();
-            }
+            // Check if the dropdown exists and isn't animating in or out
+            if ($dropdown && !$dropdown.classList.contains('is-animating-in') && !$dropdown.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the show before callback
+                    plugin.settings.callbackShowBefore.call();
+                }
 
-            // Set the dropdown container and content
-            const $container = $dropdown.closest('.has-dropdown');
-            const $content = $dropdown.querySelector('.dropdown__content');
+                // Set the container and content
+                const $container = $dropdown.closest('.has-dropdown');
+                const $content = $dropdown.querySelector('.dropdown__content');
 
-            // Add the active state hook to the dropdown container
-            $container.classList.add('is-active');
+                // Add the active state hook to the container
+                $container.classList.add('is-active');
 
-            // Set the dropdown animation in
-            const animation_in =
-                $container.dataset.dropdownAnimationIn ||
-                plugin.settings.animationIn;
+                // Check if the dropdown is animated
+                if (plugin.settings.animation) {
+                    // Set the animation in
+                    const animation_in = $container.dataset.dropdownAnimationIn || plugin.settings.animationIn;
 
-            // Check if the animation in is set
-            if (animation_in && animation_in != 'none') {
-                // Remove the animated state hook from the dropdown
-                $dropdown.classList.remove('has-animated');
+                    // Set the dropdown animation classes
+                    $dropdown.classList.remove('has-animated');
+                    $dropdown.classList.add('is-animating-in');
 
-                // Add the animating state hook to the dropdown
-                $dropdown.classList.add('is-animating');
+                    // Set the content animation classes
+                    $content.classList.add(plugin.settings.animationClass);
+                    $content.classList.add(animation_in);
 
-                // Add the animation classes to the dropdown content
-                $content.classList.add('has-animation');
-                $content.classList.add(animation_in);
+                    // Add an animation end event listener to the content
+                    $content.addEventListener('animationend', (event) => {
+                        // Set the dropdown animation classes
+                        $dropdown.classList.remove('is-animating-in');
+                        $dropdown.classList.add('has-animated');
 
-                // Add an animation end event listener to the dropdown content
-                $content.addEventListener('animationend', (event) => {
-                    // Remove the animating state hook from the dropdown
-                    $dropdown.classList.remove('is-animating');
+                        // Set the content animation classes
+                        $content.classList.remove(plugin.settings.animationClass, animation_in);
 
-                    // Remove the animation classes from the dropdown content
-                    $content.classList.remove('has-animation');
-                    $content.classList.remove(animation_in);
-
-                    // Add the animated state hook to the dropdown
-                    $dropdown.classList.add('has-animated');
-
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the show after callback
+                            plugin.settings.callbackShowAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
                     // Check if the callbacks should not be suppressed
                     if (!silent) {
                         // Call the show after callback
                         plugin.settings.callbackShowAfter.call();
                     }
-                }, {
-                    once: true
-                });
-            } else {
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the show after callback
-                    plugin.settings.callbackShowAfter.call();
                 }
             }
         },
@@ -309,46 +303,55 @@
          * @return {void}
          */
         hide: ($dropdown, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the hide before callback
-                plugin.settings.callbackHideBefore.call();
-            }
+            // Check if the dropdown exists and isn't animating in or out
+            if ($dropdown && !$dropdown.classList.contains('is-animating-in') && !$dropdown.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the hide before callback
+                    plugin.settings.callbackHideBefore.call();
+                }
 
-            // Set the dropdown container and content
-            const $container = $dropdown.closest('.has-dropdown');
-            const $content = $dropdown.querySelector('.dropdown__content');
+                // Set the container and content
+                const $container = $dropdown.closest('.has-dropdown');
+                const $content = $dropdown.querySelector('.dropdown__content');
 
-            // Set the dropdown animation out
-            const animation_out =
-                $container.dataset.dropdownAnimationOut ||
-                plugin.settings.animationOut;
+                // Check if the dropdown is animated
+                if (plugin.settings.animation) {
+                    // Set the animation out
+                    const animation_out =
+                        $container.dataset.dropdownAnimationOut ||
+                        plugin.settings.animationOut;
 
-            // Check if the animation out is set
-            if (animation_out && animation_out != 'none') {
-                // Remove the animated state hook from the dropdown
-                $dropdown.classList.remove('has-animated');
+                    // Set the dropdown animation classes
+                    $dropdown.classList.remove('has-animated');
+                    $dropdown.classList.add('is-animating-out');
 
-                // Add the animating state hook to the dropdown
-                $dropdown.classList.add('is-animating');
+                    // Set the content animation classes
+                    $content.classList.add(plugin.settings.animationClass, animation_out);
 
-                // Add the animation classes to the dropdown content
-                $content.classList.add('has-animation');
-                $content.classList.add(animation_out);
+                    // Add an animation end event listener to the content
+                    $content.addEventListener('animationend', (event) => {
+                        // Set the dropdown animation classes
+                        $dropdown.classList.remove('is-animating-out');
+                        $dropdown.classList.add('has-animated');
 
-                // Add an animation end event listener to the dropdown content
-                $content.addEventListener('animationend', (event) => {
-                    // Remove the animating state hook from the dropdown
-                    $dropdown.classList.remove('is-animating');
+                        // Set the content animation classes
+                        $content.classList.remove(plugin.settings.animationClass);
+                        $content.classList.remove(animation_out);
 
-                    // Remove the animation classes from the dropdown content
-                    $content.classList.remove('has-animation');
-                    $content.classList.remove(animation_out);
+                        // Remove the active state hook from the container
+                        $container.classList.remove('is-active');
 
-                    // Add the animated state hook to the dropdown
-                    $dropdown.classList.add('has-animated');
-
-                    // Remove the active state hook from the dropdown container
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the hide after callback
+                            plugin.settings.callbackHideAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
+                    // Remove the active state hook from the container
                     $container.classList.remove('is-active');
 
                     // Check if the callbacks should not be suppressed
@@ -356,14 +359,6 @@
                         // Call the hide after callback
                         plugin.settings.callbackHideAfter.call();
                     }
-                }, {
-                    once: true
-                });
-            } else {
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the hide after callback
-                    plugin.settings.callbackHideAfter.call();
                 }
             }
         },
@@ -405,36 +400,40 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the dropdown containers
+            // Set the containers
             const $containers = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the dropdown containers
-            $containers.forEach(($container) => {
-                // Set the dropdown trigger and dropdown
-                const $trigger = $container.querySelector('.js-dropdown-trigger');
-                const $dropdown = $container.querySelector('.dropdown');
+            // Check if any contains exists
+            if ($containers) {
+                // Cycle through all of the containers
+                $containers.forEach(($container) => {
+                    // Set the trigger and dropdown
+                    const $trigger = $container.querySelector('.js-dropdown-trigger');
+                    const $dropdown = $container.querySelector('.dropdown');
 
-                // Check if the dropdown container has the active state hook
-                if ($container.classList.contains('is-active')) {
-                    // Hide the dropdown
-                    plugin.this.hide($dropdown, silent);
-                }
+                    // Check if the container is active
+                    if ($container.classList.contains('is-active')) {
+                        // Hide the dropdown
+                        plugin.this.hide($dropdown, silent);
+                    }
 
-                // Remove the click event handler from the dropdown trigger
-                $trigger.removeEventListener('click', clickTriggerEventHandler);
+                    // Check if the trigger exists
+                    if ($trigger) {
+                        // Remove the click event handler from the trigger
+                        $trigger.removeEventListener('click', clickTriggerEventHandler);
+                    }
 
-                // Remove the focus out event handler from the dropdown container
-                $container.removeEventListener('focusout', focusoutEventHandler);
+                    // Remove the focus out event handler from the container
+                    $container.removeEventListener('focusout', focusoutContainerEventHandler);
 
-                // Check if the dropdown has the hoverable state hook and check if the html tag has the no touch detection class
-                if ($dropdown.classList.contains('is-hoverable') && document.documentElement.classList.contains('has-no-touch')) {
-                    // Remove the mouse enter event handler from the dropdown container
-                    $container.removeEventListener('mouseenter', mouseenterEventHandler);
-
-                    // Remove the mouse leave event handler from the dropdown container
-                    $container.addEventListener('mouseleave', mouseleaveEventHandler);
-                }
-            });
+                    // Check if the dropdown is hoverable
+                    if ($dropdown.classList.contains('is-hoverable') && document.documentElement.classList.contains('has-no-touch')) {
+                        // Remove the mouse enter and mouse leave event handlers from the container
+                        $container.removeEventListener('mouseenter', mouseenterContainerEventHandler);
+                        $container.addEventListener('mouseleave', mouseleaveContainerEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

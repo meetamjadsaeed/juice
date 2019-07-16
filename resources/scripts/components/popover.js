@@ -23,25 +23,37 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
         animationIn: 'fade-in',
         animationOut: 'fade-out',
+        close: '<button type="button" class="button--component is-small has-large-font-size js-close-popover"><i class="fas fa-times"></i></button>',
+        color: null,
+        delayIn: 0,
+        delayOut: 0,
+        feedback: null,
+        next: '<button type="button" class="button--component is-small has-large-font-size js-next-popover"><i class="fas fa-chevron-right"></i></button>',
+        position: 'top',
+        prev: '<button type="button" class="button--component is-small has-large-font-size js-prev-popover"><i class="fas fa-chevron-left"></i></button>',
+        size: null,
+
         callbackInitializeBefore: () => {
             console.log('Popover: callbackInitializeBefore');
         },
         callbackInitializeAfter: () => {
             console.log('Popover: callbackInitializeAfter');
         },
-        callbackInsertBefore: () => {
-            console.log('Popover: callbackInsertBefore');
+        callbackOpenBefore: () => {
+            console.log('Popover: callbackOpenBefore');
         },
-        callbackInsertAfter: () => {
-            console.log('Popover: callbackInsertAfter');
+        callbackOpenAfter: () => {
+            console.log('Popover: callbackOpenAfter');
         },
-        callbackRemoveBefore: () => {
-            console.log('Popover: callbackRemoveBefore');
+        callbackCloseBefore: () => {
+            console.log('Popover: callbackCloseBefore');
         },
-        callbackRemoveAfter: () => {
-            console.log('Popover: callbackRemoveAfter');
+        callbackCloseAfter: () => {
+            console.log('Popover: callbackCloseAfter');
         },
         callbackRefreshBefore: () => {
             console.log('Popover: callbackRefreshBefore');
@@ -55,12 +67,13 @@
         callbackDestroyAfter: () => {
             console.log('Popover: callbackDestroyAfter');
         },
-        color: null,
-        delayIn: 0,
-        delayOut: 0,
-        feedback: null,
-        position: 'top',
-        size: null
+
+        callbackPrev: () => {
+            console.log('Popover: callbackPrev');
+        },
+        callbackNext: () => {
+            console.log('Popover: callbackNext');
+        }
     };
 
     /**
@@ -81,6 +94,198 @@
         // Initialize the plugin
         plugin.this.initialize();
     }
+
+    /**
+     * Build the popover.
+     * @param  {element}  $trigger  The trigger.
+     * @return {element}            The popover.
+     */
+    const buildPopover = ($trigger) => {
+        // Create the popover elements
+        const $popover = document.createElement('div');
+        const $content = document.createElement('div');
+        const $head = document.createElement('div');
+        const $heading = document.createElement('div');
+        const $actions = document.createElement('div');
+        const $body = document.createElement('div');
+
+        // Add the popover classes
+        $popover.classList.add('popover');
+        $content.classList.add('popover__content');
+        $head.classList.add('popover__head');
+        $heading.classList.add('popover__heading');
+        $actions.classList.add('popover__actions');
+        $body.classList.add('popover__body');
+
+        // Construct the popover
+        $popover.append($content);
+        $content.append($head);
+        $content.append($body);
+        $head.append($heading);
+        $head.append($actions);
+        $heading.insertAdjacentHTML('beforeend', $trigger.dataset.popoverTitle);
+        $actions.insertAdjacentHTML('beforeend', plugin.settings.close);
+        $body.insertAdjacentHTML('beforeend', $trigger.dataset.popoverText);
+
+        // Check if the popover is grouped
+        if ($trigger.dataset.popoverGroup) {
+            // Set the group
+            const group = $trigger.dataset.popoverGroup;
+
+            // Set the triggers
+            const $triggers = document.querySelectorAll('.has-popover[data-popover-group="' + group + '"]');
+
+            // Check if any triggers exist
+            if ($triggers) {
+                // Set the triggers total
+                const triggers_total = $triggers.length;
+
+                // Check if there is more than on trigger in the group
+                if (triggers_total > 1) {
+                    // Check if the current trigger is not the last trigger in the group
+                    if ($trigger != $triggers[triggers_total - 1]) {
+                        // Construct the group navigation
+                        $actions.insertAdjacentHTML('afterbegin', plugin.settings.next);
+                    }
+
+                    // Check if the current trigger is not the first trigger in the group
+                    if ($trigger != $triggers[0]) {
+                        // Construct the group navigation
+                        $actions.insertAdjacentHTML('afterbegin', plugin.settings.prev);
+                    }
+                }
+            }
+        }
+
+        // Set the popover modifiers
+        const color = $trigger.dataset.popoverColor || plugin.settings.color;
+        const feedback = $trigger.dataset.popoverFeedback || plugin.settings.feedback;
+        const position = $trigger.dataset.popoverPosition || plugin.settings.position;
+        const size = $trigger.dataset.popoverSize || plugin.settings.size;
+
+        // Check if a color modifier exists
+        if (color) {
+            // Add the color modifier class to the popover
+            $popover.classList.add(`is-${color}`);
+        }
+
+        // Check if a feedback modifier exists
+        if (feedback) {
+            // Add the feedback modifier class to the popover
+            $popover.classList.add(`has-${feedback}`);
+        }
+
+        // Check if a position modifier exists
+        if (position) {
+            // Add the position modifier class to the popover
+            $popover.classList.add(`popover--${position}`);
+        }
+
+        // Check if a size modifier exists
+        if (size) {
+            // Add the size modifier class to the popover
+            $popover.classList.add(`is-${size}`);
+        }
+
+        // Return the popover
+        return $popover;
+    };
+
+    /**
+     * Event handler to open the previous popover in a popover group when the
+     * popover previous is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickPrevEventListener = (event) => {
+        // Call the prev callback
+        plugin.settings.callbackPrev.call();
+
+        // Set the previous, popover and trigger
+        const $prev = event.currentTarget;
+        const $popover = $prev.closest('.popover');
+        const $trigger = $popover.data.trigger;
+
+        // Set the group properties
+        const group = $trigger.dataset.popoverGroup;
+        const current = parseInt($trigger.dataset.popoverGroupOrder);
+        const prev = current - 1;
+
+        // Set the previous trigger
+        const $trigger_prev = document.querySelector('.has-popover[data-popover-group="' + group + '"][data-popover-group-order="' + prev + '"]');
+
+        // Open the previous popover
+        plugin.this.open($trigger_prev);
+    };
+
+    /**
+     * Event handler to open the next popover in a popover group when the
+     * popover next is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickNextEventListener = (event) => {
+        // Call the next callback
+        plugin.settings.callbackNext.call();
+
+        // Set the next, popover and trigger
+        const $next = event.currentTarget;
+        const $popover = $next.closest('.popover');
+        const $trigger = $popover.data.trigger;
+
+        // Set the group properties
+        const group = $trigger.dataset.popoverGroup;
+        const current = parseInt($trigger.dataset.popoverGroupOrder);
+        const next = current + 1;
+
+        // Set the next trigger
+        const $trigger_next = document.querySelector('.has-popover[data-popover-group="' + group + '"][data-popover-group-order="' + next + '"]');
+
+        // Open the next popover
+        plugin.this.open($trigger_next);
+    };
+
+    /**
+     * Event handler to close a popover when the close is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickCloseEventListener = (event) => {
+        // Set the close and popover
+        const $close = event.currentTarget;
+        const $popover = $close.closest('.popover');
+
+        // Close the popover
+        plugin.this.close($popover);
+   };
+
+    /**
+     * Event handler to toggle a popover when the popover trigger is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+     const clickTriggerEventHandler = (event) => {
+        // Set the trigger
+        const $trigger = event.currentTarget;
+
+        // Check if the trigger data doesn't have an assigned popover
+        if (!$trigger.data || !('popover' in $trigger.data)) {
+            // Open the popover
+            plugin.this.open($trigger);
+        } else {
+            // Check if the trigger data doesn't have an assigned popover
+            if (!('popover' in $trigger.data)) {
+                // Open the popover
+                plugin.this.open($trigger);
+            } else {
+                // Set the popover
+                const $popover = $trigger.data.popover;
+
+                // Close the popover
+                plugin.this.close($popover);
+            }
+        }
+    };
 
     /**
      * Merge the default plugin settings with the user options.
@@ -130,95 +335,22 @@
     };
 
     /**
-     * Build a popover.
-     * @param  {element}  $container  The popover container.
-     * @return {element}              The popover.
-     */
-    const buildPopover = ($container) => {
-        // Create the popover elements
-        const $popover = document.createElement('div');
-        const $content = document.createElement('div');
-        const $head = document.createElement('div');
-        const $body = document.createElement('div');
-
-        // Add the popover classes
-        $popover.classList.add('popover');
-        $content.classList.add('popover__content');
-        $head.classList.add('popover__head');
-        $body.classList.add('popover__body');
-
-        // Construct the popover
-        $popover.append($content);
-        $content.append($head);
-        $content.append($body);
-        $head.insertAdjacentHTML('beforeend', $container.dataset.popoverTitle);
-        $body.insertAdjacentHTML('beforeend', $container.dataset.popoverText);
-
-        // Set the popover modifiers
-        const color =
-            $container.dataset.popoverColor ||
-            plugin.settings.color;
-        const feedback =
-            $container.dataset.popoverFeedback ||
-            plugin.settings.feedback;
-        const position =
-            $container.dataset.popoverPosition ||
-            plugin.settings.position;
-        const size =
-            $container.dataset.popoverSize ||
-            plugin.settings.size;
-
-        // Check if a color modifier exists
-        if (color) {
-            // Add the color modifier class to the popover
-            $popover.classList.add(`is-${color}`);
-        }
-
-        // Check if a feedback modifier exists
-        if (feedback) {
-            // Add the feedback modifier class to the popover
-            $popover.classList.add(`has-${feedback}`);
-        }
-
-        // Check if a position modifier exists
-        if (position) {
-            // Add the position modifier class to the popover
-            $popover.classList.add(`popover--${position}`);
-        }
-
-        // Check if a size modifier exists
-        if (size) {
-            // Add the size modifier class to the popover
-            $popover.classList.add(`is-${size}`);
-        }
-
-        // Set the popover to have a focusable tabindex
-        $popover.setAttribute('tabindex', -1);
-
-        // Add a focus out event handler to the popover to remove the popover
-        $popover.addEventListener('focusout', focusoutEventHandler);
-
-        // Return the popover
-        return $popover;
-    };
-
-    /**
-     * Set the popover position relative to the popover container.
-     * @param  {element}  $container  The popover container.
-     * @param  {element}  $popover    The popover.
+     * Set the popover position.
+     * @param  {element}  $trigger  The trigger.
+     * @param  {element}  $popover  The popover.
      * @return {void}
      */
-    const positionPopover = ($container, $popover) => {
-        // Set the popover container offset
-        const container_offset = getElementOffset($container);
+    const positionPopover = ($trigger, $popover) => {
+        // Set the popover trigger offset
+        const trigger_offset = getElementOffset($trigger);
 
-        // Set the popover container left and top positions
-        const container_left = container_offset.left;
-        const container_top = container_offset.top;
+        // Set the popover trigger left and top positions
+        const trigger_left = trigger_offset.left;
+        const trigger_top = trigger_offset.top;
 
-        // Set the popover container dimensions
-        const container_width = $container.offsetWidth;
-        const container_height = $container.offsetHeight;
+        // Set the popover trigger dimensions
+        const trigger_width = $trigger.offsetWidth;
+        const trigger_height = $trigger.offsetHeight;
 
         // Set the popover dimensions
         const popover_width = $popover.offsetWidth;
@@ -229,47 +361,37 @@
         let popover_top;
 
         // Set the popover position modifier
-        const position =
-            $container.dataset.popoverPosition ||
-            plugin.settings.position;
+        const position = $trigger.dataset.popoverPosition || plugin.settings.position;
 
         // Start a switch statement for the popover position
         switch (position) {
             // Top (default)
             default:
-                // Set the popover left and top positions
-                popover_left =
-                    container_left + ((container_width - popover_width) / 2);
-                popover_top =
-                    container_top - popover_height;
-            break;
+                // Set the popover left and top positions and break the switch
+                popover_left = trigger_left + ((trigger_width - popover_width) / 2);
+                popover_top = trigger_top - popover_height;
+                break;
 
             // Right
             case 'right':
-                // Set the popover left and top positions
-                popover_left =
-                    container_left + container_width;
-                popover_top =
-                    container_top + ((container_height - popover_height) / 2);
-            break;
+                // Set the popover left and top positions and break the switch
+                popover_left = trigger_left + trigger_width;
+                popover_top = trigger_top + ((trigger_height - popover_height) / 2);
+                break;
 
             // Bottom
             case 'bottom':
-                // Set the popover left and top positions
-                popover_left =
-                    container_left + ((container_width - popover_width) / 2);
-                popover_top =
-                    container_top + container_height;
-            break;
+                // Set the popover left and top positions and break the switch
+                popover_left = trigger_left + ((trigger_width - popover_width) / 2);
+                popover_top = trigger_top + trigger_height;
+                break;
 
             // Left
             case 'left':
-                // Set the popover left and top positions
-                popover_left =
-                    container_left - popover_width;
-                popover_top =
-                    container_top + ((container_height - popover_height) / 2);
-            break;
+                // Set the popover left and top positions and break the switch
+                popover_left = trigger_left - popover_width;
+                popover_top = trigger_top + ((trigger_height - popover_height) / 2);
+                break;
         }
 
         // Set the inline top and left positions
@@ -278,262 +400,51 @@
     };
 
     /**
-     * Insert a popover.
-     * @param  {element}  $container  The popover container.
-     * @param  {element}  $popover    The popover.
+     * Trap focus to the popover.
+     * @param  {element}  $popover  The popover.
      * @return {void}
      */
-    const insertPopover = ($container, $popover) => {
-        // Call the insert before callback
-        plugin.settings.callbackInsertBefore.call();
+    const trapFocus = ($popover) => {
+        // Set the focusable elements
+        const $focusables = $popover.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href]:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        const $focusable_first = $focusables[0];
+        const $focusable_last = $focusables[$focusables.length - 1];
 
-        // Set the popover delay in
-        const delay_in =
-            $container.dataset.popoverDelayIn ||
-            plugin.settings.delayIn;
+        // Set the keycodes
+        const keycode_tab = 9;
+        const keycode_esc = 27;
 
-        // Start a timer
-        setTimeout(() => {
-            // Set the body
-            const $body = document.querySelector('body');
+        // Add a keydown event listener to the popover to trap focus
+        $popover.addEventListener('keydown', function(event) {
+            // Start a switch event for the keycode
+            switch (event.keyCode) {
+                // Tab
+                case keycode_tab:
+                    // Check if the shift key was pressed
+                    if (event.shiftKey) {
+                        // Check if the active element is the first focusable element
+                        if (document.activeElement === $focusable_first) {
+                            // Prevent the default action
+                            event.preventDefault();
 
-            // Append the popover to the body
-            $body.appendChild($popover);
+                            // Focus on the last focusable element
+                            $focusable_last.focus();
+                        }
+                    } else {
+                        if (document.activeElement === $focusable_last) {
+                            // Prevent the default action
+                            event.preventDefault();
 
-            // Position the popover
-            positionPopover($container, $popover);
-
-            // Assign the popover to the popover container data object
-            $container.data = {
-                popover: $popover
-            };
-
-            // Assign the popover container to the popover data object
-            $popover.data = {
-                container: $container
-            };
-
-            // Show the popover
-            $popover.style.display = 'block';
-
-            // Add the active state hook to the popover container
-            $container.classList.add('is-active');
-
-            // Set the popover animation in
-            const animation_in =
-                $container.dataset.popoverAnimationIn ||
-                plugin.settings.animationIn;
-
-            // Check if the animation in is set
-            if (animation_in && animation_in != 'none') {
-                // Add the animating state hook to the popover
-                $popover.classList.add('is-animating');
-
-                // Add the animation classes to the popover
-                $popover.classList.add('has-animation');
-                $popover.classList.add(animation_in);
-
-                // Add an animation end event listener to the popover
-                $popover.addEventListener('animationend', (event) => {
-                    // Remove the animating state hook from the popover
-                    $popover.classList.remove('is-animating');
-
-                    // Remove the animation classes from the popover
-                    $popover.classList.remove('has-animation');
-                    $popover.classList.remove(animation_in);
-
-                    // Add the animated state hook to the popover
-                    $popover.classList.add('has-animated');
-
-                    // Call the insert after callback
-                    plugin.settings.callbackInsertAfter.call();
-                }, {
-                    once: true
-                });
-            }
-        }, delay_in);
-    };
-
-    /**
-     * Remove a popover.
-     * @param  {element}  $container  The popover container.
-     * @param  {element}  $popover    The popover.
-     * @param  {bool}     silent      Suppress callbacks.
-     * @return {void}
-     */
-    const removePopover = ($container, $popover, silent = false) => {
-        // Check if the callbacks should not be suppressed
-        if (!silent) {
-            // Call the remove before callback
-            plugin.settings.callbackRemoveBefore.call();
-        }
-
-        // Set the popover delay out
-        const delay_out =
-            $container.dataset.popoverDelayOut ||
-            plugin.settings.delayOut;
-
-        // Start a timer
-        setTimeout(() => {
-            // Set the popover animation out
-            const animation_out =
-                $container.dataset.popoverAnimationOut ||
-                plugin.settings.animationOut;
-
-            // Check if the animation out is set
-            if (animation_out && animation_out != 'none') {
-                // Remove the animated state hook from the popover
-                $popover.classList.remove('has-animated');
-
-                // Add the animating state hook to the popover
-                $popover.classList.add('is-animating');
-
-                // Add the animation classes to the popover
-                $popover.classList.add('has-animation');
-                $popover.classList.add(animation_out);
-
-                // Add an animation end event listener to the popover
-                $popover.addEventListener('animationend', (event) => {
-                    // Check if the popover exists in the dom
-                    if (document.body.contains($popover)) {
-                        // Remove the popover
-                        $popover.parentNode.removeChild($popover);
-                    }
-
-                    // Remove the assigned popover from the popover container data
-                    delete $container.data['popover'];
-
-                    // Remove the active state hook from the popover container
-                    $container.classList.remove('is-active');
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the remove after callback
-                        plugin.settings.callbackRemoveAfter.call();
-                    }
-                }, {
-                    once: true
-                });
-            } else {
-                // Check if the popover exists in the dom
-                if (document.body.contains($popover)) {
-                    // Remove the popover
-                    $popover.parentNode.removeChild($popover);
-                }
-
-                // Remove the assigned popover from the popover container data
-                delete $container.data['popover'];
-
-                // Remove the active state hook from the popover container
-                $container.classList.remove('is-active');
-
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove after callback
-                    plugin.settings.callbackRemoveAfter.call();
-                }
-            }
-        }, delay_out);
-    };
-
-    /**
-     * Event handler to toggle a popover when the popover container is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-     const clickToggleEventHandler = (event) => {
-        // Set the popover container
-        const $container = event.currentTarget;
-
-        // Check if a popover container data object doesn't exist
-        if (!$container.data) {
-            // Set the popover
-            const $popover = buildPopover($container);
-
-            // Insert the popover
-            insertPopover($container, $popover);
-        } else {
-            // Check that the popover container data doesn't have an assigned popover
-            if (!('popover' in $container.data)) {
-                // Set the popover
-                const $popover = buildPopover($container);
-
-                // Insert the popover
-                insertPopover($container, $popover);
-            } else {
-                // Set the popover
-                const $popover = $container.data.popover;
-
-                // Remove the popover
-                removePopover($container, $popover);
-            }
-        }
-    };
-
-    /**
-     * Event handler to remove a popover when the popover container or popover lose focus.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const focusoutEventHandler = (event) => {
-        // Set the popover container and popover
-        let $container, $popover;
-
-        // Set the current and related targets
-        const $current = event.currentTarget;
-        const $related = event.relatedTarget;
-
-        // Start a switch statement for the following true values
-        switch (true) {
-            // Container
-            case $current.classList.contains('has-popover'):
-                // Set the popover container
-                $container = $current;
-
-                // Check if a popover container data object exists
-                if ($container.data) {
-                    // Check if the popover container data has an assigned popover
-                    if ('popover' in $container.data) {
-                        // Set the popover
-                        $popover = $container.data.popover;
-
-                        // Check if a related target exists
-                        if ($related) {
-                            // Check if the related target is not the popover
-                            if ($related != $popover && !$popover.contains($related)) {
-                                // Remove the popover
-                                removePopover($container, $popover);
-                            }
-                        } else {
-                            // Remove the popover
-                            removePopover($container, $popover);
+                            // Focus on the first focusable element
+                            $focusable_first.focus();
                         }
                     }
-                }
-            break;
 
-            // Popover
-            case $current.classList.contains('popover'):
-                // Set the popover
-                $popover = $current;
-
-                // Set the popover container
-                $container = $popover.data.container;
-
-                // Check if a related target exists
-                if ($related) {
-                    // Check if the related target is not the popover
-                    if ($related != $popover && !$popover.contains($related)) {
-                        // Remove the popover
-                        removePopover($container, $popover);
-                    }
-                } else {
-                    // Remove the popover
-                    removePopover($container, $popover);
-                }
-            break;
-        }
-    };
+                    // Break the switch
+                    break;
+            }
+        });
+    }
 
     /**
      * Public variables and methods.
@@ -555,25 +466,220 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Check if the html tag has the no touch detection class
+            // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the popover containers
-                const $containers = document.querySelectorAll(plugin.element);
+                // Set the triggers
+                const $triggers = document.querySelectorAll(plugin.element);
 
-                // Cycle through all of the popover containers
-                $containers.forEach(($container) => {
-                    // Add a click event handler to the popover container to toggle the popover
-                    $container.addEventListener('click', clickToggleEventHandler);
-
-                    // Add a focus out event handler to the popover container to remove the popover
-                    $container.addEventListener('focusout', focusoutEventHandler);
-                });
+                // Check if any triggers exist
+                if ($triggers) {
+                    // Cycle through all of the triggers
+                    $triggers.forEach(($trigger) => {
+                        // Add a click event handler to the trigger to toggle the popover
+                        $trigger.addEventListener('click', clickTriggerEventHandler);
+                    });
+                }
             }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
                 // Call the initialize after callback
                 plugin.settings.callbackInitializeAfter.call();
+            }
+        },
+
+        /**
+         * Open a popover.
+         * @param  {element}  $trigger  The trigger.
+         * @return {void}
+         */
+        open: ($trigger, silent = false) => {
+            // Check if the trigger data doesn't have an assigned popover
+            if ($trigger && (!$trigger.data || !('popover' in $trigger.data))) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the open before callback
+                    plugin.settings.callbackOpenBefore.call(silent);
+                }
+
+                // Set the popovers
+                const $popovers = document.querySelectorAll('.popover');
+
+                // Check if any popovers exist
+                if ($popovers) {
+                    // Cycle through all of the popovers
+                    $popovers.forEach(($popover) => {
+                        // Close the popover
+                        plugin.this.close($popover);
+                    });
+                }
+
+                // Set the popover
+                const $popover = buildPopover($trigger);
+
+                // Start a timer
+                setTimeout(() => {
+                    // Append the popover to the body
+                    document.body.appendChild($popover);
+
+                    // Set the popover tabindex and focus on the popover
+                    $popover.setAttribute('tabindex', -1);
+                    $popover.focus({
+                        preventScroll: true
+                    });
+
+                    // Trap focus inside the popover
+                    trapFocus($popover);
+
+                    // Position the popover
+                    positionPopover($trigger, $popover);
+
+                    // Assign the popover to the trigger data object
+                    $trigger.data = {
+                        popover: $popover
+                    };
+
+                    // Assign the trigger to the popover data object
+                    $popover.data = {
+                        trigger: $trigger
+                    };
+
+                    // Show the popover
+                    $popover.style.display = 'block';
+
+                    // Add the active state hook to the trigger
+                    $trigger.classList.add('is-active');
+
+                    // Check if the popover is animated
+                    if (plugin.settings.animation) {
+                        // Set the animation in
+                        const animation_in = $trigger.dataset.popoverAnimationIn || plugin.settings.animationIn;
+
+                        // Set the popover animation classes
+                        $popover.classList.add('is-animating-in', plugin.settings.animationClass, animation_in);
+
+                        // Add an animation end event listener to the popover
+                        $popover.addEventListener('animationend', (event) => {
+                            // Set the popover animation classes
+                            $popover.classList.remove('is-animating-in', plugin.settings.animationClass, animation_in);
+                            $popover.classList.add('has-animated');
+
+                            // Check if the callbacks should not be suppressed
+                            if (!silent) {
+                                // Call the open after callback
+                                plugin.settings.callbackOpenAfter.call();
+                            }
+                        }, {
+                            once: true
+                        });
+                    } else {
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the open after callback
+                            plugin.settings.callbackOpenAfter.call();
+                        }
+                    }
+
+                    // Set the previous, next and close
+                    const $prevs = $popover.querySelectorAll('.js-prev-popover');
+                    const $nexts = $popover.querySelectorAll('.js-next-popover');
+                    const $closes = $popover.querySelectorAll('.js-close-popover');
+
+                    // Check if any previous's exist
+                    if ($prevs) {
+                        // Cycle through all of the previous's
+                        $prevs.forEach(($prev) => {
+                            // Add a click event handler to the previous to go to the previous popover
+                            $prev.addEventListener('click', clickPrevEventListener);
+                        });
+                    }
+
+                    // Check if any nexts exist
+                    if ($nexts) {
+                        // Cycle through all of the nexts
+                        $nexts.forEach(($next) => {
+                            // Add a click event handler to the next to go to the next popover
+                            $next.addEventListener('click', clickNextEventListener);
+                        });
+                    }
+
+                    // Check if a closes exist
+                    if ($closes) {
+                        // Cycle through all of the closes
+                        $closes.forEach(($close) => {
+                            // Add a click event handler to the close to go close the popover
+                            $close.addEventListener('click', clickCloseEventListener);
+                        });
+                    }
+                }, $trigger.dataset.popoverDelayIn || plugin.settings.delayIn);
+            }
+        },
+
+        /**
+         * Close a popover.
+         * @param  {element}  $popover  The popover.
+         * @param  {bool}     silent    Suppress callbacks.
+         * @return {void}
+         */
+        close: ($popover, silent = false) => {
+            // Check if the popover exists and isn't animating out
+            if ($popover && !$popover.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the close before callback
+                    plugin.settings.callbackCloseBefore.call();
+                }
+
+                // Set the trigger
+                const $trigger = $popover.data.trigger;
+
+                // Start a timer
+                setTimeout(() => {
+                    // Check if the popover is animated
+                    if (plugin.settings.animation) {
+                        // Set the animation out
+                        const animation_out = $trigger.dataset.popoverAnimationOut || plugin.settings.animationOut;
+
+                        // Set the popover animation classes
+                        $popover.classList.remove('has-animated');
+                        $popover.classList.add('is-animating-out', plugin.settings.animationClass, animation_out);
+
+                        // Add an animation end event listener to the popover
+                        $popover.addEventListener('animationend', (event) => {
+                            // Remove the popover
+                            $popover.remove();
+
+                            // Remove the active state hook from the trigger
+                            $trigger.classList.remove('is-active');
+
+                            // Remove the assigned popover from the trigger data
+                            delete $trigger.data['popover'];
+
+                            // Check if the callbacks should not be suppressed
+                            if (!silent) {
+                                // Call the close after callback
+                                plugin.settings.callbackCloseAfter.call();
+                            }
+                        }, {
+                            once: true
+                        });
+                    } else {
+                        // Remove the popover
+                        $popover.remove();
+
+                        // Remove the active state hook from the trigger
+                        $trigger.classList.remove('is-active');
+
+                        // Remove the assigned popover from the trigger data
+                        delete $trigger.data['popover'];
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the close after callback
+                            plugin.settings.callbackCloseAfter.call();
+                        }
+                    }
+                }, $trigger.dataset.popoverDelayOut || plugin.settings.delayOut);
             }
         },
 
@@ -614,31 +720,29 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Check if the html tag has the no touch detection class
+            // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the popover containers
-                const $containers = document.querySelectorAll(plugin.element);
+                // Set the triggers and popovers
+                const $triggers = document.querySelectorAll(plugin.element);
+                const $popovers = document.querySelectorAll('.popover');
 
-                // Cycle through all of the popover containers
-                $containers.forEach(($container) => {
-                    // Check if a popover container data object exists
-                    if ($container.data) {
-                        // Check if the popover container data has an assigned popover
-                        if ('popover' in $container.data) {
-                            // Set the popover
-                            const $popover = $container.data.popover;
+                // Check if any triggers exist
+                if ($triggers) {
+                    // Cycle through all of the triggers
+                    $triggers.forEach(($trigger) => {
+                        // Remove the click event handler from the trigger
+                        $trigger.removeEventListener('click', clickTriggerEventHandler);
+                    });
+                }
 
-                            // Remove the popover
-                            removePopover($container, $popover, silent);
-                        }
-                    }
-
-                    // Remove the click event handler from the popover container
-                    $container.removeEventListener('click', clickToggleEventHandler);
-
-                    // Remove the focus out event handler from the popover container
-                    $container.removeEventListener('focusout', focusoutEventHandler);
-                });
+                // Check if any popovers exist
+                if ($popovers) {
+                    // Cycle through all of the popovers
+                    $popovers.forEach(($popover) => {
+                        // Close the popover
+                        plugin.this.close($popover);
+                    });
+                }
             }
 
             // Check if the callbacks should not be suppressed
@@ -646,6 +750,26 @@
                 // Call the destroy after callback
                 plugin.settings.callbackDestroyAfter.call();
             }
+        },
+
+        /**
+         * Call the open method silently.
+         * @param  {element}  $trigger  The trigger.
+         * @return {void}
+         */
+        openSilently: ($trigger, silent = false) => {
+            // Call the open method silently
+            plugin.this.open(true);
+        },
+
+        /**
+         * Call the close method silently.
+         * @param  {element}  $trigger  The trigger.
+         * @return {void}
+         */
+        closeSilently: ($trigger, silent = false) => {
+            // Call the close method silently
+            plugin.this.close(true);
         },
 
         /**

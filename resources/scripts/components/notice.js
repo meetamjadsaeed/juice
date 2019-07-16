@@ -23,6 +23,10 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
+        animationRemove: 'fade-out',
+
         callbackInitializeBefore: () => {
             console.log('Notice: callbackInitializeBefore');
         },
@@ -46,8 +50,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Notice: callbackDestroyAfter');
-        },
-        removeAnimation: 'fade-out'
+        }
     };
 
     /**
@@ -70,6 +73,20 @@
     }
 
     /**
+     * Event handler to remove a notice when the notice remove is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickRemoveEventHandler = (event) => {
+        // Set the remove and notice
+        const $remove = event.currentTarget;
+        const $notice = $remove.closest('.notice');
+
+        // Remove the notice
+        plugin.this.remove($notice);
+    };
+
+    /**
      * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings.
      * @param  {object}  options   The user options.
@@ -87,22 +104,6 @@
 
         // Return the extended plugin settings
         return defaults;
-    };
-
-    /**
-     * Event handler to remove a notice when the notice remove is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickRemoveEventHandler = (event) => {
-        // Set the notice remove
-        const $remove = event.currentTarget;
-
-        // Set the notice
-        const $notice = $remove.closest('.notice');
-
-        // Remove the notice
-        plugin.this.remove($notice);
     };
 
     /**
@@ -128,17 +129,20 @@
             // Set the notices
             const $notices = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the notices
-            $notices.forEach(($notice) => {
-                // Set the notice remove
-                const $remove = $notice.querySelector('.js-notice-remove');
+            // Check if any notices exist
+            if ($notices) {
+                // Cycle through all of the notices
+                $notices.forEach(($notice) => {
+                    // Set the remove
+                    const $remove = $notice.querySelector('.js-notice-remove');
 
-                // Check if the notice remove exists
-                if ($notice.contains($remove)) {
-                    // Add a click event handler to the notice remove to remove the notice
-                    $remove.addEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Add a click event handler to the remove to remove the notice
+                        $remove.addEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -154,47 +158,44 @@
          * @return {void}
          */
         remove: ($notice, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the remove before callback
-                plugin.settings.callbackRemoveBefore.call();
-            }
+            // Check if the notice exists and isn't animating out
+            if ($notice && !$notice.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the remove before callback
+                    plugin.settings.callbackRemoveBefore.call();
+                }
 
-            // Set the notice remove animation
-            const remove_animation =
-                $notice.dataset.noticeRemoveAnimation ||
-                plugin.settings.removeAnimation;
+                // Check if the notice is animated
+                if (plugin.settings.animation) {
+                    // Set the notice remove animation
+                    const remove_animation = $notice.dataset.noticeAnimationRemove || plugin.settings.animationRemove;
 
-            // Check if the remove animation is set
-            if (remove_animation && remove_animation != 'none') {
-                // Add the animating state hook to the notice
-                $notice.classList.add('is-animating');
+                    // Set the notice animation classes
+                    $notice.classList.add('is-animating-out', plugin.settings.animationClass, remove_animation);
 
-                // Add the animation classes to the notice
-                $notice.classList.add('has-animation');
-                $notice.classList.add(remove_animation);
+                    // Add an animation end event listener to the notice
+                    $notice.addEventListener('animationend', () => {
+                        // Remove the notice
+                        $notice.remove();
 
-                // Add an animation end event listener to the notice
-                $notice.addEventListener('animationend', () => {
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the remove after callback
+                            plugin.settings.callbackRemoveAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
                     // Remove the notice
-                    $notice.parentNode.removeChild($notice);
+                    $notice.remove();
 
                     // Check if the callbacks should not be suppressed
                     if (!silent) {
                         // Call the remove after callback
                         plugin.settings.callbackRemoveAfter.call();
                     }
-                }, {
-                    once: true
-                });
-            } else {
-                // Remove the notice
-                $notice.parentNode.removeChild($notice);
-
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove after callback
-                    plugin.settings.callbackRemoveAfter.call();
                 }
             }
         },
@@ -239,17 +240,20 @@
             // Set the notices
             const $notices = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the notices
-            $notices.forEach(($notice) => {
-                // Set the notice remove
-                const $remove = $notice.querySelector('.js-notice-remove');
+            // Check if any notices exist
+            if ($notices) {
+                // Cycle through all of the notices
+                $notices.forEach(($notice) => {
+                    // Set the remove
+                    const $remove = $notice.querySelector('.js-notice-remove');
 
-                // Check if the notice remove exists
-                if ($notice.contains($remove)) {
-                    // Remove then click event handler from the notice remove
-                    $remove.removeEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Remove then click event handler from the notice remove
+                        $remove.removeEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

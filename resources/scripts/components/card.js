@@ -23,6 +23,10 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
+        animationRemove: 'fade-out',
+
         callbackInitializeBefore: () => {
             console.log('Card: callbackInitializeBefore');
         },
@@ -46,8 +50,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Card: callbackDestroyAfter');
-        },
-        removeAnimation: 'fade-out'
+        }
     };
 
     /**
@@ -70,6 +73,20 @@
     }
 
     /**
+     * Event handler to remove a card when the card remove is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickRemoveEventHandler = (event) => {
+        // Set the remove and card
+        const $remove = event.currentTarget;
+        const $card = $remove.closest('.card');
+
+        // Remove the card
+        plugin.this.remove($card);
+    };
+
+    /**
      * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings.
      * @param  {object}  options   The user options.
@@ -87,22 +104,6 @@
 
         // Return the extended plugin settings
         return defaults;
-    };
-
-    /**
-     * Event handler to remove a card when the card remove is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickRemoveEventHandler = (event) => {
-        // Set the card remove
-        const $remove = event.currentTarget;
-
-        // Set the card
-        const $card = $remove.closest('.card');
-
-        // Remove the card
-        plugin.this.remove($card);
     };
 
     /**
@@ -128,17 +129,20 @@
             // Set the cards
             const $cards = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the cards
-            $cards.forEach(($card) => {
-                // Set the card remove
-                const $remove = $card.querySelector('.js-card-remove');
+            // Check if any cards exist
+            if ($cards) {
+                // Cycle through all of the cards
+                $cards.forEach(($card) => {
+                    // Set the remove
+                    const $remove = $card.querySelector('.js-card-remove');
 
-                // Check if the card remove exists
-                if ($card.contains($remove)) {
-                    // Add a click event handler to the card remove to remove the card
-                    $remove.addEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Add a click event handler to the remove to remove the card
+                        $remove.addEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -154,47 +158,44 @@
          * @return {void}
          */
         remove: ($card, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the remove before callback
-                plugin.settings.callbackRemoveBefore.call();
-            }
+            // Check if the card exists and isn't animating out
+            if ($card && !$card.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the remove before callback
+                    plugin.settings.callbackRemoveBefore.call();
+                }
 
-            // Set the card remove animation
-            const remove_animation =
-                $card.dataset.cardRemoveAnimation ||
-                plugin.settings.removeAnimation;
+                // Check if the card is animated
+                if (plugin.settings.animation) {
+                    // Set the remove animation
+                    const remove_animation = $card.dataset.cardAnimationRemove || plugin.settings.animationRemove;
 
-            // Check if the remove animation is set
-            if (remove_animation && remove_animation != 'none') {
-                // Add the animating state hook to the card
-                $card.classList.add('is-animating');
+                    // Set the card animation classes
+                    $card.classList.add('is-animating-out', plugin.settings.animationClass, remove_animation);
 
-                // Add the animation classes to the card
-                $card.classList.add('has-animation');
-                $card.classList.add(remove_animation);
+                    // Add an animation end event listener to the card
+                    $card.addEventListener('animationend', () => {
+                        // Remove the card
+                        $card.remove();
 
-                // Add an animation end event listener to the card
-                $card.addEventListener('animationend', () => {
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the remove after callback
+                            plugin.settings.callbackRemoveAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
                     // Remove the card
-                    $card.parentNode.removeChild($card);
+                    $card.remove();
 
                     // Check if the callbacks should not be suppressed
                     if (!silent) {
                         // Call the remove after callback
                         plugin.settings.callbackRemoveAfter.call();
                     }
-                }, {
-                    once: true
-                });
-            } else {
-                // Remove the card
-                $card.parentNode.removeChild($card);
-
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove after callback
-                    plugin.settings.callbackRemoveAfter.call();
                 }
             }
         },
@@ -239,17 +240,20 @@
             // Set the cards
             const $cards = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the cards
-            $cards.forEach(($card) => {
-                // Set the card remove
-                const $remove = $card.querySelector('.js-card-remove');
+            // Check if any cards exist
+            if ($cards) {
+                // Cycle through all of the cards
+                $cards.forEach(($card) => {
+                    // Set the remove
+                    const $remove = $card.querySelector('.js-card-remove');
 
-                // Check if the card remove exists
-                if ($card.contains($remove)) {
-                    // Remove the click event handler from the card remove
-                    $remove.removeEventListener('click', clickRemoveEventHandler);
-                }
-            });
+                    // Check if the remove exists
+                    if ($remove) {
+                        // Remove the click event handler from the card remove
+                        $remove.removeEventListener('click', clickRemoveEventHandler);
+                    }
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

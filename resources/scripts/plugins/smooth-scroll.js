@@ -68,23 +68,21 @@
         onLoad: true,
         onLoadSilently: true,
         history: true,
-        historyBottom: '#js-smooth-scroll-bottom',
-        historyTop: '#js-smooth-scroll-top',
+        historyBottom: '#bottom',
+        historyTop: '#top',
         targetHorizontal: 'center',
         targetVertical: 'center'
     };
 
     /**
      * Constructor.
-     * @param  {element}  element  The selector element(s).
      * @param  {object}   options  The plugin options.
      * @return {void}
      */
-    function Plugin(element, options) {
+    function Plugin(options) {
         // Set the plugin object
         plugin.this = this;
         plugin.name = plugin_name;
-        plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
         plugin.settings = extendDefaults(defaults, options);
