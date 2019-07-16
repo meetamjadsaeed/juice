@@ -3,7 +3,6 @@
 ### New
 - Add dialog component
 - Add lightbox component
-- Add modal component
 - Add notification component
 - Add off canvas navigation component
 - Add tabs component
@@ -16,6 +15,134 @@
 - Update table element
     - Add table--hover modifiers
     - Add tfoot styling
+
+
+-----
+
+
+# v0.22.0-beta
+
+### New
+- Added modal component
+
+### Updated
+- Updated accordion component
+    - Updated sass
+        - Updated eldest sibling accordion__heading to accordion__headings to avoid class name conflicts
+    - Updated scripts
+        - Added element exist checks to reduce potential errors
+        - Updated option toggleAnimation to toggle
+        - Updated option toggleAnimation to toggleDuration
+        - Fixed duplicate toggle callbacks
+            - Added is animating checks
+- Updated card component
+    - Updated sass
+        - Updated eldest sibling card__heading to card__headings to avoid class name conflicts
+    - Updated scripts
+        - Added option animation
+        - Added option animationClass
+        - Added element exist checks to reduce potential errors
+        - Updated option removeAnimation to animationRemove
+        - Updated is-animating class to is-animating-out
+        - Updated parentNode removeChild chain with single remove
+        - Fixed duplicate remove callbacks
+            - Added is animating checks
+- Updated chip component
+    - Added option animation
+    - Added option animationClass
+    - Added element exist checks to reduce potential errors
+    - Updated option removeAnimation to animationRemove
+    - Updated is-animating class to is-animating-out
+    - Updated parentNode removeChild chain with single remove
+    - Fixed duplicate remove callbacks
+        - Added is animating checks
+- Updated dropdown component
+    - Added option animation
+    - Added option animationClass
+    - Added element exist checks to reduce potential errors
+    - Updated is-animating class to is-animating-in and is-animating-out
+    - Fixed duplicate remove callbacks
+        - Added is animating checks
+- Updated notice component
+    - Added option animationClass
+    - Added element exist checks to reduce potential errors
+    - Updated option removeAnimation to animationRemove
+    - Updated is-animating class to is-animating-out
+    - Updated parentNode removeChild chain with single remove
+    - Fixed duplicate remove callbacks
+        - Added is animating checks
+- Updated panel component
+    - Updated sass
+        - Updated eldest sibling panel__heading to panel__headings to avoid class name conflicts
+    - Updated scripts
+        - Added option animationClass
+        - Added option animation
+        - Added element exist checks to reduce potential errors
+        - Updated option animationToggle to toggle
+        - Updated option animationToggleDuration to toggleDuration
+        - Updated option removeAnimation to animationRemove
+        - Updated is-animating class to is-animating in toggle method
+        - Updated is-animating class to is-animating-out in remove method
+        - Updated parentNode removeChild chain with single remove
+        - Fixed duplicate remove callbacks
+            - Added is animating checks
+- Updated popover component
+    - Updated sass
+        - Added popover__heading block class
+        - Added popover__actions block class
+        - Updated font-size default value
+    - Updated scripts
+        - Added grouping
+            - Added previous, next and close elements
+        - Added option animation
+        - Added option animationClass
+        - Added option close
+        - Added option next
+        - Added option prev
+        - Added option callbackPrev
+        - Added option callbackNext
+        - Added public method open
+        - Added public method openSilently
+        - Added public method close
+        - Added public method closeSilently
+        - Updated options callbackInsert* to callbackOpen*
+        - Updated options callbackRemove* to callbackClose*
+        - Updated is-animating class to is-animating-in and is-animating-out
+        - Updated parentNode removeChild chain with single remove
+        - Fixed duplicate remove callbacks
+            - Added popover data checks to open method
+            - Added is animating checks to close method
+        - Removedprivate method insertPopover
+        - Removedprivate method removePopover
+        - Removedfocus event listeners
+- Updated tooltip component
+    - Added option animation
+    - Added option animationClass
+    - Added public method open
+    - Added public method openSilently
+    - Added public method close
+    - Added public method closeSilently
+    - Updated options callbackInsert* to callbackOpen*
+    - Updated options callbackRemove* to callbackClose*
+    - Updated private method insertEventHandler to openEventHandler
+    - Updated private method removeEventHandler to closeEventHandler
+    - Updated is-animating class to is-animating-in and is-animating-out
+    - Updated $container to $trigger
+    - Updated parentNode removeChild chain with single remove
+    - Removedprivate method insertTooltip
+    - Removedprivate method removeTooltip
+    - Fixed duplicate remove callbacks
+        - Added is animating checks
+- Updated remover plugin
+    - Added option animationClass
+    - Updated option removeAnimation to animationRemove
+- Updated smoothscroll plugin
+    - Updated option historyBottom default value from #js-smooth-scroll-bottom to #bottom
+    - Updated option historyTop default value from #js-smooth-scroll-top to #top
+    - Removedconstructor element parameter
+        - Removedplugin.element
+- Updated toggler plugin
+    - Added option animationClass
 
 
 -----
