@@ -336,7 +336,7 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the custom password containers
+            // Set the containers
             const $containers = document.querySelectorAll(plugin.element);
 
             // Cycle through all of the containers

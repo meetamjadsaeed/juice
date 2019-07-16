@@ -23,6 +23,10 @@
 
     // Set the plugin defaults
     const defaults = {
+        openMultipleItems: false,
+        toggle: 'slide',
+        toggleDuration: 200,
+
         callbackInitializeBefore: () => {
             console.log('Accordion: callbackInitializeBefore');
         },
@@ -46,10 +50,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Accordion: callbackDestroyAfter');
-        },
-        openMultipleItems: false,
-        toggleAnimation: 'slide',
-        toggleAnimationDuration: 200
+        }
     };
 
     /**
@@ -72,6 +73,57 @@
     }
 
     /**
+     * Event handler to toggle an accordion item when an accordion item
+     * toggle is clicked.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickToggleEventHandler = (event) => {
+        // Set the toggle
+        const $toggle = event.currentTarget;
+
+        // Set the item and accordion
+        const $item = $toggle.closest('.accordion__item');
+        const $accordion = $item.closest('.accordion');
+
+        // Set the accordion type
+        const open_multiple_items = $accordion.dataset.accordionOpenMultipleItems || plugin.settings.openMultipleItems;
+
+        // Check if opening multiple items is not allowed
+        if (!open_multiple_items) {
+            // Create an empty item siblings array
+            const siblings = [];
+
+            // Set the first item sibling
+            let $sibling = $item.parentNode.firstChild;
+
+            // Start a while loop for the item siblings existance
+            while ($sibling) {
+                // Check if the item sibling is an element and not the current item
+                if ($sibling.nodeType === 1 && $sibling !== $item) {
+                    // Add the item sibling to the siblings array
+                    siblings.push($sibling);
+                }
+
+                // Set the next item sibling
+                $sibling = $sibling.nextSibling
+            }
+
+            // Cycle through all of the item siblings
+            siblings.forEach(($sibling) => {
+                // Check if the item sibling has the is expanded state hook
+                if ($sibling.classList.contains('is-expanded')) {
+                    // Toggle the item sibling
+                    plugin.this.toggle($sibling);
+                }
+            });
+        }
+
+        // Toggle the accordion item
+        plugin.this.toggle($item);
+    };
+
+    /**
      * Merge the default plugin settings with the user options.
      * @param  {object}  defaults  The default plugin settings.
      * @param  {object}  options   The user options.
@@ -89,59 +141,6 @@
 
         // Return the extended plugin settings
         return defaults;
-    };
-
-    /**
-     * Event handler to toggle an accordion item when an accordion item
-     * toggle is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickToggleEventHandler = (event) => {
-        // Set the accordion item toggle
-        const $toggle = event.currentTarget;
-
-        // Set the accordion item and accordion
-        const $item = $toggle.closest('.accordion__item');
-        const $accordion = $item.closest('.accordion');
-
-        // Set the accordion type
-        const open_multiple_items =
-            $accordion.dataset.accordionOpenMultipleItems ||
-            plugin.settings.openMultipleItems;
-
-        // Check if opening multiple items is not allowed
-        if (!open_multiple_items) {
-            // Create an empty siblings array
-            const siblings = [];
-
-            // Set the first accordion item sibling
-            let $sibling = $item.parentNode.firstChild;
-
-            // Start a while loop for the accordion item siblings existance
-            while ($sibling) {
-                // Check if the accordion item sibling is an element and not the current accordion item
-                if ($sibling.nodeType === 1 && $sibling !== $item) {
-                    // Add the accordion item sibling to the siblings array
-                    siblings.push($sibling);
-                }
-
-                // Set the next accordion item sibling
-                $sibling = $sibling.nextSibling
-            }
-
-            // Cycle through all of the accordion item siblings
-            siblings.forEach(($sibling) => {
-                // Check if the accordion item sibling has the is expanded state hook
-                if ($sibling.classList.contains('is-expanded')) {
-                    // Toggle the accordion item sibling
-                    plugin.this.toggle($sibling);
-                }
-            });
-        }
-
-        // Toggle the accordion item
-        plugin.this.toggle($item);
     };
 
     /**
@@ -167,50 +166,52 @@
             // Set the accordions
             const $accordions = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the accordions
-            $accordions.forEach(($accordion) => {
-                // Set the accordion items
-                const $items = $accordion.querySelectorAll('.accordion__item');
+            // Check if any accordions exist
+            if ($accordions) {
+                // Cycle through all of the accordions
+                $accordions.forEach(($accordion) => {
+                    // Set the items
+                    const $items = $accordion.querySelectorAll('.accordion__item');
 
-                // Cycle through all of the accordion items
-                $items.forEach(($item, index) => {
-                    // Set the accordion item head, body and toggle
-                    const $head = $item.querySelector('.accordion__head');
-                    const $body = $item.querySelector('.accordion__body');
-                    const $toggle = $item.querySelector('.js-accordion-toggle');
+                    // Check if any items exist
+                    if ($items) {
+                        // Cycle through all of the items
+                        $items.forEach(($item, index) => {
+                            // Set the toggle
+                            const $toggle = $item.querySelector('.js-accordion-toggle');
 
-                    // Set the accordion type
-                    const open_multiple_items =
-                        $accordion.dataset.accordionOpenMultipleItems ||
-                        plugin.settings.openMultipleItems;
+                            // Set the open multiple items
+                            const open_multiple_items = $accordion.dataset.accordionOpenMultipleItems || plugin.settings.openMultipleItems;
 
-                    // Check if the accordion item doesn't have the expanded or collapsed state hooks
-                    if (!$item.classList.contains('is-expanded') && !$item.classList.contains('is-collapsed')) {
-                        // Add the collapsed state hook to the accordion item
-                        $item.classList.add('is-collapsed');
-                    }
-
-                    // Check if opening multiple items is not allowed
-                    if (!open_multiple_items) {
-                        // Check if the accordion item has the expanded state hook
-                        if ($item.classList.contains('is-expanded')) {
-                            // Check if this is the first iterated item in the loop
-                            if (index === 0) {
-                                // Toggle the expanded and collapsed state hooks on the accordion item
-                                $item.classList.add('is-expanded');
-                                $item.classList.remove('is-collapsed');
-                            } else {
-                                // Toggle the expanded and collapsed state hooks on the accordion item
+                            // Check if the item doesn't have the expanded or collapsed state hooks
+                            if (!$item.classList.contains('is-expanded') && !$item.classList.contains('is-collapsed')) {
+                                // Set the item expanded/collapsed state hooks
                                 $item.classList.add('is-collapsed');
-                                $item.classList.remove('is-expanded');
                             }
-                        }
-                    }
 
-                    // Add a click event handler to the accordion toggle to toggle the accordion item
-                    $toggle.addEventListener('click', clickToggleEventHandler);
+                            // Check if opening multiple items is not allowed
+                            if (!open_multiple_items) {
+                                // Check if the item has the expanded state hook
+                                if ($item.classList.contains('is-expanded')) {
+                                    // Check if this is the first iterated item in the loop
+                                    if (index === 0) {
+                                        // Set the item expanded/collapsed state hooks
+                                        $item.classList.add('is-expanded');
+                                        $item.classList.remove('is-collapsed');
+                                    } else {
+                                        // Set the item expanded/collapsed state hooks
+                                        $item.classList.add('is-collapsed');
+                                        $item.classList.remove('is-expanded');
+                                    }
+                                }
+                            }
+
+                            // Add a click event handler to the toggle to toggle the item
+                            $toggle.addEventListener('click', clickToggleEventHandler);
+                        });
+                    }
                 });
-            });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -226,156 +227,176 @@
          * @return {void}
          */
         toggle: ($item, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the toggle before callback
-                plugin.settings.callbackToggleBefore.call();
-            }
+            // Check if the item exists and isn't animating
+            if ($item && !$item.classList.contains('is-animating')) {
+                // Set the accordion and body
+                const $accordion = $item.closest('.accordion');
+                const $body = $item.querySelector('.accordion__body');
 
-            // Set the accordion and accordion body
-            const $accordion = $item.closest('.accordion');
-            const $body = $item.querySelector('.accordion__body');
-
-            // Set the accordion toggle settings
-            const toggle_animation =
-                $accordion.dataset.accordionToggleAnimation ||
-                plugin.settings.toggleAnimation;
-            const toggle_animation_duration =
-                $accordion.dataset.accordionToggleAnimationDuration ||
-                plugin.settings.toggleAnimationDuration;
-
-            // Start a switch statement for the toggle animation
-            switch (toggle_animation) {
-                // Default
-                default:
-                    // Toggle the expanded and collapsed state hooks on the accordion item
-                    $item.classList.toggle('is-expanded');
-                    $item.classList.toggle('is-collapsed');
-
+                // Check if the item exists and isn't animating
+                if (!$accordion.classList.contains('is-animating')) {
                     // Check if the callbacks should not be suppressed
                     if (!silent) {
-                        // Call the toggle after callback
-                        plugin.settings.callbackToggleAfter.call();
+                        // Call the toggle before callback
+                        plugin.settings.callbackToggleBefore.call();
                     }
-                break;
 
-                // Slide
-                case 'slide':
-                    // Remove the animated state hook from the accordion
-                    $accordion.classList.remove('has-animated');
+                    // Set the toggle settings
+                    const toggle = $accordion.dataset.accordionToggle || plugin.settings.toggle;
+                    const toggle_duration = $accordion.dataset.accordionToggleDuration || plugin.settings.toggleDuration;
 
-                    // Add the animating state hook to the accordion
-                    $accordion.classList.add('is-animating');
+                    // Start a switch statement for the toggle animation
+                    switch (toggle) {
+                        // Default
+                        default:
+                            // Set the item expanded/collapsed state hooks
+                            $item.classList.toggle('is-expanded');
+                            $item.classList.toggle('is-collapsed');
 
-                    // Check if the accordion item has the expanded state hook
-                    if ($item.classList.contains('is-expanded')) {
-                        // Slide the body up
-                        Velocity($body, 'slideUp', {
-                            complete: () => {
-                                // Remove the animating state hook from the accordion
-                                $accordion.classList.remove('is-animating');
+                            // Check if the callbacks should not be suppressed
+                            if (!silent) {
+                                // Call the toggle after callback
+                                plugin.settings.callbackToggleAfter.call();
+                            }
 
-                                // Toggle the expanded and collapsed state hooks on the accordion item
+                            // Break the switch
+                            break;
+
+                        // Slide
+                        case 'slide':
+                            // Set the accordion animation classes
+                            $accordion.classList.remove('has-animated');
+                            $accordion.classList.add('is-animating');
+
+                            // Set the item animation classes
+                            $item.classList.remove('has-animated');
+                            $item.classList.add('is-animating');
+
+                            // Check if the accordion item has the expanded state hook
+                            if ($item.classList.contains('is-expanded')) {
+                                // Slide the body up
+                                Velocity($body, 'slideUp', {
+                                    complete: () => {
+                                        // Set the accordion animation classes
+                                        $accordion.classList.remove('is-animating');
+                                        $accordion.classList.add('has-animated');
+
+                                        // Set the item animation classes
+                                        $item.classList.remove('is-animating');
+                                        $item.classList.add('has-animated');
+
+                                        // Set the item expanded/collapsed state hooks
+                                        $item.classList.toggle('is-expanded');
+                                        $item.classList.toggle('is-collapsed');
+
+                                        // Check if the callbacks should not be suppressed
+                                        if (!silent) {
+                                            // Call the toggle after callback
+                                            plugin.settings.callbackToggleAfter.call();
+                                        }
+                                    },
+                                    duration: toggle_duration
+                                });
+                            }
+
+                            // Check if the item has the collapsed state hook
+                            if ($item.classList.contains('is-collapsed')) {
+                                // Set the item expanded/collapsed state hooks
                                 $item.classList.toggle('is-expanded');
                                 $item.classList.toggle('is-collapsed');
 
-                                // Add the animated state hook to the accordion
-                                $accordion.classList.add('has-animated');
+                                // Slide the body down
+                                Velocity($body, 'slideDown', {
+                                    complete: () => {
+                                        // Set the accordion animation classes
+                                        $accordion.classList.remove('is-animating');
+                                        $accordion.classList.add('has-animated');
 
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
+                                        // Set the item animation classes
+                                        $item.classList.remove('is-animating');
+                                        $item.classList.add('has-animated');
 
-                    // Check if the accordion item has the collapsed state hook
-                    if ($item.classList.contains('is-collapsed')) {
-                        // Toggle the expanded and collapsed state hooks on the accordion item
-                        $item.classList.toggle('is-expanded');
-                        $item.classList.toggle('is-collapsed');
+                                        // Check if the callbacks should not be suppressed
+                                        if (!silent) {
+                                            // Call the toggle after callback
+                                            plugin.settings.callbackToggleAfter.call();
+                                        }
+                                    },
+                                    duration: toggle_duration
+                                });
+                            }
 
-                        // Slide the body down
-                        Velocity($body, 'slideDown', {
-                            complete: () => {
-                                // Remove the animating state hook from the accordion
-                                $accordion.classList.remove('is-animating');
+                            // Break the switch
+                            break;
 
-                                // Add the animated state hook to the accordion
-                                $accordion.classList.add('has-animated');
+                        // Fade
+                        case 'fade':
+                            // Set the accordion animation classes
+                            $accordion.classList.remove('has-animated');
+                            $accordion.classList.add('is-animating');
 
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
-                break;
+                            // Set the item animation classes
+                            $item.classList.remove('has-animated');
+                            $item.classList.add('is-animating');
 
-                // Fade
-                case 'fade':
-                    // Remove the animated state hook from the accordion
-                    $accordion.classList.remove('has-animated');
+                            // Check if the item has the expanded state hook
+                            if ($item.classList.contains('is-expanded')) {
+                                // Fade the body out
+                                Velocity($body, 'fadeOut', {
+                                    complete: () => {
+                                        // Set the accordion animation classes
+                                        $accordion.classList.remove('is-animating');
+                                        $accordion.classList.add('has-animated');
 
-                    // Add the animating state hook to the accordion
-                    $accordion.classList.add('is-animating');
+                                        // Set the item animation classes
+                                        $item.classList.remove('is-animating');
+                                        $item.classList.add('has-animated');
 
-                    // Check if the accordion item has the expanded state hook
-                    if ($item.classList.contains('is-expanded')) {
-                        // Fade the body out
-                        Velocity($body, 'fadeOut', {
-                            complete: () => {
-                                // Remove the animating state hook from the accordion
-                                $accordion.classList.remove('is-animating');
+                                        // Set the item expanded/collapsed state hooks
+                                        $item.classList.toggle('is-expanded');
+                                        $item.classList.toggle('is-collapsed');
 
-                                // Toggle the expanded and collapsed state hooks on the accordion item
+                                        // Check if the callbacks should not be suppressed
+                                        if (!silent) {
+                                            // Call the toggle after callback
+                                            plugin.settings.callbackToggleAfter.call();
+                                        }
+                                    },
+                                    duration: toggle_duration
+                                });
+                            }
+
+                            // Check if the item has the collapsed state hook
+                            if ($item.classList.contains('is-collapsed')) {
+                                // Set the item expanded/collapsed state hooks
                                 $item.classList.toggle('is-expanded');
                                 $item.classList.toggle('is-collapsed');
 
-                                // Add the animated state hook to the accordion
-                                $accordion.classList.add('has-animated');
+                                // Fade the body in
+                                Velocity($body, 'fadeIn', {
+                                    complete: () => {
+                                        // Set the accordion animation classes
+                                        $accordion.classList.remove('is-animating');
+                                        $accordion.classList.add('has-animated');
 
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
+                                        // Set the item animation classes
+                                        $item.classList.remove('is-animating');
+                                        $item.classList.add('has-animated');
+
+                                        // Check if the callbacks should not be suppressed
+                                        if (!silent) {
+                                            // Call the toggle after callback
+                                            plugin.settings.callbackToggleAfter.call();
+                                        }
+                                    },
+                                    duration: toggle_duration
+                                });
+                            }
+
+                            // Break the switch
+                            break;
                     }
-
-                    // Check if the accordion item has the collapsed state hook
-                    if ($item.classList.contains('is-collapsed')) {
-                        // Toggle the expanded and collapsed state hooks on the accordion item
-                        $item.classList.toggle('is-expanded');
-                        $item.classList.toggle('is-collapsed');
-
-                        // Fade the body in
-                        Velocity($body, 'fadeIn', {
-                            complete: () => {
-                                // Remove the animating state hook from the accordion
-                                $accordion.classList.remove('is-animating');
-
-                                // Add the animated state hook to the accordion
-                                $accordion.classList.add('has-animated');
-
-                                // Check if the callbacks should not be suppressed
-                                if (!silent) {
-                                    // Call the toggle after callback
-                                    plugin.settings.callbackToggleAfter.call();
-                                }
-                            },
-                            duration: toggle_animation_duration
-                        });
-                    }
-                break;
+                }
             }
         },
 
@@ -419,20 +440,29 @@
             // Set the accordions
             const $accordions = document.querySelectorAll(plugin.element);
 
-            // Cycle through all of the accordions
-            $accordions.forEach(($accordion) => {
-                // Set the accordion items
-                const $items = $accordion.querySelectorAll('.accordion__item');
+            // Check if any accordions exists
+            if ($accordions) {
+                // Cycle through all of the accordions
+                $accordions.forEach(($accordion) => {
+                    // Set the items
+                    const $items = $accordion.querySelectorAll('.accordion__item');
 
-                // Cycle through all of the accordion items
-                $items.forEach(($item, index) => {
-                    // Set the accordion item toggle
-                    const $toggle = $item.querySelector('.js-accordion-toggle');
+                    // Check if any items exists
+                    if ($items) {
+                        // Cycle through all of the items
+                        $items.forEach(($item, index) => {
+                            // Set the toggle
+                            const $toggle = $item.querySelector('.js-accordion-toggle');
 
-                    // Remove the click event handler from the accordion item toggle
-                    $toggle.removeEventListener('click', clickToggleEventHandler);
+                            // Check if the toggle exists
+                            if ($toggle) {
+                                // Remove the click event handler from the toggle
+                                $toggle.removeEventListener('click', clickToggleEventHandler);
+                            }
+                        });
+                    }
                 });
-            });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

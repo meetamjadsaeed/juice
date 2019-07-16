@@ -23,25 +23,35 @@
 
     // Set the plugin defaults
     const defaults = {
+        animation: true,
+        animationClass: 'has-animation',
         animationIn: 'zoom-in',
         animationOut: 'zoom-out',
+        color: null,
+        delayIn: 0,
+        delayOut: 0,
+        duration: 2000,
+        feedback: null,
+        position: 'top',
+        size: null,
+
         callbackInitializeBefore: () => {
             console.log('Tooltip: callbackInitializeBefore');
         },
         callbackInitializeAfter: () => {
             console.log('Tooltip: callbackInitializeAfter');
         },
-        callbackInsertBefore: () => {
-            console.log('Tooltip: callbackInsertBefore');
+        callbackOpenBefore: () => {
+            console.log('Tooltip: callbackOpenBefore');
         },
-        callbackInsertAfter: () => {
-            console.log('Tooltip: callbackInsertAfter');
+        callbackOpenAfter: () => {
+            console.log('Tooltip: callbackOpenAfter');
         },
-        callbackRemoveBefore: () => {
-            console.log('Tooltip: callbackRemoveBefore');
+        callbackCloseBefore: () => {
+            console.log('Tooltip: callbackCloseBefore');
         },
-        callbackRemoveAfter: () => {
-            console.log('Tooltip: callbackRemoveAfter');
+        callbackCloseAfter: () => {
+            console.log('Tooltip: callbackCloseAfter');
         },
         callbackRefreshBefore: () => {
             console.log('Tooltip: callbackRefreshBefore');
@@ -54,14 +64,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Tooltip: callbackDestroyAfter');
-        },
-        color: null,
-        delayIn: 0,
-        delayOut: 0,
-        duration: 2000,
-        feedback: null,
-        position: 'top',
-        size: null
+        }
     };
 
     /**
@@ -131,36 +134,28 @@
     };
 
     /**
-     * Build a tooltip.
-     * @param  {element}  $container  The tooltip container.
+     * Build the tooltip.
+     * @param  {element}  $trigger  The tooltip trigger.
      * @return {element}              The tooltip.
      */
-    const buildTooltip = ($container) => {
-        // Create the tooltip and tooltip content
+    const buildTooltip = ($trigger) => {
+        // Create the tooltip and content
         const $tooltip = document.createElement('div');
         const $content = document.createElement('div');
 
-        // Add the tooltip classes
+        // Add the tooltip and content classes
         $tooltip.classList.add('tooltip');
         $content.classList.add('tooltip__content');
 
         // Construct the tooltip
         $tooltip.append($content);
-        $content.append($container.dataset.tooltip);
+        $content.append($trigger.dataset.tooltip);
 
         // Set the tooltip modifiers
-        const color =
-            $container.dataset.tooltipColor ||
-            plugin.settings.color;
-        const feedback =
-            $container.dataset.tooltipFeedback ||
-            plugin.settings.feedback;
-        const position =
-            $container.dataset.tooltipPosition ||
-            plugin.settings.position;
-        const size =
-            $container.dataset.tooltipSize ||
-            plugin.settings.size;
+        const color = $trigger.dataset.tooltipColor || plugin.settings.color;
+        const feedback = $trigger.dataset.tooltipFeedback || plugin.settings.feedback;
+        const position = $trigger.dataset.tooltipPosition || plugin.settings.position;
+        const size = $trigger.dataset.tooltipSize || plugin.settings.size;
 
         // Check if a color modifier exists
         if (color) {
@@ -191,22 +186,22 @@
     };
 
     /**
-     * Set the tooltip position relative to the tooltip container.
-     * @param  {element}  $container  The tooltip container.
+     * Set the tooltip position relative to the tooltip trigger.
+     * @param  {element}  $trigger  The tooltip trigger.
      * @param  {element}  $tooltip    The tooltip.
      * @return {void}
      */
-    const positionTooltip = ($container, $tooltip) => {
-        // Set the tooltip container offset
-        const container_offset = getElementOffset($container);
+    const positionTooltip = ($trigger, $tooltip) => {
+        // Set the tooltip trigger offset
+        const trigger_offset = getElementOffset($trigger);
 
-        // Set the tooltip container left and top positions
-        const container_left = container_offset.left;
-        const container_top = container_offset.top;
+        // Set the tooltip trigger left and top positions
+        const trigger_left = trigger_offset.left;
+        const trigger_top = trigger_offset.top;
 
-        // Set the tooltip container dimensions
-        const container_width = $container.offsetWidth;
-        const container_height = $container.offsetHeight;
+        // Set the tooltip trigger dimensions
+        const trigger_width = $trigger.offsetWidth;
+        const trigger_height = $trigger.offsetHeight;
 
         // Set the tooltip dimensions
         const tooltip_width = $tooltip.offsetWidth;
@@ -218,7 +213,7 @@
 
         // Set the tooltip position modifier
         const position =
-            $container.dataset.tooltipPosition ||
+            $trigger.dataset.tooltipPosition ||
             plugin.settings.position;
 
         // Start a switch statement for the tooltip position
@@ -227,36 +222,36 @@
             default:
                 // Set the tooltip left and top positions
                 tooltip_left =
-                    container_left + ((container_width - tooltip_width) / 2);
+                    trigger_left + ((trigger_width - tooltip_width) / 2);
                 tooltip_top =
-                    container_top - tooltip_height;
+                    trigger_top - tooltip_height;
             break;
 
             // Right
             case 'right':
                 // Set the tooltip left and top positions
                 tooltip_left =
-                    container_left + container_width;
+                    trigger_left + trigger_width;
                 tooltip_top =
-                    container_top + ((container_height - tooltip_height) / 2);
+                    trigger_top + ((trigger_height - tooltip_height) / 2);
             break;
 
             // Bottom
             case 'bottom':
                 // Set the tooltip left and top positions
                 tooltip_left =
-                    container_left + ((container_width - tooltip_width) / 2);
+                    trigger_left + ((trigger_width - tooltip_width) / 2);
                 tooltip_top =
-                    container_top + container_height;
+                    trigger_top + trigger_height;
             break;
 
             // Left
             case 'left':
                 // Set the tooltip left and top positions
                 tooltip_left =
-                    container_left - tooltip_width;
+                    trigger_left - tooltip_width;
                 tooltip_top =
-                    container_top + ((container_height - tooltip_height) / 2);
+                    trigger_top + ((trigger_height - tooltip_height) / 2);
             break;
         }
 
@@ -266,255 +261,30 @@
     };
 
     /**
-     * Insert a tooltip.
-     * @param  {element}  $container  The tooltip container.
-     * @param  {element}  $tooltip    The tooltip.
-     * @return {void}
-     */
-    const insertTooltip = ($container, $tooltip) => {
-        // Call the insert before callback
-        plugin.settings.callbackInsertBefore.call();
-
-        // Set the tooltip delay in
-        const delay_in =
-            $container.dataset.tooltipDelayIn ||
-            plugin.settings.delayIn;
-
-        // Start a timer
-        setTimeout(() => {
-            // Set the body
-            const $body = document.querySelector('body');
-
-            // Append the tooltip to the body
-            $body.appendChild($tooltip);
-
-            // Position the tooltip
-            positionTooltip($container, $tooltip);
-
-            // Assign the tooltip to the tooltip container data object
-            $container.data = {
-                tooltip: $tooltip
-            };
-
-            // Assign the tooltip container to the tooltip data object
-            $tooltip.data = {
-                container: $container
-            };
-
-            // Show the tooltip
-            $tooltip.style.display = 'block';
-
-            // Add the active state hook to the tooltip container
-            $container.classList.add('is-active');
-
-            // Set the tooltip animation in
-            const animation_in =
-                $container.dataset.tooltipAnimationIn ||
-                plugin.settings.animationIn;
-
-            // Check if the animation in is set
-            if (animation_in && animation_in != 'none') {
-                // Add the animating state hook to the tooltip
-                $tooltip.classList.add('is-animating');
-
-                // Add the animation classes to the tooltip
-                $tooltip.classList.add('has-animation');
-                $tooltip.classList.add(animation_in);
-
-                // Add an animation end event listener to the tooltip
-                $tooltip.addEventListener('animationend', (event) => {
-                    // Remove the animating state hook from the tooltip
-                    $tooltip.classList.remove('is-animating');
-
-                    // Remove the animation classes from the tooltip
-                    $tooltip.classList.remove('has-animation');
-                    $tooltip.classList.remove(animation_in);
-
-                    // Add the animated state hook to the tooltip
-                    $tooltip.classList.add('has-animated');
-
-                    // Call the insert after callback
-                    plugin.settings.callbackInsertAfter.call();
-
-                    // Set the tooltip duration
-                    const duration =
-                        $container.dataset.tooltipDuration ||
-                        plugin.settings.duration;
-
-                    // Check if the tooltip has a display duration
-                    if (duration > 0) {
-                        // Start a timer
-                        setTimeout(() => {
-                            // Check if a tooltip container data object exists
-                            if ($container.data) {
-                                // Check if the tooltip container data has an assigned tooltip
-                                if ('tooltip' in $container.data) {
-                                    // Remove the tooltip
-                                    removeTooltip($container, $tooltip);
-                                }
-                            }
-                        }, duration);
-                    }
-                }, {
-                    once: true
-                });
-            } else {
-                // Call the insert after callback
-                plugin.settings.callbackInsertAfter.call();
-
-                // Set the tooltip duration
-                const duration =
-                    $container.dataset.tooltipDuration ||
-                    plugin.settings.duration;
-
-                // Check if the tooltip has a display duration
-                if (duration > 0) {
-                    // Start a timer
-                    setTimeout(() => {
-                        // Check if a tooltip container data object exists
-                        if ($container.data) {
-                            // Check if the tooltip container data has an assigned tooltip
-                            if ('tooltip' in $container.data) {
-                                // Remove the tooltip
-                                removeTooltip($container, $tooltip);
-                            }
-                        }
-                    }, duration);
-                }
-            }
-        }, delay_in);
-    };
-
-    /**
-     * Remove a tooltip.
-     * @param  {element}  $container  The tooltip container.
-     * @param  {element}  $tooltip    The tooltip.
-     * @param  {bool}     silent      Suppress callbacks.
-     * @return {void}
-     */
-    const removeTooltip = ($container, $tooltip, silent = false) => {
-        // Check if the callbacks should not be suppressed
-        if (!silent) {
-            // Call the remove before callback
-            plugin.settings.callbackRemoveBefore.call();
-        }
-
-        // Set the tooltip delay out
-        const delay_out =
-            $container.dataset.tooltipDelayOut ||
-            plugin.settings.delayOut;
-
-        // Start a timer
-        setTimeout(() => {
-            // Set the tooltip animation out
-            const animation_out =
-                $container.dataset.tooltipAnimationOut ||
-                plugin.settings.animationOut;
-
-            // Check if the animation out is set
-            if (animation_out && animation_out != 'none') {
-                // Remove the animated state hook from the tooltip
-                $tooltip.classList.remove('has-animated');
-
-                // Add the animating state hook to the tooltip
-                $tooltip.classList.add('is-animating');
-
-                // Add the animation classes to the tooltip
-                $tooltip.classList.add('has-animation');
-                $tooltip.classList.add(animation_out);
-
-                // Add an animation end event listener to the tooltip
-                $tooltip.addEventListener('animationend', (event) => {
-                    // Check if the tooltip exists in the dom
-                    if (document.body.contains($tooltip)) {
-                        // Remove the tooltip
-                        $tooltip.parentNode.removeChild($tooltip);
-                    }
-
-                    // Remove the assigned tooltip from the tooltip container data
-                    delete $container.data['tooltip'];
-
-                    // Remove the active state hook from the tooltip container
-                    $container.classList.remove('is-active');
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the remove after callback
-                        plugin.settings.callbackRemoveAfter.call();
-                    }
-                }, {
-                    once: true
-                });
-            } else {
-                // Check if the tooltip exists in the dom
-                if (document.body.contains($tooltip)) {
-                    // Remove the tooltip
-                    $tooltip.parentNode.removeChild($tooltip);
-                }
-
-                // Remove the assigned tooltip from the tooltip container data
-                delete $container.data['tooltip'];
-
-                // Remove the active state hook from the tooltip container
-                $container.classList.remove('is-active');
-
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove after callback
-                    plugin.settings.callbackRemoveAfter.call();
-                }
-            }
-        }, delay_out);
-    };
-
-    /**
-     * Event handler to insert a tooltip relative to its tooltip container.
+     * Event handler to open a tooltip relative to its tooltip trigger.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const insertEventHandler = (event) => {
-        // Set the tooltip container
-        const $container = event.target;
+    const openEventHandler = (event) => {
+        // Set the tooltip trigger
+        const $trigger = event.target;
 
-        // Check if a tooltip container data object doesn't exist
-        if (!$container.data) {
-            // Set the tooltip
-            const $tooltip = buildTooltip($container);
-
-            // Insert the tooltip
-            insertTooltip($container, $tooltip);
-        } else {
-            // Check that the tooltip container data doesn't have an assigned tooltip
-            if (!('tooltip' in $container.data)) {
-                // Set the tooltip
-                const $tooltip = buildTooltip($container);
-
-                // Insert the tooltip
-                insertTooltip($container, $tooltip);
-            }
-        }
+        // Open the tooltip
+        plugin.this.open($trigger);
     };
 
     /**
-     * Event handler to remove a tooltip.
+     * Event handler to close a tooltip.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const removeEventHandler = (event) => {
-        // Set the tooltip container
-        const $container = event.target;
+    const closeEventHandler = (event) => {
+        // Set the trigger and tooltip
+        const $trigger = event.target;
+        const $tooltip = $trigger.data.tooltip;
 
-        // Check if a tooltip container data object exists
-        if ($container.data) {
-            // Check if the tooltip container data has an assigned tooltip
-            if ('tooltip' in $container.data) {
-                // Set the tooltip
-                const $tooltip = $container.data.tooltip;
-
-                // Remove the tooltip
-                removeTooltip($container, $tooltip);
-            }
-        }
+        // Close the tooltip
+        plugin.this.close($tooltip);
     };
 
     /**
@@ -537,34 +307,207 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Check if the html tag has the no touch detection class
+            // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the tooltip containers
-                const $containers = document.querySelectorAll(plugin.element);
+                // Set the triggers
+                const $triggers = document.querySelectorAll(plugin.element);
 
-                // Cycle through all of the tooltip containers
-                $containers.forEach(($container) => {
-                    // Add a mouse enter event handler to the tooltip container to insert the tooltip
-                    $container.addEventListener('mouseenter', insertEventHandler);
+                // Check if any triggers exist
+                if ($triggers) {
+                    // Cycle through all of the triggers
+                    $triggers.forEach(($trigger) => {
+                        // Add mouse enter and focus event handlers to the trigger to open the tooltip
+                        $trigger.addEventListener('mouseenter', openEventHandler);
+                        $trigger.addEventListener('focus', openEventHandler);
 
-                    // Add a focus event handler to the tooltip container to insert the tooltip
-                    $container.addEventListener('focus', insertEventHandler);
-
-                    // Add a mouse leave event handler to the tooltip container to remove the tooltip
-                    $container.addEventListener('mouseleave', removeEventHandler);
-
-                    // Add a click event handler to the tooltip container to remove the tooltip
-                    $container.addEventListener('click', removeEventHandler);
-
-                    // Add a focusout event handler to the tooltip container to remove the tooltip
-                    $container.addEventListener('focusout', removeEventHandler);
-                });
+                        // Add mouse leave, click event and focus out event handlers to the trigger to remove the tooltip
+                        $trigger.addEventListener('mouseleave', closeEventHandler);
+                        $trigger.addEventListener('click', closeEventHandler);
+                        $trigger.addEventListener('focusout', closeEventHandler);
+                    });
+                }
             }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
                 // Call the initialize after callback
                 plugin.settings.callbackInitializeAfter.call();
+            }
+        },
+
+        /**
+         * Open a tooltip.
+         * @param  {element}  $trigger  The trigger.
+         * @return {void}
+         */
+        open: ($trigger, silent = false) => {
+            // Check if the trigger exists
+            if ($trigger) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the open before callback
+                    plugin.settings.callbackOpenBefore.call(silent);
+                }
+
+                // Set the tooltips
+                const $tooltips = document.querySelectorAll('.tooltip:not(.is-animating-out)');
+
+                // Check if any tooltips exist
+                if ($tooltips) {
+                    // Cycle through all of the tooltips
+                    $tooltips.forEach(($tooltip) => {
+                        // Close the tooltip
+                        plugin.this.close($tooltip);
+                    });
+                }
+
+                // Set the tooltip
+                const $tooltip = buildTooltip($trigger);
+
+                // Start a timer
+                setTimeout(() => {
+                    // Append the tooltip to the body
+                    document.body.appendChild($tooltip);
+
+                    // Position the tooltip
+                    positionTooltip($trigger, $tooltip);
+
+                    // Assign the tooltip to the tooltip trigger data object
+                    $trigger.data = {
+                        tooltip: $tooltip
+                    };
+
+                    // Assign the tooltip trigger to the tooltip data object
+                    $tooltip.data = {
+                        trigger: $trigger
+                    };
+
+                    // Show the tooltip
+                    $tooltip.style.display = 'block';
+
+                    // Add the active state hook to the tooltip trigger
+                    $trigger.classList.add('is-active');
+
+                    // Check if the the tooltip is animated
+                    if (plugin.settings.animation) {
+                        // Set the tooltip animation in
+                        const animation_in = $trigger.dataset.tooltipAnimationIn || plugin.settings.animationIn;
+
+                        // Set the tooltip animation classes
+                        $tooltip.classList.add('is-animating-in', plugin.settings.animationClass, animation_in);
+
+                        // Add an animation end event listener to the tooltip
+                        $tooltip.addEventListener('animationend', (event) => {
+                            // Set the tooltip animation classes
+                            $tooltip.classList.remove('is-animating-in', plugin.settings.animationClass, animation_in);
+                            $tooltip.classList.add('has-animated');
+
+                            // Check if the callbacks should not be suppressed
+                            if (!silent) {
+                                // Call the open after callback
+                                plugin.settings.callbackOpenAfter.call();
+                            }
+
+                            // Set the duration
+                            const duration = $trigger.dataset.tooltipDuration || plugin.settings.duration;
+
+                            // Check if the tooltip has a display duration
+                            if (duration > 0) {
+                                // Start a timer
+                                setTimeout(() => {
+                                    // Check if a trigger data object exists
+                                    if ($trigger.data) {
+                                        // Check if the trigger data has an assigned tooltip
+                                        if ('tooltip' in $trigger.data) {
+                                            // Close the tooltip
+                                            plugin.this.close($trigger.data.tooltip);
+                                        }
+                                    }
+                                }, duration);
+                            }
+                        }, {
+                            once: true
+                        });
+                    } else {
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the open after callback
+                            plugin.settings.callbackOpenAfter.call();
+                        }
+
+                        // Set the duration
+                        const duration = $trigger.dataset.tooltipDuration || plugin.settings.duration;
+
+                        // Check if the tooltip has a display duration
+                        if (duration > 0) {
+                            // Start a timer
+                            setTimeout(() => {
+                                // Check if a trigger data object exists
+                                if ($trigger.data) {
+                                    // Check if the trigger data has an assigned tooltip
+                                    if ('tooltip' in $trigger.data) {
+                                        // Close the tooltip
+                                        plugin.this.close($trigger.data.tooltip);
+                                    }
+                                }
+                            }, duration);
+                        }
+                    }
+
+                }, $trigger.dataset.tooltipDelayIn || plugin.settings.delayIn);
+            }
+        },
+
+        /**
+         * Close a tooltip.
+         * @param  {element}  $tooltip  The tooltip.
+         * @param  {bool}     silent    Suppress callbacks.
+         * @return {void}
+         */
+        close: ($tooltip, silent = false) => {
+            // Check if the tooltip exists
+            if ($tooltip && !$tooltip.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the remove before callback
+                    plugin.settings.callbackCloseBefore.call();
+                }
+
+                // Set the trigger
+                const $trigger = $tooltip.data.trigger;
+
+                // Start a timer
+                setTimeout(() => {
+                    // Set the animation out
+                    const animation_out = $trigger.dataset.tooltipAnimationOut || plugin.settings.animationOut;
+
+                    // Set the tooltip animation classes
+                    $tooltip.classList.remove('has-animated');
+                    $tooltip.classList.add('is-animating-out', plugin.settings.animationClass, animation_out);
+
+                    // Add an animation end event listener to the tooltip
+                    $tooltip.addEventListener('animationend', (event) => {
+                        // Check if the tooltip exists
+                        if ($tooltip) {
+                            // Remove the tooltip
+                            $tooltip.remove();
+                        }
+
+                        // Remove the assigned tooltip from the trigger data
+                        delete $trigger.data['tooltip'];
+
+                        // Remove the active state hook from the trigger
+                        $trigger.classList.remove('is-active');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the remove after callback
+                            plugin.settings.callbackCloseAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                }, $trigger.dataset.tooltipDelayOut || plugin.settings.delayOut);
             }
         },
 
@@ -605,40 +548,25 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Check if the html tag has the no touch detection class
+            // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the tooltip containers
-                const $containers = document.querySelectorAll(plugin.element);
+                // Set the triggers and tooltips
+                const $triggers = document.querySelectorAll(plugin.element);
 
-                // Cycle through all of the tooltip containers
-                $containers.forEach(($container) => {
-                    // Check if a tooltip container data object exists
-                    if ($container.data) {
-                        // Check if the tooltip container data has an assigned tooltip
-                        if ('tooltip' in $container.data) {
-                            // Set the tooltip
-                            const $tooltip = $container.data.tooltip;
+                // Check if any triggers exist
+                if ($triggers) {
+                    // Cycle through all of the triggers
+                    $triggers.forEach(($trigger) => {
+                        // Remove the mouse enter and focus event handlers from the tooltip trigger
+                        $trigger.removeEventListener('mouseenter', openEventHandler);
+                        $trigger.removeEventListener('focus', openEventHandler);
 
-                            // Remove the tooltip
-                            removeTooltip($container, $tooltip, silent);
-                        }
-                    }
-
-                    // Remove the mouse enter event handler from the tooltip container
-                    $container.removeEventListener('mouseenter', insertEventHandler);
-
-                    // Remove the focus event handler from the tooltip container
-                    $container.removeEventListener('focus', insertEventHandler);
-
-                    // Remove the mouse leave event handler from the tooltip container
-                    $container.removeEventListener('mouseleave', removeEventHandler);
-
-                    // Remove the click event handler from the tooltip container
-                    $container.removeEventListener('click', removeEventHandler);
-
-                    // Remove the focusout event handler from the tooltip container
-                    $container.removeEventListener('focusout', removeEventHandler);
-                });
+                        // Remove the mouse leave, click and focus out event handlers from the tooltip trigger
+                        $trigger.removeEventListener('mouseleave', closeEventHandler);
+                        $trigger.removeEventListener('click', closeEventHandler);
+                        $trigger.removeEventListener('focusout', closeEventHandler);
+                    });
+                }
             }
 
             // Check if the callbacks should not be suppressed.

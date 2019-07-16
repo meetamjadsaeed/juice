@@ -23,7 +23,8 @@
 
     // Set the plugin defaults
     const defaults = {
-    	animationIn: 'fade-in-up',
+        animationClass: 'has-animation',
+        animationIn: 'fade-in-up',
         animationOut: 'fade-out-down',
         callbackInitializeBefore: () => {
             console.log('Toggler: callbackInitializeBefore');
@@ -269,7 +270,7 @@
                     $target.classList.add('is-animating');
 
                     // Add the animation classes to the target
-                    $target.classList.add('has-animation');
+                    $target.classList.add(plugin.settings.animationClass);
                     $target.classList.add(animation_in);
 
                     // Add an animation end event listener to the target
@@ -278,7 +279,7 @@
                         $target.classList.remove('is-animating');
 
                         // Remove the animation classes from the target
-                        $target.classList.remove('has-animation');
+                        $target.classList.remove(plugin.settings.animationClass);
                         $target.classList.remove(animation_in);
 
                         // Add the animated state hook to the target
@@ -368,7 +369,7 @@
                     $target.classList.add('is-animating');
 
                     // Add the animation classes to the target
-                    $target.classList.add('has-animation');
+                    $target.classList.add(plugin.settings.animationClass);
                     $target.classList.add(animation_out);
 
                     // Add an animation end event listener to the target
@@ -377,7 +378,7 @@
                         $target.classList.remove('is-animating');
 
                         // Remove the animation classes from the target
-                        $target.classList.remove('has-animation');
+                        $target.classList.remove(plugin.settings.animationClass);
                         $target.classList.remove(animation_out);
 
                         // Add the animated state hook to the target

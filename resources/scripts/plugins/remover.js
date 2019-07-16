@@ -23,6 +23,8 @@
 
     // Set the plugin defaults
     const defaults = {
+        animationClass: 'has-animation',
+        animationRemove: 'fade-out',
         callbackInitializeBefore: () => {
             console.log('Remover: callbackInitializeBefore');
         },
@@ -47,7 +49,6 @@
         callbackDestroyAfter: () => {
             console.log('Remover: callbackDestroyAfter');
         },
-        removeAnimation: 'fade-out',
         slide: false,
         slideDuration: 200
     };
@@ -239,8 +240,8 @@
                     } else {
                         // Set the target remove animation
                         const remove_animation =
-                            $trigger.dataset.removeAnimation ||
-                            plugin.settings.removeAnimation;
+                            $trigger.dataset.removerAnimationRemove ||
+                            plugin.settings.animationRemove;
 
                         // Check if the remove animation is set
                         if (remove_animation && remove_animation != 'none') {
@@ -248,7 +249,7 @@
                             $target.classList.add('is-animating');
 
                             // Add the animation classes to the target
-                            $target.classList.add('has-animation');
+                            $target.classList.add(plugin.settings.animationClass);
                             $target.classList.add(remove_animation);
 
                             // Add an animation end event listener to the target
