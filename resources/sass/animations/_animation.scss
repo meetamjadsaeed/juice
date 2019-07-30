@@ -20,7 +20,7 @@
             @each $easing-name, $easing in $easings {
                 // Modifiers
                 &[data-animation-easing="#{$easing-name}"] {
-                    animation-timing-function: $easing;
+                    animation-timing-function: $easing !important;
                 }
             }
         }
@@ -31,11 +31,11 @@
             @for $i from 1 through 20 {
                 // Modifiers
                 &[data-animation-duration="#{$i * 50}"] {
-                    animation-duration: #{$i * 50}ms;
+                    animation-duration: #{$i * 50}ms !important;
                 }
 
                 &[data-animation-delay="#{$i * 50}"] {
-                    animation-delay: #{$i * 50}ms;
+                    animation-delay: #{$i * 50}ms !important;
                 }
             }
         }
