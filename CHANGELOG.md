@@ -1,12 +1,10 @@
 # Roadmap
 
 ### New
-- Add dialog component
 - Add lightbox component
 - Add notification component
 - Add off canvas navigation component
 - Add tabs component
-- Add toast component
 
 ### Update
 - Update form elements
@@ -15,6 +13,53 @@
 - Update table element
     - Add table--hover modifiers
     - Add tfoot styling
+
+
+-----
+
+
+# v0.23.0-beta
+
+### New
+- Added alert component
+- Added confirm component
+- Added prompt component
+- Added toast component
+
+### Updated
+- Updated sass maps
+    - Added toast z-index 900
+    - Updated overlay z-index from 500 to 800
+    - Updated dropdown z-index from 600 to 500
+    - Updated popover z-index from 700 to 600
+    - Updated tooltip z-index from 800 to 700
+- Updated box element
+    - Fixed child button link font colors being overwritten
+- Updated custom checkbox element
+    - Added min/max width and height
+- Updated custom radio element
+    - Added min/max width and height
+- Updated navbar element
+    - Fixed child button link font colors being overwritten
+- Updated pagination element
+    - Added list item min-width
+- Updated accordion component
+    - Fixed child button link font colors being overwritten
+- Updated card component
+    - Fixed child button link font colors being overwritten
+- Updated chip component
+    - Fixed child button link font colors being overwritten
+- Updated dropdown component
+    - Added width 100% to content
+- Updated modal component
+    - Added overlay class as parent selector
+- Updated notice component
+    - Fixed child button link font colors being overwritten
+- Updated panel component
+    - Fixed child button link font colors being overwritten
+- Updated popover component
+    - Fixed child button link font colors being overwritten
+- Updated build directory
 
 
 -----
@@ -173,7 +218,7 @@
 - Updated build directory
 
 ### Fixed
-- Fix mark element
+- Fixed mark element
     - Updated background-color variable value
 
 
@@ -244,7 +289,7 @@
 ### Updated
 - Updated package
     - Updated version 0.19.1-beta to 0.19.2-beta
-    - Fix package files
+    - Fixed package files
         - Added public directory
         - Added resources directory
         - Removed dist directory
