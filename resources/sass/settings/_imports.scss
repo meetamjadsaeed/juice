@@ -89,13 +89,17 @@ $import-components: true !default;
 
 // Components
 $import-component-accordion: true !default;
+$import-component-alert: true !default;
 $import-component-card: true !default;
 $import-component-chip: true !default;
+$import-component-confirm: true !default;
 $import-component-dropdown: true !default;
 $import-component-modal: true !default;
 $import-component-notice: true !default;
 $import-component-panel: true !default;
 $import-component-popover: true !default;
+$import-component-prompt: true !default;
+$import-component-toast: true !default;
 $import-component-tooltip: true !default;
 
 

@@ -24,7 +24,7 @@
         margin-bottom: var(--element-spacing);
 
         // Nested selectors
-        a {
+        a:not(.button) {
             // Variables
             --font-color: var(--default-link-color);
 
@@ -68,7 +68,7 @@
             flex: 1 0 25%;
 
             // Nested selectors
-            a {
+            a:not(.button) {
                 display: inline-flex;
             }
         }
@@ -89,7 +89,7 @@
                     flex: 1 0 auto;
 
                     // Nested selectors
-                    a {
+                    a:not(.button) {
                         display: inline-flex;
                         padding: var(--content-spacing);
                     }
@@ -129,7 +129,7 @@
                     flex: 1 0 auto;
 
                      // Nested selectors
-                    a {
+                    a:not(.button) {
                         align-items: center;
                         display: flex;
                         justify-content: center;
