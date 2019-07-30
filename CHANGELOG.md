@@ -18,6 +18,35 @@
 -----
 
 
+# v0.23.1-beta
+
+### Updated
+- Updated animations
+    - Added important flags to animation data modifiers
+- Updated accordion component
+    - Fixed child button link font colors being overwritten
+- Updated card component
+    - Fixed child button link font colors being overwritten
+- Updated chip component
+    - Fixed child button link font colors being overwritten
+- Updated dropdown component
+    - Updated content-spacing variable default value
+    - Updated min width variable value
+    - Removed max width variable
+    - Fixed child button link font colors and padding being overwritten
+- Updated notice component
+    - Fixed child button link font colors being overwritten
+- Updated panel component
+    - Fixed child button link font colors being overwritten
+- Updated popover component
+    - Fixed child button link font colors being overwritten
+- Updated demo pages
+- Updated build directory
+
+
+-----
+
+
 # v0.23.0-beta
 
 ### New
