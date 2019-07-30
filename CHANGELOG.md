@@ -72,22 +72,10 @@
     - Fixed child button link font colors being overwritten
 - Updated pagination element
     - Added list item min-width
-- Updated accordion component
-    - Fixed child button link font colors being overwritten
-- Updated card component
-    - Fixed child button link font colors being overwritten
-- Updated chip component
-    - Fixed child button link font colors being overwritten
 - Updated dropdown component
     - Added width 100% to content
 - Updated modal component
     - Added overlay class as parent selector
-- Updated notice component
-    - Fixed child button link font colors being overwritten
-- Updated panel component
-    - Fixed child button link font colors being overwritten
-- Updated popover component
-    - Fixed child button link font colors being overwritten
 - Updated build directory
 
 
