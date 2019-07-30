@@ -89,6 +89,7 @@
             // Nested selectors
             li {
                 margin-right: calc(0px - var(--border-width-divider));
+                min-width: var(--height);
 
                 // Pseudo classes
                 &:first-child {

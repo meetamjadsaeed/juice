@@ -92,10 +92,11 @@ $stack-indexes: (
     'hover': 200,
     'focus': 300,
     'active': 400,
-    'overlay': 500,
-    'dropdown': 600,
-    'popover': 700,
-    'tooltip': 800
+    'dropdown': 500,
+    'popover': 600,
+    'tooltip': 700,
+    'overlay': 800,
+    'toast': 900
 ) !default;
 
 

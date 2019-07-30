@@ -1,10 +1,10 @@
 /*  ========================================================================
-    JUICE -> COMPONENTS -> MODAL
+    JUICE -> COMPONENTS -> CONFIRM
     ========================================================================  */
 
 ;(function (root, factory) {
     // Set the plugin name
-    const plugin_name = 'Modal';
+    const plugin_name = 'Confirm';
 
     // Check if instantiation should be via amd, commonjs or the browser
     if (typeof define === 'function' && define.amd) {
@@ -23,74 +23,70 @@
 
     // Set the plugin defaults
     const defaults = {
-        color: null,
-        close: true,
-        closeContent: '<button type="button" class="button--component is-huge js-modal-close"><i class="fas fa-times"></i></button>',
-        closeEsc: true,
+        cancelButtonClass: 'button--flat',
+        cancelButtonText: 'Cancel',
+        center: null,
+        color: 'primary',
         contentAnimation: true,
         contentAnimationClass: 'has-animation',
         contentAnimationIn: 'fade-in-up',
         contentAnimationOut: 'fade-out-down',
+        continueButtonClass: null,
+        continueButtonText: 'Continue',
+        heading: '<h4>Heading</h4>',
         overlayAnimation: true,
         overlayAnimationClass: 'has-animation',
         overlayAnimationIn: 'fade-in',
         overlayAnimationOut: 'fade-out',
         feedback: null,
         size: null,
+        text: 'Lorem ipsum...',
 
-        callbackInitializeBefore: () => {
-            console.log('Modal: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Modal: callbackInitializeAfter');
+        callbackInitialize: () => {
+            console.log('Confirm: callbackInitialize');
         },
         callbackOpenBefore: () => {
-            console.log('Modal: callbackOpenBefore');
+            console.log('Confirm: callbackOpenBefore');
         },
         callbackOpenAfter: () => {
-            console.log('Modal: callbackOpenAfter');
+            console.log('Confirm: callbackOpenAfter');
         },
         callbackCloseBefore: () => {
-            console.log('Modal: callbackCloseBefore');
+            console.log('Confirm: callbackCloseBefore');
         },
         callbackCloseAfter: () => {
-            console.log('Modal: callbackCloseAfter');
+            console.log('Confirm: callbackCloseAfter');
         },
         callbackRefreshBefore: () => {
-            console.log('Modal: callbackRefreshBefore');
+            console.log('Confirm: callbackRefreshBefore');
         },
         callbackRefreshAfter: () => {
-            console.log('Modal: callbackRefreshAfter');
+            console.log('Confirm: callbackRefreshAfter');
         },
         callbackDestroyBefore: () => {
-            console.log('Modal: callbackDestroyBefore');
+            console.log('Confirm: callbackDestroyBefore');
         },
         callbackDestroyAfter: () => {
-            console.log('Modal: callbackDestroyAfter')
+            console.log('Confirm: callbackDestroyAfter')
         },
 
         callbackCancel: () => {
-            console.log('Modal: callbackCancel');
+            console.log('Confirm: callbackCancel');
         },
         callbackContinue: () => {
-            console.log('Modal: callbackContinue');
-        },
-        callbackEsc: () => {
-            console.log('Modal: callbackEsc');
+            console.log('Confirm: callbackContinue');
         }
     };
 
     /**
      * Constructor.
-     * @param  {element}  element  The initialized element.
-     * @param  {object}   options  The plugin options.
+     * @param  {object}  options  The plugin options.
      * @return {void}
      */
-    function Plugin(element, options) {
+    function Plugin(options) {
         // Set the plugin object
         plugin.this = this;
         plugin.name = plugin_name;
-        plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
         plugin.settings = extendDefaults(defaults, options);
@@ -100,70 +96,89 @@
     }
 
     /**
-     * Build the modal.
-     * @param  {element}  $target  The modal target.
+     * Build the confirm.
      * @return {void}
      */
-    const buildModal = ($target) => {
-        // Create the modal
-        const $modal = document.createElement('div');
+    const buildConfirm = () => {
+        // Create the confirm
+        const $confirm = document.createElement('div');
+        const $content = document.createElement('div');
+        const $card = document.createElement('div');
+        const $head = document.createElement('div');
+        const $headings = document.createElement('div');
+        const $body = document.createElement('div');
+        const $foot = document.createElement('div');
+        const $buttons = document.createElement('div');
+        const $cancel = document.createElement('button');
+        const $continue = document.createElement('button');
 
-        // Add the modal classes
-        $modal.classList.add('overlay', 'modal');
+        // Construct the confirm
+        $confirm.append($content);
+        $content.append($card);
 
-        // Set the modal modifiers
-        const center = $target.dataset.modalCenter || plugin.settings.center;
-        const close = $target.dataset.modalClose || plugin.settings.close;
+        // Construct the card
+        $card.append($head);
+        $card.append($body);
+        $card.append($foot);
+
+        // Construct the head
+        $head.append($headings);
+        $headings.insertAdjacentHTML('beforeend', plugin.settings.heading);
+
+        // Construct the body
+        $body.insertAdjacentHTML('beforeend', plugin.settings.text);
+
+        // Construct the foot
+        $foot.append($buttons);
+        $buttons.append($cancel);
+        $buttons.append($continue);
+        $cancel.append(plugin.settings.cancelButtonText);
+        $continue.append(plugin.settings.continueButtonText);
+
+        // Add the confirm classes
+        $confirm.classList.add('overlay', 'confirm');
+        $content.classList.add('confirm__content');
+        $card.classList.add('confirm__card');
+        $head.classList.add('confirm__head');
+        $headings.classList.add('confirm__headings');
+        $body.classList.add('confirm__body');
+        $foot.classList.add('confirm__foot');
+        $buttons.classList.add('confirm__buttons');
+        $cancel.classList.add(plugin.settings.cancelButtonClass, 'js-confirm-cancel');
+        $continue.classList.add(plugin.settings.continueButtonClass, 'js-confirm-continue');
 
         // Check if a center modifier exists
-        if (center) {
-            // Add the center modifier class to the modal
-            $modal.classList.add('modal--center');
-        }
-
-        // Append the target to the modal
-        $modal.insertAdjacentHTML('beforeend', $target.innerHTML);
-
-        // Check if a close modifier exists
-        if (close) {
-            // Create the close
-            const $close = document.createElement('span');
-
-            // Add the close classes
-            $close.classList.add('modal__close');
-
-            // Set the close content
-            $close.innerHTML = plugin.settings.closeContent;
-
-            // Append the close to the modal
-            $modal.append($close);
-        }
-
-        // Set the modal modifiers
-        const color = $target.dataset.modalColor || plugin.settings.color;
-        const feedback = $target.dataset.modalFeedback || plugin.settings.feedback;
-        const size = $target.dataset.modalSize || plugin.settings.size;
-
-        // Check if a color modifier exists
-        if (color) {
-            // Add the color modifier class to the modal
-            $modal.classList.add(`is-${color}`);
-        }
-
-        // Check if a feedback modifier exists
-        if (feedback) {
-            // Add the feedback modifier class to the modal
-            $modal.classList.add(`has-${feedback}`);
+        if (plugin.settings.center) {
+            // Add the center modifier class to the confirm
+            $confirm.classList.add('confirm--center');
         }
 
         // Check if a size modifier exists
-        if (size) {
-            // Add the size modifier class to the modal
-            $modal.classList.add(`is-${size}`);
+        if (plugin.settings.size) {
+            // Add the size modifier class to the confirm
+            $confirm.classList.add(`is-${plugin.settings.size}`);
+            $cancel.classList.add(`is-${plugin.settings.size}`);
+            $continue.classList.add(`is-${plugin.settings.size}`);
         }
 
-        // Append the modal to the document body
-        document.body.insertAdjacentHTML('beforeend', $modal.outerHTML);
+        // Check if a color modifier exists
+        if (plugin.settings.color) {
+            // Add the color modifier class to the confirm
+            $confirm.classList.add(`is-${plugin.settings.color}`);
+            $cancel.classList.add(`is-${plugin.settings.color}`);
+            $continue.classList.add(`is-${plugin.settings.color}`);
+        }
+
+        // Check if a feedback modifier exists
+        if (plugin.settings.feedback) {
+            // Add the feedback modifier class to the confirm
+            $confirm.classList.add(`has-${plugin.settings.feedback}`);
+            $cancel.classList.add(`has-${plugin.settings.feedback}`);
+            $continue.classList.add(`has-${plugin.settings.feedback}`);
+        }
+
+        // Append the confirm to the document body
+        document.body.insertAdjacentHTML('beforeend', $confirm.outerHTML);
     };
 
     /**
@@ -177,20 +192,6 @@
     };
 
     /**
-     * Event handler to remove a modal when the close is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickCloseEventHandler = (event) => {
-        // Set the close and modal
-        const $close = event.currentTarget;
-        const $modal = $close.closest('.modal');
-
-        // Close the modal
-        plugin.this.close($modal);
-    };
-
-    /**
      * Event handler to trigger the continue callback when the continue button is clicked.
      * @param  {object}  event  The event object.
      * @return {void}
@@ -198,20 +199,6 @@
     const clickContinueEventHandler = (event) => {
         // Call the continue callback
         plugin.settings.callbackContinue.call();
-    };
-
-    /**
-     * Event handler to open a modal when the trigger is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickTriggerEventHandler = (event) => {
-        // Set the trigger and target
-        const $trigger = event.currentTarget;
-        const $target = document.querySelector($trigger.dataset.modalTarget);
-
-        // Open the modal
-        plugin.this.open($target);
     };
 
     /**
@@ -247,7 +234,6 @@
 
         // Set the keycodes
         const keycode_tab = 9;
-        const keycode_esc = 27;
 
         // Add a keydown event listener to the modal to trap focus
         $modal.addEventListener('keydown', function(event) {
@@ -277,23 +263,6 @@
 
                     // Break the switch
                     break;
-
-                // Esc
-                case keycode_esc:
-                    // Check if the modal can be closed with the esc key
-                    if (plugin.settings.closeEsc) {
-                        // Prevent the default action
-                        event.preventDefault();
-
-                        // Call the esc callback
-                        plugin.settings.callbackEsc.call();
-
-                        // Close the modal
-                        plugin.this.close($modal);
-                    }
-
-                    // Break the switch
-                    break;
             }
         });
     }
@@ -314,38 +283,22 @@
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
-                // Call the initialize before callback
-                plugin.settings.callbackInitializeBefore.call();
+                // Call the initialize callback
+                plugin.settings.callbackInitialize.call();
             }
 
-            // Set the triggers
-            const $triggers = document.querySelectorAll(plugin.element);
-
-            // Check if any triggers exist
-            if ($triggers) {
-                // Cycle through all of the triggers
-                $triggers.forEach(($trigger) => {
-                    // Add a click event handler to the trigger to open the modal
-                    $trigger.addEventListener('click', clickTriggerEventHandler);
-                });
-            }
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the initialize after callback
-                plugin.settings.callbackInitializeAfter.call();
-            }
+            // Open the confirm
+            plugin.this.open();
         },
 
         /**
-         * Open a modal.
-         * @param  {element}  $target  The target modal.
-         * @param  {bool}     silent   Suppress callbacks.
+         * Open the confirm.
+         * @param  {bool}  silent   Suppress callbacks.
          * @return {void}
          */
-        open: ($target, silent = false) => {
-            // Check if the target exists and an overlay isn't already open
-            if ($target && (!document.body.classList.contains('has-overlay') || !document.querySelector('.overlay'))) {
+        open: (silent = false) => {
+            // Check if an overlay isn't already open
+            if (!document.body.classList.contains('has-overlay') || !document.querySelector('.overlay')) {
                 // Check if the callbacks should not be suppressed
                 if (!silent) {
                     // Call the open before callback
@@ -355,41 +308,35 @@
                 // Add the overlay state hook to the document body
                 document.body.classList.add('has-overlay');
 
-                // Build the modal
-                buildModal($target);
+                // Build the confirm
+                buildConfirm();
 
-                // Set the modal elements
-                const $modal = document.querySelector('.modal');
-                const $content = $modal.querySelector('.modal__content');
-                const $closes = $modal.querySelectorAll('.js-modal-close');
-                const $cancels = $modal.querySelectorAll('.js-modal-cancel');
-                const $continues = $modal.querySelectorAll('.js-modal-continue');
+                // Set the confirm elements
+                const $confirm = document.querySelector('.confirm');
+                const $content = $confirm.querySelector('.confirm__content');
+                const $cancel = $confirm.querySelector('.js-confirm-cancel');
+                const $continue = $confirm.querySelector('.js-confirm-continue');
 
-                // Set the modal data
-                $modal.data = {
-                    overlayAnimationIn: $target.dataset.overlayAnimationIn || plugin.settings.overlayAnimationIn,
-                    overlayAnimationOut: $target.dataset.overlayAnimationOut || plugin.settings.overlayAnimationOut,
-                    contentAnimationIn: $target.dataset.contentAnimationIn || plugin.settings.contentAnimationIn,
-                    contentAnimationOut: $target.dataset.contentAnimationOut || plugin.settings.contentAnimationOut,
-                };
+                // Set the plugin confirm
+                plugin.this.confirm = $confirm;
 
-                // Set the modal tabindex and focus on the modal
-                $modal.setAttribute('tabindex', -1);
-                $modal.focus();
+                // Set the confirm tabindex and focus on the confirm
+                $confirm.setAttribute('tabindex', -1);
+                $confirm.focus();
 
-                // Trap focus inside the modal
-                trapFocus($modal);
+                // Trap focus inside the confirm
+                trapFocus($confirm);
 
                 // Check if the overlay is animated
                 if (plugin.settings.overlayAnimation) {
-                    // Set the modal animation classes
-                    $modal.classList.add('is-animating-in', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationIn);
+                    // Set the confirm animation classes
+                    $confirm.classList.add('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
 
-                    // Add an animation end event listener to the modal
-                    $modal.addEventListener('animationend', (event) => {
-                        // Set the the modal animation classes
-                        $modal.classList.remove('is-animating-in', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationIn);
-                        $modal.classList.add('has-animated');
+                    // Add an animation end event listener to the confirm
+                    $confirm.addEventListener('animationend', (event) => {
+                        // Set the the confirm animation classes
+                        $confirm.classList.remove('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
+                        $confirm.classList.add('has-animated');
 
                         // Check if the callbacks should not be suppressed
                         if (!silent) {
@@ -410,56 +357,43 @@
                 // Check if the content is animated
                 if (plugin.settings.contentAnimation) {
                     // Set the content animation classes
-                    $content.classList.add('is-animating-in', plugin.settings.contentAnimationClass, $modal.data.contentAnimationIn);
+                    $content.classList.add('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
 
                     // Add an animation end event listener to the content
                     $content.addEventListener('animationend', (event) => {
                         // Set the the content animation classes
-                        $content.classList.remove('is-animating-in', plugin.settings.contentAnimationClass, $modal.data.contentAnimationIn);
+                        $content.classList.remove('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
                         $content.classList.add('has-animated');
                     }, {
                         once: true
                     });
                 }
 
-                // Check if any closes exist
-                if ($closes) {
-                    // Cycle through all of the closes
-                    $closes.forEach(($close) => {
-                        // Add a click event handler to the close button to close the modal
-                        $close.addEventListener('click', clickCloseEventHandler);
-                    });
+                // Check if a cancel exists
+                if ($cancel) {
+                    // Add a click event handler to the cancel button to trigger the cancel callback
+                    $cancel.addEventListener('click', clickCancelEventHandler);
                 }
 
-                // Check if any cancels exist
-                if ($cancels) {
-                    // Cycle through all of the cancels
-                    $cancels.forEach(($cancel) => {
-                        // Add a click event handler to the cancel button to trigger the cancel callback
-                        $cancel.addEventListener('click', clickCancelEventHandler);
-                    });
-                }
-
-                // Check if any continues exist
-                if ($continues) {
-                    // Cycle through all of the continues
-                    $continues.forEach(($continue) => {
-                        // Add a click event handler to the cancel button to trigger the cancel callback
-                        $continue.addEventListener('click', clickContinueEventHandler);
-                    });
+                // Check if a continue exists
+                if ($continue) {
+                    // Add a click event handler to the cancel button to trigger the cancel callback
+                    $continue.addEventListener('click', clickContinueEventHandler);
                 }
             }
         },
 
         /**
-         * Close a modal.
-         * @param  {element}  $target  The target for the modal.
-         * @param  {bool}     silent   Suppress callbacks.
+         * Close a confirm.
+         * @param  {bool}  silent   Suppress callbacks.
          * @return {void}
          */
-        close: ($modal, silent = false) => {
-            // Check if the modal exists and an overlay modal is open
-            if ($modal && (document.body.classList.contains('has-overlay') || document.querySelector('.overlay.modal'))) {
+        close: (silent = false) => {
+            // Set the confirm
+            const $confirm = plugin.this.confirm;
+
+            // Check if the confirm exists and an overlay confirm is open
+            if ($confirm && (document.body.classList.contains('has-overlay') || document.querySelector('.overlay.confirm'))) {
                 // Check if the callbacks should not be suppressed
                 if (!silent) {
                     // Call the close before callback
@@ -467,17 +401,17 @@
                 }
 
                 // Set the content
-                const $content = $modal.querySelector('.modal__content');
+                const $content = $confirm.querySelector('.confirm__content');
 
                 // Check if the overlay is animated
                 if (plugin.settings.overlayAnimation) {
-                    // Set the modal animation classes
-                    $modal.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationOut);
+                    // Set the confirm animation classes
+                    $confirm.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationOut);
 
-                    // Add an animation end event listener to the modal
-                    $modal.addEventListener('animationend', (event) => {
-                        // Remove the modal
-                        $modal.remove();
+                    // Add an animation end event listener to the confirm
+                    $confirm.addEventListener('animationend', (event) => {
+                        // Remove the confirm
+                        $confirm.remove();
 
                         // Remove the overlay state hook from the document body
                         document.body.classList.remove('has-overlay');
@@ -491,8 +425,8 @@
                         once: true
                     });
                 } else {
-                    // Remove the modal
-                    $modal.remove();
+                    // Remove the confirm
+                    $confirm.remove();
 
                     // Remove the overlay state hook from the document body
                     document.body.classList.remove('has-overlay');
@@ -507,12 +441,12 @@
                 // Check if the content is animated
                 if (plugin.settings.contentAnimation) {
                     // Set the content animation classes
-                    $content.classList.add('is-animating', plugin.settings.contentAnimationClass, $modal.data.contentAnimationOut);
+                    $content.classList.add('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
 
                     // Add an animation end event listener to the content
                     $content.addEventListener('animationend', (event) => {
                         // Set the the content animation classes
-                        $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, $modal.data.contentAnimationOut);
+                        $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
                         $content.classList.add('has-animated');
                     }, {
                         once: true
@@ -558,28 +492,6 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the modals and triggers
-            const $modals = document.querySelectorAll('.modal');
-            const $triggers = document.querySelectorAll(plugin.element);
-
-            // Check if any modals exists
-            if ($modals) {
-                // Cycle through all of the modals
-                $modals.forEach(($modal) => {
-                    // Close the modal
-                    plugin.this.close($modal);
-                });
-            }
-
-            // Check if any triggers exist
-            if ($triggers) {
-                // Cycle through all of the triggers
-                $triggers.forEach(($trigger) => {
-                    // Remove the click event handler from the trigger
-                    $trigger.removeEventListener('click', clickTriggerEventHandler);
-                });
-            }
-
             // Check if the callbacks should not be suppressed
             if (!silent) {
                 // Call the destroy after callback
@@ -589,22 +501,20 @@
 
         /**
          * Call the open method silently.
-         * @param  {element}  $target  The target for the modal.
          * @return {void}
          */
-        openSilently: ($target) => {
+        openSilently: () => {
             // Call the open method silently
-            plugin.this.open($target, true);
+            plugin.this.open(true);
         },
 
         /**
          * Call the close method silently.
-         * @param  {element}  $modal  The modal.
          * @return {void}
          */
-        closeSilently: ($modal) => {
+        closeSilently: () => {
             // Call the close method silently
-            plugin.this.close($modal, true);
+            plugin.this.close(true);
         },
 
         /**

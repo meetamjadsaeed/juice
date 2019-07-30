@@ -122,6 +122,10 @@
                 display: block;
                 height: var(--height);
                 margin: 0 var(--content-spacing);
+                max-height: var(--height);
+                min-height: var(--height);
+                max-width: var(--height);
+                min-width: var(--height);
                 width: var(--height);
             }
         }
