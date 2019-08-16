@@ -18,6 +18,140 @@
 -----
 
 
+# v0.24.0-beta
+
+### Updated
+- Updated juice imports
+- Updated button element
+    - Fixed text decoration on hyperlink buttons
+    - Fixed missing focus pseudo class styles to color modifiers
+    - Fixed missing focus pseudo class styles to feedback modifiers
+- Updated custom fieldset
+    - Fixed missing button declaration to feedback modifiers
+- Updated accordion component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickToggleEventHandler
+        - Added event.preventDefault
+- Updated alert component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickContinueEventHandler
+        - Added event.preventDefault
+- Updated card component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickRemoveEventHandler
+        - Added event.preventDefault
+- Updated chip component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickRemoveEventHandler
+        - Added event.preventDefault
+- Updated confirm component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickCancelEventHandler
+        - Added event.preventDefault
+    - Updated clickContinueEventHandler
+        - Added event.preventDefault
+- Updated dropdown component
+    - Updated min width variable default value to 250px
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickTriggerEventHandler
+        - Added event.preventDefault
+- Updated modal component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickCancelEventHandler
+        - Added event.preventDefault
+    - Updated clickCloseEventHandler
+        - Added event.preventDefault
+    - Updated clickContinueEventHandler
+        - Added event.preventDefault
+    - Updated clickTriggerEventHandler
+        - Added event.preventDefault
+- Updated notice component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickRemoveEventHandler
+        - Added event.preventDefault
+- Updated panel component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickRemoveEventHandler
+        - Added event.preventDefault
+    - Updated clickToggleEventHandler
+        - Added event.preventDefault
+- Updated popover component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickPrevEventListener
+        - Added event.preventDefault
+    - Updated clickNextEventListener
+        - Added event.preventDefault
+    - Updated clickCloseEventListener
+        - Added event.preventDefault
+    - Updated clickTriggerEventHandler
+        - Added event.preventDefault
+- Updated prompt component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickCancelEventHandler
+        - Added event.preventDefault
+    - Updated clickContinueEventHandler
+        - Added event.preventDefault
+- Updated toast component
+    - Updated clickActionEventHandler
+        - Added event.preventDefault
+- Updated tooltip component
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+- Updated custom file plugin
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+- Updated custom password plugin
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+- Updated remover plugin
+    - Updated defaults order declaration
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickTriggerEventHandler
+        - Added event.preventDefault
+- Updated smooth scroll plugin
+    - Updated defaults order declaration
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+- Updated toggler plugin
+    - Updated defaults order declaration
+    - Updated plugin.settings for default/option merge
+        - Added Object.assign
+        - Remove extendDefaults private method
+    - Updated clickTriggerEventHandler
+        - Added event.preventDefault
+
+
+-----
+
+
 # v0.23.1-beta
 
 ### Updated
