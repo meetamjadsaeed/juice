@@ -25,6 +25,9 @@
     const defaults = {
         animationClass: 'has-animation',
         animationRemove: 'fade-out',
+        slide: false,
+        slideDuration: 200,
+
         callbackInitializeBefore: () => {
             console.log('Remover: callbackInitializeBefore');
         },
@@ -48,9 +51,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Remover: callbackDestroyAfter');
-        },
-        slide: false,
-        slideDuration: 200
+        }
     };
 
     /**
@@ -66,31 +67,11 @@
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
-        plugin.settings = extendDefaults(defaults, options);
+        plugin.settings = Object.assign({}, defaults, options);
 
         // Initialize the plugin
         plugin.this.initialize();
     }
-
-    /**
-     * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings.
-     * @param  {object}  options   The user options.
-     * @return {object}            The extended plugin settings.
-     */
-    const extendDefaults = (defaults, options) => {
-        // Cycle through the user options
-        for (let property in options) {
-            // Check if the property exists in the user options
-            if (options.hasOwnProperty(property)) {
-                // Set the defaults property to the options property
-                defaults[property] = options[property];
-            }
-        }
-
-        // Return the extended plugin settings
-        return defaults;
-    };
 
     /**
      * Event handler to remove a target when the trigger is clicked.
@@ -98,6 +79,9 @@
      * @return {void}
      */
     const clickTriggerEventHandler = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+
         // Set the trigger and targets
         const $trigger = event.currentTarget;
         const $targets = $trigger.data.targets;

@@ -91,7 +91,7 @@
         plugin.name = plugin_name;
         plugin.defaults = defaults;
         plugin.options = options;
-        plugin.settings = extendDefaults(defaults, options);
+        plugin.settings = Object.assign({}, defaults, options);
 
         // Initialize the plugin
         plugin.this.initialize();
@@ -199,6 +199,9 @@
      * @return {void}
      */
     const clickCancelEventHandler = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+
         // Call the cancel callback
         plugin.settings.callbackCancel.call();
     };
@@ -209,6 +212,9 @@
      * @return {void}
      */
     const clickContinueEventHandler = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+
         // Set the prompt and input
         const $prompt = plugin.this.prompt;
         const $input = $prompt.querySelector('.prompt__input');
@@ -218,26 +224,6 @@
 
         // Call the continue callback
         plugin.settings.callbackContinue.call(this, $input, result);
-    };
-
-    /**
-     * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings.
-     * @param  {object}  options   The user options.
-     * @return {object}            The extended plugin settings.
-     */
-    const extendDefaults = (defaults, options) => {
-        // Cycle through the user options
-        for (let property in options) {
-            // Check if the property exists in the user options
-            if (options.hasOwnProperty(property)) {
-                // Set the defaults property to the options property
-                defaults[property] = options[property];
-            }
-        }
-
-        // Return the extended plugin settings
-        return defaults;
     };
 
     /**

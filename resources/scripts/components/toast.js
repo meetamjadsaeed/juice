@@ -140,6 +140,9 @@
      * @return {void}
      */
     const clickActionEventListener = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+
         // Call the action callback
         plugin.settings.callbackAction.call();
     }

@@ -69,6 +69,12 @@
         z-index: get-stack-index('default');
 
         // Pseudo classes
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+
         &:hover {
             // Variables
             --background-color: var(--color-primary-lighten-1);
@@ -182,6 +188,13 @@
                         --font-color: var(--color-#{$color-name}-inverted-text);
                     }
 
+                    &:focus {
+                        // Variables
+                        --background-color: var(--color-#{$color-name}-lighten-1);
+                        --border-color: var(--color-#{$color-name}-darken-6);
+                        --font-color: var(--color-#{$color-name}-inverted-text);
+                    }
+
                     &:active {
                         // Variables
                         --background-color: var(--color-#{$color-name}-darken-1);
@@ -206,6 +219,13 @@
 
                     // Pseudo classes
                     &:hover {
+                        // Variables
+                        --background-color: var(--feedback-color-#{$feedback-name}-lighten-1);
+                        --border-color: var(--feedback-color-#{$feedback-name}-darken-6);
+                        --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+                    }
+
+                    &:focus {
                         // Variables
                         --background-color: var(--feedback-color-#{$feedback-name}-lighten-1);
                         --border-color: var(--feedback-color-#{$feedback-name}-darken-6);

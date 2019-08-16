@@ -23,6 +23,14 @@
 
     // Set the plugin defaults
     const defaults = {
+        onLoad: true,
+        onLoadSilently: true,
+        history: true,
+        historyBottom: '#bottom',
+        historyTop: '#top',
+        targetHorizontal: 'center',
+        targetVertical: 'center',
+
         callbackInitializeBefore: () => {
             console.log('Smooth Scroll: callbackInitializeBefore');
         },
@@ -64,14 +72,7 @@
         },
         callbackDestroyAfter: () => {
             console.log('Smooth Scroll: callbackDestroyAfter');
-        },
-        onLoad: true,
-        onLoadSilently: true,
-        history: true,
-        historyBottom: '#bottom',
-        historyTop: '#top',
-        targetHorizontal: 'center',
-        targetVertical: 'center'
+        }
     };
 
     /**
@@ -85,31 +86,11 @@
         plugin.name = plugin_name;
         plugin.defaults = defaults;
         plugin.options = options;
-        plugin.settings = extendDefaults(defaults, options);
+        plugin.settings = Object.assign({}, defaults, options);
 
         // Initialize the plugin
         plugin.this.initialize();
     }
-
-    /**
-     * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings.
-     * @param  {object}  options   The user options.
-     * @return {object}            The extended plugin settings.
-     */
-    const extendDefaults = (defaults, options) => {
-        // Cycle through the user options
-        for (let property in options) {
-            // Check if the property exists in the user options
-            if (options.hasOwnProperty(property)) {
-                // Set the defaults property to the options property
-                defaults[property] = options[property];
-            }
-        }
-
-        // Return the extended plugin settings
-        return defaults;
-    };
 
     /**
      * Set the target horizontal and vertical positions after scroll.

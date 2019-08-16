@@ -66,7 +66,7 @@
         plugin.element = element;
         plugin.defaults = defaults;
         plugin.options = options;
-        plugin.settings = extendDefaults(defaults, options);
+        plugin.settings = Object.assign({}, defaults, options);
 
         // Initialize the plugin
         plugin.this.initialize();
@@ -78,32 +78,15 @@
      * @return {void}
      */
     const clickRemoveEventHandler = (event) => {
+        // Prevent the default action
+        event.preventDefault();
+
         // Set the remove and chip
         const $remove = event.currentTarget;
         const $chip = $remove.closest('.chip');
 
         // Remove the chip
         plugin.this.remove($chip);
-    };
-
-    /**
-     * Merge the default plugin settings with the user options.
-     * @param  {object}  defaults  The default plugin settings.
-     * @param  {object}  options   The user options.
-     * @return {object}            The extended plugin settings.
-     */
-    const extendDefaults = (defaults, options) => {
-        // Cycle through the user options
-        for (let property in options) {
-            // Check if the property exists in the user options
-            if (options.hasOwnProperty(property)) {
-                // Set the defaults property to the options property
-                defaults[property] = options[property];
-            }
-        }
-
-        // Return the extended plugin settings
-        return defaults;
     };
 
     /**
