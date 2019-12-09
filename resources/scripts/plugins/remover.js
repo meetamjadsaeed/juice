@@ -91,7 +91,7 @@
             // Remove the target
             plugin.this.remove($target);
         });
-    }
+    };
 
     /**
      * Public variables and methods.

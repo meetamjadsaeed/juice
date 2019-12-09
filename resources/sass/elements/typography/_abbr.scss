@@ -21,12 +21,19 @@
                 &.is-#{$color-name} {
                     // Variables
                     --border-color: var(--color-#{$color-name});
+
+                    // Modifiers: Props
+                    &[title] {
+                        // Styles (IE fallback for postcss-css-variables)
+                        border-color: var(--border-color);
+                    }
                 }
             }
         }
 
         // Modifiers: Props
         &[title] {
+            // Styles
             border-bottom: 1px dotted var(--border-color);
             cursor: help;
         }

@@ -43,6 +43,15 @@
                     --font-size: calc(var(--default-font-size-#{$size}) - 0.2em);
                     --height: calc(var(--default-element-height-#{$size}) / 1.5);
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+
+                    // Nested selectors
+                    .shield__badge,
+                    .shield__text {
+                        // Styles (IE fallback for postcss-css-variables)
+                        font-size: var(--font-size);
+                        height: var(--height);
+                        padding: 0 var(--content-spacing);
+                    }
                 }
 
                 // Check if the shield size modifier breakpoints should be declared
@@ -57,6 +66,15 @@
                                 --font-size: calc(var(--default-font-size-#{$size}) - 0.2em);
                                 --height: calc(var(--default-element-height-#{$size}) / 1.5);
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+
+                                // Nested selectors
+                                .shield__badge,
+                                .shield__text {
+                                    // Styles (IE fallback for postcss-css-variables)
+                                    font-size: var(--font-size);
+                                    height: var(--height);
+                                    padding: 0 var(--content-spacing);
+                                }
                             }
                         }
                     }
@@ -67,6 +85,7 @@
         // Nested selectors
         .shield__text,
         .shield__badge {
+            // Styles
             align-items: center;
             border: 0 var(--border-style) transparent;
             border-bottom-width: var(--border-width-bottom);
@@ -81,12 +100,14 @@
 
             // Pseudo classes
             &:first-child {
+                // Styles
                 border-bottom-left-radius: var(--border-radius-bottom-left);
                 border-left-width: var(--border-width-left);
                 border-top-left-radius: var(--border-radius-top-left);
             }
 
             &:last-child {
+                // Styles
                 border-bottom-right-radius: var(--border-radius-bottom-right);
                 border-right-width: var(--border-width-right);
                 border-top-right-radius: var(--border-radius-top-right);
@@ -103,8 +124,14 @@
                         --border-color: var(--color-#{$color-name}-darken-3);
                         --font-color: var(--color-#{$color-name}-inverted-text);
 
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
+
                         // Nested selectors
                         a {
+                            // Styles
                             color: inherit;
                         }
                     }
@@ -122,8 +149,14 @@
                         --border-color: var(--feedback-color-#{$feedback-name}-darken-3);
                         --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
 
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
+
                         // Nested selectors
                         a {
+                            // Styles
                             color: inherit;
                         }
                     }
@@ -132,6 +165,7 @@
 
             // Nested selectors
             a {
+                // Styles
                 color: inherit;
             }
         }

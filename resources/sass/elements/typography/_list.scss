@@ -27,6 +27,9 @@
                 &.is-#{$size} {
                     // Variables
                     --font-size: var(--default-font-size-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
                 }
 
                 // Check if the list size modifier breakpoints should be declared
@@ -39,6 +42,9 @@
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Variables
                                 --font-size: var(--default-font-size-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
                             }
                         }
                     }
@@ -52,6 +58,7 @@
             @each $type in $list-style-types {
                 // Modifiers
                 &.list--#{$type} {
+                    // Styles
                     list-style-type: $type;
                 }
             }
@@ -61,6 +68,7 @@
         @if $list-clear-modifier {
             // Modifiers
             &.list--clear {
+                // Styles
                 list-style: none;
                 margin-left: 0;
                 margin-right: 0;

@@ -167,63 +167,108 @@
     };
 
     /**
-     * Event handler to trigger the cancel callback when the cancel button is clicked.
+     * Click event handler to cancel a modal.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickCancelEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickModalCancelEventHandler = (event) => {
+        // Check if the event target is the cancel or a descendant of the cancel
+        if (isTargetSelector(event.target, 'class', 'js-modal-cancel')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the cancel callback
-        plugin.settings.callbackCancel.call();
+            // Call the cancel callback
+            plugin.settings.callbackCancel.call();
+        }
     };
 
     /**
-     * Event handler to remove a modal when the close is clicked.
+     * Click event handler to close a modal.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickCloseEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickModalCloseEventHandler = (event) => {
+        // Check if the event target is the close or a descendant of the close
+        if (isTargetSelector(event.target, 'class', 'js-modal-close')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the close and modal
-        const $close = event.currentTarget;
-        const $modal = $close.closest('.modal');
+            // Set the close and modal
+            const $close = event.target;
+            const $modal = $close.closest('.modal');
 
-        // Close the modal
-        plugin.this.close($modal);
+            // Close the modal
+            plugin.this.close($modal);
+        }
     };
 
     /**
-     * Event handler to trigger the continue callback when the continue button is clicked.
+     * Click event handler to continue a modal.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickContinueEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickModalContinueEventHandler = (event) => {
+        // Check if the event target is the continue or a descendant of the continue
+        if (isTargetSelector(event.target, 'class', 'js-modal-continue')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the continue callback
-        plugin.settings.callbackContinue.call();
+            // Call the continue callback
+            plugin.settings.callbackContinue.call();
+        }
     };
 
     /**
-     * Event handler to open a modal when the trigger is clicked.
+     * Click event handler to trigger a modal.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickTriggerEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickModalTriggerEventHandler = (event) => {
+        // Check if the event target is the trigger or a descendant of the trigger
+        if (isTargetSelector(event.target, 'class', 'has-modal')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the trigger and target
-        const $trigger = event.currentTarget;
-        const $target = document.querySelector($trigger.dataset.modalTarget);
+            // Set the trigger and target
+            const $trigger = event.target;
+            const $target = document.querySelector($trigger.dataset.modalTarget);
 
-        // Open the modal
-        plugin.this.open($target);
+            // Open the modal
+            plugin.this.open($target);
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -288,7 +333,7 @@
                     break;
             }
         });
-    }
+    };
 
     /**
      * Public variables and methods
@@ -310,17 +355,17 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Set the triggers
-            const $triggers = document.querySelectorAll(plugin.element);
+            // Add a click event handler to trigger a modal
+            document.addEventListener('click', clickModalTriggerEventHandler);
 
-            // Check if any triggers exist
-            if ($triggers) {
-                // Cycle through all of the triggers
-                $triggers.forEach(($trigger) => {
-                    // Add a click event handler to the trigger to open the modal
-                    $trigger.addEventListener('click', clickTriggerEventHandler);
-                });
-            }
+            // Add a click event handler to close a modal
+            document.addEventListener('click', clickModalCloseEventHandler);
+
+            // Add a click event handler to cancel a modal
+            document.addEventListener('click', clickModalCancelEventHandler);
+
+            // Add a click event handler to continue a modal
+            document.addEventListener('click', clickModalContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -353,9 +398,6 @@
                 // Set the modal elements
                 const $modal = document.querySelector('.modal');
                 const $content = $modal.querySelector('.modal__content');
-                const $closes = $modal.querySelectorAll('.js-modal-close');
-                const $cancels = $modal.querySelectorAll('.js-modal-cancel');
-                const $continues = $modal.querySelectorAll('.js-modal-continue');
 
                 // Set the modal data
                 $modal.data = {
@@ -411,33 +453,6 @@
                         $content.classList.add('has-animated');
                     }, {
                         once: true
-                    });
-                }
-
-                // Check if any closes exist
-                if ($closes) {
-                    // Cycle through all of the closes
-                    $closes.forEach(($close) => {
-                        // Add a click event handler to the close button to close the modal
-                        $close.addEventListener('click', clickCloseEventHandler);
-                    });
-                }
-
-                // Check if any cancels exist
-                if ($cancels) {
-                    // Cycle through all of the cancels
-                    $cancels.forEach(($cancel) => {
-                        // Add a click event handler to the cancel button to trigger the cancel callback
-                        $cancel.addEventListener('click', clickCancelEventHandler);
-                    });
-                }
-
-                // Check if any continues exist
-                if ($continues) {
-                    // Cycle through all of the continues
-                    $continues.forEach(($continue) => {
-                        // Add a click event handler to the cancel button to trigger the cancel callback
-                        $continue.addEventListener('click', clickContinueEventHandler);
                     });
                 }
             }
@@ -563,14 +578,17 @@
                 });
             }
 
-            // Check if any triggers exist
-            if ($triggers) {
-                // Cycle through all of the triggers
-                $triggers.forEach(($trigger) => {
-                    // Remove the click event handler from the trigger
-                    $trigger.removeEventListener('click', clickTriggerEventHandler);
-                });
-            }
+            // Remove the click event handler to trigger a modal
+            document.removeEventListener('click', clickModalTriggerEventHandler);
+
+            // Remove the click event handler to close a modal
+            document.removeEventListener('click', clickModalCloseEventHandler);
+
+            // Remove the click event handler to cancel a modal
+            document.removeEventListener('click', clickModalCancelEventHandler);
+
+            // Remove the click event handler to continue a modal
+            document.removeEventListener('click', clickModalContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

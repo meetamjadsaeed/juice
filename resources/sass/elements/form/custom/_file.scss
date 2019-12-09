@@ -44,6 +44,15 @@
                     // Variables
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                     --height: var(--default-element-height-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    height: var(--height);
+
+                    // Nested selectors
+                    .custom-file__text {
+                        // Styles (IE fallback for postcss-css-variables)
+                        padding: 0 var(--content-spacing);
+                    }
                 }
 
                 // Check if the custom file size modifier breakpoints should be declared
@@ -57,6 +66,15 @@
                                 // Variables
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                                 --height: var(--default-element-height-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                height: var(--height);
+
+                                // Nested selectors
+                                .custom-file__text {
+                                    // Styles (IE fallback for postcss-css-variables)
+                                    padding: 0 var(--content-spacing);
+                                }
                             }
                         }
                     }
@@ -89,6 +107,7 @@
 
         // Nested selectors
         input[type=file] {
+            // Styles
             clip: rect(0, 0, 0, 0);
             height: 0;
             opacity: 0;
@@ -99,47 +118,55 @@
 
             // Pseudo classes
             &:focus + div {
+                // Styles
                 box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             }
         }
 
         .custom-file__button,
         .custom-file__text {
+            // Styles
             border-left-width: 0;
             border-right-width: 0;
             height: 100%;
 
             // Pseudo classes
             &:first-of-type {
+                // Styles
                 border-left-width: var(--border-width-left);
                 border-bottom-left-radius: var(--border-radius-bottom-left);
                 border-top-left-radius: var(--border-radius-top-left);
 
                 // Pseudo classes
                 &:not(.custom-file__text) {
+                    // Styles
                     border-right-width:  var(--border-width-divider);
                 }
             }
 
             &:last-of-type {
+                // Styles
                 border-bottom-right-radius: var(--border-radius-bottom-right);
                 border-right-width: var(--border-width-right);
                 border-top-right-radius: var(--border-radius-top-right);
 
                 // Pseudo classes
                 &:not(.custom-file__text) {
+                    // Styles
                     border-left-width:  var(--border-width-divider);
                 }
             }
         }
 
         .custom-file__button {
+            // Styles
             @extend #{$button};
             border-radius: 0;
             margin: 0;
         }
 
         .custom-file__text {
+            // Styles
             @include truncate-text;
             align-items: center;
             background-color: var(--background-color);

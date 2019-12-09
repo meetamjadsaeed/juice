@@ -5,20 +5,41 @@
     ========================================================================  */
 
 /**
- * Set the required dependency modules.
- * @type {module}
+ * Gulp dependency modules.
+ * @const {module}
  */
-const autoprefixer = require('gulp-autoprefixer');
-const babel = require('gulp-babel');
-const browsersync = require('browser-sync');
-const concat = require('gulp-concat');
-const connect = require('gulp-connect-php7');
 const gulp = require('gulp');
 const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
+
+
+/**
+ * Css dependency modules.
+ * @const {module}
+ */
+const customproperties = require('postcss-css-variables');
+const presetenv = require('postcss-preset-env');
+const postcss = require('gulp-postcss');
+const nano = require('cssnano');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
+
+
+/**
+ * Script dependency modules.
+ * @const {module}
+ */
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+
+
+/**
+ * Server dependency modules.
+ * @const {module}
+ */
+const browsersync = require('browser-sync');
+const connect = require('gulp-connect-php7');
 
 
 /*  ========================================================================
@@ -85,11 +106,11 @@ const resource = {
     ========================================================================  */
 
 /**
- * Set the css task to compile sass to css, autoprefix, minimize, rename and reload browsersync.
+ * Set the css task to compile sass to css with various modules.
  * @module gulp-plumber
  * @module gulp-notify
  * @module gulp-sass
- * @module gulp-autoprefixer
+ * @module gulp-postcss (postcss-preset-env, cssnano)
  * @module gulp-rename
  * @module browser-sync
  * @return {object}  The completed gulp task.
@@ -98,33 +119,40 @@ const css = () => {
     // Return the completed gulp task
     return (
         gulp.src(resource.sass)
-        .pipe(plumber({
-            errorHandler: notify.onError({
-                title: 'Gulp CSS Task Incomplete',
-                subtitle: 'Error',
-                message: '<%= error.message %>'
-            })
-        }))
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }))
-        .pipe(autoprefixer())
-        .pipe(rename(filename.css))
-        .pipe(gulp.dest(destination.css))
-        .pipe(notify({
-            title: 'Gulp CSS Task',
-            message: 'Task completed.',
-            sound: 'pop'
-        }))
-        .pipe(browsersync.reload({
-            stream: true
-        }))
+            .pipe(plumber({
+                errorHandler: notify.onError({
+                    title: 'Gulp CSS Task Incomplete',
+                    subtitle: 'Error',
+                    message: '<%= error.message %>'
+                })
+            }))
+            .pipe(sass({
+                // outputStyle: 'compressed',
+                includePaths: [
+                    'node_modules/'
+                ]
+            }))
+            .pipe(postcss([
+                presetenv({
+                    stage: 0
+                }),
+                nano()
+            ]))
+            .pipe(rename(filename.css))
+            .pipe(gulp.dest(destination.css))
+            .pipe(notify({
+                title: 'Gulp CSS Task',
+                message: 'Task completed.',
+                sound: 'pop'
+            }))
+            .pipe(browsersync.reload({
+                stream: true
+            }))
     );
 };
 
 /**
- * Set the scripts task to concat all javascript files, strip comments, compile
- * es6 to es5, minimize and reload browsersync.
+ * Set the scripts task to compile javascript with various modules.
  * @module gulp-plumber
  * @module gulp-notify
  * @module gulp-babel

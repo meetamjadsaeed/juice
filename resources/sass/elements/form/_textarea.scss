@@ -63,6 +63,11 @@
 
             // Styles
             z-index: get-stack-index('hover');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:focus {
@@ -74,6 +79,11 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('focus');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:active {
@@ -85,6 +95,11 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('active');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         // Pseudo elements
@@ -105,6 +120,10 @@
                     // Variables
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                     --font-size: var(--default-font-size-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    padding: 0 var(--content-spacing);
                 }
 
                 // Check if the textarea size modifier breakpoints should be declared
@@ -118,6 +137,10 @@
                                 // Variables
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                                 --font-size: var(--default-font-size-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                padding: 0 var(--content-spacing);
                             }
                         }
                     }
@@ -134,19 +157,22 @@
                     // Variables
                     --border-color: var(--feedback-color-#{$feedback-name});
 
-                    // Pseudo classes
-                    &:focus {
-                        // Variables
-                        --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
-                    }
+                    // Styles (IE fallback for postcss-css-variables)
+                    border-color: var(--border-color);
 
+                    // Pseudo classes
+                    &:focus,
                     &:active {
                         // Variables
                         --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
                     }
 
                     // Modifiers: Props
                     &[disabled] {
+                        // Styles
                         border-color: var(--feedback-color-#{$feedback-name}) !important;
                     }
                 }
@@ -155,6 +181,7 @@
 
         // Modifiers: Props
         &[disabled] {
+            // Styles
             @include disabled();
         }
 
@@ -162,6 +189,7 @@
         @if $textarea-resize-modifier {
             // Modifiers
             &.textarea--resize {
+                // Styles
                 resize: vertical;
             }
         }
@@ -170,6 +198,7 @@
         @if $textarea-scrollbar-modifier {
             // Modifiers
             &.textarea--scrollbar {
+                // Styles
                 border-bottom-right-radius: 0;
                 border-top-right-radius: 0;
                 overflow-y: scroll;

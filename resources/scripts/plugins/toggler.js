@@ -110,7 +110,7 @@
                 plugin.this.show($target);
             }
         });
-    }
+    };
 
     /**
      * Public variables and methods.

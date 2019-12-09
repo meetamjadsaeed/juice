@@ -114,14 +114,10 @@
             $action.insertAdjacentHTML('beforeend', plugin.settings.actionContent);
             $toast.append($action);
 
-            // Set the js action
-            const $js_action = $action.querySelector('.js-toast-action');
-
-            // Check if a js action exists
-            if ($js_action) {
-                // Add a click event handler to the js action to trigger the action callback
-                $js_action.addEventListener('click', clickActionEventListener);
-            }
+            // Set the toast data
+            $toast.data = {
+                callbackAction: plugin.settings.callbackAction
+            };
         }
 
         // Check if a feedback modifier exists
@@ -135,17 +131,23 @@
     };
 
     /**
-     * Event handler to trigger the action callback when the action button is clicked.
+     * Click event handler to trigger a toast action callback.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickActionEventListener = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickToastActionEventListener = (event) => {
+        // Check if the event target is the action or a descendant of the action
+        if (isTargetSelector(event.target, 'class', 'js-toast-action')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the action callback
-        plugin.settings.callbackAction.call();
-    }
+            // Set the toast
+            const $toast = event.target.closest('.toast');
+
+            // Call the action callback
+            $toast.data.callbackAction.call();
+        }
+    };
 
     /**
      * Close a toast.
@@ -188,6 +190,39 @@
                 // Call the close after callback
                 plugin.settings.callbackCloseAfter.call();
             }
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
         }
     };
 
@@ -279,6 +314,9 @@
                 openToast($container);
             }
 
+            // Add a click event handler to trigger a toast action
+            document.addEventListener('click', clickToastActionEventListener);
+
             // Check if the callbacks should not be suppressed
             if (!silent) {
                 // Call the initialize after callback
@@ -322,6 +360,9 @@
                 // Call the destroy before callback
                 plugin.settings.callbackDestroyBefore.call();
             }
+
+            // Remove the click event handler to trigger a toast action
+            document.removeEventListener('click', clickToastActionEventListener);
 
             // Check if the callbacks should not be suppressed.
             if (!silent) {

@@ -28,6 +28,9 @@
                 &.is-#{$color-name} {
                     // Variables
                     --border-color: var(--color-#{$color-name});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    border-color: var(--border-color);
                 }
             }
         }

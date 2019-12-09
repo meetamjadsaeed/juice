@@ -12,6 +12,10 @@
     float: right !important;
 }
 
+.is-not-pulled {
+    float: none !important;
+}
+
 // Cycle throuhgh all of the breakpoints
 @each $breakpoint-name, $breakpoint in $breakpoints {
     // Breakpoint
@@ -22,6 +26,10 @@
 
         .is-pulled-right\@#{$breakpoint-name} {
             float: right !important;
+        }
+
+        .is-not-pulled\@#{$breakpoint-name} {
+            float: none !important;
         }
     }
 }

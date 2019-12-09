@@ -52,6 +52,10 @@
                     // Variables
                     --font-size: var(--default-font-size-#{$size});
                     --content-spacing: var(--default-content-spacing-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    padding: var(--content-spacing);
                 }
 
                 // Check if the box size modifier breakpoints should be declared
@@ -65,6 +69,10 @@
                                 // Variables
                                 --font-size: var(--default-font-size-#{$size});
                                 --content-spacing: var(--default-content-spacing-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                padding: var(--content-spacing);
                             }
                         }
                     }
@@ -84,16 +92,25 @@
             &:hover {
                 // Variables
                 --font-color: var(--default-link-color-hover);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:focus {
                 // Variables
                 --font-color: var(--default-link-color-focus);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:active {
                 // Variables
                 --font-color: var(--default-link-color-active);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
         }
     }

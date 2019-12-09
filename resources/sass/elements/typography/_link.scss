@@ -20,6 +20,9 @@
         &:hover {
             // Variables
             --font-color: var(--default-link-color-hover);
+
+            // Styles (IE fallback for postcss-css-variables)
+            color: var(--font-color);
         }
 
         &:focus {
@@ -28,11 +31,17 @@
 
             // Styles
             text-decoration: underline;
+
+            // Styles (IE fallback for postcss-css-variables)
+            color: var(--font-color);
         }
 
         &:active {
             // Variables
             --font-color: var(--default-link-color-active);
+
+            // Styles (IE fallback for postcss-css-variables)
+            color: var(--font-color);
         }
     }
 }

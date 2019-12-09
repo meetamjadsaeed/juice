@@ -16,10 +16,12 @@
 
         // Modifiers: State hooks
         &.is-fullwidth {
+            // Styles
             display: flex;
 
             // Nested selectors
             #{$button} {
+                // Styles
                 flex-grow: 1;
             }
         }
@@ -36,6 +38,11 @@
                         --font-size: var(--default-font-size-#{$size});
                         --height: var(--default-element-height-#{$size});
                         --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        font-size: var(--font-size);
+                        height: var(--height);
+                        padding: 0 var(--content-spacing);
                     }
                 }
 
@@ -53,6 +60,11 @@
                                     --font-size: var(--default-font-size-#{$size});
                                     --height: var(--default-element-height-#{$size});
                                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+
+                                    // Styles (IE fallback for postcss-css-variables)
+                                    font-size: var(--font-size);
+                                    height: var(--height);
+                                    padding: 0 var(--content-spacing);
                                 }
                             }
                         }
@@ -75,12 +87,27 @@
                         --border-color: var(--color-#{$color-name}-darken-3);
                         --font-color: var(--color-#{$color-name}-inverted-text);
 
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
+
                         // Pseudo classes
                         &:hover {
                             // Variables
                             --background-color: var(--color-#{$color-name}-lighten-1);
                             --border-color: var(--color-#{$color-name}-darken-6);
                             --font-color: var(--color-#{$color-name}-inverted-text);
+
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--background-color);
+                            border-color: var(--border-color);
+                            color: var(--font-color);
+                        }
+
+                        &:focus {
+                            // Styles (IE fallback for postcss-css-variables)
+                            box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
                         }
 
                         &:active {
@@ -88,6 +115,11 @@
                             --background-color: var(--color-#{$color-name}-darken-1);
                             --border-color: var(--color-#{$color-name}-darken-8);
                             --font-color: var(--color-#{$color-name}-inverted-text);
+
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--background-color);
+                            border-color: var(--border-color);
+                            color: var(--font-color);
                         }
                     }
                 }
@@ -108,12 +140,27 @@
                         --border-color: var(--feedback-color-#{$feedback-name}-darken-3);
                         --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
 
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
+
                         // Pseudo classes
                         &:hover {
                             // Variables
                             --background-color: var(--feedback-color-#{$feedback-name}-lighten-1);
                             --border-color: var(--feedback-color-#{$feedback-name}-darken-6);
                             --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--background-color);
+                            border-color: var(--border-color);
+                            color: var(--font-color);
+                        }
+
+                        &:focus {
+                            // Styles (IE fallback for postcss-css-variables)
+                            box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
                         }
 
                         &:active {
@@ -121,6 +168,11 @@
                             --background-color: var(--feedback-color-#{$feedback-name}-darken-1);
                             --border-color: var(--feedback-color-#{$feedback-name}-darken-8);
                             --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--background-color);
+                            border-color: var(--border-color);
+                            color: var(--font-color);
                         }
                     }
                 }
@@ -145,20 +197,26 @@
                     // Pseudo classes
                     &:hover,
                     &:focus {
+                        // Styles
                         background-color: hsla(0, 0%, 30%, 0.08);
                     }
 
                     &:hover {
                         // Variables
                         --font-color: var(--background-color);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        color: var(--font-color);
                     }
 
                     &:active {
+                        // Styles
                         background-color: hsla(0, 0%, 30%, 0.08);
                     }
 
                     // Modifiers: Props
                     &[disabled] {
+                        // Styles
                         background-color: transparent !important;
                         border-color: transparent !important;
                         color: var(--font-color) !important;
@@ -172,6 +230,7 @@
             &.button-group--icons {
                 // Nested selectors
                 #{$button} {
+                    // Styles
                     max-width: var(--height);
                     min-width: var(--height);
                     padding: 0;
@@ -185,12 +244,14 @@
             &.button-group--outline {
                 // Nested selectors
                 #{$button} {
+                    // Styles
                     background-color: transparent;
                     border-color: var(--background-color);
                     color: var(--background-color);
 
                     // Pseudo classes
                     &:hover {
+                        // Styles
                         background-color: var(--background-color);
                         border-color: var(--background-color);
                         color: var(--font-color);
@@ -198,6 +259,7 @@
 
                     // Modifiers: Props
                     &[disabled] {
+                        // Styles
                         background-color: var(--font-color) !important;
                         border-color: var(--background-color) !important;
                         color: var(--background-color) !important;
@@ -213,11 +275,13 @@
                 #{$button} {
                     // Pseudo classes
                     &:first-child {
+                        // Styles
                         border-bottom-left-radius: 999px;
                         border-top-left-radius: 999px;
                     }
 
                     &:last-child {
+                        // Styles
                         border-bottom-right-radius: 999px;
                         border-top-right-radius: 999px;
                     }
@@ -227,10 +291,12 @@
 
         // Nested selectors
         #{$button} {
+            // Styles
             margin-bottom: 0;
 
             // Pseudo classes
             &:not(:only-child) {
+                // Styles
                 border-left-width: var(--border-width-divider);
                 border-radius: 0;
                 border-right-width: var(--border-width-divider);
@@ -238,12 +304,14 @@
             }
 
             &:first-child {
+                // Styles
                 border-bottom-left-radius: var(--border-radius-bottom-left);
                 border-left-width: var(--border-width-left);
                 border-top-left-radius: var(--border-radius-top-left);
             }
 
             &:last-child {
+                // Styles
                 border-bottom-right-radius: var(--border-radius-bottom-right);
                 border-right-width: var(--border-width-right);
                 border-top-right-radius: var(--border-radius-top-right);

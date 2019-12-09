@@ -207,7 +207,7 @@
             // Cycle through all of the custom file inputs
             $custom_files.forEach(($custom_file) => {
                 // Remove the change event handler from the custom file input
-                $custom_file.addEventListener('change', changeInputEventHandler);
+                $custom_file.removeEventListener('change', changeInputEventHandler);
             });
 
             // Check if the callbacks should not be suppressed

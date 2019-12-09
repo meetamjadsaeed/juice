@@ -29,6 +29,23 @@
                     // Variables
                     --content-spacing: var(--default-content-spacing-#{$size});
                     --font-size: var(--default-font-size-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+
+                    // Nested selectors
+                    thead,
+                    tbody {
+                        // Nested selectors
+                        tr {
+                            // Nested selectors
+                            th,
+                            td {
+                                // Styles (IE fallback for postcss-css-variables)
+                                padding: var(--content-spacing);
+                            }
+                        }
+                    }
                 }
 
                 // Check if the table size modifier breakpoints should be declared
@@ -57,19 +74,23 @@
                 tbody {
                     // Nested selectors
                     tr {
+                        // Styles
                         border-bottom: var(--border-width-divider) var(--border-style) var(--border-color);
 
                         // Nested selectors
                         td {
+                            // Styles
                             border-left: var(--border-width-left) var(--border-style) var(--border-color);
                             border-right: var(--border-width-right) var(--border-style) var(--border-color);
 
                             // Pseudo classes
                             &:first-child {
+                                // Styles
                                 border-left: 0;
                             }
 
                             &:last-child {
+                                // Styles
                                 border-right: 0;
                             }
                         }
@@ -82,6 +103,7 @@
                 tbody {
                     // Nested selectors
                     tr {
+                        // Styles
                         border-bottom: var(--border-width-divider) var(--border-style) var(--border-color);
                     }
                 }
@@ -94,15 +116,18 @@
                     tr {
                         // Nested selectors
                         td {
+                            // Styles
                             border-left: var(--border-width-left) var(--border-style) var(--border-color);
                             border-right: var(--border-width-right) var(--border-style) var(--border-color);
 
                             // Pseudo classes
                             &:first-child {
+                                // Styles
                                 border-left: 0;
                             }
 
                             &:last-child {
+                                // Styles
                                 border-right: 0;
                             }
                         }
@@ -124,12 +149,20 @@
                             // Variables
                             --background-color: var(--color-white);
                             --font-color: var(--font-color-default);
+
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--background-color);
+                            color: var(--font-color);
                         }
 
                         &:nth-child(even) {
                             // Variables
                             --background-color: var(--color-white-darken-1);
                             --font-color: var(--font-color-default);
+
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--background-color);
+                            color: var(--font-color);
                         }
                     }
                 }
@@ -138,8 +171,23 @@
 
         // Nested selectors
         caption {
+            // Styles
             padding: var(--content-spacing);
             text-align: inherit;
+        }
+
+        thead,
+        tbody {
+            // Nested selectors
+            tr {
+                // Nested selectors
+                th,
+                td {
+                    // Styles
+                    padding: var(--content-spacing);
+                    vertical-align: middle;
+                }
+            }
         }
 
         thead {
@@ -184,21 +232,9 @@
             tr {
                 // Nested selectors
                 td {
+                    // Styles
                     background-color: var(--background-color);
                     color: var(--font-color);
-                }
-            }
-        }
-
-        thead,
-        tbody {
-            // Nested selectors
-            tr {
-                // Nested selectors
-                th,
-                td {
-                    padding: var(--content-spacing);
-                    vertical-align: middle;
                 }
             }
         }

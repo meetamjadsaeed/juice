@@ -22,6 +22,7 @@
 
         // Modifiers
         &.container--seamless {
+            // Styles
             padding: 0;
         }
 
@@ -31,6 +32,7 @@
             @include breakpoint($breakpoint-name) {
                 // Modifiers
                 &.container--seamless\@#{$breakpoint-name} {
+                    // Styles
                     padding: 0;
                 }
             }

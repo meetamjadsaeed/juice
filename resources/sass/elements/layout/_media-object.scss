@@ -33,6 +33,23 @@
                     --badge-image-width: var(--badge-image-width-#{$size});
                     --content-spacing: var(--default-content-spacing-#{$size});
                     --font-size: var(--default-font-size-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+
+                    // Nested selectors
+                    .media-object__badge {
+                        // Styles (IE fallback for postcss-css-variables)
+                        margin-right: var(--content-spacing);
+
+                        // Nested selectors
+                        img {
+                            // Styles (IE fallback for postcss-css-variables)
+                            max-width: var(--badge-image-width);
+                            min-width: var(--badge-image-width);
+                            width: var(--badge-image-width);
+                        }
+                    }
                 }
 
                 // Check if the media object size modifier breakpoints should be declared
@@ -47,6 +64,23 @@
                                 --badge-image-width: var(--badge-image-width-#{$size});
                                 --content-spacing: var(--default-content-spacing-#{$size});
                                 --font-size: var(--default-font-size-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+
+                                // Nested selectors
+                                .media-object__badge {
+                                    // Styles (IE fallback for postcss-css-variables)
+                                    margin-right: var(--content-spacing);
+
+                                    // Nested selectors
+                                    img {
+                                        // Styles (IE fallback for postcss-css-variables)
+                                        max-width: var(--badge-image-width);
+                                        min-width: var(--badge-image-width);
+                                        width: var(--badge-image-width);
+                                    }
+                                }
                             }
                         }
                     }
@@ -58,10 +92,12 @@
         @if $media-object-reverse-modifiers {
             // Modifiers
             &.media-object--reverse {
+                // Styles
                 flex-direction: row-reverse;
 
                 // Nested selectors
                 .media-object__badge {
+                    // Styles
                     margin: 0;
                     margin-left: var(--element-spacing);
                 }
@@ -74,6 +110,7 @@
             &.media-object--seamless {
                 // Nested selectors
                 .media-object__badge {
+                    // Styles
                     margin-right: 0;
                 }
             }
@@ -81,12 +118,14 @@
 
         // Nested selectors
         .media-object__badge {
+            // Styles
             margin: 0;
             margin-right: var(--content-spacing);
             flex: 0 0 auto;
 
             // Nested selectors
             img {
+                // Styles
                 display: block;
                 max-width: var(--badge-image-width);
                 min-width: var(--badge-image-width);
@@ -95,6 +134,7 @@
         }
 
         .media-object__content {
+            // Styles
             flex-grow: 1;
         }
     }

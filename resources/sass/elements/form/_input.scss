@@ -64,6 +64,11 @@
 
             // Styles
             z-index: get-stack-index('hover');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:focus {
@@ -75,6 +80,11 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('focus');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:active {
@@ -86,6 +96,11 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('active');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         // Pseudo elements
@@ -107,6 +122,11 @@
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                     --font-size: var(--default-font-size-#{$size});
                     --height: var(--default-element-height-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    height: var(--height);
+                    padding: 0 var(--content-spacing);
                 }
 
                 // Check if the input size modifier breakpoints should be declared
@@ -121,6 +141,11 @@
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                                 --font-size: var(--default-font-size-#{$size});
                                 --height: var(--default-element-height-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                height: var(--height);
+                                padding: 0 var(--content-spacing);
                             }
                         }
                     }
@@ -137,19 +162,22 @@
                     // Variables
                     --border-color: var(--feedback-color-#{$feedback-name});
 
-                    // Pseudo classes
-                    &:focus {
-                        // Variables
-                        --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
-                    }
+                    // Styles (IE fallback for postcss-css-variables)
+                    border-color: var(--border-color);
 
+                    // Pseudo classes
+                    &:focus,
                     &:active {
                         // Variables
                         --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
                     }
 
                     // Modifiers: Props
                     &[disabled] {
+                        // Styles
                         border-color: var(--feedback-color-#{$feedback-name}) !important;
                     }
                 }
@@ -158,6 +186,7 @@
 
         // Modifiers: Props
         &[disabled] {
+            // Styles
             @include disabled();
             background-color: var(--background-color) !important;
             border-color: var(--border-color) !important;
@@ -168,6 +197,7 @@
         @if $input-honeypot-modifier {
             // Modifiers
             &.input--hp {
+                // Styles
                 display: none !important;
             }
         }
@@ -176,6 +206,7 @@
         @if $input-pill-modifier {
             // Modifiers
             &.input--pill {
+                // Styles
                 border-radius: 999px;
             }
         }
@@ -184,6 +215,7 @@
     // Checkbox and radio
     input[type=checkbox],
     input[type=radio] {
+        // Styles
         cursor: pointer;
         display: inline-flex;
         height: auto;
@@ -198,6 +230,7 @@
 
     // Color
     input[type=color] {
+        // Styles
         cursor: pointer;
         display: inline-flex;
         max-width: 60px;
@@ -206,6 +239,7 @@
 
         // Pseudo elements
         &::-webkit-color-swatch-wrapper {
+            // Styles
             background-color: var(--background-color);
             border-bottom-left-radius: var(--border-radius-bottom-left);
             border-bottom-right-radius: var(--border-radius-bottom-right);
@@ -215,6 +249,7 @@
         }
 
         &::-webkit-color-swatch {
+            // Styles
             border: none;
             border-bottom-left-radius: var(--border-radius-bottom-left);
             border-bottom-right-radius: var(--border-radius-bottom-right);
@@ -226,6 +261,7 @@
         &.input--pill {
             // Pseudo elements
             &::-webkit-color-swatch {
+                // Styles
                 border-radius: 999px;
             }
         }
@@ -233,6 +269,7 @@
 
     // File
     input[type=file] {
+        // Styles
         border: none;
         height: auto;
         padding: 0;
@@ -240,11 +277,13 @@
 
     // Radio
     input[type=radio] {
+        // Styles
         border-radius: 100%;
     }
 
     // Range
     input[type=range] {
+        // Styles
         box-shadow: none !important;
     }
 }

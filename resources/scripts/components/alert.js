@@ -40,8 +40,11 @@
         size: null,
         text: 'Lorem ipsum...',
 
-        callbackInitialize: () => {
-            console.log('Alert: callbackInitialize');
+        callbackInitializeBefore: () => {
+            console.log('Alert: callbackInitializeBefore');
+        },
+        callbackInitializeAfter: () => {
+            console.log('Alert: callbackInitializeAfter');
         },
         callbackOpenBefore: () => {
             console.log('Alert: callbackOpenBefore');
@@ -172,16 +175,52 @@
     };
 
     /**
-     * Event handler to trigger the continue callback when the continue button is clicked.
+     * Click event handler to continue an alert.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickContinueEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickAlertContinueEventHandler = (event) => {
+        // Check if the event target is the continue or a descendant of the continue
+        if (isTargetSelector(event.target, 'class', 'js-alert-continue')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the continue callback
-        plugin.settings.callbackContinue.call();
+            // Call the continue callback
+            plugin.settings.callbackContinue.call();
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -228,7 +267,7 @@
                     break;
             }
         });
-    }
+    };
 
     /**
      * Public variables and methods
@@ -246,8 +285,17 @@
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
-                // Call the initialize callback
-                plugin.settings.callbackInitialize.call();
+                // Call the initialize before callback
+                plugin.settings.callbackInitializeBefore.call();
+            }
+
+            // Add a click event handler to continue an alert
+            document.addEventListener('click', clickAlertContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize after callback
+                plugin.settings.callbackInitializeAfter.call();
             }
 
             // Open the alert
@@ -329,12 +377,6 @@
                     }, {
                         once: true
                     });
-                }
-
-                // Check if a continue exists
-                if ($continue) {
-                    // Add a click event handler to the cancel button to trigger the cancel callback
-                    $continue.addEventListener('click', clickContinueEventHandler);
                 }
             }
         },
@@ -447,6 +489,9 @@
                 // Call the destroy before callback
                 plugin.settings.callbackDestroyBefore.call();
             }
+
+            // Remove the click event handler to continue an alert
+            document.removeEventListener('click', clickAlertContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

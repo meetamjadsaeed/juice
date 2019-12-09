@@ -49,6 +49,10 @@
                     // Variables
                     --font-size: var(--default-font-size-#{$size});
                     --content-spacing: var(--default-content-spacing-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    padding: var(--content-spacing);
                 }
 
                 // Check if the samp size modifier breakpoints should be declared
@@ -62,6 +66,10 @@
                                 // Variables
                                 --font-size: var(--default-font-size-#{$size});
                                 --content-spacing: var(--default-content-spacing-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                padding: var(--content-spacing);
                             }
                         }
                     }

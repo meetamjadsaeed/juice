@@ -44,8 +44,11 @@
         size: null,
         text: 'Lorem ipsum...',
 
-        callbackInitialize: () => {
-            console.log('Prompt: callbackInitialize');
+        callbackInitializeBefore: () => {
+            console.log('Prompt: callbackInitializeBefore');
+        },
+        callbackInitializeAfter: () => {
+            console.log('Prompt: callbackInitializeAfter');
         },
         callbackOpenBefore: () => {
             console.log('Prompt: callbackOpenBefore');
@@ -194,36 +197,75 @@
     };
 
     /**
-     * Event handler to trigger the cancel callback when the cancel button is clicked.
+     * Click event handler to cancel a prompt.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickCancelEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickPromptCancelEventHandler = (event) => {
+        // Check if the event target is the cancel or a descendant of the cancel
+        if (isTargetSelector(event.target, 'class', 'js-prompt-cancel')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the cancel callback
-        plugin.settings.callbackCancel.call();
+            // Call the cancel callback
+            plugin.settings.callbackCancel.call();
+        }
     };
 
     /**
-     * Event handler to trigger the continue callback when the continue button is clicked.
+     * Click event handler to continue a prompt.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickContinueEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickPromptContinueEventHandler = (event) => {
+        // Check if the event target is the continue or a descendant of the continue
+        if (isTargetSelector(event.target, 'class', 'js-prompt-continue')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the prompt and input
-        const $prompt = plugin.this.prompt;
-        const $input = $prompt.querySelector('.prompt__input');
+            // Set the prompt and input
+            const $prompt = plugin.this.prompt;
+            const $input = $prompt.querySelector('.prompt__input');
 
-        // Set the result
-        const result = plugin.settings.inputRegexPattern.test($input.value);
+            // Set the result
+            const result = plugin.settings.inputRegexPattern.test($input.value);
 
-        // Call the continue callback
-        plugin.settings.callbackContinue.call(this, $input, result);
+            // Call the continue callback
+            plugin.settings.callbackContinue.call(this, $input, result);
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -270,7 +312,7 @@
                     break;
             }
         });
-    }
+    };
 
     /**
      * Public variables and methods
@@ -288,8 +330,20 @@
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
-                // Call the initialize callback
-                plugin.settings.callbackInitialize.call();
+                // Call the initialize before callback
+                plugin.settings.callbackInitializeBefore.call();
+            }
+
+            // Add a click event handler to cancel a prompt
+            document.addEventListener('click', clickPromptCancelEventHandler);
+
+            // Add a click event handler to continue a prompt
+            document.addEventListener('click', clickPromptContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize after callback
+                plugin.settings.callbackInitializeAfter.call();
             }
 
             // Open the prompt and break the switch
@@ -319,8 +373,6 @@
                 // Set the prompt elements
                 const $prompt = document.querySelector('.prompt');
                 const $content = $prompt.querySelector('.prompt__content');
-                const $cancel = $prompt.querySelector('.js-prompt-cancel');
-                const $continue = $prompt.querySelector('.js-prompt-continue');
 
                 // Set the plugin prompt
                 plugin.this.prompt = $prompt;
@@ -372,18 +424,6 @@
                     }, {
                         once: true
                     });
-                }
-
-                // Check if a cancel exists
-                if ($cancel) {
-                    // Add a click event handler to the cancel button to trigger the cancel callback
-                    $cancel.addEventListener('click', clickCancelEventHandler);
-                }
-
-                // Check if a continue exists
-                if ($continue) {
-                    // Add a click event handler to the cancel button to trigger the cancel callback
-                    $continue.addEventListener('click', clickContinueEventHandler);
                 }
             }
         },
@@ -496,6 +536,12 @@
                 // Call the destroy before callback
                 plugin.settings.callbackDestroyBefore.call();
             }
+
+            // Remove the click event handler to cancel a prompt
+            document.removeEventListener('click', clickPromptCancelEventHandler);
+
+            // Remove the click event handler to continue a prompt
+            document.removeEventListener('click', clickPromptContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

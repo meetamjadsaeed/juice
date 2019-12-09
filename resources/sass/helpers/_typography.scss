@@ -51,15 +51,27 @@
 
             // Pseudo classes
             &:hover {
+                // Variables
                 --color: var(--color-#{$color-name}-darken-2);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--color);
             }
 
             &:hover {
+                // Variables
                 --color: var(--color-#{$color-name}-darken-4);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--color);
             }
 
             &:active {
+                // Variables
                 --color: var(--color-#{$color-name}-darken-6);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--color);
             }
         }
     }
@@ -105,11 +117,19 @@
 
             // Pseudo classes
             &:hover {
+                // Variables
                 --color: var(--feedback-color-#{$feedback-name}-darken-2);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--color);
             }
 
             &:active {
+                // Variables
                 --color: var(--feedback-color-#{$feedback-name}-lighten-4);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--color);
             }
         }
     }

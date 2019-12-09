@@ -73,20 +73,56 @@
     }
 
     /**
-     * Event handler to remove a chip when the chip remove is clicked.
+     * Click event handler to remove a chip.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickRemoveEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickChipRemoveEventHandler = (event) => {
+        // Check if the event target is the remove or a descendant of the remove
+        if (isTargetSelector(event.target, 'class', 'js-chip-remove')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the remove and chip
-        const $remove = event.currentTarget;
-        const $chip = $remove.closest('.chip');
+            // Set the remove and chip
+            const $remove = event.target;
+            const $chip = $remove.closest('.chip');
 
-        // Remove the chip
-        plugin.this.remove($chip);
+            // Remove the chip
+            plugin.this.remove($chip);
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -109,23 +145,8 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Set the chips
-            const $chips = document.querySelectorAll(plugin.element);
-
-            // Check if any chips exist
-            if ($chips) {
-                // Cycle through all of the chips
-                $chips.forEach(($chip) => {
-                    // Set the remove
-                    const $remove = $chip.querySelector('.js-chip-remove');
-
-                    // Check if the remove exists
-                    if ($remove) {
-                        // Add a click event handler to the remove to remove the chip
-                        $remove.addEventListener('click', clickRemoveEventHandler);
-                    }
-                });
-            }
+            // Add a click event handler to remove a chip
+            document.addEventListener('click', clickChipRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -220,23 +241,8 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the chips
-            const $chips = document.querySelectorAll(plugin.element);
-
-            // Check if any chips exist
-            if ($chips) {
-                // Cycle through all of the chips
-                $chips.forEach(($chip) => {
-                    // Set the remove
-                    const $remove = $chip.querySelector('.js-chip-remove');
-
-                    // Check if the remove exists
-                    if ($remove) {
-                        // Remove the click event handler from the remove
-                        $remove.removeEventListener('click', clickRemoveEventHandler);
-                    }
-                });
-            }
+            // Remove the click event handler to remove a chip
+            document.removeEventListener('click', clickChipRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

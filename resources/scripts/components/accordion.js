@@ -73,57 +73,92 @@
     }
 
     /**
-     * Event handler to toggle an accordion item when an accordion item
-     * toggle is clicked.
+     * Click event handler to toggle an accordion item.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickToggleEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickAccordionToggleEventHandler = (event) => {
+        // Check if the event target is the toggle or a descendant of the toggle
+        if (isTargetSelector(event.target, 'class', 'js-accordion-toggle')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the toggle
-        const $toggle = event.currentTarget;
+            // Set the toggle
+            const $toggle = event.target;
 
-        // Set the item and accordion
-        const $item = $toggle.closest('.accordion__item');
-        const $accordion = $item.closest('.accordion');
+            // Set the item and accordion
+            const $item = $toggle.closest('.accordion__item');
+            const $accordion = $item.closest('.accordion');
 
-        // Set the accordion type
-        const open_multiple_items = $accordion.dataset.accordionOpenMultipleItems || plugin.settings.openMultipleItems;
+            // Set the accordion type
+            const open_multiple_items = $accordion.dataset.accordionOpenMultipleItems || plugin.settings.openMultipleItems;
 
-        // Check if opening multiple items is not allowed
-        if (!open_multiple_items) {
-            // Create an empty item siblings array
-            const siblings = [];
+            // Check if opening multiple items is not allowed
+            if (!open_multiple_items) {
+                // Create an empty item siblings array
+                const $siblings = [];
 
-            // Set the first item sibling
-            let $sibling = $item.parentNode.firstChild;
+                // Set the first item sibling
+                let $sibling = $item.parentNode.firstChild;
 
-            // Start a while loop for the item siblings existance
-            while ($sibling) {
-                // Check if the item sibling is an element and not the current item
-                if ($sibling.nodeType === 1 && $sibling !== $item) {
-                    // Add the item sibling to the siblings array
-                    siblings.push($sibling);
+                // Start a while loop for the item siblings existance
+                while ($sibling) {
+                    // Check if the item sibling is an element and not the current item
+                    if ($sibling.nodeType === 1 && $sibling !== $item) {
+                        // Add the item sibling to the siblings array
+                        $siblings.push($sibling);
+                    }
+
+                    // Set the next item sibling
+                    $sibling = $sibling.nextSibling
                 }
 
-                // Set the next item sibling
-                $sibling = $sibling.nextSibling
+                // Cycle through all of the item siblings
+                $siblings.forEach(($sibling) => {
+                    // Check if the item sibling has the is expanded state hook
+                    if ($sibling.classList.contains('is-expanded')) {
+                        // Toggle the item sibling
+                        plugin.this.toggle($sibling);
+                    }
+                });
             }
 
-            // Cycle through all of the item siblings
-            siblings.forEach(($sibling) => {
-                // Check if the item sibling has the is expanded state hook
-                if ($sibling.classList.contains('is-expanded')) {
-                    // Toggle the item sibling
-                    plugin.this.toggle($sibling);
-                }
-            });
+            // Toggle the accordion item
+            plugin.this.toggle($item);
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
         }
 
-        // Toggle the accordion item
-        plugin.this.toggle($item);
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -160,9 +195,6 @@
                     if ($items) {
                         // Cycle through all of the items
                         $items.forEach(($item, index) => {
-                            // Set the toggle
-                            const $toggle = $item.querySelector('.js-accordion-toggle');
-
                             // Set the open multiple items
                             const open_multiple_items = $accordion.dataset.accordionOpenMultipleItems || plugin.settings.openMultipleItems;
 
@@ -188,13 +220,13 @@
                                     }
                                 }
                             }
-
-                            // Add a click event handler to the toggle to toggle the item
-                            $toggle.addEventListener('click', clickToggleEventHandler);
                         });
                     }
                 });
             }
+
+            // Add a click event handler to toggle an accordion item
+            document.addEventListener('click', clickAccordionToggleEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -420,32 +452,8 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the accordions
-            const $accordions = document.querySelectorAll(plugin.element);
-
-            // Check if any accordions exists
-            if ($accordions) {
-                // Cycle through all of the accordions
-                $accordions.forEach(($accordion) => {
-                    // Set the items
-                    const $items = $accordion.querySelectorAll('.accordion__item');
-
-                    // Check if any items exists
-                    if ($items) {
-                        // Cycle through all of the items
-                        $items.forEach(($item, index) => {
-                            // Set the toggle
-                            const $toggle = $item.querySelector('.js-accordion-toggle');
-
-                            // Check if the toggle exists
-                            if ($toggle) {
-                                // Remove the click event handler from the toggle
-                                $toggle.removeEventListener('click', clickToggleEventHandler);
-                            }
-                        });
-                    }
-                });
-            }
+            // Remove the click event handler to toggle an accordion item
+            document.removeEventListener('click', clickAccordionToggleEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

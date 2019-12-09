@@ -47,6 +47,9 @@
         &:hover {
             // Variables
             --border-color: var(--color-primary);
+
+            // Styles (IE fallback for postcss-css-variables)
+            border-color: var(--border-color);
         }
 
         // Check if the blockquote size modifiers should be declared
@@ -58,6 +61,10 @@
                     // Variables
                     --font-size: calc(var(--default-font-size-#{$size}) + 0.2em);
                     --content-spacing: var(--default-content-spacing-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    padding: var(--content-spacing);
                 }
 
                 // Check if the blockquote size modifier breakpoints should be declared
@@ -71,6 +78,10 @@
                                 // Variables
                                 --font-size: calc(var(--default-font-size-#{$size}) + 0.2em);
                                 --content-spacing: var(--default-content-spacing-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                padding: var(--content-spacing);
                             }
                         }
                     }
@@ -90,20 +101,30 @@
             &:hover {
                 // Variables
                 --font-color: var(--default-link-color-hover);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:focus {
                 // Variables
                 --font-color: var(--default-link-color-focus);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:active {
                 // Variables
                 --font-color: var(--default-link-color-active);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
         }
 
         cite {
+            // Styles
             color: inherit;
             display: block;
             font-size: 75%;
@@ -113,6 +134,7 @@
 
             // Pseudo elements
             &::before {
+                // Styles
                 content: '\2014\00a0\00a0';
             }
         }

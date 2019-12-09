@@ -15,6 +15,7 @@
 
         // Modifiers: State hooks
         &.is-fullwidth {
+            // Styles
             display: flex;
             max-width: auto;
             margin-bottom: var(--element-spacing);
@@ -30,6 +31,9 @@
                 &.is-#{$size} {
                     // Variables
                     --element-spacing: var(--default-element-spacing-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    margin-bottom: var(--element-spacing);
                 }
 
                 // Check if the image size modifier breakpoints should be declared
@@ -42,6 +46,9 @@
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Variables
                                 --element-spacing: var(--default-element-spacing-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                margin-bottom: var(--element-spacing);
                             }
                         }
                     }
@@ -53,18 +60,21 @@
         @if $image-alignment-modifiers {
             // Modifiers
             &.image--center {
+                // Styles
                 display: flex;
                 float: none;
                 margin: 0 auto var(--element-spacing);
             }
 
             &.image--left {
+                // Styles
                 float: left;
                 margin: 0;
                 margin-right: var(--element-spacing);
             }
 
             &.image--right {
+                // Styles
                 float: right;
                 margin: 0;
                 margin-left: var(--element-spacing);
@@ -74,6 +84,7 @@
         // Check if the image round modifier should be declared
         @if $image-round-modifier {
             &.image--round {
+                // Styles
                 border-radius: 100%;
             }
         }

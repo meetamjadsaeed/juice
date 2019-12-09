@@ -39,6 +39,10 @@
                     // Variables
                     --background-color: var(--color-#{$color-name});
                     --font-color: var(--color-#{$color-name}-inverted-text);
+
+                    // Styles
+                    background-color: var(--background-color);
+                    color: var(--font-color);
                 }
             }
         }
@@ -52,6 +56,10 @@
                     // Variables
                     --background-color: var(--feedback-color-#{$feedback-name});
                     --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+
+                    // Styles
+                    background-color: var(--background-color);
+                    color: var(--font-color);
                 }
             }
         }
@@ -60,18 +68,22 @@
         @if $hero-viewport-modifiers {
             // Modifiers
             &.hero--25vh {
+                // Styles
                 min-height: 25vh;
             }
 
             &.hero--50vh {
+                // Styles
                 min-height: 50vh;
             }
 
             &.hero--75vh {
+                // Styles
                 min-height: 75vh;
             }
 
             &.hero--100vh {
+                // Styles
                 min-height: 100vh;
             }
         }
@@ -79,6 +91,7 @@
         // Check if the hero parallax modifier should be declared
         @if $hero-parallax-modifier {
             &.hero--parallax {
+                // Styles
                 background-attachment: fixed;
             }
         }
@@ -86,10 +99,12 @@
         // Nested selectors
         .hero__head,
         .hero__foot {
+            // Styles
             flex: 0 0 auto;
         }
 
         .hero__body {
+            // Styles
             align-items: center;
             display: flex;
             flex: 1 0 auto;
@@ -106,16 +121,25 @@
             &:hover {
                 // Variables
                 --font-color: var(--color-white-darken-2);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:focus {
                 // Variables
                 --font-color: var(--color-white-darken-4);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:active {
                 // Variables
                 --font-color: var(--color-white-darken-6);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
         }
     }

@@ -45,6 +45,26 @@
                     --font-size: var(--default-font-size-#{$size});
                     --height: var(--default-element-height-#{$size});
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+
+                    // Nested selectors
+                    ul {
+                        // Nested selectors
+                        li {
+                            // Styles (IE fallback for postcss-css-variables)
+                            min-width: var(--height);
+
+                            // Nested selectors
+                            a,
+                            span {
+                                // Styles (IE fallback for postcss-css-variables)
+                                height: var(--height);
+                                padding: 0 var(--content-spacing);
+                            }
+                        }
+                    }
                 }
 
                 // Check if the pagination size modifier breakpoints should be declared
@@ -59,6 +79,26 @@
                                 --font-size: var(--default-font-size-#{$size});
                                 --height: var(--default-element-height-#{$size});
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+
+                                // Nested selectors
+                                ul {
+                                    // Nested selectors
+                                    li {
+                                        // Styles (IE fallback for postcss-css-variables)
+                                        min-width: var(--height);
+
+                                        // Nested selectors
+                                        a,
+                                        span {
+                                            // Styles (IE fallback for postcss-css-variables)
+                                            height: var(--height);
+                                            padding: 0 var(--content-spacing);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -70,16 +110,19 @@
         @if $pagination-alignment-modifiers {
             // Modifiers
             &.pagination--left {
+                // Styles
                 justify-content: flex-start;
             }
 
             &.pagination--right {
+                // Styles
                 justify-content: flex-end;
             }
         }
 
         // Nested selectors
         ul {
+            // Styles
             box-shadow: var(--box-shadow);
             display: flex;
             list-style: none;
@@ -88,6 +131,7 @@
 
             // Nested selectors
             li {
+                // Styles
                 margin-right: calc(0px - var(--border-width-divider));
                 min-width: var(--height);
 
@@ -96,6 +140,7 @@
                     // Nested selectors
                     a,
                     span {
+                        // Styles
                         border-bottom-left-radius: var(--border-radius-bottom-left);
                         border-left-width: var(--border-width-left);
                         border-top-left-radius: var(--border-radius-top-left);
@@ -106,6 +151,7 @@
                     // Nested selectors
                     a,
                     span {
+                        // Styles
                         border-bottom-right-radius: var(--border-radius-bottom-right);
                         border-right-width: var(--border-width-right);
                         border-top-right-radius: var(--border-radius-top-right);
@@ -115,6 +161,7 @@
                 // Nested selectors
                 a,
                 span {
+                    // Styles
                     align-items: center;
                     background-color: var(--background-color);
                     border: 0 var(--border-style) var(--border-color);
@@ -150,6 +197,11 @@
 
                         // Styles
                         z-index: get-stack-index('hover');
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     &:focus {
@@ -161,6 +213,11 @@
                         // Styles
                         box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
                         z-index: get-stack-index('focus');
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     &:active {
@@ -171,15 +228,22 @@
 
                         // Styles
                         z-index: get-stack-index('active');
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     // Modifiers: State hooks
                     &.is-active {
+                        // Styles
                         font-size: calc(var(--font-size) + 0.1em);
                         font-weight: bold;
                     }
 
                     &.is-disabled {
+                        // Styles
                         @include disabled();
                         background-color: var(--background-color) !important;
                         border-color: var(--border-color) !important;
@@ -189,6 +253,7 @@
                         &:hover,
                         &:focus,
                         &:active {
+                            // Styles
                             background-color: var(--background-color) !important;
                             border-color: var(--border-color) !important;
                             color: var(--link-color) !important;
@@ -197,6 +262,7 @@
                 }
 
                 span {
+                    // Styles
                     cursor: default;
                 }
             }

@@ -72,6 +72,7 @@
         &:hover,
         &:focus,
         &:active {
+            // Styles
             text-decoration: none;
         }
 
@@ -83,6 +84,11 @@
 
             // Styles
             z-index: get-stack-index('hover');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:focus {
@@ -94,6 +100,11 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('focus');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:active {
@@ -104,10 +115,16 @@
 
             // Styles
             z-index: get-stack-index('active');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         // Modifiers: Props
         &[disabled] {
+            // Styles
             @include disabled();
             background-color: var(--background-color) !important;
             border-color: var(--border-color) !important;
@@ -116,11 +133,13 @@
 
         // Modifiers: State hooks
         &.is-fullwidth {
+            // Styles
             display: flex;
             width: 100%;
         }
 
         &.is-static {
+            // Styles
             background-color: var(--background-color);
             border-color: var(--border-color);
             box-shadow: none;
@@ -131,6 +150,7 @@
             &:hover,
             &:focus,
             &:active {
+                // Styles
                 background-color: var(--background-color);
                 border-color: var(--border-color);
                 box-shadow: none;
@@ -148,6 +168,11 @@
                     --font-size: var(--default-font-size-#{$size});
                     --height: var(--default-element-height-#{$size});
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    height: var(--height);
+                    padding: 0 var(--content-spacing);
                 }
 
                 // Check if the button size modifier breakpoints should be declared
@@ -160,7 +185,13 @@
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Variables
                                 --font-size: var(--default-font-size-#{$size});
+                                --height: var(--default-element-height-#{$size});
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                height: var(--height);
+                                padding: 0 var(--content-spacing);
                             }
                         }
                     }
@@ -180,12 +211,22 @@
                     --border-color: var(--color-#{$color-name}-darken-3);
                     --font-color: var(--color-#{$color-name}-inverted-text);
 
+                    // Styles (IE fallback for postcss-css-variables)
+                    background-color: var(--background-color);
+                    border-color: var(--border-color);
+                    color: var(--font-color);
+
                     // Pseudo classes
                     &:hover {
                         // Variables
                         --background-color: var(--color-#{$color-name}-lighten-1);
                         --border-color: var(--color-#{$color-name}-darken-6);
                         --font-color: var(--color-#{$color-name}-inverted-text);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     &:focus {
@@ -193,6 +234,12 @@
                         --background-color: var(--color-#{$color-name}-lighten-1);
                         --border-color: var(--color-#{$color-name}-darken-6);
                         --font-color: var(--color-#{$color-name}-inverted-text);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     &:active {
@@ -200,6 +247,33 @@
                         --background-color: var(--color-#{$color-name}-darken-1);
                         --border-color: var(--color-#{$color-name}-darken-8);
                         --font-color: var(--color-#{$color-name}-inverted-text);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
+                    }
+
+                    // Check if the button flat modifier should be declared
+                    @if $button-flat-modifier {
+                        &.button--flat {
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: transparent;
+                            border-color: transparent;
+                            box-shadow: none;
+
+                            // Pseudo classes
+                            &:hover,
+                            &:focus {
+                                // Styles (IE fallback for postcss-css-variables)
+                                background-color: hsla(0, 0%, 30%, 0.08);
+                            }
+
+                            &:active {
+                                // Styles (IE fallback for postcss-css-variables)
+                                background-color: hsla(0, 0%, 30%, 0.08);
+                            }
+                        }
                     }
                 }
             }
@@ -217,12 +291,22 @@
                     --border-color: var(--feedback-color-#{$feedback-name}-darken-3);
                     --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
 
+                    // Styles (IE fallback for postcss-css-variables)
+                    background-color: var(--background-color);
+                    border-color: var(--border-color);
+                    color: var(--font-color);
+
                     // Pseudo classes
                     &:hover {
                         // Variables
                         --background-color: var(--feedback-color-#{$feedback-name}-lighten-1);
                         --border-color: var(--feedback-color-#{$feedback-name}-darken-6);
                         --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     &:focus {
@@ -230,6 +314,12 @@
                         --background-color: var(--feedback-color-#{$feedback-name}-lighten-1);
                         --border-color: var(--feedback-color-#{$feedback-name}-darken-6);
                         --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
 
                     &:active {
@@ -237,6 +327,11 @@
                         --background-color: var(--feedback-color-#{$feedback-name}-darken-1);
                         --border-color: var(--feedback-color-#{$feedback-name}-darken-8);
                         --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        background-color: var(--background-color);
+                        border-color: var(--border-color);
+                        color: var(--font-color);
                     }
                 }
             }
@@ -267,6 +362,12 @@
                     --border-color: transparent;
                     --font-color: inherit;
                     --opacity: 0.6;
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    background-color: var(--background-color);
+                    border-color: var(--border-color);
+                    color: var(--font-color);
+                    opacity: var(--opacity);
                 }
 
                 &:focus {
@@ -275,6 +376,12 @@
                     --border-color: transparent;
                     --font-color: inherit;
                     --opacity: 0.6;
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    background-color: var(--background-color);
+                    border-color: var(--border-color);
+                    color: var(--font-color);
+                    opacity: var(--opacity);
                 }
 
                 &:active {
@@ -283,10 +390,17 @@
                     --border-color:  transparent;
                     --font-color: inherit;
                     --opacity: 0.9;
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    background-color: var(--background-color);
+                    border-color: var(--border-color);
+                    color: var(--font-color);
+                    opacity: var(--opacity);
                 }
 
                 // Modifiers: Props
                 &[disabled] {
+                    // Styles
                     background-color: var(--background-color) !important;
                     border-color: var(--border-color) !important;
                     color: var(--font-color) !important;
@@ -309,20 +423,24 @@
                 // Pseudo classes
                 &:hover,
                 &:focus {
-                    background-color: hsla(0, 0%, 30%, 0.08);
-                }
-
-                &:hover {
                     // Variables
                     --font-color: var(--background-color);
+
+                    // Styles
+                    background-color: hsla(0, 0%, 30%, 0.08);
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    color: var(--font-color);
                 }
 
                 &:active {
+                    // Styles
                     background-color: hsla(0, 0%, 30%, 0.08);
                 }
 
                 // Modifiers: Props
                 &[disabled] {
+                    // Styles
                     background-color: transparent !important;
                     border-color: transparent !important;
                     color: var(--font-color) !important;
@@ -333,6 +451,7 @@
         // Check if the button icon modifier should be declared
         @if $button-icon-modifier {
             &.button--icon {
+                // Styles
                 max-width: var(--height);
                 min-width: var(--height);
                 padding: 0;
@@ -343,12 +462,14 @@
         // Check if the button outline modifier should be declared
         @if $button-outline-modifier {
             &.button--outline {
+                // Styles
                 background-color: transparent;
                 border-color: var(--background-color);
                 color: var(--background-color);
 
                 // Pseudo classes
                 &:hover {
+                    // Styles
                     background-color: var(--background-color);
                     border-color: var(--background-color);
                     color: var(--font-color);
@@ -356,6 +477,7 @@
 
                 // Modifiers: Props
                 &[disabled] {
+                    // Styles
                     background-color: var(--font-color) !important;
                     border-color: var(--background-color) !important;
                     color: var(--background-color) !important;
@@ -366,6 +488,7 @@
         // Check if the button pill modifier should be declared
         @if $button-pill-modifier {
             &.button--pill {
+                // Styles
                 border-radius: 999px;
             }
         }
@@ -373,12 +496,14 @@
         // Check if the button round modifier should be declared
         @if $button-round-modifier {
             &.button--round {
+                // Styles
                 border-radius: 100%;
             }
         }
 
         // Nested selectors
         .button__icon {
+            // Styles
             align-items: center;
             display: inline-flex;
             justify-content: center;
@@ -386,10 +511,12 @@
 
             // Pseudo classes
             &:first-child:not(:only-child) {
+                // Styles
                 margin-right: calc(var(--content-spacing) / 2);
             }
 
             &:last-child:not(:only-child) {
+                // Styles
                 margin-left: calc(var(--content-spacing) / 2);
             }
         }

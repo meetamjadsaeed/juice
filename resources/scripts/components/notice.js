@@ -73,20 +73,56 @@
     }
 
     /**
-     * Event handler to remove a notice when the notice remove is clicked.
+     * Click event handler to remove a notice.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickRemoveEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickNoticeRemoveEventHandler = (event) => {
+        // Check if the event target is the remove or a descendant of the remove
+        if (isTargetSelector(event.target, 'class', 'js-notice-remove')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the remove and notice
-        const $remove = event.currentTarget;
-        const $notice = $remove.closest('.notice');
+            // Set the remove and notice
+            const $remove = event.target;
+            const $notice = $remove.closest('.notice');
 
-        // Remove the notice
-        plugin.this.remove($notice);
+            // Remove the notice
+            plugin.this.remove($notice);
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -109,23 +145,8 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Set the notices
-            const $notices = document.querySelectorAll(plugin.element);
-
-            // Check if any notices exist
-            if ($notices) {
-                // Cycle through all of the notices
-                $notices.forEach(($notice) => {
-                    // Set the remove
-                    const $remove = $notice.querySelector('.js-notice-remove');
-
-                    // Check if the remove exists
-                    if ($remove) {
-                        // Add a click event handler to the remove to remove the notice
-                        $remove.addEventListener('click', clickRemoveEventHandler);
-                    }
-                });
-            }
+            // Add a click event handler to remove a notice
+            document.addEventListener('click', clickNoticeRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -220,23 +241,8 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the notices
-            const $notices = document.querySelectorAll(plugin.element);
-
-            // Check if any notices exist
-            if ($notices) {
-                // Cycle through all of the notices
-                $notices.forEach(($notice) => {
-                    // Set the remove
-                    const $remove = $notice.querySelector('.js-notice-remove');
-
-                    // Check if the remove exists
-                    if ($remove) {
-                        // Remove then click event handler from the notice remove
-                        $remove.removeEventListener('click', clickRemoveEventHandler);
-                    }
-                });
-            }
+            // Remove the click event handler to remove a notice
+            document.removeEventListener('click', clickNoticeRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

@@ -42,8 +42,11 @@
         size: null,
         text: 'Lorem ipsum...',
 
-        callbackInitialize: () => {
-            console.log('Confirm: callbackInitialize');
+        callbackInitializeBefore: () => {
+            console.log('Confirm: callbackInitializeBefore');
+        },
+        callbackInitializeAfter: () => {
+            console.log('Confirm: callbackInitializeAfter');
         },
         callbackOpenBefore: () => {
             console.log('Confirm: callbackOpenBefore');
@@ -182,29 +185,68 @@
     };
 
     /**
-     * Event handler to trigger the cancel callback when the cancel button is clicked.
+     * Click event handler to cancel a confirm.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickCancelEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickConfirmCancelEventHandler = (event) => {
+        // Check if the event target is the cancel or a descendant of the cancel
+        if (isTargetSelector(event.target, 'class', 'js-confirm-cancel')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the cancel callback
-        plugin.settings.callbackCancel.call();
+            // Call the cancel callback
+            plugin.settings.callbackCancel.call();
+        }
     };
 
     /**
-     * Event handler to trigger the continue callback when the continue button is clicked.
+     * Click event handler to continue a confirm.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickContinueEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickConfirmContinueEventHandler = (event) => {
+        // Check if the event target is the continue or a descendant of the continue
+        if (isTargetSelector(event.target, 'class', 'js-confirm-continue')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the continue callback
-        plugin.settings.callbackContinue.call();
+            // Call the continue callback
+            plugin.settings.callbackContinue.call();
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -251,7 +293,7 @@
                     break;
             }
         });
-    }
+    };
 
     /**
      * Public variables and methods
@@ -269,8 +311,20 @@
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
-                // Call the initialize callback
-                plugin.settings.callbackInitialize.call();
+                // Call the initialize before callback
+                plugin.settings.callbackInitializeBefore.call();
+            }
+
+            // Add a click event handler to cancel a confirm
+            document.addEventListener('click', clickConfirmCancelEventHandler);
+
+            // Add a click event handler to continue a confirm
+            document.addEventListener('click', clickConfirmContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize after callback
+                plugin.settings.callbackInitializeAfter.call();
             }
 
             // Open the confirm
@@ -353,18 +407,6 @@
                     }, {
                         once: true
                     });
-                }
-
-                // Check if a cancel exists
-                if ($cancel) {
-                    // Add a click event handler to the cancel button to trigger the cancel callback
-                    $cancel.addEventListener('click', clickCancelEventHandler);
-                }
-
-                // Check if a continue exists
-                if ($continue) {
-                    // Add a click event handler to the cancel button to trigger the cancel callback
-                    $continue.addEventListener('click', clickContinueEventHandler);
                 }
             }
         },
@@ -477,6 +519,12 @@
                 // Call the destroy before callback
                 plugin.settings.callbackDestroyBefore.call();
             }
+
+            // Remove the click event handler to cancel a confirm
+            document.removeEventListener('click', clickConfirmCancelEventHandler);
+
+            // Remove the click event handler to continue a confirm
+            document.removeEventListener('click', clickConfirmContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

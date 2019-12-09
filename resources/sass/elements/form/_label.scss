@@ -32,6 +32,9 @@
                 &.is-#{$size} {
                     // Variables
                     --font-size: var(--default-font-size-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
                 }
 
                 // Check if the label size modifier breakpoints should be declared
@@ -44,6 +47,9 @@
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Variables
                                 --font-size: var(--default-font-size-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
                             }
                         }
                     }
@@ -59,12 +65,16 @@
                 &.has-#{$feedback-name} {
                     // Variables
                     --font-color: var(--feedback-color-#{$feedback-name});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    color: var(--font-color);
                 }
             }
         }
 
         // Modifiers: Props
         &[disabled] {
+            // Styles
             @include disabled();
         }
 
@@ -72,6 +82,7 @@
         @if $label-inline-modifier {
             // Modifiers
             &.label--inline {
+                // Styles
                 display: inline-block;
             }
         }

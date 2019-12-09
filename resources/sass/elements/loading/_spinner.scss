@@ -24,12 +24,14 @@
             // Set the keyframe
             @keyframes spinner-dial {
                 100% {
+                    // Styles
                     transform: rotate(360deg);
                 }
             }
 
             // Modifiers
             &.spinner--dial {
+                // Styles
                 animation-duration: var(--animation-duration);
                 animation-iteration-count: infinite;
                 animation-name: spinner-dial;
@@ -42,6 +44,7 @@
 
                 // Pseudo elements
                 &::before {
+                    // Styles
                     animation: none;
                     background-color: var(--color);
                     border-radius: 100%;
@@ -58,6 +61,15 @@
                     &.is-#{$color-name} {
                         // Variables
                         --color: var(--color-#{$color-name});
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        border-color: var(--color);
+
+                        // Pseudo elements
+                        &::before {
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--color);
+                        }
                     }
                 }
             }
@@ -68,12 +80,14 @@
             // Set the keyframe
             @keyframes spinner-ring {
                 100% {
+                    // Styles
                     transform: rotate(360deg);
                 }
             }
 
             // Modifiers
             &.spinner--ring {
+                // Styles
                 animation-duration: var(--animation-duration);
                 animation-iteration-count: infinite;
                 animation-name: spinner-ring;
@@ -86,6 +100,7 @@
 
                 // Pseudo elements
                 &::before {
+                    // Styles
                     animation: none;
                     background: var(--color);
                     border-radius: 100%;
@@ -103,6 +118,15 @@
                         // Variables
                         --color: var(--color-#{$color-name});
                         --color-alt: var(--color-#{$color-name}-lighten-10);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        border-color: var(--color-alt);
+
+                        // Pseudo elements
+                        &::before {
+                            // Styles (IE fallback for postcss-css-variables)
+                            background-color: var(--color);
+                        }
                     }
                 }
             }
@@ -113,6 +137,7 @@
             // Set the keyframe
             @keyframes spinner-spiral {
                 100% {
+                    // Styles
                     transform: rotate(360deg);
                 }
             }
@@ -121,6 +146,7 @@
             &.spinner--spiral,
             &.spinner--spiral-x2,
             &.spinner--spiral-x3 {
+                // Styles
                 animation-duration: var(--animation-duration);
                 animation-iteration-count: infinite;
                 animation-name: spinner-spiral;
@@ -139,17 +165,23 @@
                         // Variables
                         --color: var(--color-#{$color-name});
                         --color-alt: var(--color-#{$color-name}-lighten-10);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        border-color: var(--color-alt);
+                        border-top-color: var(--color);
                     }
                 }
             }
 
             &.spinner--spiral {
+                // Styles
                 border-width: 2px;
             }
 
             &.spinner--spiral-x2 {
                 // Pseudo elements
                 &::before {
+                    // Styles
                     animation-duration: calc(var(--animation-duration) * 3);
                     animation-iteration-count: infinite;
                     animation-name: spinner-spiral;
@@ -168,6 +200,7 @@
                 // Pseudo elements
                 &::before,
                 &::after {
+                    // Styles
                     animation-iteration-count: infinite;
                     animation-name: spinner-spiral;
                     animation-timing-function: linear;
@@ -179,12 +212,14 @@
                 }
 
                 &::before {
+                    // Styles
                     animation-duration: calc(var(--animation-duration) * 3);
                     height: calc(var(--element-size) - 8px);
                     width: calc(var(--element-size) - 8px);
                 }
 
                 &::after {
+                    // Styles
                     animation-duration: calc(var(--animation-duration) * 1.5);
                     height: calc(var(--element-size) - 16px);
                     width: calc(var(--element-size) - 16px);
@@ -197,12 +232,14 @@
             // Set the keyframe
             @keyframes spinner-swoosh {
                 100% {
+                    // Styles
                     transform: rotate(360deg);
                 }
             }
 
             // Modifiers
             &.spinner--swoosh {
+                // Styles
                 animation-duration: var(--animation-duration);
                 animation-iteration-count: infinite;
                 animation-name: spinner-swoosh;
@@ -217,7 +254,11 @@
                 // Modifiers: Colors
                 @each $color-name, $color in $colors {
                     &.is-#{$color-name} {
+                        // Variables
                         --color: var(--color-#{$color-name});
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        border: 0 solid var(--color);
                     }
                 }
             }
@@ -228,6 +269,7 @@
             // Set the keyframe
             @keyframes spinner-target {
                 100% {
+                    // Styles
                     transform: rotate(1440deg);
                 }
             }
@@ -252,19 +294,26 @@
                 // Modifiers: Colors
                 @each $color-name, $color in $colors {
                     &.is-#{$color-name} {
+                        // Variables
                         --color: var(--color-#{$color-name});
                         --color-alt: var(--color-#{$color-name}-lighten-10);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        border-bottom-color: var(--color);
+                        border-top-color: var(--color);
                     }
                 }
             }
 
             &.spinner--target {
+                // Styles
                 border-width: 2px;
             }
 
             &.spinner--target-x2 {
                 // Pseudo elements
                 &::before {
+                    // Styles
                     animation-duration: calc(calc(var(--animation-duration) * 4) * 3);
                     animation-iteration-count: infinite;
                     animation-name: spinner-target;
@@ -284,6 +333,7 @@
                 // Pseudo elements
                 &::before,
                 &::after {
+                    // Styles
                     animation-iteration-count: infinite;
                     animation-name: spinner-target;
                     animation-timing-function: ease-in-out;
@@ -296,12 +346,14 @@
                 }
 
                 &::before {
+                    // Styles
                     animation-duration: calc(calc(var(--animation-duration) * 4) * 3);
                     height: calc(var(--element-size) - 8px);
                     width: calc(var(--element-size) - 8px);
                 }
 
                 &::after {
+                    // Styles
                     animation-duration: calc(calc(var(--animation-duration) * 4) * 1.5);
                     height: calc(var(--element-size) - 16px);
                     width: calc(var(--element-size) - 16px);

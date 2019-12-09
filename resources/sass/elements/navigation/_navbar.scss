@@ -35,50 +35,66 @@
             &:hover {
                 // Variables
                 --font-color: var(--default-link-color-hover);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:focus {
                 // Variables
                 --font-color: var(--default-link-color-focus);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
 
             &:active {
                 // Variables
                 --font-color: var(--default-link-color-active);
+
+                // Styles (IE fallback for postcss-css-variables)
+                color: var(--font-color);
             }
         }
 
         .navbar__logo,
         .navbar__links,
         .navbar__bars {
+            // Styles
             padding: 0 calc(var(--content-spacing) / 2);
 
             // Pseudo classes
             &:first-child {
+                // Styles
                 padding-left: 0;
             }
 
             &:last-child {
+                // Styles
                 padding-right: 0;
             }
         }
 
         .navbar__logo {
+            // Styles
             display: flex;
             flex: 1 0 25%;
 
             // Nested selectors
             a:not(.button) {
+                // Styles
                 display: inline-flex;
             }
         }
 
         .navbar__links {
+            // Styles
             display: none;
 
             // Nested selectors
             ul,
             ol {
+                // Styles
                 display: none;
                 list-style: none;
                 margin: 0;
@@ -86,10 +102,12 @@
 
                 // Nested selectors
                 li {
+                    // Styles
                     flex: 1 0 auto;
 
                     // Nested selectors
                     a:not(.button) {
+                        // Styles
                         display: inline-flex;
                         padding: var(--content-spacing);
                     }
@@ -100,17 +118,20 @@
         .navbar__icons {
             // Nested selectors
             #{$button} {
+                // Styles
                 margin-bottom: 0;
                 margin-right: calc(var(--content-spacing) / 4);
 
                 // Pseudo classes
                 &:last-child {
+                    // Styles
                     margin-right: 0;
                 }
             }
         }
 
         .navbar__revealer {
+            // Styles
             display: none;
             flex: 1 0 100%;
             padding: var(--content-spacing);
@@ -118,6 +139,7 @@
              // Nested selectors
             ul,
             ol {
+                // Styles
                 display: flex;
                 flex-direction: column;
                 list-style: none;
@@ -126,10 +148,12 @@
 
                  // Nested selectors
                 li {
+                    // Styles
                     flex: 1 0 auto;
 
                      // Nested selectors
                     a:not(.button) {
+                        // Styles
                         align-items: center;
                         display: flex;
                         justify-content: center;
@@ -146,19 +170,23 @@
                 // Nested selectors
                 ul,
                 ol {
+                    // Styles
                     display: flex;
                 }
             }
 
             .navbar__icons {
+                // Styles
                 display: none;
             }
 
             .navbar__links {
+                // Styles
                 display: flex;
             }
 
             .navbar__revealer {
+                // Styles
                 display: none !important;
             }
         }

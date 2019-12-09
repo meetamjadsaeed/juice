@@ -46,6 +46,9 @@
                 &.is-#{$size} {
                     // Variables
                     --font-size: var(--default-font-size-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
                 }
 
                 // Check if the mark size modifier breakpoints should be declared
@@ -58,6 +61,9 @@
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Variables
                                 --font-size: var(--default-font-size-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
                             }
                         }
                     }

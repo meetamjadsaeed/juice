@@ -142,7 +142,7 @@
             // Show the dropdown
             plugin.this.show($dropdown);
         }
-    }
+    };
 
     /**
      * Event handler to hide a dropdown when the mouse leaves the dropdown container.
@@ -159,7 +159,7 @@
             // Hide the dropdown
             plugin.this.hide($dropdown);
         }
-    }
+    };
 
     /**
      * Public variables and methods.

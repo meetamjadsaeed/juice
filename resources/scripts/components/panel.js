@@ -81,37 +81,76 @@
     }
 
     /**
-     * Event handler to remove a panel when the panel remove is clicked.
+     * Click event handler to remove a panel.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickRemoveEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickPanelRemoveEventHandler = (event) => {
+        // Check if the event target is the remove or a descendant of the remove
+        if (isTargetSelector(event.target, 'class', 'js-panel-remove')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the remove and panel
-        const $remove = event.currentTarget;
-        const $panel = $remove.closest('.panel');
+            // Set the remove and panel
+            const $remove = event.target;
+            const $panel = $remove.closest('.panel');
 
-        // Remove the panel
-        plugin.this.remove($panel);
+            // Remove the panel
+            plugin.this.remove($panel);
+        }
     };
 
     /**
-     * Event handler to toggle a panel when the panel toggle is clicked.
+     * Click event handler to toggle a panel.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickToggleEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickPanelToggleEventHandler = (event) => {
+        // Check if the event target is the toggle or a descendant of the toggle
+        if (isTargetSelector(event.target, 'class', 'js-panel-toggle')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the remove and panel
-        const $remove = event.currentTarget;
-        const $panel = $remove.closest('.panel');
+            // Set the remove and panel
+            const $remove = event.target;
+            const $panel = $remove.closest('.panel');
 
-        // Toggle the panel
-        plugin.this.toggle($panel);
+            // Toggle the panel
+            plugin.this.toggle($panel);
+        }
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -150,20 +189,14 @@
                         // Add the expanded state hook to the panel
                         $panel.classList.add('is-expanded');
                     }
-
-                    // Check if the toggle exists
-                    if ($toggle) {
-                        // Add a click event handler to the toggle to toggle the panel
-                        $toggle.addEventListener('click', clickToggleEventHandler);
-                    }
-
-                    // Check if the remove exists
-                    if ($remove) {
-                        // Add a click event handler to the remove to remove the panel
-                        $remove.addEventListener('click', clickRemoveEventHandler);
-                    }
                 });
             }
+
+            // Add a click event handler to toggle a panel
+            document.addEventListener('click', clickPanelToggleEventHandler);
+
+            // Add a click event handler to remove a panel
+            document.addEventListener('click', clickPanelRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -410,30 +443,11 @@
                 plugin.settings.callbackDestroyBefore.call();
             }
 
-            // Set the panels
-            const $panels = document.querySelectorAll(plugin.element);
+            // Remove the click event handler to toggle a panel
+            document.removeEventListener('click', clickPanelToggleEventHandler);
 
-            // Check if any panels exist
-            if ($panels) {
-                // Cycle through all of the panels
-                $panels.forEach(($panel) => {
-                    // Set the toggle and remove
-                    const $toggle = $panel.querySelector('.js-panel-toggle');
-                    const $remove = $panel.querySelector('.js-panel-remove');
-
-                    // Check if the toggle exists
-                    if ($toggle) {
-                        // Remove the click event handler from the toggle
-                        $toggle.removeEventListener('click', clickToggleEventHandler);
-                    }
-
-                    // Check if the remove exists
-                    if ($remove) {
-                        // Remove the click event handler from the remove
-                        $remove.removeEventListener('click', clickRemoveEventHandler);
-                    }
-                });
-            }
+            // Remove the click event handler to remove a panel
+            document.removeEventListener('click', clickPanelRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {

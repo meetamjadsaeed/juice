@@ -28,19 +28,24 @@
         "just-add-juice"
     ],
     "devDependencies": {
-        "@babel/core": "^7.3.4",
-        "@babel/preset-env": "^7.3.4",
+        "@babel/core": "^7.7.4",
+        "@babel/preset-env": "^7.7.4",
         "browser-sync": "^2.26.7",
+        "cssnano": "^4.1.10",
         "gulp": "^4.0.2",
-        "gulp-autoprefixer": "^6.1.0",
         "gulp-babel": "^8.0.0",
         "gulp-concat": "^2.6.1",
         "gulp-connect-php7": "^1.0.1",
         "gulp-notify": "^3.2.0",
         "gulp-plumber": "^1.2.1",
+        "gulp-postcss": "^8.0.0",
         "gulp-rename": "^1.4.0",
         "gulp-sass": "^4.0.2",
-        "gulp-uglify": "^3.0.2"
+        "gulp-uglify": "^3.0.2",
+        "postcss-css-variables": "^0.14.0",
+        "postcss-preset-env": "^6.7.0",
+        "postcss-scss": "^2.0.0",
+        "velocity-animate": "^1.5.2"
     },
     "files": [
         "public",
@@ -49,7 +54,7 @@
         "LICENSE",
         "README.md"
     ],
-    "dependencies": {
-        "velocity-animate": "^1.5.2"
-    }
+    "browserslist": [
+        "last 2 versions"
+    ]
 }

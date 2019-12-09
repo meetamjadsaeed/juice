@@ -52,7 +52,7 @@
         height: var(--height);
         margin: 0;
         margin-bottom: var(--element-spacing);
-        padding: 0 var(--height) 0 var(--content-spacing);
+        padding: 0 var(--content-spacing);
         outline: none;
         width: 100%;
         z-index: get-stack-index('default');
@@ -66,6 +66,11 @@
 
             // Styles
             z-index: get-stack-index('hover');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:focus {
@@ -77,6 +82,11 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('focus');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         &:active {
@@ -88,10 +98,16 @@
             // Styles
             box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
             z-index: get-stack-index('active');
+
+            // Styles (IE fallback for postcss-css-variables)
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+            color: var(--font-color);
         }
 
         // Modifiers: Props
         &[disabled] {
+            // Styles
             @include disabled();
         }
 
@@ -105,6 +121,11 @@
                     --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                     --font-size: var(--default-font-size-#{$size});
                     --height: var(--default-element-height-#{$size});
+
+                    // Styles (IE fallback for postcss-css-variables)
+                    font-size: var(--font-size);
+                    height: var(--height);
+                    padding: 0 var(--content-spacing);
                 }
 
                 // Check if the select size modifier breakpoints should be declared
@@ -119,6 +140,11 @@
                                 --content-spacing: calc(var(--default-content-spacing-#{$size}) / 2);
                                 --font-size: var(--default-font-size-#{$size});
                                 --height: var(--default-element-height-#{$size});
+
+                                // Styles (IE fallback for postcss-css-variables)
+                                font-size: var(--font-size);
+                                height: var(--height);
+                                padding: 0 var(--content-spacing);
                             }
                         }
                     }
@@ -135,19 +161,22 @@
                     // Variables
                     --border-color: var(--feedback-color-#{$feedback-name});
 
-                    // Pseudo classes
-                    &:focus {
-                        // Variables
-                        --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
-                    }
+                    // Styles (IE fallback for postcss-css-variables)
+                    border-color: var(--border-color);
 
+                    // Pseudo classes
+                    &:focus,
                     &:active {
                         // Variables
                         --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
+
+                        // Styles (IE fallback for postcss-css-variables)
+                        box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
                     }
 
                     // Modifiers: Props
                     &[disabled] {
+                        // Styles
                         border-color: var(--feedback-color-#{$feedback-name}) !important;
                     }
                 }
@@ -156,12 +185,14 @@
 
         // Modifiers: Props
         &[multiple] {
+            // Styles
             background-image: unset;
             height: initial;
             padding: 0;
 
             // Nested selectors
             option {
+                // Styles
                 padding: var(--content-spacing);
             }
         }
@@ -170,6 +201,7 @@
         @if $select-pill-modifier {
             // Modifiers
             &.select--pill {
+                // Styles
                 border-radius: 999px;
             }
         }

@@ -27,14 +27,14 @@
         animationClass: 'has-animation',
         animationIn: 'fade-in',
         animationOut: 'fade-out',
-        close: '<button type="button" class="button--component is-small has-large-font-size js-close-popover"><i class="fas fa-times"></i></button>',
+        close: '<button type="button" class="button--component is-small has-large-font-size js-popover-close"><i class="fas fa-times"></i></button>',
         color: null,
         delayIn: 0,
         delayOut: 0,
         feedback: null,
-        next: '<button type="button" class="button--component is-small has-large-font-size js-next-popover"><i class="fas fa-chevron-right"></i></button>',
+        next: '<button type="button" class="button--component is-small has-large-font-size js-popover-next"><i class="fas fa-chevron-right"></i></button>',
         position: 'top',
-        prev: '<button type="button" class="button--component is-small has-large-font-size js-prev-popover"><i class="fas fa-chevron-left"></i></button>',
+        prev: '<button type="button" class="button--component is-small has-large-font-size js-popover-prev"><i class="fas fa-chevron-left"></i></button>',
         size: null,
 
         callbackInitializeBefore: () => {
@@ -192,109 +192,119 @@
     };
 
     /**
-     * Event handler to open the previous popover in a popover group when the
-     * popover previous is clicked.
+     * Click event handler to close a popover.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickPrevEventListener = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickPopoverCloseEventListener = (event) => {
+        // Check if the event target is the close or a descendant of the close
+        if (isTargetSelector(event.target, 'class', 'js-popover-close')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Call the prev callback
-        plugin.settings.callbackPrev.call();
+            // Set the close and popover
+            const $close = event.target;
+            const $popover = $close.closest('.popover');
 
-        // Set the previous, popover and trigger
-        const $prev = event.currentTarget;
-        const $popover = $prev.closest('.popover');
-        const $trigger = $popover.data.trigger;
-
-        // Set the group properties
-        const group = $trigger.dataset.popoverGroup;
-        const current = parseInt($trigger.dataset.popoverGroupOrder);
-        const prev = current - 1;
-
-        // Set the previous trigger
-        const $trigger_prev = document.querySelector('.has-popover[data-popover-group="' + group + '"][data-popover-group-order="' + prev + '"]');
-
-        // Open the previous popover
-        plugin.this.open($trigger_prev);
-    };
-
-    /**
-     * Event handler to open the next popover in a popover group when the
-     * popover next is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickNextEventListener = (event) => {
-        // Prevent the default action
-        event.preventDefault();
-
-        // Call the next callback
-        plugin.settings.callbackNext.call();
-
-        // Set the next, popover and trigger
-        const $next = event.currentTarget;
-        const $popover = $next.closest('.popover');
-        const $trigger = $popover.data.trigger;
-
-        // Set the group properties
-        const group = $trigger.dataset.popoverGroup;
-        const current = parseInt($trigger.dataset.popoverGroupOrder);
-        const next = current + 1;
-
-        // Set the next trigger
-        const $trigger_next = document.querySelector('.has-popover[data-popover-group="' + group + '"][data-popover-group-order="' + next + '"]');
-
-        // Open the next popover
-        plugin.this.open($trigger_next);
-    };
-
-    /**
-     * Event handler to close a popover when the close is clicked.
-     * @param  {object}  event  The event object.
-     * @return {void}
-     */
-    const clickCloseEventListener = (event) => {
-        // Prevent the default action
-        event.preventDefault();
-
-        // Set the close and popover
-        const $close = event.currentTarget;
-        const $popover = $close.closest('.popover');
-
-        // Close the popover
-        plugin.this.close($popover);
+            // Close the popover
+            plugin.this.close($popover);
+        }
    };
 
     /**
-     * Event handler to toggle a popover when the popover trigger is clicked.
+     * Click event handler to open the previous popover.
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickTriggerEventHandler = (event) => {
-        // Prevent the default action
-        event.preventDefault();
+    const clickPopoverPrevEventListener = (event) => {
+        // Check if the event target is the previous or a descendant of the previous
+        if (isTargetSelector(event.target, 'class', 'js-popover-prev')) {
+            // Prevent the default action
+            event.preventDefault();
 
-        // Set the trigger
-        const $trigger = event.currentTarget;
+            // Call the prev callback
+            plugin.settings.callbackPrev.call();
 
-        // Check if the trigger data doesn't have an assigned popover
-        if (!$trigger.data || !('popover' in $trigger.data)) {
-            // Open the popover
-            plugin.this.open($trigger);
-        } else {
+            // Set the previous, popover and trigger
+            const $prev = event.target;
+            const $popover = $prev.closest('.popover');
+            const $trigger = $popover.data.trigger;
+
+            // Set the group properties
+            const group = $trigger.dataset.popoverGroup;
+            const current = parseInt($trigger.dataset.popoverGroupOrder);
+            const prev = current - 1;
+
+            // Set the previous trigger
+            const $trigger_prev = document.querySelector('.has-popover[data-popover-group="' + group + '"][data-popover-group-order="' + prev + '"]');
+
+            // Open the previous popover
+            plugin.this.open($trigger_prev);
+        }
+    };
+
+    /**
+     * Click event handler to open the next popover.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickPopoverNextEventListener = (event) => {
+        // Check if the event target is the next or a descendant of the next
+        if (isTargetSelector(event.target, 'class', 'js-popover-next')) {
+            // Prevent the default action
+            event.preventDefault();
+
+            // Call the next callback
+            plugin.settings.callbackNext.call();
+
+            // Set the next, popover and trigger
+            const $next = event.target;
+            const $popover = $next.closest('.popover');
+            const $trigger = $popover.data.trigger;
+
+            // Set the group properties
+            const group = $trigger.dataset.popoverGroup;
+            const current = parseInt($trigger.dataset.popoverGroupOrder);
+            const next = current + 1;
+
+            // Set the next trigger
+            const $trigger_next = document.querySelector('.has-popover[data-popover-group="' + group + '"][data-popover-group-order="' + next + '"]');
+
+            // Open the next popover
+            plugin.this.open($trigger_next);
+        }
+    };
+
+    /**
+     * Click event handler to toggle a popover.
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const clickPopoverTriggerEventHandler = (event) => {
+        // Check if the event target is the trigger or a descendant of the trigger
+        if (isTargetSelector(event.target, 'class', 'has-popover')) {
+            // Prevent the default action
+            event.preventDefault();
+
+            // Set the trigger
+            const $trigger = event.target;
+
             // Check if the trigger data doesn't have an assigned popover
-            if (!('popover' in $trigger.data)) {
+            if (!$trigger.data || !('popover' in $trigger.data)) {
                 // Open the popover
                 plugin.this.open($trigger);
             } else {
-                // Set the popover
-                const $popover = $trigger.data.popover;
+                // Check if the trigger data doesn't have an assigned popover
+                if (!('popover' in $trigger.data)) {
+                    // Open the popover
+                    plugin.this.open($trigger);
+                } else {
+                    // Set the popover
+                    const $popover = $trigger.data.popover;
 
-                // Close the popover
-                plugin.this.close($popover);
+                    // Close the popover
+                    plugin.this.close($popover);
+                }
             }
         }
     };
@@ -324,6 +334,39 @@
             top,
             left
         };
+    };
+
+    /**
+     * Check if an event target is a target selector or a descendant of a target selector.
+     * @param  {element}  target     The event target.
+     * @param  {string}   attribute  The event target attribute to check.
+     * @param  {string}   selector   The id/class selector.
+     * @return {bool}                True if event target, false otherwise.
+     */
+    const isTargetSelector = (target, attribute, selector) => {
+        // Check if the target is an element node
+        if (target.nodeType !== Node.ELEMENT_NODE) {
+            // Return false
+            return false;
+        }
+
+        // Start a switch statement for the attribute
+        switch (attribute) {
+            // Default
+            default:
+                // Return false
+                return false;
+
+            // Class
+            case 'class':
+                // Return true if event target, false otherwise
+                return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+
+            // Id
+            case ('id'):
+                // Return true if event target, false otherwise
+                return ((target.id == selector) || target.closest(`#${selector}`));
+        }
     };
 
     /**
@@ -436,7 +479,7 @@
                     break;
             }
         });
-    }
+    };
 
     /**
      * Public variables and methods.
@@ -460,17 +503,17 @@
 
             // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the triggers
-                const $triggers = document.querySelectorAll(plugin.element);
+                // Add a click event handler to toggle a popover
+                document.addEventListener('click', clickPopoverTriggerEventHandler);
 
-                // Check if any triggers exist
-                if ($triggers) {
-                    // Cycle through all of the triggers
-                    $triggers.forEach(($trigger) => {
-                        // Add a click event handler to the trigger to toggle the popover
-                        $trigger.addEventListener('click', clickTriggerEventHandler);
-                    });
-                }
+                // Add a click event handler to open the previous popover
+                document.addEventListener('click', clickPopoverPrevEventListener);
+
+                // Add a click event handler to open the previous popover
+                document.addEventListener('click', clickPopoverNextEventListener);
+
+                // Add a click event handler to the close a popover
+                document.addEventListener('click', clickPopoverCloseEventListener);
             }
 
             // Check if the callbacks should not be suppressed
@@ -570,38 +613,6 @@
                             // Call the open after callback
                             plugin.settings.callbackOpenAfter.call();
                         }
-                    }
-
-                    // Set the previous, next and close
-                    const $prevs = $popover.querySelectorAll('.js-prev-popover');
-                    const $nexts = $popover.querySelectorAll('.js-next-popover');
-                    const $closes = $popover.querySelectorAll('.js-close-popover');
-
-                    // Check if any previous's exist
-                    if ($prevs) {
-                        // Cycle through all of the previous's
-                        $prevs.forEach(($prev) => {
-                            // Add a click event handler to the previous to go to the previous popover
-                            $prev.addEventListener('click', clickPrevEventListener);
-                        });
-                    }
-
-                    // Check if any nexts exist
-                    if ($nexts) {
-                        // Cycle through all of the nexts
-                        $nexts.forEach(($next) => {
-                            // Add a click event handler to the next to go to the next popover
-                            $next.addEventListener('click', clickNextEventListener);
-                        });
-                    }
-
-                    // Check if a closes exist
-                    if ($closes) {
-                        // Cycle through all of the closes
-                        $closes.forEach(($close) => {
-                            // Add a click event handler to the close to go close the popover
-                            $close.addEventListener('click', clickCloseEventListener);
-                        });
                     }
                 }, $trigger.dataset.popoverDelayIn || plugin.settings.delayIn);
             }
@@ -714,18 +725,8 @@
 
             // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the triggers and popovers
-                const $triggers = document.querySelectorAll(plugin.element);
+                // Set the popovers
                 const $popovers = document.querySelectorAll('.popover');
-
-                // Check if any triggers exist
-                if ($triggers) {
-                    // Cycle through all of the triggers
-                    $triggers.forEach(($trigger) => {
-                        // Remove the click event handler from the trigger
-                        $trigger.removeEventListener('click', clickTriggerEventHandler);
-                    });
-                }
 
                 // Check if any popovers exist
                 if ($popovers) {
@@ -735,6 +736,18 @@
                         plugin.this.close($popover);
                     });
                 }
+
+                // Remove the click event handler to toggle a popover
+                document.removeEventListener('click', clickPopoverTriggerEventHandler);
+
+                // Remove the click event handler to open the previous popover
+                document.removeEventListener('click', clickPopoverPrevEventListener);
+
+                // Remove the click event handler to open the previous popover
+                document.removeEventListener('click', clickPopoverNextEventListener);
+
+                // Remove the click event handler to the close a popover
+                document.removeEventListener('click', clickPopoverCloseEventListener);
             }
 
             // Check if the callbacks should not be suppressed
