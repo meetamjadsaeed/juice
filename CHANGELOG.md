@@ -18,6 +18,110 @@
 -----
 
 
+# v0.25.0-beta
+
+### Updated
+- Updated accordion component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+- Updated alert component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Added callbackInitializeBefore option
+    - Added callbackInitializeAfter option
+    - Updated clickContinueEventHandler to clickAlertContinueEventHandler
+    - Removed callbackInitialize option
+- Updated card component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated clickRemoveEventHandler to clickCardRemoveEventHandler
+- Updated chip component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated clickRemoveEventHandler to clickChipCardRemoveEventHandler
+- Updated confirm component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Added callbackInitializeBefore option
+    - Added callbackInitializeAfter option
+    - Updated clickCancelEventHandler to clickConfirmCancelEventHandler
+    - Updated clickContinueEventHandler to clickConfirmContinueEventHandler
+    - Removed callbackInitialize option
+- Updated modal component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated clickCancelEventHandler to clickModalCancelEventHandler
+    - Updated clickCloseEventHandler to clickModalCloseEventHandler
+    - Updated clickContinueEventHandler to clickModalContinueEventHandler
+    - Updated clickTriggerEventHandler to clickModalTriggerEventHandler
+- Updated notice component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated clickRemoveEventHandler to clickNoticeRemoveEventHandler
+- Updated panel component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated clickRemoveEventHandler to clickPanelRemoveEventHandler
+    - Updated clickToggleEventHandler to clickPanelToggleEventHandler
+- Updated popover component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated js-close-popover class to js-popover-close
+    - Updated js-next-popover class to js-popover-next
+    - Updated js-prev-popover class to js-popover-prev
+    - Updated clickPrevEventListener to clickPopoverCloseEventListener
+    - Updated clickNextEventListener to clickPopoverNextEventListener
+    - Updated clickCloseEventListener to clickPopoverTriggerEventHandler
+- Updated prompt component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Added callbackInitializeBefore option
+    - Added callbackInitializeAfter option
+    - Updated clickCancelEventHandler to clickConfirmCancelEventHandler
+    - Updated clickContinueEventHandler to clickConfirmContinueEventHandler
+    - Removed callbackInitialize option
+- Updated toast component
+    - Added dynamic event listeners
+    - Added isTargetSelector private method
+    - Updated clickActionEventListener to clickToastActionEventListener
+- Updated tooltip component
+    - Added isTargetSelector private method
+    - Updated closeEventHandler to closeTooltipEventHandler
+    - Updated openEventHandler to openTooltipEventHandler
+    - Removed duration option
+- Updated elements
+    - Added explicit property declarations for custom property overrides (postcss-css-variables build tool module for IE fallback)
+- Updated button element
+    - Updated button outline pseudo styles
+- Updated helpers
+    - Added is-not-pulled class
+    - Added explicit property declarations for custom property overrides (postcss-css-variables build tool module for IE fallback)
+- Updated package
+    - Added browserslist
+    - Updated dependencies
+        - Removed velocity-animate
+    - Updated devDependencies
+        - Added cssnano
+        - Added gulp-postcss
+        - Added postcss-css-variables
+        - Added postcss-preset-env
+        - Added postcss-scss
+        - Added velocity-animate (originally under dependencies)
+        - Removed gulp-autoprefixer (bundled with gulp-postcss)
+- Updated gulpfile
+    - Updated modules to reflect package.json
+    - Updated css task to reflect new modules
+- Updated build directory
+
+
+### Fixed
+- Fixed custom file plugin
+    - Fixed destroy method event listener typo
+
+
+-----
+
+
 # v0.24.0-beta
 
 ### Updated
