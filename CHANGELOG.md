@@ -18,6 +18,24 @@
 -----
 
 
+# v0.27.1-beta
+
+### Updated
+
+- Updated framework reset
+    - Added border properties to global selector
+- Updated gulpfile
+    - Updated resource scripts with explicit ordering
+- Updated build directory
+
+### Fixed
+- Fixed dropdown component
+    - Added left properties to fix alignment issues in IE
+
+
+-----
+
+
 # v0.27.0-beta
 
 ### Updated
