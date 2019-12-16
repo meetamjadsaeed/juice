@@ -17,11 +17,30 @@
 
 -----
 
+### Updated
+- Updated build directory
+
+### Fixed
+- Fixed alert component
+    - Added align items center to alert overlay for IE
+- Fixed confirm component
+    - Added align items center to confirm overlay for IE
+- Fixed modal component
+    - Added align items center to modal overlay for IE
+- Fixed prompt component
+    - Added align items center to prompt overlay for IE
+- Fixed notice component
+    - Updated notice__text width overflowing in IE
+- Fixed fieldset component
+    - Updated custom-fieldset__spotlight width overflowing in IE
+
+
+-----
+
 
 # v0.27.1-beta
 
 ### Updated
-
 - Updated framework reset
     - Added border properties to global selector
 - Updated gulpfile
