@@ -96,7 +96,9 @@ const resource = {
     ],
     scripts: [
         'node_modules/velocity-animate/velocity.min.js',
-        'resources/scripts/**/*.js'
+        'resources/scripts/polyfills/*.js',
+        'resources/scripts/components/*.js',
+        'resources/scripts/plugins/*.js',
     ]
 };
 

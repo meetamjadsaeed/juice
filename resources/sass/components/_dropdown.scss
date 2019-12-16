@@ -16,8 +16,9 @@
             color: $dropdown-font-color;
             display: none;
             font-size: $dropdown-font-size;
-            padding-top: $dropdown-offset;
+            left: 0;
             min-width: $dropdown-min-width;
+            padding-top: $dropdown-offset;
             position: absolute;
             text-align: left;
             top: 100%;
@@ -173,6 +174,7 @@
                 }
 
                 &.dropdown--right {
+                    left: auto;
                     right: 0;
                 }
             }
