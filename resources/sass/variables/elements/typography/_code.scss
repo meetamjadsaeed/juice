@@ -1,0 +1,27 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> CODE
+    ========================================================================  */
+
+// Variables
+$code-background-color: base-color('white') !default;
+$code-border-color: base-color('white-darken-3') !default;
+$code-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$code-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$code-border-radius-top-left: $default-border-radius-top-left !default;
+$code-border-radius-top-right: $default-border-radius-top-right !default;
+$code-border-style: $default-border-style !default;
+$code-border-width-bottom: $default-border-width-bottom !default;
+$code-border-width-left: $default-border-width-left !default;
+$code-border-width-right: $default-border-width-right !default;
+$code-border-width-top: $default-border-width-top !default;
+$code-content-spacing: 4px !default;
+$code-font-color: base-color('red') !default;
+$code-font-family: $default-monoface-typeface !default;
+$code-font-size: $default-font-size !default;
+$code-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;

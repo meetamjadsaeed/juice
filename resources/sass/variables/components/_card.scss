@@ -1,0 +1,38 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> CARD
+    ========================================================================  */
+
+// Variables
+$card-animation-duration: 300ms !default;
+$card-background-color: base-color('white') !default;
+$card-border-color: base-color('white-darken-3') !default;
+$card-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$card-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$card-border-radius-top-left: $default-border-radius-top-left !default;
+$card-border-radius-top-right: $default-border-radius-top-right !default;
+$card-border-style: $default-border-style !default;
+$card-border-width-bottom: $default-border-width-bottom !default;
+$card-border-width-left: $default-border-width-left !default;
+$card-border-width-right: $default-border-width-right !default;
+$card-border-width-top: $default-border-width-top !default;
+$card-box-shadow: $default-box-shadow !default;
+$card-content-spacing: $default-content-spacing !default;
+$card-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$card-element-spacing: $default-element-spacing !default;
+$card-font-color: font-color('default') !default;
+$card-font-size: $default-font-size !default;
+$card-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$card-link-color: $default-link-color !default;
+$card-link-color-hover: $default-link-color-hover !default;
+$card-link-color-focus: $default-link-color-focus !default;
+$card-link-color-active: $default-link-color-active !default;

@@ -9,16 +9,9 @@
     .has-animation {
         // Nested selectors
         &.slide-in-up {
-            // Variables
-            --animation-delay: var(--default-animation-slide-in-delay);
-            --animation-distance: var(--default-animation-slide-in-distance);
-            --animation-duration: var(--default-animation-slide-in-duration);
-            --animation-easing: var(--default-animation-slide-in-easing);
-
-            // Keyframes
             @keyframes slide-in-up {
                 from {
-                    transform: translate3d(0, var(--animation-distance), 0);
+                    transform: translate3d(0, $animation-slide-in-distance, 0);
                 }
 
                 to {
@@ -26,8 +19,10 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-slide-in-delay;
+            animation-duration: $animation-slide-in-duration;
             animation-name: slide-in-up;
+            animation-timing-function: $animation-slide-in-easing;
         }
     }
 }

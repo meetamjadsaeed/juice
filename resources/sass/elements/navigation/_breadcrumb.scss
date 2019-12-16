@@ -7,22 +7,14 @@
 // Check if the elements with breadcrumb should be imported
 @if $import-elements and $import-element-breadcrumb {
     .breadcrumb {
-        // Variables
-        --content-spacing: calc(var(--default-content-spacing) / 2);
-        --element-spacing: var(--default-element-spacing);
-        --font-color: inherit;
-        --font-size: var(--default-font-size);
-        --separator: '\203A';
-
-        // Styles
-        color: var(--font-color);
+        color: $breadcrumb-font-color;
         display: flex;
         flex-wrap: wrap;
-        font-size: var(--font-size);
+        font-size: $breadcrumb-font-size;
         list-style: none;
         padding: 0;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $breadcrumb-element-spacing;
 
         // Check if the breadcrumb alignment modifiers should be declared
         @if $breadcrumb-alignment-modifiers {
@@ -122,7 +114,7 @@
                 &::before {
                     // Styles
                     content: '';
-                    font-size: var(--font-size);
+                    font-size: $breadcrumb-font-size;
                     padding: 0;
                 }
             }
@@ -130,42 +122,26 @@
             // Pseudo elements
             &::before {
                 // Styles
-                content: var(--separator);
-                padding: 0 var(--content-spacing);
+                content: $breadcrumb-separator;
+                padding: 0 $breadcrumb-content-spacing;
                 opacity: 0.5;
             }
 
             // Nested selectors
             a {
-                // Variables
-                --font-color: var(--default-link-color);
-
-                // Styles
-                color: var(--font-color);
+                color: $breadcrumb-link-color;
 
                 // Pseudo classes
                 &:hover {
-                    // Variables
-                    --font-color: var(--default-link-color-hover);
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    color: var(--font-color);
+                    color: $breadcrumb-link-color-hover;
                 }
 
                 &:focus {
-                    // Variables
-                    --font-color: var(--default-link-color-focus);
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    color: var(--font-color);
+                    color: $breadcrumb-link-color-focus;
                 }
 
                 &:active {
-                    // Variables
-                    --font-color: var(--default-link-color-active);
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    color: var(--font-color);
+                    color: $breadcrumb-link-color-active;
                 }
             }
 
@@ -174,7 +150,7 @@
                 align-items: center;
                 display: inline-flex;
                 justify-content: center;
-                margin-right: calc(var(--content-spacing) / 2);
+                margin-right: ($breadcrumb-content-spacing / 2);
             }
         }
     }

@@ -7,88 +7,59 @@
 // Check if the elements with navbar should be imported
 @if $import-elements and $import-element-navbar {
     .navbar {
-        // Variables
-        --content-spacing: var(--default-content-spacing);
-        --font-color: inherit;
-        --font-size: var(--default-font-size);
-        --element-spacing: var(--default-element-spacing);
-
-        // Styles
         align-items: center;
-        color: var(--font-color);
+        color: $navbar-font-color;
         display: flex;
         flex-wrap: wrap;
-        font-size: var(--font-size);
+        font-size: $navbar-font-size;
         position: relative;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $navbar-element-spacing;
 
         // Nested selectors
         a:not(.button) {
-            // Variables
-            --font-color: var(--default-link-color);
-
-            // Styles
-            color: var(--font-color);
+            color: $navbar-link-color;
 
             // Pseudo classes
             &:hover {
-                // Variables
-                --font-color: var(--default-link-color-hover);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
+                color: $navbar-link-color-hover;
             }
 
             &:focus {
-                // Variables
-                --font-color: var(--default-link-color-focus);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
+                color: $navbar-link-color-focus;
             }
 
             &:active {
-                // Variables
-                --font-color: var(--default-link-color-active);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
+                color: $navbar-link-color-active;
             }
         }
 
         .navbar__logo,
         .navbar__links,
         .navbar__bars {
-            // Styles
-            padding: 0 calc(var(--content-spacing) / 2);
+            padding: 0 ($navbar-content-spacing / 2);
 
             // Pseudo classes
             &:first-child {
-                // Styles
                 padding-left: 0;
             }
 
             &:last-child {
-                // Styles
                 padding-right: 0;
             }
         }
 
         .navbar__logo {
-            // Styles
             display: flex;
             flex: 1 0 25%;
 
             // Nested selectors
             a:not(.button) {
-                // Styles
                 display: inline-flex;
             }
         }
 
         .navbar__links {
-            // Styles
             display: none;
 
             // Nested selectors
@@ -109,7 +80,7 @@
                     a:not(.button) {
                         // Styles
                         display: inline-flex;
-                        padding: var(--content-spacing);
+                        padding: $navbar-content-spacing;
                     }
                 }
             }
@@ -120,7 +91,7 @@
             #{$button} {
                 // Styles
                 margin-bottom: 0;
-                margin-right: calc(var(--content-spacing) / 4);
+                margin-right: ($navbar-content-spacing / 4);
 
                 // Pseudo classes
                 &:last-child {
@@ -134,7 +105,7 @@
             // Styles
             display: none;
             flex: 1 0 100%;
-            padding: var(--content-spacing);
+            padding: $navbar-content-spacing;
 
              // Nested selectors
             ul,
@@ -157,7 +128,7 @@
                         align-items: center;
                         display: flex;
                         justify-content: center;
-                        padding: calc(var(--content-spacing) / 2) var(--content-spacing);
+                        padding: ($navbar-content-spacing / 2) $navbar-content-spacing;
                     }
                 }
             }

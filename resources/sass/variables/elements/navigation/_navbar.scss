@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> NAVIGATION -> NAVBAR
+    ========================================================================  */
+
+// Variables
+$navbar-content-spacing: $default-content-spacing !default;
+$navbar-font-color: inherit !default;
+$navbar-link-color: $default-link-color !default;
+$navbar-link-color-hover: $default-link-color-hover !default;
+$navbar-link-color-focus: $default-link-color-focus !default;
+$navbar-link-color-active: $default-link-color-active !default;
+$navbar-font-size: $default-font-size !default;
+$navbar-element-spacing: $default-element-spacing !default;

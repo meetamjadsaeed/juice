@@ -136,12 +136,12 @@
     <script src="//unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="../../public/scripts/juice.min.js"></script>
     <script>
-        const $watch = document.querySelector('#animate-watch');
-        const $select = document.querySelector('#animate-select');
-        const $action = document.querySelector('#animate-action');
+        var $watch = document.querySelector('#animate-watch');
+        var $select = document.querySelector('#animate-select');
+        var $action = document.querySelector('#animate-action');
 
         $action.addEventListener('click', function() {
-            const animation = $select.value;
+            var animation = $select.value;
             $watch.classList.add(animation);
             $watch.addEventListener('animationend', function() {
                 setTimeout(function() {

@@ -7,32 +7,24 @@
 // Check if the elements with container should be imported
 @if $import-elements and $import-element-container {
     .container {
-        // Variables
-        --gutter: var(--default-content-spacing);
-        --max-width: 1200px;
-
-        // Styles
         display: block;
         margin: 0 auto;
-        max-width: var(--max-width);
+        max-width: $container-max-width;
         min-height: 1px;
-        padding: 0 var(--gutter);
+        padding: 0 $container-gutter;
         position: relative;
         width: 100%;
 
         // Modifiers
         &.container--seamless {
-            // Styles
             padding: 0;
         }
 
         // Cycle through all of the breakpoints
-        @each $breakpoint-name, $breakpoint in $breakpoints {
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
             // Breakpoint
             @include breakpoint($breakpoint-name) {
-                // Modifiers
                 &.container--seamless\@#{$breakpoint-name} {
-                    // Styles
                     padding: 0;
                 }
             }

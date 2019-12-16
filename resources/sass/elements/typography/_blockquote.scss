@@ -7,49 +7,27 @@
 // Check if the elements with blockquote should be imported
 @if $import-elements and $import-element-blockquote {
     blockquote {
-        // Variables
-        --background-color: var(--color-white-darken-2);
-        --border-color: var(--color-white-darken-5);
-        --border-radius-bottom-left: 0;
-        --border-radius-bottom-right: var(--default-border-radius-bottom-right);
-        --border-radius-top-left: 0;
-        --border-radius-top-right: var(--default-border-radius-top-right);
-        --border-style: var(--default-border-style);
-        --border-width-bottom: 0;
-        --border-width-left: 5px;
-        --border-width-right: 0;
-        --border-width-top: 0;
-        --content-spacing: var(--default-content-spacing);
-        --element-spacing: var(--default-element-spacing);
-        --font-color: var(--color-white-inverted-text);
-        --font-size: calc(var(--default-font-size) + 0.2em);
-
-        // Styles
         display: block;
-        background-color: var(--background-color);
-        border: 0 var(--border-style) var(--border-color);
-        border-bottom-left-radius: var(--border-radius-bottom-left);
-        border-bottom-right-radius: var(--border-radius-bottom-right);
-        border-bottom-width: var(--border-width-bottom);
-        border-left-width: var(--border-width-left);
-        border-top-left-radius: var(--border-radius-top-left);
-        border-top-right-radius: var(--border-radius-top-right);
-        border-top-width: var(--border-width-top);
-        border-right-width: var(--border-width-right);
-        color: var(--font-color);
-        font-size: var(--font-size);
+        background-color: $blockquote-background-color;
+        border: 0 $blockquote-border-style $blockquote-border-color;
+        border-bottom-left-radius: $blockquote-border-radius-bottom-left;
+        border-bottom-right-radius: $blockquote-border-radius-bottom-right;
+        border-bottom-width: $blockquote-border-width-bottom;
+        border-left-width: $blockquote-border-width-left;
+        border-top-left-radius: $blockquote-border-radius-top-left;
+        border-top-right-radius: $blockquote-border-radius-top-right;
+        border-top-width: $blockquote-border-width-top;
+        border-right-width: $blockquote-border-width-right;
+        color: $blockquote-font-color;
+        font-size: $blockquote-font-size;
         margin: 0;
-        margin-bottom: var(--element-spacing);
-        padding: var(--content-spacing);
+        margin-bottom: $blockquote-element-spacing;
+        padding: $blockquote-content-spacing;
         position: relative;
 
         // Pseudo classes
         &:hover {
-            // Variables
-            --border-color: var(--color-primary);
-
-            // Styles (IE fallback for postcss-css-variables)
-            border-color: var(--border-color);
+            border-color: $blockquote-border-color-hover;
         }
 
         // Check if the blockquote size modifiers should be declared
@@ -58,30 +36,20 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    // Variables
-                    --font-size: calc(var(--default-font-size-#{$size}) + 0.2em);
-                    --content-spacing: var(--default-content-spacing-#{$size});
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    font-size: var(--font-size);
-                    padding: var(--content-spacing);
+                    font-size: map($blockquote-font-size-sizes, $size);
+                    padding: map($blockquote-content-spacing-sizes, $size);
                 }
 
-                // Check if the blockquote size modifier breakpoints should be declared
-                @if $blockquote-size-modifier-breakpoints {
+                // Check if the blockquote size modifiers with breakpoints should be declared
+                @if $blockquote-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
                         // Breakpoint
                         @include breakpoint($breakpoint-name) {
                             // Modifiers: Size
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --font-size: calc(var(--default-font-size-#{$size}) + 0.2em);
-                                --content-spacing: var(--default-content-spacing-#{$size});
-
-                                // Styles (IE fallback for postcss-css-variables)
-                                font-size: var(--font-size);
-                                padding: var(--content-spacing);
+                                font-size: map($blockquote-font-size-sizes, $size);
+                                padding: map($blockquote-content-spacing-sizes, $size);
                             }
                         }
                     }
@@ -91,35 +59,19 @@
 
         // Nested selectors
         a {
-            // Variables
-            --font-color: var(--default-link-color);
-
-            // Styles
-            color: var(--font-color);
+            color: $blockquote-link-color;
 
             // Pseudo classes
             &:hover {
-                // Variables
-                --font-color: var(--default-link-color-hover);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
+                color: $blockquote-link-color-hover;
             }
 
             &:focus {
-                // Variables
-                --font-color: var(--default-link-color-focus);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
+                color: $blockquote-link-color-focus;
             }
 
             &:active {
-                // Variables
-                --font-color: var(--default-link-color-active);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
+                color: $blockquote-link-color-active;
             }
         }
 
@@ -129,8 +81,8 @@
             display: block;
             font-size: 75%;
             margin: 0;
-            margin-left: calc(var(--default-content-spacing) / 2);
-            margin-top: calc(var(--default-content-spacing) / 2);
+            margin-left: $blockquote-content-spacing / 2;
+            margin-top: $blockquote-content-spacing / 2;
 
             // Pseudo elements
             &::before {

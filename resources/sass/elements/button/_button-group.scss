@@ -7,22 +7,45 @@
 // Check if the elements with button group should be imported
 @if $import-elements and $import-element-button-group {
     .button-group {
-        // Variables
-        --element-spacing: var(--default-element-spacing);
-
-        // Styles
         display: inline-flex;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $button-group-element-spacing;
 
-        // Modifiers: State hooks
-        &.is-fullwidth {
-            // Styles
-            display: flex;
+        // Nested selectors
+        #{$button} {
+            border-radius: 0;
+            margin-bottom: 0;
 
-            // Nested selectors
-            #{$button} {
-                // Styles
-                flex-grow: 1;
+            // Pseudo classes
+            &:not(:only-child) {
+                border-left-width: $button-border-width-divider;
+                border-right-width: $button-border-width-divider;
+                margin-right: (0px - $button-border-width-divider);
+            }
+
+            &:first-child {
+                border-bottom-left-radius: $button-border-radius-bottom-left;
+                border-left-width: $button-border-width-left;
+                border-top-left-radius: $button-border-radius-top-left;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: $button-border-radius-bottom-right;
+                border-right-width: $button-border-width-right;
+                border-top-right-radius: $button-border-radius-top-right;
+                margin-right: 0;
+            }
+        }
+
+        // Check if the button group fullwidth modifier should be declared
+        @if $button-fullwidth-modifier {
+            // Modifiers: State hooks
+            &.is-fullwidth {
+                display: flex;
+
+                // Nested selectors
+                #{$button} {
+                    flex-grow: 1;
+                }
             }
         }
 
@@ -34,37 +57,81 @@
                 &.is-#{$size} {
                     // Nested selectors
                     #{$button} {
-                        // Variables
-                        --font-size: var(--default-font-size-#{$size});
-                        --height: var(--default-element-height-#{$size});
-                        --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+                        font-size: map-get($button-font-size-sizes, $size);
+                        height: map-get($button-height-sizes, $size);
+                        padding: 0 map-get($button-content-spacing-sizes, $size);
+                    }
 
-                        // Styles (IE fallback for postcss-css-variables)
-                        font-size: var(--font-size);
-                        height: var(--height);
-                        padding: 0 var(--content-spacing);
+                    // Check if the button group component modifier should be declared
+                    @if $button-group-component-modifier {
+                        // Modifiers
+                        &.button-group--components {
+                            // Nested selectors
+                            #{$button} {
+                                max-width: map-get($button-height-sizes, $size);
+                                min-width: map-get($button-height-sizes, $size);
+                                padding: 0;
+                                width: map-get($button-height-sizes, $size);
+                            }
+                        }
+                    }
+
+                    // Check if the button group icon modifier should be declared
+                    @if $button-group-icon-modifier {
+                        // Modifiers
+                        &.button-group--icons {
+                            // Nested selectors
+                            #{$button} {
+                                max-width: map-get($button-height-sizes, $size);
+                                min-width: map-get($button-height-sizes, $size);
+                                padding: 0;
+                                width: map-get($button-height-sizes, $size);
+                            }
+                        }
                     }
                 }
 
-                // Check if the button size modifier breakpoints should be declared
-                @if $button-size-modifier-breakpoints {
+                // Check if the button size modifiers with breakpoints should be declared
+                @if $button-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
                         // Breakpoint
                         @include breakpoint($breakpoint-name) {
                             // Modifiers: Size
                             &.is-#{$size}\@#{$breakpoint-name} {
                                 // Nested selectors
                                 #{$button} {
-                                    // Variables
-                                    --font-size: var(--default-font-size-#{$size});
-                                    --height: var(--default-element-height-#{$size});
-                                    --content-spacing: calc(var(--default-content-spacing-#{$size}) / 1.5);
+                                    font-size: map-get($button-font-size-sizes, $size);
+                                    height: map-get($button-height-sizes, $size);
+                                    padding: 0 map-get($button-content-spacing-sizes, $size);
+                                }
 
-                                    // Styles (IE fallback for postcss-css-variables)
-                                    font-size: var(--font-size);
-                                    height: var(--height);
-                                    padding: 0 var(--content-spacing);
+                                // Check if the button group component modifier should be declared
+                                @if $button-group-component-modifier {
+                                    // Modifiers
+                                    &.button-group--components {
+                                        // Nested selectors
+                                        #{$button} {
+                                            max-width: map-get($button-height-sizes, $size);
+                                            min-width: map-get($button-height-sizes, $size);
+                                            padding: 0;
+                                            width: map-get($button-height-sizes, $size);
+                                        }
+                                    }
+                                }
+
+                                // Check if the button group icon modifier should be declared
+                                @if $button-group-icon-modifier {
+                                    // Modifiers
+                                    &.button-group--icons {
+                                        // Nested selectors
+                                        #{$button} {
+                                            max-width: map-get($button-height-sizes, $size);
+                                            min-width: map-get($button-height-sizes, $size);
+                                            padding: 0;
+                                            width: map-get($button-height-sizes, $size);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -73,107 +140,163 @@
             }
         }
 
-        // Check if the button group color modifiers should be declared
+        // Check if the button group base color modifiers should be declared
         @if $button-group-color-modifiers {
-            // Cycle through all of the colors
-            @each $color-name, $color in $colors {
-                // Modifiers: Colors
+            // Cycle through all of the base colors
+            @each $color-name, $color-value in $base-colors {
+                // Modifiers: Base colors
                 &.is-#{$color-name} {
                     // Nested selectors
                     #{$button} {
-                        // Variables
-                        --accessibility-focus-color: var(--color-#{$color-name}-accessibility-focus);
-                        --background-color: var(--color-#{$color-name});
-                        --border-color: var(--color-#{$color-name}-darken-3);
-                        --font-color: var(--color-#{$color-name}-inverted-text);
-
-                        // Styles (IE fallback for postcss-css-variables)
-                        background-color: var(--background-color);
-                        border-color: var(--border-color);
-                        color: var(--font-color);
+                        background-color: base-color($color-name);
+                        border-color: base-color('#{$color-name}-darken-3');
+                        color: base-color('#{$color-name}-inverted-text');
 
                         // Pseudo classes
                         &:hover {
-                            // Variables
-                            --background-color: var(--color-#{$color-name}-lighten-1);
-                            --border-color: var(--color-#{$color-name}-darken-6);
-                            --font-color: var(--color-#{$color-name}-inverted-text);
-
-                            // Styles (IE fallback for postcss-css-variables)
-                            background-color: var(--background-color);
-                            border-color: var(--border-color);
-                            color: var(--font-color);
+                            background-color: base-color('#{$color-name}-lighten-1');
+                            border-color: base-color('#{$color-name}-darken-4');
+                            color: base-color('#{$color-name}-inverted-text');
                         }
 
                         &:focus {
-                            // Styles (IE fallback for postcss-css-variables)
-                            box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
+                            background-color: base-color('#{$color-name}-lighten-1');
+                            border-color: base-color('#{$color-name}-darken-4');
+                            box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$color-name}-accessibility-focus');
+                            color: base-color('#{$color-name}-inverted-text');
                         }
 
                         &:active {
-                            // Variables
-                            --background-color: var(--color-#{$color-name}-darken-1);
-                            --border-color: var(--color-#{$color-name}-darken-8);
-                            --font-color: var(--color-#{$color-name}-inverted-text);
+                            background-color: base-color('#{$color-name}-darken-1');
+                            border-color: base-color('#{$color-name}-darken-6');
+                            color: base-color('#{$color-name}-inverted-text');
+                        }
 
-                            // Styles (IE fallback for postcss-css-variables)
-                            background-color: var(--background-color);
-                            border-color: var(--border-color);
-                            color: var(--font-color);
+                        // Modifiers: Props
+                        &[disabled] {
+                            @include disabled();
+                            background-color: base-color($color-name) !important;
+                            border-color: base-color('#{$color-name}-darken-3') !important;
+                            color: base-color('#{$color-name}-inverted-text') !important;
+                        }
+                    }
+
+                    // Check if the button group flat modifier should be declared
+                    @if $button-group-flat-modifier {
+                        // Modifiers
+                        &.button-group--flat {
+                            // Nested selectors
+                            #{$button} {
+                                color: inherit;
+
+                                // Pseudo classes
+                                &:hover,
+                                &:focus {
+                                    color: base-color($color-name);
+                                }
+
+                                // Modifiers: Props
+                                &[disabled] {
+                                    background-color: transparent !important;
+                                    border-color: transparent !important;
+                                    color: inherit !important;
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the button group outline modifier should be declared
+                    @if $button-group-outline-modifier {
+                        // Modifiers
+                        &.button-group--outline {
+                            // Nested selectors
+                            #{$button} {
+                                background-color: transparent;
+                                border-color: base-color($color-name);
+                                color: base-color($color-name);
+
+                                // Pseudo classes
+                                &:hover {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color($color-name);
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+
+                                &:focus {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color($color-name);
+                                    box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$color-name}-accessibility-focus');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+
+                                &:active {
+                                    background-color: base-color('#{$color-name}-darken-1');
+                                    border-color: base-color('#{$color-name}-darken-1');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+
+                                // Modifiers: Props
+                                &[disabled] {
+                                    @include disabled();
+                                    background-color: transparent !important;
+                                    border-color: base-color($color-name) !important;
+                                    color: base-color($color-name) !important;
+                                }
+                            }
                         }
                     }
                 }
             }
         }
 
-        // Check if the button feedback modifiers should be declared
-        @if $button-group-feedback-modifiers {
-            // Cycle through all of the feedback colors
-            @each $feedback-name, $color in $feedback-colors {
-                // Modifiers: Feedback colors
-                &.has-#{$feedback-name} {
-                    // Nested selectors
-                    #{$button} {
-                        // Variables
-                        --accessibility-focus-color: var(--feedback-color-#{$feedback-name}-accessibility-focus);
-                        --background-color: var(--feedback-color-#{$feedback-name});
-                        --border-color: var(--feedback-color-#{$feedback-name}-darken-3);
-                        --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+        // Check if the button group component modifier should be declared
+        @if $button-group-component-modifier {
+            // Modifiers
+            &.button-group--components {
+                margin-bottom: 0;
 
-                        // Styles (IE fallback for postcss-css-variables)
-                        background-color: var(--background-color);
-                        border-color: var(--border-color);
-                        color: var(--font-color);
+                // Nested selectors
+                #{$button} {
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                    box-shadow: none !important;
+                    color: inherit !important;
+                    margin: 0 !important;
+                    max-width: $button-height;
+                    min-width: $button-height;
+                    opacity: 0.3 !important;
+                    padding: 0;
+                    width: $button-height;
 
-                        // Pseudo classes
-                        &:hover {
-                            // Variables
-                            --background-color: var(--feedback-color-#{$feedback-name}-lighten-1);
-                            --border-color: var(--feedback-color-#{$feedback-name}-darken-6);
-                            --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
+                    // Pseudo classes
+                    &:hover {
+                        background-color: hsla(0, 0, 0, 0.08) !important;
+                        border-color: transparent !important;
+                        color: inherit !important;
+                        opacity: 0.6 !important;
+                    }
 
-                            // Styles (IE fallback for postcss-css-variables)
-                            background-color: var(--background-color);
-                            border-color: var(--border-color);
-                            color: var(--font-color);
-                        }
+                    &:focus {
+                        background-color: hsla(0, 0, 0, 0.04) !important;
+                        border-color: transparent !important;
+                        color: inherit !important;
+                        opacity: 0.6 !important;
+                    }
 
-                        &:focus {
-                            // Styles (IE fallback for postcss-css-variables)
-                            box-shadow: 0 0 0 var(--accessibility-focus-width) var(--accessibility-focus-color);
-                        }
+                    &:active {
+                        background-color: hsla(0, 0, 0, 0.12) !important;
+                        border-color: transparent !important;
+                        color: inherit !important;
+                        opacity: 0.9 !important;
+                    }
 
-                        &:active {
-                            // Variables
-                            --background-color: var(--feedback-color-#{$feedback-name}-darken-1);
-                            --border-color: var(--feedback-color-#{$feedback-name}-darken-8);
-                            --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
-
-                            // Styles (IE fallback for postcss-css-variables)
-                            background-color: var(--background-color);
-                            border-color: var(--border-color);
-                            color: var(--font-color);
-                        }
+                    // Modifiers: Props
+                    &[disabled] {
+                        @include disabled();
+                        background-color: transparent !important;
+                        border-color: transparent !important;
+                        color: inherit !important;
+                        opacity: 0.3 !important;
                     }
                 }
             }
@@ -185,41 +308,29 @@
             &.button-group--flat {
                 // Nested selectors
                 #{$button} {
-                    // Variables
-                    --font-color: var(--background-color);
-
-                    // Styles
-                    background-color: transparent;
-                    border-color: transparent;
-                    box-shadow: none;
+                    background-color: transparent !important;
+                    border-color: transparent !important;
+                    box-shadow: none !important;
+                    color: inherit;
                     margin: 0 !important;
 
                     // Pseudo classes
                     &:hover,
                     &:focus {
-                        // Styles
-                        background-color: hsla(0, 0%, 30%, 0.08);
-                    }
-
-                    &:hover {
-                        // Variables
-                        --font-color: var(--background-color);
-
-                        // Styles (IE fallback for postcss-css-variables)
-                        color: var(--font-color);
+                        background-color: hsla(0, 0%, 30%, 0.08) !important;
+                        color: $button-background-color;
                     }
 
                     &:active {
-                        // Styles
-                        background-color: hsla(0, 0%, 30%, 0.08);
+                        background-color: hsla(0, 0%, 30%, 0.09) !important;
                     }
 
                     // Modifiers: Props
                     &[disabled] {
-                        // Styles
+                        @include disabled();
                         background-color: transparent !important;
                         border-color: transparent !important;
-                        color: var(--font-color) !important;
+                        color: inherit !important;
                     }
                 }
             }
@@ -227,14 +338,14 @@
 
         // Check if the button group icon modifier should be declared
         @if $button-group-icon-modifier {
+            // Modifiers
             &.button-group--icons {
                 // Nested selectors
                 #{$button} {
-                    // Styles
-                    max-width: var(--height);
-                    min-width: var(--height);
+                    max-width: $button-height;
+                    min-width: $button-height;
                     padding: 0;
-                    width: var(--height);
+                    width: $button-height;
                 }
             }
         }
@@ -244,25 +355,35 @@
             &.button-group--outline {
                 // Nested selectors
                 #{$button} {
-                    // Styles
                     background-color: transparent;
-                    border-color: var(--background-color);
-                    color: var(--background-color);
+                    border-color: $button-background-color;
+                    color: $button-background-color;
 
                     // Pseudo classes
                     &:hover {
-                        // Styles
-                        background-color: var(--background-color);
-                        border-color: var(--background-color);
-                        color: var(--font-color);
+                        background-color: $button-background-color;
+                        border-color: $button-background-color;
+                        color: $button-font-color;
+                    }
+
+                    &:focus {
+                        background-color: $button-background-color-focus;
+                        border-color: $button-background-color-focus;
+                        color: $button-font-color-focus;
+                    }
+
+                    &:active {
+                        background-color: $button-background-color-active;
+                        border-color: $button-background-color-active;
+                        color: $button-font-color-active;
                     }
 
                     // Modifiers: Props
                     &[disabled] {
-                        // Styles
-                        background-color: var(--font-color) !important;
-                        border-color: var(--background-color) !important;
-                        color: var(--background-color) !important;
+                        @include disabled();
+                        background-color: transparent !important;
+                        border-color: $button-background-color !important;
+                        color: $button-background-color !important;
                     }
                 }
             }
@@ -270,52 +391,21 @@
 
         // Check if the button group pill modifier should be declared
         @if $button-group-pill-modifier {
+            // Modifiers
             &.button-group--pill {
                 // Nested selectors
                 #{$button} {
                     // Pseudo classes
                     &:first-child {
-                        // Styles
                         border-bottom-left-radius: 999px;
                         border-top-left-radius: 999px;
                     }
 
                     &:last-child {
-                        // Styles
                         border-bottom-right-radius: 999px;
                         border-top-right-radius: 999px;
                     }
                 }
-            }
-        }
-
-        // Nested selectors
-        #{$button} {
-            // Styles
-            margin-bottom: 0;
-
-            // Pseudo classes
-            &:not(:only-child) {
-                // Styles
-                border-left-width: var(--border-width-divider);
-                border-radius: 0;
-                border-right-width: var(--border-width-divider);
-                margin-right: calc(0px - var(--border-width-divider));
-            }
-
-            &:first-child {
-                // Styles
-                border-bottom-left-radius: var(--border-radius-bottom-left);
-                border-left-width: var(--border-width-left);
-                border-top-left-radius: var(--border-radius-top-left);
-            }
-
-            &:last-child {
-                // Styles
-                border-bottom-right-radius: var(--border-radius-bottom-right);
-                border-right-width: var(--border-width-right);
-                border-top-right-radius: var(--border-radius-top-right);
-                margin-right: 0;
             }
         }
     }

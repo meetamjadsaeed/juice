@@ -8,16 +8,12 @@
 @if $import-elements and $import-element-list {
     ul,
     ol {
-        // Variables
-        --element-spacing: var(--default-element-spacing);
-        --font-size: var(--default-font-size);
-        --indent-spacing: var(--default-content-spacing);
 
         // Styles
-        font-size: var(--font-size);
+        font-size: $list-font-size;
         margin: 0;
-        margin-bottom: var(--element-spacing);
-        margin-left: var(--indent-spacing);
+        margin-bottom: $list-element-spacing;
+        margin-left: $list-indent-spacing;
 
         // Check if the list size modifiers should be declared
         @if $list-size-modifiers {
@@ -25,26 +21,18 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    // Variables
-                    --font-size: var(--default-font-size-#{$size});
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    font-size: var(--font-size);
+                    font-size: map-get($list-font-size-sizes, $size);
                 }
 
-                // Check if the list size modifier breakpoints should be declared
-                @if $list-size-modifier-breakpoints {
+                // Check if the list size modifiers with breakpoints should be declared
+                @if $list-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
                         // Breakpoint
                         @include breakpoint($breakpoint-name) {
                             // Modifiers: Size
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --font-size: var(--default-font-size-#{$size});
-
-                                // Styles (IE fallback for postcss-css-variables)
-                                font-size: var(--font-size);
+                                font-size: map-get($list-font-size-sizes, $size);
                             }
                         }
                     }
@@ -55,11 +43,11 @@
         // Check if the list style type modifiers should be declared
         @if $list-style-type-modifiers {
             // Cycle through all of the list style types
-            @each $type in $list-style-types {
+            @each $list-style-type in $list-style-types {
                 // Modifiers
-                &.list--#{$type} {
+                &.list--#{$list-style-type} {
                     // Styles
-                    list-style-type: $type;
+                    list-style-type: $list-style-type;
                 }
             }
         }

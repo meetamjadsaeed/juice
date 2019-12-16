@@ -55,9 +55,10 @@
 
         $alert.addEventListener('click', function() {
             var alert = new Alert({
+                size: 'small',
                 heading: '<h4>Alert</h4>',
                 text: 'Please press continue to close the alert.',
-                callbackContinue: () => {
+                callbackContinue: function() {
                     alert.close();
                 }
             });

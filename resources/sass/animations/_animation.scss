@@ -7,11 +7,7 @@
 // Check if the animations should be imported
 @if $import-animations {
     .has-animation {
-        animation-delay: var(--animation-delay);
-        animation-duration: var(--animation-duration);
         animation-fill-mode: both;
-        animation-iteration-count: var(--animation-iteration-count, 1);
-        animation-timing-function: var(--animation-easing);
         backface-visibility: hidden;
 
         // Check if the animation delay modifiers should be declared

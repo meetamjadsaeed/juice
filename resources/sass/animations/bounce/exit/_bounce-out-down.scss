@@ -9,35 +9,30 @@
     .has-animation {
         // Nested selectors
         &.bounce-out-down {
-            // Variables
-            --animation-delay: var(--default-animation-bounce-out-delay);
-            --animation-distance: var(--default-animation-bounce-out-distance);
-            --animation-duration: var(--default-animation-bounce-out-duration);
-            --animation-easing: var(--default-animation-bounce-out-easing);
-
-            // Keyframes
             @keyframes bounce-out-down {
                 from {
                     transform: translate3d(0, 0, 0);
                 }
 
                 30% {
-                    transform: translate3d(0, calc(0px + calc(var(--animation-distance) * 1.5 / 100)), 0);
+                    transform: translate3d(0, (0px + ($animation-bounce-out-distance * 1.5 / 100)), 0);
                 }
 
                 50% {
                     opacity: 1;
-                    transform: translate3d(0, calc(0px - calc(var(--animation-distance) * 2.5 / 100)), 0);
+                    transform: translate3d(0, (0px - ($animation-bounce-out-distance * 2.5 / 100)), 0);
                 }
 
                 to {
                     opacity: 0;
-                    transform: translate3d(0, calc(0px + var(--animation-distance)), 0);
+                    transform: translate3d(0, (0px + $animation-bounce-out-distance), 0);
                 }
             }
 
-            // Styles
+            animation-delay: $animation-bounce-out-delay;
+            animation-duration: $animation-bounce-out-duration;
             animation-name: bounce-out-down;
+            animation-timing-function: $animation-bounce-out-easing;
         }
     }
 }

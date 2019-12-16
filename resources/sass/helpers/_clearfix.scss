@@ -12,7 +12,7 @@
 }
 
 // Cycle throuhgh all of the breakpoints
-@each $breakpoint-name, $breakpoint in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
     // Breakpoint
     @include breakpoint($breakpoint-name) {
         .clearfix\@#{$breakpoint-name} {

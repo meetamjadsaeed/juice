@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> PANEL
+    ========================================================================  */
+
+// Variables
+$panel-animation-duration: 300ms !default;
+$panel-background-color: base-color('white') !default;
+$panel-border-color: base-color('white-darken-3') !default;
+$panel-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$panel-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$panel-border-radius-top-left: $default-border-radius-top-left !default;
+$panel-border-radius-top-right: $default-border-radius-top-right !default;
+$panel-border-style: $default-border-style !default;
+$panel-border-width-bottom: $default-border-width-bottom !default;
+$panel-border-width-divider: $default-border-width-divider !default;
+$panel-border-width-left: $default-border-width-left !default;
+$panel-border-width-right: $default-border-width-right !default;
+$panel-border-width-top: $default-border-width-top !default;
+$panel-box-shadow: $default-box-shadow !default;
+$panel-content-spacing: $default-content-spacing !default;
+$panel-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$panel-element-spacing: $default-element-spacing !default;
+$panel-font-color: font-color('default') !default;
+$panel-font-size: $default-font-size !default;
+$panel-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$panel-head-background-color: base-color('white') !default;
+$panel-head-border-color: base-color('white-darken-3') !default;
+$panel-head-font-color: font-color('default') !default;
+$panel-link-color: $default-link-color !default;
+$panel-link-color-hover: $default-link-color-hover !default;
+$panel-link-color-focus: $default-link-color-focus !default;
+$panel-link-color-active: $default-link-color-active !default;

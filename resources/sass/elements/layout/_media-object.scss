@@ -7,20 +7,10 @@
 // Check if the elements with media object should be imported
 @if $import-elements and $import-element-media-object {
     .media-object {
-        // Variables
-        --badge-image-width: 75px;
-        --badge-image-width-small: 50px;
-        --badge-image-width-large: 100px;
-        --badge-image-width-huge: 125px;
-        --content-spacing: var(--default-content-spacing);
-        --element-spacing: var(--default-element-spacing);
-        --font-size: var(--default-font-size);
-
-        // Styles
         display: flex;
-        font-size: var(--font-size);
+        font-size: $media-object-font-size;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $media-object-element-spacing;
         position: relative;
 
         // Check if the media object size modifiers should be declared
@@ -29,56 +19,68 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    // Variables
-                    --badge-image-width: var(--badge-image-width-#{$size});
-                    --content-spacing: var(--default-content-spacing-#{$size});
-                    --font-size: var(--default-font-size-#{$size});
+                    font-size: map-get($media-object-font-size-sizes, $size);
 
-                    // Styles (IE fallback for postcss-css-variables)
-                    font-size: var(--font-size);
+                    // Check if the media object reverse modifier should be declared
+                    @if $media-object-reverse-modifiers {
+                        // Modifiers
+                        &.media-object--reverse {
+                            // Nested selectors
+                            .media-object__badge {
+                                // Styles
+                                margin: 0;
+                                margin-left: map-get($media-object-content-spacing-sizes, $size);
+                            }
+                        }
+                    }
 
                     // Nested selectors
                     .media-object__badge {
-                        // Styles (IE fallback for postcss-css-variables)
-                        margin-right: var(--content-spacing);
+                        margin: 0;
+                        margin-right: map-get($media-object-content-spacing-sizes, $size);
 
                         // Nested selectors
                         img {
-                            // Styles (IE fallback for postcss-css-variables)
-                            max-width: var(--badge-image-width);
-                            min-width: var(--badge-image-width);
-                            width: var(--badge-image-width);
+                            max-width: map-get($media-object-badge-image-width-sizes, $size);
+                            min-width: map-get($media-object-badge-image-width-sizes, $size);
+                            width: map-get($media-object-badge-image-width-sizes, $size);
                         }
                     }
                 }
 
-                // Check if the media object size modifier breakpoints should be declared
-                @if $media-object-size-modifier-breakpoints {
+                // Check if the media object size modifiers with breakpoints should be declared
+                @if $media-object-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
                         // Breakpoint
                         @include breakpoint($breakpoint-name) {
                             // Modifiers: Size
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --badge-image-width: var(--badge-image-width-#{$size});
-                                --content-spacing: var(--default-content-spacing-#{$size});
-                                --font-size: var(--default-font-size-#{$size});
+                                font-size: map-get($media-object-font-size-sizes, $size);
 
-                                // Styles (IE fallback for postcss-css-variables)
-                                font-size: var(--font-size);
+                                // Check if the media object reverse modifier should be declared
+                                @if $media-object-reverse-modifiers {
+                                    // Modifiers
+                                    &.media-object--reverse {
+                                        // Nested selectors
+                                        .media-object__badge {
+                                            // Styles
+                                            margin: 0;
+                                            margin-left: map-get($media-object-content-spacing-sizes, $size);
+                                        }
+                                    }
+                                }
 
                                 // Nested selectors
                                 .media-object__badge {
-                                    // Styles (IE fallback for postcss-css-variables)
-                                    margin-right: var(--content-spacing);
+                                    margin: 0;
+                                    margin-right: map-get($media-object-content-spacing-sizes, $size);
 
                                     // Nested selectors
                                     img {
-                                        // Styles (IE fallback for postcss-css-variables)
-                                        max-width: var(--badge-image-width);
-                                        min-width: var(--badge-image-width);
-                                        width: var(--badge-image-width);
+                                        max-width: map-get($media-object-badge-image-width-sizes, $size);
+                                        min-width: map-get($media-object-badge-image-width-sizes, $size);
+                                        width: map-get($media-object-badge-image-width-sizes, $size);
                                     }
                                 }
                             }
@@ -99,7 +101,7 @@
                 .media-object__badge {
                     // Styles
                     margin: 0;
-                    margin-left: var(--element-spacing);
+                    margin-left: $media-object-content-spacing;
                 }
             }
         }
@@ -120,16 +122,16 @@
         .media-object__badge {
             // Styles
             margin: 0;
-            margin-right: var(--content-spacing);
+            margin-right: $media-object-content-spacing;
             flex: 0 0 auto;
 
             // Nested selectors
             img {
                 // Styles
                 display: block;
-                max-width: var(--badge-image-width);
-                min-width: var(--badge-image-width);
-                width: var(--badge-image-width);
+                max-width: $media-object-badge-image-width;
+                min-width: $media-object-badge-image-width;
+                width: $media-object-badge-image-width;
             }
         }
 

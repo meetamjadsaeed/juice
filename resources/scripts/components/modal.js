@@ -23,7 +23,6 @@
 
     // Set the plugin defaults
     const defaults = {
-        color: null,
         close: true,
         closeContent: '<button type="button" class="button--component is-huge js-modal-close"><i class="fas fa-times"></i></button>',
         closeEsc: true,
@@ -35,8 +34,6 @@
         overlayAnimationClass: 'has-animation',
         overlayAnimationIn: 'fade-in',
         overlayAnimationOut: 'fade-out',
-        feedback: null,
-        size: null,
 
         callbackInitializeBefore: () => {
             console.log('Modal: callbackInitializeBefore');
@@ -137,29 +134,6 @@
 
             // Append the close to the modal
             $modal.append($close);
-        }
-
-        // Set the modal modifiers
-        const color = $target.dataset.modalColor || plugin.settings.color;
-        const feedback = $target.dataset.modalFeedback || plugin.settings.feedback;
-        const size = $target.dataset.modalSize || plugin.settings.size;
-
-        // Check if a color modifier exists
-        if (color) {
-            // Add the color modifier class to the modal
-            $modal.classList.add(`is-${color}`);
-        }
-
-        // Check if a feedback modifier exists
-        if (feedback) {
-            // Add the feedback modifier class to the modal
-            $modal.classList.add(`has-${feedback}`);
-        }
-
-        // Check if a size modifier exists
-        if (size) {
-            // Add the size modifier class to the modal
-            $modal.classList.add(`is-${size}`);
         }
 
         // Append the modal to the document body

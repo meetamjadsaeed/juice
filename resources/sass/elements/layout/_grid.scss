@@ -7,106 +7,17 @@
 // Check if the elements with grid should be imported
 @if $import-elements and $import-element-grid {
     .grid {
-        // Variables
-        --gutter: calc(var(--default-content-spacing) / 2);
-
-        // Styles
         display: flex;
         flex-wrap: wrap;
         list-style: none;
-        margin: 0 calc(0px - var(--gutter));
+        margin: 0 (0px - $grid-gutter);
         position: relative;
-
-        // Modifiers
-        &.grid--around {
-            // Styles
-            justify-content: space-around;
-        }
-
-        &.grid--between {
-            // Styles
-            justify-content: space-between;
-        }
-
-        &.grid--bottom {
-            // Styles
-            align-items: flex-end;
-        }
-
-        &.grid--center {
-            // Styles
-            justify-content: center;
-        }
-
-        &.grid--column {
-            // Styles
-            flex-direction: column;
-
-            // Nested selectors
-            .grid__item {
-                // Styles
-                flex-basis: auto;
-            }
-
-            // Modifiers
-            &.grid--reverse {
-                // Styles
-                flex-direction: column-reverse;
-            }
-        }
-
-        &.grid--end {
-            // Styles
-            justify-content: flex-end;
-        }
-
-        &.grid--middle {
-            // Styles
-            align-items: center;
-        }
-
-        &.grid--nowrap {
-            // Styles
-            flex-wrap: nowrap;
-        }
-
-        &.grid--reverse {
-            // Styles
-            flex-direction: row-reverse;
-        }
-
-        &.grid--seamless {
-            // Styles
-            margin: 0;
-
-            // Nested selectors
-            .grid__item {
-                // Styles
-                padding: 0;
-            }
-        }
-
-        &.grid--start {
-            // Styles
-            justify-content: flex-start;
-        }
-
-        &.grid--stretch {
-            // Styles
-            align-items: stretch;
-        }
-
-        &.grid--top {
-            // Styles
-            align-items: flex-start;
-        }
 
         // Nested selectors
         .grid__item {
-            // Styles
             flex: 1 0 0;
             max-width: 100%;
-            padding: 0 var(--gutter);
+            padding: 0 $grid-gutter;
 
             // Start a for loop
             @for $i from 1 through 12 {
@@ -115,12 +26,10 @@
 
                 // Modifiers
                 &.grid__item--offset-#{$i} {
-                    // Styles
                     margin-left: $width;
                 }
 
                 &.grid__item--span-#{$i} {
-                    // Styles
                     flex-basis: $width;
                     max-width: $width;
                 }
@@ -128,110 +37,158 @@
 
             // Modifiers
             &.grid__item--bottom {
-                // Styles
                 align-self: flex-end;
             }
 
             &.grid__item--middle {
-                // Styles
                 align-self: center;
             }
 
             &.grid__item--no-offset {
-                // Styles
                 margin-left: 0;
             }
 
             &.grid__item--stretch {
-                // Styles
                 align-self: stretch;
             }
 
             &.grid__item--top {
-                // Styles
                 align-self: flex-start;
             }
         }
 
+        // Modifiers
+        &.grid--around {
+            justify-content: space-around;
+        }
+
+        &.grid--between {
+            justify-content: space-between;
+        }
+
+        &.grid--bottom {
+            align-items: flex-end;
+        }
+
+        &.grid--center {
+            justify-content: center;
+        }
+
+        &.grid--column {
+            flex-direction: column;
+
+            // Nested selectors
+            .grid__item {
+                flex-basis: auto;
+            }
+
+            // Modifiers
+            &.grid--reverse {
+                flex-direction: column-reverse;
+            }
+        }
+
+        &.grid--end {
+            justify-content: flex-end;
+        }
+
+        &.grid--middle {
+            align-items: center;
+        }
+
+        &.grid--nowrap {
+            flex-wrap: nowrap;
+        }
+
+        &.grid--reverse {
+            flex-direction: row-reverse;
+        }
+
+        &.grid--seamless {
+            margin: 0;
+
+            // Nested selectors
+            .grid__item {
+                padding: 0;
+            }
+        }
+
+        &.grid--start {
+            justify-content: flex-start;
+        }
+
+        &.grid--stretch {
+            align-items: stretch;
+        }
+
+        &.grid--top {
+            align-items: flex-start;
+        }
+
         // Cycle through all of the breakpoints
-        @each $breakpoint-name, $breakpoint in $breakpoints {
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
             // Breakpoint
             @include breakpoint($breakpoint-name) {
                 // Modifiers
                 &.grid--around\@#{$breakpoint-name} {
-                    // Styles
                     justify-content: space-around;
                 }
 
                 &.grid--between\@#{$breakpoint-name} {
-                    // Styles
                     justify-content: space-between;
                 }
 
                 &.grid--bottom\@#{$breakpoint-name} {
-                    // Styles
                     align-items: flex-end;
                 }
 
                 &.grid--center\@#{$breakpoint-name} {
-                    // Styles
                     justify-content: center;
                 }
 
                 &.grid--column\@#{$breakpoint-name} {
-                    // Styles
                     flex-direction: column;
 
                     // Nested selectors
                     .grid__item {
-                        // Styles
                         flex-basis: auto;
                     }
 
                     // Modifiers
                     &.grid--reverse {
-                        // Styles
                         flex-direction: column-reverse;
                     }
                 }
 
                 &.grid--end\@#{$breakpoint-name} {
-                    // Styles
                     justify-content: flex-end;
                 }
 
                 &.grid--nowrap\@#{$breakpoint-name} {
-                    // Styles
                     flex-wrap: nowrap;
                 }
 
                 &.grid--middle\@#{$breakpoint-name} {
-                    // Styles
                     align-items: center;
                 }
 
                 &.grid--reverse\@#{$breakpoint-name} {
-                    // Styles
                     flex-direction: row-reverse;
                 }
 
                 &.grid--top\@#{$breakpoint-name} {
-                    // Styles
                     align-items: flex-start;
                 }
 
                 &.grid--start\@#{$breakpoint-name} {
-                    // Styles
                     justify-content: flex-start;
                 }
 
                 &.grid--seamless\@#{$breakpoint-name} {
-                    // Styles
                     margin: 0;
 
                     // Nested selectors
                     .grid__item {
-                        // Styles
                         padding: 0;
                     }
                 }
@@ -245,12 +202,10 @@
 
                         // Modifiers
                         &.grid__item--offset-#{$i}\@#{$breakpoint-name} {
-                            // Styles
                             margin-left: $width;
                         }
 
                         &.grid__item--span-#{$i}\@#{$breakpoint-name} {
-                            // Styles
                             flex-basis: $width;
                             max-width: $width;
                         }
@@ -258,22 +213,18 @@
 
                     // Modifiers
                     &.grid__item--bottom\@#{$breakpoint-name} {
-                        // Styles
                         align-self: flex-end;
                     }
 
                     &.grid__item--middle\@#{$breakpoint-name} {
-                        // Styles
                         align-self: center;
                     }
 
                     &.grid__item--no-offset\@#{$breakpoint-name} {
-                        // Styles
                         margin-left: 0;
                     }
 
                     &.grid__item--top\@#{$breakpoint-name} {
-                        // Styles
                         align-self: flex-start;
                     }
                 }

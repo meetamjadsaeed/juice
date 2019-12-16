@@ -9,7 +9,7 @@
 }
 
 .has-default-element-spacing {
-    margin-bottom: var(--default-element-spacing) !important;
+    margin-bottom: $default-element-spacing !important;
 }
 
 .has-no-top-element-spacing {
@@ -17,7 +17,7 @@
 }
 
 .has-top-element-spacing {
-    margin-bottom: var(--default-element-spacing) !important;
+    margin-bottom: $default-element-spacing !important;
 }
 
 .has-no-last-child-element-spacing {
@@ -29,16 +29,16 @@
 // Cycle through all of the sizes
 @each $size in $sizes {
     .has-#{$size}-element-spacing {
-        margin-bottom: var(--default-element-spacing-#{$size}) !important;
+        margin-bottom: map-get($default-element-spacing-sizes, $size) !important;
     }
 
     .has-#{$size}-top-element-spacing {
-        margin-top: var(--default-element-spacing-#{$size}) !important;
+        margin-top: map-get($default-element-spacing-sizes, $size) !important;
     }
 }
 
 // Cycle throuhgh all of the breakpoints
-@each $breakpoint-name, $breakpoint in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
     // Breakpoint
     @include breakpoint($breakpoint-name) {
         .has-no-element-spacing\@#{$breakpoint-name} {
@@ -46,7 +46,7 @@
         }
 
         .has-default-element-spacing\@#{$breakpoint-name} {
-            margin-bottom: var(--default-element-spacing) !important;
+            margin-bottom: $default-element-spacing !important;
         }
 
         .has-no-top-element-spacing\@#{$breakpoint-name} {
@@ -54,7 +54,7 @@
         }
 
         .has-top-element-spacing\@#{$breakpoint-name} {
-            margin-bottom: var(--default-element-spacing) !important;
+            margin-bottom: $default-element-spacing !important;
         }
 
         .has-no-last-child-element-spacing\@#{$breakpoint-name} {
@@ -66,11 +66,11 @@
         // Cycle through all of the sizes
         @each $size in $sizes {
             .has-#{$size}-element-spacing\@#{$breakpoint-name} {
-                margin-bottom: var(--default-element-spacing-#{$size}) !important;
+                margin-bottom: map-get($default-element-spacing-sizes, $size) !important;
             }
 
             .has-#{$size}-top-element-spacing\@#{$breakpoint-name} {
-                margin-top: var(--default-element-spacing-#{$size}) !important;
+                margin-top: map-get($default-element-spacing-sizes, $size) !important;
             }
         }
     }

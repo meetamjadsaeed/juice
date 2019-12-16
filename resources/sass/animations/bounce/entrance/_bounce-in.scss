@@ -9,12 +9,6 @@
     .has-animation {
         // Nested selectors
         &.bounce-in {
-            // Variables
-            --animation-delay: var(--default-animation-bounce-in-delay);
-            --animation-duration: var(--default-animation-bounce-in-duration);
-            --animation-easing: var(--default-animation-bounce-in-easing);
-
-            // Keframes
             @keyframes bounce-in {
                 from {
                     opacity: 0;
@@ -35,8 +29,10 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-bounce-in-delay;
+            animation-duration: $animation-bounce-in-duration;
             animation-name: bounce-in;
+            animation-timing-function: $animation-bounce-in-easing;
         }
     }
 }

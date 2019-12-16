@@ -57,10 +57,10 @@
             var confirm = new Confirm({
                 heading: '<h4>Confirm</h4>',
                 text: 'Are you sure you want to visit Google?',
-                callbackCancel: () => {
+                callbackCancel: function() {
                     confirm.close();
                 },
-                callbackContinue: () => {
+                callbackContinue: function() {
                     window.location.href = 'http://google.com';
                 }
             });

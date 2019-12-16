@@ -1,0 +1,37 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> FILE
+    ========================================================================  */
+
+// Variables
+$custom-file-accessibility-focus-width: $default-accessibility-focus-width !default;
+$custom-file-accessibility-focus-color: $default-accessibility-focus-color !default;
+$custom-file-background-color: base-color('white') !default;
+$custom-file-border-color: base-color('white-darken-3') !default;
+$custom-file-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$custom-file-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$custom-file-border-radius-top-left: $default-border-radius-top-left !default;
+$custom-file-border-radius-top-right: $default-border-radius-top-right !default;
+$custom-file-border-style: $default-border-style !default;
+$custom-file-border-width-bottom: $default-border-width-bottom !default;
+$custom-file-border-width-divider: $default-border-width-divider !default;
+$custom-file-border-width-left: $default-border-width-left !default;
+$custom-file-border-width-right: $default-border-width-right !default;
+$custom-file-border-width-top: $default-border-width-top !default;
+$custom-file-content-spacing: ($default-content-spacing / 2) !default;
+$custom-file-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
+) !default;
+$custom-file-element-spacing: $default-element-spacing !default;
+$custom-file-font-color: base-color('white-inverted-text') !default;
+$custom-file-font-family: $default-primary-typeface !default;
+$custom-file-font-size: $default-font-size !default;
+$custom-file-height: $default-element-height !default;
+$custom-file-height-sizes: (
+    'small': map-get($default-element-height-sizes, 'small'),
+    'large': map-get($default-element-height-sizes, 'large'),
+    'huge': map-get($default-element-height-sizes, 'huge')
+) !default;

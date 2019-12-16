@@ -1,0 +1,26 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> MARK
+    ========================================================================  */
+
+// Variables
+$mark-background-color: hsla(51, 90%, 83%, 1) !default;
+$mark-border-color: transparent !default;
+$mark-border-radius-bottom-left: 0 !default;
+$mark-border-radius-bottom-right: 0 !default;
+$mark-border-radius-top-left: 0 !default;
+$mark-border-radius-top-right: 0 !default;
+$mark-border-style: $default-border-style !default;
+$mark-border-width-bottom: 0 !default;
+$mark-border-width-left: 0  !default;
+$mark-border-width-right: 0 !default;
+$mark-border-width-top: 0 !default;
+$mark-content-spacing: 4px !default;
+$mark-font-color: font-color('default') !default;
+$mark-font-size: $default-font-size !default;
+$mark-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;

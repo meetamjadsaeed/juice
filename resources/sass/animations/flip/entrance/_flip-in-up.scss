@@ -9,25 +9,20 @@
     .has-animation {
         // Nested selectors
         &.flip-in-up {
-            // Variables
-            --animation-delay: var(--default-animation-flip-in-delay);
-            --animation-duration: var(--default-animation-flip-in-duration);
-            --animation-easing: var(--default-animation-flip-in-easing);
-            --animation-perspective: var(--default-animation-flip-in-perspective);
-
-            // Keyframes
             @keyframes flip-in-up {
                 from {
-                    transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, -90deg);
+                    transform: perspective($animation-flip-in-perspective) rotate3d(1, 0, 0, -90deg);
                 }
 
                 to {
-                    transform: perspective(var(--animation-perspective)) rotate3d(1, 0, 0, 0deg);
+                    transform: perspective($animation-flip-in-perspective) rotate3d(1, 0, 0, 0deg);
                 }
             }
 
-            // Styles
+            animation-delay: $animation-flip-in-delay;
+            animation-duration: $animation-flip-in-duration;
             animation-name: flip-in-up;
+            animation-timing-function: $animation-flip-in-easing;
         }
     }
 }

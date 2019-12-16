@@ -7,22 +7,20 @@
 // Check if the elements with label should be imported
 @if $import-elements and $import-element-label {
     label {
-        // Variables
-        --element-spacing: var(--default-element-spacing) / 2;
-        --font-color: inherit;
-        --font-family: var(--primary-typeface);
-        --font-size: var(--default-font-size);
-
-        // Styles
-        color: var(--font-color);
+        color: $label-font-color;
         cursor: pointer;
         display: block;
-        font-family: var(--font-family);
-        font-size: var(--font-size);
+        font-family: $label-font-family;
+        font-size: $label-font-size;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $label-element-spacing;
         padding: 0;
         user-select: none;
+
+        // Modifiers: Props
+        &[disabled] {
+            @include disabled();
+        }
 
         // Check if the label size modifiers should be declared
         @if $label-size-modifiers {
@@ -30,26 +28,18 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    // Variables
-                    --font-size: var(--default-font-size-#{$size});
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    font-size: var(--font-size);
+                    font-size: map-get($label-font-size-sizes, $size);
                 }
 
-                // Check if the label size modifier breakpoints should be declared
-                @if $label-size-modifier-breakpoints {
+                // Check if the label size modifiers with breakpoints should be declared
+                @if $label-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
                         // Breakpoint
                         @include breakpoint($breakpoint-name) {
                             // Modifiers: Size
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --font-size: var(--default-font-size-#{$size});
-
-                                // Styles (IE fallback for postcss-css-variables)
-                                font-size: var(--font-size);
+                                font-size: map-get($label-font-size-sizes, $size);
                             }
                         }
                     }
@@ -60,29 +50,18 @@
         // Check if the label feedback modifiers should be declared
         @if $label-feedback-modifiers {
             // Cycle through all of the feedback colors
-            @each $feedback-name, $color in $feedback-colors {
+            @each $feedback-name, $feedback-value in $feedback-colors {
                 // Modifiers: Feedback colors
                 &.has-#{$feedback-name} {
-                    // Variables
-                    --font-color: var(--feedback-color-#{$feedback-name});
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    color: var(--font-color);
+                    color: feedback-color($feedback-name);
                 }
             }
-        }
-
-        // Modifiers: Props
-        &[disabled] {
-            // Styles
-            @include disabled();
         }
 
         // Check if the label inline modifier should be declared
         @if $label-inline-modifier {
             // Modifiers
             &.label--inline {
-                // Styles
                 display: inline-block;
             }
         }

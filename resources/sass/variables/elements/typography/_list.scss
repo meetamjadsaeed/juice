@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> LIST
+    ========================================================================  */
+
+// Variables
+$list-element-spacing: $default-element-spacing !default;
+$list-font-size: $default-font-size !default;
+$list-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$list-indent-spacing: $default-content-spacing !default;

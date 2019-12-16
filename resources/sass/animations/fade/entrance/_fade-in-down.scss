@@ -9,17 +9,10 @@
     .has-animation {
         // Nested selectors
         &.fade-in-down {
-            // Variables
-            --animation-delay: var(--default-animation-fade-in-delay);
-            --animation-distance: calc(0px - var(--default-animation-fade-in-distance));
-            --animation-duration: var(--default-animation-fade-in-duration);
-            --animation-easing: var(--default-animation-fade-in-easing);
-
-            // Keyframes
             @keyframes fade-in-down {
                 from {
                     opacity: 0;
-                    transform: translate3d(0, var(--animation-distance), 0);
+                    transform: translate3d(0, (0px - $animation-fade-in-distance), 0);
                 }
 
                 to {
@@ -28,8 +21,10 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-fade-in-delay;
+            animation-duration: $animation-fade-in-duration;
             animation-name: fade-in-down;
+            animation-timing-function: $animation-fade-in-easing;
         }
     }
 }

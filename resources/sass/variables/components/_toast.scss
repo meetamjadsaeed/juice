@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> TOAST
+    ========================================================================  */
+
+// Variables
+$toast-animation-duration: 200ms !default;
+$toast-background-color: base-color('charcoal') !default;
+$toast-border-color: base-color('charcoal-darken-3') !default;
+$toast-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$toast-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$toast-border-radius-top-left: $default-border-radius-top-left !default;
+$toast-border-radius-top-right: $default-border-radius-top-right !default;
+$toast-border-style: $default-border-style !default;
+$toast-border-width-bottom: 0 !default;
+$toast-border-width-left: 5px !default;
+$toast-border-width-right: 0 !default;
+$toast-border-width-top: 0 !default;
+$toast-box-shadow: $default-box-shadow !default;
+$toast-content-spacing: ($default-content-spacing / 2) !default;
+$toast-element-spacing: ($default-element-spacing / 2) !default;
+$toast-font-color: base-color('charcoal-inverted-text') !default;
+$toast-font-size: ($default-font-size - 0.1em) !default;
+$toast-max-width: 600px !default;

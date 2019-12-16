@@ -1,0 +1,50 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> DROPDOWN
+    ========================================================================  */
+
+// Variables
+$dropdown-accessibility-focus-width: $default-accessibility-focus-width !default;
+$dropdown-accessibility-focus-color: base-color('primary-accessibility-focus') !default;
+$dropdown-animation-duration: 200ms !default;
+$dropdown-background-color: base-color('white') !default;
+$dropdown-border-color: base-color('white-darken-3') !default;
+$dropdown-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$dropdown-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$dropdown-border-radius-top-left: $default-border-radius-top-left !default;
+$dropdown-border-radius-top-right: $default-border-radius-top-right !default;
+$dropdown-border-style: $default-border-style !default;
+$dropdown-border-width-bottom: $default-border-width-bottom !default;
+$dropdown-border-width-divider: $default-border-width-divider !default;
+$dropdown-border-width-left: $default-border-width-left !default;
+$dropdown-border-width-right: $default-border-width-right !default;
+$dropdown-border-width-top: $default-border-width-top !default;
+$dropdown-box-shadow: $default-box-shadow !default;
+$dropdown-content-spacing: ($default-content-spacing / 1.5) !default;
+$dropdown-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 1.5),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 1.5),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 1.5)
+) !default;
+$dropdown-font-color: font-color('default') !default;
+$dropdown-font-size: $default-font-size !default;
+$dropdown-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$dropdown-item-background-color: base-color('white') !default;
+$dropdown-item-background-color-hover: base-color('primary-lighten-1') !default;
+$dropdown-item-background-color-focus: base-color('primary-lighten-1') !default;
+$dropdown-item-background-color-active: base-color('primary-darken-1') !default;
+$dropdown-item-link-color: base-color('primary') !default;
+$dropdown-item-link-color-hover: base-color('primary-inverted-text') !default;
+$dropdown-item-link-color-focus: base-color('primary-inverted-text') !default;
+$dropdown-item-link-color-active: base-color('primary-inverted-text') !default;
+$dropdown-link-color: $default-link-color !default;
+$dropdown-link-color-hover: $default-link-color-hover !default;
+$dropdown-link-color-focus: $default-link-color-focus !default;
+$dropdown-link-color-active: $default-link-color-active !default;
+$dropdown-min-width: 250px !default;
+$dropdown-offset: 10px !default;

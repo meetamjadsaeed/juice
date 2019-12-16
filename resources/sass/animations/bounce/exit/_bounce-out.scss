@@ -9,12 +9,6 @@
     .has-animation {
         // Nested selectors
         &.bounce-out {
-            // Variables
-            --animation-delay: var(--default-animation-bounce-out-delay);
-            --animation-duration: var(--default-animation-bounce-out-duration);
-            --animation-easing: var(--default-animation-bounce-out-easing);
-
-            // Keframes
             @keyframes bounce-out {
                 from {
                     transform: scale3d(1, 1, 1);
@@ -35,8 +29,10 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-bounce-out-delay;
+            animation-duration: $animation-bounce-out-duration;
             animation-name: bounce-out;
+            animation-timing-function: $animation-bounce-out-easing;
         }
     }
 }

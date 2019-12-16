@@ -7,10 +7,7 @@
 // Check if the elements with image should be imported
 @if $import-elements and $import-element-image {
     img {
-        // Variables
-        --element-spacing: var(--default-element-spacing);
-
-        // Styles
+        display: block;
         max-width: 100%;
 
         // Modifiers: State hooks
@@ -18,73 +15,37 @@
             // Styles
             display: flex;
             max-width: auto;
-            margin-bottom: var(--element-spacing);
             margin-right: 0;
             min-width: 100%;
-        }
-
-        // Check if the image size modifiers should be declared
-        @if $image-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    // Variables
-                    --element-spacing: var(--default-element-spacing-#{$size});
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    margin-bottom: var(--element-spacing);
-                }
-
-                // Check if the image size modifier breakpoints should be declared
-                @if $image-size-modifier-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --element-spacing: var(--default-element-spacing-#{$size});
-
-                                // Styles (IE fallback for postcss-css-variables)
-                                margin-bottom: var(--element-spacing);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         // Check if the image alignment modifiers should be declared
         @if $image-alignment-modifiers {
             // Modifiers
             &.image--center {
-                // Styles
-                display: flex;
+                display: block;
                 float: none;
-                margin: 0 auto var(--element-spacing);
+                margin: 0 auto $image-element-spacing;
             }
 
             &.image--left {
-                // Styles
+                display: inline-block;
                 float: left;
-                margin: 0;
-                margin-right: var(--element-spacing);
+                margin-bottom: 0;
+                margin-right: $image-element-spacing;
             }
 
             &.image--right {
-                // Styles
+                display: inline-block;
                 float: right;
-                margin: 0;
-                margin-left: var(--element-spacing);
+                margin-bottom: 0;
+                margin-left: $image-element-spacing;
             }
         }
 
         // Check if the image round modifier should be declared
         @if $image-round-modifier {
             &.image--round {
-                // Styles
                 border-radius: 100%;
             }
         }

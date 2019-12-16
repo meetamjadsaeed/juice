@@ -7,14 +7,9 @@
 // Check if the elements with paragraph should be imported
 @if $import-elements and $import-element-paragraph {
     p {
-        // Variables
-        --element-spacing: var(--default-element-spacing);
-        --font-size: var(--default-font-size);
-
-        // Styles
-        font-size: var(--font-size);
+        font-size: $paragraph-font-size;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $paragraph-element-spacing;
 
         // Check if the paragraph size modifiers should be declared
         @if $paragraph-size-modifiers {
@@ -22,26 +17,18 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    // Variables
-                    --font-size: var(--default-font-size-#{$size});
-
-                    // Styles (IE fallback for postcss-css-variables)
-                    font-size: var(--font-size);
+                    font-size: map-get($paragraph-font-size-sizes, $size);
                 }
 
-                // Check if the paragraph size modifier breakpoints should be declared
-                @if $paragraph-size-modifier-breakpoints {
+                // Check if the paragraph size modifiers with breakpoints should be declared
+                @if $paragraph-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
                         // Breakpoint
                         @include breakpoint($breakpoint-name) {
                             // Modifiers: Size
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --font-size: var(--default-font-size-#{$size});
-
-                                // Styles (IE fallback for postcss-css-variables)
-                                font-size: var(--font-size);
+                                font-size: map-get($paragraph-font-size-sizes, $size);
                             }
                         }
                     }

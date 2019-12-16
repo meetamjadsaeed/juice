@@ -1,0 +1,50 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> SELECT
+    ========================================================================  */
+
+// Variables
+$select-accessibility-focus-width: $default-accessibility-focus-width !default;
+$select-accessibility-focus-color: $default-accessibility-focus-color !default;
+$select-background-color: base-color('white') !default;
+$select-background-color-hover: base-color('white') !default;
+$select-background-color-focus: base-color('white') !default;
+$select-background-color-active: base-color('white') !default;
+$select-border-color: base-color('white-darken-3') !default;
+$select-border-color-hover: base-color('white-darken-6') !default;
+$select-border-color-focus: feedback-color('info') !default;
+$select-border-color-active: feedback-color('info') !default;
+$select-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$select-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$select-border-radius-top-left: $default-border-radius-top-left !default;
+$select-border-radius-top-right: $default-border-radius-top-right !default;
+$select-border-style: $default-border-style !default;
+$select-border-width-bottom: $default-border-width-bottom !default;
+$select-border-width-left: $default-border-width-left !default;
+$select-border-width-right: $default-border-width-right !default;
+$select-border-width-top: $default-border-width-top !default;
+$select-content-spacing: ($default-content-spacing / 2) !default;
+$select-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
+) !default;
+$select-element-spacing: $default-element-spacing !default;
+$select-font-color: base-color('white-inverted-text') !default;
+$select-font-color-hover: base-color('white-inverted-text') !default;
+$select-font-color-focus: base-color('white-inverted-text') !default;
+$select-font-color-active: base-color('white-inverted-text') !default;
+$select-font-family: $default-primary-typeface !default;
+$select-font-size: $default-font-size !default;
+$select-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$select-height: $default-element-height !default;
+$select-height-sizes: (
+    'small': map-get($default-element-height-sizes, 'small'),
+    'large': map-get($default-element-height-sizes, 'large'),
+    'huge': map-get($default-element-height-sizes, 'huge')
+) !default;

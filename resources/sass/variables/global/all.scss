@@ -1,0 +1,79 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> GLOBAL
+    ========================================================================  */
+
+// Typeface
+$default-primary-typeface: 'Montserrat', Tahoma, sans-serif !default;
+$default-secondary-typeface: 'Oswald', Verdana, sans-serif !default;
+$default-monoface-typeface: 'Courier New', Courier, monospace !default;
+
+// Root font size
+$default-root-font-size: 1.4rem !default;
+
+// Font size
+$default-font-size: 1em !default;
+$default-font-size-sizes: (
+    'small': $default-font-size - 0.1em,
+    'large': $default-font-size + 0.1em,
+    'huge': $default-font-size + 0.2em
+) !default;
+
+// Font properties
+$default-font-weight: 400 !default;
+$default-letter-spacing: 0 !default;
+$default-line-height: 2 !default;
+
+// Link color
+$default-link-color: base-color('primary') !default;
+$default-link-color-hover: base-color('primary-darken-2') !default;
+$default-link-color-focus: base-color('primary-darken-4') !default;
+$default-link-color-active: base-color('primary-darken-6') !default;
+
+// Content spacing
+$default-content-spacing: 20px !default;
+$default-content-spacing-sizes: (
+    'small': $default-content-spacing / 2,
+    'large': $default-content-spacing * 1.5,
+    'huge': $default-content-spacing * 2
+) !default;
+
+// Element spacing
+$default-element-spacing: 20px !default;
+$default-element-spacing-sizes: (
+    'small': $default-element-spacing / 2,
+    'large': $default-element-spacing * 1.5,
+    'huge': $default-element-spacing * 2
+) !default;
+
+// Element height
+$default-element-height: 40px !default;
+$default-element-height-sizes: (
+    'small': $default-element-height / 1.5,
+    'large': $default-element-height * 1.25,
+    'huge': $default-element-height * 1.5
+) !default;
+
+// Border radius
+$default-border-radius-top-left: 5px !default;
+$default-border-radius-top-right: 5px !default;
+$default-border-radius-bottom-right: 5px !default;
+$default-border-radius-bottom-left: 5px !default;
+
+// Border style
+$default-border-style: solid !default;
+
+// Border widths
+$default-border-width-top: 1px !default;
+$default-border-width-right: 1px !default;
+$default-border-width-bottom: 1px !default;
+$default-border-width-left: 1px !default;
+$default-border-width-divider: 1px !default;
+
+// Box shadow
+$default-box-shadow: 1px 4px 21px 0 hsla(0, 0%, 0%, 0.05) !default;
+
+// Accessibility properties
+$default-accessibility-focus-width: 3px !default;
+$default-accessibility-focus-color: feedback-color('info-accessibility-focus') !default;

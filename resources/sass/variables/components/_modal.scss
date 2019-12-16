@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> MODAL
+    ========================================================================  */
+
+// Variables
+$modal-animation-duration: 200ms !default;
+$modal-box-shadow: 0 0 30px -5px hsla(0, 0%, 0%, 1) !default;
+$modal-card-body-background-color: base-color('white') !default;
+$modal-card-body-border-color: base-color('white-darken-3') !default;
+$modal-card-body-font-color: font-color('default') !default;
+$modal-card-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$modal-card-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$modal-card-border-radius-top-left: $default-border-radius-top-left !default;
+$modal-card-border-radius-top-right: $default-border-radius-top-right !default;
+$modal-card-border-style: $default-border-style !default;
+$modal-card-border-width-bottom: $default-border-width-bottom !default;
+$modal-card-border-width-divider: $default-border-width-divider !default;
+$modal-card-border-width-left: $default-border-width-left !default;
+$modal-card-border-width-right: $default-border-width-right !default;
+$modal-card-border-width-top: $default-border-width-top !default;
+$modal-card-content-spacing: $default-content-spacing !default;
+$modal-card-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$modal-card-font-size: $default-font-size !default;
+$modal-card-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$modal-card-foot-background-color: base-color('white') !default;
+$modal-card-foot-border-color: base-color('white-darken-3') !default;
+$modal-card-foot-font-color: font-color('default') !default;
+$modal-card-head-background-color: base-color('white') !default;
+$modal-card-head-border-color: base-color('white-darken-3') !default;
+$modal-card-head-font-color: font-color('default') !default;
+$modal-card-link-color: $default-link-color !default;
+$modal-card-link-color-hover: $default-link-color-hover !default;
+$modal-card-link-color-focus: $default-link-color-focus !default;
+$modal-card-link-color-active: $default-link-color-active !default;
+$modal-card-max-width: 600px !default;

@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ANIMATIONS -> ZOOM
+    ========================================================================  */
+
+// Entrance
+$animation-zoom-in-delay: 0ms !default;
+$animation-zoom-in-distance: 60px !default;
+$animation-zoom-in-duration: 400ms !default;
+$animation-zoom-in-easing: easing('ease-in') !default;
+$animation-zoom-in-scale: 0.6 !default;
+
+// Exit
+$animation-zoom-out-delay: 0ms !default;
+$animation-zoom-out-distance: 60px !default;
+$animation-zoom-out-duration: 400ms !default;
+$animation-zoom-out-easing: easing('ease-out') !default;
+$animation-zoom-out-scale: 0.6 !default;

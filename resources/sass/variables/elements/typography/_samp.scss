@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> SAMP
+    ========================================================================  */
+
+// Variables
+$samp-background-color: transparent !default;
+$samp-border-color: transparent !default;
+$samp-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$samp-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$samp-border-radius-top-left: $default-border-radius-top-left !default;
+$samp-border-radius-top-right: $default-border-radius-top-right !default;
+$samp-border-style: $default-border-style !default;
+$samp-border-width-bottom: $default-border-width-bottom !default;
+$samp-border-width-left: $default-border-width-left !default;
+$samp-border-width-right: $default-border-width-right !default;
+$samp-border-width-top: $default-border-width-top !default;
+$samp-content-spacing: 0 !default;
+$samp-content-spacing-sizes: (
+    'small': 0,
+    'large': 0,
+    'huge': 0
+) !default;
+$samp-font-color: inherit !default;
+$samp-font-family: $default-monoface-typeface !default;
+$samp-font-size: $default-font-size !default;
+$samp-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;

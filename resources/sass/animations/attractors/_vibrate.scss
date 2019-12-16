@@ -9,13 +9,6 @@
     .has-animation {
         // Nested selectors
         &.vibrate {
-            // Variables
-            --animation-delay: var(--default-animation-vibrate-delay);
-            --animation-duration: var(--default-animation-vibrate-duration);
-            --animation-easing: var(--default-animation-vibrate-easing);
-            --animation-iteration-count: var(--default-animation-vibrate-iteration-count);
-
-            // Keyframes
             @keyframes vibrate {
                 from, to {
                     transform: translate3d(0, 0, 0);
@@ -38,8 +31,11 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-attractor-vibrate-delay;
+            animation-duration: $animation-attractor-vibrate-duration;
             animation-name: vibrate;
+            animation-iteration-count: $animation-attractor-vibrate-iteration-count;
+            animation-timing-function: $animation-attractor-vibrate-easing;
         }
     }
 }

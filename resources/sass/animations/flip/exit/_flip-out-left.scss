@@ -9,25 +9,20 @@
     .has-animation {
         // Nested selectors
         &.flip-out-left {
-            // Variables
-            --animation-delay: var(--default-animation-flip-out-delay);
-            --animation-duration: var(--default-animation-flip-out-duration);
-            --animation-easing: var(--default-animation-flip-out-easing);
-            --animation-perspective: var(--default-animation-flip-in-perspective);
-
-            // Keyframes
             @keyframes flip-out-left {
                 from {
-                    transform: perspective(var(--animation-perspective)) rotate3d(0, 1, 0, 0deg);
+                    transform: perspective($animation-flip-out-perspective) rotate3d(0, 1, 0, 0deg);
                 }
 
                 to {
-                    transform: perspective(var(--animation-perspective)) rotate3d(0, 1, 0, -90deg);
+                    transform: perspective($animation-flip-out-perspective) rotate3d(0, 1, 0, -90deg);
                 }
             }
 
-            // Styles
+            animation-delay: $animation-flip-out-delay;
+            animation-duration: $animation-flip-out-duration;
             animation-name: flip-out-left;
+            animation-timing-function: $animation-flip-out-easing;
         }
     }
 }

@@ -9,13 +9,6 @@
     .has-animation {
         // Nested selectors
         &.fade-out-right {
-            // Variables
-            --animation-delay: var(--default-animation-fade-out-delay);
-            --animation-distance: var(--default-animation-fade-out-distance);
-            --animation-duration: var(--default-animation-fade-out-duration);
-            --animation-easing: var(--default-animation-fade-out-easing);
-
-            // Keyframes
             @keyframes fade-out-right {
                 from {
                     opacity: 1;
@@ -24,12 +17,14 @@
 
                 to {
                     opacity: 0;
-                    transform: translate3d(var(--animation-distance), 0, 0);
+                    transform: translate3d($animation-fade-out-distance, 0, 0);
                 }
             }
 
-            // Styles
+            animation-delay: $animation-fade-out-delay;
+            animation-duration: $animation-fade-out-duration;
             animation-name: fade-out-right;
+            animation-timing-function: $animation-fade-out-easing;
         }
     }
 }

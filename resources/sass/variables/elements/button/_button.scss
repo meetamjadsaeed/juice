@@ -1,0 +1,55 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> BUTTON -> BUTTON
+    ========================================================================  */
+
+// Variables
+$button-accessibility-focus-width: $default-accessibility-focus-width !default;
+$button-accessibility-focus-color: base-color('primary-accessibility-focus') !default;
+$button-background-color: base-color('primary') !default;
+$button-background-color-hover: base-color('primary-lighten-1') !default;
+$button-background-color-focus: base-color('primary-lighten-1') !default;
+$button-background-color-active: base-color('primary-darken-1') !default;
+$button-border-color: base-color('primary-darken-3') !default;
+$button-border-color-hover: base-color('primary-darken-4') !default;
+$button-border-color-focus: base-color('primary-darken-4') !default;
+$button-border-color-active: base-color('primary-darken-6') !default;
+$button-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$button-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$button-border-radius-top-left: $default-border-radius-top-left !default;
+$button-border-radius-top-right: $default-border-radius-top-right !default;
+$button-border-style: $default-border-style !default;
+$button-border-width-bottom: $default-border-width-bottom !default;
+$button-border-width-left: $default-border-width-left !default;
+$button-border-width-right: $default-border-width-right !default;
+$button-border-width-top: $default-border-width-top !default;
+$button-border-width-divider: $default-border-width-divider !default;
+$button-content-spacing: ($default-content-spacing / 1.5) !default;
+$button-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 1.5),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 1.5),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 1.5)
+) !default;
+$button-element-spacing: $default-element-spacing !default;
+$button-font-color: base-color('primary-inverted-text') !default;
+$button-font-color-hover: base-color('primary-inverted-text') !default;
+$button-font-color-focus: base-color('primary-inverted-text') !default;
+$button-font-color-active: base-color('primary-inverted-text') !default;
+$button-font-family: $default-secondary-typeface !default;
+$button-font-size: $default-font-size !default;
+$button-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$button-font-variant: normal !default;
+$button-font-weight: 300 !default;
+$button-height: $default-element-height !default;
+$button-height-sizes: (
+    'small': map-get($default-element-height-sizes, 'small'),
+    'large': map-get($default-element-height-sizes, 'large'),
+    'huge': map-get($default-element-height-sizes, 'huge')
+) !default;
+$button-letter-spacing: 0 !default;
+$button-text-transform: uppercase !default;

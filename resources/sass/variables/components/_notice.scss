@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> NOTICE
+    ========================================================================  */
+
+// Variables
+$notice-animation-duration: 300ms !default;
+$notice-background-color: base-color('white') !default;
+$notice-border-color: base-color('white-darken-3') !default;
+$notice-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$notice-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$notice-border-radius-top-left: $default-border-radius-top-left !default;
+$notice-border-radius-top-right: $default-border-radius-top-right !default;
+$notice-border-style: $default-border-style !default;
+$notice-border-width-bottom: $default-border-width-bottom !default;
+$notice-border-width-divider: $default-border-width-divider !default;
+$notice-border-width-left: $default-border-width-left !default;
+$notice-border-width-right: $default-border-width-right !default;
+$notice-border-width-top: $default-border-width-top !default;
+$notice-box-shadow: $default-box-shadow !default;
+$notice-content-spacing: $default-content-spacing !default;
+$notice-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$notice-element-spacing: $default-element-spacing !default;
+$notice-feedback-background-color: feedback-color('info') !default;
+$notice-feedback-border-color: feedback-color('info-darken-3') !default;
+$notice-feedback-font-color: feedback-color('info-inverted-text') !default;
+$notice-font-color: font-color('default') !default;
+$notice-font-size: $default-font-size !default;
+$notice-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$notice-link-color: $default-link-color !default;
+$notice-link-color-hover: $default-link-color-hover !default;
+$notice-link-color-focus: $default-link-color-focus !default;
+$notice-link-color-active: $default-link-color-active !default;

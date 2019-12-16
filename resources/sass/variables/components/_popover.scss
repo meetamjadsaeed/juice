@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> POPOVER
+    ========================================================================  */
+
+// Variables
+$popover-animation-duration: 300ms !default;
+$popover-arrow-size: 6px !default;
+$popover-background-color: base-color('white') !default;
+$popover-border-color: base-color('white-darken-3') !default;
+$popover-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$popover-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$popover-border-radius-top-left: $default-border-radius-top-left !default;
+$popover-border-radius-top-right: $default-border-radius-top-right !default;
+$popover-border-style: $default-border-style !default;
+$popover-border-width-bottom: $default-border-width-bottom !default;
+$popover-border-width-divider: $default-border-width-divider !default;
+$popover-border-width-left: $default-border-width-left !default;
+$popover-border-width-right: $default-border-width-right !default;
+$popover-border-width-top: $default-border-width-top !default;
+$popover-box-shadow: $default-box-shadow !default;
+$popover-content-spacing: ($default-content-spacing / 2) !default;
+$popover-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
+) !default;
+$popover-font-color: font-color('default') !default;
+$popover-font-size: ($default-font-size - 0.1em) !default;
+$popover-font-size-sizes: (
+    'small': (map-get($default-font-size-sizes, 'small') - 0.1em),
+    'large': (map-get($default-font-size-sizes, 'large') - 0.1em),
+    'huge': (map-get($default-font-size-sizes, 'huge') - 0.1em)
+) !default;
+$popover-head-background-color: base-color('white') !default;
+$popover-head-border-color: base-color('white-darken-3') !default;
+$popover-head-font-color: font-color('default') !default;
+$popover-link-color: $default-link-color !default;
+$popover-link-color-hover: $default-link-color-hover !default;
+$popover-link-color-focus: $default-link-color-focus !default;
+$popover-link-color-active: $default-link-color-active !default;
+$popover-max-width: 300px !default;
+$popover-min-width: 200px !default;
+$popover-offset: 5px !default;

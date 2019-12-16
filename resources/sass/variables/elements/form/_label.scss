@@ -1,0 +1,16 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> LABEL
+    ========================================================================  */
+
+// Variables
+$label-element-spacing: $default-element-spacing / 2 !default;
+$label-font-color: inherit !default;
+$label-font-family: $default-primary-typeface !default;
+$label-font-size: $default-font-size !default;
+$label-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;

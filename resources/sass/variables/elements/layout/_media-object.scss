@@ -1,0 +1,26 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> LAYOUT -> MEDIA OBJECT
+    ========================================================================  */
+
+// Variables
+$media-object-badge-image-width: 75px !default;
+$media-object-badge-image-width-sizes: (
+    'small': 50px,
+    'large': 100px,
+    'huge': 125px
+) !default;
+$media-object-content-spacing: $default-content-spacing !default;
+$media-object-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$media-object-element-spacing: $default-element-spacing !default;
+$media-object-font-size: $default-font-size !default;
+$media-object-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;

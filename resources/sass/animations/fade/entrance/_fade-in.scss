@@ -9,12 +9,6 @@
     .has-animation {
         // Nested selectors
         &.fade-in {
-            // Variables
-            --animation-delay: var(--default-animation-fade-in-delay);
-            --animation-duration: var(--default-animation-fade-in-duration);
-            --animation-easing: var(--default-animation-fade-in-easing);
-
-            // Keframes
             @keyframes fade-in {
                 from {
                     opacity: 0;
@@ -25,8 +19,10 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-fade-in-delay;
+            animation-duration: $animation-fade-in-duration;
             animation-name: fade-in;
+            animation-timing-function: $animation-fade-in-easing;
         }
     }
 }

@@ -7,41 +7,24 @@
 // Check if the elements with link should be imported
 @if $import-elements and $import-element-link {
     a {
-        // Variables
-        --font-color: var(--default-link-color);
-
         // Styles
-        color: var(--font-color);
+        color: $default-link-color;
         font-weight: inherit;
         outline: none;
         text-decoration: none;
 
         // Pseudo classes
         &:hover {
-            // Variables
-            --font-color: var(--default-link-color-hover);
-
-            // Styles (IE fallback for postcss-css-variables)
-            color: var(--font-color);
+            color: $default-link-color-hover;
         }
 
         &:focus {
-            // Variables
-            --font-color: var(--default-link-color-focus);
-
-            // Styles
+            color: $default-link-color-focus;
             text-decoration: underline;
-
-            // Styles (IE fallback for postcss-css-variables)
-            color: var(--font-color);
         }
 
         &:active {
-            // Variables
-            --font-color: var(--default-link-color-active);
-
-            // Styles (IE fallback for postcss-css-variables)
-            color: var(--font-color);
+            color: $default-link-color-active;
         }
     }
 }

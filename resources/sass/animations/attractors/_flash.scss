@@ -9,25 +9,21 @@
     .has-animation {
         // Nested selectors
         &.flash {
-            // Variables
-            --animation-delay: var(--default-animation-flash-delay);
-            --animation-duration: var(--default-animation-flash-duration);
-            --animation-easing: var(--default-animation-flash-easing);
-            --animation-iteration-count: var(--default-animation-flash-iteration-count);
-
-            // Keyframes
             @keyframes flash {
                 from, to {
                     opacity: 1;
                 }
 
-            	50% {
+                50% {
                     opacity: 0.2;
                 }
             }
 
-            // Styles
+            animation-delay: $animation-attractor-flash-delay;
+            animation-duration: $animation-attractor-flash-duration;
+            animation-iteration-count: $animation-attractor-flash-iteration-count;
             animation-name: flash;
+            animation-timing-function: $animation-attractor-flash-easing;
         }
     }
 }

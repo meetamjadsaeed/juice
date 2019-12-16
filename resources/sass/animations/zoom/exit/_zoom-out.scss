@@ -9,13 +9,6 @@
     .has-animation {
         // Nested selectors
         &.zoom-out {
-            // Variables
-            --animation-delay: var(--default-animation-zoom-out-delay);
-            --animation-duration: var(--default-animation-zoom-out-duration);
-            --animation-easing: var(--default-animation-zoom-out-easing);
-            --animation-scale: var(--default-animation-zoom-out-scale);
-
-            // Keframes
             @keyframes zoom-out {
                 from {
                     opacity: 1;
@@ -24,12 +17,14 @@
 
                 to {
                     opacity: 0;
-                    transform: scale3d(var(--animation-scale), var(--animation-scale), var(--animation-scale));
+                    transform: scale3d($animation-zoom-out-scale, $animation-zoom-out-scale, $animation-zoom-out-scale);
                 }
             }
 
-            // Styles
+            animation-delay: $animation-zoom-out-delay;
+            animation-duration: $animation-zoom-out-duration;
             animation-name: zoom-out;
+            animation-timing-function: $animation-zoom-out-easing;
         }
     }
 }

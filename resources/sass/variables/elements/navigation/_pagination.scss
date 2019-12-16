@@ -1,0 +1,56 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> NAVIGATION -> PAGINATION
+    ========================================================================  */
+
+// Variables
+$pagination-accessibility-focus-width: $default-accessibility-focus-width !default;
+$pagination-accessibility-focus-color: base-color('primary-accessibility-focus') !default;
+$pagination-background-color: base-color('white') !default;
+$pagination-background-color-hover: base-color('primary-lighten-1') !default;
+$pagination-background-color-focus: base-color('primary') !default;
+$pagination-background-color-active: base-color('primary-darken-1') !default;
+$pagination-border-color: base-color('white-darken-3') !default;
+$pagination-border-color-hover: base-color('primary-darken-3') !default;
+$pagination-border-color-focus: base-color('primary-darken-6') !default;
+$pagination-border-color-active: base-color('primary-darken-8') !default;
+$pagination-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$pagination-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$pagination-border-radius-top-left: $default-border-radius-top-left !default;
+$pagination-border-radius-top-right: $default-border-radius-top-right !default;
+$pagination-border-style: $default-border-style !default;
+$pagination-border-width-bottom: $default-border-width-bottom !default;
+$pagination-border-width-divider: $default-border-width-divider !default;
+$pagination-border-width-left: $default-border-width-left !default;
+$pagination-border-width-right: $default-border-width-right !default;
+$pagination-border-width-top: $default-border-width-top !default;
+$pagination-box-shadow: $default-box-shadow !default;
+$pagination-content-spacing: ($default-content-spacing / 2) !default;
+$pagination-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
+) !default;
+$pagination-height: $default-element-height !default;
+$pagination-height-sizes: (
+    'small': map-get($default-element-height-sizes, 'small'),
+    'large': map-get($default-element-height-sizes, 'large'),
+    'huge': map-get($default-element-height-sizes, 'huge')
+) !default;
+$pagination-element-spacing: $default-element-spacing !default;
+$pagination-font-color: base-color('white-inverted-text') !default;
+$pagination-font-color-hover: base-color('primary-inverted-text') !default;
+$pagination-font-color-focus: base-color('primary-inverted-text') !default;
+$pagination-font-color-active: base-color('primary-inverted-text') !default;
+$pagination-font-size: $default-font-size !default;
+$pagination-font-size-active: ($default-font-size + 0.1em) !default;
+$pagination-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$pagination-link-color: $default-link-color !default;
+$pagination-link-color-hover: $default-link-color-hover !default;
+$pagination-link-color-focus: $default-link-color-focus !default;
+$pagination-link-color-active: $default-link-color-active !default;

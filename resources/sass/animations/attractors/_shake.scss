@@ -9,12 +9,6 @@
     .has-animation {
         // Nested selectors
         &.shake {
-            // Variables
-            --animation-delay: var(--default-animation-shake-delay);
-            --animation-duration: var(--default-animation-shake-duration);
-            --animation-easing: var(--default-animation-shake-easing);
-
-            // Keyframes
             @keyframes shake {
                 from, to {
                     transform: translate3d(0, 0, 0);
@@ -29,8 +23,10 @@
                 }
             }
 
-            // Styles
+            animation-delay: $animation-attractor-shake-delay;
+            animation-duration: $animation-attractor-shake-duration;
             animation-name: shake;
+            animation-timing-function: $animation-attractor-shake-easing;
         }
     }
 }

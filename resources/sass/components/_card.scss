@@ -7,97 +7,41 @@
 // Check if the components with card should be imported
 @if $import-components and $import-component-card {
     .card {
-        // Variables
-        --animation-duration: 300ms;
-        --background-color: var(--color-white);
-        --border-color: var(--color-white-darken-3);
-        --border-radius-bottom-left: var(--default-border-radius-bottom-left);
-        --border-radius-bottom-right: var(--default-border-radius-bottom-right);
-        --border-radius-top-left: var(--default-border-radius-top-left);
-        --border-radius-top-right: var(--default-border-radius-top-right);
-        --border-style: var(--default-border-style);
-        --border-width-bottom: var(--default-border-width-bottom);
-        --border-width-left: var(--default-border-width-left);
-        --border-width-right: var(--default-border-width-right);
-        --border-width-top: var(--default-border-width-top);
-        --box-shadow: var(--default-box-shadow);
-        --content-spacing: var(--default-content-spacing);
-        --element-spacing: var(--default-element-spacing);
-        --font-color: var(--font-color-default);
-        --font-size: var(--default-font-size);
-
-        // Styles
-        animation-duration: var(--animation-duration);
-        background-color: var(--background-color);
-        border: 0 var(--border-style) var(--border-color);
-        border-bottom-left-radius: var(--border-radius-bottom-left);
-        border-bottom-right-radius: var(--border-radius-bottom-right);
-        border-bottom-width: var(--border-width-bottom);
-        border-left-width: var(--border-width-left);
-        border-top-left-radius: var(--border-radius-top-left);
-        border-top-right-radius: var(--border-radius-top-right);
-        border-top-width: var(--border-width-top);
-        border-right-width: var(--border-width-right);
-        box-shadow: var(--box-shadow);
-        color: var(--font-color);
+        animation-duration: $card-animation-duration;
+        background-color: $card-background-color;
+        border: 0 $card-border-style $card-border-color;
+        border-bottom-left-radius: $card-border-radius-bottom-left;
+        border-bottom-right-radius: $card-border-radius-bottom-right;
+        border-bottom-width: $card-border-width-bottom;
+        border-left-width: $card-border-width-left;
+        border-top-left-radius: $card-border-radius-top-left;
+        border-top-right-radius: $card-border-radius-top-right;
+        border-top-width: $card-border-width-top;
+        border-right-width: $card-border-width-right;
+        box-shadow: $card-box-shadow;
+        color: $card-font-color;
         display: flex;
         flex-direction: column;
-        font-size: var(--font-size);
+        font-size: $card-font-size;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $card-element-spacing;
         padding: 0;
-
-        // Check if the card size modifiers should be declared
-        @if $card-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    // Variables
-                    --font-size: var(--default-font-size-#{$size});
-                    --content-spacing: var(--default-content-spacing-#{$size});
-                }
-
-                // Check if the card size modifier breakpoints should be declared
-                @if $card-size-modifier-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --font-size: var(--default-font-size-#{$size});
-                                --content-spacing: var(--default-content-spacing-#{$size});
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
         // Nested selectors
         a:not(.button) {
-            // Variables
-            --font-color: var(--default-link-color);
-
-            // Styles
-            color: var(--font-color);
+            color: $card-link-color;
 
             // Pseudo classes
             &:hover {
-                // Variables
-                --font-color: var(--default-link-color-hover);
+                color: $card-link-color-hover;
             }
 
             &:focus {
-                // Variables
-                --font-color: var(--default-link-color-focus);
+                color: $card-link-color-focus;
             }
 
             &:active {
-                // Variables
-                --font-color: var(--default-link-color-active);
+                color: $card-link-color-active;
             }
         }
 
@@ -106,13 +50,6 @@
             border-top-right-radius: var(--border-radius-top-right);
             overflow: hidden;
             padding: 0;
-
-            // Modifiers
-            &.card__media--iframe {
-                height: 0;
-                padding: 25px 0 56.25%;
-                position: relative;
-            }
 
             // Nested selectors
             iframe {
@@ -129,18 +66,25 @@
                 height: auto;
                 width: 100%;
             }
+
+            // Modifiers
+            &.card__media--iframe {
+                height: 0;
+                padding: 25px 0 56.25%;
+                position: relative;
+            }
         }
 
         .card__content {
-            padding: var(--content-spacing);
+            padding: $card-content-spacing;
 
-            // Nested selectors
+           // Nested selectors
             .card__head,
             .card__body,
             .card__foot {
-                padding-bottom: var(--content-spacing);
+                padding-bottom: $card-content-spacing;
 
-                // Pseudo classes
+               // Pseudo classes
                 &:last-child {
                     padding-bottom: 0;
                 }
@@ -197,11 +141,100 @@
                     // Nested selectors
                     #{$button} {
                         margin-bottom: 0;
-                        margin-left: calc(var(--content-spacing) / 2);
+                        margin-left: ($card-content-spacing / 2);
 
                         // Pseudo classes
                         &:first-child {
                             margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the card size modifiers should be declared
+        @if $card-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    font-size: map-get($card-font-size-sizes, $size);
+
+                    // Nested selectors
+                    .card__content {
+                        padding: map-get($card-content-spacing-sizes, $size);
+
+                       // Nested selectors
+                        .card__head,
+                        .card__body,
+                        .card__foot {
+                            padding-bottom: map-get($card-content-spacing-sizes, $size);
+
+                           // Pseudo classes
+                            &:last-child {
+                                padding-bottom: 0;
+                            }
+                        }
+
+                        .card__foot {
+                            // Nested selectors
+                            .card__buttons {
+                                // Nested selectors
+                                #{$button} {
+                                    margin-left: (map-get($card-content-spacing-sizes, $size) / 2);
+
+                                    // Pseudo classes
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Check if the card size modifiers with breakpoints should be declared
+                @if $card-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoint
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Size
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                font-size: map-get($card-font-size-sizes, $size);
+
+                                // Nested selectors
+                                .card__content {
+                                    padding: map-get($card-content-spacing-sizes, $size);
+
+                                   // Nested selectors
+                                    .card__head,
+                                    .card__body,
+                                    .card__foot {
+                                        padding-bottom: map-get($card-content-spacing-sizes, $size);
+
+                                       // Pseudo classes
+                                        &:last-child {
+                                            padding-bottom: 0;
+                                        }
+                                    }
+
+                                    .card__foot {
+                                        // Nested selectors
+                                        .card__buttons {
+                                            // Nested selectors
+                                            #{$button} {
+                                                margin-left: (map-get($card-content-spacing-sizes, $size) / 2);
+
+                                                // Pseudo classes
+                                                &:first-child {
+                                                    margin-left: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

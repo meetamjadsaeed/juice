@@ -17,61 +17,41 @@
 }
 
 .has-default-font-size {
-    font-size: var(--default-font-size) !important;
+    font-size: $default-font-size !important;
 }
 
 // Cycle through all of the sizes
 @each $size in $sizes {
     .has-#{$size}-font-size {
-        font-size: var(--default-font-size-#{$size}) !important;
+        font-size: map-get($default-font-size-sizes, $size) !important;
     }
 }
 
-// Cycle through all of the colors
-@each $color-name, $color in $colors {
+// Cycle through all of the base colors
+@each $color-name, $color-value in $base-colors {
     p {
-        // Modifiers: Colors
+        // Modifiers: Base colors
         &.is-#{$color-name} {
-            // Variables
-            --color: var(--color-#{$color-name});
-
-            // Styles
-            color: var(--color) !important;
+            color: base-color($color-name) !important;
         }
     }
 
     a {
-        // Modifiers: Colors
+        // Modifiers: Base colors
         &.is-#{$color-name}:not(.button) {
-            // Variables
-            --color: var(--color-#{$color-name});
-
-            // Styles
-            color: var(--color) !important;
+            color: base-color($color-name) !important;
 
             // Pseudo classes
             &:hover {
-                // Variables
-                --color: var(--color-#{$color-name}-darken-2);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--color);
+                color: base-color('#{$color-name}-darken-2');
             }
 
             &:hover {
-                // Variables
-                --color: var(--color-#{$color-name}-darken-4);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--color);
+                color: base-color('#{$color-name}-darken-4');
             }
 
             &:active {
-                // Variables
-                --color: var(--color-#{$color-name}-darken-6);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--color);
+                color: base-color('#{$color-name}-darken-6');
             }
         }
     }
@@ -82,54 +62,38 @@
     h4,
     h5,
     h6 {
-        // Modifiers: Colors
+        // Modifiers: Base colors
         &.is-#{$color-name} {
-            // Variables
-            --color: var(--color-#{$color-name});
-
-            // Styles
-            color: var(--color) !important;
+            color: base-color($color-name) !important;
         }
     }
 }
 
 // Cycle through all of the feedback colors
-@each $feedback-name, $color in $feedback-colors {
+@each $feedback-name, $color-value in $feedback-colors {
     p {
-        // Modifiers: Feedback colors
-        &.has-#{$feedback-name} {
-            // Variables
-            --color: var(--feedback-color-#{$feedback-name});
-
-            // Styles
-            color: var(--color) !important;
+        // Modifiers: Base colors
+        &.is-#{$feedback-name} {
+            color: feedback-color($feedback-name) !important;
         }
     }
 
     a {
         // Modifiers: Feedback colors
-        &.has-#{$feedback-name}:not(.button) {
-            // Variables
-            --color: var(--feedback-color-#{$feedback-name});
-
-            // Styles
-            color: var(--color) !important;
+        &.is-#{$feedback-name}:not(.button) {
+            color: feedback-color($feedback-name) !important;
 
             // Pseudo classes
             &:hover {
-                // Variables
-                --color: var(--feedback-color-#{$feedback-name}-darken-2);
+                color: feedback-color('#{$feedback-name}-darken-2');
+            }
 
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--color);
+            &:hover {
+                color: feedback-color('#{$feedback-name}-darken-4');
             }
 
             &:active {
-                // Variables
-                --color: var(--feedback-color-#{$feedback-name}-lighten-4);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--color);
+                color: feedback-color('#{$feedback-name}-darken-6');
             }
         }
     }
@@ -141,18 +105,14 @@
     h5,
     h6 {
         // Modifiers: Feedback colors
-        &.has-#{$feedback-name} {
-            // Variables
-            --color: var(--feedback-color-#{$feedback-name});
-
-            // Styles
-            color: var(--color) !important;
+        &.is-#{$feedback-name} {
+            color: feedback-color($feedback-name) !important;
         }
     }
 }
 
 // Cycle throuhgh all of the breakpoints
-@each $breakpoint-name, $breakpoint in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
     // Breakpoint
     @include breakpoint($breakpoint-name) {
         .is-left-aligned\@#{$breakpoint-name} {
@@ -168,13 +128,13 @@
         }
 
         .has-default-font-size\@#{$breakpoint-name} {
-            font-size: var(--default-font-size) !important;
+            font-size: $default-font-size !important;
         }
 
         // Cycle through all of the sizes
         @each $size in $sizes {
             .has-#{$size}-font-size\@#{$breakpoint-name} {
-                font-size: var(--default-font-size-#{$size}) !important;
+                font-size: map-get($default-font-size-sizes, $size) !important;
             }
         }
     }

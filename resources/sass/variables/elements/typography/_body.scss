@@ -1,0 +1,13 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> BODY
+    ========================================================================  */
+
+// Variables
+$body-font-color: font-color('default') !default;
+$body-font-family: $default-primary-typeface !default;
+$body-font-size: $default-root-font-size !default;
+$body-font-weight: $default-font-weight !default;
+$body-letter-spacing: $default-letter-spacing !default;
+$body-line-height: $default-line-height !default;

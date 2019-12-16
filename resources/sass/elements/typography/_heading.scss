@@ -7,13 +7,9 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     #{$heading} {
-        // Variables
-        --element-spacing: var(--default-element-spacing);
-
-        // Styles
         line-height: normal;
         margin: 0;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: $heading-element-spacing;
         padding: 0;
         position: relative;
     }
@@ -27,23 +23,13 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     h1 {
-        // Variables
-        --font-color: inherit;
-        --font-family: var(--secondary-typeface);
-        --font-size: 3.0em;
-        --font-variant: normal;
-        --font-weight: 400;
-        --letter-spacing: 0;
-        --text-transform: none;
-
-        // Styles
-        color: var(--font-color);
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        font-variant: var(--font-variant);
-        font-weight: var(--font-weight);
-        letter-spacing: var(--letter-spacing);
-        text-transform: var(--text-transform);
+        color: $heading-1-font-color;
+        font-family: $heading-1-font-family;
+        font-size: $heading-1-font-size;
+        font-variant: $heading-1-font-variant;
+        font-weight: $heading-1-font-weight;
+        letter-spacing: $heading-1-letter-spacing;
+        text-transform: $heading-1-text-transform;
     }
 }
 
@@ -55,23 +41,13 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     h2 {
-        // Variables
-        --font-color: inherit;
-        --font-family: var(--secondary-typeface);
-        --font-size: 2.6em;
-        --font-variant: normal;
-        --font-weight: 400;
-        --letter-spacing: 0;
-        --text-transform: none;
-
-        // Styles
-        color: var(--font-color);
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        font-variant: var(--font-variant);
-        font-weight: var(--font-weight);
-        letter-spacing: var(--letter-spacing);
-        text-transform: var(--text-transform);
+        color: $heading-2-font-color;
+        font-family: $heading-2-font-family;
+        font-size: $heading-2-font-size;
+        font-variant: $heading-2-font-variant;
+        font-weight: $heading-2-font-weight;
+        letter-spacing: $heading-2-letter-spacing;
+        text-transform: $heading-2-text-transform;
     }
 }
 
@@ -83,23 +59,13 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     h3 {
-        // Variables
-        --font-color: inherit;
-        --font-family: var(--secondary-typeface);
-        --font-size: 2.2em;
-        --font-variant: normal;
-        --font-weight: 400;
-        --letter-spacing: 0;
-        --text-transform: none;
-
-        // Styles
-        color: var(--font-color);
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        font-variant: var(--font-variant);
-        font-weight: var(--font-weight);
-        letter-spacing: var(--letter-spacing);
-        text-transform: var(--text-transform);
+        color: $heading-3-font-color;
+        font-family: $heading-3-font-family;
+        font-size: $heading-3-font-size;
+        font-variant: $heading-3-font-variant;
+        font-weight: $heading-3-font-weight;
+        letter-spacing: $heading-3-letter-spacing;
+        text-transform: $heading-3-text-transform;
     }
 }
 
@@ -111,23 +77,13 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     h4 {
-        // Variables
-        --font-color: inherit;
-        --font-family: var(--secondary-typeface);
-        --font-size: 1.8em;
-        --font-variant: normal;
-        --font-weight: 400;
-        --letter-spacing: 0;
-        --text-transform: none;
-
-        // Styles
-        color: var(--font-color);
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        font-variant: var(--font-variant);
-        font-weight: var(--font-weight);
-        letter-spacing: var(--letter-spacing);
-        text-transform: var(--text-transform);
+        color: $heading-4-font-color;
+        font-family: $heading-4-font-family;
+        font-size: $heading-4-font-size;
+        font-variant: $heading-4-font-variant;
+        font-weight: $heading-4-font-weight;
+        letter-spacing: $heading-4-letter-spacing;
+        text-transform: $heading-4-text-transform;
     }
 }
 
@@ -139,23 +95,13 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     h5 {
-        // Variables
-        --font-color: inherit;
-        --font-family: var(--secondary-typeface);
-        --font-size: 1.6em;
-        --font-variant: normal;
-        --font-weight: 400;
-        --letter-spacing: 0;
-        --text-transform: none;
-
-        // Styles
-        color: var(--font-color);
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        font-variant: var(--font-variant);
-        font-weight: var(--font-weight);
-        letter-spacing: var(--letter-spacing);
-        text-transform: var(--text-transform);
+        color: $heading-5-font-color;
+        font-family: $heading-5-font-family;
+        font-size: $heading-5-font-size;
+        font-variant: $heading-5-font-variant;
+        font-weight: $heading-5-font-weight;
+        letter-spacing: $heading-5-letter-spacing;
+        text-transform: $heading-5-text-transform;
     }
 }
 
@@ -167,22 +113,12 @@
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     h6 {
-        // Variables
-        --font-color: inherit;
-        --font-family: var(--secondary-typeface);
-        --font-size: 1.4em;
-        --font-variant: normal;
-        --font-weight: 400;
-        --letter-spacing: 0;
-        --text-transform: none;
-
-        // Styles
-        color: var(--font-color);
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        font-variant: var(--font-variant);
-        font-weight: var(--font-weight);
-        letter-spacing: var(--letter-spacing);
-        text-transform: var(--text-transform);
+        color: $heading-6-font-color;
+        font-family: $heading-6-font-family;
+        font-size: $heading-6-font-size;
+        font-variant: $heading-6-font-variant;
+        font-weight: $heading-6-font-weight;
+        letter-spacing: $heading-6-letter-spacing;
+        text-transform: $heading-6-text-transform;
     }
 }

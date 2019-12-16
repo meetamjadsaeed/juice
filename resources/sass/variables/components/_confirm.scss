@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> CONFIRM
+    ========================================================================  */
+
+// Variables
+$confirm-animation-duration: 200ms !default;
+$confirm-body-background-color: base-color('white') !default;
+$confirm-body-border-color: base-color('white-darken-3') !default;
+$confirm-body-font-color: font-color('default') !default;
+$confirm-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$confirm-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$confirm-border-radius-top-left: $default-border-radius-top-left !default;
+$confirm-border-radius-top-right: $default-border-radius-top-right !default;
+$confirm-border-style: $default-border-style !default;
+$confirm-border-width-bottom: $default-border-width-bottom !default;
+$confirm-border-width-divider: $default-border-width-divider !default;
+$confirm-border-width-left: $default-border-width-left !default;
+$confirm-border-width-right: $default-border-width-right !default;
+$confirm-border-width-top: $default-border-width-top !default;
+$confirm-box-shadow: 0 0 30px -5px hsla(0, 0%, 0%, 1) !default;
+$confirm-content-spacing: $default-content-spacing !default;
+$confirm-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$confirm-font-size: $default-font-size !default;
+$confirm-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$confirm-foot-background-color: base-color('white') !default;
+$confirm-foot-border-color: base-color('white-darken-3') !default;
+$confirm-foot-font-color: font-color('default') !default;
+$confirm-head-background-color: base-color('primary') !default;
+$confirm-head-border-color: base-color('primary-darken-3') !default;
+$confirm-head-font-color: base-color('primary-inverted-text') !default;
+$confirm-link-color: $default-link-color !default;
+$confirm-link-color-hover: $default-link-color-hover !default;
+$confirm-link-color-focus: $default-link-color-focus !default;
+$confirm-link-color-active: $default-link-color-active !default;
+$confirm-max-width: 600px !default;

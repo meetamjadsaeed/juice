@@ -9,25 +9,22 @@
     .has-animation {
         // Nested selectors
         &.pulse {
-            // Variables
-            --animation-delay: var(--default-animation-pulse-delay);
-            --animation-duration: var(--default-animation-pulse-duration);
-            --animation-easing: var(--default-animation-pulse-easing);
-            --animation-iteration-count: var(--default-animation-pulse-iteration-count);
-
-            // Keyframes
             @keyframes pulse {
                 from, to {
                     transform: scale3d(1, 1, 1);
                 }
 
-            	50% {
+                50% {
                     transform: scale3d(1.1, 1.1, 1.1);
                 }
             }
 
-            // Styles
+            animation-delay: $animation-attractor-pulse-delay;
+            animation-duration: $animation-attractor-pulse-duration;
+            animation-iteration-count: $animation-attractor-pulse-iteration-count;
             animation-name: pulse;
+            animation-timing-function: $animation-attractor-pulse-easing;
+
         }
     }
 }

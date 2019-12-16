@@ -24,7 +24,7 @@
     // Set the plugin defaults
     const defaults = {
         action: 'click',
-        
+
         callbackInitializeBefore: () => {
             console.log('Custom Password: callbackInitializeBefore');
         },

@@ -7,42 +7,55 @@
 // Check if the elements with hero should be imported
 @if $import-elements and $import-element-hero {
     .hero {
-        // Variables
-        --background-color: var(--color-charcoal);
-        --background-position: center;
-        --background-repeat: no-repeat;
-        --background-size: cover;
-        --content-spacing: calc(var(--default-content-spacing) * 2);
-        --element-spacing: var(--default-element-spacing);
-        --font-color: var(--color-charcoal-inverted-text);
-        --font-size: var(--default-font-size);
-
-        // Styles
-        background-color: var(--background-color);
-        background-position: var(--background-position);
-        background-repeat: var(--background-repeat);
-        background-size: var(--background-size);
-        color: var(--font-color);
+        background-color: $hero-background-color;
+        background-position: $hero-background-position;
+        background-repeat: $hero-background-repeat;
+        background-size: $hero-background-size;
+        color: $hero-font-color;
         display: flex;
         flex-direction: column;
-        font-size: var(--font-size);
+        font-size: $hero-font-size;
         justify-content: center;
-        padding: var(--content-spacing);
-        margin-bottom: var(--element-spacing);
+        padding: $hero-content-spacing;
+        margin-bottom: $hero-element-spacing;
+
+        // Nested selectors
+        .hero__head,
+        .hero__foot {
+            flex: 0 0 auto;
+        }
+
+        .hero__body {
+            align-items: center;
+            display: flex;
+            flex: 1 0 auto;
+        }
+
+        a:not(.button) {
+            color: $hero-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $hero-link-color-hover;
+            }
+
+            &:focus {
+                color: $hero-link-color-focus;
+            }
+
+            &:active {
+                color: $hero-link-color-active;
+            }
+        }
 
         // Check if the hero color modifiers should be declared
         @if $hero-color-modifiers {
-            // Cycle through all of the colors
-            @each $color-name, $color in $colors {
-                // Modifiers: Colors
+            // Cycle through all of the base colors
+            @each $color-name, $color in $base-colors {
+                // Modifiers: Base colors
                 &.is-#{$color-name} {
-                    // Variables
-                    --background-color: var(--color-#{$color-name});
-                    --font-color: var(--color-#{$color-name}-inverted-text);
-
-                    // Styles
-                    background-color: var(--background-color);
-                    color: var(--font-color);
+                    background-color: base-color($color-name);
+                    color: base-color('#{$color-name}-inverted-text');
                 }
             }
         }
@@ -50,16 +63,11 @@
         // Check if the hero feedback modifiers should be declared
         @if $hero-feedback-modifiers {
             // Cycle through all of the feedback colors
-            @each $feedback-name, $color in $feedback-colors {
+            @each $feedback-name, $color-value in $feedback-colors {
                 // Modifiers: Feedback colors
                 &.has-#{$feedback-name} {
-                    // Variables
-                    --background-color: var(--feedback-color-#{$feedback-name});
-                    --font-color: var(--feedback-color-#{$feedback-name}-inverted-text);
-
-                    // Styles
-                    background-color: var(--background-color);
-                    color: var(--font-color);
+                    background-color: feedback-color($feedback-name);
+                    color: feedback-color('#{$feedback-name}-inverted-text');
                 }
             }
         }
@@ -68,22 +76,18 @@
         @if $hero-viewport-modifiers {
             // Modifiers
             &.hero--25vh {
-                // Styles
                 min-height: 25vh;
             }
 
             &.hero--50vh {
-                // Styles
                 min-height: 50vh;
             }
 
             &.hero--75vh {
-                // Styles
                 min-height: 75vh;
             }
 
             &.hero--100vh {
-                // Styles
                 min-height: 100vh;
             }
         }
@@ -91,55 +95,7 @@
         // Check if the hero parallax modifier should be declared
         @if $hero-parallax-modifier {
             &.hero--parallax {
-                // Styles
                 background-attachment: fixed;
-            }
-        }
-
-        // Nested selectors
-        .hero__head,
-        .hero__foot {
-            // Styles
-            flex: 0 0 auto;
-        }
-
-        .hero__body {
-            // Styles
-            align-items: center;
-            display: flex;
-            flex: 1 0 auto;
-        }
-
-        a {
-            // Variables
-            --font-color: var(--color-white);
-
-            // Styles
-            color: var(--font-color);
-
-            // Pseudo classes
-            &:hover {
-                // Variables
-                --font-color: var(--color-white-darken-2);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
-            }
-
-            &:focus {
-                // Variables
-                --font-color: var(--color-white-darken-4);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
-            }
-
-            &:active {
-                // Variables
-                --font-color: var(--color-white-darken-6);
-
-                // Styles (IE fallback for postcss-css-variables)
-                color: var(--font-color);
             }
         }
     }

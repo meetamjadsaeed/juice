@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> ALERT
+    ========================================================================  */
+
+// Variables
+$alert-animation-duration: 200ms !default;
+$alert-body-background-color: base-color('white') !default;
+$alert-body-border-color: base-color('white-darken-3') !default;
+$alert-body-font-color: font-color('default') !default;
+$alert-border-radius-bottom-left: $default-border-radius-bottom-left !default;
+$alert-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$alert-border-radius-top-left: $default-border-radius-top-left !default;
+$alert-border-radius-top-right: $default-border-radius-top-right !default;
+$alert-border-style: $default-border-style !default;
+$alert-border-width-bottom: $default-border-width-bottom !default;
+$alert-border-width-divider: $default-border-width-divider !default;
+$alert-border-width-left: $default-border-width-left !default;
+$alert-border-width-right: $default-border-width-right !default;
+$alert-border-width-top: $default-border-width-top !default;
+$alert-box-shadow: 0 0 30px -5px hsla(0, 0%, 0%, 1) !default;
+$alert-content-spacing: $default-content-spacing !default;
+$alert-content-spacing-sizes: (
+    'small': map-get($default-content-spacing-sizes, 'small'),
+    'large': map-get($default-content-spacing-sizes, 'large'),
+    'huge': map-get($default-content-spacing-sizes, 'huge')
+) !default;
+$alert-font-size: $default-font-size !default;
+$alert-font-size-sizes: (
+    'small': map-get($default-font-size-sizes, 'small'),
+    'large': map-get($default-font-size-sizes, 'large'),
+    'huge': map-get($default-font-size-sizes, 'huge')
+) !default;
+$alert-foot-background-color: base-color('white') !default;
+$alert-foot-border-color: base-color('white-darken-3') !default;
+$alert-foot-font-color: font-color('default') !default;
+$alert-head-background-color: base-color('primary') !default;
+$alert-head-border-color: base-color('primary-darken-3') !default;
+$alert-head-font-color: base-color('primary-inverted-text') !default;
+$alert-link-color: $default-link-color !default;
+$alert-link-color-hover: $default-link-color-hover !default;
+$alert-link-color-focus: $default-link-color-focus !default;
+$alert-link-color-active: $default-link-color-active !default;
+$alert-max-width: 600px !default;

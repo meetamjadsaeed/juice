@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> RADIO
+    ========================================================================  */
+
+// Variables
+$custom-radio-accessibility-focus-width: $default-accessibility-focus-width !default;
+$custom-radio-accessibility-focus-color: $default-accessibility-focus-color !default;
+$custom-radio-background-color: base-color('white') !default;
+$custom-radio-border-color: base-color('white-darken-6') !default;
+$custom-radio-border-color-hover: base-color('white-darken-9') !default;
+$custom-radio-border-width-bottom: $default-border-width-bottom !default;
+$custom-radio-border-width-left: $default-border-width-left !default;
+$custom-radio-border-width-right: $default-border-width-right !default;
+$custom-radio-border-width-top: $default-border-width-top !default;
+$custom-radio-checked-color: base-color('primary') !default;
+$custom-radio-content-spacing: ($default-content-spacing / 2) !default;
+$custom-radio-content-spacing-sizes: (
+    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
+    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
+    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
+) !default;
+$custom-radio-element-spacing: $default-element-spacing !default;
+$custom-radio-height: ($default-element-height / 2.5) !default;
+$custom-radio-height-sizes: (
+    'small': (map-get($default-element-height-sizes, 'small') / 2.5),
+    'large': (map-get($default-element-height-sizes, 'large') / 2.5),
+    'huge': (map-get($default-element-height-sizes, 'huge') / 2.5)
+) !default;
