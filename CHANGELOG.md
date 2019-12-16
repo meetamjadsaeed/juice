@@ -18,6 +18,17 @@
 -----
 
 
+# v0.27.0-beta
+
+### Updated
+- Updated file and directory structure
+    - Added utilities directory
+    - Added functions, mixins and shortcodes to utilities (previously initialize)
+
+
+-----
+
+
 # v0.26.0-beta
 
 ### New
