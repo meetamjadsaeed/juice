@@ -73,8 +73,7 @@
 
         .notice__text {
             justify-content: flex-start;
-            flex-basis: 100%;
-            width: 100%;
+            flex-grow: 1;
         }
 
         .notice__action {

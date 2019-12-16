@@ -38,8 +38,7 @@
 
             // Modifiers
             &.custom-fieldset__spotlight {
-                flex-basis: 100%;
-                width: 100%;
+                flex-grow: 1;
             }
         }
 
