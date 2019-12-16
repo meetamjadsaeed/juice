@@ -1,11 +1,9 @@
 @charset 'utf-8';
 
 /*  ========================================================================
-    JUICE -> INITIALIZE -> SHORTCODES -> BUTTONS
+    JUICE -> UTILITIES -> MIXINS
     ========================================================================  */
 
-$button: '
-    button,
-    .button,
-    a.button
-' !default;
+// Import
+@import 'content';
+@import 'non-content';
