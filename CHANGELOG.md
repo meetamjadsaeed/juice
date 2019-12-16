@@ -18,6 +18,98 @@
 -----
 
 
+# v0.26.0-beta
+
+### New
+- Added script polyfills
+    - Added Array.prototype.includes
+    - Added Element.prototype.append
+    - Added Element.prototype.classList
+    - Added Element.prototype.closest
+    - Added Element.prototype.dataset
+    - Added Element.prototype.matches
+    - Added Element.prototype.remove
+    - Added NodeList.prototype.forEach
+    - Added Object.assign
+    - Added String.prototype.includes
+    - Added String.prototype.startsWith
+
+### Update
+- Updated modal component
+    - Removed color option (use classes in modal card markup)
+    - Removed feedback option (use classes in modal card markup)
+    - Removed size option (use classes in modal card markup)
+- Updated file and directory structure
+    - Added initialize directory
+    - Added function directory to initialize directory
+        - Added maps.scss file to function directory
+        - Added shopify.scss file to function directory
+        - Removed functions.scss from utilities directory
+    - Added mixins directory to initialize directory
+        - Added content.scss file to mixins directory
+        - Added non-content.scss file to mixins directory
+        - Removed mixins.scss from utilities directory
+    - Added maps directory to initialize directory
+        - Added base-colors.scss file to maps directory
+        - Added breakpoints.scss file to maps directory
+        - Added color-variations.scss file to maps directory
+        - Added easings.scss file to maps directory
+        - Added feedback-colors.scss file to maps directory
+        - Added font-colors.scss file to maps directory
+        - Added list-style-types.scss file to maps directory
+        - Added sizes.scss file to maps directory
+        - Added stack-indexes.scss file to maps directory
+        - Removed maps.scss from /variables/sass
+    - Added shortcodes directory to initialize directory
+        - Added buttons.scss file to shortcodes directory
+        - Added custom-fieldset-elements.scss file to shortcodes directory
+        - Added headings.scss file to shortcodes directory
+        - Removed shortcodes.scss from /variables/sass
+    - Added palettes directory to initialize directory
+        - Added base-color.scss file to palettes directory
+        - Added feedback-color.scss file to palettes directory
+        - Added font-color.scss file to palettes directory
+    - Added variables directory
+        - Added animation SASS variables
+        - Added component SASS variables
+        - Added element SASS variables
+        - Added framework SASS variables
+        - Added global SASS variables
+    - Removed utilities directory
+    - Removed sass directory from variables directory
+- Updated SASS settings
+    - Added $button-group-fullwidth-modifier
+    - Updated $*-size-modifier-breakpoints to $*-size-modifiers-with-breakpoints
+    - Removed $image-size-modifiers
+    - Removed $image-size-modifier-breakpoints
+- Updated framework
+    - Added SASS variables
+    - Removed CSS custom properties
+- Updated elements
+    - Added SASS variables
+    - Removed CSS custom properties
+- Updated components
+    - Added SASS variables
+    - Removed CSS custom properties
+- Updated animations
+    - Added SASS variables
+    - Removed CSS custom properties
+- Updated demo pages
+- Updated build directory
+
+### Release Notes
+This update reverses a previous update whereby SASS variables were converted
+to CSS custom properties to lighten the file. The reason for this is more
+for legacy browsers and custom theming. After use on various production sites
+it was more hassle than it was worth to make it work on IE (requirement for
+many clients). The other benefit is having a centralized variable
+file/directory structure that is more practicle for customizing the framework.
+
+
+
+-----
+
+
 # v0.25.0-beta
 
 ### Updated
