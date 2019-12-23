@@ -14,6 +14,23 @@
     - Add table--hover modifiers
     - Add tfoot styling
 
+-----
+
+### Updated
+- Updated form input element
+    - Updated input checkbox/radio padding
+- Updated gulpfile
+    - Added juice.js to resource scripts
+- Updated build directory
+
+### Fixed
+- Fixed card component
+    - Fixed card media border radius property values from custom properties to sass variables
+- Fixed helpers
+    - Updated has-top-element-spacing to has-default-top-element-spacing
+    - Fixed has-no-top-element-spacing margins
+    - Fixed has-default-top-element-spacing
+
 
 -----
 
