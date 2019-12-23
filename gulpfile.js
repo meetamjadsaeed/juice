@@ -99,6 +99,7 @@ const resource = {
         'resources/scripts/polyfills/*.js',
         'resources/scripts/components/*.js',
         'resources/scripts/plugins/*.js',
+        'resources/scripts/juice.js',
     ]
 };
 

@@ -13,11 +13,11 @@
 }
 
 .has-no-top-element-spacing {
-    margin-bottom: 0 !important;
+    margin-top: 0 !important;
 }
 
-.has-top-element-spacing {
-    margin-bottom: $default-element-spacing !important;
+.has-default-top-element-spacing {
+    margin-top: $default-element-spacing !important;
 }
 
 .has-no-last-child-element-spacing {
@@ -53,8 +53,8 @@
             margin-bottom: 0 !important;
         }
 
-        .has-top-element-spacing\@#{$breakpoint-name} {
-            margin-bottom: $default-element-spacing !important;
+        .has-default-top-element-spacing\@#{$breakpoint-name} {
+            margin-top: $default-element-spacing !important;
         }
 
         .has-no-last-child-element-spacing\@#{$breakpoint-name} {

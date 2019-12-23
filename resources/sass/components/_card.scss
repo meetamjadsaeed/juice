@@ -46,8 +46,8 @@
         }
 
         .card__media {
-            border-top-left-radius: var(--border-radius-top-left);
-            border-top-right-radius: var(--border-radius-top-right);
+            border-top-left-radius: $default-border-radius-top-left;
+            border-top-right-radius: $default-border-radius-top-right;
             overflow: hidden;
             padding: 0;
 
