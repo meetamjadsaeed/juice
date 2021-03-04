@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> CUSTOM -> CHECKBOX
-    ========================================================================  */
-
 // Check if the elements with custom checkbox should be imported
 @if $import-elements and $import-element-custom-checkbox {
     .custom-checkbox {
@@ -21,14 +17,55 @@
             }
         }
 
+        // Check if the custom checkbox size modifiers should be declared
+        @if $custom-checkbox-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    div {
+                        // Pseudo elements
+                        &::before {
+                            height: element-height(map($custom-checkbox-element-height-multipliers, $size));
+                            margin: 0 content-spacing(map($custom-checkbox-content-spacing-multipliers, $size)) 0 0;
+                            width: element-height(map($custom-checkbox-element-height-multipliers, $size));
+                        }
+                    }
+                }
+
+                // Check if the custom checkbox size modifiers with breakpoints should be declared
+                @if $custom-checkbox-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                div {
+                                    // Pseudo elements
+                                    &::before {
+                                        height: element-height(map($custom-checkbox-element-height-multipliers, $size));
+                                        margin: 0 content-spacing(map($custom-checkbox-content-spacing-multipliers, $size)) 0 0;
+                                        width: element-height(map($custom-checkbox-element-height-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         // Nested selectors
         input[type=checkbox] {
             clip: rect(0, 0, 0, 0);
             height: 0;
+            margin: 0;
             opacity: 0;
             padding: 0;
             position: absolute;
-            margin: 0;
             width: 0;
 
             // Pseudo classes
@@ -52,15 +89,16 @@
             &:checked:focus + div {
                 // Pseudo elements
                 &::before {
-                    box-shadow: inset 0 0 0 2px $custom-checkbox-background-color,
-                                0 0 $custom-checkbox-accessibility-focus-width $custom-checkbox-accessibility-focus-color;
+                    box-shadow:
+                        inset 0 0 0 2px $custom-checkbox-background-color,
+                        0 0 $custom-checkbox-accessibility-focus-width $custom-checkbox-accessibility-focus-color;
                 }
             }
         }
 
         div {
-            display: flex;
             align-items: center;
+            display: flex;
 
             // Pseudo elements
             &::before {
@@ -72,62 +110,9 @@
                 border-top-width: $custom-checkbox-border-width-top;
                 content: '';
                 display: block;
-                height: $custom-checkbox-height;
-                margin: 0 $custom-checkbox-content-spacing;
-                max-height: $custom-checkbox-height;
-                min-height: $custom-checkbox-height;
-                max-width: $custom-checkbox-height;
-                min-width: $custom-checkbox-height;
-                width: $custom-checkbox-height;
-            }
-        }
-
-        // Check if the custom checkbox size modifiers should be declared
-        @if $custom-checkbox-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    // Nested selectors
-                    div {
-                        // Pseudo elements
-                        &::before {
-                            height: map-get($custom-checkbox-height-sizes, $size);
-                            margin-right: map-get($custom-checkbox-content-spacing-sizes, $size);
-                            max-height: map-get($custom-checkbox-height-sizes, $size);
-                            min-height: map-get($custom-checkbox-height-sizes, $size);
-                            max-width: map-get($custom-checkbox-height-sizes, $size);
-                            min-width: map-get($custom-checkbox-height-sizes, $size);
-                            width: map-get($custom-checkbox-height-sizes, $size);
-                        }
-                    }
-                }
-
-                // Check if the button size modifiers with breakpoints should be declared
-                @if $button-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                // Nested selectors
-                                div {
-                                    // Pseudo elements
-                                    &::before {
-                                        height: map-get($custom-checkbox-height-sizes, $size);
-                                        margin-right: map-get($custom-checkbox-content-spacing-sizes, $size);
-                                        max-height: map-get($custom-checkbox-height-sizes, $size);
-                                        min-height: map-get($custom-checkbox-height-sizes, $size);
-                                        max-width: map-get($custom-checkbox-height-sizes, $size);
-                                        min-width: map-get($custom-checkbox-height-sizes, $size);
-                                        width: map-get($custom-checkbox-height-sizes, $size);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                height: element-height(map($custom-checkbox-element-height-multipliers, 'medium'));
+                margin: 0 content-spacing(map($custom-checkbox-content-spacing-multipliers, 'medium')) 0 0;
+                width: element-height(map($custom-checkbox-element-height-multipliers, 'medium'));
             }
         }
     }

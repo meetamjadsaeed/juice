@@ -1,0 +1,38 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT DOWN
+    ========================================================================  */
+
+// Check if the animations with bounce out down should be imported
+@if $import-animations and $import-animation-bounce-out-down {
+    .has-animation {
+        // Nested selectors
+        &.bounce-out-down {
+            @keyframes bounce-out-down {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                30% {
+                    transform: translate3d(0, (0 + ($animation-bounce-out-distance * 1.5 / 100)), 0);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: translate3d(0, (0 - ($animation-bounce-out-distance * 2.5 / 100)), 0);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: translate3d(0, (0 + $animation-bounce-out-distance), 0);
+                }
+            }
+
+            animation-delay: $animation-bounce-out-delay;
+            animation-duration: $animation-bounce-out-duration;
+            animation-name: bounce-out-down;
+            animation-timing-function: $animation-bounce-out-easing;
+        }
+    }
+}

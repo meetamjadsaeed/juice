@@ -1,0 +1,15 @@
+extends: stylelint-config-sass-guidelines
+plugins:
+    stylelint-selector-bem-pattern
+rules:
+    color-no-invalid-hex: true
+    indentation: 4
+    max-nesting-depth: null
+    plugin/selector-bem-pattern:
+        componentName: w+
+        componentSelectors:
+            initial: ^\\.{componentName}(?:-[a-z]+)?$
+            combined: ^\\.combined-{componentName}-[a-z]+$
+            utilitySelectors: ^\\.util-[a-z]+$
+    selector-class-pattern: null
+    selector-max-compound-selectors: null

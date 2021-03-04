@@ -1,25 +1,12 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> UTILITIES -> FUNCTIONS -> SHOPIFY
-    ========================================================================  */
-
 /**
- * Set the shopify liquid setting string
+ * Set a shopify liquid setting string.
+ *
  * @param  {string}  $setting  The shopify setting.
  * @return {string}            The shopify liquid setting string.
  */
 @function shopify($setting) {
     // Return the shopify liquid setting string
     @return unquote('"{{ settings.' + $setting + ' }}"');
-}
-
-/**
- * Set the shopify asset liquid url string.
- * @param  {string}  $file  The asset file name.
- * @return {string}         The shopify asset liquid url string.
- */
-@function shopify_asset($file) {
-    // Return the shopify asset liquid url string
-    @return unquote('url(\'"{{ "' + $file + '" | asset_url }}"\') ');
 }

@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> CARD
+    ========================================================================  */
+
+// Maps
+$card-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+// Variables
+$card-animation-duration: 300ms !default;
+$card-background-color: base-color('white') !default;
+$card-border-color: base-color('white-darken-3') !default;
+$card-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$card-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$card-border-radius-top-left: $global-border-radius-top-left !default;
+$card-border-radius-top-right: $global-border-radius-top-right !default;
+$card-border-style: $global-border-style !default;
+$card-border-width-bottom: $global-border-width-bottom !default;
+$card-border-width-left: $global-border-width-left !default;
+$card-border-width-right: $global-border-width-right !default;
+$card-border-width-top: $global-border-width-top !default;
+$card-box-shadow: $global-box-shadow !default;
+$card-font-color: font-color() !default;
+$card-link-color: $global-link-color !default;
+$card-link-color-hover: $global-link-color-hover !default;
+$card-link-color-focus: $global-link-color-focus !default;
+$card-link-color-active: $global-link-color-active !default;

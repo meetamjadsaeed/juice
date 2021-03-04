@@ -1,37 +1,33 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> SELECT
-    ========================================================================  */
-
 // Check if the elements with select should be imported
 @if $import-elements and $import-element-select {
     select {
+        -webkit-appearance: none;
         appearance: none;
         background-color: $select-background-color;
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
-        background-position: calc(100% - #{$select-content-spacing}) 50%;
+        background-position: calc(100% - #{content-spacing(map($select-content-spacing-multipliers, 'medium'))}) 50%;
         background-repeat: no-repeat;
-        background-size: $select-font-size;
+        background-size: content-spacing(map($select-content-spacing-multipliers, 'medium'));
         border: 0 $select-border-style $select-border-color;
         border-bottom-left-radius: $select-border-radius-bottom-left;
         border-bottom-right-radius: $select-border-radius-bottom-right;
-        border-top-left-radius: $select-border-radius-top-left;
-        border-top-right-radius: $select-border-radius-top-right;
         border-bottom-width: $select-border-width-bottom;
         border-left-width: $select-border-width-left;
         border-right-width: $select-border-width-right;
+        border-top-left-radius: $select-border-radius-top-left;
+        border-top-right-radius: $select-border-radius-top-right;
         border-top-width: $select-border-width-top;
         color: $select-font-color;
         cursor: pointer;
         display: flex;
         font-family: $select-font-family;
-        font-size: $select-font-size;
-        height: $select-height;
-        margin: 0;
-        margin-bottom: $select-element-spacing;
-        padding: 0 $select-content-spacing;
+        font-size: map($select-font-sizes, 'medium');
+        height: element-height(map($select-element-height-multipliers, 'medium'));
+        margin-bottom: element-spacing();
         outline: none;
+        padding: 0 content-spacing(map($select-content-spacing-multipliers, 'medium') * 3) 0 content-spacing(map($select-content-spacing-multipliers, 'medium'));
         width: 100%;
         z-index: stack-index('default');
 
@@ -70,7 +66,7 @@
 
             // Nested selectors
             option {
-                padding: $select-content-spacing;
+                padding: content-spacing(map($select-content-spacing-multipliers, 'medium'));
             }
         }
 
@@ -80,15 +76,17 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($select-font-size-sizes, $size);
-                    height: map-get($select-height-sizes, $size);
-                    padding: 0 map-get($select-content-spacing-sizes, $size);
+                    background-position: calc(100% - #{content-spacing(map($select-content-spacing-multipliers, $size))}) 50%;
+                    background-size: content-spacing(map($select-content-spacing-multipliers, $size));
+                    font-size: map($select-font-sizes, $size);
+                    height: element-height(map($select-element-height-multipliers, $size));
+                    padding: 0 content-spacing(map($select-content-spacing-multipliers, $size) * 3) 0 content-spacing(map($select-content-spacing-multipliers, $size));
 
                     // Modifiers: Props
                     &[multiple] {
                         // Nested selectors
                         option {
-                            padding: map-get($select-content-spacing-sizes, $size);
+                            padding: content-spacing(map($select-content-spacing-multipliers, $size));
                         }
                     }
                 }
@@ -97,19 +95,21 @@
                 @if $select-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($select-font-size-sizes, $size);
-                                height: map-get($select-height-sizes, $size);
-                                padding: 0 map-get($select-content-spacing-sizes, $size);
+                                background-position: calc(100% - #{content-spacing(map($select-content-spacing-multipliers, $size))}) 50%;
+                                background-size: content-spacing(map($select-content-spacing-multipliers, $size));
+                                font-size: map($select-font-sizes, $size);
+                                height: element-height(map($select-element-height-multipliers, $size));
+                                padding: 0 content-spacing(map($select-content-spacing-multipliers, $size) * 3) 0 content-spacing(map($select-content-spacing-multipliers, $size));
 
                                 // Modifiers: Props
                                 &[multiple] {
                                     // Nested selectors
                                     option {
-                                        padding: map-get($select-content-spacing-sizes, $size);
+                                        padding: content-spacing(map($select-content-spacing-multipliers, $size));
                                     }
                                 }
                             }
@@ -131,11 +131,6 @@
                     &:focus,
                     &:active {
                         box-shadow: 0 0 0 $input-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
-                    }
-
-                    // Modifiers: Props
-                    &[disabled] {
-                        border-color: feedback-color($feedback-name) !important;
                     }
                 }
             }

@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> VAR
+    ========================================================================  */
+
+// Check if the elements with var should be imported
+@if $import-elements and $import-element-var {
+    var {
+        background-color: $var-background-color;
+        border: 0 $var-border-style $var-border-color;
+        border-bottom-left-radius: $var-border-radius-bottom-left;
+        border-bottom-right-radius: $var-border-radius-bottom-right;
+        border-bottom-width: $var-border-width-bottom;
+        border-left-width: $var-border-width-left;
+        border-right-width: $var-border-width-right;
+        border-top-left-radius: $var-border-radius-top-left;
+        border-top-right-radius: $var-border-radius-top-right;
+        border-top-width: $var-border-width-top;
+        color: $var-font-color;
+        font-family: $var-font-family;
+        font-style: italic;
+        padding: $var-content-spacing;
+    }
+}

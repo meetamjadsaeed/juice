@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT LEFT
-    ========================================================================  */
-
 // Check if the animations with bounce out left should be imported
 @if $import-animations and $import-animation-bounce-out-left {
     .has-animation {
@@ -19,17 +15,17 @@
                 }
 
                 30% {
-                    transform: translate3d((0px - ($animation-bounce-out-distance * 1.5 / 100)), 0, 0);
+                    transform: translate3d((0 - ($animation-bounce-out-distance * 1.5 / 100)), 0, 0);
                 }
 
                 50% {
                     opacity: 1;
-                    transform: translate3d((0px + ($animation-bounce-out-distance * 2.5 / 100)), 0, 0);
+                    transform: translate3d((0 + ($animation-bounce-out-distance * 2.5 / 100)), 0, 0);
                 }
 
                 to {
                     opacity: 0;
-                    transform: translate3d((0px - $animation-bounce-out-distance), 0, 0);
+                    transform: translate3d((0 - $animation-bounce-out-distance), 0, 0);
                 }
             }
 

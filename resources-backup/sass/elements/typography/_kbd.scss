@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> KBD
+    ========================================================================  */
+
+// Check if the elements with kbd should be imported
+@if $import-elements and $import-element-kbd {
+    kbd {
+        background-color: $kbd-background-color;
+        border: 0 $kbd-border-style $kbd-border-color;
+        border-bottom-left-radius: $kbd-border-radius-bottom-left;
+        border-bottom-right-radius: $kbd-border-radius-bottom-right;
+        border-bottom-width: $kbd-border-width-bottom;
+        border-left-width: $kbd-border-width-left;
+        border-right-width: $kbd-border-width-right;
+        border-top-left-radius: $kbd-border-radius-top-left;
+        border-top-right-radius: $kbd-border-radius-top-right;
+        border-top-width: $kbd-border-width-top;
+        color: $kbd-font-color;
+        font-family: $kbd-font-family;
+        padding: $kbd-content-spacing;
+    }
+}

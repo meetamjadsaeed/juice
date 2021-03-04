@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM OUT RIGHT
-    ========================================================================  */
-
 // Check if the animations with zoom out right should be imported
 @if $import-animations and $import-animation-zoom-out-right {
     .has-animation {
@@ -12,14 +8,16 @@
             @keyframes zoom-out-right {
                 from {
                     opacity: 1;
-                    transform: translate3d(0, 0, 0)
-                               scale3d(1, 1, 1);
+                    transform:
+                        translate3d(0, 0, 0)
+                        scale3d(1, 1, 1);
                 }
 
                 to {
                     opacity: 0;
-                    transform: translate3d($animation-zoom-out-distance, 0, 0)
-                               scale3d($animation-zoom-out-scale, $animation-zoom-out-scale, $animation-zoom-out-scale);
+                    transform:
+                        translate3d($animation-zoom-out-distance, 0, 0)
+                        scale3d($animation-zoom-out-scale, $animation-zoom-out-scale, $animation-zoom-out-scale);
                 }
             }
 

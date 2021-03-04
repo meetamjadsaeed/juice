@@ -1,12 +1,21 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> FORM -> TEXTAREA
-    ========================================================================  */
+// Textarea maps
+$textarea-content-spacing-multipliers: (
+    'small': 0.25,
+    'medium': 0.5,
+    'large': 0.75
+) !default;
 
-// Variables
-$textarea-accessibility-focus-width: $default-accessibility-focus-width !default;
-$textarea-accessibility-focus-color: $default-accessibility-focus-color !default;
+$textarea-font-sizes: (
+    'small': font-size('small'),
+    'medium': font-size(),
+    'large': font-size('large')
+) !default;
+
+// Textarea variables
+$textarea-accessibility-focus-width: $global-accessibility-focus-width !default;
+$textarea-accessibility-focus-color: $global-accessibility-focus-color !default;
 $textarea-background-color: base-color('white') !default;
 $textarea-background-color-hover: base-color('white') !default;
 $textarea-background-color-focus: base-color('white') !default;
@@ -15,31 +24,18 @@ $textarea-border-color: base-color('white-darken-3') !default;
 $textarea-border-color-hover: base-color('white-darken-6') !default;
 $textarea-border-color-focus: feedback-color('info') !default;
 $textarea-border-color-active: feedback-color('info') !default;
-$textarea-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$textarea-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$textarea-border-radius-top-left: $default-border-radius-top-left !default;
-$textarea-border-radius-top-right: $default-border-radius-top-right !default;
-$textarea-border-style: $default-border-style !default;
-$textarea-border-width-bottom: $default-border-width-bottom !default;
-$textarea-border-width-left: $default-border-width-left !default;
-$textarea-border-width-right: $default-border-width-right !default;
-$textarea-border-width-top: $default-border-width-top !default;
-$textarea-content-spacing: ($default-content-spacing / 2) !default;
-$textarea-content-spacing-sizes: (
-    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
-    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
-    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
-) !default;
-$textarea-element-spacing: $default-element-spacing !default;
-$textarea-font-color: base-color('white-inverted-text') !default;
-$textarea-font-color-hover: base-color('white-inverted-text') !default;
-$textarea-font-color-focus: base-color('white-inverted-text') !default;
-$textarea-font-color-active: base-color('white-inverted-text') !default;
-$textarea-font-family: $default-primary-typeface !default;
-$textarea-font-size: $default-font-size !default;
-$textarea-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
+$textarea-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$textarea-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$textarea-border-radius-top-left: $global-border-radius-top-left !default;
+$textarea-border-radius-top-right: $global-border-radius-top-right !default;
+$textarea-border-style: $global-border-style !default;
+$textarea-border-width-bottom: $global-border-width-bottom !default;
+$textarea-border-width-left: $global-border-width-left !default;
+$textarea-border-width-right: $global-border-width-right !default;
+$textarea-border-width-top: $global-border-width-top !default;
+$textarea-font-color: base-color('white-text') !default;
+$textarea-font-color-hover: base-color('white-text') !default;
+$textarea-font-color-focus: base-color('white-text') !default;
+$textarea-font-color-active: base-color('white-text') !default;
+$textarea-font-family: $global-primary-typeface !default;
 $textarea-placeholder-color: base-color('white-darken-6') !default;

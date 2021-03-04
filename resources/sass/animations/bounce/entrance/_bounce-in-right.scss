@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> BOUNCE -> ENTRANCE -> BOUNCE IN RIGHT
-    ========================================================================  */
-
 // Check if the animations with bounce in right should be imported
 @if $import-animations and $import-animation-bounce-in-right {
     .has-animation {
@@ -12,16 +8,16 @@
             @keyframes bounce-in-right {
                 from {
                     opacity: 0;
-                    transform: translate3d((0px - $animation-bounce-in-distance), 0, 0);
+                    transform: translate3d((0 - $animation-bounce-in-distance), 0, 0);
                 }
 
                 50% {
                     opacity: 1;
-                    transform: translate3d((0px + ($animation-bounce-in-distance * 2.5 / 100)), 0, 0);
+                    transform: translate3d((0 + ($animation-bounce-in-distance * 2.5 / 100)), 0, 0);
                 }
 
                 70% {
-                    transform: translate3d((0px - ($animation-bounce-in-distance * 1.5 / 100)), 0, 0);
+                    transform: translate3d((0 - ($animation-bounce-in-distance * 1.5 / 100)), 0, 0);
                 }
 
                 to {

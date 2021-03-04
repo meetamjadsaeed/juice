@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ANIMATIONS -> ATTRACTORS
+    ========================================================================  */
+
+// Flash
+$animation-attractor-flash-delay: 0ms !default;
+$animation-attractor-flash-duration: 500ms !default;
+$animation-attractor-flash-easing: easing('ease-in-out') !default;
+$animation-attractor-flash-iteration-count: 2 !default;
+
+// Pulse
+$animation-attractor-pulse-delay: 0ms !default;
+$animation-attractor-pulse-duration: 500ms !default;
+$animation-attractor-pulse-easing: easing('ease-in-out') !default;
+$animation-attractor-pulse-iteration-count: 5 !default;
+
+// Shake
+$animation-attractor-shake-delay: 0ms !default;
+$animation-attractor-shake-duration: 1000ms !default;
+$animation-attractor-shake-easing: easing('ease-in-out') !default;
+
+// Vibrate
+$animation-attractor-vibrate-delay: 0ms !default;
+$animation-attractor-vibrate-duration: 350ms !default;
+$animation-attractor-vibrate-easing: easing('ease-in-out') !default;
+$animation-attractor-vibrate-iteration-count: 3 !default;

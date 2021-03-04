@@ -1,14 +1,6 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> LAYOUT
-    ========================================================================  */
-
-// Import
+// Import: Element layouts
 @import 'box';
-@import 'container';
-@import 'grid';
 @import 'hero';
-@import 'media-object';
-@import 'overlay';
 @import 'table';

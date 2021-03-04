@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> NAVIGATION -> NAVBAR
-    ========================================================================  */
-
 // Check if the elements with navbar should be imported
 @if $import-elements and $import-element-navbar {
     .navbar {
@@ -11,10 +7,147 @@
         color: $navbar-font-color;
         display: flex;
         flex-wrap: wrap;
-        font-size: $navbar-font-size;
+        margin-bottom: element-spacing();
         position: relative;
-        margin: 0;
-        margin-bottom: $navbar-element-spacing;
+
+        // Check if the navbar size modifiers should be declared
+        @if $navbar-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    .navbar__logo,
+                    .navbar__links,
+                    .navbar__bars {
+                        padding: 0 content-spacing(map($navbar-content-spacing-multipliers, $size) / 2);
+
+                        // Pseudo classes
+                        &:first-child {
+                            padding-left: 0;
+                        }
+
+                        &:last-child {
+                            padding-right: 0;
+                        }
+                    }
+
+                    .navbar__links {
+                        // Nested selectors
+                        ul,
+                        ol {
+                            // Nested selectors
+                            li {
+                                // Nested selectors
+                                a:not(.button) {
+                                    padding: content-spacing(map($navbar-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+                    }
+
+                    .navbar__icons {
+                        // Nested selectors
+                        #{$button} {
+                            margin-right: content-spacing(map($navbar-content-spacing-multipliers, $size) / 4);
+
+                            // Pseudo classes
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+
+                    .navbar__revealer {
+                        padding: content-spacing(map($navbar-content-spacing-multipliers, $size));
+
+                        // Nested selectors
+                        ul,
+                        ol {
+                            // Nested selectors
+                            li {
+                                // Nested selectors
+                                a:not(.button) {
+                                    padding: content-spacing(map($navbar-content-spacing-multipliers, $size) / 2) content-spacing(map($navbar-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Check if the navbar size modifiers with breakpoints should be declared
+                @if $navbar-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .navbar__logo,
+                                .navbar__links,
+                                .navbar__bars {
+                                    padding: 0 content-spacing(map($navbar-content-spacing-multipliers, $size) / 2);
+
+                                    // Pseudo classes
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+
+                                .navbar__links {
+                                    display: none;
+
+                                    // Nested selectors
+                                    ul,
+                                    ol {
+                                        // Nested selectors
+                                        li {
+                                            // Nested selectors
+                                            a:not(.button) {
+                                                padding: content-spacing(map($navbar-content-spacing-multipliers, $size));
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .navbar__icons {
+                                    // Nested selectors
+                                    #{$button} {
+                                        margin-right: content-spacing(map($navbar-content-spacing-multipliers, $size) / 4);
+
+                                        // Pseudo classes
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }
+
+                                .navbar__revealer {
+                                    padding: content-spacing(#{map($navbar-content-spacing-multipliers, $size)});
+
+                                    // Nested selectors
+                                    ul,
+                                    ol {
+                                        // Nested selectors
+                                        li {
+                                            // Nested selectors
+                                            a:not(.button) {
+                                                padding: content-spacing(map($navbar-content-spacing-multipliers, $size) / 2) content-spacing(map($navbar-content-spacing-multipliers, $size));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Nested selectors
         a:not(.button) {
@@ -37,7 +170,7 @@
         .navbar__logo,
         .navbar__links,
         .navbar__bars {
-            padding: 0 ($navbar-content-spacing / 2);
+            padding: 0 content-spacing(map($navbar-content-spacing-multipliers, 'medium') / 2);
 
             // Pseudo classes
             &:first-child {
@@ -56,6 +189,11 @@
             // Nested selectors
             a:not(.button) {
                 display: inline-flex;
+
+                // Nested selectors
+                img {
+                    margin-bottom: 0;
+                }
             }
         }
 
@@ -65,22 +203,18 @@
             // Nested selectors
             ul,
             ol {
-                // Styles
                 display: none;
                 list-style: none;
                 margin: 0;
-                padding: 0;
 
                 // Nested selectors
                 li {
-                    // Styles
                     flex: 1 0 auto;
 
                     // Nested selectors
                     a:not(.button) {
-                        // Styles
                         display: inline-flex;
-                        padding: $navbar-content-spacing;
+                        padding: content-spacing(map($navbar-content-spacing-multipliers, 'medium'));
                     }
                 }
             }
@@ -89,75 +223,66 @@
         .navbar__icons {
             // Nested selectors
             #{$button} {
-                // Styles
                 margin-bottom: 0;
-                margin-right: ($navbar-content-spacing / 4);
+                margin-right: content-spacing(map($navbar-content-spacing-multipliers, 'medium') / 4);
 
                 // Pseudo classes
                 &:last-child {
-                    // Styles
                     margin-right: 0;
                 }
             }
         }
 
         .navbar__revealer {
-            // Styles
             display: none;
             flex: 1 0 100%;
-            padding: $navbar-content-spacing;
+            padding: content-spacing(map($navbar-content-spacing-multipliers, 'medium'));
 
-             // Nested selectors
+            // Nested selectors
             ul,
             ol {
-                // Styles
                 display: flex;
                 flex-direction: column;
                 list-style: none;
                 margin: 0;
-                padding: 0;
 
-                 // Nested selectors
+                // Nested selectors
                 li {
-                    // Styles
                     flex: 1 0 auto;
 
-                     // Nested selectors
+                    // Nested selectors
                     a:not(.button) {
-                        // Styles
                         align-items: center;
                         display: flex;
                         justify-content: center;
-                        padding: ($navbar-content-spacing / 2) $navbar-content-spacing;
+                        padding: content-spacing(map($navbar-content-spacing-multipliers, 'medium') / 2) content-spacing(map($navbar-content-spacing-multipliers, 'medium'));
                     }
                 }
             }
         }
+    }
 
-        // Breakpoint
-        @include breakpoint('desktop-up') {
+    // Breakpoint
+    @include breakpoint('desktop') {
+        .navbar {
             // Nested selectors
             .navbar__links {
                 // Nested selectors
                 ul,
                 ol {
-                    // Styles
                     display: flex;
                 }
             }
 
             .navbar__icons {
-                // Styles
                 display: none;
             }
 
             .navbar__links {
-                // Styles
                 display: flex;
             }
 
             .navbar__revealer {
-                // Styles
                 display: none !important;
             }
         }

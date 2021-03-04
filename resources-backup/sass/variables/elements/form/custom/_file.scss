@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> FILE
+    ========================================================================  */
+
+// Maps
+$custom-file-content-spacing-multipliers: (
+    'sm': 0.25,
+    'md': 0.5,
+    'lg': 1
+) !default;
+
+$custom-file-font-sizes: (
+    'sm': font-size('sm'),
+    'md': font-size(),
+    'lg': font-size('lg')
+) !default;
+
+$custom-file-element-height-multipliers: (
+    'sm': 1,
+    'md': 2,
+    'lg': 3
+) !default;
+
+// Variables
+$custom-file-accessibility-focus-width: $global-accessibility-focus-width !default;
+$custom-file-accessibility-focus-color: $global-accessibility-focus-color !default;
+$custom-file-background-color: base-color('white') !default;
+$custom-file-border-color: base-color('white-darken-3') !default;
+$custom-file-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$custom-file-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$custom-file-border-radius-top-left: $global-border-radius-top-left !default;
+$custom-file-border-radius-top-right: $global-border-radius-top-right !default;
+$custom-file-border-style: $global-border-style !default;
+$custom-file-border-width-bottom: $global-border-width-bottom !default;
+$custom-file-border-width-divider: $global-border-width-divider !default;
+$custom-file-border-width-left: $global-border-width-left !default;
+$custom-file-border-width-right: $global-border-width-right !default;
+$custom-file-border-width-top: $global-border-width-top !default;
+$custom-file-font-color: base-color('white-inverted-text') !default;
+$custom-file-font-family: $global-primary-typeface !default;

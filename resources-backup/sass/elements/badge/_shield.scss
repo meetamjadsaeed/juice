@@ -1,0 +1,165 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> BADGE -> SHIELD
+    ========================================================================  */
+
+// Check if the elements with shield should be imported
+@if $import-elements and $import-element-shield {
+    .shield {
+        align-items: center;
+        display: inline-flex;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                .shield__text,
+                .shield__badge {
+                    font-size: map-get($shield-font-sizes, 'md');
+                    height: (element-height($breakpoint-name) * map-get($shield-element-height-multipliers, 'md'));
+                    padding: 0 (content-spacing($breakpoint-name) * map-get($shield-content-spacing-multipliers, 'md'));
+                }
+            }
+        }
+
+        // Nested selectors
+        .shield__text,
+        .shield__badge {
+            align-items: center;
+            border: 0 $shield-border-style transparent;
+            border-bottom-width: $shield-border-width-bottom;
+            border-top-width: $shield-border-width-top;
+            display: flex;
+            justify-content: center;
+            white-space: nowrap;
+
+            // Pseudo classes
+            &:first-child {
+                border-bottom-left-radius: $shield-border-radius-bottom-left;
+                border-left-width: $shield-border-width-left;
+                border-top-left-radius: $shield-border-radius-top-left;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: $shield-border-radius-bottom-right;
+                border-right-width: $shield-border-width-right;
+                border-top-right-radius: $shield-border-radius-top-right;
+            }
+
+            // Nested selectors
+            a {
+                color: inherit;
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    color: inherit;
+                }
+            }
+
+            // Check if the shield color modifiers should be declared
+            @if $shield-color-modifiers {
+                // Cycle through all of the base colors
+                @each $color-name, $color-value in $base-colors {
+                    // Modifiers: Base colors
+                    &.is-#{$color-name} {
+                        background-color: base-color($color-name);
+                        border-color: base-color('#{$color-name}-darken-3');
+                        color: base-color('#{$color-name}-inverted-text');
+
+                        // Nested selectors
+                        a {
+                            color: inherit;
+
+                            // Pseudo classes
+                            &:hover,
+                            &:focus,
+                            &:active {
+                                color: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check if the shield feedback modifiers should be declared
+            @if $shield-feedback-modifiers {
+                // Cycle through all of the feedback colors
+                @each $feedback-name, $feedback-value in $feedback-colors {
+                    // Modifiers: Feedback colors
+                    &.has-#{$feedback-name} {
+                        background-color: feedback-color($feedback-name);
+                        border-color: feedback-color('#{$feedback-name}-darken-3');
+                        color: feedback-color('#{$feedback-name}-inverted-text');
+
+                        // Nested selectors
+                        a {
+                            color: inherit;
+
+                            // Pseudo classes
+                            &:hover,
+                            &:focus,
+                            &:active {
+                                color: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .shield__text {
+            background-color: $shield-text-background-color;
+            border-color: $shield-text-border-color;
+            color: $shield-text-font-color;
+        }
+
+        .shield__badge {
+            background-color: $shield-badge-background-color;
+            border-color: $shield-badge-border-color;
+            color: $shield-badge-font-color;
+        }
+
+        // Check if the shield size modifiers should be declared
+        @if $shield-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            .shield__text,
+                            .shield__badge {
+                                font-size: map-get($shield-font-sizes, $size);
+                                height: (element-height($breakpoint-name) * map-get($shield-element-height-multipliers, $size));
+                                padding: 0 (content-spacing($breakpoint-name) * map-get($shield-content-spacing-multipliers, $size));
+                            }
+                        }
+
+                        // Check if the shield size modifiers with breakpoints should be declared
+                        @if $shield-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .shield__text,
+                                .shield__badge {
+                                    font-size: map-get($shield-font-sizes, $size);
+                                    height: (element-height($breakpoint-name) * map-get($shield-element-height-multipliers, $size));
+                                    padding: 0 (content-spacing($breakpoint-name) * map-get($shield-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,17 +1,13 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ANIMATIONS -> FLIP
-    ========================================================================  */
-
-// Entrance
+// Flip entrance variables
 $animation-flip-in-delay: 0ms !default;
 $animation-flip-in-duration: 600ms !default;
 $animation-flip-in-easing: easing('ease-out-back') !default;
-$animation-flip-in-perspective: 500px !default;
+$animation-flip-in-perspective: 50rem !default;
 
-// Exit
+// Flip exit variables
 $animation-flip-out-delay: 0ms !default;
 $animation-flip-out-duration: 600ms !default;
 $animation-flip-out-easing: easing('ease-in-back') !default;
-$animation-flip-out-perspective: 500px !default;
+$animation-flip-out-perspective: 50rem !default;

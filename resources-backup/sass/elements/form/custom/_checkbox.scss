@@ -1,0 +1,136 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> FORM -> CUSTOM -> CHECKBOX
+    ========================================================================  */
+
+// Check if the elements with custom checkbox should be imported
+@if $import-elements and $import-element-custom-checkbox {
+    .custom-checkbox {
+        cursor: pointer;
+        position: relative;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                // Nested selectors
+                div {
+                    // Pseudo elements
+                    &::before {
+                        height: (element-height($breakpoint-name) * map-get($custom-checkbox-element-height-multipliers, 'md'));
+                        margin: 0 (content-spacing($breakpoint-name) * map-get($custom-checkbox-content-spacing-multipliers, 'md')) 0 0;
+                        width: (element-height($breakpoint-name) * map-get($custom-checkbox-element-height-multipliers, 'md'));
+                    }
+                }
+            }
+        }
+
+        // Pseudo classes
+        &:hover {
+            // Nested selectors
+            div {
+                // Pseudo elements
+                &::before {
+                    border-color: $custom-checkbox-border-color-hover;
+                }
+            }
+        }
+
+        // Nested selectors
+        input[type=checkbox] {
+            clip: rect(0, 0, 0, 0);
+            height: 0;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            width: 0;
+
+            // Pseudo classes
+            &:focus + div {
+                // Pseudo elements
+                &::before {
+                    border-color: $custom-checkbox-checked-color;
+                    box-shadow: 0 0 $custom-checkbox-accessibility-focus-width $custom-checkbox-accessibility-focus-color;
+                }
+            }
+
+            &:checked + div {
+                // Pseudo elements
+                &::before {
+                    background: $custom-checkbox-checked-color;
+                    border-color: $custom-checkbox-checked-color;
+                    box-shadow: inset 0 0 0 2px $custom-checkbox-background-color;
+                }
+            }
+
+            &:checked:focus + div {
+                // Pseudo elements
+                &::before {
+                    box-shadow:
+                        inset 0 0 0 2px $custom-checkbox-background-color,
+                        0 0 $custom-checkbox-accessibility-focus-width $custom-checkbox-accessibility-focus-color;
+                }
+            }
+        }
+
+        div {
+            align-items: center;
+            display: flex;
+
+            // Pseudo elements
+            &::before {
+                background: $custom-checkbox-background-color;
+                border: 0 solid $custom-checkbox-border-color;
+                border-bottom-width: $custom-checkbox-border-width-bottom;
+                border-left-width: $custom-checkbox-border-width-left;
+                border-right-width: $custom-checkbox-border-width-right;
+                border-top-width: $custom-checkbox-border-width-top;
+                content: '';
+                display: block;
+            }
+        }
+
+        // Check if the custom checkbox size modifiers should be declared
+        @if $custom-checkbox-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            div {
+                                // Pseudo elements
+                                &::before {
+                                    height: (element-height($breakpoint-name) * map-get($custom-checkbox-element-height-multipliers, $size));
+                                    margin: 0 (content-spacing($breakpoint-name) * map-get($custom-checkbox-content-spacing-multipliers, $size)) 0 0;
+                                    width: (element-height($breakpoint-name) * map-get($custom-checkbox-element-height-multipliers, $size));
+                                }
+                            }
+                        }
+
+                        // Check if the custom checkbox size modifiers with breakpoints should be declared
+                        @if $custom-checkbox-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                div {
+                                    // Pseudo elements
+                                    &::before {
+                                        height: (element-height($breakpoint-name) * map-get($custom-checkbox-element-height-multipliers, $size));
+                                        margin: 0 (content-spacing($breakpoint-name) * map-get($custom-checkbox-content-spacing-multipliers, $size)) 0 0;
+                                        width: (element-height($breakpoint-name) * map-get($custom-checkbox-element-height-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

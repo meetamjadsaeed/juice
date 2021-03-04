@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> LAYOUT -> BOX
-    ========================================================================  */
-
 // Check if the elements with box should be imported
 @if $import-elements and $import-element-box {
     .box {
@@ -13,16 +9,39 @@
         border-bottom-right-radius: $box-border-radius-bottom-right;
         border-bottom-width: $box-border-width-bottom;
         border-left-width: $box-border-width-left;
+        border-right-width: $box-border-width-right;
         border-top-left-radius: $box-border-radius-top-left;
         border-top-right-radius: $box-border-radius-top-right;
         border-top-width: $box-border-width-top;
-        border-right-width: $box-border-width-right;
         box-shadow: $box-box-shadow;
         color: $box-font-color;
-        font-size: $box-font-size;
-        margin: 0;
-        margin-bottom: $box-element-spacing;
-        padding: $box-content-spacing;
+        margin-bottom: element-spacing();
+        padding: content-spacing(map($box-content-spacing-multipliers, 'medium'));
+
+        // Check if the box size modifiers should be declared
+        @if $box-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    padding: content-spacing(map($box-content-spacing-multipliers, $size));
+                }
+
+                // Check if the box size modifiers with breakpoints should be declared
+                @if $box-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                padding: content-spacing(map($box-content-spacing-multipliers, $size));
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Nested selectors
         a:not(.button) {
@@ -39,33 +58,6 @@
 
             &:active {
                 color: $box-link-color-active;
-            }
-        }
-
-        // Check if the box size modifiers should be declared
-        @if $box-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Size
-                &.is-#{$size} {
-                    font-size: map-get($box-font-size-sizes, $size);
-                    padding: map-get($box-content-spacing-sizes, $size);
-                }
-
-                // Check if the box size modifiers with breakpoints should be declared
-                @if $box-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($box-font-size-sizes, $size);
-                                padding: map-get($box-content-spacing-sizes, $size);
-                            }
-                        }
-                    }
-                }
             }
         }
     }

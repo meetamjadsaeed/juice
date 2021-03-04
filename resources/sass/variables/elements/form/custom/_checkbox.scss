@@ -1,30 +1,26 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> CHECKBOX
-    ========================================================================  */
+// Custom checkbox maps
+$custom-checkbox-content-spacing-multipliers: (
+    'small': 0.2,
+    'medium': 0.4,
+    'large': 0.6
+) !default;
 
-// Variables
-$custom-checkbox-accessibility-focus-width: $default-accessibility-focus-width !default;
-$custom-checkbox-accessibility-focus-color: $default-accessibility-focus-color !default;
+$custom-checkbox-element-height-multipliers: (
+    'small': 0.5,
+    'medium': 0.75,
+    'large': 1
+) !default;
+
+// Custom checkbox variables
+$custom-checkbox-accessibility-focus-width: $global-accessibility-focus-width !default;
+$custom-checkbox-accessibility-focus-color: $global-accessibility-focus-color !default;
 $custom-checkbox-background-color: base-color('white') !default;
 $custom-checkbox-border-color: base-color('white-darken-6') !default;
 $custom-checkbox-border-color-hover: base-color('white-darken-9') !default;
-$custom-checkbox-border-width-bottom: $default-border-width-bottom !default;
-$custom-checkbox-border-width-left: $default-border-width-left !default;
-$custom-checkbox-border-width-right: $default-border-width-right !default;
-$custom-checkbox-border-width-top: $default-border-width-top !default;
+$custom-checkbox-border-width-bottom: $global-border-width-bottom !default;
+$custom-checkbox-border-width-left: $global-border-width-left !default;
+$custom-checkbox-border-width-right: $global-border-width-right !default;
+$custom-checkbox-border-width-top: $global-border-width-top !default;
 $custom-checkbox-checked-color: base-color('primary') !default;
-$custom-checkbox-content-spacing: ($default-content-spacing / 2) !default;
-$custom-checkbox-content-spacing-sizes: (
-    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
-    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
-    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
-) !default;
-$custom-checkbox-element-spacing: $default-element-spacing !default;
-$custom-checkbox-height: ($default-element-height / 2.5) !default;
-$custom-checkbox-height-sizes: (
-    'small': (map-get($default-element-height-sizes, 'small') / 2.5),
-    'large': (map-get($default-element-height-sizes, 'large') / 2.5),
-    'huge': (map-get($default-element-height-sizes, 'huge') / 2.5)
-) !default;

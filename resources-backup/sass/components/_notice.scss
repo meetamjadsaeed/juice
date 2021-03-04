@@ -1,0 +1,145 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> COMPONENTS -> NOTICE
+    ========================================================================  */
+
+// Check if the components with notice should be imported
+@if $import-components and $import-component-notice {
+    .notice {
+        animation-duration: $notice-animation-duration;
+        border-bottom-left-radius: $notice-border-radius-bottom-left;
+        border-bottom-right-radius: $notice-border-radius-bottom-right;
+        border-top-left-radius: $notice-border-radius-top-left;
+        border-top-right-radius: $notice-border-radius-top-right;
+        box-shadow: $notice-box-shadow;
+        display: flex;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                .notice__feedback,
+                .notice__text,
+                .notice__action {
+                    padding: (content-spacing($breakpoint-name) * map-get($notice-content-spacing-multipliers, 'md'));
+                }
+            }
+        }
+
+        // Nested selectors
+        a:not(.button) {
+            color: $notice-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $notice-link-color-hover;
+            }
+
+            &:focus {
+                color: $notice-link-color-focus;
+            }
+
+            &:active {
+                color: $notice-link-color-active;
+            }
+        }
+
+        .notice__feedback,
+        .notice__text,
+        .notice__action {
+            align-items: center;
+            background-color: $notice-background-color;
+            border: 0 $notice-border-style $notice-border-color;
+            border-bottom-width: $notice-border-width-bottom;
+            border-top-width: $notice-border-width-top;
+            color: $notice-font-color;
+            display: flex;
+            justify-content: center;
+
+            // Pseudo classes
+            &:first-child {
+                border-bottom-left-radius: $notice-border-radius-bottom-left;
+                border-left-width: $notice-border-width-left;
+                border-top-left-radius: $notice-border-radius-top-left;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: $notice-border-radius-bottom-right;
+                border-right-width: $notice-border-width-right;
+                border-top-right-radius: $notice-border-radius-top-right;
+            }
+        }
+
+        .notice__feedback {
+            background-color: $notice-feedback-background-color;
+            border-color: $notice-feedback-border-color;
+            border-right-width: $notice-border-width-divider;
+            color: $notice-feedback-font-color;
+            font-size: (font-size() * 2);
+        }
+
+        .notice__text {
+            flex-grow: 1;
+            justify-content: flex-start;
+        }
+
+        .notice__action {
+            padding-left: 0;
+        }
+
+        // Check if the notice size modifiers should be declared
+        @if $notice-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            .notice__feedback,
+                            .notice__text,
+                            .notice__action {
+                                padding: (content-spacing($breakpoint-name) * map-get($notice-content-spacing-multipliers, $size));
+                            }
+                        }
+
+                        // Check if the notice size modifiers with breakpoints should be declared
+                        @if $notice-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .notice__feedback,
+                                .notice__text,
+                                .notice__action {
+                                    padding: (content-spacing($breakpoint-name) * map-get($notice-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the notice feedback modifiers should be declared
+        @if $notice-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $color-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    // Nested selectors
+                    .notice__feedback {
+                        background-color: feedback-color($feedback-name);
+                        border-color: feedback-color('#{$feedback-name}-darken-3');
+                        color: feedback-color('#{$feedback-name}-inverted-text');
+                    }
+                }
+            }
+        }
+    }
+}

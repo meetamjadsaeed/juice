@@ -1,0 +1,10 @@
+@charset 'utf-8';
+
+/**
+ * Clear floating elements.
+ */
+@mixin clearfix() {
+    clear: both;
+    content: '';
+    display: block;
+}

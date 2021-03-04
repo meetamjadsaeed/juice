@@ -1,0 +1,39 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> CORE
+    ========================================================================  */
+
+// Check if the animations should be imported
+@if $import-animations {
+    .has-animation {
+        animation-fill-mode: both;
+        backface-visibility: hidden;
+
+        // Check if the animation delay modifiers should be declared
+        @if $animation-delay-modifiers {
+            // Cycle through all of the easings
+            @each $easing-name, $easing in $easings {
+                // Modifiers
+                &[data-animation-easing="#{$easing-name}"] {
+                    animation-timing-function: $easing !important;
+                }
+            }
+        }
+
+        // Check if the animation duration modifiers should be declared
+        @if $animation-duration-modifiers {
+            // Start a for loop
+            @for $i from 1 through 20 {
+                // Modifiers
+                &[data-animation-duration="#{$i * 50}"] {
+                    animation-duration: #{$i * 50}ms !important;
+                }
+
+                &[data-animation-delay="#{$i * 50}"] {
+                    animation-delay: #{$i * 50}ms !important;
+                }
+            }
+        }
+    }
+}

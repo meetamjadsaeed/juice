@@ -1,0 +1,8 @@
+@charset 'utf-8';
+
+:root {
+    // Cycle through all of the fonts
+    @each $font-name, $font-value in $fonts {
+        --font-family-#{$font-name}: #{$font-value};
+    }
+}

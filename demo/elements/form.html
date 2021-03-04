@@ -40,13 +40,13 @@
 
             <div class="box">
                 <form>
-                    <div class="grid">
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                    <div class="flex">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <label for="input">Input</label>
                             <input type="text" id="input" placeholder="Input..." />
                         </div>
 
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <label for="select">Select</label>
                             <select id="select" placeholder="Select">
                                 <option value="">Option 1</option>
@@ -66,8 +66,8 @@
                     <label for="textarea">Textarea</label>
                     <textarea id="textarea" rows="6" placeholder="Textarea..." ></textarea>
 
-                    <div class="grid">
-                        <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
+                    <div class="flex">
+                        <div class="flex__item flex__item--span-12 flex__item--span-4@desktop-up">
                             <label for="file">File</label>
                             <input type="file" id="file" />
 
@@ -75,17 +75,19 @@
 
                             <label class="custom-file" data-custom-file-text="No file selected">
                                 <input type="file" multiple />
-                                <div class="custom-file__button">Browse</div>
-                                <div class="custom-file__text">No file selected</div>
+                                <div class="custom-file__elements">
+                                    <div class="custom-file__icon"><i class="far fa-file fa-2x"></i></div>
+                                    <div class="custom-file__text">No file selected</div>
+                                </div>
                             </label>
                         </div>
 
-                        <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-4@desktop-up">
                             <label for="color">Color</label>
                             <input type="color" id="color" />
                         </div>
 
-                        <div class="grid__item grid__item--span-12 grid__item--span-4@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-4@desktop-up">
                             <label for="range">Range</label>
                             <input type="range" id="range" />
                         </div>
@@ -93,8 +95,8 @@
 
                     <hr />
 
-                    <div class="grid">
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                    <div class="flex">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <div class="media-object media-object--seamless has-no-element-spacing">
                                 <div class="media-object__badge">
                                     <input type="checkbox" id="checkbox-1" />
@@ -139,7 +141,7 @@
                                 <div>Custom Checkbox 3</div>
                             </label>
                         </div>
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <div class="media-object media-object--seamless has-no-element-spacing">
                                 <div class="media-object__badge">
                                     <input type="radio" id="radio-1" name="radio" />
@@ -188,8 +190,8 @@
 
                     <hr />
 
-                    <div class="grid">
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                    <div class="flex">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
 
                             <label for="custom-fieldset-input-addon-left">Left</label>
                             <div class="custom-fieldset">
@@ -198,7 +200,7 @@
                             </div>
                         </div>
 
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <label for="custom-fieldset-input-addon-right">Right</label>
                             <div class="custom-fieldset">
                                 <input type="text" id="custom-fieldset-input-addon-right" class="custom-fieldset__spotlight" placeholder="Search for a product..." />
@@ -206,7 +208,7 @@
                             </div>
                         </div>
 
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <label for="custom-fieldset-input-addon-both">Both</label>
                             <div class="custom-fieldset">
                                 <select>
@@ -218,7 +220,7 @@
                             </div>
                         </div>
 
-                        <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                        <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                             <label for="custom-fieldset-password-toggle">Password</label>
                             <div class="custom-fieldset custom-password">
                                 <input type="password" id="password-custom-fieldset" class="custom-fieldset__spotlight" placeholder="Password..." />

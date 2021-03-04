@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> TOOLTIP
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Tooltip';
 
@@ -34,40 +30,21 @@
         position: 'top',
         size: null,
 
-        callbackInitializeBefore: () => {
-            console.log('Tooltip: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Tooltip: callbackInitializeAfter');
-        },
-        callbackOpenBefore: () => {
-            console.log('Tooltip: callbackOpenBefore');
-        },
-        callbackOpenAfter: () => {
-            console.log('Tooltip: callbackOpenAfter');
-        },
-        callbackCloseBefore: () => {
-            console.log('Tooltip: callbackCloseBefore');
-        },
-        callbackCloseAfter: () => {
-            console.log('Tooltip: callbackCloseAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Tooltip: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Tooltip: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Tooltip: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Tooltip: callbackDestroyAfter');
-        }
+        callbackCloseBefore: () => {},
+        callbackCloseAfter: () => {},
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackOpenBefore: () => {},
+        callbackOpenAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -87,8 +64,9 @@
 
     /**
      * Build the tooltip.
+     *
      * @param  {element}  $trigger  The tooltip trigger.
-     * @return {element}              The tooltip.
+     * @return {element}            The tooltip.
      */
     const buildTooltip = ($trigger) => {
         // Create the tooltip and content
@@ -155,6 +133,7 @@
 
     /**
      * Event handler to close a tooltip.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -172,6 +151,7 @@
 
     /**
      * Get an elements offset.
+     *
      * @param  {element}  $element  The element.
      * @return {object}             The element offset.
      */
@@ -199,6 +179,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -219,26 +200,28 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
      * Event handler to open a tooltip relative to its tooltip trigger.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
     const openTooltipEventHandler = (event) => {
         // Check if the event target is the trigger or a descendant of the trigger
         if (isTargetSelector(event.target, 'class', 'has-tooltip')) {
-            console.log(event.type);
             // Set the tooltip trigger
             const $trigger = event.target;
 
@@ -249,6 +232,7 @@
 
     /**
      * Set the tooltip position relative to the tooltip trigger.
+     *
      * @param  {element}  $trigger  The tooltip trigger.
      * @param  {element}  $tooltip  The tooltip.
      * @return {void}
@@ -282,39 +266,39 @@
         switch (position) {
             // Top (default)
             default:
-                // Set the tooltip left and top positions
+                // Set the tooltip left and top positions and break the switch
                 tooltip_left =
                     trigger_left + ((trigger_width - tooltip_width) / 2);
                 tooltip_top =
                     trigger_top - tooltip_height;
-            break;
+                break;
 
             // Right
             case 'right':
-                // Set the tooltip left and top positions
+                // Set the tooltip left and top positions and break the switch
                 tooltip_left =
                     trigger_left + trigger_width;
                 tooltip_top =
                     trigger_top + ((trigger_height - tooltip_height) / 2);
-            break;
+                break;
 
             // Bottom
             case 'bottom':
-                // Set the tooltip left and top positions
+                // Set the tooltip left and top positions and break the switch
                 tooltip_left =
                     trigger_left + ((trigger_width - tooltip_width) / 2);
                 tooltip_top =
                     trigger_top + trigger_height;
-            break;
+                break;
 
             // Left
             case 'left':
-                // Set the tooltip left and top positions
+                // Set the tooltip left and top positions and break the switch
                 tooltip_left =
                     trigger_left - tooltip_width;
                 tooltip_top =
                     trigger_top + ((trigger_height - tooltip_height) / 2);
-            break;
+                break;
         }
 
         // Set the inline top and left positions
@@ -324,6 +308,7 @@
 
     /**
      * Open a tooltip.
+     *
      * @param  {element}  $trigger  The trigger.
      * @return {void}
      */
@@ -387,8 +372,8 @@
                     // Set the tooltip animation classes
                     $tooltip.classList.add('is-animating-in', plugin.settings.animationClass, $tooltip.data.animationIn);
 
-                    // Add an animation end event listener to the tooltip
-                    $tooltip.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the tooltip
+                    $tooltip.addEventListener('animationend', () => {
                         // Set the tooltip animation classes
                         $tooltip.classList.remove('is-animating-in', plugin.settings.animationClass, $tooltip.data.animationIn);
                         $tooltip.classList.add('has-animated');
@@ -414,6 +399,7 @@
 
     /**
      * Close a tooltip.
+     *
      * @param  {element}  $tooltip  The tooltip.
      * @param  {bool}     silent    Suppress callbacks.
      * @return {void}
@@ -441,8 +427,8 @@
                     $tooltip.classList.remove('has-animated');
                     $tooltip.classList.add('is-animating-out', plugin.settings.animationClass, $tooltip.data.animationOut);
 
-                    // Add an animation end event listener to the tooltip
-                    $tooltip.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the tooltip
+                    $tooltip.addEventListener('animationend', () => {
                         // Check if the tooltip exists
                         if ($tooltip) {
                             // Remove the tooltip
@@ -483,11 +469,62 @@
 
     /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Check if the device is not a touch device
+            if (document.documentElement.classList.contains('has-no-touch')) {
+                // Set the tooltips
+                const $tooltips = document.querySelectorAll('.tooltip');
+
+                // Cycle through all of the tooltips
+                $tooltips.forEach(($tooltip) => {
+                    // Close the tooltip
+                    plugin.this.close($tooltip);
+                });
+
+                // Remove the focus, mouseenter, click, focusout and mouse leave event handlers from the tooltip
+                document.removeEventListener('focus', openTooltipEventHandler, true);
+                document.removeEventListener('mouseenter', openTooltipEventHandler, true);
+                document.removeEventListener('click', closeTooltipEventHandler);
+                document.removeEventListener('focusout', closeTooltipEventHandler, true);
+                document.removeEventListener('mouseleave', closeTooltipEventHandler, true);
+            }
+
+            // Check if the callbacks should not be suppressed.
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -503,11 +540,9 @@
 
             // Check if the device is not a touch device
             if (document.documentElement.classList.contains('has-no-touch')) {
-                // Add focus and mouseenter event handler to open a tooltip
+                // Add the focus, mouseenter, click, focusout and mouse leave event handlers to the tooltop
                 document.addEventListener('focus', openTooltipEventHandler, true);
                 document.addEventListener('mouseenter', openTooltipEventHandler, true);
-
-                // Add click, focusout and mouseleave event handlers to close a tooltip
                 document.addEventListener('click', closeTooltipEventHandler);
                 document.addEventListener('focusout', closeTooltipEventHandler, true);
                 document.addEventListener('mouseleave', closeTooltipEventHandler, true);
@@ -522,6 +557,7 @@
 
         /**
          * Refresh the plugins initialization.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -546,62 +582,14 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Check if the device is not a touch device
-            if (document.documentElement.classList.contains('has-no-touch')) {
-                // Set the tooltips
-                const $tooltips = document.querySelectorAll('.tooltip');
-
-                // Cycle through all of the tooltips
-                $tooltips.forEach(($tooltip) => {
-                    // Close the tooltip
-                    plugin.this.close($tooltip);
-                });
-
-                // Remove the focus and mouseenter event handler to open a tooltip
-                document.removeEventListener('focus', openTooltipEventHandler, true);
-                document.removeEventListener('mouseenter', openTooltipEventHandler, true);
-
-                // Remove the click, focusout and mouseleave event handlers to close a tooltip
-                document.removeEventListener('click', closeTooltipEventHandler);
-                document.removeEventListener('focusout', closeTooltipEventHandler, true);
-                document.removeEventListener('mouseleave', closeTooltipEventHandler, true);
-            }
-
-            // Check if the callbacks should not be suppressed.
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
          * Call the refresh method silently.
+         *
          * @return {void}
          */
         refreshSilently: () => {
             // Call the refresh method silently
             plugin.this.refresh(true);
         },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
-        }
     };
 
     // Return the plugin

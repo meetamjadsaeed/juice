@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> RADIO
+    ========================================================================  */
+
+// Maps
+$custom-radio-content-spacing-multipliers: (
+    'sm': 0.2,
+    'md': 0.4,
+    'lg': 0.6
+) !default;
+
+$custom-radio-element-height-multipliers: (
+    'sm': 0.5,
+    'md': 0.75,
+    'lg': 1
+) !default;
+
+// Variables
+$custom-radio-accessibility-focus-width: $global-accessibility-focus-width !default;
+$custom-radio-accessibility-focus-color: $global-accessibility-focus-color !default;
+$custom-radio-background-color: base-color('white') !default;
+$custom-radio-border-color: base-color('white-darken-6') !default;
+$custom-radio-border-color-hover: base-color('white-darken-9') !default;
+$custom-radio-border-width-bottom: $global-border-width-bottom !default;
+$custom-radio-border-width-left: $global-border-width-left !default;
+$custom-radio-border-width-right: $global-border-width-right !default;
+$custom-radio-border-width-top: $global-border-width-top !default;
+$custom-radio-checked-color: base-color('primary') !default;

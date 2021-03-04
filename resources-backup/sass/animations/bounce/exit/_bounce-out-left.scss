@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT LEFT
+    ========================================================================  */
+
+// Check if the animations with bounce out left should be imported
+@if $import-animations and $import-animation-bounce-out-left {
+    .has-animation {
+        // Nested selectors
+        &.bounce-out-left {
+            @keyframes bounce-out-left {
+                to {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                30% {
+                    transform: translate3d((0 - ($animation-bounce-out-distance * 1.5 / 100)), 0, 0);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: translate3d((0 + ($animation-bounce-out-distance * 2.5 / 100)), 0, 0);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: translate3d((0 - $animation-bounce-out-distance), 0, 0);
+                }
+            }
+
+            animation-delay: $animation-bounce-out-delay;
+            animation-duration: $animation-bounce-out-duration;
+            animation-name: bounce-out-left;
+            animation-timing-function: $animation-bounce-out-easing;
+        }
+    }
+}

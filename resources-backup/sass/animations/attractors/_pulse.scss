@@ -1,0 +1,31 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> ATTRACTORS -> PULSE
+    ========================================================================  */
+
+// Check if the animations with pulse should be imported
+@if $import-animations and $import-animation-pulse {
+    .has-animation {
+        // Nested selectors
+        &.pulse {
+            @keyframes pulse {
+                from,
+                to {
+                    transform: scale3d(1, 1, 1);
+                }
+
+                50% {
+                    transform: scale3d(1.1, 1.1, 1.1);
+                }
+            }
+
+            animation-delay: $animation-attractor-pulse-delay;
+            animation-duration: $animation-attractor-pulse-duration;
+            animation-iteration-count: $animation-attractor-pulse-iteration-count;
+            animation-name: pulse;
+            animation-timing-function: $animation-attractor-pulse-easing;
+
+        }
+    }
+}

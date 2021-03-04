@@ -1,0 +1,35 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> MIXINS -> BORDER WIDTH
+    ========================================================================  */
+
+/**
+ * Set the border width.
+ */
+@mixin border-width($top: false, $right: false, $bottom: false, $left: false) {
+    // Check if the arguments exist or equal zero
+    @if ($top or $top == 0) and ($right or $right == 0) and ($bottom or $bottom == 0) and ($left or $left == 0) {
+        border-width: $top $right $bottom $left;
+    } @else {
+        // Check if the bottom argument exists
+        @if $bottom {
+            border-bottom-width: $bottom;
+        }
+
+        // Check if the left argument exists
+        @if $left {
+            border-left-width: $left;
+        }
+
+        // Check if the right argument exists
+        @if $right {
+            border-right-width: $right;
+        }
+
+        // Check if the top argument exists
+        @if $top {
+            border-top-width: $top;
+        }
+    }
+}

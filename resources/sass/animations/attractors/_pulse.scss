@@ -1,16 +1,13 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> ATTRACTORS -> PULSE
-    ========================================================================  */
-
 // Check if the animations with pulse should be imported
 @if $import-animations and $import-animation-pulse {
     .has-animation {
         // Nested selectors
         &.pulse {
             @keyframes pulse {
-                from, to {
+                from,
+                to {
                     transform: scale3d(1, 1, 1);
                 }
 

@@ -50,7 +50,7 @@
                         <li class="has-dropdown">
                             <a href="#" class="js-prevent-default js-dropdown-trigger">Dropdown</a>
 
-                            <div class="dropdown is-hoverable">
+                            <div class="dropdown is-hoverable" style="display: none;">
                                 <div class="dropdown__content">
                                     <div class="dropdown__item">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</div>
                                     <div class="dropdown__divider"></div>
@@ -65,25 +65,25 @@
                         <li class="has-dropdown has-dropdown--megamenu">
                             <a href="#" class="js-prevent-default js-dropdown-trigger">Megamenu</a>
 
-                            <div class="dropdown dropdown--megamenu is-hoverable">
+                            <div class="dropdown dropdown--megamenu is-hoverable" style="display: none;">
                                 <div class="dropdown__content">
-                                    <div class="grid">
-                                        <div class="grid__item grid__item--span-3">
+                                    <div class="flex">
+                                        <div class="flex__item flex__item--span-3">
                                             <h6>Column</h6>
                                             <hr />
                                             <a href="#" class="js-prevent-default">Lorem ipsum dolor sit amet</a>, consectetur adipisicing elit...
                                         </div>
-                                        <div class="grid__item grid__item--span-3">
+                                        <div class="flex__item flex__item--span-3">
                                             <h6>Column</h6>
                                             <hr />
                                             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
                                         </div>
-                                        <div class="grid__item grid__item--span-3">
+                                        <div class="flex__item flex__item--span-3">
                                             <h6>Column</h6>
                                             <hr />
                                             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
                                         </div>
-                                        <div class="grid__item grid__item--span-3">
+                                        <div class="flex__item flex__item--span-3">
                                             <h6>Column</h6>
                                             <hr />
                                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...
@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="navbar__icons">
-                    <button class="button--component has-toggable" data-toggler-targets="#navbar__revealer" data-toggler-slide="true"><i class="fas fa-bars fa-fw"></i></button>
+                    <button class="button--component button--icon has-toggable" data-toggler-targets="#navbar__revealer" data-toggler-slide="true"><i class="fas fa-bars fa-fw"></i></button>
                 </div>
 
                 <div id="navbar__revealer" class="navbar__revealer">

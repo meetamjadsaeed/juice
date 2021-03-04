@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-/* ========================================================================
-   JUICE -> COMPONENTS -> CONFIRM
-   ========================================================================  */
-
 // Check if the components with confirm should be imported
 @if $import-components and $import-component-confirm {
     .overlay {
@@ -13,8 +9,16 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 10vh 0;
             overflow: hidden;
+            padding: 10vh 0;
+
+            // Check if the confirm alignment modifier should be declared
+            @if $confirm-alignment-modifier {
+                // Modifiers
+                &.confirm--center {
+                    justify-content: center;
+                }
+            }
 
             // Nested selectors
             .confirm__content {
@@ -29,15 +33,45 @@
                 max-height: 100%;
                 max-width: 80vw;
 
+                // Check if the confirm color modifiers should be declared
+                @if $confirm-color-modifiers {
+                    // Cycle through all of the confirm colors
+                    @each $confirm-color in $confirm-colors {
+                        // Modifiers: Base colors
+                        &.is-#{$confirm-color} {
+                            // Nested selectors
+                            .confirm__head {
+                                background-color: base-color($confirm-color);
+                                border-color: base-color('#{$confirm-color}-darken-3');
+                                color: base-color('#{$confirm-color}-text');
+                            }
+                        }
+                    }
+                }
+
+                // Check if the confirm feedback modifiers should be declared
+                @if $confirm-feedback-modifiers {
+                    // Cycle through all of the feedback colors
+                    @each $feedback-name, $color-value in $feedback-colors {
+                        // Modifiers: Feedback colors
+                        &.has-#{$feedback-name} {
+                            // Nested selectors
+                            .confirm__head {
+                                background-color: feedback-color($feedback-name);
+                                border-color: feedback-color('#{$feedback-name}-darken-3');
+                                color: feedback-color('#{$feedback-name}-inverted-text');
+                            }
+                        }
+                    }
+                }
+
                 // Nested selectors
                 .confirm__card {
-                    // Styles
                     display: flex;
                     flex-direction: column;
-                    font-size: $confirm-font-size;
-                    overflow: hidden;
                     max-width: 100%;
-                    width: $confirm-max-width;
+                    overflow: hidden;
+                    width: $confirm-width;
 
                     // Nested selectors
                     a:not(.button) {
@@ -63,7 +97,6 @@
                         border: 0 $confirm-border-style transparent;
                         border-left-width: $confirm-border-width-left;
                         border-right-width: $confirm-border-width-right;
-                        padding: $confirm-content-spacing;
 
                         &:first-child {
                             border-top-left-radius: $confirm-border-radius-top-left;
@@ -78,6 +111,11 @@
                         }
                     }
 
+                    .confirm__body,
+                    .confirm__foot {
+                        padding: content-spacing(map($confirm-content-spacing-multipliers, 'medium'));
+                    }
+
                     .confirm__head {
                         align-items: center;
                         background-color: $confirm-head-background-color;
@@ -86,6 +124,7 @@
                         color: $confirm-head-font-color;
                         display: flex;
                         flex-shrink: 1;
+                        padding: content-spacing(map($confirm-content-spacing-multipliers, 'medium') / 2) content-spacing(map($confirm-content-spacing-multipliers, 'medium'));
 
                         // Nested selectors
                         .confirm__headings {
@@ -134,7 +173,7 @@
                             // Nested selectors
                             #{$button} {
                                 margin-bottom: 0;
-                                margin-left: ($confirm-content-spacing / 2);
+                                margin-left: content-spacing(map($confirm-content-spacing-multipliers, 'medium') / 2);
 
                                 // Pseudo classes
                                 &:first-child {
@@ -143,139 +182,6 @@
                             }
                         }
                     }
-                }
-            }
-
-            // Check if the confirm size modifiers should be declared
-            @if $confirm-size-modifiers {
-                // Cycle through all of the sizes
-                @each $size in $sizes {
-                    // Modifiers: Sizes
-                    &.is-#{$size} {
-                        // Nested selectors
-                        .confirm__content {
-                            // Nested selectors
-                            .confirm__card {
-                                font-size: map-get($confirm-font-size-sizes, $size);
-
-                                // Nested selectors
-                                .confirm__head,
-                                .confirm__body,
-                                .confirm__foot {
-                                    padding: map-get($confirm-content-spacing-sizes, $size);
-                                }
-
-                                .confirm__foot {
-                                    // Nested selectors
-                                    .confirm__buttons {
-                                        // Nested selectors
-                                        #{$button} {
-                                            margin-left: (map-get($confirm-content-spacing-sizes, $size) / 2);
-
-                                            // Pseudo classes
-                                            &:first-child {
-                                                margin-left: 0;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Check if the confirm size modifiers with breakpoints should be declared
-                    @if $confirm-size-modifiers-with-breakpoints {
-                        // Cycle through all of the breakpoints
-                        @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                            // Breakpoint
-                            @include breakpoint($breakpoint-name) {
-                                // Modifiers: Size
-                                &.is-#{$size}\@#{$breakpoint-name} {
-                                    // Nested selectors
-                                    .confirm__content {
-                                        // Nested selectors
-                                        .confirm__card {
-                                            font-size: map-get($confirm-font-size-sizes, $size);
-
-                                            // Nested selectors
-                                            .confirm__head,
-                                            .confirm__body,
-                                            .confirm__foot {
-                                                padding: map-get($confirm-content-spacing-sizes, $size);
-                                            }
-
-                                            .confirm__foot {
-                                                // Nested selectors
-                                                .confirm__buttons {
-                                                    // Nested selectors
-                                                    #{$button} {
-                                                        margin-left: (map-get($confirm-content-spacing-sizes, $size) / 2);
-
-                                                        // Pseudo classes
-                                                        &:first-child {
-                                                            margin-left: 0;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the confirm color modifiers should be declared
-            @if $confirm-color-modifiers {
-                // Cycle through all of the base colors
-                @each $color-name, $color-value in $base-colors {
-                    // Modifiers: Base colors
-                    &.is-#{$color-name} {
-                        // Nested selectors
-                        .confirm__content {
-                            // Nested selectors
-                            .confirm__card {
-                                // Nested selectors
-                                .confirm__head {
-                                    background-color: base-color($color-name);
-                                    border-color: base-color('#{$color-name}-darken-3');
-                                    font-color: base-color('#{$color-name}-inverted-text');
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the confirm feedback modifiers should be declared
-            @if $confirm-feedback-modifiers {
-                // Cycle through all of the feedback colors
-                @each $feedback-name, $color-value in $feedback-colors {
-                    // Modifiers: Feedback colors
-                    &.has-#{$feedback-name} {
-                        // Nested selectors
-                        .confirm__content {
-                            // Nested selectors
-                            .confirm__card {
-                                // Nested selectors
-                                .confirm__head {
-                                    background-color: feedback-color($feedback-name);
-                                    border-color: feedback-color('#{$feedback-name}-darken-3');
-                                    font-color: feedback-color('#{$feedback-name}-inverted-text');
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the confirm alignment modifier should be declared
-            @if $confirm-alignment-modifier {
-                // Modifiers
-                &.confirm--center {
-                    justify-content: center;
                 }
             }
         }

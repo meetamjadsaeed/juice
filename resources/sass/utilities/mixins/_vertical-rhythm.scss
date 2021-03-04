@@ -1,0 +1,13 @@
+@charset 'utf-8';
+
+/**
+ * Set the vertical rhythm font size and line height.
+ */
+@mixin vertical-rhythm($breakpoint, $font-size) {
+    // Check if the multiplier is more than or equal to one
+    @if ((vertical-rhythm($breakpoint) * ceil(strip-unit($font-size) / root-line-height($breakpoint))) >= 1) {
+        line-height: (vertical-rhythm($breakpoint) * ceil(strip-unit($font-size) / root-line-height($breakpoint)));
+    } @else {
+        line-height: vertical-rhythm($breakpoint);
+    }
+}

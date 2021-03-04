@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a content spacing.
+ *
+ * @param  {int}    $multiplier  The content spacing multiplier.
+ * @return {mixed}               The content spacing, null otherwise.
+ */
+@function content-spacing($multiplier: 1) {
+    // Return the content spacing
+    @return calc(var(--content-spacing) * #{$multiplier});
+}

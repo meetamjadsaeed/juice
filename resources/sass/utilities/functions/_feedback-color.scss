@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a feedback color from the feedback color palette.
+ *
+ * @param  {string}  $name  The feedback color name.
+ * @return {mixed}          The feedback color, null otherwise.
+ */
+@function feedback-color($name) {
+    // Return the feedback color
+    @return var(--feedback-color-#{$name});
+}

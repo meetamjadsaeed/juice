@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FADE -> ENTRANCE -> FADE IN DOWN
+    ========================================================================  */
+
+// Check if the animations with fade in down should be imported
+@if $import-animations and $import-animation-fade-in-down {
+    .has-animation {
+        // Nested selectors
+        &.fade-in-down {
+            @keyframes fade-in-down {
+                from {
+                    opacity: 0;
+                    transform: translate3d(0, (0 - $animation-fade-in-distance), 0);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            animation-delay: $animation-fade-in-delay;
+            animation-duration: $animation-fade-in-duration;
+            animation-name: fade-in-down;
+            animation-timing-function: $animation-fade-in-easing;
+        }
+    }
+}

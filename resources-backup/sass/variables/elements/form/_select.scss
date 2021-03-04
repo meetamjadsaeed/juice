@@ -1,0 +1,50 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> FORM -> SELECT
+    ========================================================================  */
+
+// Maps
+$select-content-spacing-multipliers: (
+    'sm': 0.25,
+    'md': 0.5,
+    'lg': 1
+) !default;
+
+$select-font-sizes: (
+    'sm': font-size('sm'),
+    'md': font-size(),
+    'lg': font-size('lg')
+) !default;
+
+$select-element-height-multipliers: (
+    'sm': 1,
+    'md': 2,
+    'lg': 3
+) !default;
+
+// Variables
+$select-accessibility-focus-width: $global-accessibility-focus-width !default;
+$select-accessibility-focus-color: $global-accessibility-focus-color !default;
+$select-background-color: base-color('white') !default;
+$select-background-color-hover: base-color('white') !default;
+$select-background-color-focus: base-color('white') !default;
+$select-background-color-active: base-color('white') !default;
+$select-border-color: base-color('white-darken-3') !default;
+$select-border-color-hover: base-color('white-darken-6') !default;
+$select-border-color-focus: feedback-color('info') !default;
+$select-border-color-active: feedback-color('info') !default;
+$select-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$select-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$select-border-radius-top-left: $global-border-radius-top-left !default;
+$select-border-radius-top-right: $global-border-radius-top-right !default;
+$select-border-style: $global-border-style !default;
+$select-border-width-bottom: $global-border-width-bottom !default;
+$select-border-width-left: $global-border-width-left !default;
+$select-border-width-right: $global-border-width-right !default;
+$select-border-width-top: $global-border-width-top !default;
+$select-font-color: base-color('white-inverted-text') !default;
+$select-font-color-hover: base-color('white-inverted-text') !default;
+$select-font-color-focus: base-color('white-inverted-text') !default;
+$select-font-color-active: base-color('white-inverted-text') !default;
+$select-font-family: $global-primary-typeface !default;

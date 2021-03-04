@@ -1,0 +1,27 @@
+@charset 'utf-8';
+
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: $container-max-width;
+    min-height: 1px;
+    padding: 0 $container-padding;
+    position: relative;
+    width: 100%;
+
+    // Modifiers
+    &.container--seamless {
+        padding: 0;
+    }
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoint
+        @include breakpoint($breakpoint-name) {
+            // Modifiers
+            &.container--seamless\@#{$breakpoint-name} {
+                padding: 0;
+            }
+        }
+    }
+}

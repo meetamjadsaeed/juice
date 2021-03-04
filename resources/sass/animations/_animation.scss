@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> CORE
-    ========================================================================  */
-
 // Check if the animations should be imported
 @if $import-animations {
     .has-animation {

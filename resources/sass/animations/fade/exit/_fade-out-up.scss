@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> FADE -> EXIT -> FADE OUT UP
-    ========================================================================  */
-
 // Check if the animations with fade out up should be imported
 @if $import-animations and $import-animation-fade-out-up {
     .has-animation {
@@ -17,7 +13,7 @@
 
                 to {
                     opacity: 0;
-                    transform: translate3d(0, (0px - $animation-fade-out-distance), 0);
+                    transform: translate3d(0, (0 - $animation-fade-out-distance), 0);
                 }
             }
 

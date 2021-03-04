@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> MODAL
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Modal';
 
@@ -35,50 +31,25 @@
         overlayAnimationIn: 'fade-in',
         overlayAnimationOut: 'fade-out',
 
-        callbackInitializeBefore: () => {
-            console.log('Modal: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Modal: callbackInitializeAfter');
-        },
-        callbackOpenBefore: () => {
-            console.log('Modal: callbackOpenBefore');
-        },
-        callbackOpenAfter: () => {
-            console.log('Modal: callbackOpenAfter');
-        },
-        callbackCloseBefore: () => {
-            console.log('Modal: callbackCloseBefore');
-        },
-        callbackCloseAfter: () => {
-            console.log('Modal: callbackCloseAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Modal: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Modal: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Modal: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Modal: callbackDestroyAfter')
-        },
+        callbackCloseBefore: () => {},
+        callbackCloseAfter: () => {},
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackOpenBefore: () => {},
+        callbackOpenAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
 
-        callbackCancel: () => {
-            console.log('Modal: callbackCancel');
-        },
-        callbackContinue: () => {
-            console.log('Modal: callbackContinue');
-        },
-        callbackEsc: () => {
-            console.log('Modal: callbackEsc');
-        }
+        callbackCancel: () => {},
+        callbackContinue: () => {},
+        callbackEsc: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -98,6 +69,7 @@
 
     /**
      * Build the modal.
+     *
      * @param  {element}  $target  The modal target.
      * @return {void}
      */
@@ -142,6 +114,7 @@
 
     /**
      * Click event handler to cancel a modal.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -158,6 +131,7 @@
 
     /**
      * Click event handler to close a modal.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -178,6 +152,7 @@
 
     /**
      * Click event handler to continue a modal.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -194,6 +169,7 @@
 
     /**
      * Click event handler to trigger a modal.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -214,6 +190,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -234,19 +211,22 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
      * Trap focus to the modal.
+     *
      * @param  {element}  $modal  The modal.
      * @return {void}
      */
@@ -260,12 +240,30 @@
         const keycode_tab = 9;
         const keycode_esc = 27;
 
-        // Add a keydown event listener to the modal to trap focus
+        // Add a keydown event handler to the modal
         $modal.addEventListener('keydown', function(event) {
             // Start a switch event for the keycode
             switch (event.keyCode) {
+                // Esc
+                case keycode_esc: {
+                    // Check if the modal can be closed with the esc key
+                    if (plugin.settings.closeEsc) {
+                        // Prevent the default action
+                        event.preventDefault();
+
+                        // Call the esc callback
+                        plugin.settings.callbackEsc.call();
+
+                        // Close the modal
+                        plugin.this.close($modal);
+                    }
+
+                    // Break the switch
+                    break;
+                }
+
                 // Tab
-                case keycode_tab:
+                case keycode_tab: {
                     // Check if the shift key was pressed
                     if (event.shiftKey) {
                         // Check if the active element is the first focusable element
@@ -288,34 +286,150 @@
 
                     // Break the switch
                     break;
-
-                // Esc
-                case keycode_esc:
-                    // Check if the modal can be closed with the esc key
-                    if (plugin.settings.closeEsc) {
-                        // Prevent the default action
-                        event.preventDefault();
-
-                        // Call the esc callback
-                        plugin.settings.callbackEsc.call();
-
-                        // Close the modal
-                        plugin.this.close($modal);
-                    }
-
-                    // Break the switch
-                    break;
+                }
             }
         });
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Close a modal.
+         *
+         * @param  {element}  $target  The target for the modal.
+         * @param  {bool}     silent   Suppress callbacks.
+         * @return {void}
+         */
+        close: ($modal, silent = false) => {
+            // Check if the modal exists and an overlay modal is open
+            if ($modal && (document.body.classList.contains('has-overlay') || document.querySelector('.overlay.modal'))) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the close before callback
+                    plugin.settings.callbackCloseBefore.call();
+                }
+
+                // Set the content
+                const $content = $modal.querySelector('.modal__content');
+
+                // Check if the overlay is animated
+                if (plugin.settings.overlayAnimation) {
+                    // Set the modal animation classes
+                    $modal.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationOut);
+
+                    // Add an animation end event handler to the modal
+                    $modal.addEventListener('animationend', () => {
+                        // Remove the modal
+                        $modal.remove();
+
+                        // Remove the overlay state hook from the document body
+                        document.body.classList.remove('has-overlay');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the close after callback
+                            plugin.settings.callbackCloseAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
+                    // Remove the modal
+                    $modal.remove();
+
+                    // Remove the overlay state hook from the document body
+                    document.body.classList.remove('has-overlay');
+
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the close after callback
+                        plugin.settings.callbackCloseAfter.call();
+                    }
+                }
+
+                // Check if the content is animated
+                if (plugin.settings.contentAnimation) {
+                    // Set the content animation classes
+                    $content.classList.add('is-animating', plugin.settings.contentAnimationClass, $modal.data.contentAnimationOut);
+
+                    // Add an animation end event handler to the content
+                    $content.addEventListener('animationend', () => {
+                        // Set the the content animation classes
+                        $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, $modal.data.contentAnimationOut);
+                        $content.classList.add('has-animated');
+                    }, {
+                        once: true
+                    });
+                }
+            }
+        },
+
+        /**
+         * Call the close method silently.
+         *
+         * @param  {element}  $modal  The modal.
+         * @return {void}
+         */
+        closeSilently: ($modal) => {
+            // Call the close method silently
+            plugin.this.close($modal, true);
+        },
+
+        /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Set the modals and triggers
+            const $modals = document.querySelectorAll('.modal');
+
+            // Check if any modals exists
+            if ($modals) {
+                // Cycle through all of the modals
+                $modals.forEach(($modal) => {
+                    // Close the modal
+                    plugin.this.close($modal);
+                });
+            }
+
+            // Remove the click event handlers from the modal
+            document.removeEventListener('click', clickModalTriggerEventHandler);
+            document.removeEventListener('click', clickModalCloseEventHandler);
+            document.removeEventListener('click', clickModalCancelEventHandler);
+            document.removeEventListener('click', clickModalContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -329,16 +443,10 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Add a click event handler to trigger a modal
+            // Add the click event handlers to the modal
             document.addEventListener('click', clickModalTriggerEventHandler);
-
-            // Add a click event handler to close a modal
             document.addEventListener('click', clickModalCloseEventHandler);
-
-            // Add a click event handler to cancel a modal
             document.addEventListener('click', clickModalCancelEventHandler);
-
-            // Add a click event handler to continue a modal
             document.addEventListener('click', clickModalContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
@@ -350,6 +458,7 @@
 
         /**
          * Open a modal.
+         *
          * @param  {element}  $target  The target modal.
          * @param  {bool}     silent   Suppress callbacks.
          * @return {void}
@@ -393,8 +502,8 @@
                     // Set the modal animation classes
                     $modal.classList.add('is-animating-in', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationIn);
 
-                    // Add an animation end event listener to the modal
-                    $modal.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the modal
+                    $modal.addEventListener('animationend', () => {
                         // Set the the modal animation classes
                         $modal.classList.remove('is-animating-in', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationIn);
                         $modal.classList.add('has-animated');
@@ -420,8 +529,8 @@
                     // Set the content animation classes
                     $content.classList.add('is-animating-in', plugin.settings.contentAnimationClass, $modal.data.contentAnimationIn);
 
-                    // Add an animation end event listener to the content
-                    $content.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the content
+                    $content.addEventListener('animationend', () => {
                         // Set the the content animation classes
                         $content.classList.remove('is-animating-in', plugin.settings.contentAnimationClass, $modal.data.contentAnimationIn);
                         $content.classList.add('has-animated');
@@ -433,77 +542,19 @@
         },
 
         /**
-         * Close a modal.
+         * Call the open method silently.
+         *
          * @param  {element}  $target  The target for the modal.
-         * @param  {bool}     silent   Suppress callbacks.
          * @return {void}
          */
-        close: ($modal, silent = false) => {
-            // Check if the modal exists and an overlay modal is open
-            if ($modal && (document.body.classList.contains('has-overlay') || document.querySelector('.overlay.modal'))) {
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the close before callback
-                    plugin.settings.callbackCloseBefore.call();
-                }
-
-                // Set the content
-                const $content = $modal.querySelector('.modal__content');
-
-                // Check if the overlay is animated
-                if (plugin.settings.overlayAnimation) {
-                    // Set the modal animation classes
-                    $modal.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, $modal.data.overlayAnimationOut);
-
-                    // Add an animation end event listener to the modal
-                    $modal.addEventListener('animationend', (event) => {
-                        // Remove the modal
-                        $modal.remove();
-
-                        // Remove the overlay state hook from the document body
-                        document.body.classList.remove('has-overlay');
-
-                        // Check if the callbacks should not be suppressed
-                        if (!silent) {
-                            // Call the close after callback
-                            plugin.settings.callbackCloseAfter.call();
-                        }
-                    }, {
-                        once: true
-                    });
-                } else {
-                    // Remove the modal
-                    $modal.remove();
-
-                    // Remove the overlay state hook from the document body
-                    document.body.classList.remove('has-overlay');
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the close after callback
-                        plugin.settings.callbackCloseAfter.call();
-                    }
-                }
-
-                // Check if the content is animated
-                if (plugin.settings.contentAnimation) {
-                    // Set the content animation classes
-                    $content.classList.add('is-animating', plugin.settings.contentAnimationClass, $modal.data.contentAnimationOut);
-
-                    // Add an animation end event listener to the content
-                    $content.addEventListener('animationend', (event) => {
-                        // Set the the content animation classes
-                        $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, $modal.data.contentAnimationOut);
-                        $content.classList.add('has-animated');
-                    }, {
-                        once: true
-                    });
-                }
-            }
+        openSilently: ($target) => {
+            // Call the open method silently
+            plugin.this.open($target, true);
         },
 
         /**
          * Refresh the plugins initialization.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -528,85 +579,13 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Set the modals and triggers
-            const $modals = document.querySelectorAll('.modal');
-            const $triggers = document.querySelectorAll(plugin.element);
-
-            // Check if any modals exists
-            if ($modals) {
-                // Cycle through all of the modals
-                $modals.forEach(($modal) => {
-                    // Close the modal
-                    plugin.this.close($modal);
-                });
-            }
-
-            // Remove the click event handler to trigger a modal
-            document.removeEventListener('click', clickModalTriggerEventHandler);
-
-            // Remove the click event handler to close a modal
-            document.removeEventListener('click', clickModalCloseEventHandler);
-
-            // Remove the click event handler to cancel a modal
-            document.removeEventListener('click', clickModalCancelEventHandler);
-
-            // Remove the click event handler to continue a modal
-            document.removeEventListener('click', clickModalContinueEventHandler);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
-         * Call the open method silently.
-         * @param  {element}  $target  The target for the modal.
-         * @return {void}
-         */
-        openSilently: ($target) => {
-            // Call the open method silently
-            plugin.this.open($target, true);
-        },
-
-        /**
-         * Call the close method silently.
-         * @param  {element}  $modal  The modal.
-         * @return {void}
-         */
-        closeSilently: ($modal) => {
-            // Call the close method silently
-            plugin.this.close($modal, true);
-        },
-
-        /**
          * Call the refresh method silently.
+         *
          * @return {void}
          */
         refreshSilently: () => {
             // Call the refresh method silently
             plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
         }
     };
 

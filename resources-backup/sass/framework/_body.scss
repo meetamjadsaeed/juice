@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> FRAMEWORK -> BODY
+    ========================================================================  */
+
+body {
+    background-color: $body-background-color;
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    letter-spacing: $body-letter-spacing;
+
+    // Pseudo elements
+    ::selection {
+        background-color: $body-selection-background-color;
+        color: $body-selection-font-color;
+        text-shadow: $body-selection-text-shadow;
+    }
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoint
+        @include breakpoint($breakpoint-name) {
+            font-size: root-font-size($breakpoint-name);
+            line-height: line-height($breakpoint-name);
+        }
+    }
+}

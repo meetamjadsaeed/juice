@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a z-index from the stack indexes.
+ *
+ * @param  {string}  $stack  The stack name.
+ * @return {mixed}           The z-index, null otherwise.
+ */
+@function stack-index($stack) {
+    // Return the z-index
+    @return map($stack-indexes, $stack);
+}

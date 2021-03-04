@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+/**
+ * Get the root line height.
+ *
+ * @return {mixed}  The root line height, null otherwise.
+ */
+@function root-line-height() {
+    // Return the root line height
+    @return var(--root-line-height);
+}

@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> LINE HEIGHT
+    ========================================================================  */
+
+/**
+ * Get a line height from the line heights.
+ * @param  {string}  $breakpoint  The breakpoint name.
+ * @return {mixed}                The line height value, null otherwise
+ */
+@function line-height($breakpoint: 'm') {
+    // Return the line height value
+    @return map($line-heights, $breakpoint);
+}

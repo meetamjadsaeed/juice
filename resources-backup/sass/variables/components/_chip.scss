@@ -1,0 +1,43 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> CHIP
+    ========================================================================  */
+
+// Maps
+$chip-content-spacing-multipliers: (
+    'sm': 0.2,
+    'md': 0.4,
+    'lg': 0.6
+) !default;
+
+$chip-font-sizes: (
+    'sm': (font-size('sm') - 0.1em),
+    'md': (font-size() - 0.1em),
+    'lg': (font-size('lg') - 0.1em)
+) !default;
+
+$chip-element-height-multipliers: (
+    'sm': 1.5,
+    'md': 2,
+    'lg': 2.5
+) !default;
+
+// Variables
+$chip-animation-duration: 300ms !default;
+$chip-background-color: base-color('white') !default;
+$chip-border-color: base-color('white-darken-3') !default;
+$chip-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$chip-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$chip-border-radius-top-left: $global-border-radius-top-left !default;
+$chip-border-radius-top-right: $global-border-radius-top-right !default;
+$chip-border-style: $global-border-style !default;
+$chip-border-width-bottom: $global-border-width-bottom !default;
+$chip-border-width-left: $global-border-width-left !default;
+$chip-border-width-right: $global-border-width-right !default;
+$chip-border-width-top: $global-border-width-top !default;
+$chip-font-color: font-color() !default;
+$chip-link-color: $global-link-color !default;
+$chip-link-color-hover: $global-link-color-hover !default;
+$chip-link-color-focus: $global-link-color-focus !default;
+$chip-link-color-active: $global-link-color-active !default;

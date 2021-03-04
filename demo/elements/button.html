@@ -38,41 +38,41 @@
             </ul>
             <hr class="has-huge-element-spacing" />
 
-            <div class="grid">
-                <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+            <div class="flex">
+                <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                     <div class="box is-center-aligned">
                         <div class="has-element-spacing">
-                            <h6>Standard</h6>
+                            <h6>Standard, Static and Disabled</h6>
                             <button type="button">Default</button>
                             <button type="button" class="button--outline">Outline</button>
-                            <button type="button" class="button--flat">Flat</button>
                         </div>
 
-                        <hr />
+                        <div class="has-element-spacing">
+                            <button type="button" class="is-static" tabindex="-1">Default</button>
+                            <button type="button" class="button--outline is-static" tabindex="-1">Outline</button>
+                        </div>
 
                         <div class="has-element-spacing">
-                            <h6>Disabled</h6>
                             <button type="button" disabled>Default</button>
                             <button type="button" class="button--outline" disabled>Outline</button>
-                            <button type="button" class="button--flat" disabled>Flat</button>
                         </div>
 
                         <hr />
 
                         <div class="has-element-spacing">
-                            <h6>Color</h6>
-                            <button type="button" class="is-emerald">Emerald</button>
-                            <button type="button" class="button--outline is-emerald">Outline</button>
-                            <button type="button" class="button--flat is-emerald">Flat</button>
+                            <h6>Standard, Static and Disabled</h6>
+                            <button type="button" class="is-charcoal">Default</button>
+                            <button type="button" class="button--outline is-charcoal">Outline</button>
                         </div>
 
-                        <hr />
+                        <div class="has-element-spacing">
+                            <button type="button" class="is-static is-charcoal" tabindex="-1">Default</button>
+                            <button type="button" class="button--outline is-static is-charcoal" tabindex="-1">Outline</button>
+                        </div>
 
                         <div class="has-element-spacing">
-                            <h6>Disabled Color</h6>
-                            <button type="button" class="is-emerald" disabled>Emerald</button>
-                            <button type="button" class="button--outline is-emerald" disabled>Outline</button>
-                            <button type="button" class="button--flat is-emerald" disabled>Flat</button>
+                            <button type="button" class="is-charcoal" disabled>Default</button>
+                            <button type="button" class="button--outline is-charcoal" disabled>Outline</button>
                         </div>
 
                         <hr />
@@ -93,18 +93,10 @@
                             <button type="button">Button</button>
                         </div>
 
-                        <br />
-
-                        <div class="button-group button-group--flat">
-                            <button type="button">Button</button>
-                            <button type="button">Button</button>
-                            <button type="button">Button</button>
-                        </div>
-
                         <!--  -->
                         <br />
 
-                        <div class="button-group is-emerald">
+                        <div class="button-group is-charcoal">
                             <button type="button">Button</button>
                             <button type="button">Button</button>
                             <button type="button">Button</button>
@@ -112,15 +104,7 @@
 
                         <br />
 
-                        <div class="button-group button-group--outline is-emerald">
-                            <button type="button">Button</button>
-                            <button type="button">Button</button>
-                            <button type="button">Button</button>
-                        </div>
-
-                        <br />
-
-                        <div class="button-group button-group--flat is-emerald">
+                        <div class="button-group button-group--outline is-charcoal">
                             <button type="button">Button</button>
                             <button type="button">Button</button>
                             <button type="button">Button</button>
@@ -138,14 +122,6 @@
                         <br />
 
                         <div class="button-group button-group--outline button-group--icons">
-                            <button type="button"><i class="fas fa-user fa-fw"></i></button>
-                            <button type="button"><i class="fas fa-user fa-fw"></i></button>
-                            <button type="button"><i class="fas fa-user fa-fw"></i></button>
-                        </div>
-
-                        <br />
-
-                        <div class="button-group button-group--flat button-group--icons">
                             <button type="button"><i class="fas fa-user fa-fw"></i></button>
                             <button type="button"><i class="fas fa-user fa-fw"></i></button>
                             <button type="button"><i class="fas fa-user fa-fw"></i></button>
@@ -179,14 +155,6 @@
                                 Button
                             </span>
                         </button>
-                        <button type="button" class="button--flat">
-                            <span class="button__icon">
-                                <i class="fas fa-user fa-fw"></i>
-                            </span>
-                            <span class="button__text">
-                                Button
-                            </span>
-                        </button>
 
                         <hr />
 
@@ -196,10 +164,6 @@
                         </button>
 
                         <button type="button" class="button--icon button--outline">
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
-                        <button type="button" class="button--icon button--flat">
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
@@ -213,10 +177,6 @@
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
-                        <button type="button" class="button--icon button--flat button--round">
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
                         <br />
 
                         <button type="button" class="button--icon" disabled>
@@ -227,96 +187,118 @@
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
-                        <button type="button" class="button--icon button--flat" disabled>
+                        <br />
+
+                        <button type="button" class="button--icon is-charcoal">
+                            <i class="fas fa-user fa-fw"></i>
+                        </button>
+
+                        <button type="button" class="button--icon button--outline is-charcoal">
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
                         <br />
 
-                        <button type="button" class="button--icon is-emerald">
+                        <button type="button" class="button--icon button--round is-charcoal">
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
-                        <button type="button" class="button--icon button--outline is-emerald">
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
-                        <button type="button" class="button--icon button--flat is-emerald">
+                        <button type="button" class="button--icon button--outline button--round is-charcoal">
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
                         <br />
 
-                        <button type="button" class="button--icon button--round is-emerald">
+                        <button type="button" class="button--icon is-charcoal" disabled>
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
-                        <button type="button" class="button--icon button--outline button--round is-emerald">
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
-                        <button type="button" class="button--icon button--flat button--round is-emerald">
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
-                        <br />
-
-                        <button type="button" class="button--icon is-emerald" disabled>
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
-                        <button type="button" class="button--icon button--outline is-emerald" disabled>
-                            <i class="fas fa-user fa-fw"></i>
-                        </button>
-
-                        <button type="button" class="button--icon button--flat is-emerald" disabled>
+                        <button type="button" class="button--icon button--outline is-charcoal" disabled>
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
                         <hr />
 
                         <h6>Component Standard and Rounded</h6>
-                        <button type="button" class="button--component">
+                        <button type="button" class="button--component button--icon">
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
-                        <button type="button" class="button--component button--round">
+                        <button type="button" class="button--component button--icon button--round">
                             <i class="fas fa-user fa-fw"></i>
                         </button>
 
-                        <button type="button" class="button--component" disabled>
+                        <button type="button" class="button--component button--icon" disabled>
                             <i class="fas fa-user fa-fw"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="grid__item grid__item--span-12 grid__item--span-6@desktop-up">
+                <div class="flex__item flex__item--span-12 flex__item--span-6@desktop">
                     <div class="box is-center-aligned">
                         <h6>Feedback</h6>
 
-                        <p>
-                            <button type="button" class="has-success">Success</button>
-                            <button type="button" class="button--outline has-success">Outline</button>
-                            <button type="button" class="button--flat has-success">Flat</button>
-                        </p>
-
-                        <p>
-                            <button type="button" class="has-info">Info</button>
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-info">Default</button>
                             <button type="button" class="button--outline has-info">Outline</button>
-                            <button type="button" class="button--flat has-info">Flat</button>
-                        </p>
+                        </div>
 
-                        <p>
-                            <button type="button" class="has-warning">Warning</button>
+                        <div class="has-element-spacing">
+                            <button type="button" class="is-static has-info" tabindex="-1">Default</button>
+                            <button type="button" class="button--outline is-static has-info" tabindex="-1">Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-info" disabled>Default</button>
+                            <button type="button" class="button--outline has-info" disabled>Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-success">Default</button>
+                            <button type="button" class="button--outline has-success">Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="is-static has-success" tabindex="-1">Default</button>
+                            <button type="button" class="button--outline is-static has-success" tabindex="-1">Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-success" disabled>Default</button>
+                            <button type="button" class="button--outline has-success" disabled>Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-warning">Default</button>
                             <button type="button" class="button--outline has-warning">Outline</button>
-                            <button type="button" class="button--flat has-warning">Flat</button>
-                        </p>
+                        </div>
 
-                        <p>
-                            <button type="button" class="has-error">Error</button>
+                        <div class="has-element-spacing">
+                            <button type="button" class="is-static has-warning" tabindex="-1">Default</button>
+                            <button type="button" class="button--outline is-static has-warning" tabindex="-1">Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-warning" disabled>Default</button>
+                            <button type="button" class="button--outline has-warning" disabled>Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-error">Default</button>
                             <button type="button" class="button--outline has-error">Outline</button>
-                            <button type="button" class="button--flat has-error">Flat</button>
-                        </p>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="is-static has-error" tabindex="-1">Default</button>
+                            <button type="button" class="button--outline is-static has-error" tabindex="-1">Outline</button>
+                        </div>
+
+                        <div class="has-element-spacing">
+                            <button type="button" class="has-error" disabled>Default</button>
+                            <button type="button" class="button--outline has-error" disabled>Outline</button>
+                        </div>
+
+
 
                         <hr />
 
@@ -325,25 +307,21 @@
                         <p>
                             <button type="button" class="has-success" disabled>Success</button>
                             <button type="button" class="button--outline has-success" disabled>Outline</button>
-                            <button type="button" class="button--flat has-success" disabled>Flat</button>
                         </p>
 
                         <p>
                             <button type="button" class="has-info" disabled>Info</button>
                             <button type="button" class="button--outline has-info" disabled>Outline</button>
-                            <button type="button" class="button--flat has-info" disabled>Flat</button>
                         </p>
 
                         <p>
                             <button type="button" class="has-warning" disabled>Warning</button>
                             <button type="button" class="button--outline has-warning" disabled>Outline</button>
-                            <button type="button" class="button--flat has-warning" disabled>Flat</button>
                         </p>
 
                         <p>
                             <button type="button" class="has-error" disabled>Error</button>
                             <button type="button" class="button--outline has-error" disabled>Outline</button>
-                            <button type="button" class="button--flat has-error" disabled>Flat</button>
                         </p>
 
                         <hr />

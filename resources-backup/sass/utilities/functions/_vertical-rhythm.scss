@@ -1,0 +1,31 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> VERTICAL RHYTHM
+    ========================================================================  */
+
+/**
+ * Get a vertical rhythm.
+ * @param  {string}  $breakpoint  The breakpoint name.
+ * @param  {int}     $multiplier  The vertical rhythm multiplier.
+ * @return {mixed}                The vertical rhythm, null otherwise.
+ */
+@function vertical-rhythm($breakpoint: 'm', $multiplier: 0) {
+    // Check if the multiplier is zero
+    @if ($multiplier == 0) {
+        // Return the vertical rhythm
+        @return map($vertical-rhythms, $breakpoint);
+    }
+
+    // Check if the multiplier is less than zero
+    @if ($multiplier < 0) {
+        // Return the vertical rhythm
+        @return map($vertical-rhythms, $breakpoint) / $multiplier;
+    }
+
+    // Check if the multiplier is more than zero
+    @if ($multiplier > 0) {
+        // Return the vertical rhythm
+        @return map($vertical-rhythms, $breakpoint) * $multiplier;
+    }
+}

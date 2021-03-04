@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> FONT COLOR
+    ========================================================================  */
+
+/**
+ * Get a color from the font color palette.
+ * @param  {string}  $name  The font color name.
+ * @return {mixed}          The font color value, null otherwise.
+ */
+@function font-color($name: 'default') {
+    // Return the font color value
+    @return map($font-color-palette, $name);
+}

@@ -1,0 +1,175 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> FORM -> CUSTOM -> FILE
+    ========================================================================  */
+
+// Check if the elements with custom file should be imported
+@if $import-elements and $import-element-custom-file {
+    .custom-file {
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                height: (element-height($breakpoint-name) * map-get($custom-file-element-height-multipliers, 'md'));
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                .custom-file__elements {
+                    // Nested selectors
+                    .custom-file__button {
+                        font-size: map-get($button-font-sizes, 'md');
+                        padding: 0 (content-spacing($breakpoint-name) * map-get($button-content-spacing-multipliers, 'md'));
+                    }
+
+                    .custom-file__text {
+                        font-size: map-get($custom-file-font-sizes, 'md');
+                        padding: 0 (content-spacing($breakpoint-name) * map-get($custom-file-content-spacing-multipliers, 'md'));
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        input[type=file] {
+            clip: rect(0, 0, 0, 0);
+            height: 0;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            width: 0;
+        }
+
+        .custom-file__elements {
+            align-items: center;
+            display: flex;
+            height: 100%;
+
+            // Nested selectors
+            .custom-file__button,
+            .custom-file__text {
+                border-left-width: 0;
+                border-right-width: 0;
+                height: 100%;
+
+                // Pseudo classes
+                &:first-child {
+                    border-bottom-left-radius: $custom-file-border-radius-bottom-left;
+                    border-left-width: $custom-file-border-width-left;
+                    border-top-left-radius: $custom-file-border-radius-top-left;
+
+                    // Pseudo classes
+                    &:not(.custom-file__text) {
+                        border-right-width: $custom-file-border-width-divider;
+                    }
+                }
+
+                &:last-child {
+                    border-bottom-right-radius: $custom-file-border-radius-bottom-right;
+                    border-right-width: $custom-file-border-width-right;
+                    border-top-right-radius: $custom-file-border-radius-top-right;
+
+                    // Pseudo classes
+                    &:not(.custom-file__text) {
+                        border-left-width: $custom-file-border-width-divider;
+                    }
+                }
+            }
+
+            .custom-file__button {
+                @extend #{$button};
+                border-radius: 0;
+                margin: 0;
+            }
+
+            .custom-file__text {
+                @include truncate-text;
+                align-items: center;
+                background-color: $custom-file-background-color;
+                border: 0 $custom-file-border-style $custom-file-border-color;
+                border-bottom-width: $custom-file-border-width-bottom;
+                border-top-width: $custom-file-border-width-top;
+                color: $custom-file-font-color;
+                display: flex;
+                flex-grow: 1;
+                font-family: $custom-file-font-family;
+            }
+        }
+
+        // Check if the custom file size modifiers should be declared
+        @if $custom-file-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            height: (element-height($breakpoint-name) * map-get($custom-file-element-height-multipliers, $size));
+
+                            // Nested selectors
+                            .custom-file__elements {
+                                // Nested selectors
+                                .custom-file__button {
+                                    font-size: map-get($button-font-sizes, $size);
+                                    padding: 0 (content-spacing($breakpoint-name) * map-get($button-content-spacing-multipliers, $size));
+                                }
+
+                                .custom-file__text {
+                                    font-size: map-get($custom-file-font-sizes, $size);
+                                    padding: 0 (content-spacing($breakpoint-name) * map-get($custom-file-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+
+                        // Check if the custom file size modifiers with breakpoints should be declared
+                        @if $custom-file-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                height: (element-height($breakpoint-name) * map-get($custom-file-element-height-multipliers, $size));
+
+                                // Nested selectors
+                                .custom-file__elements {
+                                    // Nested selectors
+                                    .custom-file__button {
+                                        font-size: map-get($button-font-sizes, $size);
+                                        padding: 0 (content-spacing($breakpoint-name) * map-get($button-content-spacing-multipliers, $size));
+                                    }
+
+                                    .custom-file__text {
+                                        font-size: map-get($custom-file-font-sizes, $size);
+                                        padding: 0 (content-spacing($breakpoint-name) * map-get($custom-file-content-spacing-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the custom file feedback modifiers should be declared
+        @if $custom-file-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $feedback-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    // Nested selectors
+                    .custom-file__elements {
+                        // Nested selectors
+                        .custom-file__button {
+                            @extend .button.has-#{$feedback-name};
+                            content: ''; // Stops incorrect editor syntax highlighting
+                        }
+
+                        .custom-file__text {
+                            border-color: feedback-color($feedback-name);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FLIP -> ENTRANCE -> FLIP IN RIGHT
+    ========================================================================  */
+
+// Check if the animations with flip in right should be imported
+@if $import-animations and $import-animation-flip-in-right {
+    .has-animation {
+        // Nested selectors
+        &.flip-in-right {
+            @keyframes flip-in-right {
+                from {
+                    transform: perspective($animation-flip-in-perspective) rotate3d(0, 1, 0, -90deg);
+                }
+
+                to {
+                    transform: perspective($animation-flip-in-perspective) rotate3d(0, 1, 0, 0deg);
+                }
+            }
+
+            animation-delay: $animation-flip-in-delay;
+            animation-duration: $animation-flip-in-duration;
+            animation-name: flip-in-right;
+            animation-timing-function: $animation-flip-in-easing;
+        }
+    }
+}

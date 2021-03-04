@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> VAR
+    ========================================================================  */
+
+// Variables
+$var-background-color: transparent !default;
+$var-border-color: transparent !default;
+$var-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$var-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$var-border-radius-top-left: $global-border-radius-top-left !default;
+$var-border-radius-top-right: $global-border-radius-top-right !default;
+$var-border-style: $global-border-style !default;
+$var-border-width-bottom: $global-border-width-bottom !default;
+$var-border-width-left: $global-border-width-left !default;
+$var-border-width-right: $global-border-width-right !default;
+$var-border-width-top: $global-border-width-top !default;
+$var-content-spacing: 4px !default;
+$var-font-color: inherit !default;
+$var-font-family: $global-monoface-typeface !default;
+$var-font-size: font-size() !default;

@@ -1,0 +1,227 @@
+@charset 'utf-8';
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 calc(0 - #{$flex-element-spacing});
+    position: relative;
+
+    // Nested selectors
+    .flex__item {
+        flex: 1 0 0;
+        max-width: 100%;
+        padding: 0 $flex-content-spacing;
+
+        // Start a for loop
+        @for $i from 1 through $flex-columns {
+            // Variables
+            $width: (100% / $flex-columns) * $i;
+
+            // Modifiers
+            &.flex__item--offset-#{$i} {
+                margin-left: $width;
+            }
+
+            &.flex__item--span-#{$i} {
+                flex-basis: $width;
+                max-width: $width;
+            }
+        }
+
+        // Modifiers
+        &.flex__item--bottom {
+            align-self: flex-end;
+        }
+
+        &.flex__item--middle {
+            align-self: center;
+        }
+
+        &.flex__item--no-offset {
+            margin-left: 0;
+        }
+
+        &.flex__item--stretch {
+            align-self: stretch;
+        }
+
+        &.flex__item--top {
+            align-self: flex-start;
+        }
+    }
+
+    // Modifiers
+    &.flex--around {
+        justify-content: space-around;
+    }
+
+    &.flex--between {
+        justify-content: space-between;
+    }
+
+    &.flex--bottom {
+        align-items: flex-end;
+    }
+
+    &.flex--center {
+        justify-content: center;
+    }
+
+    &.flex--column {
+        flex-direction: column;
+
+        // Nested selectors
+        .flex__item {
+            flex-basis: auto;
+        }
+
+        // Modifiers
+        &.flex--reverse {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &.flex--end {
+        justify-content: flex-end;
+    }
+
+    &.flex--middle {
+        align-items: center;
+    }
+
+    &.flex--nowrap {
+        flex-wrap: nowrap;
+    }
+
+    &.flex--reverse {
+        flex-direction: row-reverse;
+    }
+
+    &.flex--seamless {
+        margin: 0;
+
+        // Nested selectors
+        .flex__item {
+            padding: 0;
+        }
+    }
+
+    &.flex--start {
+        justify-content: flex-start;
+    }
+
+    &.flex--stretch {
+        align-items: stretch;
+    }
+
+    &.flex--top {
+        align-items: flex-start;
+    }
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoint
+        @include breakpoint($breakpoint-name) {
+            // Modifiers
+            &.flex--around\@#{$breakpoint-name} {
+                justify-content: space-around;
+            }
+
+            &.flex--between\@#{$breakpoint-name} {
+                justify-content: space-between;
+            }
+
+            &.flex--bottom\@#{$breakpoint-name} {
+                align-items: flex-end;
+            }
+
+            &.flex--center\@#{$breakpoint-name} {
+                justify-content: center;
+            }
+
+            &.flex--column\@#{$breakpoint-name} {
+                flex-direction: column;
+
+                // Nested selectors
+                .flex__item {
+                    flex-basis: auto;
+                }
+
+                // Modifiers
+                &.flex--reverse {
+                    flex-direction: column-reverse;
+                }
+            }
+
+            &.flex--end\@#{$breakpoint-name} {
+                justify-content: flex-end;
+            }
+
+            &.flex--nowrap\@#{$breakpoint-name} {
+                flex-wrap: nowrap;
+            }
+
+            &.flex--middle\@#{$breakpoint-name} {
+                align-items: center;
+            }
+
+            &.flex--reverse\@#{$breakpoint-name} {
+                flex-direction: row-reverse;
+            }
+
+            &.flex--top\@#{$breakpoint-name} {
+                align-items: flex-start;
+            }
+
+            &.flex--start\@#{$breakpoint-name} {
+                justify-content: flex-start;
+            }
+
+            &.flex--seamless\@#{$breakpoint-name} {
+                margin: 0;
+
+                // Nested selectors
+                .flex__item {
+                    padding: 0;
+                }
+            }
+
+            // Nested selectors
+            .flex__item {
+                // Start a for loop
+                @for $i from 1 through $flex-columns {
+                    // Variables
+                    $width: (100% / $flex-columns) * $i;
+
+                    // Modifiers
+                    &.flex__item--offset-#{$i}\@#{$breakpoint-name} {
+                        margin-left: $width;
+                    }
+
+                    &.flex__item--span-#{$i}\@#{$breakpoint-name} {
+                        flex-basis: $width;
+                        max-width: $width;
+                    }
+                }
+
+                // Modifiers
+                &.flex__item--bottom\@#{$breakpoint-name} {
+                    align-self: flex-end;
+                }
+
+                &.flex__item--middle\@#{$breakpoint-name} {
+                    align-self: center;
+                }
+
+                &.flex__item--no-offset\@#{$breakpoint-name} {
+                    margin-left: 0;
+                }
+
+                &.flex__item--top\@#{$breakpoint-name} {
+                    align-self: flex-start;
+                }
+            }
+        }
+    }
+}

@@ -1,85 +1,68 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> SETTINGS -> COMPONENTS
-    ========================================================================  */
-
-// Accordion
+// Accordion settings variables
 $accordion-color-modifiers: true !default;
 $accordion-size-modifiers: true !default;
 $accordion-size-modifiers-with-breakpoints: true !default;
 $accordion-spaced-modifier: true !default;
 
-// Alert
+// Alert settings variables
 $alert-alignment-modifier: true !default;
 $alert-color-modifiers: true !default;
 $alert-feedback-modifiers: true !default;
-$alert-size-modifiers: true !default;
-$alert-size-modifiers-with-breakpoints: true !default;
 
-// Card
+// Card settings variables
 $card-size-modifiers: true !default;
 $card-size-modifiers-with-breakpoints: true !default;
 
-// Chip
+// Chip settings variables
 $chip-color-modifiers: true !default;
-$chip-feedback-modifiers: true !default;
 $chip-pill-modifier: true !default;
 $chip-size-modifiers: true !default;
 $chip-size-modifiers-with-breakpoints: true !default;
 
-// Confirm
+// Confirm settings variables
 $confirm-alignment-modifier: true !default;
 $confirm-color-modifiers: true !default;
 $confirm-feedback-modifiers: true !default;
-$confirm-size-modifiers: true !default;
-$confirm-size-modifiers-with-breakpoints: true !default;
 
-// Dropdown
+// Dropdown settings variables
 $dropdown-alignment-modifiers: true !default;
 $dropdown-megamenu-modifier: true !default;
 $dropdown-size-modifiers: true !default;
 $dropdown-size-modifiers-with-breakpoints: true !default;
 
-// Modal
+// Modal settings variables
 $modal-alignment-modifier: true !default;
-$modal-card-color-modifiers: true !default;
-$modal-card-feedback-modifiers: true !default;
-$modal-card-size-modifiers: true !default;
-$modal-card-size-modifiers-with-breakpoints: true !default;
+$modal-color-modifiers: true !default;
 
-// Notice
-$notice-feedback-modifiers: true !default;
+// Notice settings variables
 $notice-size-modifiers: true !default;
 $notice-size-modifiers-with-breakpoints: true !default;
 
-// Panel
+// Panel settings variables
 $panel-color-modifiers: true !default;
 $panel-feedback-modifiers: true !default;
 $panel-size-modifiers: true !default;
 $panel-size-modifiers-with-breakpoints: true !default;
 
-// Popover
+// Popover settings variables
 $popover-alignment-modifiers: true !default;
 $popover-color-modifiers: true !default;
 $popover-feedback-modifiers: true !default;
 $popover-size-modifiers: true !default;
 $popover-size-modifiers-with-breakpoints: true !default;
 
-// Prompt
+// Prompt settings variables
 $prompt-alignment-modifier: true !default;
 $prompt-color-modifiers: true !default;
 $prompt-feedback-modifiers: true !default;
-$prompt-size-modifiers: true !default;
-$prompt-size-modifiers-with-breakpoints: true !default;
 
-// Toast
+// Toast settings variables
 $toast-alignment-modifiers: true !default;
 $toast-feedback-modifiers: true !default;
 
-// Tooltip
+// Tooltip settings variables
 $tooltip-alignment-modifiers: true !default;
 $tooltip-color-modifiers: true !default;
 $tooltip-feedback-modifiers: true !default;
-$tooltip-size-modifiers: true !default;
-$tooltip-size-modifiers-with-breakpoints: true !default;

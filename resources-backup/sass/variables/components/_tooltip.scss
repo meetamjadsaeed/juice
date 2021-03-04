@@ -1,0 +1,21 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> TOOLTIP
+    ========================================================================  */
+
+// Variables
+$tooltip-animation-duration: 300ms !default;
+$tooltip-arrow-size: 6px !default;
+$tooltip-background-color: base-color('charcoal') !default;
+$tooltip-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$tooltip-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$tooltip-border-radius-top-left: $global-border-radius-top-left !default;
+$tooltip-border-radius-top-right: $global-border-radius-top-right !default;
+$tooltip-content-spacing-multiplier: .4 !default;
+$tooltip-font-color: base-color('charcoal-inverted-text') !default;
+$tooltip-font-family: 'Trebuchet', sans-serif !default;
+$tooltip-font-size: (font-size() - 0.2em) !default;
+$tooltip-offset: 2px !default;
+$tooltip-max-width: 200px !default;
+$tooltip-opacity: 0.9 !default;

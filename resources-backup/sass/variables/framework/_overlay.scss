@@ -1,0 +1,10 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> FRAMEWORK -> OVERLAY
+    ========================================================================  */
+
+// Variables
+$overlay-animation-duration: 200ms !default;
+$overlay-background-color: hsla(0, 0%, 0%, 0.75) !default;
+$overlay-font-color: base-color('black-inverted-text') !default;

@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> CONFIRM
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Confirm';
 
@@ -33,56 +29,32 @@
         contentAnimationOut: 'fade-out-down',
         continueButtonClass: null,
         continueButtonText: 'Continue',
+        feedback: null,
         heading: '<h4>Heading</h4>',
         overlayAnimation: true,
         overlayAnimationClass: 'has-animation',
         overlayAnimationIn: 'fade-in',
         overlayAnimationOut: 'fade-out',
-        feedback: null,
-        size: null,
         text: 'Lorem ipsum...',
 
-        callbackInitializeBefore: () => {
-            console.log('Confirm: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Confirm: callbackInitializeAfter');
-        },
-        callbackOpenBefore: () => {
-            console.log('Confirm: callbackOpenBefore');
-        },
-        callbackOpenAfter: () => {
-            console.log('Confirm: callbackOpenAfter');
-        },
-        callbackCloseBefore: () => {
-            console.log('Confirm: callbackCloseBefore');
-        },
-        callbackCloseAfter: () => {
-            console.log('Confirm: callbackCloseAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Confirm: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Confirm: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Confirm: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Confirm: callbackDestroyAfter')
-        },
+        callbackCloseBefore: () => {},
+        callbackCloseAfter: () => {},
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackOpenBefore: () => {},
+        callbackOpenAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
 
-        callbackCancel: () => {
-            console.log('Confirm: callbackCancel');
-        },
-        callbackContinue: () => {
-            console.log('Confirm: callbackContinue');
-        }
+        callbackCancel: () => {},
+        callbackContinue: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {object}  options  The plugin options.
      * @return {void}
      */
@@ -100,6 +72,7 @@
 
     /**
      * Build the confirm.
+     *
      * @return {void}
      */
     const buildConfirm = () => {
@@ -156,14 +129,6 @@
             $confirm.classList.add('confirm--center');
         }
 
-        // Check if a size modifier exists
-        if (plugin.settings.size) {
-            // Add the size modifier class to the confirm
-            $confirm.classList.add(`is-${plugin.settings.size}`);
-            $cancel.classList.add(`is-${plugin.settings.size}`);
-            $continue.classList.add(`is-${plugin.settings.size}`);
-        }
-
         // Check if a color modifier exists
         if (plugin.settings.color) {
             // Add the color modifier class to the confirm
@@ -186,6 +151,7 @@
 
     /**
      * Click event handler to cancel a confirm.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -202,6 +168,7 @@
 
     /**
      * Click event handler to continue a confirm.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -218,6 +185,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -238,37 +206,39 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
-     * Trap focus to the modal.
-     * @param  {element}  $modal  The modal.
+     * Trap focus to the confirm.
+     * @param  {element}  $confirm  The confirm.
      * @return {void}
      */
-    const trapFocus = ($modal) => {
+    const trapFocus = ($confirm) => {
         // Set the focusable elements
-        const $focusables = $modal.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href]:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        const $focusables = $confirm.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href]:not([disabled]), [tabindex]:not([tabindex="-1"])');
         const $focusable_first = $focusables[0];
         const $focusable_last = $focusables[$focusables.length - 1];
 
         // Set the keycodes
         const keycode_tab = 9;
 
-        // Add a keydown event listener to the modal to trap focus
-        $modal.addEventListener('keydown', function(event) {
+        // Add a keydown event handler to the confirm
+        $confirm.addEventListener('keydown', function(event) {
             // Start a switch event for the keycode
             switch (event.keyCode) {
                 // Tab
-                case keycode_tab:
+                case keycode_tab: {
                     // Check if the shift key was pressed
                     if (event.shiftKey) {
                         // Check if the active element is the first focusable element
@@ -291,128 +261,19 @@
 
                     // Break the switch
                     break;
+                }
             }
         });
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
      * @type {object}
      */
     Plugin.prototype = {
         /**
-         * Initialize the plugin.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        initialize: (silent = false) => {
-            // Destroy the existing initialization silently
-            plugin.this.destroySilently();
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the initialize before callback
-                plugin.settings.callbackInitializeBefore.call();
-            }
-
-            // Add a click event handler to cancel a confirm
-            document.addEventListener('click', clickConfirmCancelEventHandler);
-
-            // Add a click event handler to continue a confirm
-            document.addEventListener('click', clickConfirmContinueEventHandler);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the initialize after callback
-                plugin.settings.callbackInitializeAfter.call();
-            }
-
-            // Open the confirm
-            plugin.this.open();
-        },
-
-        /**
-         * Open the confirm.
-         * @param  {bool}  silent   Suppress callbacks.
-         * @return {void}
-         */
-        open: (silent = false) => {
-            // Check if an overlay isn't already open
-            if (!document.body.classList.contains('has-overlay') || !document.querySelector('.overlay')) {
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the open before callback
-                    plugin.settings.callbackOpenBefore.call();
-                }
-
-                // Add the overlay state hook to the document body
-                document.body.classList.add('has-overlay');
-
-                // Build the confirm
-                buildConfirm();
-
-                // Set the confirm elements
-                const $confirm = document.querySelector('.confirm');
-                const $content = $confirm.querySelector('.confirm__content');
-                const $cancel = $confirm.querySelector('.js-confirm-cancel');
-                const $continue = $confirm.querySelector('.js-confirm-continue');
-
-                // Set the plugin confirm
-                plugin.this.confirm = $confirm;
-
-                // Set the confirm tabindex and focus on the confirm
-                $confirm.setAttribute('tabindex', -1);
-                $confirm.focus();
-
-                // Trap focus inside the confirm
-                trapFocus($confirm);
-
-                // Check if the overlay is animated
-                if (plugin.settings.overlayAnimation) {
-                    // Set the confirm animation classes
-                    $confirm.classList.add('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
-
-                    // Add an animation end event listener to the confirm
-                    $confirm.addEventListener('animationend', (event) => {
-                        // Set the the confirm animation classes
-                        $confirm.classList.remove('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
-                        $confirm.classList.add('has-animated');
-
-                        // Check if the callbacks should not be suppressed
-                        if (!silent) {
-                            // Call the open after callback
-                            plugin.settings.callbackOpenAfter.call();
-                        }
-                    }, {
-                        once: true
-                    });
-                } else {
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the open after callback
-                        plugin.settings.callbackOpenAfter.call();
-                    }
-                }
-
-                // Check if the content is animated
-                if (plugin.settings.contentAnimation) {
-                    // Set the content animation classes
-                    $content.classList.add('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
-
-                    // Add an animation end event listener to the content
-                    $content.addEventListener('animationend', (event) => {
-                        // Set the the content animation classes
-                        $content.classList.remove('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
-                        $content.classList.add('has-animated');
-                    }, {
-                        once: true
-                    });
-                }
-            }
-        },
-
-        /**
          * Close a confirm.
+         *
          * @param  {bool}  silent   Suppress callbacks.
          * @return {void}
          */
@@ -436,8 +297,8 @@
                     // Set the confirm animation classes
                     $confirm.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationOut);
 
-                    // Add an animation end event listener to the confirm
-                    $confirm.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the confirm
+                    $confirm.addEventListener('animationend', () => {
                         // Remove the confirm
                         $confirm.remove();
 
@@ -471,8 +332,8 @@
                     // Set the content animation classes
                     $content.classList.add('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
 
-                    // Add an animation end event listener to the content
-                    $content.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the content
+                    $content.addEventListener('animationend', () => {
                         // Set the the content animation classes
                         $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
                         $content.classList.add('has-animated');
@@ -484,7 +345,171 @@
         },
 
         /**
+         * Call the close method silently.
+         *
+         * @return {void}
+         */
+        closeSilently: () => {
+            // Call the close method silently
+            plugin.this.close(true);
+        },
+
+        /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Remove the click event handlers from the confirm
+            document.removeEventListener('click', clickConfirmCancelEventHandler);
+            document.removeEventListener('click', clickConfirmContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
+         * Initialize the plugin.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        initialize: (silent = false) => {
+            // Destroy the existing initialization silently
+            plugin.this.destroySilently();
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize before callback
+                plugin.settings.callbackInitializeBefore.call();
+            }
+
+            // Add the click event handlers to the confirm
+            document.addEventListener('click', clickConfirmCancelEventHandler);
+            document.addEventListener('click', clickConfirmContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the initialize after callback
+                plugin.settings.callbackInitializeAfter.call();
+            }
+
+            // Open the confirm
+            plugin.this.open();
+        },
+
+        /**
+         * Open the confirm.
+         *
+         * @param  {bool}  silent   Suppress callbacks.
+         * @return {void}
+         */
+        open: (silent = false) => {
+            // Check if an overlay isn't already open
+            if (!document.body.classList.contains('has-overlay') || !document.querySelector('.overlay')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the open before callback
+                    plugin.settings.callbackOpenBefore.call();
+                }
+
+                // Add the overlay state hook to the document body
+                document.body.classList.add('has-overlay');
+
+                // Build the confirm
+                buildConfirm();
+
+                // Set the confirm elements
+                const $confirm = document.querySelector('.confirm');
+                const $content = $confirm.querySelector('.confirm__content');
+
+                // Set the plugin confirm
+                plugin.this.confirm = $confirm;
+
+                // Set the confirm tabindex and focus on the confirm
+                $confirm.setAttribute('tabindex', -1);
+                $confirm.focus();
+
+                // Trap focus inside the confirm
+                trapFocus($confirm);
+
+                // Check if the overlay is animated
+                if (plugin.settings.overlayAnimation) {
+                    // Set the confirm animation classes
+                    $confirm.classList.add('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
+
+                    // Add an animation end event handler to the confirm
+                    $confirm.addEventListener('animationend', () => {
+                        // Set the the confirm animation classes
+                        $confirm.classList.remove('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
+                        $confirm.classList.add('has-animated');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the open after callback
+                            plugin.settings.callbackOpenAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the open after callback
+                        plugin.settings.callbackOpenAfter.call();
+                    }
+                }
+
+                // Check if the content is animated
+                if (plugin.settings.contentAnimation) {
+                    // Set the content animation classes
+                    $content.classList.add('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
+
+                    // Add an animation end event handler to the content
+                    $content.addEventListener('animationend', () => {
+                        // Set the the content animation classes
+                        $content.classList.remove('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
+                        $content.classList.add('has-animated');
+                    }, {
+                        once: true
+                    });
+                }
+            }
+        },
+
+        /**
+         * Call the open method silently.
+         *
+         * @return {void}
+         */
+        openSilently: () => {
+            // Call the open method silently
+            plugin.this.open(true);
+        },
+
+        /**
          * Refresh the plugins initialization.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -509,64 +534,13 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Remove the click event handler to cancel a confirm
-            document.removeEventListener('click', clickConfirmCancelEventHandler);
-
-            // Remove the click event handler to continue a confirm
-            document.removeEventListener('click', clickConfirmContinueEventHandler);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
-         * Call the open method silently.
-         * @return {void}
-         */
-        openSilently: () => {
-            // Call the open method silently
-            plugin.this.open(true);
-        },
-
-        /**
-         * Call the close method silently.
-         * @return {void}
-         */
-        closeSilently: () => {
-            // Call the close method silently
-            plugin.this.close(true);
-        },
-
-        /**
          * Call the refresh method silently.
+         *
          * @return {void}
          */
         refreshSilently: () => {
             // Call the refresh method silently
             plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
         }
     };
 

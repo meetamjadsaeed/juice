@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> NOTICE
+    ========================================================================  */
+
+// Maps
+$notice-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+// Variables
+$notice-animation-duration: 300ms !default;
+$notice-background-color: base-color('white') !default;
+$notice-border-color: base-color('white-darken-3') !default;
+$notice-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$notice-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$notice-border-radius-top-left: $global-border-radius-top-left !default;
+$notice-border-radius-top-right: $global-border-radius-top-right !default;
+$notice-border-style: $global-border-style !default;
+$notice-border-width-bottom: $global-border-width-bottom !default;
+$notice-border-width-divider: $global-border-width-divider !default;
+$notice-border-width-left: $global-border-width-left !default;
+$notice-border-width-right: $global-border-width-right !default;
+$notice-border-width-top: $global-border-width-top !default;
+$notice-box-shadow: $global-box-shadow !default;
+$notice-feedback-background-color: feedback-color('info') !default;
+$notice-feedback-border-color: feedback-color('info-darken-3') !default;
+$notice-feedback-font-color: feedback-color('info-inverted-text') !default;
+$notice-font-color: font-color() !default;
+$notice-link-color: $global-link-color !default;
+$notice-link-color-hover: $global-link-color-hover !default;
+$notice-link-color-focus: $global-link-color-focus !default;
+$notice-link-color-active: $global-link-color-active !default;

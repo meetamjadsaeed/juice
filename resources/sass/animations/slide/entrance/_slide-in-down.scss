@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> SLIDE -> ENTRANCE -> SLIDE IN DOWN
-    ========================================================================  */
-
 // Check if the animations with slide in down should be imported
 @if $import-animations and $import-animation-slide-in-down {
     .has-animation {
@@ -11,7 +7,7 @@
         &.slide-in-down {
             @keyframes slide-in-down {
                 from {
-                    transform: translate3d(0, (0px - $animation-slide-in-distance), 0);
+                    transform: translate3d(0, (0 - $animation-slide-in-distance), 0);
                 }
 
                 to {

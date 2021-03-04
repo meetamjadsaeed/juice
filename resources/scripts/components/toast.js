@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> TOAST
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Toast';
 
@@ -34,44 +30,23 @@
         feedback: null,
         text: 'Lorem ipsum...',
 
-        callbackInitializeBefore: () => {
-            console.log('Toast: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Toast: callbackInitializeAfter');
-        },
-        callbackOpenBefore: function() {
-            console.log('Toast: callbackOpenBefore');
-        },
-        callbackOpenAfter: function() {
-            console.log('Toast: callbackOpenAfter');
-        },
-        callbackCloseBefore: function() {
-            console.log('Toast: callbackCloseBefore');
-        },
-        callbackCloseAfter: function() {
-            console.log('Toast: callbackCloseAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Toast: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Toast: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Toast: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Toast: callbackDestroyAfter');
-        },
+        callbackCloseBefore: function() {},
+        callbackCloseAfter: function() {},
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackOpenBefore: function() {},
+        callbackOpenAfter: function() {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
 
-        callbackAction: function() {
-            console.log('Toast: callbackAction');
-        }
+        callbackAction: function() {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {object}  options  The plugin options.
      * @return {void}
      */
@@ -89,6 +64,7 @@
 
     /**
      * Build a toast.
+     *
      * @return {node}  The toast.
      */
     const buildToast = () => {
@@ -132,10 +108,11 @@
 
     /**
      * Click event handler to trigger a toast action callback.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
-    const clickToastActionEventListener = (event) => {
+    const clickToastActionEventHandler = (event) => {
         // Check if the event target is the action or a descendant of the action
         if (isTargetSelector(event.target, 'class', 'js-toast-action')) {
             // Prevent the default action
@@ -151,6 +128,7 @@
 
     /**
      * Close a toast.
+     *
      * @param  {node}  $container  The container.
      * @param  {node}  $toast      The toast.
      * @param  {bool}  silent      Suppress callbacks.
@@ -168,8 +146,8 @@
             // Set the content animation classes
             $toast.classList.add('is-animating-out', plugin.settings.animationClass, plugin.settings.animationOut);
 
-            // Add an animation end event listener to the content
-            $toast.addEventListener('animationend', (event) => {
+            // Add an animation end event handler to the content
+            $toast.addEventListener('animationend', () => {
                 // Remove the toast
                 $toast.remove();
 
@@ -195,6 +173,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -215,19 +194,22 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
      * Open a toast.
+     *
      * @param  {node}  $container  The container.
      * @param  {bool}  silent      Suppress callbacks.
      * @return {void}
@@ -250,8 +232,8 @@
             // Set the content animation classes
             $toast.classList.add('is-animating-in', plugin.settings.animationClass, plugin.settings.animationIn);
 
-            // Add an animation end event listener to the content
-            $toast.addEventListener('animationend', (event) => {
+            // Add an animation end event handler to the toast
+            $toast.addEventListener('animationend', () => {
                 // Set the the content animation classes
                 $toast.classList.remove('is-animating-in', plugin.settings.animationClass, plugin.settings.animationIn);
                 $toast.classList.add('has-animated');
@@ -287,11 +269,46 @@
 
     /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Remove the click event handler from the toast
+            document.removeEventListener('click', clickToastActionEventHandler);
+
+            // Check if the callbacks should not be suppressed.
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -314,8 +331,8 @@
                 openToast($container);
             }
 
-            // Add a click event handler to trigger a toast action
-            document.addEventListener('click', clickToastActionEventListener);
+            // Add a click event handler to the toast
+            document.addEventListener('click', clickToastActionEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -326,6 +343,7 @@
 
         /**
          * Refresh the plugins initialization.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -350,43 +368,13 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Remove the click event handler to trigger a toast action
-            document.removeEventListener('click', clickToastActionEventListener);
-
-            // Check if the callbacks should not be suppressed.
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
          * Call the refresh method silently.
+         *
          * @return {void}
          */
         refreshSilently: () => {
             // Call the refresh method silently
             plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
         }
     };
 

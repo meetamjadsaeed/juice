@@ -1,10 +1,8 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> INITIALIZE -> PALETTES
-    ========================================================================  */
-
-// Import
+// Import intialization palettes
 @import 'base-colors';
 @import 'feedback-colors';
 @import 'font-colors';
+@import 'fonts';
+@import 'vertical-rhythm';

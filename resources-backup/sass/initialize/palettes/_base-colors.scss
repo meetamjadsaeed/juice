@@ -1,0 +1,220 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> PALETTES -> BASE COLORS
+    ========================================================================  */
+
+// Create an empty base color palette
+$base-color-palette: ();
+
+// Cycle through all of the base colors
+@each $color-name, $color-value in $base-colors {
+    // Check if the color value is a type of color
+    @if type_of($color-value) == 'color' {
+        // Set the base color
+        $base: $color-value;
+
+        // Merge the base color to the base color palette
+        $base-color-palette: map-merge($base-color-palette, ('#{$color-name}': $base));
+
+        // Create an empty generated palette
+        $generated-palette: ();
+
+        // Cycle through all of the color variations
+        @each $variation-name, $variation-amount in $color-variations {
+            // Set the variation color
+            $variation-color: '';
+
+            // Check if the variation name contains the lighten string
+            @if str-index($variation-name, 'lighten') != null {
+                // Set the variation color
+                $variation-color: lighten($color-value, $variation-amount);
+            }
+
+            // Check if the variation name contains the darken string
+            @if str-index($variation-name, 'darken') != null {
+                // Set the variation color
+                $variation-color: darken($color-value, $variation-amount);
+            }
+
+            // Merge the variation color to the generated palette
+            $generated-palette: map-merge($generated-palette, ('#{$color-name}-#{$variation-name}': $variation-color));
+        }
+
+        // Merge the generated palette to the base color palette
+        $base-color-palette: map-merge($base-color-palette, $generated-palette);
+
+
+        //
+        // GRAYSCALE
+        //
+
+        // Set the grayscale color
+        $grayscale: grayscale($base);
+
+        // Merge the grayscale color to the base color palette
+        $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-grayscale': $grayscale));
+
+        // Cycle through all of the color variations
+        @each $variation-name, $variation-amount in $color-variations {
+            // Set the variation color
+            $variation-color: '';
+
+            // Check if the variation name contains the lighten string
+            @if str-index($variation-name, 'lighten') != null {
+                // Set the variation color
+                $variation-color: lighten($grayscale, $variation-amount);
+            }
+
+            // Check if the variation name contains the darken string
+            @if str-index($variation-name, 'darken') != null {
+                // Set the variation color
+                $variation-color: darken($grayscale, $variation-amount);
+            }
+
+            // Merge the variation color to the generated palette
+            $generated-palette: map-merge($generated-palette, ('#{$color-name}-grayscale-#{$variation-name}': $variation-color));
+        }
+
+        // Merge the generated palette to the base color palette
+        $base-color-palette: map-merge($base-color-palette, $generated-palette);
+
+
+        //
+        // COMPLEMENTARY
+        //
+
+        // Set the complementary color
+        $complementary: complement($base);
+
+        // Merge the complementary color to the base color palette
+        $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-complementary': $complementary));
+
+        // Cycle through all of the color variations
+        @each $variation-name, $variation-amount in $color-variations {
+            // Set the variation color
+            $variation-color: '';
+
+            // Check if the variation name contains the lighten string
+            @if str-index($variation-name, 'lighten') != null {
+                // Set the variation color
+                $variation-color: lighten($complementary, $variation-amount);
+            }
+
+            // Check if the variation name contains the darken string
+            @if str-index($variation-name, 'darken') != null {
+                // Set the variation color
+                $variation-color: darken($complementary, $variation-amount);
+            }
+
+            // Merge the variation color to the generated palette
+            $generated-palette: map-merge($generated-palette, ('#{$color-name}-complementary-#{$variation-name}': $variation-color));
+        }
+
+        // Merge the generated palette to the base color palette
+        $base-color-palette: map-merge($base-color-palette, $generated-palette);
+
+
+        //
+        // ACCESSIBILITY
+        //
+
+        // Set the accessibility focus color
+        $accessibility-focus: transparentize($base, 0.5);
+
+        // Merge the accessibility focus color to the base color palette
+        $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-accessibility-focus': $accessibility-focus));
+
+        // Cycle through all of the color variations
+        @each $variation-name, $variation-amount in $color-variations {
+            // Set the variation color
+            $variation-color: '';
+
+            // Check if the variation name contains the lighten string
+            @if str-index($variation-name, 'lighten') != null {
+                // Set the variation color
+                $variation-color: lighten($color-value, $variation-amount);
+            }
+
+            // Check if the variation name contains the darken string
+            @if str-index($variation-name, 'darken') != null {
+                // Set the variation color
+                $variation-color: darken($color-value, $variation-amount);
+            }
+
+            // Merge the variation color to the generated palette
+            $generated-palette: map-merge($generated-palette, ('#{$color-name}-accessibility-focus-#{$variation-name}': $variation-color));
+        }
+
+        // Merge the generated palette to the base color palette
+        $base-color-palette: map-merge($base-color-palette, $generated-palette);
+
+
+        //
+        // INVERTED TEXT
+        //
+
+        // Set the perceived red, green and blue lightness
+        $red: red($base) * 0.2126;
+        $green: green($base) * 0.7152;
+        $blue: blue($base) * 0.0722;
+
+        // Set the red, green and blue total
+        $rgb-total: $red + $green + $blue;
+
+        // Set the perceived lightness
+        $perceived-lightness: $rgb-total / 255;
+
+        // Calculate the srgb lightness
+        $srgb-lightness: ($perceived-lightness - 0.75) * -10000000;
+
+        // Set the light and dark font colors
+        $font-color-light: map-get($font-colors, 'light');
+        $font-color-dark: map-get($font-colors, 'dark');
+
+        // Check if the light and dark font colors are a type of color
+        @if type_of($font-color-light) == 'color' and type_of($font-color-dark) == 'color' {
+            // Check if the srgb lightness is over 50
+            @if $srgb-lightness >= 50 {
+                // Set the inverted text color
+                $inverted-text: #{$font-color-light};
+
+                // Merge the inverted text color to the base color palette
+                $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-inverted-text': $inverted-text));
+
+                // Cycle through all of the color variations
+                @each $variation-name, $variation-amount in $color-variations {
+                    // Check if the variation name contains the darken string
+                    @if str-index($variation-name, 'darken') != null {
+                        // Set the variation color
+                        $variation-color: darken(map-get($font-colors, 'light'), $variation-amount);
+
+                        // Merge the variation color to the palette
+                        $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-inverted-text-#{$variation-name}': $variation-color));
+                    }
+                }
+            } @else {
+                // Set the inverted text color
+                $inverted-text: #{$font-color-dark};
+
+                // Merge the inverted text color to the base color palette
+                $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-inverted-text': $inverted-text));
+
+                // Cycle through all of the color variations
+                @each $variation-name, $variation-amount in $color-variations {
+                    // Check if the variation name contains the lighten string
+                    @if str-index($variation-name, 'lighten') != null {
+                        // Set the variation color
+                        $variation-color: lighten(map-get($font-colors, 'dark'), $variation-amount);
+
+                        // Merge the variation color value to the palette
+                        $base-color-palette: map-merge($base-color-palette, ('#{$color-name}-inverted-text-#{$variation-name}': $variation-color));
+                    }
+                }
+            }
+        }
+
+        // Merge the generated palette to the base color palette
+        $base-color-palette: map-merge($base-color-palette, $generated-palette);
+    }
+}

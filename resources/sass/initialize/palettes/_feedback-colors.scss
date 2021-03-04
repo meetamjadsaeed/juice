@@ -1,220 +1,64 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> INITIALIZE -> PALETTES -> FEEDBACK COLORS
-    ========================================================================  */
+:root {
+    // Cycle through all of the feedback colors
+    @each $color-name, $color-value in $feedback-colors {
+        // Check if the color value is a type of color
+        @if type_of($color-value) == 'color' {
+            // Set the accessibility focus, grayscale and text colors (sass)
+            $accessibility-focus-color: transparentize($color-value, 0.5);
+            $grayscale-color: grayscale($color-value);
+            $text-color: null;
 
-// Create an empty feedback color palette
-$feedback-color-palette: ();
+            // Set the perceived red, green and blue lightness
+            $red: (red($color-value) * 0.2126);
+            $green: (green($color-value) * 0.7152);
+            $blue: (blue($color-value) * 0.0722);
 
-// Cycle through all of the feedback colors
-@each $color-name, $color-value in $feedback-colors {
-    // Check if the color value is a type of color
-    @if type_of($color-value) == 'color' {
-        // Set the base color
-        $base: $color-value;
+            // Set the red, green and blue total
+            $rgb-total: ($red + $green + $blue);
 
-        // Merge the base color to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}': $base));
+            // Set the perceived lightness
+            $perceived-lightness: ($rgb-total / 255);
 
-        // Create an empty generated palette
-        $generated-palette: ();
+            // Set the srgb lightness
+            $srgb-lightness: (($perceived-lightness - 0.75) * -10000000);
 
-        // Cycle through all of the color variations
-        @each $variation-name, $variation-amount in $color-variations {
-            // Set the variation color
-            $variation-color: '';
-
-            // Check if the variation name contains the lighten string
-            @if str-index($variation-name, 'lighten') != null {
-                // Set the variation color
-                $variation-color: lighten($color-value, $variation-amount);
-            }
-
-            // Check if the variation name contains the darken string
-            @if str-index($variation-name, 'darken') != null {
-                // Set the variation color
-                $variation-color: darken($color-value, $variation-amount);
-            }
-
-            // Merge the variation color to the generated palette
-            $generated-palette: map-merge($generated-palette, ('#{$color-name}-#{$variation-name}': $variation-color));
-        }
-
-        // Merge the generated palette to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, $generated-palette);
-
-
-        //
-        // GRAYSCALE
-        //
-
-        // Set the grayscale color
-        $grayscale: grayscale($base);
-
-        // Merge the grayscale color to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-grayscale': $grayscale));
-
-        // Cycle through all of the color variations
-        @each $variation-name, $variation-amount in $color-variations {
-            // Set the variation color
-            $variation-color: '';
-
-            // Check if the variation name contains the lighten string
-            @if str-index($variation-name, 'lighten') != null {
-                // Set the variation color
-                $variation-color: lighten($grayscale, $variation-amount);
-            }
-
-            // Check if the variation name contains the darken string
-            @if str-index($variation-name, 'darken') != null {
-                // Set the variation color
-                $variation-color: darken($grayscale, $variation-amount);
-            }
-
-            // Merge the variation color to the generated palette
-            $generated-palette: map-merge($generated-palette, ('#{$color-name}-grayscale-#{$variation-name}': $variation-color));
-        }
-
-        // Merge the generated palette to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, $generated-palette);
-
-
-        //
-        // COMPLEMENTARY
-        //
-
-        // Set the complementary color
-        $complementary: complement($base);
-
-        // Merge the complementary color to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-complementary': $complementary));
-
-        // Cycle through all of the color variations
-        @each $variation-name, $variation-amount in $color-variations {
-            // Set the variation color
-            $variation-color: '';
-
-            // Check if the variation name contains the lighten string
-            @if str-index($variation-name, 'lighten') != null {
-                // Set the variation color
-                $variation-color: lighten($complementary, $variation-amount);
-            }
-
-            // Check if the variation name contains the darken string
-            @if str-index($variation-name, 'darken') != null {
-                // Set the variation color
-                $variation-color: darken($complementary, $variation-amount);
-            }
-
-            // Merge the variation color to the generated palette
-            $generated-palette: map-merge($generated-palette, ('#{$color-name}-complementary-#{$variation-name}': $variation-color));
-        }
-
-        // Merge the generated palette to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, $generated-palette);
-
-
-        //
-        // ACCESSIBILITY
-        //
-
-        // Set the accessibility focus color
-        $accessibility-focus: transparentize($base, 0.5);
-
-        // Merge the accessibility focus color to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-accessibility-focus': $accessibility-focus));
-
-        // Cycle through all of the color variations
-        @each $variation-name, $variation-amount in $color-variations {
-            // Set the variation color
-            $variation-color: '';
-
-            // Check if the variation name contains the lighten string
-            @if str-index($variation-name, 'lighten') != null {
-                // Set the variation color
-                $variation-color: lighten($color-value, $variation-amount);
-            }
-
-            // Check if the variation name contains the darken string
-            @if str-index($variation-name, 'darken') != null {
-                // Set the variation color
-                $variation-color: darken($color-value, $variation-amount);
-            }
-
-            // Merge the variation color to the generated palette
-            $generated-palette: map-merge($generated-palette, ('#{$color-name}-accessibility-focus-#{$variation-name}': $variation-color));
-        }
-
-        // Merge the generated palette to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, $generated-palette);
-
-
-        //
-        // INVERTED TEXT
-        //
-
-        // Set the perceived red, green and blue lightness
-        $red: red($base) * 0.2126;
-        $green: green($base) * 0.7152;
-        $blue: blue($base) * 0.0722;
-
-        // Set the red, green and blue total
-        $rgb_total: $red + $green + $blue;
-
-        // Set the perceived lightness
-        $perceived-lightness: $rgb_total / 255;
-
-        // Calculate the srgb lightness
-        $srgb_lightness: ($perceived-lightness - 0.75) * -10000000;
-
-        // Set the light and dark font colors
-        $font_color_light: map-get($font-colors, 'light');
-        $font_color_dark: map-get($font-colors, 'dark');
-
-        // Check if the light and dark font colors are a type of color
-        @if type_of($font_color_light) == 'color' and type_of($font_color_dark) == 'color' {
             // Check if the srgb lightness is over 50
-            @if $srgb_lightness >= 50 {
-                // Set the inverted text color
-                $inverted-text: #{$font_color_light};
-
-                // Merge the inverted text color to the feedback color palette
-                $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-inverted-text': $inverted-text));
-
-                // Cycle through all of the color variations
-                @each $variation-name, $variation-amount in $color-variations {
-                    // Check if the variation name contains the darken string
-                    @if str-index($variation-name, 'darken') != null {
-                        // Set the variation color
-                        $variation-color: darken(map-get($font-colors, 'light'), $variation-amount);
-
-                        // Merge the variation color to the palette
-                        $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-inverted-text-#{$variation-name}': $variation-color));
-                    }
-                }
+            @if $srgb-lightness >= 50 {
+                // Set the text color (sass)
+                $text-color: map($font-colors, 'light');
             } @else {
-                // Set the inverted text color
-                $inverted-text: #{$font_color_dark};
+                // Set the text color (sass)
+                $text-color: map($font-colors, 'dark');
+            }
 
-                // Merge the inverted text color to the feedback color palette
-                $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-inverted-text': $inverted-text));
+            // Set the base, accessibility focus, grayscale and text colors (custom properties)
+            --feedback-color-#{$color-name}: #{$color-value};
+            --feedback-color-#{$color-name}-accessibility-focus: #{$accessibility-focus-color};
+            --feedback-color-#{$color-name}-grayscale: #{$grayscale-color};
+            --feedback-color-#{$color-name}-text: #{$text-color};
 
-                // Cycle through all of the color variations
-                @each $variation-name, $variation-amount in $color-variations {
-                    // Check if the variation name contains the lighten string
-                    @if str-index($variation-name, 'lighten') != null {
-                        // Set the variation color
-                        $variation-color: lighten(map-get($font-colors, 'dark'), $variation-amount);
+            // Cycle through all of the color variations
+            @each $variation-name, $variation-amount in $color-variations {
+                // Check if the variation name contains the lighten string
+                @if str-index($variation-name, 'lighten') != null {
+                    // Set the variation base, accessibility, grayscale and text colors (custom properties)
+                    --feedback-color-#{$color-name}-#{$variation-name}: #{lighten($color-value, $variation-amount)};
+                    --feedback-color-#{$color-name}-#{$variation-name}-accessibility-focus: #{lighten($accessibility-focus-color, $variation-amount)};
+                    --feedback-color-#{$color-name}-#{$variation-name}-grayscale: #{lighten($grayscale-color, $variation-amount)};
+                    // --feedback-color-#{$color-name}-#{$variation-name}-text: #{lighten($text-color, $variation-amount)};
+                }
 
-                        // Merge the variation color value to the palette
-                        $feedback-color-palette: map-merge($feedback-color-palette, ('#{$color-name}-inverted-text-#{$variation-name}': $variation-color));
-                    }
+                // Check if the variation name contains the darken string
+                @if str-index($variation-name, 'darken') != null {
+                    // Set the variation base, accessibility, grayscale and text colors (custom properties)
+                    --feedback-color-#{$color-name}-#{$variation-name}: #{darken($color-value, $variation-amount)};
+                    --feedback-color-#{$color-name}-#{$variation-name}-accessibility-focus: #{darken($accessibility-focus-color, $variation-amount)};
+                    --feedback-color-#{$color-name}-#{$variation-name}-grayscale: #{darken($grayscale-color, $variation-amount)};
+                    // --feedback-color-#{$color-name}-#{$variation-name}-text: #{darken($text-color, $variation-amount)};
                 }
             }
         }
-
-        // Merge the generated palette to the feedback color palette
-        $feedback-color-palette: map-merge($feedback-color-palette, $generated-palette);
     }
 }

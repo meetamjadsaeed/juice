@@ -1,0 +1,10 @@
+@charset 'utf-8';
+
+// Horizontal rule map
+$hr-colors: ();
+
+// Horizontal rule variables
+$hr-border-color: font-color();
+$hr-border-opacity: 0.15;
+$hr-border-style: $global-border-style;
+$hr-border-width: $global-border-width-divider;

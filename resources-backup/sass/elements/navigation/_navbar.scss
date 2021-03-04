@@ -1,0 +1,342 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> NAVIGATION -> NAVBAR
+    ========================================================================  */
+
+// Check if the elements with navbar should be imported
+@if $import-elements and $import-element-navbar {
+    .navbar {
+        align-items: center;
+        color: $navbar-font-color;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                .navbar__logo,
+                .navbar__links,
+                .navbar__bars {
+                    padding: 0 ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md')) / 2);
+
+                    // Pseudo classes
+                    &:first-child {
+                        padding-left: 0;
+                    }
+
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+
+                .navbar__links {
+                    display: none;
+
+                    // Nested selectors
+                    ul,
+                    ol {
+                        // Nested selectors
+                        li {
+                            // Nested selectors
+                            a:not(.button) {
+                                padding: (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md'));
+                            }
+                        }
+                    }
+                }
+
+                .navbar__icons {
+                    // Nested selectors
+                    #{$button} {
+                        margin-right: ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md')) / 4);
+
+                        // Pseudo classes
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+                .navbar__revealer {
+                    padding: (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md'));
+
+                    // Nested selectors
+                    ul,
+                    ol {
+                        // Nested selectors
+                        li {
+                            // Nested selectors
+                            a:not(.button) {
+                                padding: ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md')) / 2) (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md'));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        a:not(.button) {
+            color: $navbar-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $navbar-link-color-hover;
+            }
+
+            &:focus {
+                color: $navbar-link-color-focus;
+            }
+
+            &:active {
+                color: $navbar-link-color-active;
+            }
+        }
+
+        .navbar__logo {
+            display: flex;
+            flex: 1 0 25%;
+
+            // Nested selectors
+            a:not(.button) {
+                display: inline-flex;
+
+                // Nested selectors
+                img {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .navbar__links {
+            display: none;
+
+            // Nested selectors
+            ul,
+            ol {
+                display: none;
+                list-style: none;
+                margin: 0;
+
+                // Nested selectors
+                li {
+                    flex: 1 0 auto;
+
+                    // Nested selectors
+                    a:not(.button) {
+                        display: inline-flex;
+                    }
+                }
+            }
+        }
+
+        .navbar__icons {
+            // Nested selectors
+            #{$button} {
+                margin-bottom: 0;
+
+                // Pseudo classes
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .navbar__revealer {
+            display: none;
+            flex: 1 0 100%;
+
+            // Nested selectors
+            ul,
+            ol {
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+                margin: 0;
+
+                // Nested selectors
+                li {
+                    flex: 1 0 auto;
+
+                    // Nested selectors
+                    a:not(.button) {
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+
+        // Check if the navbar size modifiers should be declared
+        @if $navbar-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            .navbar__logo,
+                            .navbar__links,
+                            .navbar__bars {
+                                padding: 0 ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size)) / 2);
+
+                                // Pseudo classes
+                                &:first-child {
+                                    padding-left: 0;
+                                }
+
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                            }
+
+                            .navbar__links {
+                                display: none;
+
+                                // Nested selectors
+                                ul,
+                                ol {
+                                    // Nested selectors
+                                    li {
+                                        // Nested selectors
+                                        a:not(.button) {
+                                            padding: (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size));
+                                        }
+                                    }
+                                }
+                            }
+
+                            .navbar__icons {
+                                // Nested selectors
+                                #{$button} {
+                                    margin-right: ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size)) / 4);
+
+                                    // Pseudo classes
+                                    &:last-child {
+                                        margin-right: 0;
+                                    }
+                                }
+                            }
+
+                            .navbar__revealer {
+                                padding: (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size));
+
+                                // Nested selectors
+                                ul,
+                                ol {
+                                    // Nested selectors
+                                    li {
+                                        // Nested selectors
+                                        a:not(.button) {
+                                            padding: ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Check if the navbar size modifiers with breakpoints should be declared
+                        @if $navbar-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .navbar__logo,
+                                .navbar__links,
+                                .navbar__bars {
+                                    padding: 0 ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size)) / 2);
+
+                                    // Pseudo classes
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+
+                                .navbar__links {
+                                    display: none;
+
+                                    // Nested selectors
+                                    ul,
+                                    ol {
+                                        // Nested selectors
+                                        li {
+                                            // Nested selectors
+                                            a:not(.button) {
+                                                padding: (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size));
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .navbar__icons {
+                                    // Nested selectors
+                                    #{$button} {
+                                        margin-right: ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size)) / 4);
+
+                                        // Pseudo classes
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }
+
+                                .navbar__revealer {
+                                    padding: (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size));
+
+                                    // Nested selectors
+                                    ul,
+                                    ol {
+                                        // Nested selectors
+                                        li {
+                                            // Nested selectors
+                                            a:not(.button) {
+                                                padding: ((content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($navbar-content-spacing-multipliers, 'md'));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Breakpoint
+        @include breakpoint('d') {
+            // Nested selectors
+            .navbar__links {
+                // Nested selectors
+                ul,
+                ol {
+                    display: flex;
+                }
+            }
+
+            .navbar__icons {
+                display: none;
+            }
+
+            .navbar__links {
+                display: flex;
+            }
+
+            .navbar__revealer {
+                display: none !important;
+            }
+        }
+    }
+}

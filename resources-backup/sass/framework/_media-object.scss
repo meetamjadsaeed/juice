@@ -1,0 +1,92 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> FRAMEWORK -> MEDIA OBJECT
+    ========================================================================  */
+
+.media-object {
+    display: flex;
+    position: relative;
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoints
+        @include breakpoint($breakpoint-name) {
+            // Nested selectors
+            .media-object__badge {
+                margin-left: 0;
+                margin-right: content-spacing($breakpoint-name);
+
+                // Nested selectors
+                img {
+                    max-width: map-get($media-object-badge-image-widths, $breakpoint-name);
+                    min-width: map-get($media-object-badge-image-widths, $breakpoint-name);
+                    width: map-get($media-object-badge-image-widths, $breakpoint-name);
+                }
+            }
+
+            // Modifiers
+            &.media-object--reverse {
+                // Nested selectors
+                .media-object__badge {
+                    margin-left: content-spacing($breakpoint-name);
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    .media-object__badge {
+        flex: 0 0 auto;
+
+        // Nested selectors
+        img {
+            display: block;
+        }
+    }
+
+    .media-object__content {
+        flex-grow: 1;
+    }
+
+    // Cycle through all of the sizes
+    @each $size in $sizes {
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    .media-object__badge {
+                        margin-left: 0;
+                        margin-right: content-spacing($breakpoint-name) * map-get($media-object-content-spacings, $size);
+                    }
+                }
+
+                // Modifiers: Sizes
+                &.is-#{$size}\@#{$breakpoint-name} {
+                    // Nested selectors
+                    .media-object__badge {
+                        margin-left: content-spacing($breakpoint-name) * map-get($media-object-content-spacings, $size);
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    // Modifiers
+    &.media-object--reverse {
+        flex-direction: row-reverse;
+    }
+
+    // Modifiers
+    &.media-object--seamless {
+        // Nested selectors
+        .media-object__badge {
+            margin: 0;
+        }
+    }
+}

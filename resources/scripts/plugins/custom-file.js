@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> CUSTOM FILE
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'CustomFile';
 
@@ -23,34 +19,19 @@
 
     // Set the plugin defaults
     const defaults = {
-        callbackInitializeBefore: () => {
-            console.log('Custom File: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Custom File: callbackInitializeAfter');
-        },
-        callbackChangeBefore: () => {
-            console.log('Custom File: callbackChangeBefore');
-        },
-        callbackChangeAfter: () => {
-            console.log('Custom File: callbackChangeAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Custom File: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Custom File: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Custom File: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Custom File: callbackDestroyAfter');
-        }
+        callbackChangeBefore: () => {},
+        callbackChangeAfter: () => {},
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -70,6 +51,7 @@
 
     /**
      * Event handler to update the custom file input on change.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -83,12 +65,90 @@
     };
 
     /**
+     * Event handler to trigger the custom file input.
+     *
+     * @param  {object}  event  The event object.
+     * @return {void}
+     */
+    const keydownButtonEventHandler = (event) => {
+        // Set the custom file elements
+        const $button = event.target;
+        const $input = $button.closest('.custom-file').querySelector('input');
+
+        // Check if the keydown is the enter/return key
+        if (event.keyCode == 13) {
+            // Prevent the default action
+            event.preventDefault();
+
+            // Trigger a click on the input
+            $input.click();
+        }
+    };
+
+    /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Set the custom files buttons and inputs
+            const $custom_file_buttons = document.querySelectorAll(plugin.element + ' .custom-file__button');
+            const $custom_file_inputs = document.querySelectorAll(plugin.element + ' input');
+
+            // Check if any custom file buttons exist
+            if ($custom_file_buttons) {
+                // Cycle through all of the custom file buttons
+                $custom_file_buttons.forEach(($custom_file_button) => {
+                    // Set the button tabindex
+                    $custom_file_button.setAttribute('tabindex', 0);
+
+                    // Remove the keydown event handler from the custom file button
+                    $custom_file_button.removeEventListener('keydown', keydownButtonEventHandler);
+                });
+            }
+
+            // Check if any custom file inputs exist
+            if ($custom_file_inputs) {
+                // Cycle through all of the custom file inputs
+                $custom_file_inputs.forEach(($custom_file_input) => {
+                    // Remove the change event handler from the custom file input
+                    $custom_file_input.removeEventListener('change', changeInputEventHandler);
+                });
+            }
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -102,14 +162,30 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Set the custom files inputs
-            const $custom_files = document.querySelectorAll(plugin.element + ' input');
+            // Set the custom files buttons and inputs
+            const $custom_file_buttons = document.querySelectorAll(plugin.element + ' .custom-file__button');
+            const $custom_file_inputs = document.querySelectorAll(plugin.element + ' input');
 
-            // Cycle through all of the custom file inputs
-            $custom_files.forEach(($custom_file) => {
-                // Add a change event handler to the custom file input to update the custom file text
-                $custom_file.addEventListener('change', changeInputEventHandler);
-            });
+            // Check if any custom file buttons exist
+            if ($custom_file_buttons) {
+                // Cycle through all of the custom file buttons
+                $custom_file_buttons.forEach(($custom_file_button) => {
+                    // Set the button tabindex
+                    $custom_file_button.setAttribute('tabindex', 0);
+
+                    // Add a keydown event handler to the custom file button
+                    $custom_file_button.addEventListener('keydown', keydownButtonEventHandler);
+                });
+            }
+
+            // Check if any custom file inputs exist
+            if ($custom_file_inputs) {
+                // Cycle through all of the custom file inputs
+                $custom_file_inputs.forEach(($custom_file_input) => {
+                    // Add a change event handler to the custom file input
+                    $custom_file_input.addEventListener('change', changeInputEventHandler);
+                });
+            }
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
@@ -119,53 +195,8 @@
         },
 
         /**
-         * Update the custom file text.
-         * @param   {element}  $custom_file  The custom file container.
-         * @param   {boolean}  silent        Suppress callbacks.
-         * @return  {void}
-         */
-        update: ($custom_file, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the change before callback
-                plugin.settings.callbackChangeBefore.call();
-            }
-
-            // Set the custom file elements
-            const $input = $custom_file.querySelector('input');
-            const $button = $custom_file.querySelector('.custom-file__button');
-            const $text = $custom_file.querySelector('.custom-file__text');
-
-            // Start a switch statement for the following true values
-            switch (true) {
-                // Multiple files
-                case $input.files.length > 1:
-                    // Set the text and break the switch
-                    $text.textContent = $input.files.length + ' files selected';
-                    break;
-
-                // Single file
-                case $input.files.length == 1:
-                    // Set the text and break the switch
-                    $text.textContent = $input.files[0].name;
-                    break;
-
-                // Empty
-                case $input.files.length == 1:
-                    // Set the text and break the switch
-                    $text.textContent = $container.dataset.customFileText || '';
-                    break;
-            }
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the change after callback
-                plugin.settings.callbackChangeAfter.call();
-            }
-        },
-
-        /**
          * Refresh the plugins initialization.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -190,35 +221,8 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Set the custom files inputs
-            const $custom_files = document.querySelectorAll(plugin.element + ' input');
-
-            // Cycle through all of the custom file inputs
-            $custom_files.forEach(($custom_file) => {
-                // Remove the change event handler from the custom file input
-                $custom_file.removeEventListener('change', changeInputEventHandler);
-            });
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
          * Call the refresh method silently.
+         *
          * @return {void}
          */
         refreshSilently: () => {
@@ -227,12 +231,52 @@
         },
 
         /**
-         * Call the destroy method silently.
-         * @return {void}
+         * Update the custom file text.
+         *
+         * @param   {element}  $custom_file  The custom file container.
+         * @param   {boolean}  silent        Suppress callbacks.
+         * @return  {void}
          */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
+        update: ($custom_file, silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the change before callback
+                plugin.settings.callbackChangeBefore.call();
+            }
+
+            // Set the custom file elements
+            const $input = $custom_file.querySelector('input');
+            const $text = $custom_file.querySelector('.custom-file__text');
+
+            // Start a switch statement for the following true values
+            switch (true) {
+                // Multiple files
+                case ($input.files.length > 1): {
+                    // Set the text and break the switch
+                    $text.textContent = $input.files.length + ' files selected';
+                    break;
+                }
+
+                // Single file
+                case ($input.files.length == 1): {
+                    // Set the text and break the switch
+                    $text.textContent = $input.files[0].name;
+                    break;
+                }
+
+                // Empty
+                case ($input.files.length == 0): {
+                    // Set the text and break the switch
+                    $text.textContent = $custom_file.dataset.customFileText || '';
+                    break;
+                }
+            }
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the change after callback
+                plugin.settings.callbackChangeAfter.call();
+            }
         }
     };
 

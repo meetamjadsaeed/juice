@@ -1,0 +1,7 @@
+@charset 'utf-8';
+
+$vertical-rhythms: (
+    'mobile': map($root-font-sizes, 'mobile') * map($root-line-heights, 'mobile'),
+    'tablet': map($root-font-sizes, 'tablet') * map($root-line-heights, 'tablet'),
+    'desktop': map($root-font-sizes, 'desktop') * map($root-line-heights, 'desktop')
+);

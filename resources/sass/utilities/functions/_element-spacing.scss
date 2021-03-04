@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a element spacing.
+ *
+ * @param  {int}    $multiplier  The element spacing multiplier.
+ * @return {mixed}               The element spacing, null otherwise.
+ */
+@function element-spacing($multiplier: 1) {
+    // Return the element spacing
+    @return calc(var(--element-spacing) * #{$multiplier});
+}

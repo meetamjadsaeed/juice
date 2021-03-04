@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> FLIP -> EXIT -> FLIP OUT UP
-    ========================================================================  */
-
 // Check if the animations with flip out up should be imported
 @if $import-animations and $import-animation-flip-out-up {
     .has-animation {

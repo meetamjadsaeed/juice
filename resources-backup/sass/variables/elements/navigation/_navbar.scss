@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> NAVIGATION -> NAVBAR
+    ========================================================================  */
+
+// Maps
+$navbar-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+// Variables
+$navbar-font-color: inherit !default;
+$navbar-link-color: $global-link-color !default;
+$navbar-link-color-hover: $global-link-color-hover !default;
+$navbar-link-color-focus: $global-link-color-focus !default;
+$navbar-link-color-active: $global-link-color-active !default;

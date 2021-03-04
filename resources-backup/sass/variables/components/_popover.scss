@@ -1,0 +1,56 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> POPOVER
+    ========================================================================  */
+
+// Maps
+$popover-content-spacing-multipliers: (
+    'sm': 0.25,
+    'md': 0.5,
+    'lg': 0.75
+) !default;
+
+$popover-font-sizes: (
+    'sm': (font-size('sm') - 0.1em),
+    'md': (font-size() - 0.1em),
+    'lg': (font-size('lg') - 0.1em)
+) !default;
+
+$popover-max-widths: (
+    'm': 300px,
+    't': 300px,
+    'd': 300px
+) !default;
+
+$popover-min-widths: (
+    'm': 200px,
+    't': 200px,
+    'd': 200px
+) !default;
+
+// Variables
+$popover-animation-duration: 300ms !default;
+$popover-arrow-size: 6px !default;
+$popover-background-color: base-color('white') !default;
+$popover-border-color: base-color('white-darken-3') !default;
+$popover-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$popover-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$popover-border-radius-top-left: $global-border-radius-top-left !default;
+$popover-border-radius-top-right: $global-border-radius-top-right !default;
+$popover-border-style: $global-border-style !default;
+$popover-border-width-bottom: $global-border-width-bottom !default;
+$popover-border-width-divider: $global-border-width-divider !default;
+$popover-border-width-left: $global-border-width-left !default;
+$popover-border-width-right: $global-border-width-right !default;
+$popover-border-width-top: $global-border-width-top !default;
+$popover-box-shadow: $global-box-shadow !default;
+$popover-font-color: font-color() !default;
+$popover-head-background-color: base-color('white') !default;
+$popover-head-border-color: base-color('white-darken-3') !default;
+$popover-head-font-color: font-color() !default;
+$popover-link-color: $global-link-color !default;
+$popover-link-color-hover: $global-link-color-hover !default;
+$popover-link-color-focus: $global-link-color-focus !default;
+$popover-link-color-active: $global-link-color-active !default;
+$popover-offset: 5px !default;

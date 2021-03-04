@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> SLIDE -> EXIT -> SLIDE OUT RIGHT
-    ========================================================================  */
-
 // Check if the animations with slide out right should be imported
 @if $import-animations and $import-animation-slide-out-right {
     .has-animation {

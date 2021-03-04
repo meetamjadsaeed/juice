@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> COMPONENTS -> CARD
-    ========================================================================  */
-
 // Check if the components with card should be imported
 @if $import-components and $import-component-card {
     .card {
@@ -14,18 +10,100 @@
         border-bottom-right-radius: $card-border-radius-bottom-right;
         border-bottom-width: $card-border-width-bottom;
         border-left-width: $card-border-width-left;
+        border-right-width: $card-border-width-right;
         border-top-left-radius: $card-border-radius-top-left;
         border-top-right-radius: $card-border-radius-top-right;
         border-top-width: $card-border-width-top;
-        border-right-width: $card-border-width-right;
         box-shadow: $card-box-shadow;
         color: $card-font-color;
         display: flex;
         flex-direction: column;
-        font-size: $card-font-size;
-        margin: 0;
-        margin-bottom: $card-element-spacing;
-        padding: 0;
+        margin-bottom: element-spacing();
+
+        // Check if the card size modifiers should be declared
+        @if $card-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    .card__content {
+                        padding: content-spacing(map($card-content-spacing-multipliers, $size));
+
+                        // Nested selectors
+                        .card__head,
+                        .card__body,
+                        .card__foot {
+                            padding-bottom: content-spacing(map($card-content-spacing-multipliers, $size));
+
+                            // Pseudo classes
+                            &:last-child {
+                                padding-bottom: 0;
+                            }
+                        }
+
+                        .card__foot {
+                            // Nested selectors
+                            .card__buttons {
+                                // Nested selectors
+                                #{$button} {
+                                    margin-left: content-spacing(map($card-content-spacing-multipliers, $size) / 2);
+
+                                    // Pseudo classes
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Check if the card size modifiers with breakpoints should be declared
+                @if $card-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .card__content {
+                                    padding: content-spacing(map($card-content-spacing-multipliers, $size));
+
+                                    // Nested selectors
+                                    .card__head,
+                                    .card__body,
+                                    .card__foot {
+                                        padding-bottom: content-spacing(map($card-content-spacing-multipliers, $size));
+
+                                        // Pseudo classes
+                                        &:last-child {
+                                            padding-bottom: 0;
+                                        }
+                                    }
+
+                                    .card__foot {
+                                        // Nested selectors
+                                        .card__buttons {
+                                            // Nested selectors
+                                            #{$button} {
+                                                margin-left: content-spacing(map($card-content-spacing-multipliers, $size) / 2);
+
+                                                // Pseudo classes
+                                                &:first-child {
+                                                    margin-left: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Nested selectors
         a:not(.button) {
@@ -46,8 +124,8 @@
         }
 
         .card__media {
-            border-top-left-radius: $default-border-radius-top-left;
-            border-top-right-radius: $default-border-radius-top-right;
+            border-top-left-radius: $global-border-radius-top-left;
+            border-top-right-radius: $global-border-radius-top-right;
             overflow: hidden;
             padding: 0;
 
@@ -64,6 +142,7 @@
             video {
                 display: flex;
                 height: auto;
+                margin-bottom: 0;
                 width: 100%;
             }
 
@@ -76,15 +155,15 @@
         }
 
         .card__content {
-            padding: $card-content-spacing;
+            padding: content-spacing(map($card-content-spacing-multipliers, 'medium'));
 
-           // Nested selectors
+            // Nested selectors
             .card__head,
             .card__body,
             .card__foot {
-                padding-bottom: $card-content-spacing;
+                padding-bottom: content-spacing(map($card-content-spacing-multipliers, 'medium'));
 
-               // Pseudo classes
+                // Pseudo classes
                 &:last-child {
                     padding-bottom: 0;
                 }
@@ -141,100 +220,11 @@
                     // Nested selectors
                     #{$button} {
                         margin-bottom: 0;
-                        margin-left: ($card-content-spacing / 2);
+                        margin-left: content-spacing(map($card-content-spacing-multipliers, 'medium') / 2);
 
                         // Pseudo classes
                         &:first-child {
                             margin-left: 0;
-                        }
-                    }
-                }
-            }
-        }
-
-        // Check if the card size modifiers should be declared
-        @if $card-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($card-font-size-sizes, $size);
-
-                    // Nested selectors
-                    .card__content {
-                        padding: map-get($card-content-spacing-sizes, $size);
-
-                       // Nested selectors
-                        .card__head,
-                        .card__body,
-                        .card__foot {
-                            padding-bottom: map-get($card-content-spacing-sizes, $size);
-
-                           // Pseudo classes
-                            &:last-child {
-                                padding-bottom: 0;
-                            }
-                        }
-
-                        .card__foot {
-                            // Nested selectors
-                            .card__buttons {
-                                // Nested selectors
-                                #{$button} {
-                                    margin-left: (map-get($card-content-spacing-sizes, $size) / 2);
-
-                                    // Pseudo classes
-                                    &:first-child {
-                                        margin-left: 0;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Check if the card size modifiers with breakpoints should be declared
-                @if $card-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($card-font-size-sizes, $size);
-
-                                // Nested selectors
-                                .card__content {
-                                    padding: map-get($card-content-spacing-sizes, $size);
-
-                                   // Nested selectors
-                                    .card__head,
-                                    .card__body,
-                                    .card__foot {
-                                        padding-bottom: map-get($card-content-spacing-sizes, $size);
-
-                                       // Pseudo classes
-                                        &:last-child {
-                                            padding-bottom: 0;
-                                        }
-                                    }
-
-                                    .card__foot {
-                                        // Nested selectors
-                                        .card__buttons {
-                                            // Nested selectors
-                                            #{$button} {
-                                                margin-left: (map-get($card-content-spacing-sizes, $size) / 2);
-
-                                                // Pseudo classes
-                                                &:first-child {
-                                                    margin-left: 0;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                 }

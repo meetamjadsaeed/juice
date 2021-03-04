@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+/**
+ * Get the root font size.
+ *
+ * @return {mixed}  The root font size, null otherwise.
+ */
+@function root-font-size() {
+    // Return the root font size
+    @return var(--root-font-size);
+}

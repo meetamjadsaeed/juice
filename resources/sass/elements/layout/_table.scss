@@ -1,16 +1,11 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> LAYOUT -> TABLE
-    ========================================================================  */
-
 // Check if the elements with table should be imported
 @if $import-elements and $import-element-table {
     table {
-        font-size: $table-font-size;
-        margin: 0;
-        margin-bottom: $table-element-spacing;
+        margin-bottom: element-spacing();
         max-width: 100%;
+        padding: content-spacing(map($table-content-spacing-multipliers, 'medium'));
         width: 100%;
 
         // Check if the table size modifiers should be declared
@@ -19,9 +14,13 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($table-font-size-sizes, $size);
+                    padding: content-spacing(map($table-content-spacing-multipliers, $size));
 
                     // Nested selectors
+                    caption {
+                        padding: content-spacing(map($table-content-spacing-multipliers, $size));
+                    }
+
                     thead,
                     tbody {
                         // Nested selectors
@@ -29,7 +28,7 @@
                             // Nested selectors
                             th,
                             td {
-                                padding: map-get($table-content-spacing-sizes, $size);
+                                padding: content-spacing(map($table-content-spacing-multipliers, $size));
                             }
                         }
                     }
@@ -39,13 +38,28 @@
                 @if $table-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Variables
-                                --content-spacing: var(--default-content-spacing-#{$size});
-                                --font-size: var(--default-font-size-#{$size});
+                                padding: content-spacing(map($table-content-spacing-multipliers, $size));
+
+                                // Nested selectors
+                                caption {
+                                    padding: content-spacing(map($table-content-spacing-multipliers, $size));
+                                }
+
+                                thead,
+                                tbody {
+                                    // Nested selectors
+                                    tr {
+                                        // Nested selectors
+                                        th,
+                                        td {
+                                            padding: content-spacing(map($table-content-spacing-multipliers, $size));
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -61,23 +75,19 @@
                 tbody {
                     // Nested selectors
                     tr {
-                        // Styles
                         border-bottom: $table-body-border-width-divider $table-border-style $table-body-border-color;
 
                         // Nested selectors
                         td {
-                            // Styles
                             border-left: $table-body-border-width-left $table-border-style $table-body-border-color;
                             border-right: $table-body-border-width-right $table-border-style $table-body-border-color;
 
                             // Pseudo classes
                             &:first-child {
-                                // Styles
                                 border-left: 0;
                             }
 
                             &:last-child {
-                                // Styles
                                 border-right: 0;
                             }
                         }
@@ -90,8 +100,7 @@
                 tbody {
                     // Nested selectors
                     tr {
-                        // Styles
-                        border-bottom: var(--border-width-divider) var(--border-style) var(--border-color);
+                        border-bottom: $table-body-border-width-divider $table-border-style $table-body-border-color;
                     }
                 }
             }
@@ -103,18 +112,15 @@
                     tr {
                         // Nested selectors
                         td {
-                            // Styles
-                            border-left: var(--border-width-left) var(--border-style) var(--border-color);
-                            border-right: var(--border-width-right) var(--border-style) var(--border-color);
+                            border-left: $table-body-border-width-left $table-border-style $table-body-border-color;
+                            border-right: $table-body-border-width-right $table-border-style $table-body-border-color;
 
                             // Pseudo classes
                             &:first-child {
-                                // Styles
                                 border-left: 0;
                             }
 
                             &:last-child {
-                                // Styles
                                 border-right: 0;
                             }
                         }
@@ -148,8 +154,7 @@
 
         // Nested selectors
         caption {
-            // Styles
-            padding: $table-content-spacing;
+            padding: content-spacing(map($table-content-spacing-multipliers, 'medium'));
             text-align: inherit;
         }
 
@@ -160,8 +165,7 @@
                 // Nested selectors
                 th,
                 td {
-                    // Styles
-                    padding: $table-content-spacing;
+                    padding: content-spacing(map($table-content-spacing-multipliers, 'medium'));
                     vertical-align: middle;
                 }
             }

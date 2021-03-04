@@ -1,0 +1,35 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> MIXINS -> BORDER RADIUS
+    ========================================================================  */
+
+/**
+ * Set the border radius.
+ */
+@mixin border-radius($top-left: false, $top-right: false, $bottom-right: false, $bottom-left: false) {
+    // Check if the arguments exist or equal zero
+    @if ($top-left or $top-left == 0) and ($top-right or $top-right == 0) and ($bottom-right or $bottom-right == 0) and ($bottom-left or $bottom-left == 0) {
+        border-radius: $top-left $top-right $bottom-right $bottom-left;
+    } @else {
+        // Check if the bottom left argument exists
+        @if $bottom-left {
+            border-bottom-left-radius: $bottom-left;
+        }
+
+        // Check if the bottom right argument exists
+        @if $bottom-right {
+            border-bottom-right-radius: $bottom-right;
+        }
+
+        // Check if the top left argument exists
+        @if $top-left {
+            border-top-left-radius: $top-left;
+        }
+
+        // Check if the top right argument exists
+        @if $top-right {
+            border-top-right-radius: $top-right;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@charset 'utf-8';
+
+// Framework body variables
+$body-background-color: base-color('white-darken-1') !default;
+$body-font-color: font-color() !default;
+$body-font-family: $global-primary-typeface !default;
+$body-font-size: root-font-size() !default;
+$body-font-weight: $global-font-weight !default;
+$body-letter-spacing: $global-letter-spacing !default;
+$body-line-height: root-line-height() !default;
+$body-selection-background-color: base-color('primary') !default;
+$body-selection-font-color: base-color('white') !default;
+$body-selection-text-shadow: 1px 1px base-color('black') !default;

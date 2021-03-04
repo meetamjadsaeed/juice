@@ -1,16 +1,13 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> ATTRACTORS -> FLASH
-    ========================================================================  */
-
 // Check if the animations with flash should be imported
 @if $import-animations and $import-animation-flash {
     .has-animation {
         // Nested selectors
         &.flash {
             @keyframes flash {
-                from, to {
+                from,
+                to {
                     opacity: 1;
                 }
 

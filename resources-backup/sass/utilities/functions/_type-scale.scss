@@ -1,0 +1,43 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> TYPE SCALE
+    ========================================================================  */
+
+/**
+ * Get a type scale ratio.
+ * @param  {string}  $scale  The type scale ratio name.
+ * @return {mixed}           The type scale ratio value, null otherwise
+ */
+@function type-scale($font-size, $multiplier: 0) {
+    // Set the ratio and size
+    $ratio: map-get($type-scales, $global-type-scale);
+    $size: $font-size;
+
+    // Check if the multiplier is zero
+    @if ($multiplier == 0) {
+        // Set the size
+        $size: $font-size;
+    }
+
+    // Check if the multiplier is more than zero
+    @if $multiplier > 0 {
+        // Cycle through to the multiplier
+        @for $i from 0 through $multiplier {
+            // Set the size
+            $size: $size * $ratio;
+        }
+    }
+
+    // Check if the multiplier is less than zero
+    @if $multiplier < 0 {
+        // Cycle through to the multiplier
+        @for $i from 0 through $multiplier {
+            // Set the size
+            $size: $size / $ratio;
+        }
+    }
+
+    // Return the size
+    @return $size;
+}

@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a easing cubic bezier from the easing types.
+ *
+ * @param  {string}  $type  The easing type name.
+ * @return {mixed}          The easing cubic bezier, null otherwise.
+ */
+@function easing($type) {
+    // Return the easing cubic bezier
+    @return map($easings, $type);
+}

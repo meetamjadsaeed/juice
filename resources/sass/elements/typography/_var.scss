@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> VAR
-    ========================================================================  */
-
 // Check if the elements with var should be imported
 @if $import-elements and $import-element-var {
     var {
@@ -19,35 +15,7 @@
         border-top-width: $var-border-width-top;
         color: $var-font-color;
         font-family: $var-font-family;
-        font-size: $var-font-size;
         font-style: italic;
         padding: $var-content-spacing;
-
-        // Check if the var size modifiers should be declared
-        @if $var-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($var-font-size-sizes, $size);
-                    padding: map-get($var-content-spacing-sizes, $size);
-                }
-
-                // Check if the var size modifiers with breakpoints should be declared
-                @if $var-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($var-font-size-sizes, $size);
-                                padding: map-get($var-content-spacing-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

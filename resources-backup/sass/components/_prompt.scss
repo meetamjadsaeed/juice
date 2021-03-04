@@ -1,0 +1,330 @@
+@charset "utf-8";
+
+/* ========================================================================
+   JUICE -> COMPONENTS -> PROMPT
+   ========================================================================  */
+
+// Check if the components with prompt should be imported
+@if $import-components and $import-component-prompt {
+    .overlay {
+        // Nested selectors
+        &.prompt {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 10vh 0;
+
+            // Nested selectors
+            .prompt__content {
+                animation-duration: $prompt-animation-duration;
+                border-bottom-left-radius: $prompt-border-radius-bottom-left;
+                border-bottom-right-radius: $prompt-border-radius-bottom-right;
+                border-top-left-radius: $prompt-border-radius-top-left;
+                border-top-right-radius: $prompt-border-radius-top-right;
+                box-shadow: $prompt-box-shadow;
+                display: inline-flex;
+                margin: 0 auto;
+                max-height: 100%;
+                max-width: 80vw;
+
+                // Nested selectors
+                .prompt__card {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                    overflow: hidden;
+
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            width: map-get($prompt-max-widths, $breakpoint-name);
+
+                            // Nested selectors
+                            .prompt__head {
+                                padding: ((content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, 'md')) / 2) (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, 'md'));
+                            }
+
+                            .prompt__body,
+                            .prompt__foot {
+                                padding: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, 'md'));
+                            }
+
+                            .prompt__body {
+                                // Nested selectors
+                                .prompt__text {
+                                    margin-bottom: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, 'md'));
+                                }
+
+                                .prompt__field {
+                                    margin-bottom: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, 'md'));
+                                }
+                            }
+
+                            .prompt__foot {
+                                // Nested selectors
+                                .prompt__buttons {
+                                    // Nested selectors
+                                    #{$button} {
+                                        margin-left: ((content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, 'md')) / 2);
+
+                                        // Pseudo classes
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Nested selectors
+                    a:not(.button) {
+                        color: $prompt-link-color;
+
+                        // Pseudo classes
+                        &:hover {
+                            color: $prompt-link-color-hover;
+                        }
+
+                        &:focus {
+                            color: $prompt-link-color-focus;
+                        }
+
+                        &:active {
+                            color: $prompt-link-color-active;
+                        }
+                    }
+
+                    .prompt__head,
+                    .prompt__body,
+                    .prompt__foot {
+                        border: 0 $prompt-border-style transparent;
+                        border-left-width: $prompt-border-width-left;
+                        border-right-width: $prompt-border-width-right;
+
+                        &:first-child {
+                            border-top-left-radius: $prompt-border-radius-top-left;
+                            border-top-right-radius: $prompt-border-radius-top-right;
+                            border-top-width: $prompt-border-width-top;
+                        }
+
+                        &:last-child {
+                            border-bottom-left-radius: $prompt-border-radius-bottom-left;
+                            border-bottom-right-radius: $prompt-border-radius-bottom-right;
+                            border-bottom-width: $prompt-border-width-bottom;
+                        }
+                    }
+
+                    .prompt__head {
+                        align-items: center;
+                        background-color: $prompt-head-background-color;
+                        border-bottom-width: $prompt-border-width-bottom;
+                        border-color: $prompt-head-border-color;
+                        color: $prompt-head-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+
+                        // Nested selectors
+                        .prompt__headings {
+                            flex-grow: 1;
+
+                            // Nested selectors
+                            #{$heading},
+                            .prompt__heading {
+                                margin-bottom: 0;
+                                opacity: 0.5;
+
+                                // Pseudo classes
+                                &:first-child {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    .prompt__body {
+                        background-color: $prompt-body-background-color;
+                        border-color: $prompt-body-border-color;
+                        color: $prompt-body-font-color;
+                        flex-grow: 1;
+                        flex-shrink: 1;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+
+                        // Pseudo classes
+                        &>*:last-child {
+                            margin-bottom: 0 !important;
+                        }
+
+                        // Nested selectors
+                        .prompt__field {
+                            // Nested selectors
+                            input {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+
+                    .prompt__foot {
+                        background-color: $prompt-foot-background-color;
+                        border-bottom-width: $prompt-border-width-bottom;
+                        border-color: $prompt-foot-border-color;
+                        color: $prompt-foot-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+                        padding-top: 0;
+
+                        // Nested selectors
+                        .prompt__buttons {
+                            align-items: center;
+                            display: flex;
+                            flex-grow: 1;
+                            justify-content: flex-end;
+
+                            // Nested selectors
+                            #{$button} {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+
+                    // Check if the prompt size modifiers should be declared
+                    @if $prompt-size-modifiers {
+                        // Cycle through all of the sizes
+                        @each $size in $sizes {
+                            // Cycle through all of the breakpoints
+                            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                                // Breakpoints
+                                @include breakpoint($breakpoint-name) {
+                                    // Modifiers: Sizes
+                                    &.is-#{$size} {
+                                        // Nested selectors
+                                        .prompt__head {
+                                            padding: ((content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                        }
+
+                                        .prompt__body,
+                                        .prompt__foot {
+                                            padding: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                        }
+
+                                        .prompt__body {
+                                            // Nested selectors
+                                            .prompt__text {
+                                                margin-bottom: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                            }
+
+                                            .prompt__field {
+                                                margin-bottom: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                            }
+                                        }
+
+                                        .prompt__foot {
+                                            // Nested selectors
+                                            .prompt__buttons {
+                                                // Nested selectors
+                                                #{$button} {
+                                                    margin-left: ((content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size)) / 2);
+
+                                                    // Pseudo classes
+                                                    &:first-child {
+                                                        margin-left: 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Check if the prompt size modifiers with breakpoints should be declared
+                                    @if $prompt-size-modifiers-with-breakpoints {
+                                        // Modifiers: Sizes
+                                        &.is-#{$size}\@#{$breakpoint-name} {
+                                            // Nested selectors
+                                            .prompt__head {
+                                                padding: ((content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                            }
+
+                                            .prompt__body,
+                                            .prompt__foot {
+                                                padding: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                            }
+
+                                            .prompt__body {
+                                                // Nested selectors
+                                                .prompt__text {
+                                                    margin-bottom: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                                }
+
+                                                .prompt__field {
+                                                    margin-bottom: (content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size));
+                                                }
+                                            }
+
+                                            .prompt__foot {
+                                                // Nested selectors
+                                                .prompt__buttons {
+                                                    // Nested selectors
+                                                    #{$button} {
+                                                        margin-left: ((content-spacing($breakpoint-name) * map-get($prompt-content-spacing-multipliers, $size)) / 2);
+
+                                                        // Pseudo classes
+                                                        &:first-child {
+                                                            margin-left: 0;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the prompt color modifiers should be declared
+                    @if $prompt-color-modifiers {
+                        // Cycle through all of the base colors
+                        @each $color-name, $color-value in $base-colors {
+                            // Modifiers: Base colors
+                            &.is-#{$color-name} {
+                                // Nested selectors
+                                .prompt__head {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color('#{$color-name}-darken-3');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the prompt feedback modifiers should be declared
+                    @if $prompt-feedback-modifiers {
+                        // Cycle through all of the feedback colors
+                        @each $feedback-name, $color-value in $feedback-colors {
+                            // Modifiers: Feedback colors
+                            &.has-#{$feedback-name} {
+                                // Nested selectors
+                                .prompt__head {
+                                    background-color: feedback-color($feedback-name);
+                                    border-color: feedback-color('#{$feedback-name}-darken-3');
+                                    color: feedback-color('#{$feedback-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check if the prompt alignment modifier should be declared
+            @if $prompt-alignment-modifier {
+                // Modifiers
+                &.prompt--center {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

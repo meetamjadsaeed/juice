@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM IN
+    ========================================================================  */
+
+// Check if the animations with zoom in should be imported
+@if $import-animations and $import-animation-zoom-in {
+    .has-animation {
+        // Nested selectors
+        &.zoom-in {
+            @keyframes zoom-in {
+                from {
+                    opacity: 0;
+                    transform: scale3d($animation-zoom-in-scale, $animation-zoom-in-scale, $animation-zoom-in-scale);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale3d(1, 1, 1);
+                }
+            }
+
+            animation-delay: $animation-zoom-in-delay;
+            animation-duration: $animation-zoom-in-duration;
+            animation-name: zoom-in;
+            animation-timing-function: $animation-zoom-in-easing;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> ROOT FONT SIZE
+    ========================================================================  */
+
+/**
+ * Get a size from the root font sizes.
+ * @param  {string}  $breakpoint  The breakpoint name.
+ * @return {mixed}                The root font size value, null otherwise.
+ */
+@function root-font-size($breakpoint: 'm') {
+    // Return the root font size value
+    @return map($root-font-sizes, $breakpoint);
+}

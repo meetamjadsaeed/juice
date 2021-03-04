@@ -1,33 +1,28 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> ABBR
-    ========================================================================  */
-
 // Check if the elements with abbr should be imported
 @if $import-elements and $import-element-abbr {
     abbr {
         text-decoration: none !important;
 
+        // Modifiers: Props
+        &[title] {
+            border-bottom: 1px dotted $abbr-border-color;
+            cursor: help;
+        }
+
         // Check if the abbr color modifiers should be declared
         @if $abbr-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
+            // Cycle through all of the abbr colors
+            @each $abbr-color in $abbr-colors {
                 // Modifiers: Base colors
-                &.is-#{$color-name} {
+                &.is-#{$abbr-color} {
                     // Modifiers: Props
                     &[title] {
-                        border-color: base-color($color-name);
+                        border-color: base-color($abbr-color);
                     }
                 }
             }
-        }
-
-        // Modifiers: Props
-        &[title] {
-            // Styles
-            border-bottom: 1px dotted $abbr-border-color;
-            cursor: help;
         }
     }
 }

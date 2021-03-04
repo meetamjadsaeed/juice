@@ -1,14 +1,10 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> COMPONENTS -> CHIP
-    ========================================================================  */
-
 // Check if the components with chip should be imported
 @if $import-components and $import-component-chip {
     .chip {
-        animation-duration: $chip-animation-duration;
         align-items: center;
+        animation-duration: $chip-animation-duration;
         background-color: $chip-background-color;
         border: 0 $chip-border-style $chip-border-color;
         border-bottom-left-radius: $chip-border-radius-bottom-left;
@@ -21,10 +17,9 @@
         border-top-width: $chip-border-width-top;
         color: $chip-font-color;
         display: inline-flex;
-        font-size: $chip-font-size;
-        height: $chip-height;
-        margin: 0;
-        margin-bottom: $chip-element-spacing;
+        font-size: map($chip-font-sizes, 'medium');
+        height: element-height(map($chip-element-height-multipliers, 'medium'));
+        margin-bottom: element-spacing();
 
         // Nested selectors
         a:not(.button) {
@@ -47,13 +42,13 @@
         .chip__media,
         .chip__text,
         .chip__action {
-            padding: 0 ($chip-content-spacing / 2);
+            padding: 0 content-spacing(map($chip-content-spacing-multipliers, 'medium') / 2);
 
             // Pseudo classes
             &:only-child {
                 // Modifiers
                 &.chip__text {
-                    padding: 0 $chip-content-spacing;
+                    padding: 0 content-spacing(map($chip-content-spacing-multipliers, 'medium'));
                 }
             }
 
@@ -61,7 +56,7 @@
                 // Modifiers
                 &.chip__text,
                 &.chip__action {
-                    padding-left: $chip-content-spacing;
+                    padding-left: content-spacing(map($chip-content-spacing-multipliers, 'medium'));
                 }
             }
 
@@ -69,7 +64,7 @@
                 // Modifiers
                 &.chip__text,
                 &.chip__action {
-                    padding-right: $chip-content-spacing;
+                    padding-right: content-spacing(map($chip-content-spacing-multipliers, 'medium'));
                 }
             }
         }
@@ -83,9 +78,9 @@
         }
 
         .chip__media {
-            padding-bottom: ($chip-content-spacing / 2);
-            padding-top: ($chip-content-spacing / 2);
             height: 100%;
+            padding-bottom: content-spacing(map($chip-content-spacing-multipliers, 'medium') / 2);
+            padding-top: content-spacing(map($chip-content-spacing-multipliers, 'medium') / 2);
 
             // Nested selectors
             img {
@@ -106,13 +101,13 @@
         .chip__action {
             // Nested selectors
             #{$button} {
-                height: ($chip-height / 2);
+                height: element-height(map($chip-element-height-multipliers, 'medium') / 2);
+                max-height: element-height(map($chip-element-height-multipliers, 'medium') / 2);
+                max-width: element-height(map($chip-element-height-multipliers, 'medium') / 2);
+                min-height: element-height(map($chip-element-height-multipliers, 'medium') / 2);
+                min-width: element-height(map($chip-element-height-multipliers, 'medium') / 2);
                 padding: 0;
-                max-height: ($chip-height / 2);
-                max-width: ($chip-height / 2);
-                min-height: ($chip-height / 2);
-                min-width: ($chip-height / 2);
-                width: ($chip-height / 2);
+                width: element-height(map($chip-element-height-multipliers, 'medium') / 2);
             }
         }
 
@@ -122,19 +117,21 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($chip-font-size-sizes, $size);
-                    height: map-get($chip-height-sizes, $size);
+                    font-size: map($chip-font-sizes, $size);
+                    height: element-height(map($chip-element-height-multipliers, $size));
+                    margin-bottom: element-spacing();
 
+                    // Nested selectors
                     .chip__media,
                     .chip__text,
                     .chip__action {
-                        padding: 0 (map-get($chip-content-spacing-sizes, $size) / 2);
+                        padding: 0 content-spacing(map($chip-content-spacing-multipliers, $size) / 2);
 
                         // Pseudo classes
                         &:only-child {
                             // Modifiers
                             &.chip__text {
-                                padding: 0 map-get($chip-content-spacing-sizes, $size);
+                                padding: 0 content-spacing(map($chip-content-spacing-multipliers, $size));
                             }
                         }
 
@@ -142,7 +139,7 @@
                             // Modifiers
                             &.chip__text,
                             &.chip__action {
-                                padding-left: map-get($chip-content-spacing-sizes, $size);
+                                padding-left: content-spacing(map($chip-content-spacing-multipliers, $size));
                             }
                         }
 
@@ -150,25 +147,25 @@
                             // Modifiers
                             &.chip__text,
                             &.chip__action {
-                                padding-right: map-get($chip-content-spacing-sizes, $size);
+                                padding-right: content-spacing(map($chip-content-spacing-multipliers, $size));
                             }
                         }
                     }
 
                     .chip__media {
-                        padding-bottom: (map-get($chip-content-spacing-sizes, $size) / 2);
-                        padding-top: (map-get($chip-content-spacing-sizes, $size) / 2);
+                        padding-bottom: content-spacing(map($chip-content-spacing-multipliers, $size) / 2);
+                        padding-top: content-spacing(map($chip-content-spacing-multipliers, $size) / 2);
                     }
 
                     .chip__action {
                         // Nested selectors
                         #{$button} {
-                            height: (map-get($chip-height-sizes, $size) / 2);
-                            max-height: (map-get($chip-height-sizes, $size) / 2);
-                            max-width: (map-get($chip-height-sizes, $size) / 2);
-                            min-height: (map-get($chip-height-sizes, $size) / 2);
-                            min-width: (map-get($chip-height-sizes, $size) / 2);
-                            width: (map-get($chip-height-sizes, $size) / 2);
+                            height: element-height(map($chip-element-height-multipliers, $size) / 2);
+                            max-height: element-height(map($chip-element-height-multipliers, $size) / 2);
+                            max-width: element-height(map($chip-element-height-multipliers, $size) / 2);
+                            min-height: element-height(map($chip-element-height-multipliers, $size) / 2);
+                            min-width: element-height(map($chip-element-height-multipliers, $size) / 2);
+                            width: element-height(map($chip-element-height-multipliers, $size) / 2);
                         }
                     }
                 }
@@ -177,23 +174,25 @@
                 @if $chip-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($chip-font-size-sizes, $size);
-                                height: map-get($chip-height-sizes, $size);
+                                font-size: map($chip-font-sizes, $size);
+                                height: element-height(map($chip-element-height-multipliers, $size));
+                                margin-bottom: element-spacing();
 
+                                // Nested selectors
                                 .chip__media,
                                 .chip__text,
                                 .chip__action {
-                                    padding: 0 (map-get($chip-content-spacing-sizes, $size) / 2);
+                                    padding: 0 content-spacing(map($chip-content-spacing-multipliers, $size) / 2);
 
                                     // Pseudo classes
                                     &:only-child {
                                         // Modifiers
                                         &.chip__text {
-                                            padding: 0 map-get($chip-content-spacing-sizes, $size);
+                                            padding: 0 content-spacing(map($chip-content-spacing-multipliers, $size));
                                         }
                                     }
 
@@ -201,7 +200,7 @@
                                         // Modifiers
                                         &.chip__text,
                                         &.chip__action {
-                                            padding-left: map-get($chip-content-spacing-sizes, $size);
+                                            padding-left: content-spacing(map($chip-content-spacing-multipliers, $size));
                                         }
                                     }
 
@@ -209,25 +208,25 @@
                                         // Modifiers
                                         &.chip__text,
                                         &.chip__action {
-                                            padding-right: map-get($chip-content-spacing-sizes, $size);
+                                            padding-right: content-spacing(map($chip-content-spacing-multipliers, $size));
                                         }
                                     }
                                 }
 
                                 .chip__media {
-                                    padding-bottom: (map-get($chip-content-spacing-sizes, $size) / 2);
-                                    padding-top: (map-get($chip-content-spacing-sizes, $size) / 2);
+                                    padding-bottom: content-spacing(map($chip-content-spacing-multipliers, $size) / 2);
+                                    padding-top: content-spacing(map($chip-content-spacing-multipliers, $size) / 2);
                                 }
 
                                 .chip__action {
                                     // Nested selectors
                                     #{$button} {
-                                        height: (map-get($chip-height-sizes, $size) / 2);
-                                        max-height: (map-get($chip-height-sizes, $size) / 2);
-                                        max-width: (map-get($chip-height-sizes, $size) / 2);
-                                        min-height: (map-get($chip-height-sizes, $size) / 2);
-                                        min-width: (map-get($chip-height-sizes, $size) / 2);
-                                        width: (map-get($chip-height-sizes, $size) / 2);
+                                        height: element-height(map($chip-element-height-multipliers, $size) / 2);
+                                        max-height: element-height(map($chip-element-height-multipliers, $size) / 2);
+                                        max-width: element-height(map($chip-element-height-multipliers, $size) / 2);
+                                        min-height: element-height(map($chip-element-height-multipliers, $size) / 2);
+                                        min-width: element-height(map($chip-element-height-multipliers, $size) / 2);
+                                        width: element-height(map($chip-element-height-multipliers, $size) / 2);
                                     }
                                 }
                             }
@@ -239,26 +238,13 @@
 
         // Check if the chip color modifiers should be declared
         @if $chip-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
+            // Cycle through all of the chip colors
+            @each $chip-color in $chip-colors {
                 // Modifiers: Base colors
-                &.is-#{$color-name} {
-                    background-color: base-color($color-name);
-                    border-color: base-color('#{$color-name}-darken-3');
-                    color: base-color('#{$color-name}-inverted-text');
-                }
-            }
-        }
-
-        // Check if the chip feedback modifiers should be declared
-        @if $chip-feedback-modifiers {
-            // Cycle through all of the feedback colors
-            @each $feedback-name, $color-value in $feedback-colors {
-                // Modifiers: Feedback colors
-                &.has-#{$feedback-name} {
-                    background-color: feedback-color($feedback-name);
-                    border-color: feedback-color('#{$feedback-name}-darken-3');
-                    color: feedback-color('#{$feedback-name}-inverted-text');
+                &.is-#{$chip-color} {
+                    background-color: base-color($chip-color);
+                    border-color: base-color('#{$chip-color}-darken-3');
+                    color: base-color('#{$chip-color}-text');
                 }
             }
         }

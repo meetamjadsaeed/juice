@@ -1,0 +1,84 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H1
+    ========================================================================  */
+
+// Variables
+$heading-1-font-color: inherit !default;
+$heading-1-font-family: $global-secondary-typeface !default;
+$heading-1-font-size: type-scale(font-size(), 6) !default;
+$heading-1-font-variant: normal !default;
+$heading-1-font-weight: 400 !default;
+$heading-1-letter-spacing: 0 !default;
+$heading-1-text-transform: none !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H2
+    ========================================================================  */
+
+// Variables
+$heading-2-font-color: inherit !default;
+$heading-2-font-family: $global-secondary-typeface !default;
+$heading-2-font-size: type-scale(font-size(), 5) !default;
+$heading-2-font-variant: normal !default;
+$heading-2-font-weight: 400 !default;
+$heading-2-letter-spacing: 0 !default;
+$heading-2-text-transform: none !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H3
+    ========================================================================  */
+
+// Variables
+$heading-3-font-color: inherit !default;
+$heading-3-font-family: $global-secondary-typeface !default;
+$heading-3-font-size: type-scale(font-size(), 4) !default;
+$heading-3-font-variant: normal !default;
+$heading-3-font-weight: 400 !default;
+$heading-3-letter-spacing: 0 !default;
+$heading-3-text-transform: none !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H4
+    ========================================================================  */
+
+// Variables
+$heading-4-font-color: inherit !default;
+$heading-4-font-family: $global-secondary-typeface !default;
+$heading-4-font-size: type-scale(font-size(), 3) !default;
+$heading-4-font-variant: normal !default;
+$heading-4-font-weight: 400 !default;
+$heading-4-letter-spacing: 0 !default;
+$heading-4-text-transform: none !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H5
+    ========================================================================  */
+
+// Variables
+$heading-5-font-color: inherit !default;
+$heading-5-font-family: $global-secondary-typeface !default;
+$heading-5-font-size: type-scale(font-size(), 2) !default;
+$heading-5-font-variant: normal !default;
+$heading-5-font-weight: 400 !default;
+$heading-5-letter-spacing: 0 !default;
+$heading-5-text-transform: none !default;
+
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H6
+    ========================================================================  */
+
+// Variables
+$heading-6-font-color: inherit !default;
+$heading-6-font-family: $global-secondary-typeface !default;
+$heading-6-font-size: type-scale(font-size(), 1) !default;
+$heading-6-font-variant: normal !default;
+$heading-6-font-weight: 400 !default;
+$heading-6-letter-spacing: 0 !default;
+$heading-6-text-transform: none !default;

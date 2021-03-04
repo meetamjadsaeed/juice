@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> TEXTAREA
-    ========================================================================  */
-
 // Check if the elements with textarea should be imported
 @if $import-elements and $import-element-textarea {
     textarea {
@@ -12,22 +8,20 @@
         border: 0 $textarea-border-style $textarea-border-color;
         border-bottom-left-radius: $textarea-border-radius-bottom-left;
         border-bottom-right-radius: $textarea-border-radius-bottom-right;
-        border-top-left-radius: $textarea-border-radius-top-left;
-        border-top-right-radius: $textarea-border-radius-top-right;
         border-bottom-width: $textarea-border-width-bottom;
         border-left-width: $textarea-border-width-left;
         border-right-width: $textarea-border-width-right;
+        border-top-left-radius: $textarea-border-radius-top-left;
+        border-top-right-radius: $textarea-border-radius-top-right;
         border-top-width: $textarea-border-width-top;
         color: $textarea-font-color;
         display: flex;
         font-family: $textarea-font-family;
-        font-size: $textarea-font-size;
-        line-height: 1.5;
-        margin: 0;
-        margin-bottom: $textarea-element-spacing;
+        font-size: map($textarea-font-sizes, 'medium');
+        margin-bottom: element-spacing();
         min-width: 100%;
         outline: none;
-        padding: $textarea-content-spacing;
+        padding: content-spacing(map($textarea-content-spacing-multipliers, 'medium'));
         resize: none;
         width: 100%;
         z-index: stack-index('default');
@@ -62,7 +56,6 @@
 
         // Modifiers: Props
         &[disabled] {
-            // Styles
             @include disabled();
         }
 
@@ -72,20 +65,20 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($select-font-size-sizes, $size);
-                    padding: map-get($select-content-spacing-sizes, $size);
+                    font-size: map($textarea-font-sizes, $size);
+                    padding: content-spacing(map($textarea-content-spacing-multipliers, $size));
                 }
 
                 // Check if the textarea size modifiers with breakpoints should be declared
                 @if $textarea-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($select-font-size-sizes, $size);
-                                padding: map-get($select-content-spacing-sizes, $size);
+                                font-size: map($textarea-font-sizes, $size);
+                                padding: content-spacing(map($textarea-content-spacing-multipliers, $size));
                             }
                         }
                     }
@@ -106,19 +99,22 @@
                     &:active {
                         box-shadow: 0 0 0 $input-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
                     }
-
-                    // Modifiers: Props
-                    &[disabled] {
-                        border-color: feedback-color($feedback-name) !important;
-                    }
                 }
             }
         }
 
-        // Check if the textarea resize modifier should be declared
-        @if $textarea-resize-modifier {
+        // Check if the textarea resize modifiers should be declared
+        @if $textarea-resize-modifiers {
             // Modifiers
             &.textarea--resize {
+                resize: both;
+            }
+
+            &.textarea--resize-horizontal {
+                resize: horizontal;
+            }
+
+            &.textarea--resize-vertical {
                 resize: vertical;
             }
         }

@@ -17,9 +17,8 @@ const plumber = require('gulp-plumber');
  * Css dependency modules.
  * @const {module}
  */
-const customproperties = require('postcss-css-variables');
-const presetenv = require('postcss-preset-env');
 const postcss = require('gulp-postcss');
+const postcssPresetEnv = require('postcss-preset-env');
 const nano = require('cssnano');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
@@ -38,7 +37,7 @@ const uglify = require('gulp-uglify');
  * Server dependency modules.
  * @const {module}
  */
-const browsersync = require('browser-sync');
+const browserSync = require('browser-sync');
 const connect = require('gulp-connect-php7');
 
 
@@ -91,9 +90,7 @@ const files = {
  * @type {object}
  */
 const resource = {
-    sass: [
-        'resources/sass/juice.scss'
-    ],
+    sass: 'resources/sass/juice.scss',
     scripts: [
         'node_modules/velocity-animate/velocity.min.js',
         'resources/scripts/polyfills/*.js',
@@ -109,7 +106,7 @@ const resource = {
     ========================================================================  */
 
 /**
- * Set the css task to compile sass to css with various modules.
+ * Set the css task to compile sass to css.
  * @module gulp-plumber
  * @module gulp-notify
  * @module gulp-sass
@@ -130,15 +127,14 @@ const css = () => {
                 })
             }))
             .pipe(sass({
-                // outputStyle: 'compressed',
                 includePaths: [
                     'node_modules/'
                 ]
             }))
             .pipe(postcss([
-                presetenv({
-                    stage: 0
-                }),
+                // postcssPresetEnv({
+                //     stage: 0
+                // }),
                 nano()
             ]))
             .pipe(rename(filename.css))
@@ -148,14 +144,14 @@ const css = () => {
                 message: 'Task completed.',
                 sound: 'pop'
             }))
-            .pipe(browsersync.reload({
+            .pipe(browserSync.reload({
                 stream: true
             }))
     );
 };
 
 /**
- * Set the scripts task to compile javascript with various modules.
+ * Set the scripts task to compile javascript.
  * @module gulp-plumber
  * @module gulp-notify
  * @module gulp-babel
@@ -188,7 +184,7 @@ const scripts = () => {
                 message: 'Task completed.',
                 sound: 'pop'
             }))
-            .pipe(browsersync.reload({
+            .pipe(browserSync.reload({
                 stream: true
             }))
     );
@@ -202,7 +198,7 @@ const serve = () => {
     // Start a new server
     connect.server({}, () => {
         // Proxy the hostname and port
-        browsersync({
+        browserSync({
             proxy: hostname,
             port: port
         });
@@ -220,10 +216,10 @@ const watch = () => {
     // Watch for javascript file changes and call the scripts task
     gulp.watch(files.scripts, scripts);
 
-    // Watch for html file changes and reload browsersync
+    // Watch for html file changes and reload browserSync
     gulp.watch(files.html).on('change', () => {
-        // Reload browsersync
-        browsersync.reload();
+        // Reload browserSync
+        browserSync.reload();
     });
 };
 
@@ -236,5 +232,5 @@ const watch = () => {
 exports.build = gulp.series(gulp.parallel(css, scripts));
 exports.css = css;
 exports.scripts = scripts;
-exports.serve = gulp.series(gulp.parallel(watch, serve));
+exports.serve = gulp.series(gulp.parallel(serve, watch));
 exports.watch = watch;

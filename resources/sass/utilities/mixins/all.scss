@@ -1,9 +1,10 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> UTILITIES -> MIXINS
-    ========================================================================  */
-
-// Import
-@import 'content';
-@import 'non-content';
+// Import utility mixins
+@import 'breakpoint';
+@import 'clearfix';
+@import 'disabled';
+@import 'reserve-bold-space';
+@import 'truncate-text';
+@import 'vertical-rhythm';
+@import 'zero-positioning';

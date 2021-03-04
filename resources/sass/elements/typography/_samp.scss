@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> SAMP
-    ========================================================================  */
-
 // Check if the elements with samp should be imported
 @if $import-elements and $import-element-samp {
     samp {
@@ -19,34 +15,6 @@
         border-top-width: $samp-border-width-top;
         color: $samp-font-color;
         font-family: $samp-font-family;
-        font-size: $samp-font-size;
         padding: $samp-content-spacing;
-
-        // Check if the samp size modifiers should be declared
-        @if $samp-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($samp-font-size-sizes, $size);
-                    padding: map-get($samp-content-spacing-sizes, $size);
-                }
-
-                // Check if the samp size modifiers with breakpoints should be declared
-                @if $samp-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($samp-font-size-sizes, $size);
-                                padding: map-get($samp-content-spacing-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

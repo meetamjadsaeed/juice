@@ -1,38 +1,28 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> LAYOUT -> TABLE
-    ========================================================================  */
+// Table maps
+$table-content-spacing-multipliers: (
+    'small': 0.25,
+    'medium': 0.5,
+    'large': 1
+) !default;
 
-// Variables
+// Table variables
 $table-body-background-color: base-color('white') !default;
 $table-body-background-color-stripe: base-color('white-darken-1') !default;
 $table-body-border-color: base-color('white-darken-3') !default;
-$table-body-border-width-bottom: $default-border-width-bottom !default;
-$table-body-border-width-left: $default-border-width-left !default;
-$table-body-border-width-right: $default-border-width-right !default;
-$table-body-border-width-top: $default-border-width-top !default;
-$table-body-border-width-divider: $default-border-width-divider !default;
-$table-body-font-color: font-color('default') !default;
-$table-body-font-color-stripe: font-color('default') !default;
-$table-border-style: $default-border-style !default;
-$table-content-spacing: $default-content-spacing !default;
-$table-content-spacing-sizes: (
-    'small': map-get($default-content-spacing-sizes, 'small'),
-    'large': map-get($default-content-spacing-sizes, 'large'),
-    'huge': map-get($default-content-spacing-sizes, 'huge')
-) !default;
-$table-element-spacing: $default-element-spacing !default;
-$table-font-size: $default-font-size !default;
-$table-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
+$table-body-border-width-bottom: $global-border-width-bottom !default;
+$table-body-border-width-left: $global-border-width-left !default;
+$table-body-border-width-right: $global-border-width-right !default;
+$table-body-border-width-top: $global-border-width-top !default;
+$table-body-border-width-divider: $global-border-width-divider !default;
+$table-body-font-color: font-color() !default;
+$table-body-font-color-stripe: font-color() !default;
+$table-border-style: $global-border-style !default;
 $table-head-background-color: base-color('charcoal') !default;
 $table-head-border-color: base-color('charcoal-darken-3') !default;
-$table-head-border-width-bottom: ($default-border-width-bottom * 2) !default;
-$table-head-border-width-left: $default-border-width-left !default;
-$table-head-border-width-right: $default-border-width-right !default;
-$table-head-border-width-top: $default-border-width-top !default;
-$table-head-font-color: base-color('charcoal-inverted-text') !default;
+$table-head-border-width-bottom: ($global-border-width-bottom * 2) !default;
+$table-head-border-width-left: $global-border-width-left !default;
+$table-head-border-width-right: $global-border-width-right !default;
+$table-head-border-width-top: $global-border-width-top !default;
+$table-head-font-color: base-color('charcoal-text') !default;

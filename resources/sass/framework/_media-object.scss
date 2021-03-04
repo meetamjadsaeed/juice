@@ -1,0 +1,102 @@
+@charset 'utf-8';
+
+.media-object {
+    display: flex;
+    position: relative;
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoints
+        @include breakpoint($breakpoint-name) {
+            // Nested selectors
+            .media-object__badge {
+                // Nested selectors
+                img {
+                    max-width: map($media-object-badge-image-widths, $breakpoint-name);
+                    min-width: map($media-object-badge-image-widths, $breakpoint-name);
+                    width: map($media-object-badge-image-widths, $breakpoint-name);
+                }
+            }
+        }
+    }
+
+    // Nested selectors
+    .media-object__badge {
+        flex: 0 0 auto;
+        padding-left: 0;
+        padding-right: content-spacing(map($media-object-content-spacing-multipliers, 'medium'));
+
+        // Nested selectors
+        img {
+            display: block;
+        }
+    }
+
+    .media-object__content {
+        flex-grow: 1;
+    }
+
+    // Cycle through all of the sizes
+    @each $size in $sizes {
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    .media-object__badge {
+                        padding-left: 0;
+                        padding-right: content-spacing(map($media-object-content-spacing-multipliers, $size));
+                    }
+
+                    // Modifiers
+                    &.media-object--reverse {
+                        // Nested selectors
+                        .media-object__badge {
+                            padding-left: content-spacing(map($media-object-content-spacing-multipliers, $size));
+                            padding-right: 0;
+                        }
+                    }
+                }
+
+                // Modifiers: Sizes
+                &.is-#{$size}\@#{$breakpoint-name} {
+                    // Nested selectors
+                    .media-object__badge {
+                        padding-left: 0;
+                        padding-right: content-spacing(map($media-object-content-spacing-multipliers, $size));
+                    }
+
+                    // Modifiers
+                    &.media-object--reverse {
+                        // Nested selectors
+                        .media-object__badge {
+                            padding-left: content-spacing(map($media-object-content-spacing-multipliers, $size));
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Modifiers
+    &.media-object--reverse {
+        flex-direction: row-reverse;
+
+        // Nested selectors
+        .media-object__badge {
+            padding-left: content-spacing(map($media-object-content-spacing-multipliers, 'medium'));
+            padding-right: 0;
+        }
+    }
+
+    // Modifiers
+    &.media-object--seamless {
+        // Nested selectors
+        .media-object__badge {
+            padding: 0;
+        }
+    }
+}

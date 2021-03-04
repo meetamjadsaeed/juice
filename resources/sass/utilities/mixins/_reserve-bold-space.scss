@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+/**
+ * Resolve an elements bold spacing.
+ */
+@mixin reserve-bold-space() {
+    color: transparent;
+    content: attr(data-reserve-text);
+    display: block;
+    font-weight: bold;
+    height: 0.1rem;
+    overflow: hidden;
+    visibility: hidden;
+}

@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> FONT SIZE
+    ========================================================================  */
+
+/**
+ * Get a size from the font sizes.
+ * @param  {string}  $name  The font size name.
+ * @return {mixed}          The font size value, null otherwise.
+ */
+@function font-size($name: 'md') {
+    // Return the font size value
+    @return map($font-sizes, $name);
+}

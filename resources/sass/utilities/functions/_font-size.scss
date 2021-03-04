@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a font size from the font sizes.
+ *
+ * @param  {string}  $name  The font size name.
+ * @return {mixed}          The font size, null otherwise.
+ */
+@function font-size($name: 'medium') {
+    // Return the font size
+    @return map($font-sizes, $name);
+}

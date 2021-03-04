@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> SLIDE -> EXIT -> SLIDE OUT UP
+    ========================================================================  */
+
+// Check if the animations with slide out up should be imported
+@if $import-animations and $import-animation-slide-out-up {
+    .has-animation {
+        // Nested selectors
+        &.slide-out-up {
+            @keyframes slide-out-up {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                to {
+                    transform: translate3d(0, (0 - $animation-slide-out-distance), 0);
+                }
+            }
+
+            animation-delay: $animation-slide-out-delay;
+            animation-duration: $animation-slide-out-duration;
+            animation-name: slide-out-up;
+            animation-timing-function: $animation-slide-out-easing;
+        }
+    }
+}

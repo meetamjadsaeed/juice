@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> SLIDE -> EXIT -> SLIDE OUT RIGHT
+    ========================================================================  */
+
+// Check if the animations with slide out right should be imported
+@if $import-animations and $import-animation-slide-out-right {
+    .has-animation {
+        // Nested selectors
+        &.slide-out-right {
+            @keyframes slide-out-right {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                to {
+                    transform: translate3d($animation-slide-out-distance, 0, 0);
+                }
+            }
+
+            animation-delay: $animation-slide-out-delay;
+            animation-duration: $animation-slide-out-duration;
+            animation-name: slide-out-right;
+            animation-timing-function: $animation-slide-out-easing;
+        }
+    }
+}

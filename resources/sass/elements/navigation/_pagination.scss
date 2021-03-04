@@ -1,16 +1,11 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> NAVIGATION -> PAGINATION
-    ========================================================================  */
-
 // Check if the elements with pagination should be imported
 @if $import-elements and $import-element-pagination {
     .pagination {
         display: flex;
-        font-size: var(--font-size);
         justify-content: center;
-        margin-bottom: var(--element-spacing);
+        margin-bottom: element-spacing();
 
         // Check if the pagination size modifiers should be declared
         @if $pagination-size-modifiers {
@@ -18,20 +13,24 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($pagination-font-size-sizes, $size);
-
-                    // Nested selectors
                     ul {
                         // Nested selectors
                         li {
-                            min-width: map-get($pagination-height-sizes, $size);
+                            min-width: element-height(map($pagination-element-height-multipliers, $size));
 
                             // Nested selectors
                             a,
                             span {
-                                // Styles (IE fallback for postcss-css-variables)
-                                height: map-get($pagination-height-sizes, $size);
-                                padding: 0 map-get($pagination-content-spacing-sizes, $size);
+                                font-size: map($pagination-font-sizes, $size);
+                                height: element-height(map($pagination-element-height-multipliers, $size));
+                                padding: 0 content-spacing(map($pagination-content-spacing-multipliers, $size));
+                            }
+
+                            a {
+                                // Modifiers: State hooks
+                                &.is-active {
+                                    font-size: map($pagination-font-sizes, '#{$size}-active');
+                                }
                             }
                         }
                     }
@@ -41,24 +40,28 @@
                 @if $pagination-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($pagination-font-size-sizes, $size);
-
-                                // Nested selectors
                                 ul {
                                     // Nested selectors
                                     li {
-                                        min-width: map-get($pagination-height-sizes, $size);
+                                        min-width: element-height(map($pagination-element-height-multipliers, $size));
 
                                         // Nested selectors
                                         a,
                                         span {
-                                            // Styles (IE fallback for postcss-css-variables)
-                                            height: map-get($pagination-height-sizes, $size);
-                                            padding: 0 map-get($pagination-content-spacing-sizes, $size);
+                                            font-size: map($pagination-font-sizes, $size);
+                                            height: element-height(map($pagination-element-height-multipliers, $size));
+                                            padding: 0 content-spacing(map($pagination-content-spacing-multipliers, $size));
+                                        }
+
+                                        a {
+                                            // Modifiers: State hooks
+                                            &.is-active {
+                                                font-size: map($pagination-font-sizes, '#{$size}-active');
+                                            }
                                         }
                                     }
                                 }
@@ -73,29 +76,25 @@
         @if $pagination-alignment-modifiers {
             // Modifiers
             &.pagination--left {
-                // Styles
                 justify-content: flex-start;
             }
 
             &.pagination--right {
-                // Styles
                 justify-content: flex-end;
             }
         }
 
         // Nested selectors
         ul {
-            // Styles
             box-shadow: $pagination-box-shadow;
             display: flex;
             list-style: none;
-            padding: 0;
             margin: 0;
 
             // Nested selectors
             li {
-                margin-right: (0px - $pagination-border-width-divider);
-                min-width: $pagination-height;
+                margin-right: calc(0 - #{$pagination-border-width-divider});
+                min-width: element-height(map($pagination-element-height-multipliers, 'medium'));
 
                 // Pseudo classes
                 &:first-child {
@@ -130,9 +129,10 @@
                     border-top-width: $pagination-border-width-top;
                     color: $pagination-font-color;
                     display: flex;
-                    height: $pagination-height;
+                    font-size: map($pagination-font-sizes, 'medium');
+                    height: element-height(map($pagination-element-height-multipliers, 'medium'));
                     justify-content: center;
-                    padding: 0 $pagination-content-spacing;
+                    padding: 0 content-spacing(map($pagination-content-spacing-multipliers, 'medium'));
                     user-select: none;
                     width: 100%;
                     z-index: stack-index('default');
@@ -168,24 +168,12 @@
 
                     // Modifiers: State hooks
                     &.is-active {
-                        font-size: $pagination-font-size-active;
+                        font-size: map($pagination-font-sizes, 'medium-active');
                         font-weight: bold;
                     }
 
                     &.is-disabled {
                         @include disabled();
-                        background-color: $pagination-background-color !important;
-                        border-color: $pagination-border-color !important;
-                        color: $pagination-link-color !important;
-
-                        // Pseudo classes
-                        &:hover,
-                        &:focus,
-                        &:active {
-                            background-color: $pagination-background-color !important;
-                            border-color: $pagination-border-color !important;
-                            color: $pagination-link-color !important;
-                        }
                     }
                 }
 

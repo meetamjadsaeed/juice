@@ -1,0 +1,220 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> COMPONENTS -> TOOLTIP
+    ========================================================================  */
+
+// Check if the components with tooltip should be imported
+@if $import-components and $import-component-tooltip {
+    .tooltip {
+        animation-duration: $tooltip-animation-duration;
+        left: 0;
+        margin: 0;
+        margin-top: (0 - ($tooltip-arrow-size + $tooltip-offset));
+        position: absolute;
+        top: 0;
+        z-index: stack-index('tooltip');
+
+        // Pseudo elements
+        &::before {
+            border-bottom: 0;
+            border-left: $tooltip-arrow-size solid transparent;
+            border-right: $tooltip-arrow-size solid transparent;
+            border-top: $tooltip-arrow-size solid $tooltip-background-color;
+            content: '';
+            display: block;
+            height: 0;
+            left: 50%;
+            margin-left: (0 - $tooltip-arrow-size);
+            margin-top: 0;
+            opacity: $tooltip-opacity;
+            position: absolute;
+            top: 100%;
+            width: 0;
+        }
+
+        // Nested selectors
+        .tooltip__content {
+            background-color: $tooltip-background-color;
+            border: 0;
+            border-bottom-left-radius: $tooltip-border-radius-bottom-left;
+            border-bottom-right-radius: $tooltip-border-radius-bottom-right;
+            border-top-left-radius: $tooltip-border-radius-top-left;
+            border-top-right-radius: $tooltip-border-radius-top-right;
+            color: $tooltip-font-color;
+            display: inline-block;
+            font-family: $tooltip-font-family;
+            max-width: $tooltip-max-width;
+            opacity: $tooltip-opacity;
+            text-align: center;
+
+            // Cycle through all of the breakpoints
+            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                // Breakpoints
+                @include breakpoint($breakpoint-name) {
+                    @include vertical-rhythm($breakpoint-name, $tooltip-font-size);
+                    padding: ((content-spacing($breakpoint-name) * $tooltip-content-spacing-multiplier) / 2) (content-spacing($breakpoint-name) * $tooltip-content-spacing-multiplier);
+                }
+            }
+        }
+
+        // Check if the tooltip color modifiers should be declared
+        @if $tooltip-color-modifiers {
+            // Cycle through all of the base colors
+            @each $color-name, $color-value in $base-colors {
+                // Modifiers: Base colors
+                &.is-#{$color-name} {
+                    // Pseudo elements
+                    &::before {
+                        border-top-color: base-color($color-name);
+                    }
+
+                    // Nested selectors
+                    .tooltip__content {
+                        background-color: base-color($color-name);
+                        color: base-color('#{$color-name}-inverted-text');
+                    }
+
+                    // Check if the tooltip alignment modifiers should be declared
+                    @if $tooltip-alignment-modifiers {
+                        // Modifiers
+                        &.tooltip--bottom {
+                            // Pseudo elements
+                            &::before {
+                                border-top-color: base-color($color-name);
+                            }
+                        }
+
+                        &.tooltip--left {
+                            // Pseudo elements
+                            &::before {
+                                border-right-color: base-color($color-name);
+                            }
+                        }
+
+                        &.tooltip--right {
+                            // Pseudo elements
+                            &::before {
+                                border-left-color: base-color($color-name);
+                            }
+                        }
+
+                        &.tooltip--top {
+                            // Pseudo elements
+                            &::before {
+                                border-bottom-color: base-color($color-name);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the tooltip feedback modifiers should be declared
+        @if $tooltip-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $color-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    // Pseudo elements
+                    &::before {
+                        border-top-color: feedback-color($feedback-name);
+                    }
+
+                    // Nested selectors
+                    .tooltip__content {
+                        background-color: feedback-color($feedback-name);
+                        color: feedback-color('#{$feedback-name}-inverted-text');
+                    }
+
+                    // Check if the tooltip alignment modifiers should be declared
+                    @if $tooltip-alignment-modifiers {
+                        // Modifiers
+                        &.tooltip--bottom {
+                            // Pseudo elements
+                            &::before {
+                                border-top-color: feedback-color($feedback-name);
+                            }
+                        }
+
+                        &.tooltip--left {
+                            // Pseudo elements
+                            &::before {
+                                border-right-color: feedback-color($feedback-name);
+                            }
+                        }
+
+                        &.tooltip--right {
+                            // Pseudo elements
+                            &::before {
+                                border-left-color: feedback-color($feedback-name);
+                            }
+                        }
+
+                        &.tooltip--top {
+                            // Pseudo elements
+                            &::before {
+                                border-bottom-color: feedback-color($feedback-name);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the tooltip alignment modifiers should be declared
+        @if $tooltip-alignment-modifiers {
+            // Modifiers
+            &.tooltip--bottom {
+                margin: 0;
+                margin-top: ($tooltip-arrow-size + $tooltip-offset);
+
+                // Pseudo elements
+                &::before {
+                    border-bottom: $tooltip-arrow-size solid $tooltip-background-color;
+                    border-left: $tooltip-arrow-size solid transparent;
+                    border-right: $tooltip-arrow-size solid transparent;
+                    border-top: 0;
+                    left: 50%;
+                    margin-left: (0 - $tooltip-arrow-size);
+                    margin-top: (0 - $tooltip-arrow-size);
+                    top: 0;
+                }
+            }
+
+            &.tooltip--left {
+                margin: 0;
+                margin-left: (0 - ($tooltip-arrow-size + $tooltip-offset));
+
+                // Pseudo elements
+                &::before {
+                    border-bottom: $tooltip-arrow-size solid transparent;
+                    border-left: $tooltip-arrow-size solid $tooltip-background-color;
+                    border-right: 0;
+                    border-top: $tooltip-arrow-size solid transparent;
+                    left: 100%;
+                    margin-left: 0;
+                    margin-top: (0 - $tooltip-arrow-size);
+                    top: 50%;
+                }
+            }
+
+            &.tooltip--right {
+                margin: 0;
+                margin-left: ($tooltip-arrow-size + $tooltip-offset);
+
+                // Pseudo elements
+                &::before {
+                    border-bottom: $tooltip-arrow-size solid transparent;
+                    border-left: 0;
+                    border-right: $tooltip-arrow-size solid $tooltip-background-color;
+                    border-top: $tooltip-arrow-size solid transparent;
+                    left: 0;
+                    margin-left: (0 - $tooltip-arrow-size);
+                    margin-top: (0 - $tooltip-arrow-size);
+                    top: 50%;
+                }
+            }
+        }
+    }
+}

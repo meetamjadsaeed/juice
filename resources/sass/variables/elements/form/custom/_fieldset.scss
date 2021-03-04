@@ -1,18 +1,13 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> FIELDSET
-    ========================================================================  */
-
-// Variables
-$custom-fieldset-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$custom-fieldset-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$custom-fieldset-border-radius-top-left: $default-border-radius-top-left !default;
-$custom-fieldset-border-radius-top-right: $default-border-radius-top-right !default;
-$custom-fieldset-border-style: $default-border-style !default;
-$custom-fieldset-border-width-bottom: $default-border-width-bottom !default;
-$custom-fieldset-border-width-divider: $default-border-width-divider !default;
-$custom-fieldset-border-width-left: $default-border-width-left !default;
-$custom-fieldset-border-width-right: $default-border-width-right !default;
-$custom-fieldset-border-width-top: $default-border-width-top !default;
-$custom-fieldset-element-spacing: $default-element-spacing !default;
+// Custom fieldset variables
+$custom-fieldset-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$custom-fieldset-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$custom-fieldset-border-radius-top-left: $global-border-radius-top-left !default;
+$custom-fieldset-border-radius-top-right: $global-border-radius-top-right !default;
+$custom-fieldset-border-style: $global-border-style !default;
+$custom-fieldset-border-width-bottom: $global-border-width-bottom !default;
+$custom-fieldset-border-width-divider: $global-border-width-divider !default;
+$custom-fieldset-border-width-left: $global-border-width-left !default;
+$custom-fieldset-border-width-right: $global-border-width-right !default;
+$custom-fieldset-border-width-top: $global-border-width-top !default;

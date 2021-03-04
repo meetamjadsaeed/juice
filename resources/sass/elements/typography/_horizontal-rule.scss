@@ -1,32 +1,31 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HORIZONTAL RULE
-    ========================================================================  */
-
 // Check if the elements with horizontal rule should be imported
 @if $import-elements and $import-element-horizontal-rule {
     hr {
-        // Variables
-        $hr-border-color: hsla(0, 0%, 50%, .15);
-        $hr-border-style: $default-border-style;
-        $hr-border-width: $default-border-width-divider;
-        $hr-element-spacing: $default-element-spacing;
-
-        // Styles
         border: 0;
-        border-bottom: $hr-border-width $hr-border-style $hr-border-color;
         clear: both;
-        margin: 0;
-        margin-bottom: $hr-element-spacing;
+        height: element-height();
+        opacity: $hr-border-opacity;
+        position: relative;
+
+        // Pseudo elements
+        &::after {
+            border-top: $hr-border-width $hr-border-style $hr-border-color;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
 
         // Check if the horizontal rule color modifiers should be declared
         @if $horizontal-rule-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
-                // Modifiers: Colors
-                &.is-#{$color-name} {
-                    border-color: base-color($color-name);
+            // Cycle through all of the horizontal rule colors
+            @each $hr-color in $hr-colors {
+                // Modifiers: Base colors
+                &.is-#{$hr-color} {
+                    border-color: base-color($hr-color);
                 }
             }
         }

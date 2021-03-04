@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> SLIDE -> ENTRANCE -> SLIDE IN UP
+    ========================================================================  */
+
+// Check if the animations with slide in up should be imported
+@if $import-animations and $import-animation-slide-in-up {
+    .has-animation {
+        // Nested selectors
+        &.slide-in-up {
+            @keyframes slide-in-up {
+                from {
+                    transform: translate3d(0, $animation-slide-in-distance, 0);
+                }
+
+                to {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            animation-delay: $animation-slide-in-delay;
+            animation-duration: $animation-slide-in-duration;
+            animation-name: slide-in-up;
+            animation-timing-function: $animation-slide-in-easing;
+        }
+    }
+}

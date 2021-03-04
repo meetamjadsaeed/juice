@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> SLIDE -> ENTRANCE -> SLIDE IN LEFT
+    ========================================================================  */
+
+// Check if the animations with slide in left should be imported
+@if $import-animations and $import-animation-slide-in-left {
+    .has-animation {
+        // Nested selectors
+        &.slide-in-left {
+            @keyframes slide-in-left {
+                from {
+                    transform: translate3d($animation-slide-in-distance, 0, 0);
+                }
+
+                to {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            animation-delay: $animation-slide-in-delay;
+            animation-duration: $animation-slide-in-duration;
+            animation-name: slide-in-left;
+            animation-timing-function: $animation-slide-in-easing;
+        }
+    }
+}

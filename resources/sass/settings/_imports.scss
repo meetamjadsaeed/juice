@@ -1,93 +1,83 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> SETTINGS -> IMPORTS -> ANIMATIONS
-    ========================================================================  */
-
-// Global
+// Global import settings variables
 $import-animations: true !default;
+$import-components: true !default;
+$import-elements: true !default;
 
-// Attractors
+// Animation attractor import settings variables
 $import-animation-flash: true !default;
 $import-animation-pulse: true !default;
 $import-animation-shake: true !default;
 $import-animation-vibrate: true !default;
 
-// Bounce entrances
+// Animation bounce entrance import settings variables
 $import-animation-bounce-in-down: true !default;
 $import-animation-bounce-in-left: true !default;
 $import-animation-bounce-in-right: true !default;
 $import-animation-bounce-in-up: true !default;
 $import-animation-bounce-in: true !default;
 
-// Bounce exits
+// Animation bounce exit import settings variables
 $import-animation-bounce-out-down: true !default;
 $import-animation-bounce-out-left: true !default;
 $import-animation-bounce-out-right: true !default;
 $import-animation-bounce-out-up: true !default;
 $import-animation-bounce-out: true !default;
 
-// Fade entrances
+// Animation fade entrance import settings variables
 $import-animation-fade-in-down: true !default;
 $import-animation-fade-in-left: true !default;
 $import-animation-fade-in-right: true !default;
 $import-animation-fade-in-up: true !default;
 $import-animation-fade-in: true !default;
 
-// Fade exits
+// Animation fade exit import settings variables
 $import-animation-fade-out-down: true !default;
 $import-animation-fade-out-left: true !default;
 $import-animation-fade-out-right: true !default;
 $import-animation-fade-out-up: true !default;
 $import-animation-fade-out: true !default;
 
-// Flip entrances
+// Animation flip entrance import settings variables
 $import-animation-flip-in-down: true !default;
 $import-animation-flip-in-left: true !default;
 $import-animation-flip-in-right: true !default;
 $import-animation-flip-in-up: true !default;
 
-// Flip exits
+// Animation flip exit import settings variables
 $import-animation-flip-out-down: true !default;
 $import-animation-flip-out-left: true !default;
 $import-animation-flip-out-right: true !default;
 $import-animation-flip-out-up: true !default;
 
-// Slide entrances
+// Animation slide entrance import settings variables
 $import-animation-slide-in-down: true !default;
 $import-animation-slide-in-left: true !default;
 $import-animation-slide-in-right: true !default;
 $import-animation-slide-in-up: true !default;
 
-// Slide exits
+// Animation slide exit import settings variables
 $import-animation-slide-out-down: true !default;
 $import-animation-slide-out-left: true !default;
 $import-animation-slide-out-right: true !default;
 $import-animation-slide-out-up: true !default;
 
-// Zoom entrances
+// Animation zoom entrance import settings variables
 $import-animation-zoom-in-down: true !default;
 $import-animation-zoom-in-left: true !default;
 $import-animation-zoom-in-right: true !default;
 $import-animation-zoom-in-up: true !default;
 $import-animation-zoom-in: true !default;
 
-// Zoom exits
+// Animation zoom exit import settings variables
 $import-animation-zoom-out-down: true !default;
 $import-animation-zoom-out-left: true !default;
 $import-animation-zoom-out-right: true !default;
 $import-animation-zoom-out-up: true !default;
 $import-animation-zoom-out: true !default;
 
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> IMPORTS -> COMPONENTS
-    ========================================================================  */
-
-// Global
-$import-components: true !default;
-
-// Components
+// Component import settings variables
 $import-component-accordion: true !default;
 $import-component-alert: true !default;
 $import-component-card: true !default;
@@ -102,30 +92,19 @@ $import-component-prompt: true !default;
 $import-component-toast: true !default;
 $import-component-tooltip: true !default;
 
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> IMPORTS -> ELEMENTS
-    ========================================================================  */
-
-// Global
-$import-elements: true !default;
-
-// Elements
+// Element import settings variables
 $import-element-abbr: true !default;
 $import-element-blockquote: true !default;
-$import-element-body: true !default;
 $import-element-box: true !default;
 $import-element-breadcrumb: true !default;
 $import-element-button: true !default;
 $import-element-button-group: true !default;
 $import-element-code: true !default;
-$import-element-container: true !default;
 $import-element-custom-checkbox: true !default;
 $import-element-custom-fieldset: true !default;
 $import-element-custom-file: true !default;
 $import-element-custom-password: true !default;
 $import-element-custom-radio: true !default;
-$import-element-grid: true !default;
 $import-element-heading: true !default;
 $import-element-hero: true !default;
 $import-element-horizontal-rule: true !default;
@@ -136,9 +115,7 @@ $import-element-label: true !default;
 $import-element-link: true !default;
 $import-element-list: true !default;
 $import-element-mark: true !default;
-$import-element-media-object: true !default;
 $import-element-navbar: true !default;
-$import-element-overlay: true !default;
 $import-element-pagination: true !default;
 $import-element-paragraph: true !default;
 $import-element-pre: true !default;

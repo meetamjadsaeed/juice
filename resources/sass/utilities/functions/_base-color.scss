@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a base color from the base color palette.
+ *
+ * @param  {string}  $name  The base color name.
+ * @return {mixed}          The base color, null otherwise.
+ */
+@function base-color($name) {
+    // Return the base color
+    @return var(--color-#{$name});
+}

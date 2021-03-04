@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> MIXINS -> RESERVE BOLD SPACE
+    ========================================================================  */
+
+/**
+ * Resolve an elements bold spacing to stop an element jumping if the
+ * text jumps between weights.
+ */
+@mixin reserve-bold-space() {
+    color: transparent;
+    content: attr(data-reserve-text);
+    display: block;
+    font-weight: bold;
+    height: 0.1rem;
+    overflow: hidden;
+    visibility: hidden;
+}

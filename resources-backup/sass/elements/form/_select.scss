@@ -1,0 +1,170 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> FORM -> SELECT
+    ========================================================================  */
+
+// Check if the elements with select should be imported
+@if $import-elements and $import-element-select {
+    select {
+        appearance: none;
+        background-color: $select-background-color;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
+        background-repeat: no-repeat;
+        border: 0 $select-border-style $select-border-color;
+        border-bottom-left-radius: $select-border-radius-bottom-left;
+        border-bottom-right-radius: $select-border-radius-bottom-right;
+        border-bottom-width: $select-border-width-bottom;
+        border-top-left-radius: $select-border-radius-top-left;
+        border-top-right-radius: $select-border-radius-top-right;
+        border-left-width: $select-border-width-left;
+        border-right-width: $select-border-width-right;
+        border-top-width: $select-border-width-top;
+        color: $select-font-color;
+        cursor: pointer;
+        display: flex;
+        font-family: $select-font-family;
+        outline: none;
+        width: 100%;
+        z-index: stack-index('default');
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                background-position: calc(100% - #{(content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, 'md'))}) 50%;
+                background-size: (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, 'md'));
+                font-size: map-get($select-font-sizes, 'md');
+                height: (element-height($breakpoint-name) * map-get($select-element-height-multipliers, 'md'));
+                margin-bottom: element-spacing($breakpoint-name);
+                padding: 0 ((content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, 'md')) * 3) 0 (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, 'md'));
+
+                // Modifiers: Props
+                &[multiple] {
+                    // Nested selectors
+                    option {
+                        padding: (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, 'md'));
+                    }
+                }
+            }
+        }
+
+        // Pseudo classes
+        &:hover {
+            background-color: $select-background-color-hover;
+            border-color: $select-border-color-hover;
+            color: $select-font-color-hover;
+            z-index: stack-index('hover');
+        }
+
+        &:focus {
+            background-color: $select-background-color-focus;
+            border-color: $select-border-color-focus;
+            box-shadow: 0 0 0 $input-accessibility-focus-width $input-accessibility-focus-color;
+            color: $select-font-color-focus;
+            z-index: stack-index('focus');
+        }
+
+        &:active {
+            background-color: $select-background-color-active;
+            border-color: $select-border-color-active;
+            color: $select-font-color-active;
+            z-index: stack-index('active');
+        }
+
+        // Modifiers: Props
+        &[disabled] {
+            @include disabled();
+        }
+
+        &[multiple] {
+            background-image: unset;
+            height: initial;
+            padding: 0;
+
+            // Nested selectors
+            option {
+                padding: map-get($select-content-spacing-multipliers, 'md');
+            }
+        }
+
+        // Check if the select size modifiers should be declared
+        @if $select-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            background-position: calc(100% - #{(content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size))}) 50%;
+                            background-size: (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size));
+                            font-size: map-get($select-font-sizes, $size);
+                            height: (element-height($breakpoint-name) * map-get($select-element-height-multipliers, $size));
+                            padding: 0 ((content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size)) * 3) 0 (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size));
+
+                            // Modifiers: Props
+                            &[multiple] {
+                                // Nested selectors
+                                option {
+                                    padding: (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+
+                        // Check if the select size modifiers with breakpoints should be declared
+                        @if $select-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                background-position: calc(100% - #{(content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size))}) 50%;
+                                background-size: (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size));
+                                font-size: map-get($select-font-sizes, $size);
+                                height: (element-height($breakpoint-name) * map-get($select-element-height-multipliers, $size));
+                                padding: 0 ((content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size)) * 3) 0 (content-spacing($breakpoint-name) * map-get($select-content-spacing-multipliers, $size));
+
+                                // Modifiers: Props
+                                &[multiple] {
+                                    // Nested selectors
+                                    option {
+                                        padding: (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the select feedback modifiers should be declared
+        @if $select-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $feedback-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    border-color: feedback-color($feedback-name);
+
+                    // Pseudo classes
+                    &:focus,
+                    &:active {
+                        box-shadow: 0 0 0 $input-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
+                    }
+
+                    // Modifiers: Props
+                    &[disabled] {
+                        border-color: feedback-color($feedback-name) !important;
+                    }
+                }
+            }
+        }
+
+        // Check if the select pill modifier should be declared
+        @if $select-pill-modifier {
+            // Modifiers
+            &.select--pill {
+                border-radius: 999px;
+            }
+        }
+    }
+}

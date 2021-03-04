@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> MODAL
+    ========================================================================  */
+
+// Maps
+$modal-card-content-spacings: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+$modal-card-max-widths: (
+    'm': 600px,
+    't': 600px,
+    'd': 600px
+) !default;
+
+// Variables
+$modal-animation-duration: 200ms !default;
+$modal-box-shadow: 0 0 30px -50px hsla(0, 0%, 0%, 1) !default;
+$modal-card-body-background-color: base-color('white') !default;
+$modal-card-body-border-color: base-color('white-darken-3') !default;
+$modal-card-body-font-color: font-color() !default;
+$modal-card-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$modal-card-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$modal-card-border-radius-top-left: $global-border-radius-top-left !default;
+$modal-card-border-radius-top-right: $global-border-radius-top-right !default;
+$modal-card-border-style: $global-border-style !default;
+$modal-card-border-width-bottom: $global-border-width-bottom !default;
+$modal-card-border-width-divider: $global-border-width-divider !default;
+$modal-card-border-width-left: $global-border-width-left !default;
+$modal-card-border-width-right: $global-border-width-right !default;
+$modal-card-border-width-top: $global-border-width-top !default;
+$modal-card-foot-background-color: base-color('white') !default;
+$modal-card-foot-border-color: base-color('white-darken-3') !default;
+$modal-card-foot-font-color: font-color() !default;
+$modal-card-head-background-color: base-color('white') !default;
+$modal-card-head-border-color: base-color('white-darken-3') !default;
+$modal-card-head-font-color: font-color() !default;
+$modal-card-link-color: $global-link-color !default;
+$modal-card-link-color-hover: $global-link-color-hover !default;
+$modal-card-link-color-focus: $global-link-color-focus !default;
+$modal-card-link-color-active: $global-link-color-active !default;

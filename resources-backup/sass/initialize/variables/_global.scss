@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> VARIABLES -> GLOBAL
+    ========================================================================  */
+
+// Type
+$global-type-scale: 'major-second' !default;
+$global-primary-typeface: 'Montserrat', Tahoma, sans-serif !default;
+$global-secondary-typeface: 'Oswald', Verdana, sans-serif !default;
+$global-monoface-typeface: 'Courier New', Courier, monospace !default;
+$global-font-weight: 400 !default;
+$global-letter-spacing: 0 !default;
+
+// Link color
+$global-link-color: base-color('primary') !default;
+$global-link-color-hover: base-color('primary-darken-2') !default;
+$global-link-color-focus: base-color('primary-darken-4') !default;
+$global-link-color-active: base-color('primary-darken-6') !default;
+
+// Border radius
+$global-border-radius-top-left: 5px !default;
+$global-border-radius-top-right: 5px !default;
+$global-border-radius-bottom-right: 5px !default;
+$global-border-radius-bottom-left: 5px !default;
+
+// Border style
+$global-border-style: solid !default;
+
+// Border widths
+$global-border-width-top: 1px !default;
+$global-border-width-right: 1px !default;
+$global-border-width-bottom: 1px !default;
+$global-border-width-left: 1px !default;
+$global-border-width-divider: 1px !default;
+
+// Box shadow
+$global-box-shadow: 1px 4px 21px 0 hsla(0, 0%, 0%, 0.05) !default;
+
+// Accessibility properties
+$global-accessibility-focus-width: 3px !default;
+$global-accessibility-focus-color: feedback-color('info-accessibility-focus') !default;

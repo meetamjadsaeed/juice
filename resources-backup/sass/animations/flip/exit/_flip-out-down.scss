@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FLIP -> EXIT -> FLIP OUT DOWN
+    ========================================================================  */
+
+// Check if the animations with flip out down should be imported
+@if $import-animations and $import-animation-flip-out-down {
+    .has-animation {
+        // Nested selectors
+        &.flip-out-down {
+            @keyframes flip-out-down {
+                from {
+                    transform: perspective($animation-flip-out-perspective) rotate3d(1, 0, 0, 0deg);
+                }
+
+                to {
+                    transform: perspective($animation-flip-out-perspective) rotate3d(1, 0, 0, -90deg);
+                }
+            }
+
+            animation-delay: $animation-flip-out-delay;
+            animation-duration: $animation-flip-out-duration;
+            animation-name: flip-out-down;
+            animation-timing-function: $animation-flip-out-easing;
+        }
+    }
+}

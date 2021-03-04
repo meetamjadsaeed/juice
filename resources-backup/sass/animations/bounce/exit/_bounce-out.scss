@@ -1,0 +1,38 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT
+    ========================================================================  */
+
+// Check if the animations with bounce out should be imported
+@if $import-animations and $import-animation-bounce-out {
+    .has-animation {
+        // Nested selectors
+        &.bounce-out {
+            @keyframes bounce-out {
+                from {
+                    transform: scale3d(1, 1, 1);
+                }
+
+                40% {
+                    transform: scale3d(0.95, 0.95, 0.95);
+                }
+
+                60% {
+                    opacity: 1;
+                    transform: scale3d(1.03, 1.03, 1.03);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: scale3d(0.2, 0.2, 0.2);
+                }
+            }
+
+            animation-delay: $animation-bounce-out-delay;
+            animation-duration: $animation-bounce-out-duration;
+            animation-name: bounce-out;
+            animation-timing-function: $animation-bounce-out-easing;
+        }
+    }
+}

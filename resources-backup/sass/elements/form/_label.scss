@@ -1,0 +1,48 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> FORM -> LABEL
+    ========================================================================  */
+
+// Check if the elements with label should be imported
+@if $import-elements and $import-element-label {
+    label {
+        color: $label-font-color;
+        cursor: pointer;
+        display: block;
+        font-family: $label-font-family;
+        user-select: none;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+            }
+        }
+
+        // Modifiers: Props
+        &[disabled] {
+            @include disabled();
+        }
+
+        // Check if the label feedback modifiers should be declared
+        @if $label-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $feedback-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    color: feedback-color($feedback-name);
+                }
+            }
+        }
+
+        // Check if the label inline modifier should be declared
+        @if $label-inline-modifier {
+            // Modifiers
+            &.label--inline {
+                display: inline-block;
+            }
+        }
+    }
+}

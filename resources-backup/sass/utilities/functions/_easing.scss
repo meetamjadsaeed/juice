@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> EASING
+    ========================================================================  */
+
+/**
+ * Get a easing cubic bezier value from the easing types.
+ * @param  {string}  $type  The easing type name.
+ * @return {mixed}          The easing cubic bezier value, null otherwise.
+ */
+@function easing($type) {
+    // Return the easing cubic bezier value
+    @return map($easings, $type);
+}

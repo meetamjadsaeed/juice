@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> COMPONENTS -> ACCORDION
-    ========================================================================  */
-
 // Check if the components with accordion should be imported
 @if $import-components and $import-component-accordion {
     .accordion {
@@ -15,8 +11,109 @@
         box-shadow: $accordion-box-shadow;
         display: flex;
         flex-direction: column;
-        font-size: $accordion-font-size;
-        margin-bottom: $accordion-element-spacing;
+        margin-bottom: element-spacing();
+
+        // Check if the accordion size modifiers should be declared
+        @if $accordion-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    .accordion__item {
+                        // Nested selectors
+                        .accordion__head {
+                            padding: content-spacing(map($accordion-content-spacing-multipliers, $size) / 1.5) content-spacing(map($accordion-content-spacing-multipliers, $size));
+                        }
+
+                        .accordion__body {
+                            padding: content-spacing(map($accordion-content-spacing-multipliers, $size));
+                        }
+                    }
+                }
+
+                // Check if the accordion size modifiers with breakpoints should be declared
+                @if $accordion-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .accordion__item {
+                                    // Nested selectors
+                                    .accordion__head {
+                                        padding: content-spacing(map($accordion-content-spacing-multipliers, $size) / 1.5) content-spacing(map($accordion-content-spacing-multipliers, $size));
+                                    }
+
+                                    .accordion__body {
+                                        padding: content-spacing(map($accordion-content-spacing-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the accordion color modifiers should be declared
+        @if $accordion-color-modifiers {
+            // Cycle through all of the accordion colors
+            @each $accordion-color in $accordion-colors {
+                // Modifiers: Colors
+                &.is-#{$accordion-color} {
+                    // Nested selectors
+                    .accordion__item {
+                        // Nested selectors
+                        .accordion__head {
+                            background-color: base-color(#{$accordion-color});
+                            border-color: base-color('#{$accordion-color}-darken-3');
+                            color: base-color('#{$accordion-color}-text');
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the accordion spaced modifier should be declared
+        @if $accordion-spaced-modifier {
+            // Modifiers
+            &.accordion--spaced {
+                box-shadow: none;
+                margin-bottom: 0;
+
+                // Nested selectors
+                .accordion__item {
+                    box-shadow: none;
+                    margin-bottom: element-spacing();
+
+                    // Modifiers: State hooks
+                    &.is-collapsed {
+                        // Nested selectors
+                        .accordion__head {
+                            border-bottom-left-radius: $accordion-border-radius-bottom-left;
+                            border-bottom-right-radius: $accordion-border-radius-bottom-right;
+                            border-bottom-width: $accordion-border-width-bottom;
+                        }
+                    }
+
+                    // Nested selectors
+                    .accordion__head {
+                        border-top-left-radius: $accordion-border-radius-top-left;
+                        border-top-right-radius: $accordion-border-radius-top-right;
+                        border-top-width: $accordion-border-width-top;
+                    }
+
+                    .accordion__body {
+                        border-bottom-left-radius: $accordion-border-radius-bottom-left;
+                        border-bottom-right-radius: $accordion-border-radius-bottom-right;
+                        border-bottom-width: $accordion-border-width-bottom;
+                    }
+                }
+            }
+        }
 
         // Nested selectors
         a:not(.button) {
@@ -70,7 +167,7 @@
             &.is-collapsed {
                 // Nested selectors
                 .accordion__head {
-                    margin-bottom: (0px - $accordion-border-width-divider);
+                    margin-bottom: (0 - $accordion-border-width-divider);
 
                     // Nested selectors
                     .accordion__action {
@@ -111,7 +208,6 @@
             .accordion__head,
             .accordion__body {
                 border: 0 $accordion-border-style transparent;
-                padding: $accordion-content-spacing;
             }
 
             .accordion__head {
@@ -123,8 +219,9 @@
                 border-right-width: $accordion-border-width-right;
                 border-top-width: $accordion-border-width-divider;
                 color: $accordion-head-font-color;
-                display: flex;
                 cursor: pointer;
+                display: flex;
+                padding: content-spacing(map($accordion-content-spacing-multipliers, 'medium') / 1.5) content-spacing(map($accordion-content-spacing-multipliers, 'medium'));
                 position: relative;
                 user-select: none;
                 z-index: 2;
@@ -158,102 +255,9 @@
                 border-left-width: $accordion-border-width-left;
                 border-right-width: $accordion-border-width-right;
                 color: $accordion-font-color;
+                padding: content-spacing(map($accordion-content-spacing-multipliers, 'medium'));
                 position: relative;
                 z-index: 1;
-            }
-        }
-
-        // Check if the accordion size modifiers should be declared
-        @if $accordion-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($accordion-font-size-sizes, $size);
-
-                    // Nested selectors
-                    .accordion__head,
-                    .accordion__body {
-                        padding: map-get($accordion-content-spacing-sizes, $size);
-                    }
-                }
-
-                // Check if the accordion size modifiers with breakpoints should be declared
-                @if $accordion-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($accordion-font-size-sizes, $size);
-
-                                // Nested selectors
-                                .accordion__head,
-                                .accordion__body {
-                                    padding: map-get($accordion-content-spacing-sizes, $size);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Check if the accordion color modifiers should be declared
-        @if $accordion-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
-                // Modifiers: Colors
-                &.is-#{$color-name} {
-                    // Nested selectors
-                    .accordion__item {
-                        // Nested selectors
-                        .accordion__head {
-                            background-color: base-color(#{$color-name});
-                            border-color: base-color('#{$color-name}-darken-3');
-                            color: base-color('#{$color-name}-inverted-text');
-                        }
-                    }
-                }
-            }
-        }
-
-        // Check if the accordion spaced modifier should be declared
-        @if $accordion-spaced-modifier {
-            // Modifiers
-            &.accordion--spaced {
-                box-shadow: none;
-                margin-bottom: 0;
-
-                // Nested selectors
-                .accordion__item {
-                    box-shadow: none;
-                    margin-bottom: $accordion-content-spacing;
-
-                    // Modifiers: State hooks
-                    &.is-collapsed {
-                        // Nested selectors
-                        .accordion__head {
-                            border-bottom-left-radius: $accordion-border-radius-bottom-left;
-                            border-bottom-right-radius: $accordion-border-radius-bottom-right;
-                            border-bottom-width: $accordion-border-width-bottom;
-                        }
-                    }
-
-                    // Nested selectors
-                    .accordion__head {
-                        border-top-left-radius: $accordion-border-radius-top-left;
-                        border-top-right-radius: $accordion-border-radius-top-right;
-                        border-top-width: $accordion-border-width-top;
-                    }
-
-                    .accordion__body {
-                        border-bottom-left-radius: $accordion-border-radius-bottom-left;
-                        border-bottom-right-radius: $accordion-border-radius-bottom-right;
-                        border-bottom-width: $accordion-border-width-bottom;
-                    }
-                }
             }
         }
     }

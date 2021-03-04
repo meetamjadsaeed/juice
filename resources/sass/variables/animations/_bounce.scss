@@ -1,17 +1,13 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ANIMATIONS -> BOUNCE
-    ========================================================================  */
-
-// Entrance
+// Bounce entrance variables
 $animation-bounce-in-delay: 0ms !default;
-$animation-bounce-in-distance: 200px !default;
+$animation-bounce-in-distance: 20rem !default;
 $animation-bounce-in-duration: 1000ms !default;
 $animation-bounce-in-easing: easing('ease-out-back') !default;
 
-// Exit
+// Bounce exit variables
 $animation-bounce-out-delay: 0ms !default;
-$animation-bounce-out-distance: 200px !default;
+$animation-bounce-out-distance: 20rem !default;
 $animation-bounce-out-duration: 1000ms !default;
 $animation-bounce-out-easing: easing('ease-in-back') !default;

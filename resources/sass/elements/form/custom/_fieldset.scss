@@ -1,25 +1,109 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> CUSTOM -> FIELDSET
-    ========================================================================  */
-
 // Check if the elements with custom fieldset should be imported
 @if $import-elements and $import-element-custom-fieldset {
     .custom-fieldset {
         display: flex;
-        margin-bottom: $custom-fieldset-element-spacing;
+        margin-bottom: element-spacing();
+
+        // Check if the custom fieldset size modifiers should be declared
+        @if $custom-fieldset-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    input {
+                        font-size: map($input-font-sizes, $size);
+                        height: element-height(map($input-element-height-multipliers, $size));
+                        padding: 0 content-spacing(map($input-content-spacing-multipliers, $size));
+                    }
+
+                    select {
+                        background-position: calc(100% - content-spacing(map($select-content-spacing-multipliers, $size))) 50%;
+                        background-size: content-spacing(map($select-content-spacing-multipliers, $size));
+                        font-size: map($select-font-sizes, $size);
+                        height: element-height(map($select-element-height-multipliers, $size));
+                        padding: 0 content-spacing(map($select-content-spacing-multipliers, $size)) 0 content-spacing(map($select-content-spacing-multipliers, $size));
+                    }
+
+                    #{button} {
+                        font-size: map($button-font-sizes, $size);
+                        height: element-height(map($button-element-height-multipliers, $size));
+                        padding: 0 content-spacing(map($button-content-spacing-multipliers, $size));
+                    }
+                }
+
+                // Check if the custom fieldset size modifiers with breakpoints should be declared
+                @if $custom-fieldset-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                input {
+                                    font-size: map($input-font-sizes, $size);
+                                    height: element-height(map($input-element-height-multipliers, $size));
+                                    padding: 0 content-spacing(map($input-content-spacing-multipliers, $size));
+                                }
+
+                                select {
+                                    background-position: calc(100% - content-spacing(map($select-content-spacing-multipliers, $size))) 50%;
+                                    background-size: content-spacing(map($select-content-spacing-multipliers, $size));
+                                    font-size: map($select-font-sizes, $size);
+                                    height: element-height(map($select-element-height-multipliers, $size));
+                                    padding: 0 content-spacing(map($select-content-spacing-multipliers, $size)) 0 content-spacing(map($select-content-spacing-multipliers, $size));
+                                }
+
+                                #{button} {
+                                    font-size: map($button-font-sizes, $size);
+                                    height: element-height(map($button-element-height-multipliers, $size));
+                                    padding: 0 content-spacing(map($button-content-spacing-multipliers, $size));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the custom fieldset feedback modifiers should be declared
+        @if $custom-fieldset-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $feedback-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    // Nested selectors
+                    input {
+                        @extend input.has-#{$feedback-name};
+                        content: ''; // Stops incorrect editor syntax highlighting
+                    }
+
+                    select {
+                        @extend select.has-#{$feedback-name};
+                        content: ''; // Stops incorrect editor syntax highlighting
+                    }
+
+                    #{button} {
+                        @extend button.has-#{$feedback-name};
+                        content: ''; // Stops incorrect editor syntax highlighting
+                    }
+                }
+            }
+        }
 
         // Nested selectors
         #{$custom-fieldset-element} {
             border-bottom-width: $custom-fieldset-border-width-bottom;
             border-left-width: $custom-fieldset-border-width-divider;
-            border-right-width: $custom-fieldset-border-width-divider;
-            border-top-width: $custom-fieldset-border-width-top;
-            border-style: $custom-fieldset-border-style;
             border-radius: 0;
-            margin-right: (0px - $custom-fieldset-border-width-divider);
+            border-right-width: $custom-fieldset-border-width-divider;
+            border-style: $custom-fieldset-border-style;
+            border-top-width: $custom-fieldset-border-width-top;
             margin-bottom: 0;
+            margin-right: calc(0 - #{$custom-fieldset-border-width-divider});
             width: auto;
 
             // Pseudo classes
@@ -39,89 +123,6 @@
             // Modifiers
             &.custom-fieldset__spotlight {
                 flex-grow: 1;
-            }
-        }
-
-        // Check if the custom fieldset size modifiers should be declared
-        @if $custom-fieldset-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    // Nested selectors
-                    input {
-                        font-size: map-get($input-font-size-sizes, $size);
-                        height: map-get($input-height-sizes, $size);
-                        padding: map-get($input-content-spacing-sizes, $size);
-                    }
-
-                    select {
-                        font-size: map-get($select-font-size-sizes, $size);
-                        height: map-get($select-height-sizes, $size);
-                        padding: map-get($select-content-spacing-sizes, $size);
-                    }
-
-                    textarea {
-                        font-size: map-get($textarea-font-size-sizes, $size);
-                        padding: map-get($textarea-content-spacing-sizes, $size);
-                    }
-
-                    #{button} {
-                        font-size: map-get($button-font-size-sizes, $size);
-                        height: map-get($button-height-sizes, $size);
-                        padding: 0 map-get($button-content-spacing-sizes, $size);
-                    }
-                }
-
-                // Check if the custom fieldset size modifiers with breakpoints should be declared
-                @if $custom-fieldset-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                // Nested selectors
-                                input {
-                                    font-size: map-get($input-font-size-sizes, $size);
-                                    height: map-get($input-height-sizes, $size);
-                                    padding: map-get($input-content-spacing-sizes, $size);
-                                }
-
-                                select {
-                                    font-size: map-get($select-font-size-sizes, $size);
-                                    height: map-get($select-height-sizes, $size);
-                                    padding: map-get($select-content-spacing-sizes, $size);
-                                }
-
-                                textarea {
-                                    font-size: map-get($textarea-font-size-sizes, $size);
-                                    padding: map-get($textarea-content-spacing-sizes, $size);
-                                }
-
-                                #{button} {
-                                    font-size: map-get($button-font-size-sizes, $size);
-                                    height: map-get($button-height-sizes, $size);
-                                    padding: 0 map-get($button-content-spacing-sizes, $size);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Check if the custom fieldset feedback modifiers should be declared
-        @if $custom-fieldset-feedback-modifiers {
-            // Cycle through all of the feedback colors
-            @each $feedback-name, $feedback-value in $feedback-colors {
-                // Modifiers: Feedback colors
-                &.has-#{$feedback-name} {
-                    #{$custom-fieldset-element} {
-                        @extend .has-#{$feedback-name};
-                        content: ''; // Stops incorrect editor syntax highlighting
-                    }
-                }
             }
         }
     }

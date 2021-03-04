@@ -1,0 +1,43 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> HORIZONTAL RULE
+    ========================================================================  */
+
+// Check if the elements with horizontal rule should be imported
+@if $import-elements and $import-element-horizontal-rule {
+    hr {
+        border: 0;
+        clear: both;
+        position: relative;
+
+        // Pseudo elements
+        &::after {
+            border-top: $hr-border-width $hr-border-style $hr-border-color;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                height: element-height($breakpoint-name);
+            }
+        }
+
+        // Check if the horizontal rule color modifiers should be declared
+        @if $horizontal-rule-color-modifiers {
+            // Cycle through all of the base colors
+            @each $color-name, $color-value in $base-colors {
+                // Modifiers: Base colors
+                &.is-#{$color-name} {
+                    border-color: base-color($color-name);
+                }
+            }
+        }
+    }
+}

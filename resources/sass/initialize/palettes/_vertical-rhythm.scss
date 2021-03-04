@@ -1,0 +1,16 @@
+@charset 'utf-8';
+
+:root {
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoints
+        @include breakpoint($breakpoint-name) {
+            --content-spacing: #{map($vertical-rhythms, $breakpoint-name)};
+            --element-height: #{map($vertical-rhythms, $breakpoint-name)};
+            --element-spacing: #{map($vertical-rhythms, $breakpoint-name)};
+            --root-font-size: #{map($root-font-sizes, $breakpoint-name)};
+            --root-line-height: #{map($root-line-heights, $breakpoint-name)};
+            --vertical-rhythm: #{map($vertical-rhythms, $breakpoint-name)};
+        }
+    }
+}

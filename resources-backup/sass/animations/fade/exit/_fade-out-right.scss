@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FADE -> EXIT -> FADE OUT RIGHT
+    ========================================================================  */
+
+// Check if the animations with fade out right should be imported
+@if $import-animations and $import-animation-fade-out-right {
+    .has-animation {
+        // Nested selectors
+        &.fade-out-right {
+            @keyframes fade-out-right {
+                from {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: translate3d($animation-fade-out-distance, 0, 0);
+                }
+            }
+
+            animation-delay: $animation-fade-out-delay;
+            animation-duration: $animation-fade-out-duration;
+            animation-name: fade-out-right;
+            animation-timing-function: $animation-fade-out-easing;
+        }
+    }
+}

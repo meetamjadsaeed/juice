@@ -1,15 +1,11 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENT
-    ========================================================================  */
-
-// Import
+// Import: Elements
 @import 'badge/all';
 @import 'button/all';
 @import 'form/all';
 @import 'layout/all';
-@import 'loading/all';
+@import 'loaders/all';
 @import 'media/all';
 @import 'navigation/all';
 @import 'typography/all';

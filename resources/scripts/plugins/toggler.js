@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> TOGGLER
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Toggler';
 
@@ -29,40 +25,21 @@
         slide: false,
         slideDuration: 200,
 
-        callbackInitializeBefore: () => {
-            console.log('Toggler: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Toggler: callbackInitializeAfter');
-        },
-        callbackShowBefore: () => {
-            console.log('Toggler: callbackShowBefore');
-        },
-        callbackShowAfter: () => {
-            console.log('Toggler: callbackShowAfter');
-        },
-        callbackHideBefore: () => {
-            console.log('Toggler: callbackHideBefore');
-        },
-        callbackHideAfter: () => {
-            console.log('Toggler: callbackHideAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Toggler: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Toggler: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Toggler: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Toggler: callbackDestroyAfter');
-        }
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackHideBefore: () => {},
+        callbackHideAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
+        callbackShowBefore: () => {},
+        callbackShowAfter: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -82,6 +59,7 @@
 
     /**
      * Event handler to toggle a target when the trigger is clicked.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -114,11 +92,163 @@
 
     /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Set the triggers
+            const $triggers = document.querySelectorAll(plugin.element);
+
+            // Cycle through all of the triggers
+            $triggers.forEach(($trigger) => {
+                // Remove the click event handler from the toggler trigger
+                $trigger.removeEventListener('click', clickTriggerEventHandler);
+            });
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
+         * Hide an element.
+         *
+         * @param  {element}  $target  The target.
+         * @param  {bool}     silent   Suppress callbacks.
+         * @return {void}
+         */
+        hide: ($target, silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the hide before callback
+                plugin.settings.callbackHideBefore.call();
+            }
+
+            // Set the trigger
+            const $trigger = $target.data.trigger;
+
+            // Set the slide status
+            const slide = $trigger.dataset.togglerSlide || plugin.settings.slide;
+
+            // Check if a slide status exists
+            if (slide) {
+                // Remove the animated state hook from the target
+                $target.classList.remove('has-animated');
+
+                // Add the animating state hook to the target
+                $target.classList.add('is-animating');
+
+                // Set the slide duration
+                const slide_duration = $trigger.dataset.togglerSlideDuration || plugin.settings.slideDuration;
+
+                // Slide the target up
+                Velocity($target, 'slideUp', {
+                    complete: () => {
+                        // Remove the animating state hook from the target
+                        $target.classList.remove('is-animating');
+
+                        // Add the animated state hook to the target
+                        $target.classList.add('has-animated');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the hide after callback
+                            plugin.settings.callbackHideAfter.call();
+                        }
+                    },
+                    duration: slide_duration
+                });
+            } else {
+                // Set the target animation out
+                const animation_out = $trigger.dataset.togglerAnimationOut || plugin.settings.animationOut;
+
+                // Check if the animation out is set
+                if (animation_out && animation_out != 'none') {
+                    // Remove the animated state hook from the target
+                    $target.classList.remove('has-animated');
+
+                    // Add the animating state hook to the target
+                    $target.classList.add('is-animating');
+
+                    // Add the animation classes to the target
+                    $target.classList.add(plugin.settings.animationClass);
+                    $target.classList.add(animation_out);
+
+                    // Add an animation end event handler to the target
+                    $target.addEventListener('animationend', () => {
+                        // Remove the animating state hook from the target
+                        $target.classList.remove('is-animating');
+
+                        // Remove the animation classes from the target
+                        $target.classList.remove(plugin.settings.animationClass);
+                        $target.classList.remove(animation_out);
+
+                        // Add the animated state hook to the target
+                        $target.classList.add('has-animated');
+
+                        // Hide the target
+                        $target.style.display = 'none';
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the hide after callback
+                            plugin.settings.callbackHideAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
+                    // Hide the target
+                    $target.style.display = 'none';
+
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the hide after callback
+                        plugin.settings.callbackHideAfter.call();
+                    }
+                }
+            }
+        },
+
+        /**
+         * Call the hide method silently.
+         *
+         * @param  {element}  $target  The target.
+         * @return {void}
+         */
+        hideSilently: ($target) => {
+            // Call the hide method silently
+            plugin.this.hide($target, true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -174,7 +304,7 @@
                     };
                 });
 
-                // Add a click event handler to the trigger to toggle the targets
+                // Add a click event handler to the trigger
                 $trigger.addEventListener('click', clickTriggerEventHandler);
             });
 
@@ -186,7 +316,44 @@
         },
 
         /**
+         * Refresh the plugins initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        refresh: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh before callback
+                plugin.settings.callbackRefreshBefore.call();
+            }
+
+            // Destroy the existing initialization
+            plugin.this.destroy(silent);
+
+            // Initialize the plugin
+            plugin.this.initialize(silent);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh after callback
+                plugin.settings.callbackRefreshAfter.call();
+            }
+        },
+
+        /**
+         * Call the refresh method silently.
+         *
+         * @return {void}
+         */
+        refreshSilently: () => {
+            // Call the refresh method silently
+            plugin.this.refresh(true);
+        },
+
+        /**
          * Show an element.
+         *
          * @param  {element}  $target  The target.
          * @param  {bool}     silent   Suppress callbacks.
          * @return {void}
@@ -202,9 +369,7 @@
             const $trigger = $target.data.trigger;
 
             // Set the slide status
-            const slide =
-                $trigger.dataset.togglerSlide ||
-                plugin.settings.slide;
+            const slide = $trigger.dataset.togglerSlide || plugin.settings.slide;
 
             // Check if a slide status exists
             if (slide) {
@@ -215,9 +380,7 @@
                 $target.classList.add('is-animating');
 
                 // Set the slide duration
-                const slide_duration =
-                    $trigger.dataset.togglerSlideDuration ||
-                    plugin.settings.slideDuration;
+                const slide_duration = $trigger.dataset.togglerSlideDuration || plugin.settings.slideDuration;
 
                 // Slide the target down
                 Velocity($target, 'slideDown', {
@@ -238,9 +401,7 @@
                 });
             } else {
                 // Set the target animation in
-                const animation_in =
-                    $trigger.dataset.togglerAnimationIn ||
-                    plugin.settings.animationIn;
+                const animation_in = $trigger.dataset.togglerAnimationIn || plugin.settings.animationIn;
 
                 // Show the target
                 $target.style.display = '';
@@ -258,7 +419,7 @@
                     $target.classList.add(animation_in);
 
                     // Add an animation end event listener to the target
-                    $target.addEventListener('animationend', (event) => {
+                    $target.addEventListener('animationend', () => {
                         // Remove the animating state hook from the target
                         $target.classList.remove('is-animating');
 
@@ -288,199 +449,14 @@
         },
 
         /**
-         * Hide an element.
-         * @param  {element}  $target  The target.
-         * @param  {bool}     silent   Suppress callbacks.
-         * @return {void}
-         */
-        hide: ($target, silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the hide before callback
-                plugin.settings.callbackHideBefore.call();
-            }
-
-            // Set the trigger
-            const $trigger = $target.data.trigger;
-
-            // Set the slide status
-            const slide =
-                $trigger.dataset.togglerSlide ||
-                plugin.settings.slide;
-
-            // Check if a slide status exists
-            if (slide) {
-                // Remove the animated state hook from the target
-                $target.classList.remove('has-animated');
-
-                // Add the animating state hook to the target
-                $target.classList.add('is-animating');
-
-                // Set the slide duration
-                const slide_duration =
-                    $trigger.dataset.togglerSlideDuration ||
-                    plugin.settings.slideDuration;
-
-                // Slide the target up
-                Velocity($target, 'slideUp', {
-                    complete: () => {
-                        // Remove the animating state hook from the target
-                        $target.classList.remove('is-animating');
-
-                        // Add the animated state hook to the target
-                        $target.classList.add('has-animated');
-
-                        // Check if the callbacks should not be suppressed
-                        if (!silent) {
-                            // Call the hide after callback
-                            plugin.settings.callbackHideAfter.call();
-                        }
-                    },
-                    duration: slide_duration
-                });
-            } else {
-                // Set the target animation out
-                const animation_out =
-                    $trigger.dataset.togglerAnimationOut ||
-                    plugin.settings.animationOut;
-
-                // Check if the animation out is set
-                if (animation_out && animation_out != 'none') {
-                    // Remove the animated state hook from the target
-                    $target.classList.remove('has-animated');
-
-                    // Add the animating state hook to the target
-                    $target.classList.add('is-animating');
-
-                    // Add the animation classes to the target
-                    $target.classList.add(plugin.settings.animationClass);
-                    $target.classList.add(animation_out);
-
-                    // Add an animation end event listener to the target
-                    $target.addEventListener('animationend', (event) => {
-                        // Remove the animating state hook from the target
-                        $target.classList.remove('is-animating');
-
-                        // Remove the animation classes from the target
-                        $target.classList.remove(plugin.settings.animationClass);
-                        $target.classList.remove(animation_out);
-
-                        // Add the animated state hook to the target
-                        $target.classList.add('has-animated');
-
-                        // Hide the target
-                        $target.style.display = 'none';
-
-                        // Check if the callbacks should not be suppressed
-                        if (!silent) {
-                            // Call the hide after callback
-                            plugin.settings.callbackHideAfter.call();
-                        }
-                    }, {
-                        once: true
-                    });
-                } else {
-                    // Hide the target
-                    $target.style.display = 'none';
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the hide after callback
-                        plugin.settings.callbackHideAfter.call();
-                    }
-                }
-            }
-        },
-
-        /**
-         * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        refresh: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the refresh before callback
-                plugin.settings.callbackRefreshBefore.call();
-            }
-
-            // Destroy the existing initialization
-            plugin.this.destroy(silent);
-
-            // Initialize the plugin
-            plugin.this.initialize(silent);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the refresh after callback
-                plugin.settings.callbackRefreshAfter.call();
-            }
-        },
-
-        /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Set the triggers
-            const $triggers = document.querySelectorAll(plugin.element);
-
-            // Cycle through all of the triggers
-            $triggers.forEach(($trigger) => {
-                // Remove the click event handler from the toggler trigger
-                $trigger.removeEventListener('click', clickTriggerEventHandler);
-            });
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
          * Call the show method silently.
+         *
          * @param  {element}  $target  The target.
          * @return {void}
          */
         showSilently: ($target) => {
             // Call the show method silently
             plugin.this.show($target, true);
-        },
-
-        /**
-         * Call the hide method silently.
-         * @param  {element}  $target  The target.
-         * @return {void}
-         */
-        hideSilently: ($target) => {
-            // Call the hide method silently
-            plugin.this.hide($target, true);
-        },
-
-        /**
-         * Call the refresh method silently.
-         * @return {void}
-         */
-        refreshSilently: () => {
-            // Call the refresh method silently
-            plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
         }
     };
 

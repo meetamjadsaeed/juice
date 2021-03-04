@@ -1,11 +1,8 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> FRAMEWORK
-    ========================================================================  */
-
-// Body
-$body-background-color: hsla(0, 0%, 99%, 1) !default;
-$body-selection-background-color: base-color('primary') !default;
-$body-selection-font-color: base-color('white') !default;
-$body-selection-text-shadow: 1px 1px base-color('black') !default;
+// Import framework variables
+@import 'body';
+@import 'container';
+@import 'flex';
+@import 'media-object';
+@import 'overlay';

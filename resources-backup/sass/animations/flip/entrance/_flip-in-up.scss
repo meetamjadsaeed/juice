@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> FLIP -> ENTRANCE -> FLIP IN UP
+    ========================================================================  */
+
+// Check if the animations with flip in up should be imported
+@if $import-animations and $import-animation-flip-in-up {
+    .has-animation {
+        // Nested selectors
+        &.flip-in-up {
+            @keyframes flip-in-up {
+                from {
+                    transform: perspective($animation-flip-in-perspective) rotate3d(1, 0, 0, -90deg);
+                }
+
+                to {
+                    transform: perspective($animation-flip-in-perspective) rotate3d(1, 0, 0, 0deg);
+                }
+            }
+
+            animation-delay: $animation-flip-in-delay;
+            animation-duration: $animation-flip-in-duration;
+            animation-name: flip-in-up;
+            animation-timing-function: $animation-flip-in-easing;
+        }
+    }
+}

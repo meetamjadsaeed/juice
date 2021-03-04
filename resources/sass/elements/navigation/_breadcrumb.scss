@@ -1,31 +1,70 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> NAVIGATION -> BREADCRUMB
-    ========================================================================  */
-
 // Check if the elements with breadcrumb should be imported
 @if $import-elements and $import-element-breadcrumb {
     .breadcrumb {
         color: $breadcrumb-font-color;
         display: flex;
         flex-wrap: wrap;
-        font-size: $breadcrumb-font-size;
         list-style: none;
-        padding: 0;
         margin: 0;
-        margin-bottom: $breadcrumb-element-spacing;
+        margin-bottom: element-spacing();
+
+        // Check if the breadcrumb size modifiers should be declared
+        @if $breadcrumb-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    li {
+                        // Pseudo elements
+                        &::before {
+                            padding: 0 content-spacing(map($breadcrumb-content-spacing-multipliers, $size));
+                        }
+
+                        // Nested selectors
+                        .breadcrumb__icon {
+                            margin-right: content-spacing(map($breadcrumb-content-spacing-multipliers, $size) / 2);
+                        }
+                    }
+                }
+
+                // Check if the breadcrumb size modifiers with breakpoints should be declared
+                @if $breadcrumb-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                li {
+                                    // Pseudo elements
+                                    &::before {
+                                        padding: 0 content-spacing(map($breadcrumb-content-spacing-multipliers, $size));
+                                    }
+
+                                    // Nested selectors
+                                    .breadcrumb__icon {
+                                        margin-right: content-spacing(map($breadcrumb-content-spacing-multipliers, $size) / 2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Check if the breadcrumb alignment modifiers should be declared
         @if $breadcrumb-alignment-modifiers {
             // Modifiers
             &.breadcrumb--center {
-                // Styles
                 justify-content: center;
             }
 
             &.breadcrumb--right {
-                // Styles
                 justify-content: flex-end;
             }
         }
@@ -34,15 +73,11 @@
         @if $breadcrumb-angle-separator-modifier {
             // Modifiers
             &.breadcrumb--angle {
-                // Variables
-                --separator: '\203A';
-
                 // Nested selectors
                 li {
                     // Pseudo elements
                     &::before {
-                        // Styles (IE fallback for postcss-css-variables)
-                        content: var(--separator);
+                        content: $breadcrumb-separator-angle;
                     }
                 }
             }
@@ -52,15 +87,11 @@
         @if $breadcrumb-arrow-separator-modifier {
             // Modifiers
             &.breadcrumb--arrow {
-                // Variables
-                --separator: '\02192';
-
                 // Nested selectors
                 li {
                     // Pseudo elements
                     &::before {
-                        // Styles (IE fallback for postcss-css-variables)
-                        content: var(--separator);
+                        content: $breadcrumb-separator-arrow;
                     }
                 }
             }
@@ -70,15 +101,11 @@
         @if $breadcrumb-bullet-separator-modifier {
             // Modifiers
             &.breadcrumb--bullet {
-                // Variables
-                --separator: '\02022';
-
                 // Nested selectors
                 li {
                     // Pseudo elements
                     &::before {
-                        // Styles (IE fallback for postcss-css-variables)
-                        content: var(--separator);
+                        content: $breadcrumb-separator-bullet;
                     }
                 }
             }
@@ -88,15 +115,11 @@
         @if $breadcrumb-slash-separator-modifier {
             // Modifiers
             &.breadcrumb--slash {
-                // Variables
-                --separator: '\0002f';
-
                 // Nested selectors
                 li {
                     // Pseudo elements
                     &::before {
-                        // Styles (IE fallback for postcss-css-variables)
-                        content: var(--separator);
+                        content: $breadcrumb-separator-slash;
                     }
                 }
             }
@@ -104,7 +127,6 @@
 
         // Nested selectors
         li {
-            // Styles
             display: inline-flex;
             position: relative;
 
@@ -112,19 +134,16 @@
             &:first-child {
                 // Pseudo elements
                 &::before {
-                    // Styles
-                    content: '';
-                    font-size: $breadcrumb-font-size;
-                    padding: 0;
+                    content: '' !important;
+                    padding: 0 !important;
                 }
             }
 
             // Pseudo elements
             &::before {
-                // Styles
                 content: $breadcrumb-separator;
-                padding: 0 $breadcrumb-content-spacing;
                 opacity: 0.5;
+                padding: 0 content-spacing(map($breadcrumb-content-spacing-multipliers, 'medium'));
             }
 
             // Nested selectors
@@ -146,11 +165,10 @@
             }
 
             .breadcrumb__icon {
-                // Styles
                 align-items: center;
                 display: inline-flex;
                 justify-content: center;
-                margin-right: ($breadcrumb-content-spacing / 2);
+                margin-right: content-spacing(map($breadcrumb-content-spacing-multipliers, 'medium') / 2);
             }
         }
     }

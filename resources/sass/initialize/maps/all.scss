@@ -1,16 +1,19 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> INITIALIZE -> MAPS
-    ========================================================================  */
-
-// Import
+// Import initalization maps
 @import 'base-colors';
 @import 'breakpoints';
 @import 'color-variations';
 @import 'easings';
 @import 'feedback-colors';
 @import 'font-colors';
+@import 'font-sizes';
+@import 'fonts';
+@import 'headings';
 @import 'list-style-types';
+@import 'root-font-sizes';
+@import 'root-line-heights';
 @import 'sizes';
 @import 'stack-indexes';
+@import 'type-scales';
+@import 'vertical-rhythms';

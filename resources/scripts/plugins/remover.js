@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> REMOVER
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Remover';
 
@@ -28,34 +24,19 @@
         slide: false,
         slideDuration: 200,
 
-        callbackInitializeBefore: () => {
-            console.log('Remover: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Remover: callbackInitializeAfter');
-        },
-        callbackRemoveBefore: () => {
-            console.log('Remover: callbackRemoveBefore');
-        },
-        callbackRemoveAfter: () => {
-            console.log('Remover: callbackRemoveAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Remover: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Remover: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Remover: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Remover: callbackDestroyAfter');
-        }
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
+        callbackRemoveBefore: () => {},
+        callbackRemoveAfter: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -75,6 +56,7 @@
 
     /**
      * Event handler to remove a target when the trigger is clicked.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -95,11 +77,52 @@
 
     /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Set the triggers
+            const $triggers = document.querySelectorAll(plugin.element);
+
+            // Cycle through all of the triggers
+            $triggers.forEach(($trigger) => {
+                // Remove the click event handler from the toggler trigger
+                $trigger.removeEventListener('click', clickTriggerEventHandler);
+            });
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -155,7 +178,7 @@
                     };
                 });
 
-                // Add a click event handler to the trigger to remove the targets
+                // Add a click event handler to the remover trigger
                 $trigger.addEventListener('click', clickTriggerEventHandler);
             });
 
@@ -167,7 +190,44 @@
         },
 
         /**
+         * Refresh the plugins initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        refresh: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh before callback
+                plugin.settings.callbackRefreshBefore.call();
+            }
+
+            // Destroy the existing initialization
+            plugin.this.destroy(silent);
+
+            // Initialize the plugin
+            plugin.this.initialize(silent);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh after callback
+                plugin.settings.callbackRefreshAfter.call();
+            }
+        },
+
+        /**
+         * Call the refresh method silently.
+         *
+         * @return {void}
+         */
+        refreshSilently: () => {
+            // Call the refresh method silently
+            plugin.this.refresh(true);
+        },
+
+        /**
          * Remove an element.
+         *
          * @param  {element}  $target  The target.
          * @param  {bool}     silent   Suppress callbacks.
          * @return {void}
@@ -193,9 +253,7 @@
                     const $trigger = $target.data.trigger;
 
                     // Set the slide status
-                    const slide =
-                        $trigger.dataset.removerSlide ||
-                        plugin.settings.slide;
+                    const slide = $trigger.dataset.removerSlide || plugin.settings.slide;
 
                     // Check if a slide status exists
                     if (slide) {
@@ -203,9 +261,7 @@
                         $target.classList.add('is-animating');
 
                         // Set the slide duration
-                        const slide_duration =
-                            $trigger.dataset.removerSlideDuration ||
-                            plugin.settings.slideDuration;
+                        const slide_duration = $trigger.dataset.removerSlideDuration || plugin.settings.slideDuration;
 
                         // Slide the target up
                         Velocity($target, 'slideUp', {
@@ -223,9 +279,7 @@
                         });
                     } else {
                         // Set the target remove animation
-                        const remove_animation =
-                            $trigger.dataset.removerAnimationRemove ||
-                            plugin.settings.animationRemove;
+                        const remove_animation = $trigger.dataset.removerAnimationRemove || plugin.settings.animationRemove;
 
                         // Check if the remove animation is set
                         if (remove_animation && remove_animation != 'none') {
@@ -236,8 +290,8 @@
                             $target.classList.add(plugin.settings.animationClass);
                             $target.classList.add(remove_animation);
 
-                            // Add an animation end event listener to the target
-                            $target.addEventListener('animationend', (event) => {
+                            // Add an animation end event handler to the target
+                            $target.addEventListener('animationend', () => {
                                 // Remove the target
                                 $target.parentNode.removeChild($target);
 
@@ -274,84 +328,14 @@
         },
 
         /**
-         * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        refresh: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the refresh before callback
-                plugin.settings.callbackRefreshBefore.call();
-            }
-
-            // Destroy the existing initialization
-            plugin.this.destroy(silent);
-
-            // Initialize the plugin
-            plugin.this.initialize(silent);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the refresh after callback
-                plugin.settings.callbackRefreshAfter.call();
-            }
-        },
-
-        /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Set the triggers
-            const $triggers = document.querySelectorAll(plugin.element);
-
-            // Cycle through all of the triggers
-            $triggers.forEach(($trigger) => {
-                // Remove the click event handler from the toggler trigger
-                $trigger.removeEventListener('click', clickTriggerEventHandler);
-            });
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
          * Call the remove method silently.
+         *
          * @param  {element}  $target  The target.
          * @return {void}
          */
         removeSilently: ($target) => {
             // Call the remove method silently
             plugin.this.remove($target, true);
-        },
-
-        /**
-         * Call the refresh method silently.
-         * @return {void}
-         */
-        refreshSilently: () => {
-            // Call the refresh method silently
-            plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
         }
     };
 

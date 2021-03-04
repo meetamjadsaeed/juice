@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM IN
-    ========================================================================  */
-
 // Check if the animations with zoom in should be imported
 @if $import-animations and $import-animation-zoom-in {
     .has-animation {

@@ -1,34 +1,19 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> BADGE
-    ========================================================================  */
+// Box settings variables
+$box-size-modifiers: true !default;
+$box-size-modifiers-with-breakpoints: true !default;
 
-// Shield
-$shield-color-modifiers: true !default;
-$shield-feedback-modifiers: true !default;
-$shield-size-modifiers: true !default;
-$shield-size-modifiers-with-breakpoints: true !default;
+// Breadcrumb settings variables
+$breadcrumb-alignment-modifiers: true !default;
+$breadcrumb-angle-separator-modifier: true !default;
+$breadcrumb-arrow-separator-modifier: true !default;
+$breadcrumb-bullet-separator-modifier: true !default;
+$breadcrumb-size-modifiers: true !default;
+$breadcrumb-size-modifiers-with-breakpoints: true !default;
+$breadcrumb-slash-separator-modifier: true !default;
 
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> BUTTON
-    ========================================================================  */
-
-// Button group
-$button-group-color-modifiers: true !default;
-$button-group-component-modifier: true !default;
-$button-group-feedback-modifiers: true !default;
-$button-group-flat-modifier: true !default;
-$button-group-fullwidth-modifier: true !default;
-$button-group-icon-modifier: true !default;
-$button-group-outline-modifier: true !default;
-$button-group-pill-modifier: true !default;
-$button-group-round-modifier: true !default;
-$button-group-size-modifiers: true !default;
-$button-group-size-modifiers-with-breakpoints: true !default;
-
-// Button
+// Button settings variables
 $button-color-modifiers: true !default;
 $button-component-modifier: true !default;
 $button-feedback-modifiers: true !default;
@@ -42,170 +27,109 @@ $button-size-modifiers: true !default;
 $button-size-modifiers-with-breakpoints: true !default;
 $button-static-modifier: true !default;
 
+// Button group settings variables
+$button-group-color-modifiers: true !default;
+$button-group-component-modifier: true !default;
+$button-group-feedback-modifiers: true !default;
+$button-group-flat-modifier: true !default;
+$button-group-fullwidth-modifier: true !default;
+$button-group-icon-modifier: true !default;
+$button-group-outline-modifier: true !default;
+$button-group-pill-modifier: true !default;
+$button-group-round-modifier: true !default;
+$button-group-size-modifiers: true !default;
+$button-group-size-modifiers-with-breakpoints: true !default;
 
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> FORM
-    ========================================================================  */
+// Custom checkbox settings variables
+$custom-checkbox-size-modifiers: true !default;
+$custom-checkbox-size-modifiers-with-breakpoints: true !default;
 
-// Label
-$label-feedback-modifiers: true !default;
-$label-inline-modifier: true !default;
-$label-size-modifiers: true !default;
-$label-size-modifiers-with-breakpoints: true !default;
+// Custom fieldset settings variables
+$custom-fieldset-feedback-modifiers: true !default;
+$custom-fieldset-size-modifiers: true !default;
+$custom-fieldset-size-modifiers-with-breakpoints: true !default;
 
-// Input
+// Custom file settings variables
+$custom-file-feedback-modifiers: true !default;
+$custom-file-size-modifiers: true !default;
+$custom-file-size-modifiers-with-breakpoints: true !default;
+
+// Custom radio settings variables
+$custom-radio-size-modifiers: true !default;
+$custom-radio-size-modifiers-with-breakpoints: true !default;
+
+// Hero settings variables
+$hero-color-modifiers: true !default;
+$hero-parallax-modifier: true !default;
+$hero-size-modifiers: true !default;
+$hero-size-modifiers-with-breakpoints: true !default;
+$hero-viewport-modifiers: true !default;
+
+// Image settings variables
+$image-alignment-modifiers: true !default;
+$image-round-modifier: true !default;
+
+// Input settings variables
 $input-feedback-modifiers: true !default;
 $input-honeypot-modifier: true !default;
 $input-pill-modifier: true !default;
 $input-size-modifiers: true !default;
 $input-size-modifiers-with-breakpoints: true !default;
 
-// Select
+// Label settings variables
+$label-feedback-modifiers: true !default;
+$label-inline-modifier: true !default;
+$label-size-modifiers: true !default;
+$label-size-modifiers-with-breakpoints: true !default;
+
+// Navbar settings variables
+$navbar-size-modifiers: true !default;
+$navbar-size-modifiers-with-breakpoints: true !default;
+
+// Pagination settings variables
+$pagination-alignment-modifiers: true !default;
+$pagination-size-modifiers: true !default;
+$pagination-size-modifiers-with-breakpoints: true !default;
+
+// Select settings variables
 $select-feedback-modifiers: true !default;
 $select-pill-modifier: true !default;
 $select-size-modifiers: true !default;
 $select-size-modifiers-with-breakpoints: true !default;
 
-// Textarea
-$textarea-feedback-modifiers: true !default;
-$textarea-resize-modifier: true !default;
-$textarea-scrollbar-modifier: true !default;
-$textarea-size-modifiers: true !default;
-$textarea-size-modifiers-with-breakpoints: true !default;
+// Shield settings variables
+$shield-color-modifiers: true !default;
+$shield-size-modifiers: true !default;
+$shield-size-modifiers-with-breakpoints: true !default;
 
+// Spinner settings variables
+$spinner-dial-modifier: true !default;
+$spinner-ring-modifier: true !default;
+$spinner-spiral-modifier: true !default;
+$spinner-size-modifiers: true !default;
+$spinner-size-modifiers-with-breakpoints: true !default;
+$spinner-swoosh-modifier: true !default;
+$spinner-target-modifier: true !default;
 
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> FORM -> CUSTOM
-    ========================================================================  */
-
-// Custom fieldset
-$custom-fieldset-feedback-modifiers: true !default;
-$custom-fieldset-size-modifiers: true !default;
-$custom-fieldset-size-modifiers-with-breakpoints: true !default;
-
-// Custom checkbox
-$custom-checkbox-size-modifiers: true !default;
-$custom-checkbox-size-modifiers-with-breakpoints: true !default;
-
-// Custom file
-$custom-file-feedback-modifiers: true !default;
-$custom-file-size-modifiers: true !default;
-$custom-file-size-modifiers-with-breakpoints: true !default;
-
-// Custom radio
-$custom-radio-size-modifiers: true !default;
-$custom-radio-size-modifiers-with-breakpoints: true !default;
-
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> LAYOUT
-    ========================================================================  */
-
-// Box
-$box-size-modifiers: true !default;
-$box-size-modifiers-with-breakpoints: true !default;;
-
-// Hero
-$hero-color-modifiers: true !default;
-$hero-feedback-modifiers: true !default;
-$hero-parallax-modifier: true !default;
-$hero-viewport-modifiers: true !default;
-
-// Media object
-$media-object-reverse-modifiers: true !default;
-$media-object-seamless-modifiers: true !default;
-$media-object-size-modifiers: true !default;
-$media-object-size-modifiers-with-breakpoints: true !default;
-
-// Table
+// Table settings variables
 $table-border-modifiers: true !default;
 $table-size-modifiers: true !default;
 $table-size-modifiers-with-breakpoints: true !default;
 $table-stripe-modifier: true !default;
 
+// Textarea settings variables
+$textarea-feedback-modifiers: true !default;
+$textarea-resize-modifiers: true !default;
+$textarea-scrollbar-modifier: true !default;
+$textarea-size-modifiers: true !default;
+$textarea-size-modifiers-with-breakpoints: true !default;
 
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> MEDIA
-    ========================================================================  */
-
-// Image
-$image-alignment-modifiers: true !default;
-$image-round-modifier: true !default;
-
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> NAVIGATION
-    ========================================================================  */
-
-// Breadcrumb
-$breadcrumb-alignment-modifiers: true !default;
-$breadcrumb-angle-separator-modifier: true !default;
-$breadcrumb-arrow-separator-modifier: true !default;
-$breadcrumb-bullet-separator-modifier: true !default;
-$breadcrumb-slash-separator-modifier: true !default;
-
-// Pagination
-$pagination-alignment-modifiers: true !default;
-$pagination-size-modifiers: true !default;
-$pagination-size-modifiers-with-breakpoints: true !default;
-
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> LOADING
-    ========================================================================  */
-
-// Spinner
-$spinner-dial-modifier: true !default;
-$spinner-ring-modifier: true !default;
-$spinner-spiral-modifier: true !default;
-$spinner-swoosh-modifier: true !default;
-$spinner-target-modifier: true !default;
-
-
-/*  ========================================================================
-    JUICE -> SETTINGS -> ELEMENT -> TYPOGRAPHY
-    ========================================================================  */
-
-// Abbr
+// Typography settings variables
 $abbr-color-modifiers: true !default;
-
-// Blockquote
 $blockquote-size-modifiers: true !default;
 $blockquote-size-modifiers-with-breakpoints: true !default;
-
-// Horizontal rule
 $horizontal-rule-color-modifiers: true !default;
-
-// List
 $list-clear-modifier: true !default;
-$list-size-modifiers: true !default;
-$list-size-modifiers-with-breakpoints: true !default;
 $list-style-type-modifiers: true !default;
-
-// Mark
-$mark-size-modifiers: true !default;
-$mark-size-modifiers-with-breakpoints: true !default;
-
-// Paragraph
-$paragraph-size-modifiers: true !default;
-$paragraph-size-modifiers-with-breakpoints: true !default;
-
-// Code
-$code-size-modifiers: true !default;
-$code-size-modifiers-with-breakpoints: true !default;
-
-// Kbd
-$kbd-size-modifiers: true !default;
-$kbd-size-modifiers-with-breakpoints: true !default;
-
-// Pre
 $pre-size-modifiers: true !default;
 $pre-size-modifiers-with-breakpoints: true !default;
-
-// Samp
-$samp-size-modifiers: true !default;
-$samp-size-modifiers-with-breakpoints: true !default;
-
-// Var
-$var-size-modifiers: true !default;
-$var-size-modifiers-with-breakpoints: true !default;

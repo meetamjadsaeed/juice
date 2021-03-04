@@ -1,0 +1,17 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ANIMATIONS -> FADE
+    ========================================================================  */
+
+// Entrance
+$animation-fade-in-delay: 0ms !default;
+$animation-fade-in-distance: 6rem !default;
+$animation-fade-in-duration: 400ms !default;
+$animation-fade-in-easing: easing('ease') !default;
+
+// Exit
+$animation-fade-out-delay: 0ms !default;
+$animation-fade-out-distance: 6rem !default;
+$animation-fade-out-duration: 400ms !default;
+$animation-fade-out-easing: easing('ease') !default;

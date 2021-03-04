@@ -1,0 +1,238 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> FORM -> INPUT
+    ========================================================================  */
+
+// Check if the elements with input should be imported
+@if $import-elements and $import-element-input {
+    input {
+        align-items: center;
+        background-color: $input-background-color;
+        border: 0 $input-border-style $input-border-color;
+        border-bottom-left-radius: $input-border-radius-bottom-left;
+        border-bottom-right-radius: $input-border-radius-bottom-right;
+        border-bottom-width: $input-border-width-bottom;
+        border-left-width: $input-border-width-left;
+        border-right-width: $input-border-width-right;
+        border-top-left-radius: $input-border-radius-top-left;
+        border-top-right-radius: $input-border-radius-top-right;
+        border-top-width: $input-border-width-top;
+        color: $input-font-color;
+        display: flex;
+        font-family: $input-font-family;
+        line-height: normal;
+        max-width: 100%;
+        outline: none;
+        position: relative;
+        width: 100%;
+        z-index: stack-index('default');
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                font-size: map-get($input-font-sizes, 'md');
+                height: (element-height($breakpoint-name) * map-get($input-element-height-multipliers, 'md'));
+                margin-bottom: element-spacing($breakpoint-name);
+                padding: 0 (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, 'md'));
+
+                // Modifiers
+                &[type=checkbox],
+                &[type=radio] {
+                    margin-right: (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, 'md'));
+                }
+
+                &[type=color] {
+                    max-width: ((element-height($breakpoint-name) * map-get($input-element-height-multipliers, 'md')) * 1.5);
+                    min-width: ((element-height($breakpoint-name) * map-get($input-element-height-multipliers, 'md')) * 1.5);
+                    padding: ((content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, 'md')) / 2);
+                }
+            }
+        }
+
+        // Pseudo classes
+        &:hover {
+            background-color: $input-background-color-hover;
+            border-color: $input-border-color-hover;
+            color: $input-font-color-hover;
+            z-index: stack-index('hover');
+        }
+
+        &:focus {
+            background-color: $input-background-color-focus;
+            border-color: $input-border-color-focus;
+            box-shadow: 0 0 0 $input-accessibility-focus-width $input-accessibility-focus-color;
+            color: $input-font-color-focus;
+            z-index: stack-index('focus');
+        }
+
+        &:active {
+            background-color: $input-background-color-active;
+            border-color: $input-border-color-active;
+            box-shadow: 0 0 0 $input-accessibility-focus-width $input-accessibility-focus-color;
+            color: $input-font-color-active;
+            z-index: stack-index('active');
+        }
+
+        // Pseudo elements
+        &::placeholder {
+            color: $input-placeholder-color;
+        }
+
+        // Modifiers: Props
+        &[disabled] {
+            @include disabled();
+            background-color: $input-background-color !important;
+            border-color: $input-border-color !important;
+            color: $input-font-color !important;
+        }
+
+        // Check if the input size modifiers should be declared
+        @if $input-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            font-size: map-get($input-font-sizes, $size);
+                            height: (element-height($breakpoint-name) * map-get($input-element-height-multipliers, $size));
+                            padding: 0 (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size));
+
+                            // Modifiers
+                            &[type=checkbox],
+                            &[type=radio] {
+                                margin-right: (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size));
+                            }
+
+                            &[type=color] {
+                                max-width: ((element-height($breakpoint-name) * map-get($input-element-height-multipliers, $size)) * 1.5);
+                                min-width: ((element-height($breakpoint-name) * map-get($input-element-height-multipliers, $size)) * 1.5);
+                                padding: ((content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size)) / 2);
+                            }
+                        }
+
+                        // Check if the input size modifiers with breakpoints should be declared
+                        @if $input-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                font-size: map-get($input-font-sizes, $size);
+                                height: (element-height($breakpoint-name) * map-get($input-element-height-multipliers, $size));
+                                padding: 0 (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size));
+
+                                // Modifiers
+                                &[type=checkbox],
+                                &[type=radio] {
+                                    margin-right: (content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size));
+                                }
+
+                                &[type=color] {
+                                    max-width: ((element-height($breakpoint-name) * map-get($input-element-height-multipliers, $size)) * 1.5);
+                                    min-width: ((element-height($breakpoint-name) * map-get($input-element-height-multipliers, $size)) * 1.5);
+                                    padding: ((content-spacing($breakpoint-name) * map-get($input-content-spacing-multipliers, $size)) / 2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the input feedback modifiers should be declared
+        @if $input-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $feedback-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    border-color: feedback-color($feedback-name);
+
+                    // Pseudo classes
+                    &:focus,
+                    &:active {
+                        box-shadow: 0 0 0 $input-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
+                    }
+
+                    // Modifiers: Props
+                    &[disabled] {
+                        border-color: feedback-color($feedback-name) !important;
+                    }
+                }
+            }
+        }
+
+        // Check if the input honeypot modifier should be declared
+        @if $input-honeypot-modifier {
+            // Modifiers
+            &.input--honeypot,
+            &.input--hp {
+                display: none !important;
+            }
+        }
+
+        // Check if the input pill modifier should be declared
+        @if $input-pill-modifier {
+            // Modifiers
+            &.input--pill {
+                border-radius: 999px;
+            }
+        }
+
+        // Modifiers
+        &[type=checkbox],
+        &[type=radio] {
+            cursor: pointer;
+            display: inline-flex;
+            height: auto;
+            padding: 0;
+            position: relative;
+            width: auto;
+        }
+
+        &[type=color] {
+            cursor: pointer;
+            display: inline-flex;
+
+            // Pseudo elements
+            &::-webkit-color-swatch-wrapper {
+                background-color: $input-background-color;
+                border-bottom-left-radius: $input-border-radius-bottom-left;
+                border-bottom-right-radius: $input-border-radius-bottom-right;
+                border-top-left-radius: $input-border-radius-top-left;
+                border-top-right-radius: $input-border-radius-top-right;
+                padding: 0;
+            }
+
+            &::-webkit-color-swatch {
+                border: 0;
+                border-bottom-left-radius: $input-border-radius-bottom-left;
+                border-bottom-right-radius: $input-border-radius-bottom-right;
+                border-top-left-radius: $input-border-radius-top-left;
+                border-top-right-radius: $input-border-radius-top-right;
+            }
+
+            // Modifiers
+            &.input--pill {
+                // Pseudo elements
+                &::-webkit-color-swatch {
+                    border-radius: 999px;
+                }
+            }
+        }
+
+        &[type=file] {
+            border: 0;
+            padding: 0;
+        }
+
+        &[type=radio] {
+            border-radius: 100%;
+        }
+
+        &[type=range] {
+            box-shadow: none !important;
+        }
+    }
+}

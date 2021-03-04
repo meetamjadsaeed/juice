@@ -1,0 +1,221 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> COMPONENTS -> PANEL
+    ========================================================================  */
+
+// Check if the components with panel should be imported
+@if $import-components and $import-component-panel {
+    .panel {
+        animation-duration: $panel-animation-duration;
+        border: 0 $panel-border-style transparent;
+        border-bottom-left-radius: $panel-border-radius-bottom-left;
+        border-bottom-right-radius: $panel-border-radius-bottom-right;
+        border-top-left-radius: $panel-border-radius-top-left;
+        border-top-right-radius: $panel-border-radius-top-right;
+        box-shadow: $panel-box-shadow;
+        display: flex;
+        flex-direction: column;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                .panel__head {
+                    padding: (content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, 'md') / 2) content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, 'md');
+                }
+
+                .panel__body {
+                    padding: content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, 'md');
+                }
+            }
+        }
+
+        // Modifiers: State hooks
+        &.is-collapsed {
+            // Nested selectors
+            .panel__head {
+                border-bottom-left-radius: $panel-border-radius-bottom-left;
+                border-bottom-right-radius: $panel-border-radius-bottom-right;
+                border-bottom-width: $panel-border-width-bottom;
+
+                // Nested selectors
+                .panel__actions {
+                    // Nested selectors
+                    .panel__collapse {
+                        display: inline-flex;
+                    }
+
+                    .panel__expand {
+                        display: none;
+                    }
+                }
+            }
+
+            .panel__body {
+                display: none;
+            }
+        }
+
+        &.is-expanded {
+            // Nested selectors
+            .panel__head {
+                // Nested selectors
+                .panel__actions {
+                    // Nested selectors
+                    .panel__collapse {
+                        display: none;
+                    }
+
+                    .panel__expand {
+                        display: inline-flex;
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        a:not(.button) {
+            color: $panel-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $panel-link-color-hover;
+            }
+
+            &:focus {
+                color: $panel-link-color-focus;
+            }
+
+            &:active {
+                color: $panel-link-color-active;
+            }
+        }
+
+        .panel__head,
+        .panel__body {
+            border: 0 $panel-border-style transparent;
+        }
+
+        .panel__head {
+            align-items: center;
+            background-color: $panel-head-background-color;
+            border-bottom-width: $panel-border-width-divider;
+            border-color: $panel-head-border-color;
+            border-left-width: $panel-border-width-left;
+            border-right-width: $panel-border-width-right;
+            border-top-left-radius: $panel-border-radius-top-left;
+            border-top-right-radius: $panel-border-radius-top-right;
+            border-top-width: $panel-border-width-top;
+            color: $panel-head-font-color;
+            display: flex;
+
+            // Nested selectors
+            .panel__headings {
+                flex-grow: 1;
+
+                // Nested selectors
+                #{$heading},
+                .panel__heading {
+                    margin-bottom: 0;
+                    opacity: 0.5;
+
+                    // Pseudo classes
+                    &:first-child {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .panel__actions {
+                align-items: center;
+                display: flex;
+            }
+        }
+
+        .panel__body {
+            background-color: $panel-background-color;
+            border-bottom-left-radius: $panel-border-radius-bottom-left;
+            border-bottom-right-radius: $panel-border-radius-bottom-right;
+            border-bottom-width: $panel-border-width-bottom;
+            border-color: $panel-border-color;
+            border-left-width: $panel-border-width-left;
+            border-right-width: $panel-border-width-right;
+            color: $panel-font-color;
+        }
+
+        // Check if the panel size modifiers should be declared
+        @if $panel-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            .panel__head {
+                                padding: (content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, $size) / 2) content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, $size);
+                            }
+
+                            .panel__body {
+                                padding: content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, $size);
+                            }
+                        }
+
+                        // Check if the panel size modifiers with breakpoints should be declared
+                        @if $panel-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .panel__head {
+                                    padding: (content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, $size) / 2) content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, $size);
+                                }
+
+                                .panel__body {
+                                    padding: content-spacing($breakpoint-name) * map-get($panel-content-spacing-multipliers, $size);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the panel color modifiers should be declared
+        @if $panel-color-modifiers {
+            // Cycle through all of the base colors
+            @each $color-name, $color-value in $base-colors {
+                // Modifiers: Base colors
+                &.is-#{$color-name} {
+                    // Nested selectors
+                    .panel__head {
+                        background-color: base-color($color-name);
+                        border-color: base-color('#{$color-name}-darken-3');
+                        color: base-color('#{$color-name}-inverted-text');
+                    }
+                }
+            }
+        }
+
+        // Check if the panel feedback modifiers should be declared
+        @if $panel-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $color in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    // Nested selectors
+                    .panel__head {
+                        background-color: feedback-color($feedback-name);
+                        border-color: feedback-color('#{$feedback-name}-darken-3');
+                        color: feedback-color('#{$feedback-name}-inverted-text');
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,4 @@
 @charset "utf-8";
-
-/* ========================================================================
-   JUICE -> COMPONENTS -> MODAL
-   ========================================================================  */
-
 // Check if the components with modal should be imported
 @if $import-components and $import-component-modal {
     .overlay {
@@ -13,8 +8,16 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 10vh 0;
             overflow: hidden;
+            padding: 10vh 0;
+
+            // Check if the modal alignment modifier should be declared
+            @if $modal-alignment-modifier {
+                // Modifiers
+                &.modal--center {
+                    justify-content: center;
+                }
+            }
 
             // Nested selectors
             .modal__close {
@@ -45,6 +48,7 @@
                     max-width: 100%;
                     overflow: hidden;
 
+                    // Nested selectors
                     img,
                     video {
                         max-height: 100%;
@@ -55,58 +59,79 @@
                 .modal__card {
                     display: flex;
                     flex-direction: column;
-                    font-size: $modal-card-font-size;
-                    overflow: hidden;
                     max-width: 100%;
-                    width: $modal-card-max-width;
+                    overflow: hidden;
+                    width: $modal-width;
+
+                    // Check if the modal color modifiers should be declared
+                    @if $modal-color-modifiers {
+                        // Cycle through all of the base colors
+                        @each $color-name, $color-value in $base-colors {
+                            // Modifiers: Base colors
+                            &.is-#{$color-name} {
+                                // Nested selectors
+                                .modal__head {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color('#{$color-name}-darken-3');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
 
                     // Nested selectors
                     a:not(.button) {
-                        color: $modal-card-link-color;
+                        color: $modal-link-color;
 
                         // Pseudo classes
                         &:hover {
-                            color: $modal-card-link-color-hover;
+                            color: $modal-link-color-hover;
                         }
 
                         &:focus {
-                            color: $modal-card-link-color-focus;
+                            color: $modal-link-color-focus;
                         }
 
                         &:active {
-                            color: $modal-card-link-color-active;
+                            color: $modal-link-color-active;
                         }
                     }
 
                     .modal__head,
                     .modal__body,
                     .modal__foot {
-                        border: 0 $modal-card-border-style transparent;
-                        border-bottom-width: $modal-card-border-width-divider;
-                        border-left-width: $modal-card-border-width-left;
-                        border-right-width: $modal-card-border-width-right;
-                        padding: $modal-card-content-spacing;
+                        border: 0 $modal-border-style transparent;
+                        border-bottom-width: $modal-border-width-divider;
+                        border-left-width: $modal-border-width-left;
+                        border-right-width: $modal-border-width-right;
 
+                        // Pseudo classes
                         &:first-child {
-                            border-top-left-radius: $modal-card-border-radius-top-left;
-                            border-top-right-radius: $modal-card-border-radius-top-right;
-                            border-top-width: $modal-card-border-width-top;
+                            border-top-left-radius: $modal-border-radius-top-left;
+                            border-top-right-radius: $modal-border-radius-top-right;
+                            border-top-width: $modal-border-width-top;
                         }
 
                         &:last-child {
-                            border-bottom-left-radius: $modal-card-border-radius-bottom-left;
-                            border-bottom-right-radius: $modal-card-border-radius-bottom-right;
-                            border-bottom-width: $modal-card-border-width-bottom;
+                            border-bottom-left-radius: $modal-border-radius-bottom-left;
+                            border-bottom-right-radius: $modal-border-radius-bottom-right;
+                            border-bottom-width: $modal-border-width-bottom;
                         }
+                    }
+
+                    .modal__body,
+                    .modal__foot {
+                        padding: content-spacing(map($confirm-content-spacing-multipliers, 'medium'));
                     }
 
                     .modal__head {
                         align-items: center;
-                        background-color: $modal-card-head-background-color;
-                        border-color: $modal-card-head-border-color;
-                        color: $modal-card-head-font-color;
+                        background-color: $modal-head-background-color;
+                        border-color: $modal-head-border-color;
+                        color: $modal-head-font-color;
                         display: flex;
                         flex-shrink: 1;
+                        padding: content-spacing(map($confirm-content-spacing-multipliers, 'medium') / 2) content-spacing(map($confirm-content-spacing-multipliers, 'medium'));
 
                         // Nested selectors
                         .modal__headings {
@@ -132,9 +157,9 @@
                     }
 
                     .modal__body {
-                        background-color: $modal-card-body-background-color;
-                        border-color: $modal-card-body-border-color;
-                        color: $modal-card-body-font-color;
+                        background-color: $modal-body-background-color;
+                        border-color: $modal-body-border-color;
+                        color: $modal-body-font-color;
                         flex-grow: 1;
                         flex-shrink: 1;
                         overflow-x: hidden;
@@ -142,10 +167,10 @@
                     }
 
                     .modal__foot {
-                        background-color: $modal-card-foot-background-color;
-                        border-bottom-width: $modal-card-border-width-bottom;
-                        border-color: $modal-card-foot-border-color;
-                        color: $modal-card-foot-font-color;
+                        background-color: $modal-foot-background-color;
+                        border-bottom-width: $modal-border-width-bottom;
+                        border-color: $modal-foot-border-color;
+                        color: $modal-foot-font-color;
                         display: flex;
                         flex-shrink: 1;
 
@@ -159,7 +184,7 @@
                             // Nested selectors
                             #{$button} {
                                 margin-bottom: 0;
-                                margin-left: ($modal-card-content-spacing / 2);
+                                margin-left: content-spacing(map($confirm-content-spacing-multipliers, 'medium') / 2);
 
                                 // Pseudo classes
                                 &:first-child {
@@ -168,115 +193,6 @@
                             }
                         }
                     }
-
-                    // Check if the modal size modifiers should be declared
-                    @if $modal-card-size-modifiers {
-                        // Cycle through all of the sizes
-                        @each $size in $sizes {
-                            // Modifiers: Sizes
-                            &.is-#{$size} {
-                                font-size: map-get($modal-card-font-size-sizes, $size);
-
-                                // Nested selectors
-                                .modal__head,
-                                .modal__body,
-                                .modal__foot {
-                                    padding: map-get($modal-card-content-spacing-sizes, $size);
-                                }
-
-                                .modal__foot {
-                                    // Nested selectors
-                                    .modal__buttons {
-                                        // Nested selectors
-                                        #{$button} {
-                                            margin-left: (map-get($modal-card-content-spacing-sizes, $size) / 2);
-
-                                            // Pseudo classes
-                                            &:first-child {
-                                                margin-left: 0;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            // Check if the modal size modifiers with breakpoints should be declared
-                            @if $modal-card-size-modifiers-with-breakpoints {
-                                // Cycle through all of the breakpoints
-                                @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                                    // Breakpoint
-                                    @include breakpoint($breakpoint-name) {
-                                        // Modifiers: Size
-                                        &.is-#{$size}\@#{$breakpoint-name} {
-                                            font-size: map-get($modal-card-font-size-sizes, $size);
-
-                                            // Nested selectors
-                                            .modal__head,
-                                            .modal__body,
-                                            .modal__foot {
-                                                padding: map-get($modal-card-content-spacing-sizes, $size);
-                                            }
-
-                                            .modal__foot {
-                                                // Nested selectors
-                                                .modal__buttons {
-                                                    // Nested selectors
-                                                    #{$button} {
-                                                        margin-left: (map-get($modal-card-content-spacing-sizes, $size) / 2);
-
-                                                        // Pseudo classes
-                                                        &:first-child {
-                                                            margin-left: 0;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Check if the modal color modifiers should be declared
-                    @if $modal-card-color-modifiers {
-                        // Cycle through all of the base colors
-                        @each $color-name, $color-value in $base-colors {
-                            // Modifiers: Base colors
-                            &.is-#{$color-name} {
-                                // Nested selectors
-                                .modal__head {
-                                    background-color: base-color($color-name);
-                                    border-color: base-color('#{$color-name}-darken-3');
-                                    color: base-color('#{$color-name}-inverted-text');
-                                }
-                            }
-                        }
-                    }
-
-                    // Check if the modal feedback modifiers should be declared
-                    @if $modal-card-feedback-modifiers {
-                        // Cycle through all of the feedback colors
-                        @each $feedback-name, $color-value in $feedback-colors {
-                            // Modifiers: Feedback colors
-                            &.has-#{$feedback-name} {
-                                // Nested selectors
-                                .modal__head {
-                                    background-color: feedback-color($feedback-name);
-                                    border-color: feedback-color('#{$feedback-name}-darken-3');
-                                    color: feedback-color('#{$feedback-name}-inverted-text');
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the modal alignment modifier should be declared
-            @if $modal-alignment-modifier {
-                // Modifiers
-                &.modal--center {
-                    justify-content: center;
                 }
             }
         }

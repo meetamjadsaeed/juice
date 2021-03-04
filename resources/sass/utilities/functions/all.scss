@@ -1,9 +1,21 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> UTILITIES -> FUNCTIONS
-    ========================================================================  */
-
-// Import
-@import 'maps';
+// Import utility functions
+@import 'base-color';
+@import 'content-spacing';
+@import 'easing';
+@import 'element-height';
+@import 'element-spacing';
+@import 'feedback-color';
+@import 'font';
+@import 'font-color';
+@import 'font-size';
+@import 'map';
+@import 'root-font-size';
+@import 'root-line-height';
+@import 'shopify-asset';
 @import 'shopify';
+@import 'stack-index';
+@import 'strip-unit';
+@import 'type-scale';
+@import 'vertical-rhythm';

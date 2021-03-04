@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> PANEL
+    ========================================================================  */
+
+// Maps
+$panel-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+// Variables
+$panel-animation-duration: 300ms !default;
+$panel-background-color: base-color('white') !default;
+$panel-border-color: base-color('white-darken-3') !default;
+$panel-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$panel-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$panel-border-radius-top-left: $global-border-radius-top-left !default;
+$panel-border-radius-top-right: $global-border-radius-top-right !default;
+$panel-border-style: $global-border-style !default;
+$panel-border-width-bottom: $global-border-width-bottom !default;
+$panel-border-width-divider: $global-border-width-divider !default;
+$panel-border-width-left: $global-border-width-left !default;
+$panel-border-width-right: $global-border-width-right !default;
+$panel-border-width-top: $global-border-width-top !default;
+$panel-box-shadow: $global-box-shadow !default;
+$panel-font-color: font-color() !default;
+$panel-head-background-color: base-color('white') !default;
+$panel-head-border-color: base-color('white-darken-3') !default;
+$panel-head-font-color: font-color() !default;
+$panel-link-color: $global-link-color !default;
+$panel-link-color-hover: $global-link-color-hover !default;
+$panel-link-color-focus: $global-link-color-focus !default;
+$panel-link-color-active: $global-link-color-active !default;

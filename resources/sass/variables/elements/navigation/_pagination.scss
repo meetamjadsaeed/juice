@@ -1,11 +1,29 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> NAVIGATION -> PAGINATION
-    ========================================================================  */
+// Pagination maps
+$pagination-content-spacing-multipliers: (
+    'small': 0.2,
+    'medium': 0.4,
+    'large': 0.6
+) !default;
 
-// Variables
-$pagination-accessibility-focus-width: $default-accessibility-focus-width !default;
+$pagination-font-sizes: (
+    'small': font-size('small'),
+    'small-active': font-size('small') + 0.1em,
+    'medium': font-size(),
+    'medium-active': font-size() + 0.1em,
+    'large': font-size('large'),
+    'large-active': font-size('large') + 0.1em
+) !default;
+
+$pagination-element-height-multipliers: (
+    'small': 1.25,
+    'medium': 1.5,
+    'large': 1.75
+) !default;
+
+// Pagination variables
+$pagination-accessibility-focus-width: $global-accessibility-focus-width !default;
 $pagination-accessibility-focus-color: base-color('primary-accessibility-focus') !default;
 $pagination-background-color: base-color('white') !default;
 $pagination-background-color-hover: base-color('primary-lighten-1') !default;
@@ -15,42 +33,22 @@ $pagination-border-color: base-color('white-darken-3') !default;
 $pagination-border-color-hover: base-color('primary-darken-3') !default;
 $pagination-border-color-focus: base-color('primary-darken-6') !default;
 $pagination-border-color-active: base-color('primary-darken-8') !default;
-$pagination-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$pagination-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$pagination-border-radius-top-left: $default-border-radius-top-left !default;
-$pagination-border-radius-top-right: $default-border-radius-top-right !default;
-$pagination-border-style: $default-border-style !default;
-$pagination-border-width-bottom: $default-border-width-bottom !default;
-$pagination-border-width-divider: $default-border-width-divider !default;
-$pagination-border-width-left: $default-border-width-left !default;
-$pagination-border-width-right: $default-border-width-right !default;
-$pagination-border-width-top: $default-border-width-top !default;
-$pagination-box-shadow: $default-box-shadow !default;
-$pagination-content-spacing: ($default-content-spacing / 2) !default;
-$pagination-content-spacing-sizes: (
-    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
-    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
-    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
-) !default;
-$pagination-height: $default-element-height !default;
-$pagination-height-sizes: (
-    'small': map-get($default-element-height-sizes, 'small'),
-    'large': map-get($default-element-height-sizes, 'large'),
-    'huge': map-get($default-element-height-sizes, 'huge')
-) !default;
-$pagination-element-spacing: $default-element-spacing !default;
-$pagination-font-color: base-color('white-inverted-text') !default;
-$pagination-font-color-hover: base-color('primary-inverted-text') !default;
-$pagination-font-color-focus: base-color('primary-inverted-text') !default;
-$pagination-font-color-active: base-color('primary-inverted-text') !default;
-$pagination-font-size: $default-font-size !default;
-$pagination-font-size-active: ($default-font-size + 0.1em) !default;
-$pagination-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
-$pagination-link-color: $default-link-color !default;
-$pagination-link-color-hover: $default-link-color-hover !default;
-$pagination-link-color-focus: $default-link-color-focus !default;
-$pagination-link-color-active: $default-link-color-active !default;
+$pagination-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$pagination-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$pagination-border-radius-top-left: $global-border-radius-top-left !default;
+$pagination-border-radius-top-right: $global-border-radius-top-right !default;
+$pagination-border-style: $global-border-style !default;
+$pagination-border-width-bottom: $global-border-width-bottom !default;
+$pagination-border-width-divider: $global-border-width-divider !default;
+$pagination-border-width-left: $global-border-width-left !default;
+$pagination-border-width-right: $global-border-width-right !default;
+$pagination-border-width-top: $global-border-width-top !default;
+$pagination-box-shadow: $global-box-shadow !default;
+$pagination-font-color: base-color('white-text') !default;
+$pagination-font-color-hover: base-color('primary-text') !default;
+$pagination-font-color-focus: base-color('primary-text') !default;
+$pagination-font-color-active: base-color('primary-text') !default;
+$pagination-link-color: $global-link-color !default;
+$pagination-link-color-hover: $global-link-color-hover !default;
+$pagination-link-color-focus: $global-link-color-focus !default;
+$pagination-link-color-active: $global-link-color-active !default;

@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> NAVIGATION -> BREADCRUMB
+    ========================================================================  */
+
+// Maps
+$breadcrumb-content-spacing-multipliers: (
+    'sm': 0.2,
+    'md': 0.4,
+    'lg': 0.6
+) !default;
+
+// Variables
+$breadcrumb-font-color: inherit !default;
+$breadcrumb-link-color: $global-link-color !default;
+$breadcrumb-link-color-hover: $global-link-color-hover !default;
+$breadcrumb-link-color-focus: $global-link-color-focus !default;
+$breadcrumb-link-color-active: $global-link-color-active !default;
+$breadcrumb-separator: '\203A' !default;
+$breadcrumb-separator-angle: '\203A' !default;
+$breadcrumb-separator-arrow: '\02192' !default;
+$breadcrumb-separator-bullet: '\02022' !default;
+$breadcrumb-separator-slash: '\0002f' !default;

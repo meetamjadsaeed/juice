@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> CONFIRM
+    ========================================================================  */
+
+// Maps
+$confirm-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+$confirm-max-widths: (
+    'm': 600px,
+    't': 600px,
+    'd': 600px
+) !default;
+
+// Variables
+$confirm-animation-duration: 200ms !default;
+$confirm-body-background-color: base-color('white') !default;
+$confirm-body-border-color: base-color('white-darken-3') !default;
+$confirm-body-font-color: font-color() !default;
+$confirm-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$confirm-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$confirm-border-radius-top-left: $global-border-radius-top-left !default;
+$confirm-border-radius-top-right: $global-border-radius-top-right !default;
+$confirm-border-style: $global-border-style !default;
+$confirm-border-width-bottom: $global-border-width-bottom !default;
+$confirm-border-width-divider: $global-border-width-divider !default;
+$confirm-border-width-left: $global-border-width-left !default;
+$confirm-border-width-right: $global-border-width-right !default;
+$confirm-border-width-top: $global-border-width-top !default;
+$confirm-box-shadow: 0 0 30px -50px hsla(0, 0%, 0%, 1) !default;
+$confirm-foot-background-color: base-color('white') !default;
+$confirm-foot-border-color: base-color('white-darken-3') !default;
+$confirm-foot-font-color: font-color() !default;
+$confirm-head-background-color: base-color('primary') !default;
+$confirm-head-border-color: base-color('primary-darken-3') !default;
+$confirm-head-font-color: base-color('primary-inverted-text') !default;
+$confirm-link-color: $global-link-color !default;
+$confirm-link-color-hover: $global-link-color-hover !default;
+$confirm-link-color-focus: $global-link-color-focus !default;
+$confirm-link-color-active: $global-link-color-active !default;

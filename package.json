@@ -28,10 +28,11 @@
         "just-add-juice"
     ],
     "devDependencies": {
-        "@babel/core": "^7.7.4",
-        "@babel/preset-env": "^7.7.4",
+        "@babel/core": "^7.7.7",
+        "@babel/preset-env": "^7.7.7",
         "browser-sync": "^2.26.7",
         "cssnano": "^4.1.10",
+        "eslint": "^6.8.0",
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
         "gulp-concat": "^2.6.1",
@@ -42,9 +43,11 @@
         "gulp-rename": "^1.4.0",
         "gulp-sass": "^4.0.2",
         "gulp-uglify": "^3.0.2",
-        "postcss-css-variables": "^0.14.0",
         "postcss-preset-env": "^6.7.0",
         "postcss-scss": "^2.0.0",
+        "stylelint": "^13.2.0",
+        "stylelint-config-sass-guidelines": "^7.0.0",
+        "stylelint-selector-bem-pattern": "^2.1.0",
         "velocity-animate": "^1.5.2"
     },
     "files": [
@@ -54,7 +57,5 @@
         "LICENSE",
         "README.md"
     ],
-    "browserslist": [
-        "last 2 versions"
-    ]
+    "dependencies": {}
 }

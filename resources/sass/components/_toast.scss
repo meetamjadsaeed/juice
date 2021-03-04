@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-/* ========================================================================
-   JUICE -> COMPONENTS -> TOAST
-   ========================================================================  */
-
 // Check if the components with toast should be imported
 @if $import-components and $import-component-toast {
     .toast-group {
@@ -24,8 +20,8 @@
             background-color: $toast-background-color;
             border: 0 $toast-border-style $toast-border-color;
             border-bottom-left-radius: $toast-border-radius-bottom-left;
-            border-bottom-width: $toast-border-width-bottom;
             border-bottom-right-radius: $toast-border-radius-bottom-right;
+            border-bottom-width: $toast-border-width-bottom;
             border-left-width: $toast-border-width-left;
             border-right-width: $toast-border-width-right;
             border-top-left-radius: $toast-border-radius-top-left;
@@ -36,15 +32,32 @@
             display: flex;
             font-size: $toast-font-size;
             justify-content: center;
-            margin: $toast-element-spacing;
-            margin-top: 0;
-            max-width: $toast-max-width;
+            margin: 0 element-spacing(0.5) element-spacing(0.5) element-spacing(0.5);
             pointer-events: auto;
+
+            // Cycle through all of the breakpoints
+            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                // Breakpoints
+                @include breakpoint($breakpoint-name) {
+                    max-width: map-get($toast-max-widths, $breakpoint-name);
+                }
+            }
+
+            // Check if the toast feedback modifiers should be declared
+            @if $toast-feedback-modifiers {
+                // Cycle through all of the feedback colors
+                @each $feedback-name, $color-value in $feedback-colors {
+                    // Modifiers: Feedback colors
+                    &.has-#{$feedback-name} {
+                        border-color: feedback-color($feedback-name);
+                    }
+                }
+            }
 
             // Nested selectors
             .toast__text,
             .toast__action {
-                padding: $toast-content-spacing;
+                padding: content-spacing($toast-content-spacing-multiplier);
             }
 
             .toast__text {
@@ -55,18 +68,6 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
-            }
-
-            // Check if the toast feedback modifiers should be declared
-            @if $toast-feedback-modifiers {
-                // Cycle through all of the feedback colors
-                @each $feedback-name, $color-value in $feedback-colors {
-                    // Modifiers: Feedback colors
-                    &.has-#{$feedback-name} {
-                        // Variables
-                        border-color: feedback-color($feedback-name);
-                    }
-                }
             }
         }
 
@@ -79,12 +80,6 @@
                 bottom: auto;
                 flex-direction: column;
                 top: 0;
-
-                // Nested selectors
-                .toast {
-                    margin: $toast-element-spacing;
-                    margin-bottom: 0;
-                }
             }
 
             &.toast-group--bottom,
@@ -97,6 +92,23 @@
                 align-items: flex-end;
                 left: auto;
                 right: 0;
+            }
+
+            &.toast-group--bottom,
+            &.toast-group--bottom-right {
+                // Nested selectors
+                .toast {
+                    margin: 0 element-spacing(0.5) element-spacing(0.5) element-spacing(0.5);
+                }
+            }
+
+            &.toast-group--top,
+            &.toast-group--top-left,
+            &.toast-group--top-right {
+                // Nested selectors
+                .toast {
+                    margin: element-spacing(0.5) element-spacing(0.5) 0 element-spacing(0.5);
+                }
             }
         }
     }

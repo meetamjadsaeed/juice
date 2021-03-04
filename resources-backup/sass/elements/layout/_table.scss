@@ -1,0 +1,220 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> LAYOUT -> TABLE
+    ========================================================================  */
+
+// Check if the elements with table should be imported
+@if $import-elements and $import-element-table {
+    table {
+        max-width: 100%;
+        width: 100%;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+                padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, 'md'));
+
+                // Nested selectors
+                caption {
+                    padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, 'md'));
+                }
+
+                thead,
+                tbody {
+                    // Nested selectors
+                    tr {
+                        // Nested selectors
+                        th,
+                        td {
+                            padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, 'md'));
+                        }
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        caption {
+            text-align: inherit;
+        }
+
+        thead,
+        tbody {
+            // Nested selectors
+            tr {
+                // Nested selectors
+                th,
+                td {
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        thead {
+            background-color: $table-head-background-color;
+            border: 0 $table-border-style $table-head-border-color;
+            border-bottom-width: $table-head-border-width-bottom;
+            border-left-width: $table-head-border-width-left;
+            border-right-width: $table-head-border-width-right;
+            border-top-width: $table-head-border-width-top;
+            color: $table-head-font-color;
+        }
+
+        tbody {
+            background-color: $table-body-background-color;
+            border: 0 $table-border-style $table-body-border-color;
+            border-bottom-width: $table-body-border-width-bottom;
+            border-left-width: $table-body-border-width-left;
+            border-right-width: $table-body-border-width-right;
+            border-top-width: $table-body-border-width-top;
+            color: $table-body-font-color;
+        }
+
+        // Check if the table size modifiers should be declared
+        @if $table-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, $size));
+
+                            // Nested selectors
+                            caption {
+                                padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, $size));
+                            }
+
+                            thead,
+                            tbody {
+                                // Nested selectors
+                                tr {
+                                    // Nested selectors
+                                    th,
+                                    td {
+                                        padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+
+                        // Check if the table size modifiers with breakpoints should be declared
+                        @if $table-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, $size));
+
+                                // Nested selectors
+                                caption {
+                                    padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, $size));
+                                }
+
+                                thead,
+                                tbody {
+                                    // Nested selectors
+                                    tr {
+                                        // Nested selectors
+                                        th,
+                                        td {
+                                            padding: (content-spacing($breakpoint-name) * map-get($table-content-spacing-multipliers, $size));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the table border modifiers should be declared
+        @if $table-border-modifiers {
+            // Modifiers
+            &.table--border {
+                // Nested selectors
+                tbody {
+                    // Nested selectors
+                    tr {
+                        border-bottom: $table-body-border-width-divider $table-border-style $table-body-border-color;
+
+                        // Nested selectors
+                        td {
+                            border-left: $table-body-border-width-left $table-border-style $table-body-border-color;
+                            border-right: $table-body-border-width-right $table-border-style $table-body-border-color;
+
+                            // Pseudo classes
+                            &:first-child {
+                                border-left: 0;
+                            }
+
+                            &:last-child {
+                                border-right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.table--border-horizontal {
+                // Nested selectors
+                tbody {
+                    // Nested selectors
+                    tr {
+                        border-bottom: $table-body-border-width-divider $table-border-style $table-body-border-color;
+                    }
+                }
+            }
+
+            &.table--border-vertical {
+                // Nested selectors
+                tbody {
+                    // Nested selectors
+                    tr {
+                        // Nested selectors
+                        td {
+                            border-left: $table-body-border-width-left $table-border-style $table-body-border-color;
+                            border-right: $table-body-border-width-right $table-border-style $table-body-border-color;
+
+                            // Pseudo classes
+                            &:first-child {
+                                border-left: 0;
+                            }
+
+                            &:last-child {
+                                border-right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the table stripe modifier should be declared
+        @if $table-stripe-modifier {
+            // Modifiers
+            &.table--stripe {
+                // Nested selectors
+                tbody {
+                    // Nested selectors
+                    tr {
+                        // Pseudo classes
+                        &:nth-child(odd) {
+                            background-color: $table-body-background-color;
+                            color: $table-body-font-color;
+                        }
+
+                        &:nth-child(even) {
+                            background-color: $table-body-background-color-stripe;
+                            color: $table-body-font-color-stripe;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

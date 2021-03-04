@@ -1,0 +1,318 @@
+@charset 'utf-8';
+
+// Check if the elements with spinner should be imported
+@if $import-elements and $import-element-spinner {
+    .spinner {
+        align-items: center;
+        display: inline-flex;
+        height: element-height(map($spinner-element-height-multipliers, 'medium'));
+        justify-content: center;
+        position: relative;
+        width: element-height(map($spinner-element-height-multipliers, 'medium'));
+
+        // Check if the spinner dial modifier should be declared
+        @if $spinner-dial-modifier {
+            // Set the keyframe
+            @keyframes spinner-dial {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            // Modifiers
+            &.spinner--dial {
+                animation-duration: $spinner-animation-duration;
+                animation-iteration-count: infinite;
+                animation-name: spinner-dial;
+                animation-timing-function: linear;
+                border: 0.2rem solid $spinner-color;
+                border-radius: 100%;
+                display: inline-flex;
+
+                // Pseudo elements
+                &::before {
+                    animation: none;
+                    background-color: $spinner-color;
+                    border-radius: 100%;
+                    content: '';
+                    height: 0.6rem;
+                    position: absolute;
+                    top: 0.4rem;
+                    width: 0.6rem;
+                }
+
+                // Cycle through all of the spinner colors
+                @each $spinner-color in $spinner-colors {
+                    // Modifiers: Base colors
+                    &.is-#{$spinner-color} {
+                        border-color: base-color($spinner-color);
+
+                        // Pseudo elements
+                        &::before {
+                            background-color: base-color($spinner-color);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the spinner ring modifier should be declared
+        @if $spinner-ring-modifier {
+            // Set the keyframe
+            @keyframes spinner-ring {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            // Modifiers
+            &.spinner--ring {
+                animation-duration: $spinner-animation-duration;
+                animation-iteration-count: infinite;
+                animation-name: spinner-ring;
+                animation-timing-function: linear;
+                border: 0.6rem solid $spinner-color-alt;
+                border-radius: 100%;
+                display: inline-flex;
+
+                // Pseudo elements
+                &::before {
+                    animation: none;
+                    background: $spinner-color;
+                    border-radius: 100%;
+                    content: '';
+                    height: 0.6rem;
+                    position: absolute;
+                    top: -0.6rem;
+                    width: 0.6rem;
+                }
+
+                // Cycle through all of the spinner colors
+                @each $spinner-color in $spinner-colors {
+                    // Modifiers: Base colors
+                    &.is-#{$spinner-color} {
+                        border-color: base-color('#{$spinner-color}-#{$spinner-color-variation}');
+
+                        // Pseudo elements
+                        &::before {
+                            background-color: base-color($spinner-color);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the spinner spiral modifier should be declared
+        @if $spinner-spiral-modifier {
+            // Set the keyframe
+            @keyframes spinner-spiral {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            // Modifiers
+            &.spinner--spiral,
+            &.spinner--spiral-x2,
+            &.spinner--spiral-x3 {
+                animation-duration: $spinner-animation-duration;
+                animation-iteration-count: infinite;
+                animation-name: spinner-spiral;
+                animation-timing-function: linear;
+                border: 0.2rem solid $spinner-color-alt;
+                border-radius: 100%;
+                border-top-color: $spinner-color;
+                display: inline-flex;
+
+                // Cycle through all of the shield colors
+                @each $spinner-color in $spinner-colors {
+                    // Modifiers: Base colors
+                    &.is-#{$spinner-color} {
+                        border-color: base-color(#{$spinner-color}-#{$spinner-color-variation});
+                        border-top-color: base-color($spinner-color);
+
+                        // Pseudo elements
+                        &::before,
+                        &::after {
+                            border-color: base-color(#{$spinner-color}-#{$spinner-color-variation});
+                            border-top-color: base-color($spinner-color);
+                        }
+                    }
+                }
+            }
+
+            &.spinner--spiral-x2,
+            &.spinner--spiral-x3 {
+                // Pseudo elements
+                &::before {
+                    animation-duration: ($spinner-animation-duration * 3);
+                    animation-iteration-count: infinite;
+                    animation-name: spinner-spiral;
+                    animation-timing-function: linear;
+                    border: 0.2rem solid $spinner-color-alt;
+                    border-radius: 100%;
+                    border-top-color: $spinner-color;
+                    content: '';
+                    height: 80%;
+                    position: absolute;
+                    width: 80%;
+                }
+            }
+
+            &.spinner--spiral-x3 {
+                // Pseudo elements
+                &::after {
+                    animation-duration: ($spinner-animation-duration * 1.5);
+                    animation-iteration-count: infinite;
+                    animation-name: spinner-spiral;
+                    animation-timing-function: linear;
+                    border: 0.2rem solid $spinner-color-alt;
+                    border-radius: 100%;
+                    border-top-color: $spinner-color;
+                    content: '';
+                    height: 50%;
+                    position: absolute;
+                    width: 50%;
+                }
+            }
+        }
+
+        // Check if the spinner swoosh modifier should be declared
+        @if $spinner-swoosh-modifier {
+            // Set the keyframe
+            @keyframes spinner-swoosh {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            // Modifiers
+            &.spinner--swoosh {
+                animation-duration: $spinner-animation-duration;
+                animation-iteration-count: infinite;
+                animation-name: spinner-swoosh;
+                animation-timing-function: linear;
+                border: 0 solid $spinner-color;
+                border-radius: 100%;
+                border-top-width: 0.3rem;
+                display: inline-flex;
+
+                // Cycle through all of the shield colors
+                @each $spinner-color in $spinner-colors {
+                    // Modifiers: Base colors
+                    &.is-#{$spinner-color} {
+                        border-color: base-color($spinner-color);
+                    }
+                }
+            }
+        }
+
+        // Check if the spinner target modifier should be declared
+        @if $spinner-target-modifier {
+            // Set the keyframe
+            @keyframes spinner-target {
+                100% {
+                    transform: rotate(1440deg);
+                }
+            }
+
+            // Modifiers
+            &.spinner--target,
+            &.spinner--target-x2,
+            &.spinner--target-x3 {
+                animation-direction: alternate;
+                animation-duration: ($spinner-animation-duration * 4);
+                animation-iteration-count: infinite;
+                animation-name: spinner-target;
+                animation-timing-function: ease-in-out;
+                border: 0.2rem solid $spinner-color-alt;
+                border-bottom-color: $spinner-color;
+                border-radius: 100%;
+                border-top-color: $spinner-color;
+                display: inline-flex;
+
+                // Cycle through all of the shield colors
+                @each $spinner-color in $spinner-colors {
+                    // Modifiers: Base colors
+                    &.is-#{$spinner-color} {
+                        border-color: base-color(#{$spinner-color}-#{$spinner-color-variation});
+                        border-bottom-color: base-color($spinner-color);
+                        border-top-color: base-color($spinner-color);
+
+                        // Pseudo elements
+                        &::before,
+                        &::after {
+                            border-color: base-color(#{$spinner-color}-#{$spinner-color-variation});
+                            border-bottom-color: base-color($spinner-color);
+                            border-top-color: base-color($spinner-color);
+                        }
+                    }
+                }
+            }
+
+            &.spinner--target-x2,
+            &.spinner--target-x3 {
+                // Pseudo elements
+                &::before {
+                    animation-duration: (($spinner-animation-duration * 4) * 3);
+                    animation-iteration-count: infinite;
+                    animation-name: spinner-target;
+                    animation-timing-function: ease-in-out;
+                    border: 0.2rem solid $spinner-color-alt;
+                    border-bottom-color: $spinner-color;
+                    border-radius: 100%;
+                    border-top-color: $spinner-color;
+                    content: '';
+                    height: 80%;
+                    position: absolute;
+                    width: 80%;
+                }
+            }
+
+            &.spinner--target-x3 {
+                // Pseudo elements
+                &::after {
+                    animation-duration: (($spinner-animation-duration * 4) * 1.5);
+                    animation-iteration-count: infinite;
+                    animation-name: spinner-target;
+                    animation-timing-function: ease-in-out;
+                    border: 0.2rem solid $spinner-color-alt;
+                    border-bottom-color: $spinner-color;
+                    border-radius: 100%;
+                    border-top-color: $spinner-color;
+                    content: '';
+                    height: 50%;
+                    position: absolute;
+                    width: 50%;
+                }
+            }
+        }
+
+        // Check if the spinner size modifiers should be declared
+        @if $spinner-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    height: element-height(map($spinner-element-height-multipliers, $size));
+                    width: element-height(map($spinner-element-height-multipliers, $size));
+                }
+
+                // Check if the spinner size modifiers with breakpoints should be declared
+                @if $spinner-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                height: element-height(map($spinner-element-height-multipliers, $size));
+                                width: element-height(map($spinner-element-height-multipliers, $size));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

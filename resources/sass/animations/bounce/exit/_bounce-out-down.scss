@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> BOUNCE -> EXIT -> BOUNCE OUT DOWN
-    ========================================================================  */
-
 // Check if the animations with bounce out down should be imported
 @if $import-animations and $import-animation-bounce-out-down {
     .has-animation {
@@ -15,17 +11,17 @@
                 }
 
                 30% {
-                    transform: translate3d(0, (0px + ($animation-bounce-out-distance * 1.5 / 100)), 0);
+                    transform: translate3d(0, (0 + ($animation-bounce-out-distance * 1.5 / 100)), 0);
                 }
 
                 50% {
                     opacity: 1;
-                    transform: translate3d(0, (0px - ($animation-bounce-out-distance * 2.5 / 100)), 0);
+                    transform: translate3d(0, (0 - ($animation-bounce-out-distance * 2.5 / 100)), 0);
                 }
 
                 to {
                     opacity: 0;
-                    transform: translate3d(0, (0px + $animation-bounce-out-distance), 0);
+                    transform: translate3d(0, (0 + $animation-bounce-out-distance), 0);
                 }
             }
 

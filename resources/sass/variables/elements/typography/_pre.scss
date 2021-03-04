@@ -1,33 +1,24 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> PRE
-    ========================================================================  */
+// Pre maps
+$pre-content-spacing-multipliers: (
+    'small': 0.5,
+    'medium': 1,
+    'large': 1.5
+) !default;
 
-// Variables
+// Pre variables
 $pre-background-color: base-color('charcoal') !default;
 $pre-border-color: base-color('charcoal-darken-3') !default;
-$pre-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$pre-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$pre-border-radius-top-left: $default-border-radius-top-left !default;
-$pre-border-radius-top-right: $default-border-radius-top-right !default;
-$pre-border-style: $default-border-style !default;
-$pre-border-width-bottom: $default-border-width-bottom !default;
-$pre-border-width-left: $default-border-width-left !default;
-$pre-border-width-right: $default-border-width-right !default;
-$pre-border-width-top: $default-border-width-top !default;
-$pre-content-spacing: $default-content-spacing !default;
-$pre-content-spacing-sizes: (
-    'small': map-get($default-content-spacing-sizes, 'small'),
-    'large': map-get($default-content-spacing-sizes, 'large'),
-    'huge': map-get($default-content-spacing-sizes, 'huge')
-) !default;
-$pre-element-spacing: $default-element-spacing !default;
-$pre-font-color: base-color('charcoal-inverted-text') !default;
-$pre-font-family: $default-monoface-typeface !default;
-$pre-font-size: $default-font-size !default;
-$pre-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
+$pre-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$pre-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$pre-border-radius-top-left: $global-border-radius-top-left !default;
+$pre-border-radius-top-right: $global-border-radius-top-right !default;
+$pre-border-style: $global-border-style !default;
+$pre-border-width-bottom: $global-border-width-bottom !default;
+$pre-border-width-left: $global-border-width-left !default;
+$pre-border-width-right: $global-border-width-right !default;
+$pre-border-width-top: $global-border-width-top !default;
+$pre-font-color: base-color('charcoal-text') !default;
+$pre-font-family: $global-monoface-typeface !default;
+$pre-font-size: font-size() !default;

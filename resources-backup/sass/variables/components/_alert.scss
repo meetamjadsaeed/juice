@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> COMPONENTS -> ALERT
+    ========================================================================  */
+
+// Maps
+$alert-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+$alert-max-widths: (
+    'm': 600px,
+    't': 600px,
+    'd': 600px
+) !default;
+
+// Variables
+$alert-animation-duration: 200ms !default;
+$alert-body-background-color: base-color('white') !default;
+$alert-body-border-color: base-color('white-darken-3') !default;
+$alert-body-font-color: font-color() !default;
+$alert-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$alert-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$alert-border-radius-top-left: $global-border-radius-top-left !default;
+$alert-border-radius-top-right: $global-border-radius-top-right !default;
+$alert-border-style: $global-border-style !default;
+$alert-border-width-bottom: $global-border-width-bottom !default;
+$alert-border-width-divider: $global-border-width-divider !default;
+$alert-border-width-left: $global-border-width-left !default;
+$alert-border-width-right: $global-border-width-right !default;
+$alert-border-width-top: $global-border-width-top !default;
+$alert-box-shadow: 0 0 30px -50px hsla(0, 0%, 0%, 1) !default;
+$alert-foot-background-color: base-color('white') !default;
+$alert-foot-border-color: base-color('white-darken-3') !default;
+$alert-foot-font-color: font-color() !default;
+$alert-head-background-color: base-color('primary') !default;
+$alert-head-border-color: base-color('primary-darken-3') !default;
+$alert-head-font-color: base-color('primary-inverted-text') !default;
+$alert-link-color: $global-link-color !default;
+$alert-link-color-hover: $global-link-color-hover !default;
+$alert-link-color-focus: $global-link-color-focus !default;
+$alert-link-color-active: $global-link-color-active !default;

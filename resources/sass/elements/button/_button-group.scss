@@ -1,40 +1,10 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> BUTTON -> BUTTON GROUP
-    ========================================================================  */
-
 // Check if the elements with button group should be imported
 @if $import-elements and $import-element-button-group {
     .button-group {
         display: inline-flex;
-        margin-bottom: $button-group-element-spacing;
-
-        // Nested selectors
-        #{$button} {
-            border-radius: 0;
-            margin-bottom: 0;
-
-            // Pseudo classes
-            &:not(:only-child) {
-                border-left-width: $button-border-width-divider;
-                border-right-width: $button-border-width-divider;
-                margin-right: (0px - $button-border-width-divider);
-            }
-
-            &:first-child {
-                border-bottom-left-radius: $button-border-radius-bottom-left;
-                border-left-width: $button-border-width-left;
-                border-top-left-radius: $button-border-radius-top-left;
-            }
-
-            &:last-child {
-                border-bottom-right-radius: $button-border-radius-bottom-right;
-                border-right-width: $button-border-width-right;
-                border-top-right-radius: $button-border-radius-top-right;
-                margin-right: 0;
-            }
-        }
+        margin-bottom: element-spacing();
 
         // Check if the button group fullwidth modifier should be declared
         @if $button-fullwidth-modifier {
@@ -55,39 +25,24 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    // Nested selectors
-                    #{$button} {
-                        font-size: map-get($button-font-size-sizes, $size);
-                        height: map-get($button-height-sizes, $size);
-                        padding: 0 map-get($button-content-spacing-sizes, $size);
-                    }
-
-                    // Check if the button group component modifier should be declared
-                    @if $button-group-component-modifier {
-                        // Modifiers
-                        &.button-group--components {
-                            // Nested selectors
-                            #{$button} {
-                                max-width: map-get($button-height-sizes, $size);
-                                min-width: map-get($button-height-sizes, $size);
-                                padding: 0;
-                                width: map-get($button-height-sizes, $size);
-                            }
-                        }
-                    }
-
                     // Check if the button group icon modifier should be declared
                     @if $button-group-icon-modifier {
                         // Modifiers
                         &.button-group--icons {
                             // Nested selectors
                             #{$button} {
-                                max-width: map-get($button-height-sizes, $size);
-                                min-width: map-get($button-height-sizes, $size);
-                                padding: 0;
-                                width: map-get($button-height-sizes, $size);
+                                max-width: element-height(map($button-element-height-multipliers, $size));
+                                min-width: element-height(map($button-element-height-multipliers, $size));
+                                width: element-height(map($button-element-height-multipliers, $size));
                             }
                         }
+                    }
+
+                    // Nested selectors
+                    #{$button} {
+                        font-size: map($button-font-sizes, $size);
+                        height: element-height(map($button-element-height-multipliers, $size));
+                        padding: 0 content-spacing(map($button-content-spacing-multipliers, $size));
                     }
                 }
 
@@ -95,43 +50,28 @@
                 @if $button-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                // Nested selectors
-                                #{$button} {
-                                    font-size: map-get($button-font-size-sizes, $size);
-                                    height: map-get($button-height-sizes, $size);
-                                    padding: 0 map-get($button-content-spacing-sizes, $size);
-                                }
-
-                                // Check if the button group component modifier should be declared
-                                @if $button-group-component-modifier {
-                                    // Modifiers
-                                    &.button-group--components {
-                                        // Nested selectors
-                                        #{$button} {
-                                            max-width: map-get($button-height-sizes, $size);
-                                            min-width: map-get($button-height-sizes, $size);
-                                            padding: 0;
-                                            width: map-get($button-height-sizes, $size);
-                                        }
-                                    }
-                                }
-
                                 // Check if the button group icon modifier should be declared
                                 @if $button-group-icon-modifier {
                                     // Modifiers
                                     &.button-group--icons {
                                         // Nested selectors
                                         #{$button} {
-                                            max-width: map-get($button-height-sizes, $size);
-                                            min-width: map-get($button-height-sizes, $size);
-                                            padding: 0;
-                                            width: map-get($button-height-sizes, $size);
+                                            max-width: element-height(map($button-element-height-multipliers, $size));
+                                            min-width: element-height(map($button-element-height-multipliers, $size));
+                                            width: element-height(map($button-element-height-multipliers, $size));
                                         }
                                     }
+                                }
+
+                                // Nested selectors
+                                #{$button} {
+                                    font-size: map($button-font-sizes, $size);
+                                    height: element-height(map($button-element-height-multipliers, $size));
+                                    padding: 0 content-spacing(map($button-content-spacing-multipliers, $size));
                                 }
                             }
                         }
@@ -142,66 +82,42 @@
 
         // Check if the button group base color modifiers should be declared
         @if $button-group-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
+            // Cycle through all of the button colors
+            @each $button-color in $button-colors {
                 // Modifiers: Base colors
-                &.is-#{$color-name} {
+                &.is-#{$button-color} {
                     // Nested selectors
                     #{$button} {
-                        background-color: base-color($color-name);
-                        border-color: base-color('#{$color-name}-darken-3');
-                        color: base-color('#{$color-name}-inverted-text');
+                        background-color: base-color($button-color);
+                        border-color: base-color('#{$button-color}-darken-3');
+                        color: base-color('#{$button-color}-text');
 
                         // Pseudo classes
                         &:hover {
-                            background-color: base-color('#{$color-name}-lighten-1');
-                            border-color: base-color('#{$color-name}-darken-4');
-                            color: base-color('#{$color-name}-inverted-text');
+                            background-color: base-color('#{$button-color}-lighten-1');
+                            border-color: base-color('#{$button-color}-darken-4');
+                            color: base-color('#{$button-color}-text');
                         }
 
                         &:focus {
-                            background-color: base-color('#{$color-name}-lighten-1');
-                            border-color: base-color('#{$color-name}-darken-4');
-                            box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$color-name}-accessibility-focus');
-                            color: base-color('#{$color-name}-inverted-text');
+                            background-color: base-color('#{$button-color}-lighten-1');
+                            border-color: base-color('#{$button-color}-darken-4');
+                            box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$button-color}-accessibility-focus');
+                            color: base-color('#{$button-color}-text');
                         }
 
                         &:active {
-                            background-color: base-color('#{$color-name}-darken-1');
-                            border-color: base-color('#{$color-name}-darken-6');
-                            color: base-color('#{$color-name}-inverted-text');
+                            background-color: base-color('#{$button-color}-darken-1');
+                            border-color: base-color('#{$button-color}-darken-6');
+                            color: base-color('#{$button-color}-text');
                         }
 
                         // Modifiers: Props
                         &[disabled] {
                             @include disabled();
-                            background-color: base-color($color-name) !important;
-                            border-color: base-color('#{$color-name}-darken-3') !important;
-                            color: base-color('#{$color-name}-inverted-text') !important;
-                        }
-                    }
-
-                    // Check if the button group flat modifier should be declared
-                    @if $button-group-flat-modifier {
-                        // Modifiers
-                        &.button-group--flat {
-                            // Nested selectors
-                            #{$button} {
-                                color: inherit;
-
-                                // Pseudo classes
-                                &:hover,
-                                &:focus {
-                                    color: base-color($color-name);
-                                }
-
-                                // Modifiers: Props
-                                &[disabled] {
-                                    background-color: transparent !important;
-                                    border-color: transparent !important;
-                                    color: inherit !important;
-                                }
-                            }
+                            background-color: base-color($button-color) !important;
+                            border-color: base-color('#{$button-color}-darken-3') !important;
+                            color: base-color('#{$button-color}-text') !important;
                         }
                     }
 
@@ -212,35 +128,35 @@
                             // Nested selectors
                             #{$button} {
                                 background-color: transparent;
-                                border-color: base-color($color-name);
-                                color: base-color($color-name);
+                                border-color: base-color($button-color);
+                                color: base-color($button-color);
 
                                 // Pseudo classes
                                 &:hover {
-                                    background-color: base-color($color-name);
-                                    border-color: base-color($color-name);
-                                    color: base-color('#{$color-name}-inverted-text');
+                                    background-color: base-color($button-color);
+                                    border-color: base-color($button-color);
+                                    color: base-color('#{$button-color}-text');
                                 }
 
                                 &:focus {
-                                    background-color: base-color($color-name);
-                                    border-color: base-color($color-name);
-                                    box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$color-name}-accessibility-focus');
-                                    color: base-color('#{$color-name}-inverted-text');
+                                    background-color: base-color($button-color);
+                                    border-color: base-color($button-color);
+                                    box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$button-color}-accessibility-focus');
+                                    color: base-color('#{$button-color}-text');
                                 }
 
                                 &:active {
-                                    background-color: base-color('#{$color-name}-darken-1');
-                                    border-color: base-color('#{$color-name}-darken-1');
-                                    color: base-color('#{$color-name}-inverted-text');
+                                    background-color: base-color('#{$button-color}-darken-1');
+                                    border-color: base-color('#{$button-color}-darken-1');
+                                    color: base-color('#{$button-color}-text');
                                 }
 
                                 // Modifiers: Props
                                 &[disabled] {
                                     @include disabled();
                                     background-color: transparent !important;
-                                    border-color: base-color($color-name) !important;
-                                    color: base-color($color-name) !important;
+                                    border-color: base-color($button-color) !important;
+                                    color: base-color($button-color) !important;
                                 }
                             }
                         }
@@ -262,11 +178,8 @@
                     box-shadow: none !important;
                     color: inherit !important;
                     margin: 0 !important;
-                    max-width: $button-height;
-                    min-width: $button-height;
                     opacity: 0.3 !important;
                     padding: 0;
-                    width: $button-height;
 
                     // Pseudo classes
                     &:hover {
@@ -302,50 +215,16 @@
             }
         }
 
-        // Check if the button group flat modifier should be declared
-        @if $button-group-flat-modifier {
-            // Modifiers
-            &.button-group--flat {
-                // Nested selectors
-                #{$button} {
-                    background-color: transparent !important;
-                    border-color: transparent !important;
-                    box-shadow: none !important;
-                    color: inherit;
-                    margin: 0 !important;
-
-                    // Pseudo classes
-                    &:hover,
-                    &:focus {
-                        background-color: hsla(0, 0%, 30%, 0.08) !important;
-                        color: $button-background-color;
-                    }
-
-                    &:active {
-                        background-color: hsla(0, 0%, 30%, 0.09) !important;
-                    }
-
-                    // Modifiers: Props
-                    &[disabled] {
-                        @include disabled();
-                        background-color: transparent !important;
-                        border-color: transparent !important;
-                        color: inherit !important;
-                    }
-                }
-            }
-        }
-
         // Check if the button group icon modifier should be declared
         @if $button-group-icon-modifier {
             // Modifiers
             &.button-group--icons {
                 // Nested selectors
                 #{$button} {
-                    max-width: $button-height;
-                    min-width: $button-height;
+                    max-width: element-height(map($button-element-height-multipliers, 'medium'));
+                    min-width: element-height(map($button-element-height-multipliers, 'medium'));
                     padding: 0;
-                    width: $button-height;
+                    width: element-height(map($button-element-height-multipliers, 'medium'));
                 }
             }
         }
@@ -406,6 +285,32 @@
                         border-top-right-radius: 999px;
                     }
                 }
+            }
+        }
+
+        // Nested selectors
+        #{$button} {
+            border-radius: 0;
+            margin-bottom: 0;
+
+            // Pseudo classes
+            &:not(:only-child) {
+                border-left-width: $button-border-width-divider;
+                border-right-width: $button-border-width-divider;
+                margin-right: (0 - $button-border-width-divider);
+            }
+
+            &:first-child {
+                border-bottom-left-radius: $button-border-radius-bottom-left;
+                border-left-width: $button-border-width-left;
+                border-top-left-radius: $button-border-radius-top-left;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: $button-border-radius-bottom-right;
+                border-right-width: $button-border-width-right;
+                border-top-right-radius: $button-border-radius-top-right;
+                margin-right: 0;
             }
         }
     }

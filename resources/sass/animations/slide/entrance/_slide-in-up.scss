@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> SLIDE -> ENTRANCE -> SLIDE IN UP
-    ========================================================================  */
-
 // Check if the animations with slide in up should be imported
 @if $import-animations and $import-animation-slide-in-up {
     .has-animation {

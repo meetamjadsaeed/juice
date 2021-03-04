@@ -1,27 +1,12 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING
-    ========================================================================  */
-
 // Check if the elements with heading should be imported
 @if $import-elements and $import-element-heading {
     #{$heading} {
-        line-height: normal;
-        margin: 0;
-        margin-bottom: $heading-element-spacing;
-        padding: 0;
+        margin-bottom: element-spacing();
         position: relative;
     }
-}
 
-
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H1
-    ========================================================================  */
-
-// Check if the elements with heading should be imported
-@if $import-elements and $import-element-heading {
     h1 {
         color: $heading-1-font-color;
         font-family: $heading-1-font-family;
@@ -31,15 +16,7 @@
         letter-spacing: $heading-1-letter-spacing;
         text-transform: $heading-1-text-transform;
     }
-}
 
-
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H2
-    ========================================================================  */
-
-// Check if the elements with heading should be imported
-@if $import-elements and $import-element-heading {
     h2 {
         color: $heading-2-font-color;
         font-family: $heading-2-font-family;
@@ -49,15 +26,7 @@
         letter-spacing: $heading-2-letter-spacing;
         text-transform: $heading-2-text-transform;
     }
-}
 
-
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H3
-    ========================================================================  */
-
-// Check if the elements with heading should be imported
-@if $import-elements and $import-element-heading {
     h3 {
         color: $heading-3-font-color;
         font-family: $heading-3-font-family;
@@ -67,15 +36,7 @@
         letter-spacing: $heading-3-letter-spacing;
         text-transform: $heading-3-text-transform;
     }
-}
 
-
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H4
-    ========================================================================  */
-
-// Check if the elements with heading should be imported
-@if $import-elements and $import-element-heading {
     h4 {
         color: $heading-4-font-color;
         font-family: $heading-4-font-family;
@@ -85,15 +46,7 @@
         letter-spacing: $heading-4-letter-spacing;
         text-transform: $heading-4-text-transform;
     }
-}
 
-
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H5
-    ========================================================================  */
-
-// Check if the elements with heading should be imported
-@if $import-elements and $import-element-heading {
     h5 {
         color: $heading-5-font-color;
         font-family: $heading-5-font-family;
@@ -103,15 +56,7 @@
         letter-spacing: $heading-5-letter-spacing;
         text-transform: $heading-5-text-transform;
     }
-}
 
-
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> HEADING -> H6
-    ========================================================================  */
-
-// Check if the elements with heading should be imported
-@if $import-elements and $import-element-heading {
     h6 {
         color: $heading-6-font-color;
         font-family: $heading-6-font-family;

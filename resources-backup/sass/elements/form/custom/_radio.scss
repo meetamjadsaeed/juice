@@ -1,0 +1,137 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> FORM -> CUSTOM -> RADIO
+    ========================================================================  */
+
+// Check if the elements with custom radio should be imported
+@if $import-elements and $import-element-custom-radio {
+    .custom-radio {
+        cursor: pointer;
+        position: relative;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                // Nested selectors
+                div {
+                    // Pseudo elements
+                    &::before {
+                        height: (element-height($breakpoint-name) * map-get($custom-radio-element-height-multipliers, 'md'));
+                        margin: 0 (content-spacing($breakpoint-name) * map-get($custom-radio-content-spacing-multipliers, 'md')) 0 0;
+                        width: (element-height($breakpoint-name) * map-get($custom-radio-element-height-multipliers, 'md'));
+                    }
+                }
+            }
+        }
+
+        // Pseudo classes
+        &:hover {
+            // Nested selectors
+            div {
+                // Pseudo elements
+                &::before {
+                    border-color: $custom-radio-border-color-hover;
+                }
+            }
+        }
+
+        // Nested selectors
+        input[type=radio] {
+            clip: rect(0, 0, 0, 0);
+            height: 0;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            width: 0;
+
+            // Pseudo classes
+            &:focus + div {
+                // Pseudo elements
+                &::before {
+                    border-color: $custom-radio-checked-color;
+                    box-shadow: 0 0 $custom-radio-accessibility-focus-width $custom-radio-accessibility-focus-color;
+                }
+            }
+
+            &:checked + div {
+                // Pseudo elements
+                &::before {
+                    background: $custom-radio-checked-color;
+                    border-color: $custom-radio-checked-color;
+                    box-shadow: inset 0 0 0 2px $custom-radio-background-color;
+                }
+            }
+
+            &:checked:focus + div {
+                // Pseudo elements
+                &::before {
+                    box-shadow:
+                        inset 0 0 0 2px $custom-radio-background-color,
+                        0 0 $custom-radio-accessibility-focus-width $custom-radio-accessibility-focus-color;
+                }
+            }
+        }
+
+        div {
+            align-items: center;
+            display: flex;
+
+            // Pseudo elements
+            &::before {
+                background: $custom-radio-background-color;
+                border: 0 solid $custom-radio-border-color;
+                border-bottom-width: $custom-radio-border-width-bottom;
+                border-left-width: $custom-radio-border-width-left;
+                border-radius: 100%;
+                border-right-width: $custom-radio-border-width-right;
+                border-top-width: $custom-radio-border-width-top;
+                content: '';
+                display: block;
+            }
+        }
+
+        // Check if the custom radio size modifiers should be declared
+        @if $custom-radio-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            div {
+                                // Pseudo elements
+                                &::before {
+                                    height: (element-height($breakpoint-name) * map-get($custom-radio-element-height-multipliers, $size));
+                                    margin: 0 (content-spacing($breakpoint-name) * map-get($custom-radio-content-spacing-multipliers, $size)) 0 0;
+                                    width: (element-height($breakpoint-name) * map-get($custom-radio-element-height-multipliers, $size));
+                                }
+                            }
+                        }
+
+                        // Check if the custom radio size modifiers with breakpoints should be declared
+                        @if $custom-radio-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                div {
+                                    // Pseudo elements
+                                    &::before {
+                                        height: (element-height($breakpoint-name) * map-get($custom-radio-element-height-multipliers, $size));
+                                        margin: 0 (content-spacing($breakpoint-name) * map-get($custom-radio-content-spacing-multipliers, $size)) 0 0;
+                                        width: (element-height($breakpoint-name) * map-get($custom-radio-element-height-multipliers, $size));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> CHIP
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Chip';
 
@@ -27,34 +23,19 @@
         animationClass: 'has-animation',
         animationRemove: 'fade-out',
 
-        callbackInitializeBefore: () => {
-            console.log('Chip: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Chip: callbackInitializeAfter');
-        },
-        callbackRemoveBefore: () => {
-            console.log('Chip: callbackRemoveBefore');
-        },
-        callbackRemoveAfter: () => {
-            console.log('Chip: callbackRemoveAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Chip: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Chip: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Chip: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Chip: callbackDestroyAfter');
-        },
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
+        callbackRemoveBefore: () => {},
+        callbackRemoveAfter: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -74,6 +55,7 @@
 
     /**
      * Click event handler to remove a chip.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -94,6 +76,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -114,22 +97,56 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
+        /**
+         * Destroy an existing initialization.
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Remove the click event handler from the chip
+            document.removeEventListener('click', clickChipRemoveEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
         /**
          * Initialize the plugin.
          * @param  {bool}  silent  Suppress callbacks.
@@ -145,62 +162,13 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Add a click event handler to remove a chip
+            // Add a click event handler to the chip
             document.addEventListener('click', clickChipRemoveEventHandler);
 
             // Check if the callbacks should not be suppressed
             if (!silent) {
                 // Call the initialize after callback
                 plugin.settings.callbackInitializeAfter.call();
-            }
-        },
-
-        /**
-         * Remove a chip.
-         * @param  {element}  $chip   The chip.
-         * @param  {bool}     silent  Suppress callbacks.
-         * @return {void}
-         */
-        remove: ($chip, silent = false) => {
-            // Check if the chip exists and isn't animating out
-            if ($chip && !$chip.classList.contains('is-animating-out')) {
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the remove before callback
-                    plugin.settings.callbackRemoveBefore.call();
-                }
-
-                // Check if the chip is animated
-                if (plugin.settings.animation) {
-                    // Set the chip remove animation
-                    const remove_animation = $chip.dataset.chipAnimationRemove || plugin.settings.animationRemove;
-
-                    // Set the chip animation classes
-                    $chip.classList.add('is-animating-out', plugin.settings.animationClass, remove_animation);
-
-                    // Add an animation end event listener to the chip
-                    $chip.addEventListener('animationend', () => {
-                        // Remove the chip
-                        $chip.remove();
-
-                        // Check if the callbacks should not be suppressed
-                        if (!silent) {
-                            // Call the remove after callback
-                            plugin.settings.callbackRemoveAfter.call();
-                        }
-                    }, {
-                        once: true
-                    });
-                } else {
-                    // Remove the chip
-                    $chip.remove();
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the remove after callback
-                        plugin.settings.callbackRemoveAfter.call();
-                    }
-                }
             }
         },
 
@@ -230,24 +198,60 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
+         * Call the refresh method silently.
          * @return {void}
          */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
+        refreshSilently: () => {
+            // Call the refresh method silently
+            plugin.this.refresh(true);
+        },
 
-            // Remove the click event handler to remove a chip
-            document.removeEventListener('click', clickChipRemoveEventHandler);
+        /**
+         * Remove a chip.
+         * @param  {element}  $chip   The chip.
+         * @param  {bool}     silent  Suppress callbacks.
+         * @return {void}
+         */
+        remove: ($chip, silent = false) => {
+            // Check if the chip exists and isn't animating out
+            if ($chip && !$chip.classList.contains('is-animating-out')) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the remove before callback
+                    plugin.settings.callbackRemoveBefore.call();
+                }
 
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
+                // Check if the chip is animated
+                if (plugin.settings.animation) {
+                    // Set the chip remove animation
+                    const remove_animation = $chip.dataset.chipAnimationRemove || plugin.settings.animationRemove;
+
+                    // Set the chip animation classes
+                    $chip.classList.add('is-animating-out', plugin.settings.animationClass, remove_animation);
+
+                    // Add an animation end event handler to the chip
+                    $chip.addEventListener('animationend', () => {
+                        // Remove the chip
+                        $chip.remove();
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the remove after callback
+                            plugin.settings.callbackRemoveAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
+                    // Remove the chip
+                    $chip.remove();
+
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the remove after callback
+                        plugin.settings.callbackRemoveAfter.call();
+                    }
+                }
             }
         },
 
@@ -259,24 +263,6 @@
         removeSilently: ($chip) => {
             // Call the remove method silently
             plugin.this.remove($chip, true);
-        },
-
-        /**
-         * Call the refresh method silently.
-         * @return {void}
-         */
-        refreshSilently: () => {
-            // Call the refresh method silently
-            plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
         }
     };
 

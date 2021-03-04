@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+.has-overlay {
+    overflow: hidden;
+
+    // Nested selectors
+    .overlay {
+        animation-duration: $overlay-animation-duration;
+        background: $overlay-background-color;
+        color: $overlay-font-color;
+        height: 100vh;
+        left: 0;
+        outline: none;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: stack-index('overlay');
+    }
+}

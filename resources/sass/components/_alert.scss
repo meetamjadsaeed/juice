@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-/* ========================================================================
-   JUICE -> COMPONENTS -> ALERT
-   ========================================================================  */
-
 // Check if the components with alert should be imported
 @if $import-components and $import-component-alert {
     .overlay {
@@ -13,8 +9,16 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 10vh 0;
             overflow: hidden;
+            padding: 10vh 0;
+
+            // Check if the alert alignment modifier should be declared
+            @if $alert-alignment-modifier {
+                // Modifiers
+                &.alert--center {
+                    justify-content: center;
+                }
+            }
 
             // Nested selectors
             .alert__content {
@@ -31,13 +35,43 @@
 
                 // Nested selectors
                 .alert__card {
-                    // Styles
                     display: flex;
                     flex-direction: column;
-                    font-size: $alert-font-size;
-                    overflow: hidden;
                     max-width: 100%;
-                    width: $alert-max-width;
+                    overflow: hidden;
+                    width: $alert-width;
+
+                    // Check if the alert color modifiers should be declared
+                    @if $alert-color-modifiers {
+                        // Cycle through all of the alert colors
+                        @each $alert-color in $alert-colors {
+                            // Modifiers: Base colors
+                            &.is-#{$alert-color} {
+                                // Nested selectors
+                                .alert__head {
+                                    background-color: base-color($alert-color);
+                                    border-color: base-color('#{$alert-color}-darken-3');
+                                    color: base-color('#{$alert-color}-text');
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the alert feedback modifiers should be declared
+                    @if $alert-feedback-modifiers {
+                        // Cycle through all of the feedback colors
+                        @each $feedback-name, $color-value in $feedback-colors {
+                            // Modifiers: Feedback colors
+                            &.has-#{$feedback-name} {
+                                // Nested selectors
+                                .alert__head {
+                                    background-color: feedback-color($feedback-name);
+                                    border-color: feedback-color('#{$feedback-name}-darken-3');
+                                    color: feedback-color('#{$feedback-name}-text');
+                                }
+                            }
+                        }
+                    }
 
                     // Nested selectors
                     a:not(.button) {
@@ -63,7 +97,6 @@
                         border: 0 $alert-border-style transparent;
                         border-left-width: $alert-border-width-left;
                         border-right-width: $alert-border-width-right;
-                        padding: $alert-content-spacing;
 
                         &:first-child {
                             border-top-left-radius: $alert-border-radius-top-left;
@@ -78,6 +111,11 @@
                         }
                     }
 
+                    .alert__body,
+                    .alert__foot {
+                        padding: content-spacing(map($alert-content-spacing-multipliers, 'medium'));
+                    }
+
                     .alert__head {
                         align-items: center;
                         background-color: $alert-head-background-color;
@@ -86,6 +124,7 @@
                         color: $alert-head-font-color;
                         display: flex;
                         flex-shrink: 1;
+                        padding: content-spacing(map($alert-content-spacing-multipliers, 'medium') / 2) content-spacing(map($alert-content-spacing-multipliers, 'medium'));
 
                         // Nested selectors
                         .alert__headings {
@@ -134,148 +173,9 @@
                             // Nested selectors
                             #{$button} {
                                 margin-bottom: 0;
-                                margin-left: ($alert-content-spacing / 2);
-
-                                // Pseudo classes
-                                &:first-child {
-                                    margin-left: 0;
-                                }
                             }
                         }
                     }
-                }
-            }
-
-            // Check if the alert size modifiers should be declared
-            @if $alert-size-modifiers {
-                // Cycle through all of the sizes
-                @each $size in $sizes {
-                    // Modifiers: Sizes
-                    &.is-#{$size} {
-                        // Nested selectors
-                        .alert__content {
-                            // Nested selectors
-                            .alert__card {
-                                font-size: map-get($alert-font-size-sizes, $size);
-
-                                // Nested selectors
-                                .alert__head,
-                                .alert__body,
-                                .alert__foot {
-                                    padding: map-get($alert-content-spacing-sizes, $size);
-                                }
-
-                                .alert__foot {
-                                    // Nested selectors
-                                    .alert__buttons {
-                                        // Nested selectors
-                                        #{$button} {
-                                            margin-left: (map-get($alert-content-spacing-sizes, $size) / 2);
-
-                                            // Pseudo classes
-                                            &:first-child {
-                                                margin-left: 0;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Check if the alert size modifiers with breakpoints should be declared
-                    @if $alert-size-modifiers-with-breakpoints {
-                        // Cycle through all of the breakpoints
-                        @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                            // Breakpoint
-                            @include breakpoint($breakpoint-name) {
-                                // Modifiers: Size
-                                &.is-#{$size}\@#{$breakpoint-name} {
-                                    // Nested selectors
-                                    .alert__content {
-                                        // Nested selectors
-                                        .alert__card {
-                                            font-size: map-get($alert-font-size-sizes, $size);
-
-                                            // Nested selectors
-                                            .alert__head,
-                                            .alert__body,
-                                            .alert__foot {
-                                                padding: map-get($alert-content-spacing-sizes, $size);
-                                            }
-
-                                            .alert__foot {
-                                                // Nested selectors
-                                                .alert__buttons {
-                                                    // Nested selectors
-                                                    #{$button} {
-                                                        margin-left: (map-get($alert-content-spacing-sizes, $size) / 2);
-
-                                                        // Pseudo classes
-                                                        &:first-child {
-                                                            margin-left: 0;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the alert color modifiers should be declared
-            @if $alert-color-modifiers {
-                // Cycle through all of the base colors
-                @each $color-name, $color-value in $base-colors {
-                    // Modifiers: Base colors
-                    &.is-#{$color-name} {
-                        // Nested selectors
-                        .alert__content {
-                            // Nested selectors
-                            .alert__card {
-                                // Nested selectors
-                                .alert__head {
-                                    background-color: base-color($color-name);
-                                    border-color: base-color('#{$color-name}-darken-3');
-                                    font-color: base-color('#{$color-name}-inverted-text');
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the alert feedback modifiers should be declared
-            @if $alert-feedback-modifiers {
-                // Cycle through all of the feedback colors
-                @each $feedback-name, $color-value in $feedback-colors {
-                    // Modifiers: Feedback colors
-                    &.has-#{$feedback-name} {
-                        // Nested selectors
-                        .alert__content {
-                            // Nested selectors
-                            .alert__card {
-                                // Nested selectors
-                                .alert__head {
-                                    background-color: feedback-color($feedback-name);
-                                    border-color: feedback-color('#{$feedback-name}-darken-3');
-                                    font-color: feedback-color('#{$feedback-name}-inverted-text');
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check if the alert alignment modifier should be declared
-            @if $alert-alignment-modifier {
-                // Modifiers
-                &.alert--center {
-                    justify-content: center;
                 }
             }
         }

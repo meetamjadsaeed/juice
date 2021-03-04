@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> FLIP -> ENTRANCE -> FLIP IN LEFT
-    ========================================================================  */
-
 // Check if the animations with flip in left should be imported
 @if $import-animations and $import-animation-flip-in-left {
     .has-animation {

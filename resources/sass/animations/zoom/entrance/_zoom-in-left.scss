@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM IN LEFT
-    ========================================================================  */
-
 // Check if the animations with zoom in left should be imported
 @if $import-animations and $import-animation-zoom-in-left {
     .has-animation {
@@ -12,14 +8,16 @@
             @keyframes zoom-in-left {
                 from {
                     opacity: 0;
-                    transform: translate3d($animation-zoom-in-distance, 0, 0)
-                               scale3d($animation-zoom-in-scale, $animation-zoom-in-scale, $animation-zoom-in-scale);
+                    transform:
+                        translate3d($animation-zoom-in-distance, 0, 0)
+                        scale3d($animation-zoom-in-scale, $animation-zoom-in-scale, $animation-zoom-in-scale);
                 }
 
                 to {
                     opacity: 1;
-                    transform: translate3d(0, 0, 0)
-                               scale3d(1, 1, 1);
+                    transform:
+                        translate3d(0, 0, 0)
+                        scale3d(1, 1, 1);
                 }
             }
 

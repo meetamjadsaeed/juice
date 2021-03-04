@@ -1,0 +1,310 @@
+@charset "utf-8";
+
+/* ========================================================================
+   JUICE -> COMPONENTS -> MODAL
+   ========================================================================  */
+
+// Check if the components with modal should be imported
+@if $import-components and $import-component-modal {
+    .overlay {
+        // Nested selectors
+        &.modal {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 10vh 0;
+
+            // Nested selectors
+            .modal__close {
+                align-items: center;
+                display: flex;
+                height: 10vh;
+                justify-content: center;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 10vh;
+            }
+
+            .modal__content {
+                animation-duration: $modal-animation-duration;
+                box-shadow: $modal-box-shadow;
+                display: inline-flex;
+                margin: 0 auto;
+                max-height: 100%;
+                max-width: 80vw;
+
+                // Nested selectors
+                .modal__media {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    max-height: 100%;
+                    max-width: 100%;
+                    overflow: hidden;
+
+                    img,
+                    video {
+                        max-height: 100%;
+                        max-width: 100%;
+                    }
+                }
+
+                .modal__card {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                    overflow: hidden;
+
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            width: map-get($modal-card-max-widths, $breakpoint-name);
+
+                            // Nested selectors
+                            .modal__head {
+                                padding: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md')) / 2) (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md'));
+                            }
+
+                            .modal__body,
+                            .modal__foot {
+                                padding: (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md'));
+                            }
+
+                            .modal__foot {
+                                // Nested selectors
+                                .modal__buttons {
+                                    // Nested selectors
+                                    #{$button} {
+                                        margin-left: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md')) / 2);
+
+                                        // Pseudo classes
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Nested selectors
+                    a:not(.button) {
+                        color: $modal-card-link-color;
+
+                        // Pseudo classes
+                        &:hover {
+                            color: $modal-card-link-color-hover;
+                        }
+
+                        &:focus {
+                            color: $modal-card-link-color-focus;
+                        }
+
+                        &:active {
+                            color: $modal-card-link-color-active;
+                        }
+                    }
+
+                    .modal__head,
+                    .modal__body,
+                    .modal__foot {
+                        border: 0 $modal-card-border-style transparent;
+                        border-bottom-width: $modal-card-border-width-divider;
+                        border-left-width: $modal-card-border-width-left;
+                        border-right-width: $modal-card-border-width-right;
+
+                        &:first-child {
+                            border-top-left-radius: $modal-card-border-radius-top-left;
+                            border-top-right-radius: $modal-card-border-radius-top-right;
+                            border-top-width: $modal-card-border-width-top;
+                        }
+
+                        &:last-child {
+                            border-bottom-left-radius: $modal-card-border-radius-bottom-left;
+                            border-bottom-right-radius: $modal-card-border-radius-bottom-right;
+                            border-bottom-width: $modal-card-border-width-bottom;
+                        }
+                    }
+
+                    .modal__head {
+                        align-items: center;
+                        background-color: $modal-card-head-background-color;
+                        border-color: $modal-card-head-border-color;
+                        color: $modal-card-head-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+
+                        // Nested selectors
+                        .modal__headings {
+                            flex-grow: 1;
+
+                            // Nested selectors
+                            #{$heading},
+                            .modal__heading {
+                                margin-bottom: 0;
+                                opacity: 0.5;
+
+                                // Pseudo classes
+                                &:first-child {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        .modal__actions {
+                            align-items: center;
+                            display: flex;
+                        }
+                    }
+
+                    .modal__body {
+                        background-color: $modal-card-body-background-color;
+                        border-color: $modal-card-body-border-color;
+                        color: $modal-card-body-font-color;
+                        flex-grow: 1;
+                        flex-shrink: 1;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                    }
+
+                    .modal__foot {
+                        background-color: $modal-card-foot-background-color;
+                        border-bottom-width: $modal-card-border-width-bottom;
+                        border-color: $modal-card-foot-border-color;
+                        color: $modal-card-foot-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+
+                        // Nested selectors
+                        .modal__buttons {
+                            align-items: center;
+                            display: flex;
+                            flex-grow: 1;
+                            justify-content: flex-end;
+
+                            // Nested selectors
+                            #{$button} {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+
+                    // Check if the modal card size modifiers should be declared
+                    @if $modal-card-size-modifiers {
+                        // Cycle through all of the sizes
+                        @each $size in $sizes {
+                            // Cycle through all of the breakpoints
+                            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                                // Breakpoints
+                                @include breakpoint($breakpoint-name) {
+                                    // Modifiers: Sizes
+                                    &.is-#{$size} {
+                                        // Nested selectors
+                                        .modal__head {
+                                            padding: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                        }
+
+                                        .modal__body,
+                                        .modal__foot {
+                                            padding: (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                        }
+
+                                        .modal__foot {
+                                            // Nested selectors
+                                            .modal__buttons {
+                                                // Nested selectors
+                                                #{$button} {
+                                                    margin-left: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2);
+
+                                                    // Pseudo classes
+                                                    &:first-child {
+                                                        margin-left: 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Check if the modal card size modifiers with breakpoints should be declared
+                                    @if $modal-card-size-modifiers-with-breakpoints {
+                                        // Modifiers: Sizes
+                                        &.is-#{$size}\@#{$breakpoint-name} {
+                                            // Nested selectors
+                                            .modal__head {
+                                                padding: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                            }
+
+                                            .modal__body,
+                                            .modal__foot {
+                                                padding: (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                            }
+
+                                            .modal__foot {
+                                                // Nested selectors
+                                                .modal__buttons {
+                                                    // Nested selectors
+                                                    #{$button} {
+                                                        margin-left: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2);
+
+                                                        // Pseudo classes
+                                                        &:first-child {
+                                                            margin-left: 0;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the modal color modifiers should be declared
+                    @if $modal-card-color-modifiers {
+                        // Cycle through all of the base colors
+                        @each $color-name, $color-value in $base-colors {
+                            // Modifiers: Base colors
+                            &.is-#{$color-name} {
+                                // Nested selectors
+                                .modal__head {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color('#{$color-name}-darken-3');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the modal feedback modifiers should be declared
+                    @if $modal-card-feedback-modifiers {
+                        // Cycle through all of the feedback colors
+                        @each $feedback-name, $color-value in $feedback-colors {
+                            // Modifiers: Feedback colors
+                            &.has-#{$feedback-name} {
+                                // Nested selectors
+                                .modal__head {
+                                    background-color: feedback-color($feedback-name);
+                                    border-color: feedback-color('#{$feedback-name}-darken-3');
+                                    color: feedback-color('#{$feedback-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check if the modal alignment modifier should be declared
+            @if $modal-alignment-modifier {
+                // Modifiers
+                &.modal--center {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

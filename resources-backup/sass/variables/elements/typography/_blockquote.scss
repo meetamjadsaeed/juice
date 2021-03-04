@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> BLOCKQUOTE
+    ========================================================================  */
+
+// Maps
+$blockquote-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 1.5
+) !default;
+
+// Variables
+$blockquote-background-color: base-color('white-darken-2') !default;
+$blockquote-border-color: base-color('white-darken-5') !default;
+$blockquote-border-color-hover: base-color('primary') !default;
+$blockquote-border-radius-bottom-left: 0 !default;
+$blockquote-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$blockquote-border-radius-top-left: 0 !default;
+$blockquote-border-radius-top-right: $global-border-radius-top-right !default;
+$blockquote-border-style: $global-border-style !default;
+$blockquote-border-width-bottom: 0 !default;
+$blockquote-border-width-left: 5px !default;
+$blockquote-border-width-right: 0 !default;
+$blockquote-border-width-top: 0 !default;
+$blockquote-font-color: base-color('white-inverted-text') !default;
+$blockquote-font-size: font-size('lg') !default;
+$blockquote-link-color: $global-link-color !default;
+$blockquote-link-color-hover: $global-link-color-hover !default;
+$blockquote-link-color-focus: $global-link-color-focus !default;
+$blockquote-link-color-active: $global-link-color-active !default;

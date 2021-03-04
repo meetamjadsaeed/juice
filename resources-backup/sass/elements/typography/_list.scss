@@ -1,0 +1,43 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> LIST
+    ========================================================================  */
+
+// Check if the elements with list should be imported
+@if $import-elements and $import-element-list {
+    ul,
+    ol {
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+                margin-left: element-spacing($breakpoint-name);
+            }
+        }
+
+        // Check if the list style type modifiers should be declared
+        @if $list-style-type-modifiers {
+            // Cycle through all of the list style types
+            @each $list-style-type in $list-style-types {
+                // Modifiers
+                &.list--#{$list-style-type} {
+                    list-style-type: $list-style-type;
+                }
+            }
+        }
+
+        // Check if the list clear modifier should be declared
+        @if $list-clear-modifier {
+            // Modifiers
+            &.list--clear {
+                list-style: none;
+                margin-left: 0;
+                margin-right: 0;
+                margin-top: 0;
+                padding: 0;
+            }
+        }
+    }
+}

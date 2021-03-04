@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> FEEDBACK COLOR
+    ========================================================================  */
+
+/**
+ * Get a color from the feedback color palette.
+ * @param  {string}  $name  The feedback color name.
+ * @return {mixed}          The feedback color value, null otherwise.
+ */
+@function feedback-color($name) {
+    // Return the feedback color value
+    @return map($feedback-color-palette, $name);
+}

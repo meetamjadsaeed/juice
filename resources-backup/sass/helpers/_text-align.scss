@@ -1,0 +1,97 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> HELPERS -> TEXT ALIGN
+    ========================================================================  */
+
+.is-left-aligned {
+    text-align: left !important;
+}
+
+.is-center-aligned {
+    text-align: center !important;
+}
+
+.is-right-aligned {
+    text-align: right !important;
+}
+
+// Cycle throuhgh all of the breakpoints
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
+    // Breakpoint
+    @include breakpoint($breakpoint-name) {
+        .is-left-aligned\@#{$breakpoint-name} {
+            text-align: left !important;
+        }
+
+        .is-center-aligned\@#{$breakpoint-name} {
+            text-align: center !important;
+        }
+
+        .is-right-aligned\@#{$breakpoint-name} {
+            text-align: right !important;
+        }
+    }
+}
+
+// Cycle through all of the base colors
+@each $color-name, $color-value in $base-colors {
+    #{$heading},
+    p {
+        // Modifiers: Base colors
+        &.is-#{$color-name} {
+            color: base-color($color-name) !important;
+        }
+    }
+
+    a {
+        // Modifiers: Base colors
+        &.is-#{$color-name}:not(.button) {
+            color: base-color($color-name) !important;
+
+            // Pseudo classes
+            &:hover {
+                color: base-color('#{$color-name}-darken-2');
+            }
+
+            &:hover {
+                color: base-color('#{$color-name}-darken-4');
+            }
+
+            &:active {
+                color: base-color('#{$color-name}-darken-6');
+            }
+        }
+    }
+}
+
+// Cycle through all of the feedback colors
+@each $feedback-name, $feedback-value in $feedback-colors {
+    #{$heading},
+    p {
+        // Modifiers: Base colors
+        &.has-#{$feedback-name} {
+            color: feedback-color($feedback-name) !important;
+        }
+    }
+
+    a {
+        // Modifiers: Feedback colors
+        &.has-#{$feedback-name}:not(.button) {
+            color: feedback-color($feedback-name) !important;
+
+            // Pseudo classes
+            &:hover {
+                color: feedback-color('#{$feedback-name}-darken-2');
+            }
+
+            &:hover {
+                color: feedback-color('#{$feedback-name}-darken-4');
+            }
+
+            &:active {
+                color: feedback-color('#{$feedback-name}-darken-6');
+            }
+        }
+    }
+}

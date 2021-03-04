@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> PROMPT
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Prompt';
 
@@ -33,6 +29,7 @@
         contentAnimationOut: 'fade-out-down',
         continueButtonClass: null,
         continueButtonText: 'Continue',
+        feedback: null,
         heading: '<h4>Heading</h4>',
         inputClass: null,
         inputRegexPattern: /\w/g,
@@ -40,51 +37,26 @@
         overlayAnimationClass: 'has-animation',
         overlayAnimationIn: 'fade-in',
         overlayAnimationOut: 'fade-out',
-        feedback: null,
-        size: null,
         text: 'Lorem ipsum...',
 
-        callbackInitializeBefore: () => {
-            console.log('Prompt: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Prompt: callbackInitializeAfter');
-        },
-        callbackOpenBefore: () => {
-            console.log('Prompt: callbackOpenBefore');
-        },
-        callbackOpenAfter: () => {
-            console.log('Prompt: callbackOpenAfter');
-        },
-        callbackCloseBefore: () => {
-            console.log('Prompt: callbackCloseBefore');
-        },
-        callbackCloseAfter: () => {
-            console.log('Prompt: callbackCloseAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Prompt: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Prompt: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Prompt: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Prompt: callbackDestroyAfter')
-        },
+        callbackCloseBefore: () => {},
+        callbackCloseAfter: () => {},
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackOpenBefore: () => {},
+        callbackOpenAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
 
-        callbackCancel: () => {
-            console.log('Prompt: callbackCancel');
-        },
-        callbackContinue: () => {
-            console.log('Prompt: callbackContinue');
-        }
+        callbackCancel: () => {},
+        callbackContinue: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {object}  options  The plugin options.
      * @return {void}
      */
@@ -102,6 +74,7 @@
 
     /**
      * Build the prompt.
+     *
      * @return {void}
      */
     const buildPrompt = () => {
@@ -167,15 +140,6 @@
             $prompt.classList.add('prompt--center');
         }
 
-        // Check if a size modifier exists
-        if (plugin.settings.size) {
-            // Add the size modifier class to the prompt
-            $prompt.classList.add(`is-${plugin.settings.size}`);
-            $input.classList.add(`is-${plugin.settings.size}`);
-            $cancel.classList.add(`is-${plugin.settings.size}`);
-            $continue.classList.add(`is-${plugin.settings.size}`);
-        }
-
         // Check if a color modifier exists
         if (plugin.settings.color) {
             // Add the color modifier class to the prompt
@@ -198,6 +162,7 @@
 
     /**
      * Click event handler to cancel a prompt.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -214,6 +179,7 @@
 
     /**
      * Click event handler to continue a prompt.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -237,6 +203,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -257,37 +224,39 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
-     * Trap focus to the modal.
-     * @param  {element}  $modal  The modal.
+     * Trap focus to the prompt.
+     * @param  {element}  $prompt  The prompt.
      * @return {void}
      */
-    const trapFocus = ($modal) => {
+    const trapFocus = ($prompt) => {
         // Set the focusable elements
-        const $focusables = $modal.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href]:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        const $focusables = $prompt.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href]:not([disabled]), [tabindex]:not([tabindex="-1"])');
         const $focusable_first = $focusables[0];
         const $focusable_last = $focusables[$focusables.length - 1];
 
         // Set the keycodes
         const keycode_tab = 9;
 
-        // Add a keydown event listener to the modal to trap focus
-        $modal.addEventListener('keydown', function(event) {
+        // Add a keydown event handler to the prompt
+        $prompt.addEventListener('keydown', function(event) {
             // Start a switch event for the keycode
             switch (event.keyCode) {
                 // Tab
-                case keycode_tab:
+                case keycode_tab: {
                     // Check if the shift key was pressed
                     if (event.shiftKey) {
                         // Check if the active element is the first focusable element
@@ -310,17 +279,137 @@
 
                     // Break the switch
                     break;
+                }
             }
         });
     };
 
     /**
-     * Public variables and methods
+     * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Close a prompt.
+         *
+         * @param  {bool}  silent   Suppress callbacks.
+         * @return {void}
+         */
+        close: (silent = false) => {
+            // Set the prompt
+            const $prompt = plugin.this.prompt;
+
+            // Check if the prompt exists and an overlay prompt is open
+            if ($prompt && (document.body.classList.contains('has-overlay') || document.querySelector('.overlay.prompt'))) {
+                // Check if the callbacks should not be suppressed
+                if (!silent) {
+                    // Call the close before callback
+                    plugin.settings.callbackCloseBefore.call();
+                }
+
+                // Set the content
+                const $content = $prompt.querySelector('.prompt__content');
+
+                // Check if the overlay is animated
+                if (plugin.settings.overlayAnimation) {
+                    // Set the prompt animation classes
+                    $prompt.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationOut);
+
+                    // Add an animation end event handler to the prompt
+                    $prompt.addEventListener('animationend', () => {
+                        // Remove the prompt
+                        $prompt.remove();
+
+                        // Remove the overlay state hook from the document body
+                        document.body.classList.remove('has-overlay');
+
+                        // Check if the callbacks should not be suppressed
+                        if (!silent) {
+                            // Call the close after callback
+                            plugin.settings.callbackCloseAfter.call();
+                        }
+                    }, {
+                        once: true
+                    });
+                } else {
+                    // Remove the prompt
+                    $prompt.remove();
+
+                    // Remove the overlay state hook from the document body
+                    document.body.classList.remove('has-overlay');
+
+                    // Check if the callbacks should not be suppressed
+                    if (!silent) {
+                        // Call the close after callback
+                        plugin.settings.callbackCloseAfter.call();
+                    }
+                }
+
+                // Check if the content is animated
+                if (plugin.settings.contentAnimation) {
+                    // Set the content animation classes
+                    $content.classList.add('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
+
+                    // Add an animation end event handler to the content
+                    $content.addEventListener('animationend', () => {
+                        // Set the the content animation classes
+                        $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
+                        $content.classList.add('has-animated');
+                    }, {
+                        once: true
+                    });
+                }
+            }
+        },
+
+        /**
+         * Call the close method silently.
+         *
+         * @return {void}
+         */
+        closeSilently: () => {
+            // Call the close method silently
+            plugin.this.close(true);
+        },
+
+        /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Remove the click event handlers from the prompt
+            document.removeEventListener('click', clickPromptCancelEventHandler);
+            document.removeEventListener('click', clickPromptContinueEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -334,10 +423,8 @@
                 plugin.settings.callbackInitializeBefore.call();
             }
 
-            // Add a click event handler to cancel a prompt
+            // Add the click event handlers to the prompt
             document.addEventListener('click', clickPromptCancelEventHandler);
-
-            // Add a click event handler to continue a prompt
             document.addEventListener('click', clickPromptContinueEventHandler);
 
             // Check if the callbacks should not be suppressed
@@ -352,6 +439,7 @@
 
         /**
          * Open the prompt.
+         *
          * @param  {bool}  silent   Suppress callbacks.
          * @return {void}
          */
@@ -389,8 +477,8 @@
                     // Set the prompt animation classes
                     $prompt.classList.add('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
 
-                    // Add an animation end event listener to the prompt
-                    $prompt.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the prompt
+                    $prompt.addEventListener('animationend', () => {
                         // Set the the prompt animation classes
                         $prompt.classList.remove('is-animating-in', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationIn);
                         $prompt.classList.add('has-animated');
@@ -416,8 +504,8 @@
                     // Set the content animation classes
                     $content.classList.add('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
 
-                    // Add an animation end event listener to the content
-                    $content.addEventListener('animationend', (event) => {
+                    // Add an animation end event handler to the content
+                    $content.addEventListener('animationend', () => {
                         // Set the the content animation classes
                         $content.classList.remove('is-animating-in', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationIn);
                         $content.classList.add('has-animated');
@@ -429,79 +517,18 @@
         },
 
         /**
-         * Close a prompt.
-         * @param  {bool}  silent   Suppress callbacks.
+         * Call the open method silently.
+         *
          * @return {void}
          */
-        close: (silent = false) => {
-            // Set the prompt
-            const $prompt = plugin.this.prompt;
-
-            // Check if the prompt exists and an overlay prompt is open
-            if ($prompt && (document.body.classList.contains('has-overlay') || document.querySelector('.overlay.prompt'))) {
-                // Check if the callbacks should not be suppressed
-                if (!silent) {
-                    // Call the close before callback
-                    plugin.settings.callbackCloseBefore.call();
-                }
-
-                // Set the content
-                const $content = $prompt.querySelector('.prompt__content');
-
-                // Check if the overlay is animated
-                if (plugin.settings.overlayAnimation) {
-                    // Set the prompt animation classes
-                    $prompt.classList.add('is-animating-out', plugin.settings.overlayAnimationClass, plugin.settings.overlayAnimationOut);
-
-                    // Add an animation end event listener to the prompt
-                    $prompt.addEventListener('animationend', (event) => {
-                        // Remove the prompt
-                        $prompt.remove();
-
-                        // Remove the overlay state hook from the document body
-                        document.body.classList.remove('has-overlay');
-
-                        // Check if the callbacks should not be suppressed
-                        if (!silent) {
-                            // Call the close after callback
-                            plugin.settings.callbackCloseAfter.call();
-                        }
-                    }, {
-                        once: true
-                    });
-                } else {
-                    // Remove the prompt
-                    $prompt.remove();
-
-                    // Remove the overlay state hook from the document body
-                    document.body.classList.remove('has-overlay');
-
-                    // Check if the callbacks should not be suppressed
-                    if (!silent) {
-                        // Call the close after callback
-                        plugin.settings.callbackCloseAfter.call();
-                    }
-                }
-
-                // Check if the content is animated
-                if (plugin.settings.contentAnimation) {
-                    // Set the content animation classes
-                    $content.classList.add('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
-
-                    // Add an animation end event listener to the content
-                    $content.addEventListener('animationend', (event) => {
-                        // Set the the content animation classes
-                        $content.classList.remove('is-animating', plugin.settings.contentAnimationClass, plugin.settings.contentAnimationOut);
-                        $content.classList.add('has-animated');
-                    }, {
-                        once: true
-                    });
-                }
-            }
+        openSilently: () => {
+            // Call the open method silently
+            plugin.this.open(true);
         },
 
         /**
          * Refresh the plugins initialization.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -526,65 +553,14 @@
         },
 
         /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Remove the click event handler to cancel a prompt
-            document.removeEventListener('click', clickPromptCancelEventHandler);
-
-            // Remove the click event handler to continue a prompt
-            document.removeEventListener('click', clickPromptContinueEventHandler);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
-         * Call the open method silently.
-         * @return {void}
-         */
-        openSilently: () => {
-            // Call the open method silently
-            plugin.this.open(true);
-        },
-
-        /**
-         * Call the close method silently.
-         * @return {void}
-         */
-        closeSilently: () => {
-            // Call the close method silently
-            plugin.this.close(true);
-        },
-
-        /**
          * Call the refresh method silently.
+         *
          * @return {void}
          */
         refreshSilently: () => {
             // Call the refresh method silently
             plugin.this.refresh(true);
         },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
-        }
     };
 
     // Return the plugin

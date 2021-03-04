@@ -1,41 +1,36 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> COMPONENTS -> ACCORDION
-    ========================================================================  */
+// Accordion maps
+$accordion-colors: (
+    'primary',
+    'charcoal'
+) !default;
 
-// Variables
+$accordion-content-spacing-multipliers: (
+    'small': 0.5,
+    'medium': 1,
+    'large': 1.5
+) !default;
+
+// Accordion variables
 $accordion-background-color: base-color('white') !default;
 $accordion-border-color: base-color('white-darken-3') !default;
-$accordion-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$accordion-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$accordion-border-radius-top-left: $default-border-radius-top-left !default;
-$accordion-border-radius-top-right: $default-border-radius-top-right !default;
-$accordion-border-style: $default-border-style !default;
-$accordion-border-width-bottom: $default-border-width-bottom !default;
-$accordion-border-width-divider: $default-border-width-divider !default;
-$accordion-border-width-left: $default-border-width-left !default;
-$accordion-border-width-right: $default-border-width-right !default;
-$accordion-border-width-top: $default-border-width-top !default;
-$accordion-box-shadow: $default-box-shadow !default;
-$accordion-content-spacing: $default-content-spacing !default;
-$accordion-content-spacing-sizes: (
-    'small': map-get($default-content-spacing-sizes, 'small'),
-    'large': map-get($default-content-spacing-sizes, 'large'),
-    'huge': map-get($default-content-spacing-sizes, 'huge')
-) !default;
-$accordion-element-spacing: $default-element-spacing !default;
-$accordion-font-color: font-color('default') !default;
-$accordion-font-size: $default-font-size !default;
-$accordion-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
+$accordion-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$accordion-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$accordion-border-radius-top-left: $global-border-radius-top-left !default;
+$accordion-border-radius-top-right: $global-border-radius-top-right !default;
+$accordion-border-style: $global-border-style !default;
+$accordion-border-width-bottom: $global-border-width-bottom !default;
+$accordion-border-width-divider: $global-border-width-divider !default;
+$accordion-border-width-left: $global-border-width-left !default;
+$accordion-border-width-right: $global-border-width-right !default;
+$accordion-border-width-top: $global-border-width-top !default;
+$accordion-box-shadow: $global-box-shadow !default;
+$accordion-font-color: font-color() !default;
 $accordion-head-background-color: base-color('white') !default;
 $accordion-head-border-color: base-color('white-darken-3') !default;
-$accordion-head-font-color: font-color('default') !default;
-$accordion-link-color: $default-link-color !default;
-$accordion-link-color-hover: $default-link-color-hover !default;
-$accordion-link-color-focus: $default-link-color-focus !default;
-$accordion-link-color-active: $default-link-color-active !default;
+$accordion-head-font-color: font-color() !default;
+$accordion-link-color: $global-link-color !default;
+$accordion-link-color-hover: $global-link-color-hover !default;
+$accordion-link-color-focus: $global-link-color-focus !default;
+$accordion-link-color-active: $global-link-color-active !default;

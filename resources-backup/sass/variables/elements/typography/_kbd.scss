@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> KBD
+    ========================================================================  */
+
+// Variables
+$kbd-background-color: base-color('charcoal') !default;
+$kbd-border-color: base-color('charcoal-darken-3') !default;
+$kbd-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$kbd-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$kbd-border-radius-top-left: $global-border-radius-top-left !default;
+$kbd-border-radius-top-right: $global-border-radius-top-right !default;
+$kbd-border-style: $global-border-style !default;
+$kbd-border-width-bottom: $global-border-width-bottom !default;
+$kbd-border-width-left: $global-border-width-left !default;
+$kbd-border-width-right: $global-border-width-right !default;
+$kbd-border-width-top: $global-border-width-top !default;
+$kbd-content-spacing: 4px !default;
+$kbd-font-color: base-color('white') !default;
+$kbd-font-family: $global-monoface-typeface !default;
+$kbd-font-size: font-size() !default;
+

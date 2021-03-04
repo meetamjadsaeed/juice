@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> SHOPIFY ASSET
+    ========================================================================  */
+
+/**
+ * Set a shopify asset liquid url string.
+ * @param  {string}  $file  The asset file name.
+ * @return {string}         The shopify asset liquid url string.
+ */
+@function shopify-asset($file) {
+    // Return the shopify asset liquid url string
+    @return unquote('url(\'"{{ "' + $file + '" | asset_url }}"\') ');
+}

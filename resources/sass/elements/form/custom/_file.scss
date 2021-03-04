@@ -1,82 +1,60 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> CUSTOM -> FILE
-    ========================================================================  */
-
 // Check if the elements with custom file should be imported
 @if $import-elements and $import-element-custom-file {
     .custom-file {
-        align-items: center;
-        display: flex;
-        height: $custom-file-height;
-        margin-bottom: $custom-file-element-spacing;
+        border-bottom-left-radius: $custom-file-border-radius-bottom-left;
+        border-bottom-right-radius: $custom-file-border-radius-bottom-right;
+        border-top-left-radius: $custom-file-border-radius-top-left;
+        border-top-right-radius: $custom-file-border-radius-top-right;
+        height: element-height(map($custom-file-element-height-multipliers, 'medium'));
+        margin-bottom: element-spacing();
+        max-width: map($custom-file-max-widths, 'medium');
+        min-width: map($custom-file-min-widths, 'medium');
+        width: 100%;
 
-        // Nested selectors
-        input[type=file] {
-            clip: rect(0, 0, 0, 0);
-            height: 0;
-            opacity: 0;
-            padding: 0;
-            position: absolute;
-            margin: 0;
-            width: 0;
-
-            // Pseudo classes
-            &:focus + div {
-                box-shadow: 0 0 0 $custom-file-accessibility-focus-width $custom-file-accessibility-focus-color;
-            }
-        }
-
-        .custom-file__button,
-        .custom-file__text {
-            border-left-width: 0;
-            border-right-width: 0;
-            height: 100%;
-
-            // Pseudo classes
-            &:first-of-type {
-                border-left-width: $custom-file-border-width-left;
-                border-bottom-left-radius: $custom-file-border-radius-bottom-left;
-                border-top-left-radius: $custom-file-border-radius-top-left;
-
-                // Pseudo classes
-                &:not(.custom-file__text) {
-                    border-right-width: $custom-file-border-width-divider;
-                }
-            }
-
-            &:last-of-type {
-                border-bottom-right-radius: $custom-file-border-radius-bottom-right;
-                border-right-width: $custom-file-border-width-right;
-                border-top-right-radius: $custom-file-border-radius-top-right;
-
-                // Pseudo classes
-                &:not(.custom-file__text) {
-                    border-left-width: $custom-file-border-width-divider;
+        // Pseudo classes
+        &:hover {
+            // Nested selectors
+            .custom-file__elements {
+                // Nested selectors
+                .custom-file__icon,
+                .custom-file__text {
+                    background-color: $custom-file-background-color-hover;
+                    border-color: $custom-file-border-color-hover;
+                    color: $custom-file-font-color-hover;
                 }
             }
         }
 
-        .custom-file__button {
-            @extend #{$button};
-            border-radius: 0;
-            margin: 0;
+        &:focus {
+            box-shadow: 0 0 0 $custom-file-accessibility-focus-width $custom-file-accessibility-focus-color;
+
+            // Nested selectors
+            .custom-file__elements {
+                // Nested selectors
+                .custom-file__icon,
+                .custom-file__text {
+                    background-color: $custom-file-background-color-focus;
+                    border-color: $custom-file-border-color-focus;
+                    color: $custom-file-font-color-focus;
+                }
+            }
         }
 
-        .custom-file__text {
-            @include truncate-text;
-            align-items: center;
-            background-color: $custom-file-background-color;
-            border: 0 $custom-file-border-style $custom-file-border-color;
-            border-bottom-width: $custom-file-border-width-bottom;
-            border-top-width: $custom-file-border-width-top;
-            color: $custom-file-font-color;
-            display: flex;
-            flex-grow: 1;
-            font-family: $custom-file-font-family;
-            font-size: $custom-file-font-size;
-            padding: 0 $custom-file-content-spacing;
+        &:active {
+            box-shadow: 0 0 0 $custom-file-accessibility-focus-width $custom-file-accessibility-focus-color;
+
+            // Nested selectors
+            .custom-file__elements {
+                // Nested selectors
+                .custom-file__icon,
+                .custom-file__text {
+                    background-color: $custom-file-background-color-active;
+                    border-color: $custom-file-border-color-active;
+                    color: $custom-file-font-color-active;
+                }
+            }
         }
 
         // Check if the custom file size modifiers should be declared
@@ -85,11 +63,16 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    height: map-get($custom-file-height-sizes, $size);
+                    height: element-height(map($custom-file-element-height-multipliers, $size));
+                    max-width: map($custom-file-max-widths, $size);
+                    min-width: map($custom-file-min-widths, $size);
 
-                    // Nested selectors
-                    .custom-file__text {
-                        padding: 0 map-get($custom-file-content-spacing-sizes, $size);
+                    .custom-file__elements {
+                        font-size: map($custom-file-font-sizes, $size);
+
+                        .custom-file__text {
+                            padding: content-spacing(map($custom-file-content-spacing-multipliers, $size));
+                        }
                     }
                 }
 
@@ -97,15 +80,20 @@
                 @if $custom-file-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                height: map-get($custom-file-height-sizes, $size);
+                                height: element-height(map($custom-file-element-height-multipliers, $size));
+                                max-width: map($custom-file-max-widths, $size);
+                                min-width: map($custom-file-min-widths, $size);
 
-                                // Nested selectors
-                                .custom-file__text {
-                                    padding: 0 map-get($custom-file-content-spacing-sizes, $size);
+                                .custom-file__elements {
+                                    font-size: map($custom-file-font-sizes, $size);
+
+                                    .custom-file__text {
+                                        padding: content-spacing(map($custom-file-content-spacing-multipliers, $size));
+                                    }
                                 }
                             }
                         }
@@ -120,16 +108,133 @@
             @each $feedback-name, $feedback-value in $feedback-colors {
                 // Modifiers: Feedback colors
                 &.has-#{$feedback-name} {
-                    // Nested selectors
-                    .custom-file__button {
-                        @extend .button.has-#{$feedback-name};
-                        content: ''; // Stops incorrect editor syntax highlighting
+                    // Pseudo classes
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        // Nested selectors
+                        .custom-file__elements {
+                            // Nested selectors
+                            .custom-file__icon,
+                            .custom-file__text {
+                                border-color: feedback-color($feedback-name);
+                            }
+                        }
                     }
 
-                    .custom-file__text {
-                        border-color: feedback-color($feedback-name);
+                    &:focus,
+                    &:active {
+                        box-shadow: 0 0 0 $custom-file-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
+                    }
+
+                    // Nested selectors
+                    input[type=file] {
+                        // Pseudo classes
+                        &:focus + .custom-file__elements,
+                        &:active + .custom-file__elements {
+                            box-shadow: 0 0 0 $custom-file-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
+
+                            // Nested selectors
+                            .custom-file__icon,
+                            .custom-file__text {
+                                border-color: feedback-color($feedback-name);
+                            }
+                        }
+                    }
+
+                    .custom-file__elements {
+                        // Nested selectors
+                        .custom-file__icon,
+                        .custom-file__text {
+                            border-color: feedback-color($feedback-name);
+                        }
                     }
                 }
+            }
+        }
+
+        // Nested selectors
+        input[type=file] {
+            clip: rect(0, 0, 0, 0);
+            height: 0;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            width: 0;
+
+            // Pseudo classes
+            &:focus + .custom-file__elements {
+                box-shadow: 0 0 0 $custom-file-accessibility-focus-width $custom-file-accessibility-focus-color;
+
+                // Nested selectors
+                .custom-file__icon,
+                .custom-file__text {
+                    background-color: $custom-file-background-color-focus;
+                    border-color: $custom-file-border-color-focus;
+                    color: $custom-file-font-color-focus;
+                }
+            }
+
+            &:active + .custom-file__elements {
+                box-shadow: 0 0 0 $custom-file-accessibility-focus-width $custom-file-accessibility-focus-color;
+
+                // Nested selectors
+                .custom-file__icon,
+                .custom-file__text {
+                    background-color: $custom-file-background-color-active;
+                    border-color: $custom-file-border-color-active;
+                    color: $custom-file-font-color-active;
+                }
+            }
+        }
+
+        .custom-file__elements {
+            border-bottom-left-radius: $custom-file-border-radius-bottom-left;
+            border-bottom-right-radius: $custom-file-border-radius-bottom-right;
+            border-top-left-radius: $custom-file-border-radius-top-left;
+            border-top-right-radius: $custom-file-border-radius-top-right;
+            display: flex;
+            flex-direction: column;
+            font-family: $custom-file-font-family;
+            font-size: map($custom-file-font-sizes, 'medium');
+            height: 100%;
+            line-height: normal;
+
+            // Nested selectors
+            .custom-file__icon,
+            .custom-file__text {
+                border: 0 $custom-file-border-style $custom-file-border-color;
+                border-left-width: $custom-file-border-width-left;
+                border-right-width: $custom-file-border-width-right;
+                color: $custom-file-font-color;
+
+                // Pseudo classes
+                &:first-child {
+                    border-bottom-width: $custom-file-border-width-divider;
+                    border-top-left-radius: $custom-file-border-radius-top-left;
+                    border-top-right-radius: $custom-file-border-radius-top-right;
+                    border-top-width: $custom-file-border-width-top;
+                }
+
+                &:last-child {
+                    border-bottom-left-radius: $custom-file-border-radius-bottom-left;
+                    border-bottom-right-radius: $custom-file-border-radius-bottom-right;
+                    border-bottom-width: $custom-file-border-width-bottom;
+                }
+            }
+
+            .custom-file__icon {
+                align-items: center;
+                display: flex;
+                flex-grow: 1;
+                justify-content: center;
+            }
+
+            .custom-file__text {
+                @include truncate-text;
+                padding: content-spacing(map($custom-file-content-spacing-multipliers, 'medium'));
+                text-align: center;
             }
         }
     }

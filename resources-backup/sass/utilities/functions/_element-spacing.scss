@@ -1,0 +1,16 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> ELEMENT SPACING
+    ========================================================================  */
+
+/**
+ * Get a element spacing.
+ * @param  {string}  $breakpoint  The breakpoint name.
+ * @param  {int}     $multiplier  The element spacing multiplier.
+ * @return {mixed}                The element spacing, null otherwise.
+ */
+@function element-spacing($breakpoint: 'm', $multiplier: 0) {
+    // Return the element spacing
+    @return vertical-rhythm($breakpoint, $multiplier);
+}

@@ -1,39 +1,8 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> PARAGRAPH
-    ========================================================================  */
-
 // Check if the elements with paragraph should be imported
 @if $import-elements and $import-element-paragraph {
     p {
-        font-size: $paragraph-font-size;
-        margin: 0;
-        margin-bottom: $paragraph-element-spacing;
-
-        // Check if the paragraph size modifiers should be declared
-        @if $paragraph-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($paragraph-font-size-sizes, $size);
-                }
-
-                // Check if the paragraph size modifiers with breakpoints should be declared
-                @if $paragraph-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($paragraph-font-size-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        margin-bottom: element-spacing();
     }
 }

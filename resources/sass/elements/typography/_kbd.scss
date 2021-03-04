@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> KBD
-    ========================================================================  */
-
 // Check if the elements with kbd should be imported
 @if $import-elements and $import-element-kbd {
     kbd {
@@ -19,32 +15,6 @@
         border-top-width: $kbd-border-width-top;
         color: $kbd-font-color;
         font-family: $kbd-font-family;
-        font-size: $kbd-font-size;
         padding: $kbd-content-spacing;
-
-        // Check if the kbd size modifiers should be declared
-        @if $kbd-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map($kbd-font-size-sizes, $size);
-                }
-
-                // Check if the kbd size modifiers with breakpoints should be declared
-                @if $kbd-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map($kbd-font-size-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

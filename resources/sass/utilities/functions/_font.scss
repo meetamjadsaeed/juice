@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a font from the fonts.
+ *
+ * @param  {string}  $name  The font name.
+ * @return {mixed}          The font, null otherwise.
+ */
+@function font($name: 'primary') {
+    // Return the font
+    @return var(--font-family-#{$name});
+}

@@ -1,0 +1,20 @@
+@charset 'utf-8';
+
+/**
+ * A map get wrapper for simplifying variable extraction from maps.
+ *
+ * @param  {string}  $map  The map.
+ * @param  {string}  $key  The map key.
+ * @return {mixed}
+ */
+@function map($map, $key) {
+    // Check if the key exists in the map
+    @if map-has-key($map, $key) {
+        // Return the key value
+        @return map-get($map, $key);
+    } @else {
+        // Display a warning and return null
+        @warn 'Unknown map key "#{$key}"';
+        @return null;
+    }
+}

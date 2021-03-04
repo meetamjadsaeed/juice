@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> FADE -> ENTRANCE -> FADE IN DOWN
-    ========================================================================  */
-
 // Check if the animations with fade in down should be imported
 @if $import-animations and $import-animation-fade-in-down {
     .has-animation {
@@ -12,7 +8,7 @@
             @keyframes fade-in-down {
                 from {
                     opacity: 0;
-                    transform: translate3d(0, (0px - $animation-fade-in-distance), 0);
+                    transform: translate3d(0, (0 - $animation-fade-in-distance), 0);
                 }
 
                 to {

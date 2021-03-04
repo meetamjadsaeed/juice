@@ -1,8 +1,4 @@
-/*  ========================================================================
-    JUICE -> COMPONENTS -> ACCORDION
-    ========================================================================  */
-
-;(function (root, factory) {
+(function (root, factory) {
     // Set the plugin name
     const plugin_name = 'Accordion';
 
@@ -27,34 +23,19 @@
         toggle: 'slide',
         toggleDuration: 200,
 
-        callbackInitializeBefore: () => {
-            console.log('Accordion: callbackInitializeBefore');
-        },
-        callbackInitializeAfter: () => {
-            console.log('Accordion: callbackInitializeAfter');
-        },
-        callbackToggleBefore: () => {
-            console.log('Accordion: callbackToggleBefore');
-        },
-        callbackToggleAfter: () => {
-            console.log('Accordion: callbackToggleAfter');
-        },
-        callbackRefreshBefore: () => {
-            console.log('Accordion: callbackRefreshBefore');
-        },
-        callbackRefreshAfter: () => {
-            console.log('Accordion: callbackRefreshAfter');
-        },
-        callbackDestroyBefore: () => {
-            console.log('Accordion: callbackDestroyBefore');
-        },
-        callbackDestroyAfter: () => {
-            console.log('Accordion: callbackDestroyAfter');
-        }
+        callbackDestroyBefore: () => {},
+        callbackDestroyAfter: () => {},
+        callbackInitializeBefore: () => {},
+        callbackInitializeAfter: () => {},
+        callbackRefreshBefore: () => {},
+        callbackRefreshAfter: () => {},
+        callbackToggleBefore: () => {},
+        callbackToggleAfter: () => {}
     };
 
     /**
      * Constructor.
+     *
      * @param  {element}  element  The initialized element.
      * @param  {object}   options  The plugin options.
      * @return {void}
@@ -74,6 +55,7 @@
 
     /**
      * Click event handler to toggle an accordion item.
+     *
      * @param  {object}  event  The event object.
      * @return {void}
      */
@@ -110,7 +92,7 @@
                     }
 
                     // Set the next item sibling
-                    $sibling = $sibling.nextSibling
+                    $sibling = $sibling.nextSibling;
                 }
 
                 // Cycle through all of the item siblings
@@ -130,6 +112,7 @@
 
     /**
      * Check if an event target is a target selector or a descendant of a target selector.
+     *
      * @param  {element}  target     The event target.
      * @param  {string}   attribute  The event target attribute to check.
      * @param  {string}   selector   The id/class selector.
@@ -150,24 +133,61 @@
                 return false;
 
             // Class
-            case 'class':
+            case 'class': {
                 // Return true if event target, false otherwise
                 return ((target.classList.contains(selector)) || target.closest(`.${selector}`));
+            }
 
             // Id
-            case ('id'):
+            case 'id': {
                 // Return true if event target, false otherwise
                 return ((target.id == selector) || target.closest(`#${selector}`));
+            }
         }
     };
 
     /**
      * Public variables and methods.
+     *
      * @type {object}
      */
     Plugin.prototype = {
         /**
+         * Destroy an existing initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        destroy: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy before callback
+                plugin.settings.callbackDestroyBefore.call();
+            }
+
+            // Remove the click event handler from the accordion
+            document.removeEventListener('click', clickAccordionToggleEventHandler);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the destroy after callback
+                plugin.settings.callbackDestroyAfter.call();
+            }
+        },
+
+        /**
+         * Call the destroy method silently.
+         *
+         * @return {void}
+         */
+        destroySilently: () => {
+            // Call the destroy method silently
+            plugin.this.destroy(true);
+        },
+
+        /**
          * Initialize the plugin.
+         *
          * @param  {bool}  silent  Suppress callbacks.
          * @return {void}
          */
@@ -225,7 +245,7 @@
                 });
             }
 
-            // Add a click event handler to toggle an accordion item
+            // Add a click event handler to the accordion
             document.addEventListener('click', clickAccordionToggleEventHandler);
 
             // Check if the callbacks should not be suppressed
@@ -236,7 +256,44 @@
         },
 
         /**
+         * Refresh the plugins initialization.
+         *
+         * @param  {bool}  silent  Suppress callbacks.
+         * @return {void}
+         */
+        refresh: (silent = false) => {
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh before callback
+                plugin.settings.callbackRefreshBefore.call();
+            }
+
+            // Destroy the existing initialization
+            plugin.this.destroy(silent);
+
+            // Initialize the plugin
+            plugin.this.initialize(silent);
+
+            // Check if the callbacks should not be suppressed
+            if (!silent) {
+                // Call the refresh after callback
+                plugin.settings.callbackRefreshAfter.call();
+            }
+        },
+
+        /**
+         * Call the refresh method silently.
+         *
+         * @return {void}
+         */
+        refreshSilently: () => {
+            // Call the refresh method silently
+            plugin.this.refresh(true);
+        },
+
+        /**
          * Toggle an accordion item.
+         *
          * @param  {element}  $item   The accordion item.
          * @param  {bool}     silent  Suppress callbacks.
          * @return {void}
@@ -278,7 +335,7 @@
                             break;
 
                         // Slide
-                        case 'slide':
+                        case 'slide': {
                             // Set the accordion animation classes
                             $accordion.classList.remove('has-animated');
                             $accordion.classList.add('is-animating');
@@ -343,9 +400,10 @@
 
                             // Break the switch
                             break;
+                        }
 
                         // Fade
-                        case 'fade':
+                        case 'fade': {
                             // Set the accordion animation classes
                             $accordion.classList.remove('has-animated');
                             $accordion.classList.add('is-animating');
@@ -410,60 +468,15 @@
 
                             // Break the switch
                             break;
+                        }
                     }
                 }
             }
         },
 
         /**
-         * Refresh the plugins initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        refresh: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the refresh before callback
-                plugin.settings.callbackRefreshBefore.call();
-            }
-
-            // Destroy the existing initialization
-            plugin.this.destroy(silent);
-
-            // Initialize the plugin
-            plugin.this.initialize(silent);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the refresh after callback
-                plugin.settings.callbackRefreshAfter.call();
-            }
-        },
-
-        /**
-         * Destroy an existing initialization.
-         * @param  {bool}  silent  Suppress callbacks.
-         * @return {void}
-         */
-        destroy: (silent = false) => {
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy before callback
-                plugin.settings.callbackDestroyBefore.call();
-            }
-
-            // Remove the click event handler to toggle an accordion item
-            document.removeEventListener('click', clickAccordionToggleEventHandler);
-
-            // Check if the callbacks should not be suppressed
-            if (!silent) {
-                // Call the destroy after callback
-                plugin.settings.callbackDestroyAfter.call();
-            }
-        },
-
-        /**
          * Call the toggle method silently.
+         *
          * @param  {element}  $item  The accordion item.
          * @return {void}
          */
@@ -471,24 +484,6 @@
             // Call the toggle method silently
             plugin.this.toggle($item, true);
         },
-
-        /**
-         * Call the refresh method silently.
-         * @return {void}
-         */
-        refreshSilently: () => {
-            // Call the refresh method silently
-            plugin.this.refresh(true);
-        },
-
-        /**
-         * Call the destroy method silently.
-         * @return {void}
-         */
-        destroySilently: () => {
-            // Call the destroy method silently
-            plugin.this.destroy(true);
-        }
     };
 
     // Return the plugin

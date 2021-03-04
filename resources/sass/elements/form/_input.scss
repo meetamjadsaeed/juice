@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> INPUT
-    ========================================================================  */
-
 // Check if the elements with input should be imported
 @if $import-elements and $import-element-input {
     input {
@@ -14,22 +10,21 @@
         border-bottom-right-radius: $input-border-radius-bottom-right;
         border-bottom-width: $input-border-width-bottom;
         border-left-width: $input-border-width-left;
+        border-right-width: $input-border-width-right;
         border-top-left-radius: $input-border-radius-top-left;
         border-top-right-radius: $input-border-radius-top-right;
         border-top-width: $input-border-width-top;
-        border-right-width: $input-border-width-right;
         color: $input-font-color;
         display: flex;
         font-family: $input-font-family;
-        font-size: $input-font-size;
-        height: $input-height;
+        font-size: map($input-font-sizes, 'medium');
+        height: element-height(map($input-element-height-multipliers, 'medium'));
         line-height: normal;
-        margin: 0;
-        margin-bottom: $input-element-spacing;
+        margin-bottom: element-spacing();
         max-width: 100%;
-        padding: 0 $input-content-spacing;
-        position: relative;
         outline: none;
+        padding: 0 content-spacing(map($input-content-spacing-multipliers, 'medium'));
+        position: relative;
         width: 100%;
         z-index: stack-index('default');
 
@@ -59,15 +54,12 @@
 
         // Pseudo elements
         &::placeholder {
-            color: $input-placeholder-color
+            color: $input-placeholder-color;
         }
 
         // Modifiers: Props
         &[disabled] {
             @include disabled();
-            background-color: $input-background-color !important;
-            border-color: $input-border-color !important;
-            color: $input-font-color !important;
         }
 
         // Check if the input size modifiers should be declared
@@ -76,22 +68,46 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($input-font-size-sizes, $size);
-                    height: map-get($input-height-sizes, $size);
-                    padding: 0 map-get($input-content-spacing-sizes, $size);
+                    font-size: map($input-font-sizes, $size);
+                    height: element-height(map($input-element-height-multipliers, $size));
+                    padding: 0 content-spacing(map($input-content-spacing-multipliers, $size));
+
+                    // Modifiers
+                    &[type=checkbox],
+                    &[type=radio] {
+                        margin-right: content-spacing(map($input-content-spacing-multipliers, $size));
+                    }
+
+                    &[type=color] {
+                        max-width: element-height(map($input-element-height-multipliers, $size) * 1.5);
+                        min-width: element-height(map($input-element-height-multipliers, $size) * 1.5);
+                        padding: content-spacing(map($input-content-spacing-multipliers, $size) / 2);
+                    }
                 }
 
                 // Check if the input size modifiers with breakpoints should be declared
                 @if $input-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($input-font-size-sizes, $size);
-                                height: map-get($input-height-sizes, $size);
-                                padding: 0 map-get($input-content-spacing-sizes, $size);
+                                font-size: map($input-font-sizes, $size);
+                                height: element-height(map($input-element-height-multipliers, $size));
+                                padding: 0 content-spacing(map($input-content-spacing-multipliers, $size));
+
+                                // Modifiers
+                                &[type=checkbox],
+                                &[type=radio] {
+                                    margin-right: content-spacing(map($input-content-spacing-multipliers, $size));
+                                }
+
+                                &[type=color] {
+                                    max-width: element-height(map($input-element-height-multipliers, $size) * 1.5);
+                                    min-width: element-height(map($input-element-height-multipliers, $size) * 1.5);
+                                    padding: content-spacing(map($input-content-spacing-multipliers, $size) / 2);
+                                }
                             }
                         }
                     }
@@ -111,11 +127,6 @@
                     &:focus,
                     &:active {
                         box-shadow: 0 0 0 $input-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
-                    }
-
-                    // Modifiers: Props
-                    &[disabled] {
-                        border-color: feedback-color($feedback-name) !important;
                     }
                 }
             }
@@ -137,72 +148,64 @@
                 border-radius: 999px;
             }
         }
-    }
 
-    // Checkbox and radio
-    input[type=checkbox],
-    input[type=radio] {
-        cursor: pointer;
-        display: inline-flex;
-        height: auto;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 0;
-        padding: 0;
-        position: relative;
-        top: 2px;
-        width: auto;
-    }
+        // Modifiers
+        &[type=checkbox],
+        &[type=radio] {
+            cursor: pointer;
+            display: inline-flex;
+            height: auto;
+            padding: 0;
+            position: relative;
+            margin-right: content-spacing(map($input-content-spacing-multipliers, 'medium'));
+            width: auto;
+        }
 
-    // Color
-    input[type=color] {
-        cursor: pointer;
-        display: inline-flex;
-        max-width: 60px;
-        min-width: 60px;
-        padding: 5px;
+        &[type=color] {
+            cursor: pointer;
+            display: inline-flex;
+            max-width: element-height(map($input-element-height-multipliers, 'medium') * 1.5);
+            min-width: element-height(map($input-element-height-multipliers, 'medium') * 1.5);
+            padding: content-spacing(map($input-content-spacing-multipliers, 'medium') / 2);
 
-        // Pseudo elements
-        &::-webkit-color-swatch-wrapper {
-            background-color: $input-background-color;
-            border-bottom-left-radius: $input-border-radius-bottom-left;
-            border-bottom-right-radius: $input-border-radius-bottom-right;
-            border-top-left-radius: $input-border-radius-top-left;
-            border-top-right-radius: $input-border-radius-top-right;
+            // Pseudo elements
+            &::-webkit-color-swatch-wrapper {
+                background-color: $input-background-color;
+                border-bottom-left-radius: $input-border-radius-bottom-left;
+                border-bottom-right-radius: $input-border-radius-bottom-right;
+                border-top-left-radius: $input-border-radius-top-left;
+                border-top-right-radius: $input-border-radius-top-right;
+                padding: 0;
+            }
+
+            &::-webkit-color-swatch {
+                border: 0;
+                border-bottom-left-radius: $input-border-radius-bottom-left;
+                border-bottom-right-radius: $input-border-radius-bottom-right;
+                border-top-left-radius: $input-border-radius-top-left;
+                border-top-right-radius: $input-border-radius-top-right;
+            }
+
+            // Modifiers
+            &.input--pill {
+                // Pseudo elements
+                &::-webkit-color-swatch {
+                    border-radius: 999px;
+                }
+            }
+        }
+
+        &[type=file] {
+            border: 0;
             padding: 0;
         }
 
-        &::-webkit-color-swatch {
-            border: none;
-            border-bottom-left-radius: $input-border-radius-bottom-left;
-            border-bottom-right-radius: $input-border-radius-bottom-right;
-            border-top-left-radius: $input-border-radius-top-left;
-            border-top-right-radius: $input-border-radius-top-right;
+        &[type=radio] {
+            border-radius: 100%;
         }
 
-        // Modifiers
-        &.input--pill {
-            // Pseudo elements
-            &::-webkit-color-swatch {
-                border-radius: 999px;
-            }
+        &[type=range] {
+            box-shadow: none !important;
         }
-    }
-
-    // File
-    input[type=file] {
-        border: none;
-        height: auto;
-        padding: 0;
-    }
-
-    // Radio
-    input[type=radio] {
-        border-radius: 100%;
-    }
-
-    // Range
-    input[type=range] {
-        box-shadow: none !important;
     }
 }

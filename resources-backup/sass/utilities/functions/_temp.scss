@@ -1,0 +1,47 @@
+@mixin vrs($element-spacing: false, $font-sizes: false, $content-spacings: false) {
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoint
+        @include breakpoint($breakpoint-name) {
+            @if ($element-spacing) {
+                margin-bottom: element-spacing($breakpoint-name);
+            }
+
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    @if ($font-sizes) {
+                        @include vertical-rhythm($breakpoint-name, map-get($font-sizes, $size));
+                    }
+
+                    @if ($content-spacings) {
+                        padding: content-spacing($breakpoint-name) * map-get($content-spacings, $size);
+                    }
+                }
+            }
+        }
+    }
+
+    // Cycle through all of the sizes
+    @each $size in $sizes {
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoint
+            @include breakpoint($breakpoint-name) {
+                // Modifiers: Sizes
+                &.is-#{$size}\@#{$breakpoint-name} {
+                    @if ($font-sizes) {
+                        @include vertical-rhythm($breakpoint-name, map-get($font-sizes, $size));
+                    }
+
+                    @if ($content-spacings) {
+                        padding: content-spacing($breakpoint-name) * map-get($content-spacings, $size);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include vrs(true, $blockquote-font-sizes, $blockquote-content-spacing-multipliers);

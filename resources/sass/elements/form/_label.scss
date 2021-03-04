@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> FORM -> LABEL
-    ========================================================================  */
-
 // Check if the elements with label should be imported
 @if $import-elements and $import-element-label {
     label {
@@ -11,40 +7,11 @@
         cursor: pointer;
         display: block;
         font-family: $label-font-family;
-        font-size: $label-font-size;
-        margin: 0;
-        margin-bottom: $label-element-spacing;
-        padding: 0;
         user-select: none;
 
         // Modifiers: Props
         &[disabled] {
             @include disabled();
-        }
-
-        // Check if the label size modifiers should be declared
-        @if $label-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($label-font-size-sizes, $size);
-                }
-
-                // Check if the label size modifiers with breakpoints should be declared
-                @if $label-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($label-font-size-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         // Check if the label feedback modifiers should be declared

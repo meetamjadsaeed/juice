@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> FUNCTIONS -> STRIP UNIT
+    ========================================================================  */
+
+/**
+ * Strip the unit of measurement from a property value.
+ * @param  {string}  $number  The unit of measurement.
+ * @return {mixed}            The unitless measurement.
+ */
+@function strip-unit($number) {
+    // Check if the number is a number and not unitless
+    @if type-of($number) == 'number' and not unitless($number) {
+        // Return the unitless measurement
+        @return $number / ($number * 0 + 1);
+    }
+
+    // Return the unitless measurement
+    @return $number;
+}
+
+

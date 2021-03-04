@@ -1,37 +1,59 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> FORM -> CUSTOM -> FILE
-    ========================================================================  */
+// Custom file maps
+$custom-file-content-spacing-multipliers: (
+    'small': 0.25,
+    'medium': 0.5,
+    'large': 1
+) !default;
 
-// Variables
-$custom-file-accessibility-focus-width: $default-accessibility-focus-width !default;
-$custom-file-accessibility-focus-color: $default-accessibility-focus-color !default;
+$custom-file-font-sizes: (
+    'small': font-size('small') - 0.1,
+    'medium': font-size() - 0.1,
+    'large': font-size('large') - 0.1
+) !default;
+
+$custom-file-element-height-multipliers: (
+    'small': 4,
+    'medium': 5,
+    'large': 6
+) !default;
+
+$custom-file-max-widths: (
+    'small': 125px,
+    'medium': 150px,
+    'large': 175px
+) !default;
+
+$custom-file-min-widths: (
+    'small': 75px,
+    'medium': 100px,
+    'large': 125px
+) !default;
+
+// Custom file variables
+$custom-file-accessibility-focus-width: $global-accessibility-focus-width !default;
+$custom-file-accessibility-focus-color: $global-accessibility-focus-color !default;
 $custom-file-background-color: base-color('white') !default;
+$custom-file-background-color-hover: base-color('white') !default;
+$custom-file-background-color-focus: base-color('white') !default;
+$custom-file-background-color-active: base-color('white') !default;
 $custom-file-border-color: base-color('white-darken-3') !default;
-$custom-file-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$custom-file-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$custom-file-border-radius-top-left: $default-border-radius-top-left !default;
-$custom-file-border-radius-top-right: $default-border-radius-top-right !default;
-$custom-file-border-style: $default-border-style !default;
-$custom-file-border-width-bottom: $default-border-width-bottom !default;
-$custom-file-border-width-divider: $default-border-width-divider !default;
-$custom-file-border-width-left: $default-border-width-left !default;
-$custom-file-border-width-right: $default-border-width-right !default;
-$custom-file-border-width-top: $default-border-width-top !default;
-$custom-file-content-spacing: ($default-content-spacing / 2) !default;
-$custom-file-content-spacing-sizes: (
-    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
-    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
-    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
-) !default;
-$custom-file-element-spacing: $default-element-spacing !default;
-$custom-file-font-color: base-color('white-inverted-text') !default;
-$custom-file-font-family: $default-primary-typeface !default;
-$custom-file-font-size: $default-font-size !default;
-$custom-file-height: $default-element-height !default;
-$custom-file-height-sizes: (
-    'small': map-get($default-element-height-sizes, 'small'),
-    'large': map-get($default-element-height-sizes, 'large'),
-    'huge': map-get($default-element-height-sizes, 'huge')
-) !default;
+$custom-file-border-color-hover: base-color('white-darken-6') !default;
+$custom-file-border-color-focus: feedback-color('info') !default;
+$custom-file-border-color-active: feedback-color('info') !default;
+$custom-file-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$custom-file-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$custom-file-border-radius-top-left: $global-border-radius-top-left !default;
+$custom-file-border-radius-top-right: $global-border-radius-top-right !default;
+$custom-file-border-style: $global-border-style !default;
+$custom-file-border-width-bottom: $global-border-width-bottom !default;
+$custom-file-border-width-divider: $global-border-width-divider !default;
+$custom-file-border-width-left: $global-border-width-left !default;
+$custom-file-border-width-right: $global-border-width-right !default;
+$custom-file-border-width-top: $global-border-width-top !default;
+$custom-file-font-color: base-color('white-text') !default;
+$custom-file-font-color-hover: base-color('white-text') !default;
+$custom-file-font-color-focus: base-color('white-text') !default;
+$custom-file-font-color-active: base-color('white-text') !default;
+$custom-file-font-family: $global-primary-typeface !default;

@@ -1,0 +1,83 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> PRE
+    ========================================================================  */
+
+// Check if the elements with pre should be imported
+@if $import-elements and $import-element-pre {
+    pre {
+        display: block;
+        background-color: $pre-background-color;
+        border: 0 $pre-border-style $pre-border-color;
+        border-bottom-left-radius: $pre-border-radius-bottom-left;
+        border-bottom-right-radius: $pre-border-radius-bottom-right;
+        border-bottom-width: $pre-border-width-bottom;
+        border-left-width: $pre-border-width-left;
+        border-top-left-radius: $pre-border-radius-top-left;
+        border-top-right-radius: $pre-border-radius-top-right;
+        border-top-width: $pre-border-width-top;
+        border-right-width: $pre-border-width-right;
+        box-shadow: none;
+        color: $pre-font-color;
+        font-family: $pre-font-family;
+        position: relative;
+        overflow-x: auto;
+        white-space: pre-wrap;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+                padding: (content-spacing($breakpoint-name) * map-get($pre-content-spacing-multipliers, 'md'));
+            }
+        }
+
+        // Pseudo elements
+        &::after {
+            content: attr(data-language);
+            display: block;
+            font-family: $global-monoface-typeface;
+            font-size: 75%;
+            padding: 5px 10px;
+            position: absolute;
+            right: 0;
+            text-transform: uppercase;
+            top: 0;
+        }
+
+        // Nested selectors
+        code {
+            background-color: transparent;
+            color: inherit;
+            font-size: inherit;
+            white-space: nowrap;
+        }
+
+        // Check if the pre size modifiers should be declared
+        @if $pre-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            padding: (content-spacing($breakpoint-name) * map-get($pre-content-spacing-multipliers, $size));
+                        }
+
+                        // Check if the pre size modifiers with breakpoints should be declared
+                        @if $pre-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                padding: (content-spacing($breakpoint-name) * map-get($pre-content-spacing-multipliers, $size));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

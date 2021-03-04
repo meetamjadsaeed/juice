@@ -1,12 +1,27 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> FORM -> INPUT
-    ========================================================================  */
+// Input maps
+$input-content-spacing-multipliers: (
+    'small': 0.25,
+    'medium': 0.5,
+    'large': 0.75
+) !default;
 
-// Variables
-$input-accessibility-focus-width: $default-accessibility-focus-width !default;
-$input-accessibility-focus-color: $default-accessibility-focus-color !default;
+$input-font-sizes: (
+    'small': font-size('small') - 0.1,
+    'medium': font-size() - 0.1,
+    'large': font-size('large') - 0.1
+) !default;
+
+$input-element-height-multipliers: (
+    'small': 1.25,
+    'medium': 1.5,
+    'large': 1.75
+) !default;
+
+// Input variables
+$input-accessibility-focus-width: $global-accessibility-focus-width !default;
+$input-accessibility-focus-color: $global-accessibility-focus-color !default;
 $input-background-color: base-color('white') !default;
 $input-background-color-hover: base-color('white') !default;
 $input-background-color-focus: base-color('white') !default;
@@ -15,37 +30,18 @@ $input-border-color: base-color('white-darken-3') !default;
 $input-border-color-hover: base-color('white-darken-6') !default;
 $input-border-color-focus: feedback-color('info') !default;
 $input-border-color-active: feedback-color('info') !default;
-$input-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$input-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$input-border-radius-top-left: $default-border-radius-top-left !default;
-$input-border-radius-top-right: $default-border-radius-top-right !default;
-$input-border-style: $default-border-style !default;
-$input-border-width-bottom: $default-border-width-bottom !default;
-$input-border-width-left: $default-border-width-left !default;
-$input-border-width-right: $default-border-width-right !default;
-$input-border-width-top: $default-border-width-top !default;
-$input-content-spacing: ($default-content-spacing / 2) !default;
-$input-content-spacing-sizes: (
-    'small': (map-get($default-content-spacing-sizes, 'small') / 2),
-    'large': (map-get($default-content-spacing-sizes, 'large') / 2),
-    'huge': (map-get($default-content-spacing-sizes, 'huge') / 2)
-) !default;
-$input-element-spacing: $default-element-spacing !default;
-$input-font-color: base-color('white-inverted-text') !default;
-$input-font-color-hover: base-color('white-inverted-text') !default;
-$input-font-color-focus: base-color('white-inverted-text') !default;
-$input-font-color-active: base-color('white-inverted-text') !default;
-$input-font-family: $default-primary-typeface !default;
-$input-font-size: $default-font-size !default;
-$input-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
-$input-height: $default-element-height !default;
-$input-height-sizes: (
-    'small': map-get($default-element-height-sizes, 'small'),
-    'large': map-get($default-element-height-sizes, 'large'),
-    'huge': map-get($default-element-height-sizes, 'huge')
-) !default;
+$input-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$input-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$input-border-radius-top-left: $global-border-radius-top-left !default;
+$input-border-radius-top-right: $global-border-radius-top-right !default;
+$input-border-style: $global-border-style !default;
+$input-border-width-bottom: $global-border-width-bottom !default;
+$input-border-width-left: $global-border-width-left !default;
+$input-border-width-right: $global-border-width-right !default;
+$input-border-width-top: $global-border-width-top !default;
+$input-font-color: base-color('white-text') !default;
+$input-font-color-hover: base-color('white-text') !default;
+$input-font-color-focus: base-color('white-text') !default;
+$input-font-color-active: base-color('white-text') !default;
+$input-font-family: $global-primary-typeface !default;
 $input-placeholder-color: base-color('white-darken-6') !default;

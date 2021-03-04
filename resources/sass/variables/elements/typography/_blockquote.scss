@@ -1,37 +1,34 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> BLOCKQUOTE
-    ========================================================================  */
+// Blockquote maps
+$blockquote-content-spacing-multipliers: (
+    'small': 0.5,
+    'medium': 1,
+    'large': 1.5
+) !default;
 
-// Variables
+$blockquote-font-sizes: (
+    'small': font-size('small') + 0.1,
+    'medium': font-size() + 0.1,
+    'large': font-size('large') + 0.1
+) !default;
+
+// Blockquote variables
 $blockquote-background-color: base-color('white-darken-2') !default;
 $blockquote-border-color: base-color('white-darken-5') !default;
 $blockquote-border-color-hover: base-color('primary') !default;
 $blockquote-border-radius-bottom-left: 0 !default;
-$blockquote-border-radius-bottom-right: $default-border-radius-bottom-right !default;
+$blockquote-border-radius-bottom-right: $global-border-radius-bottom-right !default;
 $blockquote-border-radius-top-left: 0 !default;
-$blockquote-border-radius-top-right: $default-border-radius-top-right !default;
-$blockquote-border-style: $default-border-style !default;
+$blockquote-border-radius-top-right: $global-border-radius-top-right !default;
+$blockquote-border-style: $global-border-style !default;
 $blockquote-border-width-bottom: 0 !default;
 $blockquote-border-width-left: 5px !default;
 $blockquote-border-width-right: 0 !default;
 $blockquote-border-width-top: 0 !default;
-$blockquote-content-spacing: $default-content-spacing !default;
-$blockquote-content-spacing-sizes: (
-    'small': map-get($default-content-spacing-sizes, 'small'),
-    'large': map-get($default-content-spacing-sizes, 'large'),
-    'huge': map-get($default-content-spacing-sizes, 'huge')
-) !default;
-$blockquote-element-spacing: $default-element-spacing !default;
-$blockquote-font-color: base-color('white-inverted-text') !default;
-$blockquote-font-size: $default-font-size + 0.2em !default;
-$blockquote-font-size-sizes: (
-    'small': (map-get($default-font-size-sizes, 'small') + 0.2em),
-    'large': (map-get($default-font-size-sizes, 'large') + 0.2em),
-    'huge': (map-get($default-font-size-sizes, 'huge') + 0.2em)
-) !default;
-$blockquote-link-color: $default-link-color !default;
-$blockquote-link-color-hover: $default-link-color-hover !default;
-$blockquote-link-color-focus: $default-link-color-focus !default;
-$blockquote-link-color-active: $default-link-color-active !default;
+$blockquote-font-color: base-color('white-text') !default;
+$blockquote-font-size: font-size('large') !default;
+$blockquote-link-color: $global-link-color !default;
+$blockquote-link-color-hover: $global-link-color-hover !default;
+$blockquote-link-color-focus: $global-link-color-focus !default;
+$blockquote-link-color-active: $global-link-color-active !default;

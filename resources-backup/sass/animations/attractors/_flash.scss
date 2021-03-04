@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> ATTRACTORS -> FLASH
+    ========================================================================  */
+
+// Check if the animations with flash should be imported
+@if $import-animations and $import-animation-flash {
+    .has-animation {
+        // Nested selectors
+        &.flash {
+            @keyframes flash {
+                from,
+                to {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0.2;
+                }
+            }
+
+            animation-delay: $animation-attractor-flash-delay;
+            animation-duration: $animation-attractor-flash-duration;
+            animation-iteration-count: $animation-attractor-flash-iteration-count;
+            animation-name: flash;
+            animation-timing-function: $animation-attractor-flash-easing;
+        }
+    }
+}

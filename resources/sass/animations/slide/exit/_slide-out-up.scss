@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> SLIDE -> EXIT -> SLIDE OUT UP
-    ========================================================================  */
-
 // Check if the animations with slide out up should be imported
 @if $import-animations and $import-animation-slide-out-up {
     .has-animation {
@@ -15,7 +11,7 @@
                 }
 
                 to {
-                    transform: translate3d(0, (0px - $animation-slide-out-distance), 0);
+                    transform: translate3d(0, (0 - $animation-slide-out-distance), 0);
                 }
             }
 

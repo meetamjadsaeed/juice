@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> MARK
-    ========================================================================  */
-
 // Check if the elements with mark should be imported
 @if $import-elements and $import-element-mark {
     mark {
@@ -18,32 +14,6 @@
         border-top-right-radius: $mark-border-radius-top-right;
         border-top-width: $mark-border-width-top;
         color: $mark-font-color;
-        font-size: $mark-font-size;
         padding: $mark-content-spacing;
-
-        // Check if the mark size modifiers should be declared
-        @if $mark-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($mark-font-size-sizes, $size);
-                }
-
-                // Check if the mark size modifiers with breakpoints should be declared
-                @if $mark-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($mark-font-size-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

@@ -1,0 +1,133 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> LAYOUT -> HERO
+    ========================================================================  */
+
+// Check if the elements with hero should be imported
+@if $import-elements and $import-element-hero {
+    .hero {
+        background-color: $hero-background-color;
+        background-position: $hero-background-position;
+        background-repeat: $hero-background-repeat;
+        background-size: $hero-background-size;
+        color: $hero-font-color;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+                padding: (content-spacing($breakpoint-name) * map-get($hero-content-spacing-multipliers, 'md'));
+            }
+        }
+
+        // Nested selectors
+        .hero__head,
+        .hero__foot {
+            flex: 0 0 auto;
+        }
+
+        .hero__body {
+            align-items: center;
+            display: flex;
+            flex: 1 0 auto;
+        }
+
+        a:not(.button) {
+            color: $hero-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $hero-link-color-hover;
+            }
+
+            &:focus {
+                color: $hero-link-color-focus;
+            }
+
+            &:active {
+                color: $hero-link-color-active;
+            }
+        }
+
+        // Check if the hero size modifiers should be declared
+        @if $hero-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            padding: (content-spacing($breakpoint-name) * map-get($hero-content-spacing-multipliers, $size));
+                        }
+
+                        // Check if the hero size modifiers with breakpoints should be declared
+                        @if $hero-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                padding: (content-spacing($breakpoint-name) * map-get($hero-content-spacing-multipliers, $size));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the hero color modifiers should be declared
+        @if $hero-color-modifiers {
+            // Cycle through all of the base colors
+            @each $color-name, $color in $base-colors {
+                // Modifiers: Base colors
+                &.is-#{$color-name} {
+                    background-color: base-color($color-name);
+                    color: base-color('#{$color-name}-inverted-text');
+                }
+            }
+        }
+
+        // Check if the hero feedback modifiers should be declared
+        @if $hero-feedback-modifiers {
+            // Cycle through all of the feedback colors
+            @each $feedback-name, $color-value in $feedback-colors {
+                // Modifiers: Feedback colors
+                &.has-#{$feedback-name} {
+                    background-color: feedback-color($feedback-name);
+                    color: feedback-color('#{$feedback-name}-inverted-text');
+                }
+            }
+        }
+
+        // Check if the hero viewport modifiers should be declared
+        @if $hero-viewport-modifiers {
+            // Modifiers
+            &.hero--25vh {
+                min-height: 25vh;
+            }
+
+            &.hero--50vh {
+                min-height: 50vh;
+            }
+
+            &.hero--75vh {
+                min-height: 75vh;
+            }
+
+            &.hero--100vh {
+                min-height: 100vh;
+            }
+        }
+
+        // Check if the hero parallax modifier should be declared
+        @if $hero-parallax-modifier {
+            &.hero--parallax {
+                background-attachment: fixed;
+            }
+        }
+    }
+}

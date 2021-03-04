@@ -1,0 +1,18 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> MAPS -> STACK INDEXES
+    ========================================================================  */
+
+$stack-indexes: (
+    'default': 100,
+    'static': 200,
+    'hover': 300,
+    'focus': 400,
+    'active': 500,
+    'dropdown': 600,
+    'popover': 700,
+    'tooltip': 800,
+    'overlay': 900,
+    'toast': 1000
+) !default;

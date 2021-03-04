@@ -1,20 +1,15 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> FRAMEWORK -> BODY
-    ========================================================================  */
-
 body {
-    // Styles
     background-color: $body-background-color;
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+    font-weight: $body-font-weight;
+    letter-spacing: $body-letter-spacing;
+    line-height: $body-line-height;
 
     // Pseudo elements
-    ::-moz-selection {
-        background-color: $body-selection-background-color;
-        color: $body-selection-font-color;
-        text-shadow: $body-selection-text-shadow;
-    }
-
     ::selection {
         background-color: $body-selection-background-color;
         color: $body-selection-font-color;

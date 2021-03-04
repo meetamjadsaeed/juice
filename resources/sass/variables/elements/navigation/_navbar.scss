@@ -1,15 +1,15 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> NAVIGATION -> NAVBAR
-    ========================================================================  */
+// Navbar maps
+$navbar-content-spacing-multipliers: (
+    'small': 0.5,
+    'medium': 1,
+    'large': 1.5
+) !default;
 
-// Variables
-$navbar-content-spacing: $default-content-spacing !default;
+// Navbar variables
 $navbar-font-color: inherit !default;
-$navbar-link-color: $default-link-color !default;
-$navbar-link-color-hover: $default-link-color-hover !default;
-$navbar-link-color-focus: $default-link-color-focus !default;
-$navbar-link-color-active: $default-link-color-active !default;
-$navbar-font-size: $default-font-size !default;
-$navbar-element-spacing: $default-element-spacing !default;
+$navbar-link-color: $global-link-color !default;
+$navbar-link-color-hover: $global-link-color-hover !default;
+$navbar-link-color-focus: $global-link-color-focus !default;
+$navbar-link-color-active: $global-link-color-active !default;

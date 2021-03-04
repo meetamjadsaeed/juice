@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> COMPONENTS -> PANEL
-    ========================================================================  */
-
 // Check if the components with panel should be imported
 @if $import-components and $import-component-panel {
     .panel {
@@ -16,81 +12,7 @@
         box-shadow: $panel-box-shadow;
         display: flex;
         flex-direction: column;
-        font-size: $panel-font-size;
-        margin: 0;
-        margin-bottom: $panel-element-spacing;
-        padding: 0;
-
-        // Nested selectors
-        a:not(.button) {
-            color: $panel-link-color;
-
-            // Pseudo classes
-            &:hover {
-                color: $panel-link-color-hover;
-            }
-
-            &:focus {
-                color: $panel-link-color-focus;
-            }
-
-            &:active {
-                color: $panel-link-color-active;
-            }
-        }
-
-        .panel__head,
-        .panel__body {
-            border: 0 $panel-border-style transparent;
-            padding: $panel-content-spacing;
-        }
-
-        .panel__head {
-            align-items: center;
-            background-color: $panel-head-background-color;
-            border-bottom-width: $panel-border-width-divider;
-            border-color: $panel-head-border-color;
-            border-left-width: $panel-border-width-left;
-            border-right-width: $panel-border-width-right;
-            border-top-left-radius: $panel-border-radius-top-left;
-            border-top-right-radius: $panel-border-radius-top-right;
-            border-top-width: $panel-border-width-top;
-            color: $panel-head-font-color;
-            display: flex;
-
-            // Nested selectors
-            .panel__headings {
-                flex-grow: 1;
-
-                // Nested selectors
-                #{$heading},
-                .panel__heading {
-                    margin-bottom: 0;
-                    opacity: 0.5;
-
-                    // Pseudo classes
-                    &:first-child {
-                        opacity: 1;
-                    }
-                }
-            }
-
-            .panel__actions {
-                align-items: center;
-                display: flex;
-            }
-        }
-
-        .panel__body {
-            background-color: $panel-background-color;
-            border-bottom-left-radius: $panel-border-radius-bottom-left;
-            border-bottom-right-radius: $panel-border-radius-bottom-right;
-            border-bottom-width: $panel-border-width-bottom;
-            border-color: $panel-border-color;
-            border-left-width: $panel-border-width-left;
-            border-right-width: $panel-border-width-right;
-            color: $panel-font-color;
-        }
+        margin-bottom: element-spacing();
 
         // Modifiers: State hooks
         &.is-collapsed {
@@ -141,12 +63,13 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($panel-font-size-sizes, $size);
-
                     // Nested selectors
-                    .panel__head,
+                    .panel__head {
+                        padding: content-spacing(map($panel-content-spacing-multipliers, $size) / 2) content-spacing(map($panel-content-spacing-multipliers, $size));
+                    }
+
                     .panel__body {
-                        padding: map-get($panel-content-spacing-sizes, $size);
+                        padding: content-spacing(map($panel-content-spacing-multipliers, $size));
                     }
                 }
 
@@ -154,16 +77,17 @@
                 @if $panel-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($panel-font-size-sizes, $size);
-
                                 // Nested selectors
-                                .panel__head,
+                                .panel__head {
+                                    padding: content-spacing(map($panel-content-spacing-multipliers, $size) / 2) content-spacing(map($panel-content-spacing-multipliers, $size));
+                                }
+
                                 .panel__body {
-                                    padding: map-get($panel-content-spacing-sizes, $size);
+                                    padding: content-spacing(map($panel-content-spacing-multipliers, $size));
                                 }
                             }
                         }
@@ -174,15 +98,15 @@
 
         // Check if the panel color modifiers should be declared
         @if $panel-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
+            // Cycle through all of the panel colors
+            @each $panel-color in $panel-colors {
                 // Modifiers: Base colors
-                &.is-#{$color-name} {
+                &.is-#{$panel-color} {
                     // Nested selectors
                     .panel__head {
-                        background-color: base-color($color-name);
-                        border-color: base-color('#{$color-name}-darken-3');
-                        color: base-color('#{$color-name}-inverted-text');
+                        background-color: base-color($panel-color);
+                        border-color: base-color('#{$panel-color}-darken-3');
+                        color: base-color('#{$panel-color}-text');
                     }
                 }
             }
@@ -198,10 +122,82 @@
                     .panel__head {
                         background-color: feedback-color($feedback-name);
                         border-color: feedback-color('#{$feedback-name}-darken-3');
-                        color: feedback-color('#{$feedback-name}-inverted-text');
+                        color: feedback-color('#{$feedback-name}-text');
                     }
                 }
             }
+        }
+
+        // Nested selectors
+        a:not(.button) {
+            color: $panel-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $panel-link-color-hover;
+            }
+
+            &:focus {
+                color: $panel-link-color-focus;
+            }
+
+            &:active {
+                color: $panel-link-color-active;
+            }
+        }
+
+        .panel__head,
+        .panel__body {
+            border: 0 $panel-border-style transparent;
+        }
+
+        .panel__head {
+            align-items: center;
+            background-color: $panel-head-background-color;
+            border-bottom-width: $panel-border-width-divider;
+            border-color: $panel-head-border-color;
+            border-left-width: $panel-border-width-left;
+            border-right-width: $panel-border-width-right;
+            border-top-left-radius: $panel-border-radius-top-left;
+            border-top-right-radius: $panel-border-radius-top-right;
+            border-top-width: $panel-border-width-top;
+            color: $panel-head-font-color;
+            display: flex;
+            padding: content-spacing(map($panel-content-spacing-multipliers, 'medium') / 2) content-spacing(map($panel-content-spacing-multipliers, 'medium'));
+
+            // Nested selectors
+            .panel__headings {
+                flex-grow: 1;
+
+                // Nested selectors
+                #{$heading},
+                .panel__heading {
+                    margin-bottom: 0;
+                    opacity: 0.5;
+
+                    // Pseudo classes
+                    &:first-child {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .panel__actions {
+                align-items: center;
+                display: flex;
+            }
+        }
+
+        .panel__body {
+            background-color: $panel-background-color;
+            border-bottom-left-radius: $panel-border-radius-bottom-left;
+            border-bottom-right-radius: $panel-border-radius-bottom-right;
+            border-bottom-width: $panel-border-width-bottom;
+            border-color: $panel-border-color;
+            border-left-width: $panel-border-width-left;
+            border-right-width: $panel-border-width-right;
+            color: $panel-font-color;
+            padding: content-spacing(map($panel-content-spacing-multipliers, 'medium'));
         }
     }
 }

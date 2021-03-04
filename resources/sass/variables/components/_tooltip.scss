@@ -1,31 +1,23 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> COMPONENTS -> TOOLTIP
-    ========================================================================  */
+// Tooltip maps
+$tooltip-colors: (
+    'primary',
+    'charcoal'
+) !default;
 
-// Variables
+// Tooltip variables
 $tooltip-animation-duration: 300ms !default;
 $tooltip-arrow-size: 6px !default;
-$tooltip-background-color: base-color('charcoal') !default;
-$tooltip-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$tooltip-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$tooltip-border-radius-top-left: $default-border-radius-top-left !default;
-$tooltip-border-radius-top-right: $default-border-radius-top-right !default;
-$tooltip-content-spacing: 6px 10px !default;
-$tooltip-content-spacing-sizes: (
-    'small': 4px 8px,
-    'large': 8px 12px,
-    'huge': 10px 14px,
-) !default;
-$tooltip-font-color: base-color('charcoal-inverted-text') !default;
+$tooltip-background-color: base-color('black') !default;
+$tooltip-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$tooltip-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$tooltip-border-radius-top-left: $global-border-radius-top-left !default;
+$tooltip-border-radius-top-right: $global-border-radius-top-right !default;
+$tooltip-content-spacing-multiplier: 0.25 !default;
+$tooltip-font-color: base-color('black-text') !default;
 $tooltip-font-family: 'Trebuchet', sans-serif !default;
-$tooltip-font-size: ($default-font-size - 0.2em) !default;
-$tooltip-font-size-sizes: (
-    'small': (map-get($default-font-size-sizes, 'small') - 0.2em),
-    'large': (map-get($default-font-size-sizes, 'large') - 0.2em),
-    'huge': (map-get($default-font-size-sizes, 'huge') - 0.2em)
-) !default;
+$tooltip-font-size: (font-size() - 0.3em) !default;
 $tooltip-offset: 2px !default;
 $tooltip-max-width: 200px !default;
 $tooltip-opacity: 0.9 !default;

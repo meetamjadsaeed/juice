@@ -1,30 +1,26 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> LINK
-    ========================================================================  */
-
 // Check if the elements with link should be imported
 @if $import-elements and $import-element-link {
     a {
-        // Styles
-        color: $default-link-color;
+        color: $global-link-color;
         font-weight: inherit;
         outline: none;
         text-decoration: none;
 
         // Pseudo classes
         &:hover {
-            color: $default-link-color-hover;
+            color: $global-link-color-hover;
         }
 
         &:focus {
-            color: $default-link-color-focus;
+            color: $global-link-color-focus;
             text-decoration: underline;
         }
 
         &:active {
-            color: $default-link-color-active;
+            color: $global-link-color-active;
+            text-decoration: underline;
         }
     }
 }

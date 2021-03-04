@@ -1,0 +1,39 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> FRAMEWORK -> CONTAINER
+    ========================================================================  */
+
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: $container-max-width;
+    min-height: 1px;
+    padding: 0 var(--container-content-spacing);
+    position: relative;
+    width: 100%;
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoints
+        @include breakpoint($breakpoint-name) {
+            padding: 0 content-spacing($breakpoint-name);
+        }
+    }
+
+    // Modifiers
+    &.container--seamless {
+        padding: 0;
+    }
+
+    // Cycle through all of the breakpoints
+    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+        // Breakpoint
+        @include breakpoint($breakpoint-name) {
+            // Modifiers
+            &.container--seamless\@#{$breakpoint-name} {
+                padding: 0;
+            }
+        }
+    }
+}

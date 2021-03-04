@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> HELPERS -> TYPE SCALE
+    ========================================================================  */
+
+// Cycle through all of the breakpoints
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
+    // Breakpoints
+    @include breakpoint($breakpoint-name) {
+        .has-root-font-size-reset {
+            @include vertical-rhythm($breakpoint-name, root-font-size());
+        }
+
+        .has-default-type-scale {
+            @include vertical-rhythm($breakpoint-name, type-scale(font-size()));
+        }
+
+        .has-default-type-scale\@#{$breakpoint-name} {
+            @include vertical-rhythm($breakpoint-name, type-scale(font-size()));
+        }
+
+        // Start a for loop
+        @for $i from 1 through 10 {
+            .has-default-type-scale--up-#{$i} {
+                @include vertical-rhythm($breakpoint-name, type-scale(font-size(), $i));
+            }
+
+            .has-default-type-scale--up-#{$i}\@#{$breakpoint-name} {
+                @include vertical-rhythm($breakpoint-name, type-scale(font-size(), $i));
+            }
+
+            .has-default-type-scale--down-#{$i} {
+                @include vertical-rhythm($breakpoint-name, type-scale(font-size(), (-$i)));
+            }
+
+            .has-default-type-scale--down-#{$i}\@#{$breakpoint-name} {
+                @include vertical-rhythm($breakpoint-name, type-scale(font-size(), (-$i)));
+            }
+        }
+    }
+}

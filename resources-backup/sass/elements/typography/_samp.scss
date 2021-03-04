@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> SAMP
+    ========================================================================  */
+
+// Check if the elements with samp should be imported
+@if $import-elements and $import-element-samp {
+    samp {
+        background-color: $samp-background-color;
+        border: 0 $samp-border-style $samp-border-color;
+        border-bottom-left-radius: $samp-border-radius-bottom-left;
+        border-bottom-right-radius: $samp-border-radius-bottom-right;
+        border-bottom-width: $samp-border-width-bottom;
+        border-left-width: $samp-border-width-left;
+        border-right-width: $samp-border-width-right;
+        border-top-left-radius: $samp-border-radius-top-left;
+        border-top-right-radius: $samp-border-radius-top-right;
+        border-top-width: $samp-border-width-top;
+        color: $samp-font-color;
+        font-family: $samp-font-family;
+        padding: $samp-content-spacing;
+    }
+}

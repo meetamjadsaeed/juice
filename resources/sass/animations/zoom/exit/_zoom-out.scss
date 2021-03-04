@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM OUT
-    ========================================================================  */
-
 // Check if the animations with zoom out should be imported
 @if $import-animations and $import-animation-zoom-out {
     .has-animation {

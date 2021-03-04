@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+/* ========================================================================
+   JUICE -> COMPONENTS -> TOAST
+   ========================================================================  */
+
+// Check if the components with toast should be imported
+@if $import-components and $import-component-toast {
+    .toast-group {
+        align-items: flex-start;
+        bottom: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        left: 0;
+        pointer-events: none;
+        position: fixed;
+        width: 100%;
+        z-index: stack-index('toast');
+
+        // Nested selectors
+        .toast {
+            align-items: center;
+            animation-duration: $toast-animation-duration;
+            background-color: $toast-background-color;
+            border: 0 $toast-border-style $toast-border-color;
+            border-bottom-left-radius: $toast-border-radius-bottom-left;
+            border-bottom-right-radius: $toast-border-radius-bottom-right;
+            border-bottom-width: $toast-border-width-bottom;
+            border-left-width: $toast-border-width-left;
+            border-right-width: $toast-border-width-right;
+            border-top-left-radius: $toast-border-radius-top-left;
+            border-top-right-radius: $toast-border-radius-top-right;
+            border-top-width: $toast-border-width-top;
+            box-shadow: $toast-box-shadow;
+            color: $toast-font-color;
+            display: flex;
+            justify-content: center;
+            pointer-events: auto;
+
+            // Cycle through all of the breakpoints
+            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                // Breakpoints
+                @include breakpoint($breakpoint-name) {
+                    @include vertical-rhythm($breakpoint-name, $toast-font-size);
+                    margin: element-spacing($breakpoint-name);
+                    margin-top: 0;
+                    max-width: map-get($toast-max-widths, $breakpoint-name);
+
+                    // Nested selectors
+                    .toast__text,
+                    .toast__action {
+                        padding: (content-spacing($breakpoint-name) * $toast-content-spacing-multiplier);
+                    }
+                }
+            }
+
+            // Nested selectors
+            .toast__text {
+                flex-grow: 1;
+            }
+
+            .toast__action {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            // Check if the toast feedback modifiers should be declared
+            @if $toast-feedback-modifiers {
+                // Cycle through all of the feedback colors
+                @each $feedback-name, $color-value in $feedback-colors {
+                    // Modifiers: Feedback colors
+                    &.has-#{$feedback-name} {
+                        border-color: feedback-color($feedback-name);
+                    }
+                }
+            }
+        }
+
+        // Check if the toast alignment modifiers should be declared
+        @if $toast-alignment-modifiers {
+            // Modifiers
+            &.toast-group--top-left,
+            &.toast-group--top,
+            &.toast-group--top-right {
+                bottom: auto;
+                flex-direction: column;
+                top: 0;
+
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Nested selectors
+                        .toast {
+                            margin: element-spacing($breakpoint-name);
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+            &.toast-group--bottom,
+            &.toast-group--top {
+                align-items: center;
+            }
+
+            &.toast-group--bottom-right,
+            &.toast-group--top-right {
+                align-items: flex-end;
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}

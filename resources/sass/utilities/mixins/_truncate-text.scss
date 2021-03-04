@@ -1,0 +1,10 @@
+@charset 'utf-8';
+
+/**
+ * Truncate overflowing text.
+ */
+@mixin truncate-text() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

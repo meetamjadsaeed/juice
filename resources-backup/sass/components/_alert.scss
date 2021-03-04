@@ -1,0 +1,239 @@
+@charset "utf-8";
+
+/* ========================================================================
+   JUICE -> COMPONENTS -> ALERT
+   ========================================================================  */
+
+// Check if the components with alert should be imported
+@if $import-components and $import-component-alert {
+    .overlay {
+        // Nested selectors
+        &.alert {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 10vh 0;
+
+            // Nested selectors
+            .alert__content {
+                animation-duration: $alert-animation-duration;
+                border-bottom-left-radius: $alert-border-radius-bottom-left;
+                border-bottom-right-radius: $alert-border-radius-bottom-right;
+                border-top-left-radius: $alert-border-radius-top-left;
+                border-top-right-radius: $alert-border-radius-top-right;
+                box-shadow: $alert-box-shadow;
+                display: inline-flex;
+                margin: 0 auto;
+                max-height: 100%;
+                max-width: 80vw;
+
+                // Nested selectors
+                .alert__card {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                    overflow: hidden;
+
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            width: map-get($alert-max-widths, $breakpoint-name);
+
+                            // Nested selectors
+                            .alert__head {
+                                padding: ((content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, 'md')) / 2) (content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, 'md'));
+                            }
+
+                            .alert__body,
+                            .alert__foot {
+                                padding: (content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, 'md'));
+                            }
+                        }
+                    }
+
+                    // Nested selectors
+                    a:not(.button) {
+                        color: $alert-link-color;
+
+                        // Pseudo classes
+                        &:hover {
+                            color: $alert-link-color-hover;
+                        }
+
+                        &:focus {
+                            color: $alert-link-color-focus;
+                        }
+
+                        &:active {
+                            color: $alert-link-color-active;
+                        }
+                    }
+
+                    .alert__head,
+                    .alert__body,
+                    .alert__foot {
+                        border: 0 $alert-border-style transparent;
+                        border-left-width: $alert-border-width-left;
+                        border-right-width: $alert-border-width-right;
+
+                        &:first-child {
+                            border-top-left-radius: $alert-border-radius-top-left;
+                            border-top-right-radius: $alert-border-radius-top-right;
+                            border-top-width: $alert-border-width-top;
+                        }
+
+                        &:last-child {
+                            border-bottom-left-radius: $alert-border-radius-bottom-left;
+                            border-bottom-right-radius: $alert-border-radius-bottom-right;
+                            border-bottom-width: $alert-border-width-bottom;
+                        }
+                    }
+
+                    .alert__head {
+                        align-items: center;
+                        background-color: $alert-head-background-color;
+                        border-bottom-width: $alert-border-width-bottom;
+                        border-color: $alert-head-border-color;
+                        color: $alert-head-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+
+                        // Nested selectors
+                        .alert__headings {
+                            flex-grow: 1;
+
+                            // Nested selectors
+                            #{$heading},
+                            .alert__heading {
+                                margin-bottom: 0;
+                                opacity: 0.5;
+
+                                // Pseudo classes
+                                &:first-child {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    .alert__body {
+                        background-color: $alert-body-background-color;
+                        border-color: $alert-body-border-color;
+                        color: $alert-body-font-color;
+                        flex-grow: 1;
+                        flex-shrink: 1;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                    }
+
+                    .alert__foot {
+                        background-color: $alert-foot-background-color;
+                        border-bottom-width: $alert-border-width-bottom;
+                        border-color: $alert-foot-border-color;
+                        color: $alert-foot-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+                        padding-top: 0;
+
+                        // Nested selectors
+                        .alert__buttons {
+                            align-items: center;
+                            display: flex;
+                            flex-grow: 1;
+                            justify-content: flex-end;
+
+                            // Nested selectors
+                            #{$button} {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+
+                    // Check if the alert size modifiers should be declared
+                    @if $alert-size-modifiers {
+                        // Cycle through all of the sizes
+                        @each $size in $sizes {
+                            // Cycle through all of the breakpoints
+                            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                                // Breakpoints
+                                @include breakpoint($breakpoint-name) {
+                                    // Modifiers: Sizes
+                                    &.is-#{$size} {
+                                        // Nested selectors
+                                        .alert__head {
+                                            padding: ((content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, $size));
+                                        }
+
+                                        .alert__body,
+                                        .alert__foot {
+                                            padding: (content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, $size));
+                                        }
+                                    }
+
+                                    // Check if the alert size modifiers with breakpoints should be declared
+                                    @if $alert-size-modifiers-with-breakpoints {
+                                        // Modifiers: Sizes
+                                        &.is-#{$size}\@#{$breakpoint-name} {
+                                            // Nested selectors
+                                            .alert__head {
+                                                padding: ((content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, $size));
+                                            }
+
+                                            .alert__body,
+                                            .alert__foot {
+                                                padding: (content-spacing($breakpoint-name) * map-get($alert-content-spacing-multipliers, $size));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the alert color modifiers should be declared
+                    @if $alert-color-modifiers {
+                        // Cycle through all of the base colors
+                        @each $color-name, $color-value in $base-colors {
+                            // Modifiers: Base colors
+                            &.is-#{$color-name} {
+                                // Nested selectors
+                                .alert__head {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color('#{$color-name}-darken-3');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the alert feedback modifiers should be declared
+                    @if $alert-feedback-modifiers {
+                        // Cycle through all of the feedback colors
+                        @each $feedback-name, $color-value in $feedback-colors {
+                            // Modifiers: Feedback colors
+                            &.has-#{$feedback-name} {
+                                // Nested selectors
+                                .alert__head {
+                                    background-color: feedback-color($feedback-name);
+                                    border-color: feedback-color('#{$feedback-name}-darken-3');
+                                    color: feedback-color('#{$feedback-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check if the alert alignment modifier should be declared
+            @if $alert-alignment-modifier {
+                // Modifiers
+                &.alert--center {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

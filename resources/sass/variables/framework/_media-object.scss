@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+// Framework media object maps
+$media-object-badge-image-widths: (
+    'mobile': 50px,
+    'tablet': 75px,
+    'desktop': 100px
+) !default;
+
+$media-object-content-spacing-multipliers: (
+    'small': 0.5,
+    'medium': 1,
+    'large': 1.5,
+) !default;

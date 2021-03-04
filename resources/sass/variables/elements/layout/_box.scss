@@ -1,37 +1,27 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> LAYOUT -> BOX
-    ========================================================================  */
+// Box maps
+$box-content-spacing-multipliers: (
+    'small': 0.5,
+    'medium': 1,
+    'large': 1.5
+) !default;
 
-// Variables
+// Box variables
 $box-background-color: base-color('white') !default;
 $box-border-color: base-color('white-darken-3') !default;
-$box-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$box-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$box-border-radius-top-left: $default-border-radius-top-left !default;
-$box-border-radius-top-right: $default-border-radius-top-right !default;
-$box-border-style: $default-border-style !default;
-$box-border-width-bottom: $default-border-width-bottom !default;
-$box-border-width-left: $default-border-width-left !default;
-$box-border-width-right: $default-border-width-right !default;
-$box-border-width-top: $default-border-width-top !default;
-$box-box-shadow: $default-box-shadow !default;
-$box-content-spacing: $default-content-spacing !default;
-$box-content-spacing-sizes: (
-    'small': map-get($default-content-spacing-sizes, 'small'),
-    'large': map-get($default-content-spacing-sizes, 'large'),
-    'huge': map-get($default-content-spacing-sizes, 'huge')
-) !default;
-$box-element-spacing: $default-element-spacing !default;
-$box-font-color: font-color('default') !default;
-$box-font-size: $default-font-size !default;
-$box-font-size-sizes: (
-    'small': map-get($default-font-size-sizes, 'small'),
-    'large': map-get($default-font-size-sizes, 'large'),
-    'huge': map-get($default-font-size-sizes, 'huge')
-) !default;
-$box-link-color: $default-link-color !default;
-$box-link-color-hover: $default-link-color-hover !default;
-$box-link-color-focus: $default-link-color-focus !default;
-$box-link-color-active: $default-link-color-active !default;
+$box-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$box-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$box-border-radius-top-left: $global-border-radius-top-left !default;
+$box-border-radius-top-right: $global-border-radius-top-right !default;
+$box-border-style: $global-border-style !default;
+$box-border-width-bottom: $global-border-width-bottom !default;
+$box-border-width-left: $global-border-width-left !default;
+$box-border-width-right: $global-border-width-right !default;
+$box-border-width-top: $global-border-width-top !default;
+$box-box-shadow: $global-box-shadow !default;
+$box-font-color: font-color() !default;
+$box-link-color: $global-link-color !default;
+$box-link-color-hover: $global-link-color-hover !default;
+$box-link-color-focus: $global-link-color-focus !default;
+$box-link-color-active: $global-link-color-active !default;

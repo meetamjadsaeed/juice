@@ -1,0 +1,71 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> MEDIA -> IMAGE
+    ========================================================================  */
+
+// Check if the elements with image should be imported
+@if $import-elements and $import-element-image {
+    img {
+        display: block;
+        max-width: 100%;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Check if the image alignment modifiers should be declared
+                @if $image-alignment-modifiers {
+                    // Modifiers
+                    &.image--center {
+                        margin: 0 auto element-spacing($breakpoint-name);
+                    }
+
+                    &.image--left {
+                        margin: 0 element-spacing($breakpoint-name) element-spacing($breakpoint-name) 0;
+                    }
+
+                    &.image--right {
+                        margin: 0 0 element-spacing($breakpoint-name) element-spacing($breakpoint-name);
+                    }
+                }
+            }
+        }
+
+        // Modifiers: State hooks
+        &.is-fullwidth {
+            display: flex;
+            margin-right: 0;
+            max-width: auto;
+            min-width: 100%;
+        }
+
+        // Check if the image alignment modifiers should be declared
+        @if $image-alignment-modifiers {
+            // Modifiers
+            &.image--center {
+                display: block;
+                float: none;
+            }
+
+            &.image--left {
+                display: inline-block;
+                float: left;
+            }
+
+            &.image--right {
+                display: inline-block;
+                float: right;
+            }
+        }
+
+        // Check if the image round modifier should be declared
+        @if $image-round-modifier {
+            &.image--round {
+                border-radius: 100%;
+            }
+        }
+    }
+}

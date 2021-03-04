@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> UTILITIES -> MIXINS -> TRUNCATE TEXT
+    ========================================================================  */
+
+/**
+ * Truncate overflowing text with ellipsis.
+ */
+@mixin truncate-text() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

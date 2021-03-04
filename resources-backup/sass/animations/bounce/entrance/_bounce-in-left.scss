@@ -1,0 +1,38 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> BOUNCE -> ENTRANCE -> BOUNCE IN LEFT
+    ========================================================================  */
+
+// Check if the animations with bounce in left should be imported
+@if $import-animations and $import-animation-bounce-in-left {
+    .has-animation {
+        // Nested selectors
+        &.bounce-in-left {
+            @keyframes bounce-in-left {
+                from {
+                    opacity: 0;
+                    transform: translate3d((0 + $animation-bounce-in-distance), 0, 0);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: translate3d((0 - ($animation-bounce-in-distance * 2.5 / 100)), 0, 0);
+                }
+
+                70% {
+                    transform: translate3d((0 + ($animation-bounce-in-distance * 1.5 / 100)), 0, 0);
+                }
+
+                to {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            animation-delay: $animation-bounce-in-delay;
+            animation-duration: $animation-bounce-in-duration;
+            animation-name: bounce-in-left;
+            animation-timing-function: $animation-bounce-in-easing;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> TYPOGRAPHY -> SAMP
+    ========================================================================  */
+
+// Variables
+$samp-background-color: transparent !default;
+$samp-border-color: transparent !default;
+$samp-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$samp-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$samp-border-radius-top-left: $global-border-radius-top-left !default;
+$samp-border-radius-top-right: $global-border-radius-top-right !default;
+$samp-border-style: $global-border-style !default;
+$samp-border-width-bottom: $global-border-width-bottom !default;
+$samp-border-width-left: $global-border-width-left !default;
+$samp-border-width-right: $global-border-width-right !default;
+$samp-border-width-top: $global-border-width-top !default;
+$samp-content-spacing: 4px !default;
+$samp-font-color: inherit !default;
+$samp-font-family: $global-monoface-typeface !default;
+$samp-font-size: font-size() !default;

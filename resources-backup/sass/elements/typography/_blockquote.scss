@@ -1,0 +1,93 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> BLOCKQUOTE
+    ========================================================================  */
+
+// Check if the elements with blockquote should be imported
+@if $import-elements and $import-element-blockquote {
+    blockquote {
+        display: block;
+        background-color: $blockquote-background-color;
+        border: 0 $blockquote-border-style $blockquote-border-color;
+        border-bottom-left-radius: $blockquote-border-radius-bottom-left;
+        border-bottom-right-radius: $blockquote-border-radius-bottom-right;
+        border-bottom-width: $blockquote-border-width-bottom;
+        border-left-width: $blockquote-border-width-left;
+        border-top-left-radius: $blockquote-border-radius-top-left;
+        border-top-right-radius: $blockquote-border-radius-top-right;
+        border-top-width: $blockquote-border-width-top;
+        border-right-width: $blockquote-border-width-right;
+        color: $blockquote-font-color;
+        position: relative;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+                padding: (content-spacing($breakpoint-name) * map-get($blockquote-content-spacing-multipliers, 'md'));
+            }
+        }
+
+        // Pseudo classes
+        &:hover {
+            border-color: $blockquote-border-color-hover;
+        }
+
+        // Nested selectors
+        a {
+            color: $blockquote-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $blockquote-link-color-hover;
+            }
+
+            &:focus {
+                color: $blockquote-link-color-focus;
+            }
+
+            &:active {
+                color: $blockquote-link-color-active;
+            }
+        }
+
+        cite {
+            color: inherit;
+            display: block;
+            font-size: 75%;
+            margin: 0;
+
+            // Pseudo elements
+            &::before {
+                content: '\2014\00a0\00a0';
+            }
+        }
+
+        // Check if the blockquote size modifiers should be declared
+        @if $blockquote-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            padding: (content-spacing($breakpoint-name) * map-get($blockquote-content-spacing-multipliers, $size));
+                        }
+
+                        // Check if the blockquote size modifiers with breakpoints should be declared
+                        @if $blockquote-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                padding: (content-spacing($breakpoint-name) * map-get($blockquote-content-spacing-multipliers, $size));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

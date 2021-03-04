@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> LAYOUT -> HERO
-    ========================================================================  */
-
 // Check if the elements with hero should be imported
 @if $import-elements and $import-element-hero {
     .hero {
@@ -14,60 +10,43 @@
         color: $hero-font-color;
         display: flex;
         flex-direction: column;
-        font-size: $hero-font-size;
         justify-content: center;
-        padding: $hero-content-spacing;
-        margin-bottom: $hero-element-spacing;
+        margin-bottom: element-spacing();
+        padding: content-spacing(map($hero-content-spacing-multipliers, 'medium'));
 
-        // Nested selectors
-        .hero__head,
-        .hero__foot {
-            flex: 0 0 auto;
-        }
+        // Check if the hero size modifiers should be declared
+        @if $hero-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    padding: content-spacing(map($hero-content-spacing-multipliers, $size));
+                }
 
-        .hero__body {
-            align-items: center;
-            display: flex;
-            flex: 1 0 auto;
-        }
-
-        a:not(.button) {
-            color: $hero-link-color;
-
-            // Pseudo classes
-            &:hover {
-                color: $hero-link-color-hover;
-            }
-
-            &:focus {
-                color: $hero-link-color-focus;
-            }
-
-            &:active {
-                color: $hero-link-color-active;
+                // Check if the hero size modifiers with breakpoints should be declared
+                @if $hero-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                padding: content-spacing(map($hero-content-spacing-multipliers, $size));
+                            }
+                        }
+                    }
+                }
             }
         }
 
         // Check if the hero color modifiers should be declared
         @if $hero-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color in $base-colors {
+            // Cycle through all of the hero colors
+            @each $hero-color in $hero-colors {
                 // Modifiers: Base colors
-                &.is-#{$color-name} {
-                    background-color: base-color($color-name);
-                    color: base-color('#{$color-name}-inverted-text');
-                }
-            }
-        }
-
-        // Check if the hero feedback modifiers should be declared
-        @if $hero-feedback-modifiers {
-            // Cycle through all of the feedback colors
-            @each $feedback-name, $color-value in $feedback-colors {
-                // Modifiers: Feedback colors
-                &.has-#{$feedback-name} {
-                    background-color: feedback-color($feedback-name);
-                    color: feedback-color('#{$feedback-name}-inverted-text');
+                &.is-#{$hero-color} {
+                    background-color: base-color($hero-color);
+                    color: base-color('#{$hero-color}-text');
                 }
             }
         }
@@ -97,6 +76,35 @@
             &.hero--parallax {
                 background-attachment: fixed;
             }
+        }
+
+        // Nested selectors
+        a:not(.button) {
+            color: $hero-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $hero-link-color-hover;
+            }
+
+            &:focus {
+                color: $hero-link-color-focus;
+            }
+
+            &:active {
+                color: $hero-link-color-active;
+            }
+        }
+
+        .hero__head,
+        .hero__foot {
+            flex: 0 0 auto;
+        }
+
+        .hero__body {
+            align-items: center;
+            display: flex;
+            flex: 1 0 auto;
         }
     }
 }

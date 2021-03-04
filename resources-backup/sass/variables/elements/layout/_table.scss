@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> LAYOUT -> TABLE
+    ========================================================================  */
+
+// Maps
+$table-content-spacing-multipliers: (
+    'sm': 0.25,
+    'md': 0.5,
+    'lg': 1
+) !default;
+
+// Variables
+$table-body-background-color: base-color('white') !default;
+$table-body-background-color-stripe: base-color('white-darken-1') !default;
+$table-body-border-color: base-color('white-darken-3') !default;
+$table-body-border-width-bottom: $global-border-width-bottom !default;
+$table-body-border-width-left: $global-border-width-left !default;
+$table-body-border-width-right: $global-border-width-right !default;
+$table-body-border-width-top: $global-border-width-top !default;
+$table-body-border-width-divider: $global-border-width-divider !default;
+$table-body-font-color: font-color() !default;
+$table-body-font-color-stripe: font-color() !default;
+$table-border-style: $global-border-style !default;
+$table-head-background-color: base-color('charcoal') !default;
+$table-head-border-color: base-color('charcoal-darken-3') !default;
+$table-head-border-width-bottom: ($global-border-width-bottom * 2) !default;
+$table-head-border-width-left: $global-border-width-left !default;
+$table-head-border-width-right: $global-border-width-right !default;
+$table-head-border-width-top: $global-border-width-top !default;
+$table-head-font-color: base-color('charcoal-inverted-text') !default;

@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get an element height.
+ *
+ * @param  {int}    $multiplier  The element height multiplier.
+ * @return {mixed}               The element height, null otherwise.
+ */
+@function element-height($multiplier: 1) {
+    // Return the element height
+    @return calc(var(--element-height) * #{$multiplier});
+}

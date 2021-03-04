@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> FADE -> ENTRANCE -> FADE IN
-    ========================================================================  */
-
 // Check if the animations with fade in should be imported
 @if $import-animations and $import-animation-fade-in {
     .has-animation {

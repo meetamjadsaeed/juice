@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ANIMATIONS -> ZOOM -> ENTRANCE -> ZOOM OUT
+    ========================================================================  */
+
+// Check if the animations with zoom out should be imported
+@if $import-animations and $import-animation-zoom-out {
+    .has-animation {
+        // Nested selectors
+        &.zoom-out {
+            @keyframes zoom-out {
+                from {
+                    opacity: 1;
+                    transform: scale3d(1, 1, 1);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: scale3d($animation-zoom-out-scale, $animation-zoom-out-scale, $animation-zoom-out-scale);
+                }
+            }
+
+            animation-delay: $animation-zoom-out-delay;
+            animation-duration: $animation-zoom-out-duration;
+            animation-name: zoom-out;
+            animation-timing-function: $animation-zoom-out-easing;
+        }
+    }
+}

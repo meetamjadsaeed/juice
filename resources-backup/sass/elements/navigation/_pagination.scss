@@ -1,0 +1,229 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> NAVIGATION -> PAGINATION
+    ========================================================================  */
+
+// Check if the elements with pagination should be imported
+@if $import-elements and $import-element-pagination {
+    .pagination {
+        display: flex;
+        justify-content: center;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                ul {
+                    // Nested selectors
+                    li {
+                        min-width: (element-height($breakpoint-name) * map-get($pagination-element-height-multipliers, 'md'));
+
+                        // Nested selectors
+                        a,
+                        span {
+                            font-size: map-get($pagination-font-sizes, 'md');
+                            height: (element-height($breakpoint-name) * map-get($pagination-element-height-multipliers, 'md'));
+                            padding: 0 (content-spacing($breakpoint-name) * map-get($pagination-content-spacing-multipliers, 'md'));
+                        }
+
+                        a {
+                            // Modifiers: State hooks
+                            &.is-active {
+                                font-size: map-get($pagination-font-sizes, 'default-active');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        ul {
+            box-shadow: $pagination-box-shadow;
+            display: flex;
+            list-style: none;
+            margin: 0;
+
+            // Nested selectors
+            li {
+                margin-right: (0 - $pagination-border-width-divider);
+
+                // Pseudo classes
+                &:first-child {
+                    // Nested selectors
+                    a,
+                    span {
+                        border-bottom-left-radius: $pagination-border-radius-bottom-left;
+                        border-left-width: $pagination-border-width-left;
+                        border-top-left-radius: $pagination-border-radius-top-left;
+                    }
+                }
+
+                &:last-child {
+                    // Nested selectors
+                    a,
+                    span {
+                        border-bottom-right-radius: $pagination-border-radius-bottom-right;
+                        border-right-width: $pagination-border-width-right;
+                        border-top-right-radius: $pagination-border-radius-top-right;
+                    }
+                }
+
+                // Nested selectors
+                a,
+                span {
+                    align-items: center;
+                    background-color: $pagination-background-color;
+                    border: 0 $pagination-border-style $pagination-border-color;
+                    border-bottom-width: $pagination-border-width-bottom;
+                    border-left-width: $pagination-border-width-divider;
+                    border-right-width: $pagination-border-width-divider;
+                    border-top-width: $pagination-border-width-top;
+                    color: $pagination-font-color;
+                    display: flex;
+                    justify-content: center;
+                    user-select: none;
+                    width: 100%;
+                    z-index: stack-index('default');
+                }
+
+                a {
+                    color: $pagination-font-color;
+                    position: relative;
+                    text-decoration: none;
+
+                    // Pseudo classes
+                    &:hover {
+                        background-color: $pagination-background-color-hover;
+                        border-color: $pagination-border-color-hover;
+                        color: $pagination-font-color-hover;
+                        z-index: stack-index('hover');
+                    }
+
+                    &:focus {
+                        background-color: $pagination-background-color-focus;
+                        border-color: $pagination-border-color-focus;
+                        box-shadow: 0 0 0 $pagination-accessibility-focus-width $pagination-accessibility-focus-color;
+                        color: $pagination-font-color-focus;
+                        z-index: stack-index('focus');
+                    }
+
+                    &:active {
+                        background-color: $pagination-background-color-active;
+                        border-color: $pagination-border-color-active;
+                        color: $pagination-font-color-active;
+                        z-index: stack-index('active');
+                    }
+
+                    // Modifiers: State hooks
+                    &.is-active {
+                        font-weight: bold;
+                    }
+
+                    &.is-disabled {
+                        @include disabled();
+                        background-color: $pagination-background-color !important;
+                        border-color: $pagination-border-color !important;
+                        color: $pagination-link-color !important;
+
+                        // Pseudo classes
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            background-color: $pagination-background-color !important;
+                            border-color: $pagination-border-color !important;
+                            color: $pagination-link-color !important;
+                        }
+                    }
+                }
+
+                span {
+                    cursor: default;
+                }
+            }
+        }
+
+        // Check if the pagination size modifiers should be declared
+        @if $pagination-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            ul {
+                                // Nested selectors
+                                li {
+                                    min-width: (element-height($breakpoint-name) * map-get($pagination-element-height-multipliers, $size));
+
+                                    // Nested selectors
+                                    a,
+                                    span {
+                                        font-size: map-get($pagination-font-sizes, $size);
+                                        height: (element-height($breakpoint-name) * map-get($pagination-element-height-multipliers, $size));
+                                        padding: 0 (content-spacing($breakpoint-name) * map-get($pagination-content-spacing-multipliers, $size));
+                                    }
+
+                                    a {
+                                        // Modifiers: State hooks
+                                        &.is-active {
+                                            font-size: map-get($pagination-font-sizes, '#{$size}-active');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Check if the pagination size modifiers with breakpoints should be declared
+                        @if $pagination-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                ul {
+                                    // Nested selectors
+                                    li {
+                                        min-width: (element-height($breakpoint-name) * map-get($pagination-element-height-multipliers, $size));
+
+                                        // Nested selectors
+                                        a,
+                                        span {
+                                            font-size: map-get($pagination-font-sizes, $size);
+                                            height: (element-height($breakpoint-name) * map-get($pagination-element-height-multipliers, $size));
+                                            padding: 0 (content-spacing($breakpoint-name) * map-get($pagination-content-spacing-multipliers, $size));
+                                        }
+
+                                        a {
+                                            // Modifiers: State hooks
+                                            &.is-active {
+                                                font-size: map-get($pagination-font-sizes, '#{$size}-active');
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the pagination alignment modifiers should be declared
+        @if $pagination-alignment-modifiers {
+            // Modifiers
+            &.pagination--left {
+                justify-content: flex-start;
+            }
+
+            &.pagination--right {
+                justify-content: flex-end;
+            }
+        }
+    }
+}

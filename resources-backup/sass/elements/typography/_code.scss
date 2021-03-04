@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> CODE
+    ========================================================================  */
+
+// Check if the elements with code should be imported
+@if $import-elements and $import-element-code {
+    code {
+        background-color: $code-background-color;
+        border: 0 $code-border-style $code-border-color;
+        border-bottom-left-radius: $code-border-radius-bottom-left;
+        border-bottom-right-radius: $code-border-radius-bottom-right;
+        border-bottom-width: $code-border-width-bottom;
+        border-left-width: $code-border-width-left;
+        border-right-width: $code-border-width-right;
+        border-top-left-radius: $code-border-radius-top-left;
+        border-top-right-radius: $code-border-radius-top-right;
+        border-top-width: $code-border-width-top;
+        color: $code-font-color;
+        font-family: $code-font-family;
+        padding: $code-content-spacing;
+    }
+}

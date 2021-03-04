@@ -1,10 +1,6 @@
-`@charset 'utf-8';
+@charset 'utf-8';
 
-/*  ========================================================================
-    JUICE
-    ========================================================================  */
-
-// Import
+// Import juice
 @import 'settings/all';
 @import 'utilities/all';
 @import 'initialize/all';
@@ -13,4 +9,4 @@
 @import 'elements/all';
 @import 'components/all';
 @import 'animations/all';
-@import 'helpers/all';
+// @import 'helpers/all';

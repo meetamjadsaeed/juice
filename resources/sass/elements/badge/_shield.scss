@@ -1,20 +1,49 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> BADGE -> SHIELD
-    ========================================================================  */
-
 // Check if the elements with shield should be imported
 @if $import-elements and $import-element-shield {
     .shield {
-        align-items: center;
-        border-bottom-left-radius: $shield-border-radius-bottom-left;
-        border-bottom-right-radius: $shield-border-radius-bottom-right;
-        border-top-left-radius: $shield-border-radius-top-left;
-        border-top-right-radius: $shield-border-radius-top-right;
         display: inline-flex;
-        margin: 0;
-        margin-bottom: $shield-element-spacing;
+        font-size: map($shield-font-sizes, 'medium');
+        height: element-height(map($shield-element-height-multipliers, 'medium'));
+        margin-bottom: element-spacing();
+
+        // Check if the shield size modifiers should be declared
+        @if $shield-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Modifiers: Sizes
+                &.is-#{$size} {
+                    // Nested selectors
+                    .shield__text,
+                    .shield__badge {
+                        font-size: map($shield-font-sizes, $size);
+                        height: element-height(map($shield-element-height-multipliers, $size));
+                        padding: 0 content-spacing(map($shield-element-height-multipliers, $size));
+                    }
+                }
+
+                // Check if the shield size modifiers with breakpoints should be declared
+                @if $shield-size-modifiers-with-breakpoints {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .shield__text,
+                                .shield__badge {
+                                    font-size: map($shield-font-sizes, $size);
+                                    height: element-height(map($shield-element-height-multipliers, $size));
+                                    padding: 0 content-spacing(map($shield-element-height-multipliers, $size));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Nested selectors
         .shield__text,
@@ -22,13 +51,10 @@
             align-items: center;
             border: 0 $shield-border-style transparent;
             border-bottom-width: $shield-border-width-bottom;
-            border-radius: 0;
             border-top-width: $shield-border-width-top;
             display: flex;
-            font-size: $shield-font-size;
-            height: $shield-height;
             justify-content: center;
-            padding: 0 $shield-content-spacing;
+            padding: 0 content-spacing(map($shield-content-spacing-multipliers, 'medium'));
             white-space: nowrap;
 
             // Pseudo classes
@@ -46,35 +72,24 @@
 
             // Check if the shield color modifiers should be declared
             @if $shield-color-modifiers {
-                // Cycle through all of the base colors
-                @each $color-name, $color-value in $base-colors {
+                // Cycle through all of the shield colors
+                @each $shield-color in $shield-colors {
                     // Modifiers: Base colors
-                    &.is-#{$color-name} {
-                        background-color: base-color($color-name);
-                        border-color: base-color('#{$color-name}-darken-3');
-                        color: base-color('#{$color-name}-inverted-text');
+                    &.is-#{$shield-color} {
+                        background-color: base-color($shield-color);
+                        border-color: base-color('#{$shield-color}-darken-3');
+                        color: base-color('#{$shield-color}-text');
 
                         // Nested selectors
                         a {
                             color: inherit;
-                        }
-                    }
-                }
-            }
 
-            // Check if the shield feedback modifiers should be declared
-            @if $shield-feedback-modifiers {
-                // Cycle through all of the feedback colors
-                @each $feedback-name, $feedback-value in $feedback-colors {
-                    // Modifiers: Feedback colors
-                    &.has-#{$feedback-name} {
-                        background-color: feedback-color($feedback-name);
-                        border-color: feedback-color('#{$feedback-name}-darken-3');
-                        color: feedback-color('#{$feedback-name}-inverted-text');
-
-                        // Nested selectors
-                        a {
-                            color: inherit;
+                            // Pseudo classes
+                            &:hover,
+                            &:focus,
+                            &:active {
+                                color: inherit;
+                            }
                         }
                     }
                 }
@@ -83,6 +98,13 @@
             // Nested selectors
             a {
                 color: inherit;
+
+                // Pseudo classes
+                &:hover,
+                &:focus,
+                &:active {
+                    color: inherit;
+                }
             }
         }
 
@@ -96,43 +118,6 @@
             background-color: $shield-badge-background-color;
             border-color: $shield-badge-border-color;
             color: $shield-badge-font-color;
-        }
-
-        // Check if the shield size modifiers should be declared
-        @if $shield-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    // Nested selectors
-                    .shield__badge,
-                    .shield__text {
-                        font-size: map($shield-font-size-sizes, $size);
-                        height: map($shield-height-sizes, $size);
-                        padding: 0 map($shield-content-spacing-sizes, $size);
-                    }
-                }
-
-                // Check if the shield size modifiers with breakpoints should be declared
-                @if $shield-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                // Nested selectors
-                                .shield__badge,
-                                .shield__text {
-                                    font-size: map($shield-font-size-sizes, $size);
-                                    height: map($shield-height-sizes, $size);
-                                    padding: 0 map($shield-content-spacing-sizes, $size);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }

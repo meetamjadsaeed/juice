@@ -1,28 +1,23 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> BLOCKQUOTE
-    ========================================================================  */
-
 // Check if the elements with blockquote should be imported
 @if $import-elements and $import-element-blockquote {
     blockquote {
-        display: block;
         background-color: $blockquote-background-color;
         border: 0 $blockquote-border-style $blockquote-border-color;
         border-bottom-left-radius: $blockquote-border-radius-bottom-left;
         border-bottom-right-radius: $blockquote-border-radius-bottom-right;
         border-bottom-width: $blockquote-border-width-bottom;
         border-left-width: $blockquote-border-width-left;
+        border-right-width: $blockquote-border-width-right;
         border-top-left-radius: $blockquote-border-radius-top-left;
         border-top-right-radius: $blockquote-border-radius-top-right;
         border-top-width: $blockquote-border-width-top;
-        border-right-width: $blockquote-border-width-right;
         color: $blockquote-font-color;
-        font-size: $blockquote-font-size;
-        margin: 0;
-        margin-bottom: $blockquote-element-spacing;
-        padding: $blockquote-content-spacing;
+        display: block;
+        font-size: map($blockquote-font-sizes, 'medium');
+        margin-bottom: element-spacing();
+        padding: content-spacing(map($blockquote-content-spacing-multipliers, 'medium'));
         position: relative;
 
         // Pseudo classes
@@ -34,22 +29,22 @@
         @if $blockquote-size-modifiers {
             // Cycle through all of the sizes
             @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map($blockquote-font-size-sizes, $size);
-                    padding: map($blockquote-content-spacing-sizes, $size);
-                }
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            font-size: map($blockquote-font-sizes, $size);
+                            padding: content-spacing(map($blockquote-content-spacing-multipliers, $size));
+                        }
 
-                // Check if the blockquote size modifiers with breakpoints should be declared
-                @if $blockquote-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                        // Check if the blockquote size modifiers with breakpoints should be declared
+                        @if $blockquote-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map($blockquote-font-size-sizes, $size);
-                                padding: map($blockquote-content-spacing-sizes, $size);
+                                font-size: map($blockquote-font-sizes, $size);
+                                padding: content-spacing(map($blockquote-content-spacing-multipliers, $size));
                             }
                         }
                     }
@@ -76,17 +71,13 @@
         }
 
         cite {
-            // Styles
             color: inherit;
             display: block;
             font-size: 75%;
             margin: 0;
-            margin-left: $blockquote-content-spacing / 2;
-            margin-top: $blockquote-content-spacing / 2;
 
             // Pseudo elements
             &::before {
-                // Styles
                 content: '\2014\00a0\00a0';
             }
         }

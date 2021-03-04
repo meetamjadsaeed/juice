@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> INITIALIZE -> MAPS -> BREAKPOINTS
+    ========================================================================  */
+
+$breakpoints: (
+    'm': '(max-width: 599px)',
+    't': '(min-width: 600px) and (max-width: 1099px)',
+    'd': '(min-width: 1100px)'
+) !default;

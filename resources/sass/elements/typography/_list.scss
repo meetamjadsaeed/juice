@@ -1,44 +1,11 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> LIST
-    ========================================================================  */
-
 // Check if the elements with list should be imported
 @if $import-elements and $import-element-list {
     ul,
     ol {
-
-        // Styles
-        font-size: $list-font-size;
-        margin: 0;
-        margin-bottom: $list-element-spacing;
-        margin-left: $list-indent-spacing;
-
-        // Check if the list size modifiers should be declared
-        @if $list-size-modifiers {
-            // Cycle through all of the sizes
-            @each $size in $sizes {
-                // Modifiers: Sizes
-                &.is-#{$size} {
-                    font-size: map-get($list-font-size-sizes, $size);
-                }
-
-                // Check if the list size modifiers with breakpoints should be declared
-                @if $list-size-modifiers-with-breakpoints {
-                    // Cycle through all of the breakpoints
-                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
-                        @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
-                            &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($list-font-size-sizes, $size);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        margin-bottom: element-spacing();
+        margin-left: element-spacing();
 
         // Check if the list style type modifiers should be declared
         @if $list-style-type-modifiers {
@@ -46,7 +13,6 @@
             @each $list-style-type in $list-style-types {
                 // Modifiers
                 &.list--#{$list-style-type} {
-                    // Styles
                     list-style-type: $list-style-type;
                 }
             }
@@ -56,7 +22,6 @@
         @if $list-clear-modifier {
             // Modifiers
             &.list--clear {
-                // Styles
                 list-style: none;
                 margin-left: 0;
                 margin-right: 0;

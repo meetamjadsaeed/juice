@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> TYPOGRAPHY -> MARK
+    ========================================================================  */
+
+// Check if the elements with mark should be imported
+@if $import-elements and $import-element-mark {
+    mark {
+        background-color: $mark-background-color;
+        border: 0 $mark-border-style $mark-border-color;
+        border-bottom-left-radius: $mark-border-radius-bottom-left;
+        border-bottom-right-radius: $mark-border-radius-bottom-right;
+        border-bottom-width: $mark-border-width-bottom;
+        border-left-width: $mark-border-width-left;
+        border-right-width: $mark-border-width-right;
+        border-top-left-radius: $mark-border-radius-top-left;
+        border-top-right-radius: $mark-border-radius-top-right;
+        border-top-width: $mark-border-width-top;
+        color: $mark-font-color;
+        padding: $mark-content-spacing;
+    }
+}

@@ -1,0 +1,256 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> ELEMENTS -> NAVIGATION -> BREADCRUMB
+    ========================================================================  */
+
+// Check if the elements with breadcrumb should be imported
+@if $import-elements and $import-element-breadcrumb {
+    .breadcrumb {
+        color: $breadcrumb-font-color;
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                li {
+                    // Pseudo classes
+                    &:first-child {
+                        // Pseudo elements
+                        &::before {
+                            padding: 0;
+                        }
+                    }
+
+                    // Pseudo elements
+                    &::before {
+                        padding: 0 (content-spacing($breakpoint-name) * map-get($breadcrumb-content-spacing-multipliers, 'md'));
+                    }
+
+                    // Nested selectors
+                    .breadcrumb__icon {
+                        margin-right: ((content-spacing($breakpoint-name) * map-get($breadcrumb-content-spacing-multipliers, 'md')) / 2);
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        li {
+            display: inline-flex;
+            position: relative;
+
+            // Pseudo classes
+            &:first-child {
+                // Pseudo elements
+                &::before {
+                    content: '';
+                }
+            }
+
+            // Pseudo elements
+            &::before {
+                content: $breadcrumb-separator;
+                opacity: 0.5;
+            }
+
+            // Nested selectors
+            a {
+                color: $breadcrumb-link-color;
+
+                // Pseudo classes
+                &:hover {
+                    color: $breadcrumb-link-color-hover;
+                }
+
+                &:focus {
+                    color: $breadcrumb-link-color-focus;
+                }
+
+                &:active {
+                    color: $breadcrumb-link-color-active;
+                }
+            }
+
+            .breadcrumb__icon {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+            }
+        }
+
+        // Check if the breadcrumb size modifiers should be declared
+        @if $breadcrumb-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            li {
+                                // Pseudo classes
+                                &:first-child {
+                                    // Pseudo elements
+                                    &::before {
+                                        padding: 0;
+                                    }
+                                }
+
+                                // Pseudo elements
+                                &::before {
+                                    padding: 0 (content-spacing($breakpoint-name) * map-get($breadcrumb-content-spacing-multipliers, $size));
+                                }
+
+                                // Nested selectors
+                                .breadcrumb__icon {
+                                    margin-right: ((content-spacing($breakpoint-name) * map-get($breadcrumb-content-spacing-multipliers, $size)) / 2);
+                                }
+                            }
+                        }
+
+                        // Check if the breadcrumb size modifiers with breakpoints should be declared
+                        @if $breadcrumb-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                li {
+                                    // Pseudo classes
+                                    &:first-child {
+                                        // Pseudo elements
+                                        &::before {
+                                            padding: 0;
+                                        }
+                                    }
+
+                                    // Pseudo elements
+                                    &::before {
+                                        padding: 0 (content-spacing($breakpoint-name) * map-get($breadcrumb-content-spacing-multipliers, $size));
+                                    }
+
+                                    // Nested selectors
+                                    .breadcrumb__icon {
+                                        margin-right: ((content-spacing($breakpoint-name) * map-get($breadcrumb-content-spacing-multipliers, $size)) / 2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check if the breadcrumb alignment modifiers should be declared
+        @if $breadcrumb-alignment-modifiers {
+            // Modifiers
+            &.breadcrumb--center {
+                justify-content: center;
+            }
+
+            &.breadcrumb--right {
+                justify-content: flex-end;
+            }
+        }
+
+        // Check if the breadcrumb angle separator modifier should be declared
+        @if $breadcrumb-angle-separator-modifier {
+            // Modifiers
+            &.breadcrumb--angle {
+                // Nested selectors
+                li {
+                    // Pseudo classes
+                    &:first-child {
+                        // Pseudo elements
+                        &::before {
+                            content: '';
+                            padding: 0;
+                        }
+                    }
+
+                    // Pseudo elements
+                    &::before {
+                        content: $breadcrumb-separator-angle;
+                    }
+                }
+            }
+        }
+
+        // Check if the breadcrumb arrow separator modifier should be declared
+        @if $breadcrumb-arrow-separator-modifier {
+            // Modifiers
+            &.breadcrumb--arrow {
+                // Nested selectors
+                li {
+                    // Pseudo classes
+                    &:first-child {
+                        // Pseudo elements
+                        &::before {
+                            content: '';
+                            padding: 0;
+                        }
+                    }
+
+                    // Pseudo elements
+                    &::before {
+                        content: $breadcrumb-separator-arrow;
+                    }
+                }
+            }
+        }
+
+        // Check if the breadcrumb bullet separator modifier should be declared
+        @if $breadcrumb-bullet-separator-modifier {
+            // Modifiers
+            &.breadcrumb--bullet {
+                // Nested selectors
+                li {
+                    // Pseudo classes
+                    &:first-child {
+                        // Pseudo elements
+                        &::before {
+                            content: '';
+                            padding: 0;
+                        }
+                    }
+
+                    // Pseudo elements
+                    &::before {
+                        content: $breadcrumb-separator-bullet;
+                    }
+                }
+            }
+        }
+
+        // Check if the breadcrumb slash separator modifier should be declared
+        @if $breadcrumb-slash-separator-modifier {
+            // Modifiers
+            &.breadcrumb--slash {
+                // Nested selectors
+                li {
+                    // Pseudo classes
+                    &:first-child {
+                        // Pseudo elements
+                        &::before {
+                            content: '';
+                            padding: 0;
+                        }
+                    }
+
+                    // Pseudo elements
+                    &::before {
+                        content: $breadcrumb-separator-slash;
+                    }
+                }
+            }
+        }
+    }
+}

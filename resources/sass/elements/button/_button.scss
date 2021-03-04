@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> BUTTON -> BUTTON
-    ========================================================================  */
-
 // Check if the elements with button should be imported
 @if $import-elements and $import-element-button {
     #{$button} {
@@ -12,27 +8,26 @@
         border: 0 $button-border-style $button-border-color;
         border-bottom-left-radius: $button-border-radius-bottom-left;
         border-bottom-right-radius: $button-border-radius-bottom-right;
-        border-top-left-radius: $button-border-radius-top-left;
-        border-top-right-radius: $button-border-radius-top-right;
         border-bottom-width: $button-border-width-bottom;
         border-left-width: $button-border-width-left;
         border-right-width: $button-border-width-right;
+        border-top-left-radius: $button-border-radius-top-left;
+        border-top-right-radius: $button-border-radius-top-right;
         border-top-width: $button-border-width-top;
         color: $button-font-color;
         cursor: pointer;
         display: inline-flex;
         font-family: $button-font-family;
-        font-size: $button-font-size;
+        font-size: map($button-font-sizes, 'medium');
         font-variant: $button-font-variant;
         font-weight: $button-font-weight;
-        height: $button-height;
+        height: element-height(map($button-element-height-multipliers, 'medium'));
         justify-content: center;
         letter-spacing: $button-letter-spacing;
-        margin: 0;
-        margin-bottom: $button-element-spacing;
+        margin-bottom: element-spacing();
         max-width: 100%;
         outline: none;
-        padding: 0 $button-content-spacing;
+        padding: 0 content-spacing(map($button-content-spacing-multipliers, 'medium'));
         position: relative;
         text-align: center;
         text-decoration: none;
@@ -45,7 +40,6 @@
         &:hover,
         &:focus,
         &:active {
-            // Styles
             text-decoration: none;
         }
 
@@ -71,51 +65,18 @@
             z-index: stack-index('active');
         }
 
-        // Nested selectors
-        .button__icon {
-            // Styles
-            align-items: center;
-            display: inline-flex;
-            justify-content: center;
-            margin: 0;
-
-            // Pseudo classes
-            &:first-child:not(:only-child) {
-                margin-right: ($button-content-spacing / 2);
-            }
-
-            &:last-child:not(:only-child) {
-                margin-left: ($button-content-spacing / 2);
-            }
-        }
-
         // Modifiers: Props
         &[disabled] {
             @include disabled();
-            background-color: $button-background-color !important;
-            border-color: $button-border-color !important;
-            color: $button-font-color !important;
         }
 
         // Check if the button static modifier should be declared
         @if $button-static-modifier {
             // Modifiers: State hooks
             &.is-static {
-                background-color: $button-background-color !important;
-                border-color: $button-border-color !important;
-                color: $button-font-color !important;
+                box-shadow: none !important;
                 pointer-events: none !important;
                 z-index: stack-index('static') !important;
-
-                // Pseudo classes
-                &:hover,
-                &:focus,
-                &:active {
-                    background-color: $button-background-color !important;
-                    border-color: $button-border-color !important;
-                    box-shadow: none !important;
-                    color: $button-font-color !important;
-                }
             }
         }
 
@@ -134,29 +95,17 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($button-font-size-sizes, $size);
-                    height: map-get($button-height-sizes, $size);
-                    padding: 0 map-get($button-content-spacing-sizes, $size);
-
-                    // Check if the button component modifier should be declared
-                    @if $button-component-modifier {
-                        // Modifiers
-                        &.button--component {
-                            max-width: map-get($button-height-sizes, $size);
-                            min-width: map-get($button-height-sizes, $size);
-                            padding: 0;
-                            width: map-get($button-height-sizes, $size);
-                        }
-                    }
+                    font-size: map($button-font-sizes, $size);
+                    height: element-height(map($button-element-height-multipliers, $size));
+                    padding: 0 content-spacing(map($button-content-spacing-multipliers, $size));
 
                     // Check if the button icon modifier should be declared
                     @if $button-icon-modifier {
                         // Modifiers
                         &.button--icon {
-                            max-width: map-get($button-height-sizes, $size);
-                            min-width: map-get($button-height-sizes, $size);
-                            padding: 0;
-                            width: map-get($button-height-sizes, $size);
+                            max-width: element-height(map($button-element-height-multipliers, $size));
+                            min-width: element-height(map($button-element-height-multipliers, $size));
+                            width: element-height(map($button-element-height-multipliers, $size));
                         }
                     }
                 }
@@ -165,33 +114,21 @@
                 @if $button-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($button-font-size-sizes, $size);
-                                height: map-get($button-height-sizes, $size);
-                                padding: 0 map-get($button-content-spacing-sizes, $size);
-
-                                // Check if the button component modifier should be declared
-                                @if $button-component-modifier {
-                                    // Modifiers
-                                    &.button--component {
-                                        max-width: map-get($button-height-sizes, $size);
-                                        min-width: map-get($button-height-sizes, $size);
-                                        padding: 0;
-                                        width: map-get($button-height-sizes, $size);
-                                    }
-                                }
+                                font-size: map($button-font-sizes, $size);
+                                height: element-height(map($button-element-height-multipliers, $size));
+                                padding: 0 content-spacing(map($button-content-spacing-multipliers, $size));
 
                                 // Check if the button icon modifier should be declared
                                 @if $button-icon-modifier {
                                     // Modifiers
                                     &.button--icon {
-                                        max-width: map-get($button-height-sizes, $size);
-                                        min-width: map-get($button-height-sizes, $size);
-                                        padding: 0;
-                                        width: map-get($button-height-sizes, $size);
+                                        max-width: element-height(map($button-element-height-multipliers, $size));
+                                        min-width: element-height(map($button-element-height-multipliers, $size));
+                                        width: element-height(map($button-element-height-multipliers, $size));
                                     }
                                 }
                             }
@@ -203,95 +140,32 @@
 
         // Check if the button color modifiers should be declared
         @if $button-color-modifiers {
-            // Cycle through all of the base colors
-            @each $color-name, $color-value in $base-colors {
+            // Cycle through all of the button colors
+            @each $button-color in $button-colors {
                 // Modifiers: Base colors
-                &.is-#{$color-name} {
-                    background-color: base-color($color-name);
-                    border-color: base-color('#{$color-name}-darken-3');
-                    color: base-color('#{$color-name}-inverted-text');
+                &.is-#{$button-color} {
+                    background-color: base-color($button-color);
+                    border-color: base-color('#{$button-color}-darken-3');
+                    color: base-color('#{$button-color}-text');
 
                     // Pseudo classes
                     &:hover {
-                        background-color: base-color('#{$color-name}-lighten-1');
-                        border-color: base-color('#{$color-name}-darken-4');
-                        color: base-color('#{$color-name}-inverted-text');
+                        background-color: base-color('#{$button-color}-lighten-1');
+                        border-color: base-color('#{$button-color}-darken-4');
+                        color: base-color('#{$button-color}-text');
                     }
 
                     &:focus {
-                        background-color: base-color('#{$color-name}-lighten-1');
-                        border-color: base-color('#{$color-name}-darken-4');
-                        box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$color-name}-accessibility-focus');
-                        color: base-color('#{$color-name}-inverted-text');
+                        background-color: base-color('#{$button-color}-lighten-1');
+                        border-color: base-color('#{$button-color}-darken-4');
+                        box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$button-color}-accessibility-focus');
+                        color: base-color('#{$button-color}-text');
                     }
 
                     &:active {
-                        background-color: base-color('#{$color-name}-darken-1');
-                        border-color: base-color('#{$color-name}-darken-6');
-                        color: base-color('#{$color-name}-inverted-text');
-                    }
-
-                    // Modifiers: Props
-                    &[disabled] {
-                        @include disabled();
-                        background-color: base-color($color-name) !important;
-                        border-color: base-color('#{$color-name}-darken-3') !important;
-                        color: base-color('#{$color-name}-inverted-text') !important;
-                    }
-
-                    // Check if the button static modifier should be declared
-                    @if $button-static-modifier {
-                        // Modifiers: State hooks
-                        &.is-static {
-                            background-color: base-color($color-name) !important;
-                            border-color: base-color('#{$color-name}-darken-3') !important;
-                            color: base-color('#{$color-name}-inverted-text') !important;
-
-                            // Pseudo classes
-                            &:hover,
-                            &:focus,
-                            &:active {
-                                background-color: base-color($color-name) !important;
-                                border-color: base-color('#{$color-name}-darken-3') !important;
-                                color: base-color('#{$color-name}-inverted-text') !important;
-                            }
-                        }
-                    }
-
-                    // Check if the button flat modifier should be declared
-                    @if $button-flat-modifier {
-                        // Modifiers
-                        &.button--flat {
-                            color: inherit;
-
-                            // Pseudo classes
-                            &:hover,
-                            &:focus {
-                                color: base-color($color-name);
-                            }
-
-                            // Modifiers: Props
-                            &[disabled] {
-                                background-color: transparent !important;
-                                border-color: transparent !important;
-                                color: inherit !important;
-                            }
-
-                            // Check if the button static modifier should be declared
-                            @if $button-static-modifier {
-                                // Modifiers: State hooks
-                                &.is-static {
-                                    color: inherit !important;
-
-                                    // Pseudo classes
-                                    &:hover,
-                                    &:focus,
-                                    &:active {
-                                        color: inherit !important;
-                                    }
-                                }
-                            }
-                        }
+                        background-color: base-color('#{$button-color}-darken-1');
+                        border-color: base-color('#{$button-color}-darken-6');
+                        color: base-color('#{$button-color}-text');
                     }
 
                     // Check if the button outline modifier should be declared
@@ -299,54 +173,27 @@
                         // Modifiers
                         &.button--outline {
                             background-color: transparent;
-                            border-color: base-color($color-name);
-                            color: base-color($color-name);
+                            border-color: base-color($button-color);
+                            color: base-color($button-color);
 
                             // Pseudo classes
                             &:hover {
-                                background-color: base-color($color-name);
-                                border-color: base-color($color-name);
-                                color: base-color('#{$color-name}-inverted-text');
+                                background-color: base-color($button-color);
+                                border-color: base-color($button-color);
+                                color: base-color('#{$button-color}-text');
                             }
 
                             &:focus {
-                                background-color: base-color($color-name);
-                                border-color: base-color($color-name);
-                                box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$color-name}-accessibility-focus');
-                                color: base-color('#{$color-name}-inverted-text');
+                                background-color: base-color($button-color);
+                                border-color: base-color($button-color);
+                                box-shadow: 0 0 0 $button-accessibility-focus-width base-color('#{$button-color}-accessibility-focus');
+                                color: base-color('#{$button-color}-text');
                             }
 
                             &:active {
-                                background-color: base-color('#{$color-name}-darken-1');
-                                border-color: base-color('#{$color-name}-darken-1');
-                                color: base-color('#{$color-name}-inverted-text');
-                            }
-
-                            // Modifiers: Props
-                            &[disabled] {
-                                @include disabled();
-                                background-color: transparent !important;
-                                border-color: base-color($color-name) !important;
-                                color: base-color($color-name) !important;
-                            }
-
-                            // Check if the button static modifier should be declared
-                            @if $button-static-modifier {
-                                // Modifiers: State hooks
-                                &.is-static {
-                                    background-color: transparent !important;
-                                    border-color: base-color($color-name) !important;
-                                    color: base-color($color-name) !important;
-
-                                    // Pseudo classes
-                                    &:hover,
-                                    &:focus,
-                                    &:active {
-                                        background-color: transparent !important;
-                                        border-color: base-color($color-name) !important;
-                                        color: base-color($color-name) !important;
-                                    }
-                                }
+                                background-color: base-color('#{$button-color}-darken-1');
+                                border-color: base-color('#{$button-color}-darken-1');
+                                color: base-color('#{$button-color}-text');
                             }
                         }
                     }
@@ -362,89 +209,26 @@
                 &.has-#{$feedback-name} {
                     background-color: feedback-color($feedback-name);
                     border-color: feedback-color('#{$feedback-name}-darken-3');
-                    color: feedback-color('#{$feedback-name}-inverted-text');
+                    color: feedback-color('#{$feedback-name}-text');
 
                     // Pseudo classes
                     &:hover {
                         background-color: feedback-color('#{$feedback-name}-lighten-1');
                         border-color: feedback-color('#{$feedback-name}-darken-4');
-                        color: feedback-color('#{$feedback-name}-inverted-text');
+                        color: feedback-color('#{$feedback-name}-text');
                     }
 
                     &:focus {
                         background-color: feedback-color('#{$feedback-name}-lighten-1');
                         border-color: feedback-color('#{$feedback-name}-darken-4');
                         box-shadow: 0 0 0 $button-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
-                        color: feedback-color('#{$feedback-name}-inverted-text');
+                        color: feedback-color('#{$feedback-name}-text');
                     }
 
                     &:active {
                         background-color: feedback-color('#{$feedback-name}-darken-1');
                         border-color: feedback-color('#{$feedback-name}-darken-6');
-                        color: feedback-color('#{$feedback-name}-inverted-text');
-                    }
-
-                    // Modifiers: Props
-                    &[disabled] {
-                        @include disabled();
-                        background-color: feedback-color($feedback-name) !important;
-                        border-color: feedback-color('#{$feedback-name}-darken-3') !important;
-                        color: feedback-color('#{$feedback-name}-inverted-text') !important;
-                    }
-
-                    // Check if the button static modifier should be declared
-                    @if $button-static-modifier {
-                        // Modifiers: State hooks
-                        &.is-static {
-                            background-color: feedback-color($feedback-name) !important;
-                            border-color: feedback-color('#{$feedback-name}-darken-3') !important;
-                            color: feedback-color('#{$feedback-name}-inverted-text') !important;
-
-                            // Pseudo classes
-                            &:hover,
-                            &:focus,
-                            &:active {
-                                background-color: feedback-color($feedback-name) !important;
-                                border-color: feedback-color('#{$feedback-name}-darken-3') !important;
-                                color: feedback-color('#{$feedback-name}-inverted-text') !important;
-                            }
-                        }
-                    }
-
-                    // Check if the button flat modifier should be declared
-                    @if $button-flat-modifier {
-                        // Modifiers
-                        &.button--flat {
-                            color: inherit;
-
-                            // Pseudo classes
-                            &:hover,
-                            &:focus {
-                                color: feedback-color($feedback-name);
-                            }
-
-                            // Modifiers: Props
-                            &[disabled] {
-                                background-color: transparent !important;
-                                border-color: transparent !important;
-                                color: inherit !important;
-                            }
-
-                            // Check if the button static modifier should be declared
-                            @if $button-static-modifier {
-                                // Modifiers: State hooks
-                                &.is-static {
-                                    color: inherit !important;
-
-                                    // Pseudo classes
-                                    &:hover,
-                                    &:focus,
-                                    &:active {
-                                        color: inherit !important;
-                                    }
-                                }
-                            }
-                        }
+                        color: feedback-color('#{$feedback-name}-text');
                     }
 
                     // Check if the button outline modifier should be declared
@@ -459,47 +243,20 @@
                             &:hover {
                                 background-color: feedback-color($feedback-name);
                                 border-color: feedback-color($feedback-name);
-                                color: feedback-color('#{$feedback-name}-inverted-text');
+                                color: feedback-color('#{$feedback-name}-text');
                             }
 
                             &:focus {
                                 background-color: feedback-color($feedback-name);
                                 border-color: feedback-color($feedback-name);
                                 box-shadow: 0 0 0 $button-accessibility-focus-width feedback-color('#{$feedback-name}-accessibility-focus');
-                                color: feedback-color('#{$feedback-name}-inverted-text');
+                                color: feedback-color('#{$feedback-name}-text');
                             }
 
                             &:active {
                                 background-color: feedback-color('#{$feedback-name}-darken-1');
                                 border-color: feedback-color('#{$feedback-name}-darken-1');
-                                color: feedback-color('#{$feedback-name}-inverted-text');
-                            }
-
-                            // Modifiers: Props
-                            &[disabled] {
-                                @include disabled();
-                                background-color: transparent !important;
-                                border-color: feedback-color($feedback-name) !important;
-                                color: feedback-color($feedback-name) !important;
-                            }
-
-                            // Check if the button static modifier should be declared
-                            @if $button-static-modifier {
-                                // Modifiers: State hooks
-                                &.is-static {
-                                    background-color: transparent !important;
-                                    border-color: feedback-color($feedback-name) !important;
-                                    color: feedback-color($feedback-name) !important;
-
-                                    // Pseudo classes
-                                    &:hover,
-                                    &:focus,
-                                    &:active {
-                                        background-color: transparent !important;
-                                        border-color: feedback-color($feedback-name) !important;
-                                        color: feedback-color($feedback-name) !important;
-                                    }
-                                }
+                                color: feedback-color('#{$feedback-name}-text');
                             }
                         }
                     }
@@ -516,11 +273,7 @@
                 box-shadow: none !important;
                 color: inherit !important;
                 margin-bottom: 0;
-                max-width: $button-height;
-                min-width: $button-height;
-                opacity: 0.3 !important;
-                padding: 0;
-                width: $button-height;
+                opacity: 0.4 !important;
 
                 // Pseudo classes
                 &:hover {
@@ -541,66 +294,7 @@
                     background-color: hsla(0, 0, 0, 0.12) !important;
                     border-color: transparent !important;
                     color: inherit !important;
-                    opacity: 0.9 !important;
-                }
-
-                // Modifiers: Props
-                &[disabled] {
-                    @include disabled();
-                    background-color: transparent !important;
-                    border-color: transparent !important;
-                    color: inherit !important;
-                    opacity: 0.3 !important;
-                }
-            }
-        }
-
-        // Check if the button flat modifier should be declared
-        @if $button-flat-modifier {
-            &.button--flat {
-                background-color: transparent !important;
-                border-color: transparent !important;
-                box-shadow: none !important;
-                color: inherit;
-
-                // Pseudo classes
-                &:hover,
-                &:focus {
-                    background-color: hsla(0, 0%, 30%, 0.08) !important;
-                    color: $button-background-color;
-                }
-
-                &:active {
-                    background-color: hsla(0, 0%, 30%, 0.09) !important;
-                }
-
-                // Modifiers: Props
-                &[disabled] {
-                    @include disabled();
-                    background-color: transparent !important;
-                    border-color: transparent !important;
-                    color: inherit !important;
-                }
-
-                // Check if the button static modifier should be declared
-                @if $button-static-modifier {
-                    // Modifiers: State hooks
-                    &.is-static {
-                        background-color: transparent !important;
-                        border-color: transparent !important;
-                        box-shadow: none !important;
-                        color: inherit !important;
-
-                        // Pseudo classes
-                        &:hover,
-                        &:focus,
-                        &:active {
-                            background-color: transparent !important;
-                            border-color: transparent !important;
-                            box-shadow: none !important;
-                            color: inherit !important;
-                        }
-                    }
+                    opacity: 0.8 !important;
                 }
             }
         }
@@ -609,10 +303,10 @@
         @if $button-icon-modifier {
             // Modifiers
             &.button--icon {
-                max-width: $button-height;
-                min-width: $button-height;
+                max-width: element-spacing(map($button-element-height-multipliers, 'medium'));
+                min-width: element-spacing(map($button-element-height-multipliers, 'medium'));
                 padding: 0;
-                width: $button-height;
+                width: element-spacing(map($button-element-height-multipliers, 'medium'));
             }
         }
 
@@ -641,33 +335,6 @@
                     background-color: $button-background-color-active;
                     border-color: $button-background-color-active;
                     color: $button-font-color-active;
-                }
-
-                // Modifiers: Props
-                &[disabled] {
-                    @include disabled();
-                    background-color: transparent !important;
-                    border-color: $button-background-color !important;
-                    color: $button-background-color !important;
-                }
-
-                // Check if the button static modifier should be declared
-                @if $button-static-modifier {
-                    // Modifiers: State hooks
-                    &.is-static {
-                        background-color: transparent !important;
-                        border-color: $button-background-color !important;
-                        color: $button-background-color !important;
-
-                        // Pseudo classes
-                        &:hover,
-                        &:focus,
-                        &:active {
-                            background-color: transparent !important;
-                            border-color: $button-background-color !important;
-                            color: $button-background-color !important;
-                        }
-                    }
                 }
             }
         }

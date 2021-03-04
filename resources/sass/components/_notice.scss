@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> COMPONENTS -> NOTICE
-    ========================================================================  */
-
 // Check if the components with notice should be imported
 @if $import-components and $import-component-notice {
     .notice {
@@ -14,9 +10,7 @@
         border-top-right-radius: $notice-border-radius-top-right;
         box-shadow: $notice-box-shadow;
         display: flex;
-        font-size: $notice-font-size;
-        margin: 0;
-        margin-bottom: $notice-element-spacing;
+        margin-bottom: element-spacing();
 
         // Nested selectors
         a:not(.button) {
@@ -47,7 +41,7 @@
             color: $notice-font-color;
             display: flex;
             justify-content: center;
-            padding: $notice-content-spacing;
+            padding: content-spacing(map($notice-content-spacing-multipliers, 'medium'));
 
             // Pseudo classes
             &:first-child {
@@ -68,12 +62,12 @@
             border-color: $notice-feedback-border-color;
             border-right-width: $notice-border-width-divider;
             color: $notice-feedback-font-color;
-            font-size: 2em;
+            font-size: calc(#{font-size()} * 2);
         }
 
         .notice__text {
-            justify-content: flex-start;
             flex-grow: 1;
+            justify-content: flex-start;
         }
 
         .notice__action {
@@ -86,13 +80,11 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($notice-font-size-sizes, $size);
-
                     // Nested selectors
                     .notice__feedback,
                     .notice__text,
                     .notice__action {
-                        padding: map-get($notice-content-spacing-sizes, $size);
+                        padding: content-spacing(map($notice-content-spacing-multipliers, $size));
                     }
                 }
 
@@ -100,17 +92,15 @@
                 @if $notice-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($notice-font-size-sizes, $size);
-
                                 // Nested selectors
                                 .notice__feedback,
                                 .notice__text,
                                 .notice__action {
-                                    padding: map-get($notice-content-spacing-sizes, $size);
+                                    padding: content-spacing(map($notice-content-spacing-multipliers, $size));
                                 }
                             }
                         }
@@ -119,18 +109,15 @@
             }
         }
 
-        // Check if the notice feedback modifiers should be declared
-        @if $notice-feedback-modifiers {
-            // Cycle through all of the feedback colors
-            @each $feedback-name, $color-value in $feedback-colors {
-                // Modifiers: Feedback colors
-                &.has-#{$feedback-name} {
-                    // Nested selectors
-                    .notice__feedback {
-                        background-color: feedback-color($feedback-name);
-                        border-color: feedback-color('#{$feedback-name}-darken-3');
-                        color: feedback-color('#{$feedback-name}-inverted-text');
-                    }
+        // Cycle through all of the feedback colors
+        @each $feedback-name, $color-value in $feedback-colors {
+            // Modifiers: Feedback colors
+            &.has-#{$feedback-name} {
+                // Nested selectors
+                .notice__feedback {
+                    background-color: feedback-color($feedback-name);
+                    border-color: feedback-color('#{$feedback-name}-darken-3');
+                    color: feedback-color('#{$feedback-name}-text');
                 }
             }
         }

@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+/**
+ * Get a font color from the font color palette.
+ *
+ * @param  {string}  $name  The font color name.
+ * @return {mixed}          The font color, null otherwise.
+ */
+@function font-color($name: 'default') {
+    // Return the font color
+    @return var(--font-color-#{$name});
+}

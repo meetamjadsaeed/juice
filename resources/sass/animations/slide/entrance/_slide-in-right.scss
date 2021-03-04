@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ANIMATIONS -> SLIDE -> ENTRANCE -> SLIDE IN RIGHT
-    ========================================================================  */
-
 // Check if the animations with slide in right should be imported
 @if $import-animations and $import-animation-slide-in-right {
     .has-animation {
@@ -11,7 +7,7 @@
         &.slide-in-right {
             @keyframes slide-in-right {
                 from {
-                    transform: translate3d((0px - $animation-slide-in-distance), 0, 0);
+                    transform: translate3d((0 - $animation-slide-in-distance), 0, 0);
                 }
 
                 to {

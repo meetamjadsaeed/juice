@@ -1,0 +1,258 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> COMPONENTS -> CARD
+    ========================================================================  */
+
+// Check if the components with card should be imported
+@if $import-components and $import-component-card {
+    .card {
+        animation-duration: $card-animation-duration;
+        background-color: $card-background-color;
+        border: 0 $card-border-style $card-border-color;
+        border-bottom-left-radius: $card-border-radius-bottom-left;
+        border-bottom-right-radius: $card-border-radius-bottom-right;
+        border-bottom-width: $card-border-width-bottom;
+        border-left-width: $card-border-width-left;
+        border-right-width: $card-border-width-right;
+        border-top-left-radius: $card-border-radius-top-left;
+        border-top-right-radius: $card-border-radius-top-right;
+        border-top-width: $card-border-width-top;
+        box-shadow: $card-box-shadow;
+        color: $card-font-color;
+        display: flex;
+        flex-direction: column;
+
+        // Cycle through all of the breakpoints
+        @each $breakpoint-name, $breakpoint-value in $breakpoints {
+            // Breakpoints
+            @include breakpoint($breakpoint-name) {
+                margin-bottom: element-spacing($breakpoint-name);
+
+                // Nested selectors
+                .card__content {
+                    padding: (content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, 'md'));
+
+                    // Nested selectors
+                    .card__head,
+                    .card__body,
+                    .card__foot {
+                        padding-bottom: (content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, 'md'));
+
+                        // Pseudo classes
+                        &:last-child {
+                            padding-bottom: 0;
+                        }
+                    }
+
+                    .card__foot {
+                        // Nested selectors
+                        .card__buttons {
+                            // Nested selectors
+                            #{$button} {
+                                margin-left: ((content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, 'md')) / 2);
+
+                                // Pseudo classes
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Nested selectors
+        a:not(.button) {
+            color: $card-link-color;
+
+            // Pseudo classes
+            &:hover {
+                color: $card-link-color-hover;
+            }
+
+            &:focus {
+                color: $card-link-color-focus;
+            }
+
+            &:active {
+                color: $card-link-color-active;
+            }
+        }
+
+        .card__media {
+            border-top-left-radius: $global-border-radius-top-left;
+            border-top-right-radius: $global-border-radius-top-right;
+            overflow: hidden;
+            padding: 0;
+
+            // Nested selectors
+            iframe {
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            img,
+            video {
+                display: flex;
+                height: auto;
+                margin-bottom: 0;
+                width: 100%;
+            }
+
+            // Modifiers
+            &.card__media--iframe {
+                height: 0;
+                padding: 25px 0 56.25%;
+                position: relative;
+            }
+        }
+
+        .card__content {
+            // Nested selectors
+            .card__head,
+            .card__foot {
+                display: flex;
+
+                // Nested selectors
+                .card__actions {
+                    align-items: center;
+                    display: flex;
+                }
+            }
+
+            .card__head {
+                align-items: center;
+
+                // Nested selectors
+                .card__headings {
+                    flex-grow: 1;
+
+                    // Nested selectors
+                    #{$heading},
+                    .card__heading {
+                        margin-bottom: 0;
+                        opacity: 0.5;
+
+                        // Pseudo classes
+                        &:first-child {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .card__actions {
+                    justify-content: flex-end;
+                }
+            }
+
+            .card__foot {
+                // Nested selectors
+                .card__actions,
+                .card__buttons {
+                    align-items: center;
+                    display: flex;
+                }
+
+                .card__buttons {
+                    flex-grow: 1;
+                    justify-content: flex-end;
+
+                    // Nested selectors
+                    #{$button} {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        // Check if the card size modifiers should be declared
+        @if $card-size-modifiers {
+            // Cycle through all of the sizes
+            @each $size in $sizes {
+                // Cycle through all of the breakpoints
+                @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                    // Breakpoints
+                    @include breakpoint($breakpoint-name) {
+                        // Modifiers: Sizes
+                        &.is-#{$size} {
+                            // Nested selectors
+                            .card__content {
+                                padding: (content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, $size));
+
+                                // Nested selectors
+                                .card__head,
+                                .card__body,
+                                .card__foot {
+                                    padding-bottom: (content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, $size));
+
+                                    // Pseudo classes
+                                    &:last-child {
+                                        padding-bottom: 0;
+                                    }
+                                }
+
+                                .card__foot {
+                                    // Nested selectors
+                                    .card__buttons {
+                                        // Nested selectors
+                                        #{$button} {
+                                            margin-left: ((content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, $size)) / 2);
+
+                                            // Pseudo classes
+                                            &:first-child {
+                                                margin-left: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Check if the card size modifiers with breakpoints should be declared
+                        @if $card-size-modifiers-with-breakpoints {
+                            // Modifiers: Sizes
+                            &.is-#{$size}\@#{$breakpoint-name} {
+                                // Nested selectors
+                                .card__content {
+                                    padding: (content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, $size));
+
+                                    // Nested selectors
+                                    .card__head,
+                                    .card__body,
+                                    .card__foot {
+                                        padding-bottom: (content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, $size));
+
+                                        // Pseudo classes
+                                        &:last-child {
+                                            padding-bottom: 0;
+                                        }
+                                    }
+
+                                    .card__foot {
+                                        // Nested selectors
+                                        .card__buttons {
+                                            // Nested selectors
+                                            #{$button} {
+                                                margin-left: ((content-spacing($breakpoint-name) * map-get($card-content-spacing-multipliers, $size)) / 2);
+
+                                                // Pseudo classes
+                                                &:first-child {
+                                                    margin-left: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+/* ========================================================================
+   JUICE -> COMPONENTS -> CONFIRM
+   ========================================================================  */
+
+// Check if the components with confirm should be imported
+@if $import-components and $import-component-confirm {
+    .overlay {
+        // Nested selectors
+        &.confirm {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 10vh 0;
+
+            // Nested selectors
+            .confirm__content {
+                animation-duration: $confirm-animation-duration;
+                border-bottom-left-radius: $confirm-border-radius-bottom-left;
+                border-bottom-right-radius: $confirm-border-radius-bottom-right;
+                border-top-left-radius: $confirm-border-radius-top-left;
+                border-top-right-radius: $confirm-border-radius-top-right;
+                box-shadow: $confirm-box-shadow;
+                display: inline-flex;
+                margin: 0 auto;
+                max-height: 100%;
+                max-width: 80vw;
+
+                // Nested selectors
+                .confirm__card {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                    overflow: hidden;
+
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            width: map-get($confirm-max-widths, $breakpoint-name);
+
+                            .confirm__head {
+                                padding: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md')) / 2) (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md'));
+                            }
+
+                            .confirm__body,
+                            .confirm__foot {
+                                padding: (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md'));
+                            }
+
+                            .confirm__foot {
+                                // Nested selectors
+                                .confirm__buttons {
+                                    // Nested selectors
+                                    #{$button} {
+                                        margin-left: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, 'md')) / 2);
+
+                                        // Pseudo classes
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Nested selectors
+                    a:not(.button) {
+                        color: $confirm-link-color;
+
+                        // Pseudo classes
+                        &:hover {
+                            color: $confirm-link-color-hover;
+                        }
+
+                        &:focus {
+                            color: $confirm-link-color-focus;
+                        }
+
+                        &:active {
+                            color: $confirm-link-color-active;
+                        }
+                    }
+
+                    .confirm__head,
+                    .confirm__body,
+                    .confirm__foot {
+                        border: 0 $confirm-border-style transparent;
+                        border-left-width: $confirm-border-width-left;
+                        border-right-width: $confirm-border-width-right;
+
+                        &:first-child {
+                            border-top-left-radius: $confirm-border-radius-top-left;
+                            border-top-right-radius: $confirm-border-radius-top-right;
+                            border-top-width: $confirm-border-width-top;
+                        }
+
+                        &:last-child {
+                            border-bottom-left-radius: $confirm-border-radius-bottom-left;
+                            border-bottom-right-radius: $confirm-border-radius-bottom-right;
+                            border-bottom-width: $confirm-border-width-bottom;
+                        }
+                    }
+
+                    .confirm__head {
+                        align-items: center;
+                        background-color: $confirm-head-background-color;
+                        border-bottom-width: $confirm-border-width-bottom;
+                        border-color: $confirm-head-border-color;
+                        color: $confirm-head-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+
+                        // Nested selectors
+                        .confirm__headings {
+                            flex-grow: 1;
+
+                            // Nested selectors
+                            #{$heading},
+                            .confirm__heading {
+                                margin-bottom: 0;
+                                opacity: 0.5;
+
+                                // Pseudo classes
+                                &:first-child {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    .confirm__body {
+                        background-color: $confirm-body-background-color;
+                        border-color: $confirm-body-border-color;
+                        color: $confirm-body-font-color;
+                        flex-grow: 1;
+                        flex-shrink: 1;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                    }
+
+                    .confirm__foot {
+                        background-color: $confirm-foot-background-color;
+                        border-bottom-width: $confirm-border-width-bottom;
+                        border-color: $confirm-foot-border-color;
+                        color: $confirm-foot-font-color;
+                        display: flex;
+                        flex-shrink: 1;
+                        padding-top: 0;
+
+                        // Nested selectors
+                        .confirm__buttons {
+                            align-items: center;
+                            display: flex;
+                            flex-grow: 1;
+                            justify-content: flex-end;
+
+                            // Nested selectors
+                            #{$button} {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+
+                    // Check if the confirm size modifiers should be declared
+                    @if $confirm-size-modifiers {
+                        // Cycle through all of the sizes
+                        @each $size in $sizes {
+                            // Cycle through all of the breakpoints
+                            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                                // Breakpoints
+                                @include breakpoint($breakpoint-name) {
+                                    // Modifiers: Sizes
+                                    &.is-#{$size} {
+                                        // Nested selectors
+                                        .confirm__head {
+                                            padding: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                        }
+
+                                        .confirm__body,
+                                        .confirm__foot {
+                                            padding: (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                        }
+
+                                        .confirm__foot {
+                                            // Nested selectors
+                                            .confirm__buttons {
+                                                // Nested selectors
+                                                #{$button} {
+                                                    margin-left: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2);
+
+                                                    // Pseudo classes
+                                                    &:first-child {
+                                                        margin-left: 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Check if the confirm size modifiers with breakpoints should be declared
+                                    @if $confirm-size-modifiers-with-breakpoints {
+                                        // Modifiers: Sizes
+                                        &.is-#{$size}\@#{$breakpoint-name} {
+                                            // Nested selectors
+                                            .confirm__head {
+                                                padding: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2) (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                            }
+
+                                            .confirm__body,
+                                            .confirm__foot {
+                                                padding: (content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size));
+                                            }
+
+                                            .confirm__foot {
+                                                // Nested selectors
+                                                .confirm__buttons {
+                                                    // Nested selectors
+                                                    #{$button} {
+                                                        margin-left: ((content-spacing($breakpoint-name) * map-get($confirm-content-spacing-multipliers, $size)) / 2);
+
+                                                        // Pseudo classes
+                                                        &:first-child {
+                                                            margin-left: 0;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the confirm color modifiers should be declared
+                    @if $confirm-color-modifiers {
+                        // Cycle through all of the base colors
+                        @each $color-name, $color-value in $base-colors {
+                            // Modifiers: Base colors
+                            &.is-#{$color-name} {
+                                // Nested selectors
+                                .confirm__head {
+                                    background-color: base-color($color-name);
+                                    border-color: base-color('#{$color-name}-darken-3');
+                                    color: base-color('#{$color-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+
+                    // Check if the confirm feedback modifiers should be declared
+                    @if $confirm-feedback-modifiers {
+                        // Cycle through all of the feedback colors
+                        @each $feedback-name, $color-value in $feedback-colors {
+                            // Modifiers: Feedback colors
+                            &.has-#{$feedback-name} {
+                                // Nested selectors
+                                .confirm__head {
+                                    background-color: feedback-color($feedback-name);
+                                    border-color: feedback-color('#{$feedback-name}-darken-3');
+                                    color: feedback-color('#{$feedback-name}-inverted-text');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check if the confirm alignment modifier should be declared
+            @if $confirm-alignment-modifier {
+                // Modifiers
+                &.confirm--center {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

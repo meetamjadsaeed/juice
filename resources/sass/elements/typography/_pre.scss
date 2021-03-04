@@ -1,40 +1,33 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> ELEMENTS -> TYPOGRAPHY -> PRE
-    ========================================================================  */
-
 // Check if the elements with pre should be imported
 @if $import-elements and $import-element-pre {
     pre {
-        display: block;
         background-color: $pre-background-color;
         border: 0 $pre-border-style $pre-border-color;
         border-bottom-left-radius: $pre-border-radius-bottom-left;
         border-bottom-right-radius: $pre-border-radius-bottom-right;
         border-bottom-width: $pre-border-width-bottom;
         border-left-width: $pre-border-width-left;
+        border-right-width: $pre-border-width-right;
         border-top-left-radius: $pre-border-radius-top-left;
         border-top-right-radius: $pre-border-radius-top-right;
         border-top-width: $pre-border-width-top;
-        border-right-width: $pre-border-width-right;
         box-shadow: none;
         color: $pre-font-color;
+        display: block;
         font-family: $pre-font-family;
-        font-size: $pre-font-size;
-        margin: 0;
-        margin-bottom: $pre-element-spacing;
-        padding: $pre-content-spacing;
-        position: relative;
+        margin-bottom: element-spacing();
         overflow-x: auto;
+        padding: content-spacing(map($pre-content-spacing-multipliers, 'medium'));
+        position: relative;
         white-space: pre-wrap;
 
         // Pseudo elements
         &::after {
-            // Styles
-            display: block;
             content: attr(data-language);
-            font-family: $default-monoface-typeface;
+            display: block;
+            font-family: $global-monoface-typeface;
             font-size: 75%;
             padding: 5px 10px;
             position: absolute;
@@ -49,20 +42,18 @@
             @each $size in $sizes {
                 // Modifiers: Sizes
                 &.is-#{$size} {
-                    font-size: map-get($pre-font-size-sizes, $size);
-                    padding: map-get($pre-content-spacing-sizes, $size);
+                    padding: content-spacing(map($pre-content-spacing-multipliers, $size));
                 }
 
                 // Check if the pre size modifiers with breakpoints should be declared
                 @if $pre-size-modifiers-with-breakpoints {
                     // Cycle through all of the breakpoints
                     @each $breakpoint-name, $breakpoint-value in $breakpoints {
-                        // Breakpoint
+                        // Breakpoints
                         @include breakpoint($breakpoint-name) {
-                            // Modifiers: Size
+                            // Modifiers: Sizes
                             &.is-#{$size}\@#{$breakpoint-name} {
-                                font-size: map-get($pre-font-size-sizes, $size);
-                                padding: map-get($pre-content-spacing-sizes, $size);
+                                padding: content-spacing(map($pre-content-spacing-multipliers, $size));
                             }
                         }
                     }
@@ -72,7 +63,6 @@
 
         // Nested selectors
         code {
-            // Styles
             background-color: transparent;
             color: inherit;
             font-size: inherit;

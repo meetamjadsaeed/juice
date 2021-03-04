@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> VARIABLES -> ELEMENTS -> LAYOUT -> HERO
+    ========================================================================  */
+
+// Maps
+$hero-content-spacing-multipliers: (
+    'sm': 0.5,
+    'md': 1,
+    'lg': 2
+) !default;
+
+// Variables
+$hero-background-color: base-color('charcoal') !default;
+$hero-background-position: center !default;
+$hero-background-repeat: no-repeat !default;
+$hero-background-size: cover !default;
+$hero-font-color: base-color('charcoal-inverted-text') !default;
+$hero-link-color: base-color('charcoal-inverted-text') !default;
+$hero-link-color-hover: base-color('charcoal-inverted-text') !default;
+$hero-link-color-focus: base-color('charcoal-inverted-text') !default;
+$hero-link-color-active: base-color('charcoal-inverted-text') !default;

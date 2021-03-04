@@ -1,42 +1,44 @@
 @charset 'utf-8';
 
-/*  ========================================================================
-    JUICE -> VARIABLES -> ELEMENTS -> BADGE -> SHIELD
-    ========================================================================  */
+// Shield maps
+$shield-colors: (
+    'primary',
+    'charcoal'
+) !default;
 
-// Variables
+$shield-content-spacing-multipliers: (
+    'small': 0.2,
+    'medium': 0.4,
+    'large': 0.6
+) !default;
+
+$shield-font-sizes: (
+    'small': (font-size('small') - 0.2em),
+    'medium': (font-size() - 0.2em),
+    'large': (font-size('large') - 0.2em)
+) !default;
+
+$shield-element-height-multipliers: (
+    'small': 0.75,
+    'medium': 1,
+    'large': 1.25
+) !default;
+
+
+// Shield variables
 $shield-badge-background-color: base-color('white') !default;
 $shield-badge-border-color: base-color('white-darken-3') !default;
-$shield-badge-font-color: base-color('white-inverted-text') !default;
-$shield-border-radius-bottom-left: $default-border-radius-bottom-left !default;
-$shield-border-radius-bottom-right: $default-border-radius-bottom-right !default;
-$shield-border-radius-top-left: $default-border-radius-top-left !default;
-$shield-border-radius-top-right: $default-border-radius-top-right !default;
-$shield-border-style: $default-border-style !default;
-$shield-border-width-bottom: $default-border-width-bottom !default;
-$shield-border-width-divider: $default-border-width-divider !default;
-$shield-border-width-left: $default-border-width-left !default;
-$shield-border-width-right: $default-border-width-right !default;
-$shield-border-width-top: $default-border-width-top !default;
-$shield-content-spacing: ($default-content-spacing / 1.5) !default;
-$shield-content-spacing-sizes: (
-    'small': (map-get($default-content-spacing-sizes, 'small') / 1.5),
-    'large': (map-get($default-content-spacing-sizes, 'large') / 1.5),
-    'huge': (map-get($default-content-spacing-sizes, 'huge') / 1.5)
-) !default;
-$shield-element-spacing: $default-element-spacing !default;
-$shield-font-size: $default-font-size - 0.2em !default;
-$shield-font-size-sizes: (
-    'small': (map-get($default-font-size-sizes, 'small') - 0.2em),
-    'large': (map-get($default-font-size-sizes, 'large') - 0.2em),
-    'huge': (map-get($default-font-size-sizes, 'huge') - 0.2em)
-) !default;
-$shield-height: $default-element-height / 1.5 !default;
-$shield-height-sizes: (
-    'small': (map-get($default-element-height-sizes, 'small') / 1.5),
-    'large': (map-get($default-element-height-sizes, 'large') / 1.5),
-    'huge': (map-get($default-element-height-sizes, 'huge') / 1.5)
-) !default;
+$shield-badge-font-color: base-color('white-text') !default;
+$shield-border-radius-bottom-left: $global-border-radius-bottom-left !default;
+$shield-border-radius-bottom-right: $global-border-radius-bottom-right !default;
+$shield-border-radius-top-left: $global-border-radius-top-left !default;
+$shield-border-radius-top-right: $global-border-radius-top-right !default;
+$shield-border-style: $global-border-style !default;
+$shield-border-width-bottom: $global-border-width-bottom !default;
+$shield-border-width-divider: $global-border-width-divider !default;
+$shield-border-width-left: $global-border-width-left !default;
+$shield-border-width-right: $global-border-width-right !default;
+$shield-border-width-top: $global-border-width-top !default;
 $shield-text-background-color: base-color('charcoal') !default;
 $shield-text-border-color: base-color('charcoal-darken-3') !default;
-$shield-text-font-color: base-color('charcoal-inverted-text') !default;
+$shield-text-font-color: base-color('charcoal-text') !default;

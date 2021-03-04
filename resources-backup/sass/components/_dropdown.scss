@@ -1,0 +1,254 @@
+@charset 'utf-8';
+
+/*  ========================================================================
+    JUICE -> COMPONENTS -> DROPDOWN
+    ========================================================================  */
+
+// Check if the components with dropdown should be imported
+@if $import-components and $import-component-dropdown {
+    .has-dropdown {
+        display: inline-flex;
+        outline: none;
+        position: relative;
+
+        // Modifiers: State hooks
+        &.is-active {
+            // Nested selectors
+            .dropdown {
+                display: flex;
+            }
+        }
+
+        // Nested selectors
+        .dropdown {
+            color: $dropdown-font-color;
+            display: none;
+            left: 0;
+            padding-top: $dropdown-offset;
+            position: absolute;
+            text-align: left;
+            top: 100%;
+            z-index: stack-index('dropdown');
+
+            // Cycle through all of the breakpoints
+            @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                // Breakpoints
+                @include breakpoint($breakpoint-name) {
+                    min-width: map-get($dropdown-min-widths, $breakpoint-name);
+
+                    // Nested selectors
+                    .dropdown__content {
+                        // Nested selectors
+                        a:not(.button) {
+                            // Modifiers
+                            &.dropdown__item {
+                                padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, 'md'));
+                            }
+                        }
+
+                        .dropdown__item {
+                            padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, 'md'));
+                        }
+                    }
+
+                    // Check if the dropdown megamenu modifier should be declared
+                    @if $dropdown-megamenu-modifier {
+                        &.dropdown--megamenu {
+                            // Nested selectors
+                            .dropdown__content {
+                                padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, 'md'));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Nested selectors
+            .dropdown__content {
+                animation-duration: $dropdown-animation-duration;
+                background-color: $dropdown-background-color;
+                border: 0 $dropdown-border-style $dropdown-border-color;
+                border-bottom-left-radius: $dropdown-border-radius-bottom-left;
+                border-bottom-right-radius: $dropdown-border-radius-bottom-right;
+                border-bottom-width: $dropdown-border-width-bottom;
+                border-left-width: $dropdown-border-width-left;
+                border-right-width: $dropdown-border-width-right;
+                border-top-left-radius: $dropdown-border-radius-top-left;
+                border-top-right-radius: $dropdown-border-radius-top-right;
+                border-top-width: $dropdown-border-width-top;
+                box-shadow: $dropdown-box-shadow;
+                width: 100%;
+
+                // Nested selectors
+                a:not(.button) {
+                    color: $dropdown-link-color;
+                    padding: 0;
+
+                    // Pseudo classes
+                    &:hover {
+                        color: $dropdown-link-color-hover;
+                    }
+
+                    &:focus {
+                        color: $dropdown-link-color-focus;
+                    }
+
+                    &:active {
+                        color: $dropdown-link-color-active;
+                    }
+                }
+
+                a:not(.button) {
+                    // Modifiers
+                    &.dropdown__item {
+                        background-color: $dropdown-item-background-color;
+                        color: $dropdown-item-link-color;
+                        display: block;
+                        outline: none;
+                        position: relative;
+                        text-decoration: none;
+                        z-index: stack-index('default');
+
+                        // Pseudo classes
+                        &:hover {
+                            background-color: $dropdown-item-background-color-hover;
+                            color: $dropdown-item-link-color-hover;
+                            z-index: stack-index('hover');
+                        }
+
+                        &:focus {
+                            background-color: $dropdown-item-background-color-hover;
+                            box-shadow: 0 0 0 $dropdown-accessibility-focus-width $dropdown-accessibility-focus-color;
+                            color: $dropdown-item-link-color-hover;
+                            z-index: stack-index('focus');
+                        }
+
+                        &:active {
+                            background-color: $dropdown-item-background-color-active;
+                            color: $dropdown-item-link-color-active;
+                            z-index: stack-index('active');
+                        }
+
+                        &:first-child {
+                            border-top-left-radius: $dropdown-border-radius-top-left;
+                            border-top-right-radius: $dropdown-border-radius-top-right;
+                        }
+
+                        &:last-child {
+                            border-bottom-left-radius: $dropdown-border-radius-bottom-left;
+                            border-bottom-right-radius: $dropdown-border-radius-bottom-right;
+                        }
+                    }
+                }
+
+                .dropdown__divider {
+                    border: 0 $dropdown-border-style $dropdown-border-color;
+                    border-bottom-width: $dropdown-border-width-divider;
+                }
+            }
+
+            // Check if the dropdown size modifiers should be declared
+            @if $dropdown-size-modifiers {
+                // Cycle through all of the sizes
+                @each $size in $sizes {
+                    // Cycle through all of the breakpoints
+                    @each $breakpoint-name, $breakpoint-value in $breakpoints {
+                        // Breakpoints
+                        @include breakpoint($breakpoint-name) {
+                            // Modifiers: Sizes
+                            &.is-#{$size} {
+                                // Nested selectors
+                                .dropdown__content {
+                                    // Nested selectors
+                                    a:not(.button) {
+                                        // Modifiers
+                                        &.dropdown__item {
+                                            padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, $size));
+                                        }
+                                    }
+
+                                    .dropdown__item {
+                                        padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, $size));
+                                    }
+                                }
+
+                                // Check if the dropdown megamenu modifier should be declared
+                                @if $dropdown-megamenu-modifier {
+                                    &.dropdown--megamenu {
+                                        // Nested selectors
+                                        .dropdown__content {
+                                            padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, $size));
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Check if the dropdown size modifiers with breakpoints should be declared
+                            @if $dropdown-size-modifiers-with-breakpoints {
+                                // Modifiers: Sizes
+                                &.is-#{$size}\@#{$breakpoint-name} {
+                                    // Nested selectors
+                                    .dropdown__content {
+                                        // Nested selectors
+                                        a:not(.button) {
+                                            // Modifiers
+                                            &.dropdown__item {
+                                                padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, $size));
+                                            }
+                                        }
+
+                                        .dropdown__item {
+                                            padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, $size));
+                                        }
+                                    }
+
+                                    // Check if the dropdown megamenu modifier should be declared
+                                    @if $dropdown-megamenu-modifier {
+                                        &.dropdown--megamenu {
+                                            // Nested selectors
+                                            .dropdown__content {
+                                                padding: (content-spacing($breakpoint-name) * map-get($dropdown-content-spacing-multipliers, $size));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check if the dropdown alignment modifiers should be declared
+            @if $dropdown-alignment-modifiers {
+                // Modifiers
+                &.dropdown--center {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                &.dropdown--right {
+                    left: auto;
+                    right: 0;
+                }
+            }
+
+            // Check if the dropdown megamenu modifier should be declared
+            @if $dropdown-megamenu-modifier {
+                &.dropdown--megamenu {
+                    left: 0;
+                    max-width: 100%;
+                    min-width: 100%;
+                    width: 100%;
+                }
+            }
+        }
+
+        // Check if the dropdown megamenu modifier should be declared
+        @if $dropdown-megamenu-modifier {
+            // Modifiers
+            &.has-dropdown--megamenu {
+                position: static;
+            }
+        }
+    }
+}
